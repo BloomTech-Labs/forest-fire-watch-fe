@@ -54,7 +54,7 @@ function Register() {
               name="username"
               placeholder="Enter username"
               value={username}
-              onChange={e=>setUsername(e)}
+              onChange={e=>setUsername(e.value)}
             />
           </label>
           <label>
@@ -64,7 +64,7 @@ function Register() {
               name="password"
               placeholder="Enter password"
               value={password}
-              onChange={e=>setPassword(e)}
+              onChange={e=>setPassword(e.value)}
             />
           </label>
           <label>
@@ -74,7 +74,7 @@ function Register() {
               name="passwordConf"
               placeholder="Confirm password"
               value={passwordConf}
-              onChange={e=>setPasswordConf(e)}
+              onChange={e=>setPasswordConf(e.value)}
             />
           </label>
           <button type="submit" disabled={loading}>
