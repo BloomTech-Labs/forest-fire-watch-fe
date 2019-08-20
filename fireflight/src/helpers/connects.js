@@ -1,30 +1,33 @@
 import axios from 'axios'
 import stats from './status.js'
 
-export default class{
+class connector{
     constructor(){
         this.connector=axios;
         this.coreString=''//http here
         if(localStorage.getItem('token')!=null)
-            this.connector.defaults.headers.common['Authorization']=data.data.payload
+            // this.connector.defaults.headers.common['Authorization']=data.data.payload
         this.user=null
     }
 
     async login(creds){
-        let res = await axios.post(this.coreString+"/login",creds)
-        //let {data}  =res.data
-        //success test
+        //just returns creds for the moment
+        return creds
 
-        let data = {id:1,}
+        // let res = await axios.post(this.coreString+"/login",creds)
+        // //let {data}  =res.data
+        // //success test
 
-        if(true){//success test
-            localStorage.setItem('token',data)
-            this.connector.defaults.headers.common['Authorization']=data
-            return stats(true,data);
-        }else{
-            //success failed
-            throw {status:false,data:"Login Failed"}
-        }
+        // let data = {id:1,}
+
+        // if(true){//success test
+        //     localStorage.setItem('token',data)
+        //     this.connector.defaults.headers.common['Authorization']=data
+        //     return stats(true,data);
+        // }else{
+        //     //success failed
+        //     throw {status:false,data:"Login Failed"}
+        // }
     }
 
     logout(){
@@ -34,8 +37,12 @@ export default class{
     
     async self(){
         //async this.connector.post(self) //get self
-        this.user=data;
-        return stats(true,data);
+        // this.user=data;
+        // return stats(true,data);
     
     }
 }
+
+const connect = new connector();
+
+export default connect;

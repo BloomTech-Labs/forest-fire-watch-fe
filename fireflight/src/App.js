@@ -3,6 +3,7 @@ import {
   BrowserRouter as Router,
   Route
 } from 'react-router-dom'
+import GlobalState from './context/GlobalContext'
 import Navigation from './components/Navigation'
 import Home from './components/Home'
 import Danger from './components/Danger'
@@ -13,18 +14,19 @@ import Register from './components/Register'
 
 function App() {
 
-  const [user,setUser]=useState(null)
-  const [location,setLocation]=useState('')
-
   return (
-    <div className="App">
-      <Navigation/>
-      <Route exact path="/" component={Home}/>
-      <Route path="/register" component={Register}/>
-      <Route path="/login" component={Login}/>
-      <Route path="/update" component={Update}/>
-      <Route path="/danger" component={Danger}/>
-    </div>
+    <GlobalState>
+      <Router>
+        <div className="App">
+          <Navigation/>
+          <Route exact path="/" component={Home}/>
+          <Route path="/register" component={Register}/>
+          <Route path="/login" component={Login}/>
+          <Route path="/update" component={Update}/>
+          <Route path="/danger" component={Danger}/>
+        </div>
+      </Router>
+    </GlobalState>
   );
 }
 
