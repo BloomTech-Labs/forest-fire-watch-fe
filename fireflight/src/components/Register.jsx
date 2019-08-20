@@ -6,6 +6,7 @@ import useInput from "../utils/useInput";
 function Register() {
   const [username, setUsername, handleUsername] = useInput("username", "");
   const [password, setPassword, handlePassword] = useInput("password", "");
+  //second password input used to ensure no typos in passwords
   const [passwordConf, setPasswordConf, handlePasswordConf] = useInput(
     "password",
     ""
