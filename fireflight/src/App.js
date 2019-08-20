@@ -3,7 +3,6 @@ import {
   BrowserRouter as Router,
   Route
 } from 'react-router-dom'
-import GlobalState from './context/GlobalContext'
 import Navigation from './components/Navigation'
 import Home from './components/Home'
 import Danger from './components/Danger'
@@ -13,10 +12,14 @@ import Register from './components/Register'
 
 
 function App() {
+  const [token,setToken]=useState('')
+
+  useEffect(()=>{
+
+  })
+
 
   return (
-    <GlobalState>
-      <Router>
         <div className="App">
           <Navigation/>
           <Route exact path="/" component={Home}/>
@@ -25,8 +28,6 @@ function App() {
           <Route path="/update" component={Update}/>
           <Route path="/danger" component={Danger}/>
         </div>
-      </Router>
-    </GlobalState>
   );
 }
 

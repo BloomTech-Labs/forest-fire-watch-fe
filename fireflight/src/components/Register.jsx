@@ -1,17 +1,17 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import { Link, Redirect } from "react-router-dom";
+import FireContext from '../context/contextProvider'
 import axios from "axios";
-import useInput from "../utils/useInput";
 
 function Register() {
-  const [username, setUsername, handleUsername] = useInput("username", "");
-  const [password, setPassword, handlePassword] = useInput("password", "");
-  const [passwordConf, setPasswordConf, handlePasswordConf] = useInput(
-    "password",
-    ""
-  );
+  const [username,setUsername]=useState("")
+  const [password,setPassword]=useState("")
+  const [passwordConf,setPasswordConf]=useState('')
+
   const [loading, setLoading] = useState(false);
   const [badPassword, setBadPassword] = useState(false);
+
+  const data=useContext(FireContext)
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -39,7 +39,8 @@ function Register() {
     }
   }
 
-  if (localStorage.getItem("token")) {
+  if (data.token!=null) {
+    console.log(localStorage.getItem('token'));
     return <Redirect to="/" />;
   } else {
     return (
@@ -53,7 +54,7 @@ function Register() {
               name="username"
               placeholder="Enter username"
               value={username}
-              onChange={handleUsername}
+              onChange={e=>setUsername(e)}
             />
           </label>
           <label>
@@ -63,7 +64,7 @@ function Register() {
               name="password"
               placeholder="Enter password"
               value={password}
-              onChange={handlePassword}
+              onChange={e=>setPassword(e)}
             />
           </label>
           <label>
@@ -73,7 +74,7 @@ function Register() {
               name="passwordConf"
               placeholder="Confirm password"
               value={passwordConf}
-              onChange={handlePasswordConf}
+              onChange={e=>setPasswordConf(e)}
             />
           </label>
           <button type="submit" disabled={loading}>
