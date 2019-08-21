@@ -3,18 +3,19 @@ import { Link, Redirect } from "react-router-dom";
 import FireContext from '../context/contextProvider'
 import axios from "axios";
 
+import useInput from "../utils/useInput"
+
 function Register() {
-  // const [username, setUsername, handleUsername] = useInput("username", "");
-  // const [password, setPassword, handlePassword] = useInput("password", "");
-  // //second password input used to ensure no typos in passwords
-  // const [passwordConf, setPasswordConf, handlePasswordConf] = useInput(
-  //   "password",
-  //   ""
-  // );
-  //
-  const [username,setUsername]=useState("")
-  const [password,setPassword]=useState("")
-  const [passwordConf,setPasswordConf]=useState('')
+  const [username, setUsername, handleUsername] = useInput("", "username");
+  const [password, setPassword, handlePassword] = useInput("", "password");
+  //second password input used to ensure no typos in passwords
+  const [passwordConf, setPasswordConf, handlePasswordConf] = useInput(
+   "", "passwordConf"
+  );
+  //Shannon: useInput is a custom hook that adds an eventhandler which sets the value. 
+  // const [username,setUsername]=useState("")
+  // const [password,setPassword]=useState("")
+  // const [passwordConf,setPasswordConf]=useState('')
 
   const [loading, setLoading] = useState(false);
   const [badPassword, setBadPassword] = useState(false);
@@ -26,17 +27,16 @@ function Register() {
     setLoading(true);
 
     if (password === passwordConf) {
-      //need this from backend
-      const url = "";
       const newUser = { username, password };
       axios
-        .post(url, newUser)
+        .post("https://fireflight-lambda.herokuapp.com/api/auth/register", newUser)
         .then(res => {
           setUsername("");
           setPassword("");
           setPasswordConf("");
           setLoading(false);
           console.log(res.body);
+          return <Redirect to="/"/>
         })
         .catch(err => {
           console.log(err);
@@ -60,9 +60,9 @@ function Register() {
             <input
               type="text"
               name="username"
-              placeholder="Enter username"
               value={username}
-              onChange={e=>setUsername(e.value)}
+              // onChange={e=>setUsername(e.value)}
+              onChange={handleUsername}
             />
           </label>
           <label>
@@ -70,9 +70,9 @@ function Register() {
             <input
               type="password"
               name="password"
-              placeholder="Enter password"
               value={password}
-              onChange={e=>setPassword(e.value)}
+              // onChange={e=>setPassword(e.value)}
+              onChange={handlePassword}
             />
           </label>
           <label>
@@ -80,9 +80,9 @@ function Register() {
             <input
               type="password"
               name="passwordConf"
-              placeholder="Confirm password"
               value={passwordConf}
-              onChange={e=>setPasswordConf(e.value)}
+              // onChange={e=>setPasswordConf(e.value)}
+              onChange={handlePasswordConf}
             />
           </label>
           <button type="submit" disabled={loading}>
