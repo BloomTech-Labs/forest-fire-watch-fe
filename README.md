@@ -48,7 +48,7 @@ You can find the deployed project at [fireflightapp.com](fireflightapp.com).
 -    feature four
 -    feature five
 
-## 1️⃣ Tech Stack
+## Tech Stack
 
 ### Front end built using:
 
@@ -156,18 +156,20 @@ In order for the app to function correctly, the user must set up their own envir
 
 🚫Document what you used for testing and why
 
-# 4️⃣ Installation Instructions
+# Installation Instructions
 
-🚫explain how to install the required dependencies to get this project up and running with yarn and NPM
+1.  Fork this repository.
+2.  Clone this repository.
+3.  Navigate into the 'fireflight' directory.
+4.  Use npm install, yarn install, or pnpm install.
+5.  Checkout your own branch and start hacking.
 
 ## Other Scripts
 
-🚫replace these examples with your own
-
-    * typecheck - runs the TypeScript compiler
     * build - creates a build of the application
     * start - starts the production server after a build is created
-    * test - runs tests in **tests** directory \* eject - copy the configuration files and dependencies into the project so you have full control over them
+    * test - runs tests in **tests** directory 
+    * eject - copy the configuration files and dependencies into the project so you have full control over them
 
 # Contributing
 
