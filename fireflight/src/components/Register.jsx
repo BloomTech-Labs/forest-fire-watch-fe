@@ -6,6 +6,9 @@ import axios from "axios";
 import useInput from "../utils/useInput";
 import styled from "styled-components";
 
+const localURL = "http://localhost:5000/api/auth";
+const deployedURL = "https://fireflight-lambda.herokuapp.com/api/auth";
+
 function Register() {
   //useInput is a custom hook that should be used for all controlled inputs
   const [username, setUsername, handleUsername] = useInput("", "username");
@@ -27,11 +30,9 @@ function Register() {
 
     if (password === passwordConf) {
       const newUser = { username, password };
+      console.log(newUser);
       axios
-        .post(
-          "https://fireflight-lambda.herokuapp.com/api/auth/register",
-          newUser
-        )
+        .post(`${deployedURL}/register`, newUser)
         .then(res => {
           setUsername("");
           setPassword("");
