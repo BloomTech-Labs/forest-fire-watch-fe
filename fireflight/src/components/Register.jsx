@@ -28,7 +28,10 @@ function Register() {
     if (password === passwordConf) {
       const newUser = { username, password };
       axios
-        .post("http://localhost:5000/api/auth/register", newUser)
+        .post(
+          "https://fireflight-lambda.herokuapp.com/api/auth/register",
+          newUser
+        )
         .then(res => {
           console.log("works");
           setUsername("");
