@@ -1,34 +1,42 @@
-import React, { useState,useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Link, Redirect } from "react-router-dom";
-import FireContext from '../context/contextProvider'
+import FireContext from "../context/contextProvider";
 import axios from "axios";
 
-function Register() {
-  const [username,setUsername]=useState("")
-  const [password,setPassword]=useState("")
-  const [passwordConf,setPasswordConf]=useState('')
+import useInput from "../utils/useInput";
 
+function Register() {
+  //useInput is a custom hook that should be used for all controlled inputs
+  const [username, setUsername, handleUsername] = useInput("", "username");
+  const [password, setPassword, handlePassword] = useInput("", "password");
+  //second password input used to ensure no typos in passwords
+  const [passwordConf, setPasswordConf, handlePasswordConf] = useInput(
+    "",
+    "passwordConf"
+  );
   const [loading, setLoading] = useState(false);
   const [badPassword, setBadPassword] = useState(false);
 
-  const data=useContext(FireContext)
+  const data = useContext(FireContext);
 
   function handleSubmit(e) {
     e.preventDefault();
     setLoading(true);
 
     if (password === passwordConf) {
-      //need this from backend
-      const url = "";
       const newUser = { username, password };
       axios
-        .post(url, newUser)
+        .post(
+          "https://fireflight-lambda.herokuapp.com/api/auth/register",
+          newUser
+        )
         .then(res => {
           setUsername("");
           setPassword("");
           setPasswordConf("");
           setLoading(false);
-          console.log(res.body);
+          console.log(res);
+          return <Redirect to="/login" />;
         })
         .catch(err => {
           console.log(err);
@@ -39,8 +47,8 @@ function Register() {
     }
   }
 
-  if (data.token!=null) {
-    console.log(localStorage.getItem('token'));
+  if (data.token != null) {
+    console.log(localStorage.getItem("token"));
     return <Redirect to="/" />;
   } else {
     return (
@@ -52,9 +60,9 @@ function Register() {
             <input
               type="text"
               name="username"
-              placeholder="Enter username"
               value={username}
-              onChange={e=>setUsername(e.value)}
+              // onChange={e=>setUsername(e.value)}
+              onChange={handleUsername}
             />
           </label>
           <label>
@@ -62,9 +70,9 @@ function Register() {
             <input
               type="password"
               name="password"
-              placeholder="Enter password"
               value={password}
-              onChange={e=>setPassword(e.value)}
+              // onChange={e=>setPassword(e.value)}
+              onChange={handlePassword}
             />
           </label>
           <label>
@@ -72,9 +80,9 @@ function Register() {
             <input
               type="password"
               name="passwordConf"
-              placeholder="Confirm password"
               value={passwordConf}
-              onChange={e=>setPasswordConf(e.value)}
+              // onChange={e=>setPasswordConf(e.value)}
+              onChange={handlePasswordConf}
             />
           </label>
           <button type="submit" disabled={loading}>
