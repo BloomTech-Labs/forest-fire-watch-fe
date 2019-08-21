@@ -6,8 +6,6 @@ import axios from "axios";
 import useInput from "../utils/useInput";
 import styled from "styled-components";
 
-import errorHandling from "../utils/inputErrorHandling";
-
 function Register() {
   //useInput is a custom hook that should be used for all controlled inputs
   const [username, setUsername, handleUsername] = useInput("", "username");
@@ -18,47 +16,38 @@ function Register() {
     "passwordConf"
   );
   const [loading, setLoading] = useState(false);
-  const [badPassword, setBadPassword] = useState(false);
-  const [error, setError] = useState(false);
+  const [errorStatus, setErrorStatus] = useState(false);
   const [errorText, setErrorText] = useState("");
 
   const data = useContext(FireContext);
 
-  const setErrorHandler = e => {
-    e.preventDefault();
-    const userObject = { username, password, passwordConf };
-
-    const errorStatus = errorHandling(userObject);
-
-    console.log(errorStatus);
-
-    setError(errorStatus.status);
-  };
-
   function handleSubmit(e) {
     e.preventDefault();
-    // setLoading(true);
+    setLoading(true);
 
-    // if (error === "") {
-    //   const newUser = { username, password };
-    //   axios
-    //     .post(
-    //       "https://fireflight-lambda.herokuapp.com/api/auth/register",
-    //       newUser
-    //     )
-    //     .then(res => {
-    //       setUsername("");
-    //       setPassword("");
-    //       setPasswordConf("");
-    //       setLoading(false);
-    //       console.log(res);
-    //       return <Redirect to="/login" />;
-    //     })
-    //     .catch(err => {
-    //       console.log(err);
-    //       setLoading(false);
-    //     });
-    // }
+    if (password === passwordConf) {
+      const newUser = { username, password };
+      axios
+        .post(
+          "https://fireflight-lambda.herokuapp.com/api/auth/register",
+          newUser
+        )
+        .then(res => {
+          setUsername("");
+          setPassword("");
+          setPasswordConf("");
+          setLoading(false);
+          console.log(res);
+          return <Redirect to="/login" />;
+        })
+        .catch(err => {
+          console.log(err);
+          setLoading(false);
+        });
+    } else {
+      setErrorStatus(true);
+      setErrorText("Passwords must match");
+    }
   }
 
   if (data.token != null) {
@@ -68,12 +57,7 @@ function Register() {
     return (
       <RegPageContainer>
         Registration Page!
-        <FormContainer
-          onSubmit={e => {
-            setErrorHandler(e);
-            handleSubmit(e);
-          }}
-        >
+        <FormContainer onSubmit={handleSubmit}>
           <FormLabel>
             Username
             <FormInput
@@ -107,7 +91,7 @@ function Register() {
           <Button type="submit" disabled={loading}>
             {loading ? "Loading..." : "Register"}
           </Button>
-          {<p>{error}</p>}
+          {errorStatus ? <p>{errorText}</p> : <></>}
         </FormContainer>
         <p>
           Already a member? Log in <Link to="/login">here</Link>
