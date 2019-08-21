@@ -19,43 +19,46 @@ function Register() {
   );
   const [loading, setLoading] = useState(false);
   const [badPassword, setBadPassword] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState(false);
+  const [errorText, setErrorText] = useState("");
 
   const data = useContext(FireContext);
 
-  const setErrorHandler = () => {
+  const setErrorHandler = e => {
+    e.preventDefault();
     const userObject = { username, password, passwordConf };
-    setError(errorHandling(userObject));
+
+    const errorStatus = errorHandling(userObject);
+
+    console.log(errorStatus);
+
+    setError(errorStatus.status);
   };
 
   function handleSubmit(e) {
     e.preventDefault();
-    setLoading(true);
+    // setLoading(true);
 
-    setErrorHandler();
-
-    if (!error) {
-      const newUser = { username, password };
-      axios
-        .post(
-          "https://fireflight-lambda.herokuapp.com/api/auth/register",
-          newUser
-        )
-        .then(res => {
-          setUsername("");
-          setPassword("");
-          setPasswordConf("");
-          setLoading(false);
-          console.log(res);
-          return <Redirect to="/login" />;
-        })
-        .catch(err => {
-          console.log(err);
-          setLoading(false);
-        });
-    } else {
-      setBadPassword(true);
-    }
+    // if (error === "") {
+    //   const newUser = { username, password };
+    //   axios
+    //     .post(
+    //       "https://fireflight-lambda.herokuapp.com/api/auth/register",
+    //       newUser
+    //     )
+    //     .then(res => {
+    //       setUsername("");
+    //       setPassword("");
+    //       setPasswordConf("");
+    //       setLoading(false);
+    //       console.log(res);
+    //       return <Redirect to="/login" />;
+    //     })
+    //     .catch(err => {
+    //       console.log(err);
+    //       setLoading(false);
+    //     });
+    // }
   }
 
   if (data.token != null) {
@@ -65,7 +68,12 @@ function Register() {
     return (
       <RegPageContainer>
         Registration Page!
-        <FormContainer onSubmit={handleSubmit}>
+        <FormContainer
+          onSubmit={e => {
+            setErrorHandler(e);
+            handleSubmit(e);
+          }}
+        >
           <FormLabel>
             Username
             <FormInput

@@ -1,16 +1,20 @@
-// atleast 6 characters for username
-// atleast 8 characters for the password
-// atleast 1 special character for password
-// username and password is not blank
-
 const errorHandling = data => {
   const { username, password, passwordConf } = data;
 
-  let error = false;
+  let error = {
+    status: false,
+    text: ""
+  };
 
-  if (username.length < 6) {
-    error = "Username should be at least 6 characters long";
-  } else if (password.length < 8) {
+  if (username.length < 5) {
+    error.status = true;
+    error.text = "Username should be at least 6 characters long";
+  } else if (password.length < 7) {
+    error.status = true;
+    error.text = "Password must be at least 8 characters long";
+  } else if (password !== passwordConf) {
+    error.status = true;
+    error.text = "Password must match";
   }
 
   return error;
