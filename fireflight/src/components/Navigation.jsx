@@ -8,33 +8,45 @@ function Navigation() {
   const data = useContext(FireContext);
   return (
     <NavContainer>
+      <Logo>LOGO</Logo>
       <HamburgerMenu onClick={() => setMenuToggle(!menuToggle)}>
         <HamburgerMenuBar />
         <HamburgerMenuBar />
         <HamburgerMenuBar />
         {menuToggle ? (
           <MenuContainer>
-            <NavLink to="/" activeClassName="current">
-              Home
-            </NavLink>
+            <MenuItem>
+              <NavLink to="/" activeClassName="current">
+                Home
+              </NavLink>
+            </MenuItem>
+
             {data.token == null && (
               <React.Fragment>
-                <NavLink to="/register" activeClassName="current">
-                  Register
-                </NavLink>
-                <NavLink to="/login" activeClassName="current">
-                  Login
-                </NavLink>
+                <MenuItem>
+                  <NavLink to="/register" activeClassName="current">
+                    Register
+                  </NavLink>
+                </MenuItem>
+                <MenuItem>
+                  <NavLink to="/login" activeClassName="current">
+                    Login
+                  </NavLink>
+                </MenuItem>
               </React.Fragment>
             )}
             {data.token != null && (
               <React.Fragment>
-                <NavLink to="/update" activeClassName="current">
-                  Home
-                </NavLink>
-                <NavLink to="/logout" activeClassName="current">
-                  Logout
-                </NavLink>
+                <MenuItem>
+                  <NavLink to="/update" activeClassName="current">
+                    Home
+                  </NavLink>
+                </MenuItem>
+                <MenuItem>
+                  <NavLink to="/logout" activeClassName="current">
+                    Logout
+                  </NavLink>
+                </MenuItem>
               </React.Fragment>
             )}
           </MenuContainer>
@@ -48,14 +60,16 @@ export default Navigation;
 
 const NavContainer = styled.div`
   width: 100%;
+  height: 40px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 
-const MenuContainer = styled.div``;
+const Logo = styled.h3``;
 
 const HamburgerMenu = styled.div`
-  width: auto;
+  width: 25px;
   height: auto;
   padding: 5px;
 `;
@@ -65,6 +79,17 @@ const HamburgerMenuBar = styled.div`
   height: 3px;
   background-color: black;
   margin: 5px 0;
+`;
+
+const MenuContainer = styled.div`
+  position: absolute;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+`;
+
+const MenuItem = styled.div`
+  padding: 10px;
 `;
 
 // user logs in ->
