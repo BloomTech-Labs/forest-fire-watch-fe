@@ -3,6 +3,7 @@ import FireContext from "../context/contextProvider";
 import axios from "axios";
 import { Link, Redirect } from "react-router-dom";
 import useInput from "../utils/useInput";
+import styled from "styled-components";
 //not sure if we are using redux or hooks with context, so taking my best guess...
 
 function Login() {
@@ -47,37 +48,68 @@ function Login() {
     return <Redirect to="/" />;
   } else {
     return (
-      <div>
+      <LoginPageContainer>
         Login Page!
-        <form onSubmit={handleSubmit}>
-          <label>
+        <FormContainer onSubmit={handleSubmit}>
+          <FormLabel>
             Username
-            <input
+            <FormInput
               type="text"
               name="username"
               value={username}
               onChange={handleUsername}
             />
-          </label>
-          <label>
+          </FormLabel>
+          <FormLabel>
             Password
-            <input
+            <FormInput
               type="password"
               name="password"
               value={password}
               onChange={handlePassword}
             />
-          </label>
-          <button type="submit" disabled={loading}>
+          </FormLabel>
+          <Button
+            type="submit"
+            disabled={loading}
+            onClick={console.log("working")}
+          >
             {loading ? "Loading..." : "Log In"}
-          </button>
-        </form>
+          </Button>
+        </FormContainer>
         <p>
           Not a member? Sign up <Link to="/register">here</Link>
         </p>
-      </div>
+      </LoginPageContainer>
     );
   }
 }
 
 export default Login;
+
+const LoginPageContainer = styled.div`
+  width: 75%;
+  margin: 50px auto auto;
+  padding: 50px 0px;
+  text-align: center;
+  border: 1px solid black;
+`;
+
+const FormContainer = styled.form`
+  display: flex;
+  flex-direction: column;
+`;
+
+const FormLabel = styled.label`
+  padding: 5px 0px;
+`;
+
+const FormInput = styled.input`
+  margin-left: 10px;
+`;
+
+const Button = styled.button`
+  width: 200px;
+  box-shadow: 2px 2px 7px black;
+  margin: 20px auto;
+`;
