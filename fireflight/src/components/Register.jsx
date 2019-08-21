@@ -6,6 +6,8 @@ import axios from "axios";
 import useInput from "../utils/useInput";
 import styled from "styled-components";
 
+import errorHandling from "../utils/inputErrorHandling";
+
 function Register() {
   //useInput is a custom hook that should be used for all controlled inputs
   const [username, setUsername, handleUsername] = useInput("", "username");
@@ -17,14 +19,22 @@ function Register() {
   );
   const [loading, setLoading] = useState(false);
   const [badPassword, setBadPassword] = useState(false);
+  const [error, setError] = useState("");
 
   const data = useContext(FireContext);
+
+  const setErrorHandler = () => {
+    const userObject = { username, password, passwordConf };
+    setError(errorHandling(userObject));
+  };
 
   function handleSubmit(e) {
     e.preventDefault();
     setLoading(true);
 
-    if (password === passwordConf) {
+    setErrorHandler();
+
+    if (!error) {
       const newUser = { username, password };
       axios
         .post(
@@ -89,7 +99,7 @@ function Register() {
           <Button type="submit" disabled={loading}>
             {loading ? "Loading..." : "Register"}
           </Button>
-          {badPassword ? <p>"Your passwords don't match"</p> : <></>}
+          {<p>{error}</p>}
         </FormContainer>
         <p>
           Already a member? Log in <Link to="/login">here</Link>
