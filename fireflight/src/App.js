@@ -12,19 +12,22 @@ import Register from './components/Register'
 
 
 function App() {
+  const [token,setToken]=useState('')
 
-  const [user,setUser]=useState(null)
-  const [location,setLocation]=useState('')
+  useEffect(()=>{
+
+  })
+
 
   return (
-    <div className="App">
-      <Navigation/>
-      <Route exact path="/" component={Home}/>
-      <Route path="/register" component={Register}/>
-      <Route path="/login" component={Login}/>
-      <Route path="/update" component={Update}/>
-      <Route path="/danger" component={Danger}/>
-    </div>
+        <div className="App">
+          <Navigation/>
+          <Route exact path="/" component={Home}/>
+          <Route path="/register" component={Register}/>
+          <Route path="/login" component={Login}/>
+          <Route path="/update" component={Update}/>
+          <Route path="/danger" component={Danger}/>
+        </div>
   );
 }
 

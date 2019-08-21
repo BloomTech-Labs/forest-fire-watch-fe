@@ -1,3 +1,4 @@
 [build]
-publish="/build"
+base="fireflight/"
+publish="/fireflight/build"
 command ="yarn build"

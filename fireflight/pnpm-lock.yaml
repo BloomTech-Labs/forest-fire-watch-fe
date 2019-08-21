@@ -2,10 +2,7 @@ dependencies:
   axios: 0.19.0
   node-sass: 4.12.0
   react-loader-spinner: 3.1.2
-  react-redux: 7.1.0
   react-router-dom: 5.0.1
-  redux: 4.0.4
-  redux-thunk: 2.3.0
   styled-components: 4.3.2
 lockfileVersion: 5
 packages:
@@ -687,12 +684,6 @@ packages:
     dev: false
     resolution:
       integrity: sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==
-  /invariant/2.2.4:
-    dependencies:
-      loose-envify: 1.4.0
-    dev: false
-    resolution:
-      integrity: sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==
   /invert-kv/1.0.0:
     dev: false
     engines:
@@ -1180,20 +1171,6 @@ packages:
       react-dom: ^16.8.6
     resolution:
       integrity: sha512-qvp/m1i8A/BkrSHWfCf3Xt1Gsl1fgmoPu7xJO31bybpgiKRoatR5wkdZYqOl4NqrV+T9BlqijEJGPbx3ORWBaA==
-  /react-redux/7.1.0:
-    dependencies:
-      '@babel/runtime': 7.5.5
-      hoist-non-react-statics: 3.3.0
-      invariant: 2.2.4
-      loose-envify: 1.4.0
-      prop-types: 15.7.2
-      react-is: 16.9.0
-    dev: false
-    peerDependencies:
-      react: ^16.8.3
-      redux: ^2.0.0 || ^3.0.0 || ^4.0.0-0
-    resolution:
-      integrity: sha512-hyu/PoFK3vZgdLTg9ozbt7WF3GgX5+Yn3pZm5/96/o4UueXA+zj08aiSC9Mfj2WtD1bvpIb3C5yvskzZySzzaw==
   /react-router-dom/5.0.1:
     dependencies:
       '@babel/runtime': 7.5.5
@@ -1265,17 +1242,6 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-z5Fqsf1fHxbfsggi3W7H9zDCr94=
-  /redux-thunk/2.3.0:
-    dev: false
-    resolution:
-      integrity: sha512-km6dclyFnmcvxhAcrQV2AkZmPQjzPDjgVlQtR0EQjxZPyJ0BnMf3in1ryuR8A2qU0HldVRfxYXbFSKlI3N7Slw==
-  /redux/4.0.4:
-    dependencies:
-      loose-envify: 1.4.0
-      symbol-observable: 1.2.0
-    dev: false
-    resolution:
-      integrity: sha512-vKv4WdiJxOWKxK0yRoaK3Y4pxxB0ilzVx6dszU2W8wLxlb2yikRph4iV/ymtdJ6ZxpBLFbyrxklnT5yBbQSl3Q==
   /regenerator-runtime/0.11.1:
     dev: false
     resolution:
@@ -1558,12 +1524,6 @@ packages:
       node: '>=4'
     resolution:
       integrity: sha512-QjVjwdXIt408MIiAqCX4oUKsgU2EqAGzs2Ppkm4aQYbjm+ZEWEcW4SfFNTr4uMNZma0ey4f5lgLrkB0aX0QMow==
-  /symbol-observable/1.2.0:
-    dev: false
-    engines:
-      node: '>=0.10.0'
-    resolution:
-      integrity: sha512-e900nM8RRtGhlV36KGEU9k65K3mPb1WV70OdjfxlG2EAuM1noi/E/BaW/uMhL7bPEssK8QV57vN3esixjUvcXQ==
   /tar/2.2.2:
     dependencies:
       block-stream: 0.0.9
@@ -1725,8 +1685,5 @@ specifiers:
   axios: ^0.19.0
   node-sass: ^4.12.0
   react-loader-spinner: ^3.1.2
-  react-redux: ^7.1.0
   react-router-dom: ^5.0.1
-  redux: ^4.0.4
-  redux-thunk: ^2.3.0
   styled-components: ^4.3.2
