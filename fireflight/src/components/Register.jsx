@@ -48,7 +48,7 @@ function Register() {
         });
     } else {
       setErrorStatus(true);
-      setErrorText("Passwords must match");
+      setErrorText({ password: "Passwords must match" });
     }
   }
 
