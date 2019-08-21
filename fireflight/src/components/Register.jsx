@@ -1,26 +1,23 @@
-import React, { useState,useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Link, Redirect } from "react-router-dom";
-import FireContext from '../context/contextProvider'
+import FireContext from "../context/contextProvider";
 import axios from "axios";
 
-import useInput from "../utils/useInput"
+import useInput from "../utils/useInput";
 
 function Register() {
+  //useInput is a custom hook that should be used for all controlled inputs
   const [username, setUsername, handleUsername] = useInput("", "username");
   const [password, setPassword, handlePassword] = useInput("", "password");
   //second password input used to ensure no typos in passwords
   const [passwordConf, setPasswordConf, handlePasswordConf] = useInput(
-   "", "passwordConf"
+    "",
+    "passwordConf"
   );
-  //Shannon: useInput is a custom hook that adds an eventhandler which sets the value. 
-  // const [username,setUsername]=useState("")
-  // const [password,setPassword]=useState("")
-  // const [passwordConf,setPasswordConf]=useState('')
-
   const [loading, setLoading] = useState(false);
   const [badPassword, setBadPassword] = useState(false);
 
-  const data=useContext(FireContext)
+  const data = useContext(FireContext);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -29,14 +26,17 @@ function Register() {
     if (password === passwordConf) {
       const newUser = { username, password };
       axios
-        .post("https://fireflight-lambda.herokuapp.com/api/auth/register", newUser)
+        .post(
+          "https://fireflight-lambda.herokuapp.com/api/auth/register",
+          newUser
+        )
         .then(res => {
           setUsername("");
           setPassword("");
           setPasswordConf("");
           setLoading(false);
-          console.log(res.body);
-          return <Redirect to="/"/>
+          console.log(res);
+          return <Redirect to="/login" />;
         })
         .catch(err => {
           console.log(err);
@@ -47,8 +47,8 @@ function Register() {
     }
   }
 
-  if (data.token!=null) {
-    console.log(localStorage.getItem('token'));
+  if (data.token != null) {
+    console.log(localStorage.getItem("token"));
     return <Redirect to="/" />;
   } else {
     return (

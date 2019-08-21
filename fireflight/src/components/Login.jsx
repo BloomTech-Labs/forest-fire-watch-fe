@@ -6,18 +6,12 @@ import useInput from "../utils/useInput";
 //not sure if we are using redux or hooks with context, so taking my best guess...
 
 function Login() {
+  //useInput is a custom hook that should be used for all controlled inputs
   const [username, setUsername, handleUsername] = useInput("", "username");
   const [password, setPassword, handlePassword] = useInput("", "password");
-
-  // Shannon: useInput is a custom hook specifically to handle input fields
-  //proper way. [getter,setter] = useState(default)
-  // const [username,setUsername] = useState("")
-  // const [password,setPassword] = useState("")
-
+  const [loading, setLoading] = useState(false);
   //get global context (think redux store)
   const context = useContext(FireContext);
-
-  const [loading, setLoading] = useState(false);
 
   //view context once / example of how to use
   useEffect(() => {
@@ -62,7 +56,6 @@ function Login() {
               type="text"
               name="username"
               value={username}
-              // onChange={e=>setUsername(e.value)}
               onChange={handleUsername}
             />
           </label>
@@ -72,7 +65,6 @@ function Login() {
               type="password"
               name="password"
               value={password}
-              // onChange={e=>setPassword(e.value)}
               onChange={handlePassword}
             />
           </label>
