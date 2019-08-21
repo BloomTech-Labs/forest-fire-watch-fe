@@ -4,6 +4,7 @@ import FireContext from "../context/contextProvider";
 import axios from "axios";
 
 import useInput from "../utils/useInput";
+import styled from "styled-components";
 
 function Register() {
   //useInput is a custom hook that should be used for all controlled inputs
@@ -52,50 +53,77 @@ function Register() {
     return <Redirect to="/" />;
   } else {
     return (
-      <div>
+      <RegPageContainer>
         Registration Page!
-        <form onSubmit={handleSubmit}>
-          <label>
+        <FormContainer onSubmit={handleSubmit}>
+          <FormLabel>
             Username
-            <input
+            <FormInput
               type="text"
               name="username"
               value={username}
               // onChange={e=>setUsername(e.value)}
               onChange={handleUsername}
             />
-          </label>
-          <label>
+          </FormLabel>
+          <FormLabel>
             Password
-            <input
+            <FormInput
               type="password"
               name="password"
               value={password}
               // onChange={e=>setPassword(e.value)}
               onChange={handlePassword}
             />
-          </label>
-          <label>
+          </FormLabel>
+          <FormLabel>
             Confirm Password
-            <input
+            <FormInput
               type="password"
               name="passwordConf"
               value={passwordConf}
               // onChange={e=>setPasswordConf(e.value)}
               onChange={handlePasswordConf}
             />
-          </label>
-          <button type="submit" disabled={loading}>
+          </FormLabel>
+          <Button type="submit" disabled={loading}>
             {loading ? "Loading..." : "Register"}
-          </button>
+          </Button>
           {badPassword ? <p>"Your passwords don't match"</p> : <></>}
-        </form>
+        </FormContainer>
         <p>
           Already a member? Log in <Link to="/login">here</Link>
         </p>
-      </div>
+      </RegPageContainer>
     );
   }
 }
 
 export default Register;
+
+const RegPageContainer = styled.div`
+  width: 75%;
+  margin: 50px auto auto;
+  padding: 50px 0px;
+  text-align: center;
+  border: 1px solid black;
+`;
+
+const FormContainer = styled.form`
+  display: flex;
+  flex-direction: column;
+`;
+
+const FormLabel = styled.label`
+  padding: 5px 0px;
+`;
+
+const FormInput = styled.input`
+  margin-left: 10px;
+`;
+
+const Button = styled.button`
+  width: 200px;
+  box-shadow: 2px 2px 7px black;
+  margin: 20px auto;
+`;
