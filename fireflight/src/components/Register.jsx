@@ -17,7 +17,7 @@ function Register() {
   );
   const [loading, setLoading] = useState(false);
   const [errorStatus, setErrorStatus] = useState(false);
-  const [errorText, setErrorText] = useState("");
+  const [errorText, setErrorText] = useState({});
 
   const data = useContext(FireContext);
 
@@ -39,8 +39,8 @@ function Register() {
           // return <Redirect to="/login" />;
         })
         .catch(err => {
-          console.log(err.response.data);
-          console.log("not working");
+          setErrorStatus(true);
+          setErrorText(err.response.data);
           setLoading(false);
         });
     } else {
@@ -90,7 +90,14 @@ function Register() {
           <Button type="submit" disabled={loading}>
             {loading ? "Loading..." : "Register"}
           </Button>
-          {errorStatus ? <p>{errorText}</p> : <></>}
+          {errorStatus ? (
+            <div>
+              <p>{errorText.username}</p>
+              <p>{errorText.password}</p>
+            </div>
+          ) : (
+            <></>
+          )}
         </FormContainer>
         <p>
           Already a member? Log in <Link to="/login">here</Link>
