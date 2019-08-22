@@ -51,6 +51,7 @@ const ModalWrapper = styled.div`
   margin: 100px auto 0;
   transition: all 0.8s;
   width: 80%;
+  min-height: 475px;
   position: absolute;
   left: 0;
   right: 0;

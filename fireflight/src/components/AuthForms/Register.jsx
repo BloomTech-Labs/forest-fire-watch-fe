@@ -74,6 +74,11 @@ function Register() {
             onChange={handleUsername}
             placeholder="Username"
           />
+          {errorStatus ? (
+            <ErrorText>{errorText.username}</ErrorText>
+          ) : (
+            <ErrorText />
+          )}
 
           <FormInput
             type="password"
@@ -83,7 +88,11 @@ function Register() {
             onChange={handlePassword}
             placeholder="Password"
           />
-
+          {errorStatus && password === passwordConf ? (
+            <ErrorText>{errorText.password}</ErrorText>
+          ) : (
+            <ErrorText />
+          )}
           <FormInput
             type="password"
             name="passwordConf"
@@ -96,14 +105,6 @@ function Register() {
           <Button type="submit" disabled={loading}>
             {loading ? "Loading..." : "Register"}
           </Button>
-          {errorStatus ? (
-            <div>
-              <p>{errorText.username}</p>
-              <p>{errorText.password}</p>
-            </div>
-          ) : (
-            <></>
-          )}
         </FormContainer>
         <p>
           Already a member? Log in <Link to="/login">here</Link>
@@ -133,8 +134,8 @@ const FormContainer = styled.form`
 
 const FormInput = styled.input`
   width: 300px;
-  margin: 5px auto;
-  padding: 10px;
+  margin: auto;
+  padding: 15px;
   font-size: 0.75em;
   background-color: #e6e6e6;
   border-radius: 5px;
@@ -150,4 +151,12 @@ const Button = styled.button`
   background-color: #c06c84;
   color: #f2f2f2;
   font-size: 1em;
+`;
+
+const ErrorText = styled.p`
+  color: darkred;
+  font-size: 0.75em;
+  margin: 0px;
+  padding: 2px;
+  height: 15px;
 `;
