@@ -28,21 +28,25 @@ function Register() {
     e.preventDefault();
     setLoading(true);
 
+    // ERROR HANDLING EXPLANATION
+    // We first check if password and passwordConf match. We do this on the front end because the passwordConf does not get passed to the backend to check it.
+    // The user credentials are then validated on the backend, if they are invalid, the server returns a 400 status code that triggers the catch method in the api call.
+    // The errorStatus hook is set to true so that we can check if errors exist.
+    // The errorText is set to the error descriptions that are coming from the server.
+    // We then display those error descriptions below in some p tags.
+
     if (password === passwordConf) {
       const newUser = { username, password };
       axios
         .post(`${localURL}/register`, newUser)
         .then(res => {
-          console.log("works");
           setUsername("");
           setPassword("");
           setPasswordConf("");
           setLoading(false);
-          console.log(res);
           // return <Redirect to="/login" />;
         })
         .catch(err => {
-          console.log(err.response.data);
           setErrorStatus(true);
           setErrorText(err.response.data);
           setLoading(false);
