@@ -13,7 +13,7 @@ import { FireContext } from "./context/GlobalContext";
 function App() {
   const [token, setToken] = useState("");
   const contextObject = useContext(FireContext);
-  const { setRegisterModal, registerModal } = useContext(FireContext);
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
 
   useEffect(() => {});
 
@@ -21,15 +21,20 @@ function App() {
 
   return (
     <div className="App">
-      <Navigation />
+      <Navigation toggleRegister={setShowRegisterModal} />
       <Route exact path="/" component={Home} />
       <Route path="/register" component={Register} />
       <Route path="/login" component={Login} />
       <Route path="/update" component={Update} />
       <Route path="/danger" component={Danger} />
 
-      <button onClick={setRegisterModal}>CLICK ME!</button>
-      <Modal show={registerModal} />
+      {/* <button onClick={() => setShowRegisterModal(true)}>CLICK ME!</button> */}
+      <Modal
+        show={showRegisterModal}
+        form={<Register />}
+        headerTitle={"Register"}
+        close={() => setShowRegisterModal(false)}
+      />
     </div>
   );
 }

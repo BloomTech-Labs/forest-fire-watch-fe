@@ -3,7 +3,7 @@ import FireContext from "../context/contextProvider";
 import { withRouter, NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-function Navigation() {
+function Navigation({ toggleRegister }) {
   const [menuToggle, setMenuToggle] = useState(false);
 
   const data = useContext(FireContext);
@@ -24,10 +24,8 @@ function Navigation() {
 
             {data.token == null && (
               <React.Fragment>
-                <MenuItem onClick={() => console.log("register")}>
-                  <NavLink to="/register" activeClassName="current">
-                    Register
-                  </NavLink>
+                <MenuItem onClick={toggleRegister}>
+                  <a>Register</a>
                 </MenuItem>
                 <MenuItem>
                   <NavLink to="/login" activeClassName="current">

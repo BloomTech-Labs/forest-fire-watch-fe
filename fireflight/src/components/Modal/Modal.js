@@ -19,7 +19,6 @@ const modal = props => {
         <div className="modal-body">{props.form}</div>
         <ModalFooter>
           <BtnCancel onClick={props.close}>CLOSE</BtnCancel>
-          <button className="btn-continue">CONTINUE</button>
         </ModalFooter>
       </ModalWrapper>
     </div>
