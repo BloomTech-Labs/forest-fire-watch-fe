@@ -1,7 +1,27 @@
 import React from "react";
 import styled from "styled-components";
 
-const Modal = ({ close, show, children }) => {
+const Modal = ({
+  close,
+  show,
+  children,
+  setLogin,
+  setRegister,
+  showRegisterStatus,
+  showLoginStatus
+}) => {
+  const toggleForms = () => {
+    console.log("working");
+    console.log(showRegisterStatus, showLoginStatus);
+    if (showRegisterStatus) {
+      setRegister(false);
+      setLogin(true);
+    } else if (showLoginStatus) {
+      setRegister(true);
+      setLogin(false);
+    }
+  };
+
   return (
     <ModalWrapper
       style={{
@@ -16,7 +36,7 @@ const Modal = ({ close, show, children }) => {
       </ModalHeader>
       <div className="modal-body">{children}</div>
       <ModalFooter>
-        <BtnCancel onClick={close}>Toggle Forms</BtnCancel>
+        <BtnCancel onClick={toggleForms}>Toggle Forms</BtnCancel>
       </ModalFooter>
     </ModalWrapper>
   );

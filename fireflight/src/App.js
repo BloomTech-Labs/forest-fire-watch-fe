@@ -45,6 +45,8 @@ function App() {
         close={() => setShowAuthForms(false)}
         showLogin={loginFormStatus}
         showRegister={registerFormStatus}
+        setLoginStatus={setLoginFormStatus}
+        setRegisterStatus={setRegisterFormStatus}
       />
 
       <Navigation
