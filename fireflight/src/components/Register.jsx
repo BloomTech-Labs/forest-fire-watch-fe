@@ -64,7 +64,6 @@ function Register() {
   } else {
     return (
       <RegPageContainer>
-        Registration Page!
         <FormContainer onSubmit={handleSubmit}>
           <FormLabel>
             Username

@@ -49,7 +49,6 @@ function Login() {
   } else {
     return (
       <LoginPageContainer>
-        Login Page!
         <FormContainer onSubmit={handleSubmit}>
           <FormLabel>
             Username

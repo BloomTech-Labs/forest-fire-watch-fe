@@ -3,25 +3,23 @@ import styled from "styled-components";
 
 const modal = props => {
   return (
-    <div>
-      <ModalWrapper
-        style={{
-          transform: props.show ? "translateY(0vh)" : "translateY(-100vh)",
-          opacity: props.show ? "1" : "0"
-        }}
-      >
-        <ModalHeader>
-          <ModalHeaderTitle>{props.headerTitle}</ModalHeaderTitle>
-          <span className="close-modal-btn" onClick={props.close}>
-            ×
-          </span>
-        </ModalHeader>
-        <div className="modal-body">{props.form}</div>
-        <ModalFooter>
-          <BtnCancel onClick={props.close}>CLOSE</BtnCancel>
-        </ModalFooter>
-      </ModalWrapper>
-    </div>
+    <ModalWrapper
+      style={{
+        transform: props.show ? "translateY(0vh)" : "translateY(-100vh)",
+        opacity: props.show ? "1" : "0"
+      }}
+    >
+      <ModalHeader>
+        <ModalHeaderTitle>{props.headerTitle}</ModalHeaderTitle>
+        <span className="close-modal-btn" onClick={props.close}>
+          ×
+        </span>
+      </ModalHeader>
+      <div className="modal-body">{props.form}</div>
+      <ModalFooter>
+        <BtnCancel onClick={props.close}>CLOSE</BtnCancel>
+      </ModalFooter>
+    </ModalWrapper>
   );
 };
 
@@ -34,6 +32,9 @@ const ModalWrapper = styled.div`
   margin: 100px auto 0;
   transition: all 0.8s;
   width: 60%;
+  position: absolute;
+  left: 0;
+  right: 0;
 `;
 
 const ModalHeader = styled.div`
