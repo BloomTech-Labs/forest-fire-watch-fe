@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 function Navigation() {
   const [menuToggle, setMenuToggle] = useState(false);
+
   const data = useContext(FireContext);
   return (
     <NavContainer>
@@ -23,7 +24,7 @@ function Navigation() {
 
             {data.token == null && (
               <React.Fragment>
-                <MenuItem>
+                <MenuItem onClick={() => console.log("register")}>
                   <NavLink to="/register" activeClassName="current">
                     Register
                   </NavLink>

@@ -38,6 +38,7 @@ function Register() {
     if (password === passwordConf) {
       const newUser = { username, password };
       axios
+        // There are local and deployed server variables at top of file.
         .post(`${localURL}/register`, newUser)
         .then(res => {
           setUsername("");
