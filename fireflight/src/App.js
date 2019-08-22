@@ -27,8 +27,6 @@ function App() {
       <Route path="/login" component={Login} />
       <Route path="/update" component={Update} />
       <Route path="/danger" component={Danger} />
-
-      {/* <button onClick={() => setShowRegisterModal(true)}>CLICK ME!</button> */}
       <Modal
         show={showRegisterModal}
         form={<Register />}

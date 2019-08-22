@@ -2,20 +2,15 @@ import React, { useReducer, createContext } from "react";
 // import FireContext from "./contextProvider";
 import connector from "../helpers/connects";
 
-import { TRIGGER_REGISTRATION_MODAL, TRIGGER_LOGIN_MODAL } from "./types";
+// import { TRIGGER_REGISTRATION_MODAL } from "./types";
 
 const globalReducer = (state, action) => {
   switch (action.type) {
-    case TRIGGER_LOGIN_MODAL:
-      return {
-        ...state,
-        loginModal: action.payload
-      };
-    case TRIGGER_REGISTRATION_MODAL:
-      return {
-        ...state,
-        registerModal: action.payload
-      };
+    // case TRIGGER_REGISTRATION_MODAL:
+    //   return {
+    //     ...state,
+    //     registerModal: action.payload
+    //   };
     default:
       return {
         ...state
@@ -36,22 +31,19 @@ function GlobalContext(props) {
     token: null,
     location: "",
     remote: {},
-    registerModal: false,
-    loginModal: false
+    registerModal: false
   });
 
   const setUser = newUser => {};
   const setToken = newToken => {};
   const setLocation = newLocation => {};
 
-  const setRegisterModal = () => {
-    dispatch({
-      type: TRIGGER_REGISTRATION_MODAL,
-      payload: !state.registerModal
-    });
-  };
-
-  const setLoginModal = () => {};
+  //   const setRegisterModal = () => {
+  //     dispatch({
+  //       type: TRIGGER_REGISTRATION_MODAL,
+  //       payload: !state.registerModal
+  //     });
+  //   };
 
   //structrure
   /**
@@ -75,8 +67,8 @@ function GlobalContext(props) {
         dispatch,
         setUser,
         setToken,
-        setLocation,
-        setRegisterModal
+        setLocation
+        // setRegisterModal
       }}
     >
       {props.children}

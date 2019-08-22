@@ -24,8 +24,8 @@ function Navigation({ toggleRegister }) {
 
             {data.token == null && (
               <React.Fragment>
-                <MenuItem onClick={toggleRegister}>
-                  <a>Register</a>
+                <MenuItem onClick={() => toggleRegister(true)}>
+                  <p>Register</p>
                 </MenuItem>
                 <MenuItem>
                   <NavLink to="/login" activeClassName="current">
