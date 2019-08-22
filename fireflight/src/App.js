@@ -4,62 +4,59 @@ import Navigation from "./components/Navigation";
 import Home from "./components/Home";
 import Danger from "./components/Danger";
 import Update from "./components/Update";
-import Login from "./components/Login";
-import Register from "./components/Register";
-import Modal from "./components/Modal/Modal";
+
+import AuthFormsModal from "./components/AuthForms/Combine";
 
 import styled from "styled-components";
 
-// import { FireContext } from "./context/GlobalContext";
+import { FireContext } from "./context/GlobalContext";
+
+// AUTH FORM MODAL:
+// Will refactor everything in regards to the auth form modal into one single component to clean up APP.js
 
 function App() {
   const [token, setToken] = useState("");
-  const [showRegisterModal, setShowRegisterModal] = useState(false);
-  const [showLoginModal, setShowLoginModal] = useState(false);
-  // const contextObject = useContext(FireContext);
-  // const { state, setLocation } = useContext(FireContext);
+  const [showAuthForms, setShowAuthForms] = useState(false);
+  const [loginFormStatus, setLoginFormStatus] = useState(true);
+  const [registerFormStatus, setRegisterFormStatus] = useState(false);
+
+  const contextObject = useContext(FireContext);
+
+  const { state, setName } = useContext(FireContext);
 
   // const { location } = state;
 
   useEffect(() => {});
 
-  // console.log("CONTEXT OBJECT:", contextObject);
-  // console.log("STATE OBJECT", state);
+  console.log("CONTEXT OBJECT:", contextObject);
+  console.log("STATE OBJECT", state);
+
   // console.log("LOCATION", location);
 
+  console.log(showAuthForms, loginFormStatus, registerFormStatus);
+
   return (
-    <div className="App" style={{ position: "relative" }}>
-      {showRegisterModal ? (
-        <BackDrop onClick={() => setShowRegisterModal(false)} />
+    <div className="App" style={{ position: "relative", margin: 25 }}>
+      {showAuthForms ? (
+        <BackDrop onClick={() => setShowAuthForms(false)} />
       ) : null}
-      <Modal
-        show={showRegisterModal}
-        form={<Register />}
-        headerTitle={"Register"}
-        close={() => setShowRegisterModal(false)}
+      <AuthFormsModal
+        show={showAuthForms}
+        close={() => setShowAuthForms(false)}
+        showLogin={loginFormStatus}
+        showRegister={registerFormStatus}
       />
-      {showLoginModal ? (
-        <BackDrop onClick={() => setShowLoginModal(false)} />
-      ) : null}
-      <Modal
-        show={showLoginModal}
-        form={<Login />}
-        headerTitle={"Login"}
-        close={() => setShowLoginModal(false)}
-      />
+
       <Navigation
-        toggleRegister={setShowRegisterModal}
-        toggleLogin={setShowLoginModal}
+        toggleAuthForms={setShowAuthForms}
+        toggleLoginStatus={setLoginFormStatus}
+        toggleRegisterStatus={setRegisterFormStatus}
       />
       <Route exact path="/" component={Home} />
-      <Route path="/register" component={Register} />
-      <Route path="/login" component={Login} />
       <Route path="/update" component={Update} />
       <Route path="/danger" component={Danger} />
 
-      {/* <button onClick={() => setLocation("THIS IS A TEST LOCATION")}>
-        CLICK ME!
-      </button> */}
+      <button onClick={() => setName()}>CLICK ME!</button>
     </div>
   );
 }

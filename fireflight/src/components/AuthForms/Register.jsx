@@ -1,9 +1,9 @@
 import React, { useState, useContext } from "react";
 import { Link, Redirect } from "react-router-dom";
-import { FireContext } from "../context/GlobalContext";
+import { FireContext } from "../../context/GlobalContext";
 import axios from "axios";
 
-import useInput from "../utils/useInput";
+import useInput from "../../utils/useInput";
 import styled from "styled-components";
 
 const deployedURL = "https://fireflight-lambda.herokuapp.com/api/auth";

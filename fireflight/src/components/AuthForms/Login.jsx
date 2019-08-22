@@ -1,8 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
-import FireContext from "../context/contextProvider";
+import FireContext from "../../context/contextProvider";
 import axios from "axios";
 import { Link, Redirect } from "react-router-dom";
-import useInput from "../utils/useInput";
+import useInput from "../../utils/useInput";
 import styled from "styled-components";
 //not sure if we are using redux or hooks with context, so taking my best guess...
 
@@ -44,44 +44,44 @@ function Login() {
         console.log(err);
       });
   }
-  if (localStorage.getItem("token")) {
-    return <Redirect to="/" />;
-  } else {
-    return (
-      <LoginPageContainer>
-        <FormContainer onSubmit={handleSubmit}>
-          <FormLabel>
-            Username
-            <FormInput
-              type="text"
-              name="username"
-              value={username}
-              onChange={handleUsername}
-            />
-          </FormLabel>
-          <FormLabel>
-            Password
-            <FormInput
-              type="password"
-              name="password"
-              value={password}
-              onChange={handlePassword}
-            />
-          </FormLabel>
-          <Button
-            type="submit"
-            disabled={loading}
-            onClick={console.log("working")}
-          >
-            {loading ? "Loading..." : "Log In"}
-          </Button>
-        </FormContainer>
-        <p>
-          Not a member? Sign up <Link to="/register">here</Link>
-        </p>
-      </LoginPageContainer>
-    );
-  }
+  // if (localStorage.getItem("token")) {
+  //   return <Redirect to="/" />;
+  // } else {
+  return (
+    <LoginPageContainer>
+      <FormContainer onSubmit={handleSubmit}>
+        <FormLabel>
+          Username
+          <FormInput
+            type="text"
+            name="username"
+            value={username}
+            onChange={handleUsername}
+          />
+        </FormLabel>
+        <FormLabel>
+          Password
+          <FormInput
+            type="password"
+            name="password"
+            value={password}
+            onChange={handlePassword}
+          />
+        </FormLabel>
+        <Button
+          type="submit"
+          disabled={loading}
+          onClick={console.log("working")}
+        >
+          {loading ? "Loading..." : "Log In"}
+        </Button>
+      </FormContainer>
+      <p>
+        Not a member? Sign up <Link to="/register">here</Link>
+      </p>
+    </LoginPageContainer>
+  );
+  // }
 }
 
 export default Login;

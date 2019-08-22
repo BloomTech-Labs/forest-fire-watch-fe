@@ -2,7 +2,7 @@ import React, { useReducer, createContext } from "react";
 // import FireContext from "./contextProvider";
 import connector from "../helpers/connects";
 
-import { SET_LOCATION } from "./types";
+import { SET_LOCATION, SET_NAME } from "./types";
 
 // REDUCER EXPLANATION:
 // We use a reducer for the same reason we would use it in redux. It combines the previous state with the updated state.
@@ -14,6 +14,11 @@ const globalReducer = (state, action) => {
       return {
         ...state,
         location: action.payload
+      };
+    case SET_NAME:
+      return {
+        ...state,
+        name: action.payload
       };
     default:
       return {
@@ -41,7 +46,8 @@ function GlobalContext(props) {
     token: null,
     location: "",
     remote: {},
-    registerModal: false
+    registerModal: false,
+    name: "Mike"
   });
 
   // SET HOOKS EXPLANATION:
@@ -54,6 +60,13 @@ function GlobalContext(props) {
     dispatch({
       type: SET_LOCATION,
       payload: newLocation
+    });
+  };
+
+  const setName = () => {
+    dispatch({
+      type: SET_NAME,
+      payload: "Chad"
     });
   };
 
@@ -103,7 +116,8 @@ function GlobalContext(props) {
         dispatch,
         setUser,
         setToken,
-        setLocation
+        setLocation,
+        setName
       }}
     >
       {props.children}

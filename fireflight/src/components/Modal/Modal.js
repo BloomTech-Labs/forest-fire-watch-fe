@@ -1,29 +1,28 @@
 import React from "react";
 import styled from "styled-components";
 
-const modal = props => {
+const Modal = ({ close, show, children }) => {
   return (
     <ModalWrapper
       style={{
-        transform: props.show ? "translateY(0vh)" : "translateY(-100vh)",
-        opacity: props.show ? "1" : "0"
+        transform: show ? "translateY(0vh)" : "translateY(-100vh)",
+        opacity: show ? "1" : "0"
       }}
     >
       <ModalHeader>
-        <ModalHeaderTitle>{props.headerTitle}</ModalHeaderTitle>
-        <span className="close-modal-btn" onClick={props.close}>
+        <span className="close-modal-btn" onClick={close}>
           ×
         </span>
       </ModalHeader>
-      <div className="modal-body">{props.form}</div>
+      <div className="modal-body">{children}</div>
       <ModalFooter>
-        <BtnCancel onClick={props.close}>CLOSE</BtnCancel>
+        <BtnCancel onClick={close}>Toggle Forms</BtnCancel>
       </ModalFooter>
     </ModalWrapper>
   );
 };
 
-export default modal;
+export default Modal;
 
 const ModalWrapper = styled.div`
   background: white;
