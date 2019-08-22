@@ -8,16 +8,21 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Modal from "./components/Modal/Modal";
 
-import { FireContext } from "./context/GlobalContext";
+// import { FireContext } from "./context/GlobalContext";
 
 function App() {
   const [token, setToken] = useState("");
-  const contextObject = useContext(FireContext);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
+  // const contextObject = useContext(FireContext);
+  // const { state, setLocation } = useContext(FireContext);
+
+  // const { location } = state;
 
   useEffect(() => {});
 
-  console.log(contextObject);
+  // console.log("CONTEXT OBJECT:", contextObject);
+  // console.log("STATE OBJECT", state);
+  // console.log("LOCATION", location);
 
   return (
     <div className="App">
@@ -33,6 +38,9 @@ function App() {
         headerTitle={"Register"}
         close={() => setShowRegisterModal(false)}
       />
+      {/* <button onClick={() => setLocation("THIS IS A TEST LOCATION")}>
+        CLICK ME!
+      </button> */}
     </div>
   );
 }

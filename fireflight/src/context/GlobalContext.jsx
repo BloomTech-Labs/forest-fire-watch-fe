@@ -2,7 +2,7 @@ import React, { useReducer, createContext } from "react";
 // import FireContext from "./contextProvider";
 import connector from "../helpers/connects";
 
-// import { TRIGGER_REGISTRATION_MODAL } from "./types";
+import { SET_LOCATION } from "./types";
 
 // REDUCER EXPLANATION:
 // We use a reducer for the same reason we would use it in redux. It combines the previous state with the updated state.
@@ -10,11 +10,11 @@ import connector from "../helpers/connects";
 
 const globalReducer = (state, action) => {
   switch (action.type) {
-    // case TRIGGER_REGISTRATION_MODAL:
-    //   return {
-    //     ...state,
-    //     registerModal: action.payload
-    //   };
+    case SET_LOCATION:
+      return {
+        ...state,
+        location: action.payload
+      };
     default:
       return {
         ...state
@@ -49,14 +49,13 @@ function GlobalContext(props) {
 
   const setUser = newUser => {};
   const setToken = newToken => {};
-  const setLocation = newLocation => {};
 
-  //   const setRegisterModal = () => {
-  //     dispatch({
-  //       type: TRIGGER_REGISTRATION_MODAL,
-  //       payload: !state.registerModal
-  //     });
-  //   };
+  const setLocation = newLocation => {
+    dispatch({
+      type: SET_LOCATION,
+      payload: newLocation
+    });
+  };
 
   //structure
   /**
@@ -68,6 +67,30 @@ function GlobalContext(props) {
    * setLocation: set location(param location)
    * remote: Get remote connector
    */
+
+  // PASSING DATA EXPLANATION:
+  // FireContext is exported as a component. We pass our state object along with all our functions for setting the state into this component. We then use this as a wrapper component using it anywhere we would like in the project. If we put this at the top level, we will have access to this anywhere in our project.
+  // Its not uncommon to create several different contexts and put them where they are needed.
+
+  // RETRIEVING THE DATA EXPLANATION:
+  // We used the FireContext component as a top level wrapper so we are able to access everything at any level of our project.
+  // The FireContext object we get will look like this..
+
+  //  {
+  //    dispatch,
+  //    setLocation,
+  //    setToken,
+  //    setUser,
+  //    state: {
+  //      location,
+  //      registerModal,
+  //      remote,
+  //      token,
+  //      user
+  //    }
+  //  }
+
+  // To gain access to the data, we import our FireContext object into the component. We can then access the data with the useContext() hook, passing FireContext into the hook.
 
   return (
     <FireContext.Provider
@@ -81,7 +104,6 @@ function GlobalContext(props) {
         setUser,
         setToken,
         setLocation
-        // setRegisterModal
       }}
     >
       {props.children}
