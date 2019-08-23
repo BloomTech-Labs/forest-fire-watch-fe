@@ -40,7 +40,7 @@ function GlobalContext(props) {
     user: null,
     token: null,
     location: "",
-    remote: {},
+    remote: connector,
     registerModal: false
   });
 
@@ -98,7 +98,7 @@ function GlobalContext(props) {
         // user,
         // token,
         // location,
-        // remote,
+        remote,
         state,
         dispatch,
         setUser,
