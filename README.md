@@ -29,9 +29,9 @@ You can find the deployed project at [fireflightapp.com](fireflightapp.com).
 
 ## Project Overview
 
-1️⃣ [Trello Board](https://trello.com/b/LHd7GbuL/labs15-forest-fire)
+[Trello Board](https://trello.com/b/LHd7GbuL/labs15-forest-fire)
 
-1️⃣ [Product Canvas](https://www.notion.so/Forest-Fire-Prediction-and-Rescue-Coordination-7eb1595c5f1643fca8e48a89c6086fdf)
+[Product Canvas](https://www.notion.so/Forest-Fire-Prediction-and-Rescue-Coordination-7eb1595c5f1643fca8e48a89c6086fdf)
 
 1️⃣ [UX Design files](🚫add link to design files here) - 🚫 delete if not applicable
 

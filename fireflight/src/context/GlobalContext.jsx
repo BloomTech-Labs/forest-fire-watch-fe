@@ -1,4 +1,4 @@
-import React, { useReducer, createContext } from "react";
+import React, { useReducer, createContext,useState } from "react";
 // import FireContext from "./contextProvider";
 import connector from "../helpers/connects";
 
@@ -36,7 +36,7 @@ function GlobalContext(props) {
   //   const [user, setUser] = useState(null);
   //   const [token, setToken] = useState(null);
   //   const [location, setLocation] = useState(null);
-  //   const [remote, setRemote] = useState(connector);
+  const [remote, setRemote] = useState(connector);
 
   // USE REDUCER EXPLANATION:
   // We setup our default variables as a useReducer hook. This puts all of our variables into the state object. This allows us to send the entire state object into the reducer to be properly updated.
@@ -45,7 +45,7 @@ function GlobalContext(props) {
     user: null,
     token: null,
     location: "",
-    remote: {},
+    remote: connector,
     registerModal: false,
     name: "Mike"
   });
@@ -111,7 +111,7 @@ function GlobalContext(props) {
         // user,
         // token,
         // location,
-        // remote,
+        remote,
         state,
         dispatch,
         setUser,
