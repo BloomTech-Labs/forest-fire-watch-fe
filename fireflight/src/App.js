@@ -7,6 +7,7 @@ import Update from "./components/Update";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Modal from "./components/Modal/Modal";
+import Map from "./components/Map";
 
 import styled from "styled-components";
 
@@ -56,6 +57,7 @@ function App() {
       <Route path="/login" component={Login} />
       <Route path="/update" component={Update} />
       <Route path="/danger" component={Danger} />
+      <Route path="/map" component={Map} />
 
       {/* <button onClick={() => setLocation("THIS IS A TEST LOCATION")}>
         CLICK ME!
