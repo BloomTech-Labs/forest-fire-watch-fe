@@ -1,8 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
-import FireContext from "../context/contextProvider";
+import FireContext from "../../context/contextProvider";
 import axios from "axios";
 import { Link, Redirect } from "react-router-dom";
-import useInput from "../utils/useInput";
+import useInput from "../../utils/useInput";
 import styled from "styled-components";
 //not sure if we are using redux or hooks with context, so taking my best guess...
 
@@ -44,54 +44,55 @@ function Login() {
         console.log(err);
       });
   }
-  if (localStorage.getItem("token")) {
-    return <Redirect to="/" />;
-  } else {
-    return (
-      <LoginPageContainer>
-        <FormContainer onSubmit={handleSubmit}>
-          <FormLabel>
-            Username
-            <FormInput
-              type="text"
-              name="username"
-              value={username}
-              onChange={handleUsername}
-            />
-          </FormLabel>
-          <FormLabel>
-            Password
-            <FormInput
-              type="password"
-              name="password"
-              value={password}
-              onChange={handlePassword}
-            />
-          </FormLabel>
-          <Button
-            type="submit"
-            disabled={loading}
-            onClick={console.log("working")}
-          >
-            {loading ? "Loading..." : "Log In"}
-          </Button>
-        </FormContainer>
-        <p>
-          Not a member? Sign up <Link to="/register">here</Link>
-        </p>
-      </LoginPageContainer>
-    );
-  }
+  // if (localStorage.getItem("token")) {
+  //   return <Redirect to="/" />;
+  // } else {
+  return (
+    <LoginPageContainer>
+      <FormHeading>Login</FormHeading>
+      <FormContainer onSubmit={handleSubmit}>
+        <FormInput
+          type="text"
+          name="username"
+          value={username}
+          onChange={handleUsername}
+          placeholder="Username"
+        />
+
+        <FormInput
+          type="password"
+          name="password"
+          value={password}
+          onChange={handlePassword}
+          placeholder="password"
+        />
+        <Button
+          type="submit"
+          disabled={loading}
+          onClick={console.log("working")}
+        >
+          {loading ? "Loading..." : "Log In"}
+        </Button>
+      </FormContainer>
+      <p>
+        Not a member? Sign up <Link to="/register">here</Link>
+      </p>
+    </LoginPageContainer>
+  );
+  // }
 }
 
 export default Login;
 
 const LoginPageContainer = styled.div`
   width: 75%;
-  margin: 50px auto auto;
-  padding: 50px 0px;
+  margin: auto;
   text-align: center;
-  border: 1px solid black;
+`;
+
+const FormHeading = styled.h1`
+  margin-bottom: 25px;
+  color: #355c7d;
 `;
 
 const FormContainer = styled.form`
@@ -99,16 +100,23 @@ const FormContainer = styled.form`
   flex-direction: column;
 `;
 
-const FormLabel = styled.label`
-  padding: 5px 0px;
-`;
-
 const FormInput = styled.input`
-  margin-left: 10px;
+  width: 300px;
+  margin: 5px auto;
+  padding: 10px;
+  font-size: 0.75em;
+  background-color: #e6e6e6;
+  border-radius: 5px;
+  border: none;
 `;
 
 const Button = styled.button`
   width: 200px;
-  box-shadow: 2px 2px 7px black;
   margin: 20px auto;
+  padding: 10px 15px;
+  border-radius: 55px;
+  border: none;
+  background-color: #c06c84;
+  color: #f2f2f2;
+  font-size: 1em;
 `;
