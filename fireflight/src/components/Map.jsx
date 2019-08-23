@@ -47,6 +47,29 @@ const Map = props => {
     };
   }, []);
 
+  useEffect(() => {
+    const sampleAddress = "223 E. Concord Street, Orlando, FL 32801";
+
+    fetch(
+      `https://api.mapbox.com/geocoding/v5/mapbox.places/${sampleAddress}.json?access_token=${token}&types=address&limit=1`
+    )
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch.");
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log(data);
+        console.log(data.features[0].geometry.coordinates);
+        // result is [-81.374366, 28.551327] array, [longitude, latitude] format
+        // https://docs.mapbox.com/api/search/#geocoding
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <div>
       <ReactMapGL

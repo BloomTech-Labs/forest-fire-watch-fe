@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "mapbox-gl": "^1.2.1",
     "react-map-gl": "^5.0.10"
   }
 }
