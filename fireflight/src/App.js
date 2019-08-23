@@ -15,8 +15,8 @@ import { FireContext } from "./context/GlobalContext";
 function App() {
   const [token, setToken] = useState("");
   const [showAuthForms, setShowAuthForms] = useState(true);
-  const [loginFormStatus, setLoginFormStatus] = useState(false);
-  const [registerFormStatus, setRegisterFormStatus] = useState(true);
+  const [loginFormStatus, setLoginFormStatus] = useState(true);
+  const [registerFormStatus, setRegisterFormStatus] = useState(false);
 
   useEffect(() => {});
 

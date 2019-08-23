@@ -8,7 +8,10 @@ import styled from "styled-components";
 
 import LoginSplit from "./LoginSplit";
 
-function Login() {
+const deployedURL = "https://fireflight-lambda.herokuapp.com/api/auth";
+const localURL = "http://localhost:5000/api/auth";
+
+function Login({ toggle }) {
   //useInput is a custom hook that should be used for all controlled inputs
   const [username, setUsername, handleUsername] = useInput("", "username");
   const [password, setPassword, handlePassword] = useInput("", "password");
@@ -29,10 +32,7 @@ function Login() {
     const credentials = { username, password };
 
     axios
-      .post(
-        "https://fireflight-lambda.herokuapp.com/api/auth/login",
-        credentials
-      )
+      .post(`${localURL}/login`, credentials)
       .then(res => {
         localStorage.setItem("token", res.data.token);
         //set global context token
@@ -44,8 +44,9 @@ function Login() {
         return <Redirect to="/" />;
       })
       .catch(err => {
+        setErrorStatus(true);
+        setErrorText(err.response.data);
         setLoading(false);
-        console.log(err);
       });
   }
   // if (localStorage.getItem("token")) {
@@ -53,7 +54,7 @@ function Login() {
   // } else {
   return (
     <LoginPageContainer>
-      <div style={{ width: "60%" }}>
+      <div style={{ width: "60%", height: "auto", margin: "auto" }}>
         <FormHeading>Login</FormHeading>
         <FormContainer onSubmit={handleSubmit}>
           <FormInput
@@ -77,24 +78,17 @@ function Login() {
             placeholder="password"
           />
           {errorStatus ? (
-            <ErrorText>{errorText.username}</ErrorText>
+            <ErrorText>{errorText.password}</ErrorText>
           ) : (
             <ErrorText />
           )}
-          <Button
-            type="submit"
-            disabled={loading}
-            onClick={console.log("working")}
-          >
+          <Button type="submit" disabled={loading}>
             {loading ? "Loading..." : "Log In"}
           </Button>
         </FormContainer>
-        <p>
-          Not a member? Sign up <Link to="/register">here</Link>
-        </p>
       </div>
       <div style={{ width: "40%" }}>
-        <LoginSplit />
+        <LoginSplit toggle={toggle} />
       </div>
     </LoginPageContainer>
   );
@@ -108,7 +102,7 @@ const LoginPageContainer = styled.div`
   margin: auto;
   text-align: center;
   display: flex;
-  min-height: 390px;
+  min-height: 500px;
 `;
 
 const FormHeading = styled.h1`
