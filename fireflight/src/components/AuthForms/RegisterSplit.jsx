@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-const RegisterSplit = () => {
+const RegisterSplit = ({ toggle }) => {
   return (
     <RegisterSplitWrapper>
       <Heading>Welcome Back!</Heading>
       <Text>To keep conneted with us please login with your personal info</Text>
-      <Button>Sign In</Button>
+      <Button onClick={() => toggle()}>Sign In</Button>
     </RegisterSplitWrapper>
   );
 };

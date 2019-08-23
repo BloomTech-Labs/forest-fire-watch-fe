@@ -11,7 +11,7 @@ import RegisterSplit from "./RegisterSplit";
 const deployedURL = "https://fireflight-lambda.herokuapp.com/api/auth";
 const localURL = "http://localhost:5000/api/auth";
 
-function Register() {
+function Register({ toggle }) {
   //useInput is a custom hook that should be used for all controlled inputs
   const [username, setUsername, handleUsername] = useInput("", "username");
   const [password, setPassword, handlePassword] = useInput("", "password");
@@ -67,7 +67,7 @@ function Register() {
     return (
       <RegPageContainer>
         <div style={{ width: "40%" }}>
-          <RegisterSplit />
+          <RegisterSplit toggle={toggle} />
         </div>
         <div style={{ width: "60%", height: "auto", margin: "auto" }}>
           <FormHeading>Create Account</FormHeading>
@@ -112,9 +112,6 @@ function Register() {
               {loading ? "Loading..." : "Register"}
             </Button>
           </FormContainer>
-          <p>
-            Already a member? Log in <Link to="/login">here</Link>
-          </p>
         </div>
       </RegPageContainer>
     );

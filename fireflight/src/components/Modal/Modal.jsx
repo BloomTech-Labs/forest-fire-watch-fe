@@ -1,27 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const Modal = ({
-  close,
-  show,
-  children,
-  setLogin,
-  setRegister,
-  showRegisterStatus,
-  showLoginStatus
-}) => {
-  const toggleForms = () => {
-    console.log("working");
-    console.log(showRegisterStatus, showLoginStatus);
-    if (showRegisterStatus) {
-      setRegister(false);
-      setLogin(true);
-    } else if (showLoginStatus) {
-      setRegister(true);
-      setLogin(false);
-    }
-  };
-
+const Modal = ({ show, children }) => {
   return (
     <ModalWrapper
       style={{
