@@ -4,8 +4,8 @@ import Navigation from "./components/Navigation";
 import Home from "./components/Home";
 import Danger from "./components/Danger";
 import Update from "./components/Update";
-
 import AuthFormsModal from "./components/AuthForms/Combine";
+import Map from "./components/Map";
 
 import styled from "styled-components";
 
@@ -57,6 +57,7 @@ function App() {
       <Route exact path="/" component={Home} />
       <Route path="/update" component={Update} />
       <Route path="/danger" component={Danger} />
+      <Route path="/map" component={Map} />
 
       <button onClick={() => setName()}>CLICK ME!</button>
     </div>
