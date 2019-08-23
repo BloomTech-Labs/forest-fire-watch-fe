@@ -1,4 +1,3 @@
-🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your portfolio. This is intended to be a guideline, feel free to add your own flare to it.
 
 🚫 The numbers 1️⃣ through 5️⃣ next to each item represent the week that part of the docs needs to be comepleted by.  Make sure to delete the numbers by the end of Labs.
 
@@ -42,19 +41,19 @@ You can find the deployed project at [fireflightapp.com](fireflightapp.com).
 
 ### 4️⃣ Key Features
 
--    feature one
--    feature two
--    feature three
--    feature four
--    feature five
+-    This app will provide an alert system that tells a user there is a fire in their area.
+-    Users can log in.
+-    Users can put in their address and a notification radius.
+-    The app will notify users of fires within that notification radius.
 
 ## Tech Stack
-
 ### Front end built using:
 
 #### React 16.9
+  - React is a good choice for this project:
+    * The components in React allow for various sets of data to be shown to the user.
+    * Many member's of the team are familiar with React.
 
--    Everyone in project is familiar with it.
 
 #### Hooks
 
@@ -75,6 +74,7 @@ You can find the deployed project at [fireflightapp.com](fireflightapp.com).
 -   Has a React Library.
 
 #### Front end deployed to `Netlify`
+  Direct link to netlify deployment: https://fireflightapp.netlify.com/?_ga=2.243908101.1859608733.1566414430-153483088.1566414430
 
 #### [Back end](https://github.com/labs15-forest-fire/backend) built using:
 
@@ -105,10 +105,9 @@ You can find the deployed project at [fireflightapp.com](fireflightapp.com).
 Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do things A little happy sunlight shining through there. Let all these little things happen. Don't fight them. Learn to use them. Even the worst thing we can do here is good.
 <!-- 
 ## 2️⃣ Payment API here
+  There is no payment API at this stage of development.
 
-🚫Replace text below with a description of the API
 
-This is the way you take out your flustrations. Get away from those little Christmas tree things we used to make in school. Isn't it fantastic that you can change your mind and create all these happy things? Everything's not great in life, but we can still find beauty in it. -->
 
 ## Mapbox
 
@@ -209,4 +208,4 @@ These contribution guidelines have been adapted from [this good-Contributing.md-
 
 ## Documentation
 
-See [Backend Documentation](🚫_link to your backend readme here_) for details on the backend of our project.
+See [Backend Documentation](https://github.com/labs15-forest-fire/backend) for details on the backend of our project.
