@@ -19,7 +19,7 @@ const Map = props => {
     process.env.REACT_APP_MAPBOX_TOKEN ||
     "pk.eyJ1Ijoia2VuMTI4NiIsImEiOiJjanpuMXdlb2UwZzlkM2JsY2t2aTVkcGFoIn0.eGKKY2f3oC5s8GqsyB70Yg";
 
-  // dummy data
+  // dummy data.
   const dummyFireData = [
     {
       location: "location1",
