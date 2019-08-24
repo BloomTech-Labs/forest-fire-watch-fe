@@ -7,9 +7,7 @@ import Update from "./components/Update";
 
 import AuthForms from "./components/AuthForms/AuthForms";
 
-import AuthFormsModal from "./components/AuthForms/Combine";
 import Map from "./components/Map";
-
 
 import styled from "styled-components";
 
@@ -46,12 +44,8 @@ function App() {
       <Route exact path="/" component={Home} />
       <Route path="/update" component={Update} />
       <Route path="/danger" component={Danger} />
-    <Route path="/map" component={Map} />
-
+      <Route path="/map" component={Map} />
     </AppWrapper>
-
-
-
   );
 }
 

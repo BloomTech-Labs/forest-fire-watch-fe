@@ -106,12 +106,3 @@ const MenuContainer = styled.div`
 const MenuItem = styled.div`
   padding: 10px;
 `;
-
-// user logs in ->
-// user is presented with address form if logging in first time
-// Address form can be accessed and edited through menu
-// If not first time logging in, user is presented with the dashboard
-// Dashboard shows a map
-// There is an indicator on the map of the user's location
-// There are indicators on the map of wildfires in area
-// The user is notified of wildfires that are in close range.
