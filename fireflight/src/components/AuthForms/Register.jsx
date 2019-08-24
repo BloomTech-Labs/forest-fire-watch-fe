@@ -38,7 +38,7 @@ function Register() {
 
     if (password === passwordConf) {
       const newUser = { username, password };
-      data.remote.register(newUser)
+      data.state.remote.register(newUser)
         .then(res => {
           setUsername("");
           setPassword("");
@@ -48,7 +48,7 @@ function Register() {
         })
         .catch(err => {
           setErrorStatus(true);
-          setErrorText(err.response.data);
+          setErrorText(err.response.message);
           setLoading(false);
         });
     } else {

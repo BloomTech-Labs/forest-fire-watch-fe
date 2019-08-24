@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import FireContext from "../../context/contextProvider";
-import axios from "axios";
+import {FireContext} from "../../context/GlobalContext";
 import { Link, Redirect } from "react-router-dom";
 import useInput from "../../utils/useInput";
 import styled from "styled-components";
@@ -24,11 +23,7 @@ function Login() {
     setLoading(true);
     const credentials = { username, password };
 
-    axios
-      .post(
-        "https://fireflight-lambda.herokuapp.com/api/auth/login",
-        credentials
-      )
+    context.state.remote.login(credentials)
       .then(res => {
         localStorage.setItem("token", res.data.token);
         //set global context token
@@ -41,7 +36,7 @@ function Login() {
       })
       .catch(err => {
         setLoading(false);
-        console.log(err);
+        console.log(err.reason);
       });
   }
   // if (localStorage.getItem("token")) {

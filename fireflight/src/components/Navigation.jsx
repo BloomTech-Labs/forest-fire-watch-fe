@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import FireContext from "../context/contextProvider";
+import {FireContext} from "../context/GlobalContext";
 import { withRouter, NavLink } from "react-router-dom";
 import styled from "styled-components";
 
@@ -8,9 +8,13 @@ function Navigation({
   toggleLoginStatus,
   toggleRegisterStatus
 }) {
+  const data = useContext(FireContext);
   const [menuToggle, setMenuToggle] = useState(false);
 
-  const data = useContext(FireContext);
+  const logout=e=>{
+    data.state.remote.logout()
+  }
+
   return (
     <NavContainer>
       <Logo>LOGO</Logo>
@@ -26,7 +30,7 @@ function Navigation({
               </NavLink>
             </MenuItem>
 
-            {data.token == null && (
+            {localStorage.getItem('token') == null && (
               <React.Fragment>
                 <MenuItem
                   onClick={() => {
@@ -48,16 +52,21 @@ function Navigation({
                 </MenuItem>
               </React.Fragment>
             )}
-            {data.token != null && (
+            {localStorage.getItem('token') != null && (
               <React.Fragment>
                 <MenuItem>
                   <NavLink to="/update" activeClassName="current">
-                    Home
+                    Update
                   </NavLink>
                 </MenuItem>
                 <MenuItem>
-                  <NavLink to="/logout" activeClassName="current">
+                  <a onClick={logout}>
                     Logout
+                  </a>
+                </MenuItem>
+                <MenuItem>
+                  <NavLink to="/address" activeClassName="current">
+                    Input Your Address
                   </NavLink>
                 </MenuItem>
               </React.Fragment>

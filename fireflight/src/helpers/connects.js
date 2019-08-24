@@ -13,7 +13,7 @@ class connector{
             this.coreString='http://localhost:5000/api/'
         this.fireflight=process.env.REACT_APP_FIREFLIGHT;
         if(localStorage.getItem('token')!=null)
-            this.connector.defaults.headers.common['Authorization']=this.localString.getItem('token')
+            this.connector.defaults.headers.common['Authorization']=localStorage.getItem('token')
         this.user=null
     }
 
@@ -24,19 +24,21 @@ class connector{
      */
     async login(creds){
 
-        let res = await axios.post(this.coreString+"login",creds)
-        console.log(res);
-        // let data = await res.data;
+        let res = await axios.post(this.coreString+"auth/login",creds)
+
+        let data = await res.data;
 
 
-        // if(true){//success test
-        //     localStorage.setItem('token',data)
-        //     this.connector.defaults.headers.common['Authorization']=data
-        //     return stats(true,data);
-        // }else{
-        //     //success failed
-        //     throw {status:false,data:"Login Failed"}
-        // }
+        if(res.status==200){//success test
+            localStorage.setItem('token',data.token)
+            this.connector.defaults.headers.common['Authorization']=data.token
+            let who = await this.self()
+            return stats(true,who.username);
+        }else{
+            //success failed
+            
+            throw {status:false,data:"Login Failed"}
+        }
     }
 
     /**
@@ -63,17 +65,31 @@ class connector{
      * @param {username,password} creds Creditals wanted to register
      */
     async register(creds){
-        try{
-            console.log(creds);
-            let response = await axios.post(`${this.coreString}auth/register`,creds)
-            console.log(response);
+        let response = await axios.post(`${this.coreString}auth/register`,creds)
+        if(response.status==201){
             let data = await response.data;
-            return data
-        }
-        catch(e){
-            console.error(e);
+            this.connector.defaults.headers.common['Authorization']=data.token;
+            localStorage.setItem('token',data.token)
+            let who = await this.self();
+            
+            return new stats(true,{username:who.username})
+        }else{
+            let errors = {code:response.status}
+            errors.message=response.data.message
+            return new stats(false,errors)
         }
     } 
+
+    async fetchLocations(){
+        let response = await axios.get(`${this.coreString}locations`)
+        let data = await response.data;
+        if(response.status==200){
+            return new stats(true,data)
+        }
+        else{
+            return new stats(false,data)
+        }
+    }
 }
 
 const connect = new connector();

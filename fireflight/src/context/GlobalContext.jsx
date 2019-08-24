@@ -30,13 +30,20 @@ const globalReducer = (state, action) => {
 // CREATE CONTEXT EXPLANATION:
 // We initialize FireContext as an empty createContext object. We don't want to initialize any of our default variables inside createContext because then they won't run through our reducer.
 
-export const FireContext = createContext();
+export const FireContext = createContext({
+  user:null,
+  token:null,
+  location:'',
+  remote:connector,
+  registerModal:false,
+  name:''
+});
 
 function GlobalContext(props) {
   //   const [user, setUser] = useState(null);
   //   const [token, setToken] = useState(null);
   //   const [location, setLocation] = useState(null);
-  const [remote, setRemote] = useState(connector);
+  //   const [remote, setRemote] = useState(connector);
 
   // USE REDUCER EXPLANATION:
   // We setup our default variables as a useReducer hook. This puts all of our variables into the state object. This allows us to send the entire state object into the reducer to be properly updated.
@@ -55,13 +62,6 @@ function GlobalContext(props) {
 
   const setUser = newUser => {};
   const setToken = newToken => {};
-
-  const setLocation = newLocation => {
-    dispatch({
-      type: SET_LOCATION,
-      payload: newLocation
-    });
-  };
 
   const setName = () => {
     dispatch({
@@ -111,12 +111,11 @@ function GlobalContext(props) {
         // user,
         // token,
         // location,
-        remote,
+        // remote,
         state,
         dispatch,
         setUser,
         setToken,
-        setLocation,
         setName
       }}
     >

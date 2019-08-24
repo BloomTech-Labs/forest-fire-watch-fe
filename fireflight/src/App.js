@@ -6,7 +6,8 @@ import Danger from "./components/Danger";
 import Update from "./components/Update";
 import AuthFormsModal from "./components/AuthForms/Combine";
 import Map from "./components/Map";
-
+import Address from './components/Address';
+import AddressContext from './context/AddressContext'
 import styled from "styled-components";
 
 import { FireContext } from "./context/GlobalContext";
@@ -57,7 +58,10 @@ function App() {
       <Route exact path="/" component={Home} />
       <Route path="/update" component={Update} />
       <Route path="/danger" component={Danger} />
-      <Route path="/map" component={Map} />
+      <AddressContext>
+        <Route path="/address" component={Address} />
+        <Route path="/map" component={Map} />
+      </AddressContext>
 
       <button onClick={() => setName()}>CLICK ME!</button>
     </div>
