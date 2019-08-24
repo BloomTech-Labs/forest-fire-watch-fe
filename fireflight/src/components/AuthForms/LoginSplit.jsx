@@ -4,9 +4,11 @@ import styled from "styled-components";
 const LoginSplit = ({ toggle }) => {
   return (
     <LoginSplitWrapper>
-      <Heading>Hello Friend!</Heading>
-      <Text>Enter your personal details and start the journey with us</Text>
-      <Button onClick={() => toggle()}>Sign Up</Button>
+      <div>
+        <Heading>Hello Friend!</Heading>
+        <Text>Enter your personal details and start the journey with us</Text>
+        <Button onClick={() => toggle()}>Sign Up</Button>
+      </div>
     </LoginSplitWrapper>
   );
 };
@@ -19,13 +21,13 @@ const LoginSplitWrapper = styled.div`
   background-image: linear-gradient(to bottom, #6c5b7b, #355c7d);
   border-radius: 0px 25px 25px 0px;
   color: white;
-`;
-
-const Heading = styled.h2`
-  padding-top: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+`;
+
+const Heading = styled.h2`
+  margin-top: 0px;
 `;
 
 const Text = styled.p`
