@@ -5,7 +5,7 @@ const LoginSplit = ({ toggle }) => {
   return (
     <LoginSplitWrapper>
       <div>
-        <Heading>Hello Friend!</Heading>
+        {/* <Heading>Hello Friend!</Heading> */}
         <Text>Enter your personal details and start the journey with us</Text>
         <Button onClick={() => toggle()}>Sign Up</Button>
       </div>
@@ -26,9 +26,9 @@ const LoginSplitWrapper = styled.div`
   justify-content: center;
 `;
 
-const Heading = styled.h2`
-  margin-top: 0px;
-`;
+// const Heading = styled.h2`
+//   margin-top: 0px;
+// `;
 
 const Text = styled.p`
   width: 75%;
