@@ -10,6 +10,7 @@ import AuthForms from "./components/AuthForms/AuthForms";
 import AuthFormsModal from "./components/AuthForms/Combine";
 import Map from "./components/Map";
 
+
 import styled from "styled-components";
 
 import { FireContext } from "./context/GlobalContext";
@@ -49,7 +50,7 @@ function App() {
 
     </AppWrapper>
 
-      
+
 
   );
 }

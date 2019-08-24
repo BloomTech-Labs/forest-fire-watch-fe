@@ -9,6 +9,7 @@ const Modal = ({ show, children }) => {
         opacity: show ? "1" : "0"
       }}
     >
+
       <ModalBody>{children}</ModalBody>
     </ModalWrapper>
   );
