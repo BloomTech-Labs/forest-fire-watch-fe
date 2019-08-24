@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Link, Redirect } from "react-router-dom";
-import { FireContext } from "../../context/GlobalContext";
+import { FireContext } from "../../context/contextProvider";
 import axios from "axios";
 
 import useInput from "../../utils/useInput";

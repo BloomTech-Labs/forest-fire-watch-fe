@@ -1,6 +1,7 @@
 import React, { useReducer, createContext } from "react";
 // import FireContext from "./contextProvider";
 import connector from "../helpers/connects";
+import { FireContext, defaultValues } from "./contextProvider";
 
 import { SET_LOCATION, SET_NAME } from "./types";
 
@@ -30,8 +31,6 @@ const globalReducer = (state, action) => {
 // CREATE CONTEXT EXPLANATION:
 // We initialize FireContext as an empty createContext object. We don't want to initialize any of our default variables inside createContext because then they won't run through our reducer.
 
-export const FireContext = createContext();
-
 function GlobalContext(props) {
   //   const [user, setUser] = useState(null);
   //   const [token, setToken] = useState(null);
@@ -41,14 +40,7 @@ function GlobalContext(props) {
   // USE REDUCER EXPLANATION:
   // We setup our default variables as a useReducer hook. This puts all of our variables into the state object. This allows us to send the entire state object into the reducer to be properly updated.
 
-  const [state, dispatch] = useReducer(globalReducer, {
-    user: null,
-    token: null,
-    location: "",
-    remote: {},
-    registerModal: false,
-    name: "Mike"
-  });
+  const [state, dispatch] = useReducer(globalReducer, defaultValues);
 
   // SET HOOKS EXPLANATION:
   // The concept of the set functions is exactly the same as in a regular hook. We use the set function to set the data inside the state. These functions (think redux actions) use dispatch to pass the newly set data into the reducer. State is then updated properly.
@@ -56,19 +48,7 @@ function GlobalContext(props) {
   const setUser = newUser => {};
   const setToken = newToken => {};
 
-  const setLocation = newLocation => {
-    dispatch({
-      type: SET_LOCATION,
-      payload: newLocation
-    });
-  };
-
-  const setName = () => {
-    dispatch({
-      type: SET_NAME,
-      payload: "Chad"
-    });
-  };
+  const setLocation = newLocation => {};
 
   //structure
   /**
@@ -116,8 +96,7 @@ function GlobalContext(props) {
         dispatch,
         setUser,
         setToken,
-        setLocation,
-        setName
+        setLocation
       }}
     >
       {props.children}

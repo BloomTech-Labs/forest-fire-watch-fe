@@ -1,12 +1,17 @@
-import React from 'react'
+import React from "react";
+
+const defaultValues = {
+  user: null,
+  token: null,
+  location: "",
+  remote: {},
+  setUser: newUser => {},
+  setToken: newToken => {},
+  setLocation: newLocation => {},
+  name: "Mike"
+};
 
 //set default state for autocomplete
-export default React.createContext({
-    user:null,
-    token:null,
-    location:'',
-    remote:{},
-    setUser:(newUser)=>{},
-    setToken:(newToken)=>{},
-    setLocation:(newLocation)=>{}
-})
+const FireContext = React.createContext(defaultValues);
+
+export { FireContext, defaultValues };

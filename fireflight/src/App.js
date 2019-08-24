@@ -46,13 +46,11 @@ function App() {
       <Route exact path="/" component={Home} />
       <Route path="/update" component={Update} />
       <Route path="/danger" component={Danger} />
-<Route path="/map" component={Map} />
+    <Route path="/map" component={Map} />
+
     </AppWrapper>
 
-      
 
-     
-  
 
   );
 }

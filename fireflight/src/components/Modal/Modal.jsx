@@ -9,9 +9,8 @@ const Modal = ({ show, children }) => {
         opacity: show ? "1" : "0"
       }}
     >
-      {/* <CloseModal onClick={close}>×</CloseModal> */}
+
       <ModalBody>{children}</ModalBody>
-      {/* <BtnCancel onClick={toggleForms}>Toggle Forms</BtnCancel> */}
     </ModalWrapper>
   );
 };
