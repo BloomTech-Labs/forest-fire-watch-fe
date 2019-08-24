@@ -4,13 +4,9 @@ import styled from "styled-components";
 const RegisterSplit = ({ toggle }) => {
   return (
     <RegisterSplitWrapper>
-      <div>
-        <Heading>Welcome Back!</Heading>
-        <Text>
-          To keep conneted with us please login with your personal info
-        </Text>
-        <Button onClick={() => toggle()}>Sign In</Button>
-      </div>
+      <Heading>Welcome Back!</Heading>
+      <Text>To keep conneted with us please login with your personal info</Text>
+      <Button onClick={() => toggle()}>Sign In</Button>
     </RegisterSplitWrapper>
   );
 };
@@ -23,6 +19,11 @@ const RegisterSplitWrapper = styled.div`
   background-image: linear-gradient(to bottom, #6c5b7b, #355c7d);
   border-radius: 25px 0px 0px 25px;
   color: white;
+`;
+
+const Heading = styled.h2`
+  padding-top: 50%;
+
   display: flex;
   flex-direction: column;
   justify-content: center;

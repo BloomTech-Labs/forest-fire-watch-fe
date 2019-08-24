@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import FireContext from "../context/contextProvider";
+import { FireContext } from "../context/contextProvider";
 import { withRouter, NavLink } from "react-router-dom";
 import styled from "styled-components";
 
