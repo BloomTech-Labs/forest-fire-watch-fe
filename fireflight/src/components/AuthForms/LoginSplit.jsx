@@ -23,14 +23,9 @@ const LoginSplitWrapper = styled.div`
 
 const Heading = styled.h2`
   padding-top: 50%;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
-`;
-
-const Heading = styled.h2`
-  margin-top: 0px;
 `;
 
 const Text = styled.p`
