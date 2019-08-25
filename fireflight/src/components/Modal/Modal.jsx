@@ -9,7 +9,6 @@ const Modal = ({ show, children }) => {
         opacity: show ? "1" : "0"
       }}
     >
-
       <ModalBody>{children}</ModalBody>
     </ModalWrapper>
   );
@@ -33,20 +32,4 @@ const ModalWrapper = styled.div`
 
 const ModalBody = styled.div`
   min-height: 500px;
-`;
-
-const CloseModal = styled.span`
-  cursor: pointer;
-`;
-
-const BtnCancel = styled.button`
-  background: coral;
-  border: none;
-  color: white;
-  cursor: pointer;
-  font-weight: bold;
-  outline: none;
-  padding: 10px;
-  background-color: #b71c1c;
-  float: left;
 `;
