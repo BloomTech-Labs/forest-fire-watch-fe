@@ -1,15 +1,17 @@
 import React, { useState, useContext } from "react";
 import { Link, Redirect } from "react-router-dom";
-import { FireContext } from "../../context/GlobalContext";
+import { FireContext } from "../../context/contextProvider";
 import axios from "axios";
 
 import useInput from "../../utils/useInput";
 import styled from "styled-components";
 
+import RegisterSplit from "./RegisterSplit";
+
 const deployedURL = "https://fireflight-lambda.herokuapp.com/api/auth";
 const localURL = "http://localhost:5000/api/auth";
 
-function Register() {
+function Register({ toggle }) {
   //useInput is a custom hook that should be used for all controlled inputs
   const [username, setUsername, handleUsername] = useInput("", "username");
   const [password, setPassword, handlePassword] = useInput("", "password");
@@ -63,51 +65,53 @@ function Register() {
   } else {
     return (
       <RegPageContainer>
-        <FormHeading>Create Account</FormHeading>
-        <FormContainer onSubmit={handleSubmit}>
-          <FormInput
-            type="text"
-            name="username"
-            value={username}
-            // onChange={e=>setUsername(e.value)}
-            onChange={handleUsername}
-            placeholder="Username"
-          />
-          {errorStatus ? (
-            <ErrorText>{errorText.username}</ErrorText>
-          ) : (
-            <ErrorText />
-          )}
+        <div style={{ width: "40%" }}>
+          <RegisterSplit toggle={toggle} />
+        </div>
+        <div style={{ width: "60%", height: "auto", margin: "auto" }}>
+          <FormHeading>Create Account</FormHeading>
+          <FormContainer onSubmit={handleSubmit}>
+            <FormInput
+              type="text"
+              name="username"
+              value={username}
+              // onChange={e=>setUsername(e.value)}
+              onChange={handleUsername}
+              placeholder="Username"
+            />
+            {errorStatus ? (
+              <ErrorText>{errorText.username}</ErrorText>
+            ) : (
+              <ErrorText />
+            )}
 
-          <FormInput
-            type="password"
-            name="password"
-            value={password}
-            // onChange={e=>setPassword(e.value)}
-            onChange={handlePassword}
-            placeholder="Password"
-          />
-          {errorStatus && password === passwordConf ? (
-            <ErrorText>{errorText.password}</ErrorText>
-          ) : (
-            <ErrorText />
-          )}
-          <FormInput
-            type="password"
-            name="passwordConf"
-            value={passwordConf}
-            // onChange={e=>setPasswordConf(e.value)}
-            onChange={handlePasswordConf}
-            placeholder="Confirm Password"
-          />
+            <FormInput
+              type="password"
+              name="password"
+              value={password}
+              // onChange={e=>setPassword(e.value)}
+              onChange={handlePassword}
+              placeholder="Password"
+            />
+            {errorStatus && password === passwordConf ? (
+              <ErrorText>{errorText.password}</ErrorText>
+            ) : (
+              <ErrorText />
+            )}
+            <FormInput
+              type="password"
+              name="passwordConf"
+              value={passwordConf}
+              // onChange={e=>setPasswordConf(e.value)}
+              onChange={handlePasswordConf}
+              placeholder="Confirm Password"
+            />
 
-          <Button type="submit" disabled={loading}>
-            {loading ? "Loading..." : "Register"}
-          </Button>
-        </FormContainer>
-        <p>
-          Already a member? Log in <Link to="/login">here</Link>
-        </p>
+            <Button type="submit" disabled={loading}>
+              {loading ? "Loading..." : "Register"}
+            </Button>
+          </FormContainer>
+        </div>
       </RegPageContainer>
     );
   }
@@ -116,9 +120,11 @@ function Register() {
 export default Register;
 
 const RegPageContainer = styled.div`
-  width: 75%;
+  width: 100%;
   margin: auto;
   text-align: center;
+  display: flex;
+  min-height: 500px;
 `;
 
 const FormHeading = styled.h1`
