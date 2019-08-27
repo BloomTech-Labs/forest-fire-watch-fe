@@ -43,7 +43,7 @@ function Address(props) {
         try {
             console.log(temp);
             if(temp){
-                setSaveState(`Saved as ${temp}`)
+                setSaveState(`Saved as ${temp.address}`)
                 setZip('')
                 setState('')
                 setApartment('')
