@@ -12,7 +12,7 @@ import Address from './components/Address';
 import AddressContext from './context/AddressContext'
 import styled from "styled-components";
 
-import { FireContext } from "./context/GlobalContext";
+import { FireContext } from "./context/contextProvider";
 
 // AUTH FORM MODAL:
 // Will refactor everything in regards to the auth form modal into one single component to clean up APP.js
@@ -20,11 +20,20 @@ import { FireContext } from "./context/GlobalContext";
 function App() {
   const [token, setToken] = useState("");
   // The 3 hooks below are used for showing and toggling between the login & register forms. These can most likely be refactored to use context API.
-  const [showAuthForms, setShowAuthForms] = useState(true);
+  const [showAuthForms, setShowAuthForms] = useState(false);
   const [loginFormStatus, setLoginFormStatus] = useState(true);
   const [registerFormStatus, setRegisterFormStatus] = useState(false);
 
-  useEffect(() => {});
+  const global =useContext(FireContext)
+
+  useEffect(() => {
+    //getLogin gets login information upon page load here;
+    const getLogin=async ()=>{
+      let user = await global.state.remote.self()
+      global.setUser(user.username)
+    }
+    getLogin()
+  },[]);//[] here means this will only run once
 
   return (
     <AppWrapper>
@@ -50,7 +59,7 @@ function App() {
         <Route path="/map" component={Map} />
       </AddressContext>
 
-      <button onClick={() => setName()}>CLICK ME!</button>
+      {/* <button onClick={() => setName()}>CLICK ME!</button> */}
     </AppWrapper>
   );
 }

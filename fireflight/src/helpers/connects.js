@@ -1,11 +1,13 @@
 import axios from 'axios'
 import stats from './status.js'
+import { isArray } from 'util';
 
 class connector{
     /**
      * This class is built as a helper to deal with all connection requests.
      */
     constructor(){
+        console.log("loading");
         this.connector=axios;
         if(process.env.NODE_ENV==='production')
             this.coreString='https://fireflight-lambda.herokuapp.com/api/'//http here
@@ -28,7 +30,6 @@ class connector{
 
         let data = await res.data;
 
-
         if(res.status==200){//success test
             localStorage.setItem('token',data.token)
             this.connector.defaults.headers.common['Authorization']=data.token
@@ -36,7 +37,6 @@ class connector{
             return stats(true,who.username);
         }else{
             //success failed
-            
             throw {status:false,data:"Login Failed"}
         }
     }
@@ -81,7 +81,7 @@ class connector{
     } 
 
     async fetchLocations(){
-        let response = await axios.get(`${this.coreString}locations`)
+        let response = await this.connector.get(`${this.coreString}locations`)
         let data = await response.data;
         if(response.status==200){
             return new stats(true,data)
@@ -90,6 +90,19 @@ class connector{
             return new stats(false,data)
         }
     }
+
+    async saveLocations(locs){
+        let user=await this.self();
+        if(isArray(locs))
+            locs=locs.map(i=>({user_id:user.user_id,address:i}))
+        else
+            locs={user_id:user.user_id,address:locs}
+        console.log(locs);
+        let response = await this.connector.post(`${this.coreString}locations`,locs)
+        let data=await response.data
+        return new stats(true,data)
+    }
+
 }
 
 const connect = new connector();

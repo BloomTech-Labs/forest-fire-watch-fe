@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { FireContext } from "../context/contextProvider";
-import { withRouter, NavLink } from "react-router-dom";
+import { withRouter, NavLink, Link } from "react-router-dom";
 import styled from "styled-components";
 
 function Navigation({
@@ -60,9 +60,9 @@ function Navigation({
                   </NavLink>
                 </MenuItem>
                 <MenuItem>
-                  <a onClick={logout}>
+                  <Link to="/" onClick={logout}>
                     Logout
-                  </a>
+                  </Link>
                 </MenuItem>
                 <MenuItem>
                   <NavLink to="/address" activeClassName="current">

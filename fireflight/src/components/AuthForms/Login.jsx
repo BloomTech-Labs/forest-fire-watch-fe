@@ -31,6 +31,9 @@ function Login({ toggle }) {
     setLoading(true);
     const credentials = { username, password };
 
+    setErrorStatus(false)
+    setErrorText("")
+
     context.state.remote.login(credentials)
       .then(res => {
         localStorage.setItem("token", res.data.token);
@@ -43,10 +46,9 @@ function Login({ toggle }) {
         return <Redirect to="/" />;
       })
       .catch(err => {
+        setErrorText("Username or Password Invalid");
         setErrorStatus(true);
-        setErrorText(err.response.data);
         setLoading(false);
-        console.log(err.reason);
       });
   }
   // if (localStorage.getItem("token")) {
@@ -65,7 +67,7 @@ function Login({ toggle }) {
             placeholder="Username"
           />
           {errorStatus ? (
-            <ErrorText>{errorText.username}</ErrorText>
+            <ErrorText>{errorText}</ErrorText>
           ) : (
             <ErrorText />
           )}
