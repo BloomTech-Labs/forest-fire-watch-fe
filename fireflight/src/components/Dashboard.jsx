@@ -13,7 +13,7 @@ const Dashboard = () => {
         </AlertsDiv>
         <MapDiv>
           <DivHeading>Active Fires</DivHeading>
-          <Map lat={37.7577} long={-122.4376} />
+          <Map />
         </MapDiv>
         <ProfileDiv>
           <DivHeading>My Profile</DivHeading>
