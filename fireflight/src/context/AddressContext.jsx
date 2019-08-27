@@ -1,5 +1,5 @@
 import React,{useReducer,useContext,useEffect} from 'react'
-import AddressContext,{UPDATE_ADDRESSES, FETCHING_ADDRESSES,ERROR,CLEAR,NONE, SELECT} from './addressContextProvider';
+import AddressContext,{UPDATE_ADDRESSES, FETCHING_ADDRESSES,ERROR,CLEAR,NONE} from './addressContextProvider';
 import {FireContext} from './contextProvider'
 import { isArray } from 'util';
 
@@ -14,7 +14,7 @@ export class loc{
 }
 
 const defaultState={
-    address:null,
+    addresses:[],
     fetching:false,
     error:undefined,
     tester:false,
@@ -26,7 +26,7 @@ function AddressContextProvider(props) {
 
     const global=useContext(FireContext)
 
-    const reducers=async (state,action)=>{
+    const reducers=(state,action)=>{
         switch (action.type) {
             case UPDATE_ADDRESSES:
                 if(isArray(action.payload))
@@ -37,8 +37,7 @@ function AddressContextProvider(props) {
                     ...state,
                     fetching:false,
                     addresses:action.payload,
-                    tester:true,
-                    current:action.payload
+                    tester:true
                 }
                 break;
             case FETCHING_ADDRESSES:
@@ -70,14 +69,6 @@ function AddressContextProvider(props) {
                     current:null
                 }
                 break;
-            case SELECT:
-                return{
-                    ...state,
-                    tester:true,
-                    error:false,
-                    current:state.address[action.payload]
-                }
-                break;
             default:
                 return defaultState;
                 break;
@@ -94,23 +85,21 @@ function AddressContextProvider(props) {
     }
 
     useEffect(()=>{
-        if(state.address==null){
-            global.state.remote.fetchLocations().then(data=>{
-                updateAddresses(data)
-            })
-        }
-    })
+        global.state.remote.fetchLocations().then(data=>{
+            updateAddresses(data.reason)
+        })
+    },[])
 
     const fetchAddress=async ()=>{
         dispatch({type:FETCHING_ADDRESSES})
-        global.state.remote.fetchLocations()
+        return global.state.remote.fetchLocations()
             .then( data => {
                 if(data.reason.length<1){
                     dispatch({type:NONE})
                 }
                 else{
                     console.log(data.reason);
-                    // updateAddresses(data.reason)
+                    updateAddresses(data.reason)
                 }
             }).catch( err =>{
                 dispatch({type:ERROR,payload:err})
@@ -118,25 +107,19 @@ function AddressContextProvider(props) {
     }
 
     const saveAddress=async str=>{
-        global.state.remote.saveLocations(str)
+        return global.state.remote.saveLocations(str)
             .then(data=>{
                 console.log(data.reason);
                 updateAddresses(data.reason.address)
-                setLocation(data.reason)
+                return data.reason
             }).catch(err=>{
                 console.error("something went wrong", err);
+                throw err
             })
     }
 
     const clear=()=>{
         dispatch({type:CLEAR})
-    }
-
-    const setLocation=add=>{
-        dispatch({
-            type:SELECT,
-            payload:add
-        })
     }
 
     const ctx={

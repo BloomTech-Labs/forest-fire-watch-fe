@@ -80,6 +80,9 @@ class connector{
         }
     } 
 
+    /**
+     * Fetch all locations associated with current login
+     */
     async fetchLocations(){
         let response = await this.connector.get(`${this.coreString}locations`)
         let data = await response.data;
@@ -91,16 +94,24 @@ class connector{
         }
     }
 
+    /**
+     * 
+     * @param {location} locs save location to server and return the saved location
+     */
     async saveLocations(locs){
-        let user=await this.self();
-        if(isArray(locs))
-            locs=locs.map(i=>({user_id:user.user_id,address:i}))
-        else
-            locs={user_id:user.user_id,address:locs}
-        console.log(locs);
-        let response = await this.connector.post(`${this.coreString}locations`,locs)
-        let data=await response.data
-        return new stats(true,data)
+        try {
+            let user=await this.self();
+            if(isArray(locs))
+                locs=locs.map(i=>({user_id:user.user_id,address:i}))
+            else
+                locs={user_id:user.user_id,address:locs}
+            console.log(locs);
+            let response = await this.connector.post(`${this.coreString}locations`,locs)
+            let data = await response.data
+            return new stats(true,data)
+        } catch (err) {
+            throw err
+        }
     }
 
 }
