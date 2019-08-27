@@ -42,6 +42,11 @@ const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  @media (min-width: 900px) {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
 `;
 
 const DivHeading = styled.h2`
@@ -52,12 +57,16 @@ const DivHeading = styled.h2`
 const AlertsDiv = styled.div`
   width: 90%;
   max-width: 500px;
-  height: auto;
+  height: 50px;
   margin: 10px auto;
   background-color: #f2f3f4;
   border-radius: 8px;
-  padding: 15px;
+  padding: 10px;
   box-shadow: 2px 5px 15px black;
+  @media (min-width: 900px) {
+    order: 2;
+    margin: auto;
+  }
 `;
 
 const MapDiv = styled.div`
@@ -69,15 +78,23 @@ const MapDiv = styled.div`
   border-radius: 8px;
   padding: 10px;
   box-shadow: 2px 5px 15px black;
+  @media (min-width: 900px) {
+    grid-column: 1;
+    grid-row: 1 / 3;
+    max-width: 1000px;
+  }
 `;
 
 const ProfileDiv = styled.div`
   width: 90%;
   max-width: 500px;
-  height: auto;
+  height: 50px;
   margin: 15px auto;
   background-color: #f2f3f4;
   border-radius: 8px;
   padding: 10px;
   box-shadow: 2px 5px 15px black;
+  @media (min-width: 900px) {
+    order: 3;
+  }
 `;
