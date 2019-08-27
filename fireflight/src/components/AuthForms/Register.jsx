@@ -66,10 +66,10 @@ function Register({ toggle }) {
   } else {
     return (
       <RegPageContainer>
-        <div style={{ width: "40%" }}>
+        <RegisterSplitContainer>
           <RegisterSplit toggle={toggle} />
-        </div>
-        <div style={{ width: "60%", height: "auto", margin: "auto" }}>
+        </RegisterSplitContainer>
+        <RegisterContainer>
           <FormHeading>Create Account</FormHeading>
           <FormContainer onSubmit={handleSubmit}>
             <FormInput
@@ -112,7 +112,7 @@ function Register({ toggle }) {
               {loading ? "Loading..." : "Register"}
             </Button>
           </FormContainer>
-        </div>
+        </RegisterContainer>
       </RegPageContainer>
     );
   }
@@ -126,6 +126,25 @@ const RegPageContainer = styled.div`
   text-align: center;
   display: flex;
   min-height: 500px;
+  @media (max-width: 900px) {
+    flex-direction: column;
+  }
+`;
+
+const RegisterContainer = styled.div`
+  width: 60%;
+  height: auto;
+  margin: auto;
+  @media (max-width: 900px) {
+    width: 90%;
+  }
+`;
+
+const RegisterSplitContainer = styled.div`
+  width: 40%;
+  @media (max-width: 900px) {
+    width: 100%;
+  }
 `;
 
 const FormHeading = styled.h1`
@@ -146,6 +165,9 @@ const FormInput = styled.input`
   background-color: #e6e6e6;
   border-radius: 5px;
   border: none;
+  @media (max-width: 900px) {
+    width: 75%;
+  }
 `;
 
 const Button = styled.button`
@@ -157,6 +179,9 @@ const Button = styled.button`
   background-color: #c06c84;
   color: #f2f2f2;
   font-size: 1em;
+  @media (max-width: 900px) {
+    width: 50%;
+  }
 `;
 
 const ErrorText = styled.p`
