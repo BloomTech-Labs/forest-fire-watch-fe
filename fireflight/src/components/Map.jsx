@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
 
-const Map = ({ height }) => {
+const Map = () => {
   // hook for viewport data, should eventually be taken from user location
   const [viewport, setViewport] = useState({
     width: "100%",
@@ -13,14 +13,11 @@ const Map = ({ height }) => {
 
   // hook for current selected fire to display popup on the map
   const [selectedFire, setSelectedFire] = useState(null);
-
-  // mapbox API token
-  const token =
-    process.env.REACT_APP_MAPBOX_TOKEN ||
-    "pk.eyJ1Ijoia2VuMTI4NiIsImEiOiJjanpuMXdlb2UwZzlkM2JsY2t2aTVkcGFoIn0.eGKKY2f3oC5s8GqsyB70Yg";
-
-  // dummy data.
-  const dummyFireData = [
+  const [userLocation, setUserLocation] = useState({
+    latitude: 37.7577,
+    longitude: -122.4376
+  });
+  const [fireData, setFireData] = useState([
     {
       location: "location1",
       latitude: 37.757,
@@ -31,7 +28,12 @@ const Map = ({ height }) => {
       latitude: 37.68,
       longitude: -122
     }
-  ];
+  ]);
+
+  // mapbox API token
+  const token =
+    process.env.REACT_APP_MAPBOX_TOKEN ||
+    "pk.eyJ1Ijoia2VuMTI4NiIsImEiOiJjanpuMXdlb2UwZzlkM2JsY2t2aTVkcGFoIn0.eGKKY2f3oC5s8GqsyB70Yg";
 
   // useEffect hook to cause the ESC key to close a popup by setting selectedFire state to null
   useEffect(() => {
@@ -80,7 +82,7 @@ const Map = ({ height }) => {
         }}
       >
         marker data here, example below
-        {dummyFireData.map(fire => {
+        {fireData.map(fire => {
           return (
             // return marker for each fire datapoint
             <Marker latitude={fire.latitude} longitude={fire.longitude}>
@@ -95,6 +97,19 @@ const Map = ({ height }) => {
             </Marker>
           );
         })}
+        <Marker
+          latitude={userLocation.latitude}
+          longitude={userLocation.longitude}
+        >
+          <button
+            style={{ width: "20px", height: "15px" }}
+            onClick={e => {
+              e.preventDefault();
+              setSelectedFire(fire);
+            }}
+          />
+          User Location
+        </Marker>
         {/* sets selectedFire state to clicked on location */}
         {selectedFire ? (
           <Popup
