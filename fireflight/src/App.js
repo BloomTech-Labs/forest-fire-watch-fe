@@ -55,5 +55,4 @@ export default App;
 
 const AppWrapper = styled.div`
   position: "relative";
-  margin: 25;
 `;
