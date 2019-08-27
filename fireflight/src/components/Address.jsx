@@ -98,14 +98,14 @@ function Address(props) {
 
     const edit=e=>{
         console.log(e.target.value);
-        if(e.target.value==-1){
+        if(e.target.value===-1){
             setZip('')
             setState('')
             setApartment('')
             setStreet('')
             setId(null)
         }else{
-            let temp = address.state.addresses.filter(i=>i.id==e.target.value)[0]
+            let temp = address.state.addresses.filter(i=>i.id===e.target.value)[0]
             temp=temp.split(',').map(i=>i.trim())
             setId(id)
             setStreet(temp[0])

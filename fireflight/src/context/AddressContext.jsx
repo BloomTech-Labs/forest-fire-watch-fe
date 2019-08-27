@@ -30,15 +30,20 @@ function AddressContextProvider(props) {
         switch (action.type) {
             case UPDATE_ADDRESSES:
                 if(isArray(action.payload))
-                    console.log(...action.payload)
+                    return {
+                        ...state,
+                        fetching:false,
+                        addresses:state.addressess.concat(...action.payload),
+                        tester:true
+                    }
                 else
-                    console.log(action.payload);
-                return {
-                    ...state,
-                    fetching:false,
-                    addresses:action.payload,
-                    tester:true
-                }
+                    return {
+                        ...state,
+                        fetching:false,
+                        addresses:[...state.addressess,action.payload],
+                        tester:true
+                    }
+                
                 break;
             case FETCHING_ADDRESSES:
                 return{
