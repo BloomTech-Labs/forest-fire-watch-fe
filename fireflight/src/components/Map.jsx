@@ -4,8 +4,8 @@ import ReactMapGL, { Marker, Popup } from "react-map-gl";
 const Map = ({ width, height, lat, long }) => {
   // hook for viewport data, should eventually be taken from user location
   const [viewport, setViewport] = useState({
-    width: 100,
-    height: 100,
+    width: "100%",
+    height: 350,
     latitude: 37.7577,
     longitude: -122.4376,
     zoom: 8
