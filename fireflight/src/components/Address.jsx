@@ -105,7 +105,7 @@ function Address(props) {
             setStreet('')
             setId(null)
         }else{
-            let temp = address.state.addresses.filter(i=>{i.id==e.target.value})[0]
+            let temp = address.state.addresses.filter(i=>i.id==e.target.value)[0]
             temp=temp.split(',').map(i=>i.trim())
             setId(id)
             setStreet(temp[0])
