@@ -33,14 +33,14 @@ function AddressContextProvider(props) {
                     return {
                         ...state,
                         fetching:false,
-                        addresses:state.addressess.concat(...action.payload),
+                        addresses:state.addresses.concat(...action.payload),
                         tester:true
                     }
                 else
                     return {
                         ...state,
                         fetching:false,
-                        addresses:[...state.addressess,action.payload],
+                        addresses:[...state.addresses,action.payload],
                         tester:true
                     }
                 
