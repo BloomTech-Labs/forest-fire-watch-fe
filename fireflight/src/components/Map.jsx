@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
 
-const Map = props => {
+const Map = ({ height }) => {
   // hook for viewport data, should eventually be taken from user location
   const [viewport, setViewport] = useState({
-    width: 600,
-    height: 600,
+    width: "100%",
+    height: window.innerWidth < 900 ? 350 : 500,
     latitude: 37.7577,
     longitude: -122.4376,
     zoom: 8

@@ -78,7 +78,6 @@ const NavContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid grey;
-  margin-bottom: 25px;
 `;
 
 const Logo = styled.h3``;
