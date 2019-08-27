@@ -4,6 +4,7 @@ import Navigation from "./components/Navigation";
 import Home from "./components/Home";
 import Danger from "./components/Danger";
 import Update from "./components/Update";
+import Dashboard from "./components/Dashboard";
 
 import AuthForms from "./components/AuthForms/AuthForms";
 
@@ -19,7 +20,7 @@ import { FireContext } from "./context/GlobalContext";
 function App() {
   const [token, setToken] = useState("");
   // The 3 hooks below are used for showing and toggling between the login & register forms. These can most likely be refactored to use context API.
-  const [showAuthForms, setShowAuthForms] = useState(true);
+  const [showAuthForms, setShowAuthForms] = useState(false);
   const [loginFormStatus, setLoginFormStatus] = useState(true);
   const [registerFormStatus, setRegisterFormStatus] = useState(false);
 
@@ -45,6 +46,7 @@ function App() {
       <Route path="/update" component={Update} />
       <Route path="/danger" component={Danger} />
       <Route path="/map" component={Map} />
+      <Route path="/dashboard" component={Dashboard} />
     </AppWrapper>
   );
 }
