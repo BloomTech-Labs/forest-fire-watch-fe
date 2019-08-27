@@ -1,21 +1,28 @@
 import React, { useState, useEffect } from "react";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
 
+import fireIcon from "../images/fireIcon.png";
+import locationIcon from "../images/locationIcon.png";
+import axiosWithAuth from "../utils/axiosWithAuth";
+
+import axios from "axios";
+
 const Map = () => {
   // hook for viewport data, should eventually be taken from user location
   const [viewport, setViewport] = useState({
     width: "100%",
     height: window.innerWidth < 900 ? 350 : 500,
-    latitude: 37.7577,
-    longitude: -122.4376,
+    latitude: 0,
+    longitude: 0,
     zoom: 8
   });
 
   // hook for current selected fire to display popup on the map
   const [selectedFire, setSelectedFire] = useState(null);
-  const [userLocation, setUserLocation] = useState({
-    latitude: 37.7577,
-    longitude: -122.4376
+  const [userAddress, setUserAddress] = useState("");
+  const [userCoords, setUserCoords] = useState({
+    latitude: 0,
+    longitude: 0
   });
   const [fireData, setFireData] = useState([
     {
@@ -47,6 +54,37 @@ const Map = () => {
     return () => {
       window.removeEventListener("keydown", listener);
     };
+  }, []);
+
+  useEffect(() => {
+    axiosWithAuth()
+      .get("/locations")
+      .then(res => {
+        setUserAddress(res.data[1].address);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get(
+        `https://api.mapbox.com/geocoding/v5/mapbox.places/7054 witmer rd, north tonawanda, NY, 14120.json?access_token=${token}`
+      )
+      .then(res => {
+        console.log(res.data);
+        console.log(res.data.features[0].center[0]);
+        console.log(res.data.features[0].center[1]);
+        setUserCoords({
+          latitude: res.data.features[0].center[1],
+          longitude: res.data.features[0].center[0]
+        });
+        setViewport({
+          width: "100%",
+          height: window.innerWidth < 900 ? 350 : 500,
+          latitude: res.data.features[0].center[1],
+          longitude: res.data.features[0].center[0],
+          zoom: 8
+        });
+      });
   }, []);
 
   useEffect(() => {
@@ -82,34 +120,35 @@ const Map = () => {
         }}
       >
         marker data here, example below
+        <Marker latitude={userCoords.latitude} longitude={userCoords.longitude}>
+          <img
+            src={locationIcon}
+            height="35"
+            width="20"
+            style={{ zIndex: -1 }}
+          />
+        </Marker>
         {fireData.map(fire => {
           return (
             // return marker for each fire datapoint
             <Marker latitude={fire.latitude} longitude={fire.longitude}>
-              <button
+              {/* <button
                 style={{ width: "20px", height: "15px" }}
                 onClick={e => {
                   e.preventDefault();
                   setSelectedFire(fire);
                 }}
               />
-              FIRE
+              FIRE */}
+              <img
+                src={fireIcon}
+                height="35"
+                width="35"
+                style={{ zIndex: 3 }}
+              />
             </Marker>
           );
         })}
-        <Marker
-          latitude={userLocation.latitude}
-          longitude={userLocation.longitude}
-        >
-          <button
-            style={{ width: "20px", height: "15px" }}
-            onClick={e => {
-              e.preventDefault();
-              setSelectedFire(fire);
-            }}
-          />
-          User Location
-        </Marker>
         {/* sets selectedFire state to clicked on location */}
         {selectedFire ? (
           <Popup
