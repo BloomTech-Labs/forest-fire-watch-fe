@@ -12,6 +12,7 @@ function Address(props) {
     const [state,setState]=useState('')
     const [apartment,setApartment]=useState('')
     const [street,setStreet]=useState('')
+    const [city,setCity]=useState('')
     const [saveState,setSaveState]=useState('')
     const [id,setId]=useState(undefined)
     const [err,setErr]=useState(undefined)
@@ -48,12 +49,14 @@ function Address(props) {
                 setState('')
                 setApartment('')
                 setStreet('')
+                setCity('')
             }else{
                 setSaveState('Data is undefined')
                 setZip('')
                 setState('')
                 setApartment('')
                 setStreet('')
+                setCity('')
             }
         } catch (err) {
             console.error(err);
@@ -62,15 +65,16 @@ function Address(props) {
 
     const parseCSV=async direction=>{
         if(direction==='to'){
-            setAddy(`${street}, ${apartment}, ${state}, ${zip}`)
+            setAddy(`${street}, ${apartment}, ${city}, ${state}, ${zip}`)
         }else{
             if(addy.length>0){
                 let temp=addy.split(',').map(s=>s.trim())
                 console.log(temp);
                 setStreet(temp[0])
                 setApartment(temp[1])
-                setState(temp[2])
-                setZip(temp[3])
+                setCity(temp[2])
+                setState(temp[3])
+                setZip(temp[4])
             }
         }
     }
@@ -81,7 +85,7 @@ function Address(props) {
             parseCSV('to')
         })
     }
-    ,[street,zip,apartment,state]
+    ,[street,zip,apartment,state,city]
     )
 
     useEffect(()=>{
@@ -110,8 +114,9 @@ function Address(props) {
             setId(id)
             setStreet(temp[0])
             setApartment(temp[1])
-            setState(temp[2])
-            setZip(temp[3])
+            setCity(temp[2])
+            setState(temp[3])
+            setZip(temp[4])
         }
     }
 
@@ -135,6 +140,7 @@ function Address(props) {
             <form onSubmit={testSubmit}>
                 <label>Street Address   :<input type="text" name="street" value={street} onChange={e=>{setStreet(e.target.value)}}/></label><br/>
                 <label>Apartment Number :<input type="text" name="apartment" value={apartment} onChange={e=>setApartment(e.target.value)}/></label><br/>
+                <label>City             :<input type="text" name="city" value={city} onChange={e=>setCity(e.target.value)}/></label><br/>
                 <label>State            :<input type="text" name="state" value={state} onChange={e=>setState(e.target.value)}/></label><br/>
                 <label>Zip Code         :<input type="number" name="zip" value={zip} onChange={e=>setZip(e.target.value)}/></label><br/>
                 <button type="submit">Save Location</button>
