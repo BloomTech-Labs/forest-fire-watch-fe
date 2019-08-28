@@ -137,6 +137,7 @@ const RegisterContainer = styled.div`
   margin: auto;
   @media (max-width: 900px) {
     width: 90%;
+    order: 1;
   }
 `;
 
@@ -144,6 +145,7 @@ const RegisterSplitContainer = styled.div`
   width: 40%;
   @media (max-width: 900px) {
     width: 100%;
+    order: 2;
   }
 `;
 

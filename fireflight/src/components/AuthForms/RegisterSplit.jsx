@@ -26,10 +26,16 @@ const RegisterSplitWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  @media (max-width: 900px) {
+    border-radius: 0px 0px 25px 25px;
+  }
 `;
 
 const Heading = styled.h2`
   margin-top: 0px;
+  @media (max-width: 900px) {
+    margin-top: 15px;
+  }
 `;
 
 const Text = styled.p`
