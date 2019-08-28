@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
+
+import { MapContext } from "../context/MapContext";
 
 import fireIcon from "../images/fireIcon.png";
 import locationIcon from "../images/locationIcon.png";
@@ -8,6 +10,8 @@ import axiosWithAuth from "../utils/axiosWithAuth";
 import axios from "axios";
 
 const Map = () => {
+  const mapContext = useContext(MapContext);
+  console.log(mapContext);
   // hook for viewport data, should eventually be taken from user location
   const [viewport, setViewport] = useState({
     width: "100%",
