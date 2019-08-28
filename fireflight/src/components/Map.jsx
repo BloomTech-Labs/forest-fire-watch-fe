@@ -10,24 +10,12 @@ import axiosWithAuth from "../utils/axiosWithAuth";
 import axios from "axios";
 
 const Map = () => {
-  const mapContext = useContext(MapContext);
-  console.log(mapContext);
-  // hook for viewport data, should eventually be taken from user location
-  const [viewport, setViewport] = useState({
-    width: "100%",
-    height: window.innerWidth < 900 ? 350 : 500,
-    latitude: 0,
-    longitude: 0,
-    zoom: 8
-  });
+  const { state, setViewport, setAddress, setCoordinates } = useContext(
+    MapContext
+  );
 
   // hook for current selected fire to display popup on the map
   const [selectedFire, setSelectedFire] = useState(null);
-  const [userAddress, setUserAddress] = useState("");
-  const [userCoords, setUserCoords] = useState({
-    latitude: 0,
-    longitude: 0
-  });
   const [fireData, setFireData] = useState([
     {
       location: "location1",
@@ -61,70 +49,29 @@ const Map = () => {
   }, []);
 
   useEffect(() => {
-    axiosWithAuth()
-      .get("/locations")
-      .then(res => {
-        setUserAddress(res.data[1].address);
-      });
+    setAddress();
   }, []);
 
   useEffect(() => {
-    axios
-      .get(
-        `https://api.mapbox.com/geocoding/v5/mapbox.places/7054 witmer rd, north tonawanda, NY, 14120.json?access_token=${token}`
-      )
-      .then(res => {
-        console.log(res.data);
-        console.log(res.data.features[0].center[0]);
-        console.log(res.data.features[0].center[1]);
-        setUserCoords({
-          latitude: res.data.features[0].center[1],
-          longitude: res.data.features[0].center[0]
-        });
-        setViewport({
-          width: "100%",
-          height: window.innerWidth < 900 ? 350 : 500,
-          latitude: res.data.features[0].center[1],
-          longitude: res.data.features[0].center[0],
-          zoom: 8
-        });
-      });
-  }, []);
-
-  useEffect(() => {
-    const sampleAddress = "223 E. Concord Street, Orlando, FL 32801";
-
-    fetch(
-      `https://api.mapbox.com/geocoding/v5/mapbox.places/${sampleAddress}.json?access_token=${token}&types=address&limit=1`
-    )
-      .then(response => {
-        if (!response.ok) {
-          throw new Error("Failed to fetch.");
-        }
-        return response.json();
-      })
-      .then(data => {
-        console.log(data);
-        console.log(data.features[0].geometry.coordinates);
-        // result is [-81.374366, 28.551327] array, [longitude, latitude] format
-        // https://docs.mapbox.com/api/search/#geocoding
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }, []);
+    if (state.userAddress !== "") {
+      setCoordinates();
+    }
+  }, [state.userAddress]);
 
   return (
     <div>
       <ReactMapGL
-        {...viewport}
+        {...state.viewport}
         mapboxApiAccessToken={token}
         onViewportChange={viewport => {
           setViewport(viewport);
         }}
       >
         marker data here, example below
-        <Marker latitude={userCoords.latitude} longitude={userCoords.longitude}>
+        <Marker
+          latitude={state.viewport.latitude}
+          longitude={state.viewport.longitude}
+        >
           <img
             src={locationIcon}
             height="35"
