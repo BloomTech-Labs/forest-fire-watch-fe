@@ -39,9 +39,8 @@ function Register({ toggle }) {
 
     if (password === passwordConf) {
       const newUser = { username, password };
-      axios
-        // There are local and deployed server variables at top of file.
-        .post(`${localURL}/register`, newUser)
+      data.state.remote
+        .register(newUser)
         .then(res => {
           setUsername("");
           setPassword("");
@@ -50,6 +49,7 @@ function Register({ toggle }) {
           // return <Redirect to="/login" />;
         })
         .catch(err => {
+          console.log(err.response);
           setErrorStatus(true);
           setErrorText(err.response.data);
           setLoading(false);
@@ -57,6 +57,7 @@ function Register({ toggle }) {
     } else {
       setErrorStatus(true);
       setErrorText({ password: "Passwords must match" });
+      setLoading(false);
     }
   }
 
@@ -66,10 +67,10 @@ function Register({ toggle }) {
   } else {
     return (
       <RegPageContainer>
-        <div style={{ width: "40%" }}>
+        <RegisterSplitContainer>
           <RegisterSplit toggle={toggle} />
-        </div>
-        <div style={{ width: "60%", height: "auto", margin: "auto" }}>
+        </RegisterSplitContainer>
+        <RegisterContainer>
           <FormHeading>Create Account</FormHeading>
           <FormContainer onSubmit={handleSubmit}>
             <FormInput
@@ -94,7 +95,7 @@ function Register({ toggle }) {
               onChange={handlePassword}
               placeholder="Password"
             />
-            {errorStatus && password === passwordConf ? (
+            {errorStatus && password !== passwordConf ? (
               <ErrorText>{errorText.password}</ErrorText>
             ) : (
               <ErrorText />
@@ -112,7 +113,7 @@ function Register({ toggle }) {
               {loading ? "Loading..." : "Register"}
             </Button>
           </FormContainer>
-        </div>
+        </RegisterContainer>
       </RegPageContainer>
     );
   }
@@ -126,6 +127,27 @@ const RegPageContainer = styled.div`
   text-align: center;
   display: flex;
   min-height: 500px;
+  @media (max-width: 900px) {
+    flex-direction: column;
+  }
+`;
+
+const RegisterContainer = styled.div`
+  width: 60%;
+  height: auto;
+  margin: auto;
+  @media (max-width: 900px) {
+    width: 90%;
+    order: 1;
+  }
+`;
+
+const RegisterSplitContainer = styled.div`
+  width: 40%;
+  @media (max-width: 900px) {
+    width: 100%;
+    order: 2;
+  }
 `;
 
 const FormHeading = styled.h1`
@@ -146,6 +168,9 @@ const FormInput = styled.input`
   background-color: #e6e6e6;
   border-radius: 5px;
   border: none;
+  @media (max-width: 900px) {
+    width: 75%;
+  }
 `;
 
 const Button = styled.button`
@@ -157,6 +182,9 @@ const Button = styled.button`
   background-color: #c06c84;
   color: #f2f2f2;
   font-size: 1em;
+  @media (max-width: 900px) {
+    width: 50%;
+  }
 `;
 
 const ErrorText = styled.p`

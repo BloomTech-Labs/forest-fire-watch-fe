@@ -1,5 +1,6 @@
-import React, { useReducer, createContext } from "react";
+import React, { useReducer, createContext, useState } from "react";
 import axios from "axios";
+
 // import FireContext from "./contextProvider";
 import connector from "../helpers/connects";
 import { FireContext, defaultValues } from "./contextProvider";
@@ -36,11 +37,11 @@ const globalReducer = (state, action) => {
         ...state,
         fireInfo: action.payload
       };
-      case GET_USER_LOCATIONS_SUCCESS:
-        return {
-          ...state,
-          userLocations: action.payload
-        }
+    case GET_USER_LOCATIONS_SUCCESS:
+      return {
+        ...state,
+        userLocations: action.payload
+      };
     default:
       return {
         ...state
@@ -53,7 +54,7 @@ const globalReducer = (state, action) => {
 
 const baseDeployedURL = "https://fireflight-lambda.herokuapp.com";
 const baseLocalURL = "http://localhost:5000";
-const DSbaseURL="https://fire-data-api.herokuapp.com"
+const DSbaseURL = "https://fire-data-api.herokuapp.com";
 
 function GlobalContext(props) {
   //   const [user, setUser] = useState(null);
@@ -69,7 +70,12 @@ function GlobalContext(props) {
   // SET HOOKS EXPLANATION:
   // The concept of the set functions is exactly the same as in a regular hook. We use the set function to set the data inside the state. These functions (think redux actions) use dispatch to pass the newly set data into the reducer. State is then updated properly.
 
-  const setUser = newUser => {};
+  const setUser = newUser => {
+    dispatch({
+      type: SET_NAME,
+      payload: newUser
+    });
+  };
   const setToken = newToken => {};
 
   const setLocation = newLocation => {};
@@ -93,17 +99,18 @@ function GlobalContext(props) {
       });
   };
 
-  const setUserLocations = () => dispatch=> {
-    dispatch({type: GET_USER_LOCATIONS_START})
-    axios.get(`${baseLocalURL}/api/locations/`)
-    .then(res=> {
-      dispatch({type: GET_USER_LOCATIONS_SUCCESS, payload: res.data})
-    })
-    .catch(err=> {
-      console.log(err)
-      dispatch({type: GET_USER_LOCATIONS_ERROR, payload: err})
-    })
-  }
+  const setUserLocations = () => dispatch => {
+    dispatch({ type: GET_USER_LOCATIONS_START });
+    axios
+      .get(`${baseLocalURL}/api/locations/`)
+      .then(res => {
+        dispatch({ type: GET_USER_LOCATIONS_SUCCESS, payload: res.data });
+      })
+      .catch(err => {
+        console.log(err);
+        dispatch({ type: GET_USER_LOCATIONS_ERROR, payload: err });
+      });
+  };
 
   //structure
   /**

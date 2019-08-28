@@ -31,21 +31,19 @@ function Login({ toggle }) {
     setLoading(true);
     const credentials = { username, password };
 
-    axios
-      .post(`${localURL}/login`, credentials)
+    setErrorStatus(false)
+    setErrorText("")
+
+    context.state.remote.login(credentials)
       .then(res => {
-        localStorage.setItem("token", res.data.token);
-        //set global context token
-        context.setToken(res.data.token);
-        //end
         setUsername("");
         setPassword("");
         setLoading(false);
         return <Redirect to="/" />;
       })
       .catch(err => {
+        setErrorText("Username or Password Invalid");
         setErrorStatus(true);
-        setErrorText(err.response.data);
         setLoading(false);
       });
   }
@@ -54,7 +52,7 @@ function Login({ toggle }) {
   // } else {
   return (
     <LoginPageContainer>
-      <div style={{ width: "60%", height: "auto", margin: "auto" }}>
+      <LoginContainer>
         <FormHeading>Login</FormHeading>
         <FormContainer onSubmit={handleSubmit}>
           <FormInput
@@ -65,7 +63,7 @@ function Login({ toggle }) {
             placeholder="Username"
           />
           {errorStatus ? (
-            <ErrorText>{errorText.username}</ErrorText>
+            <ErrorText>{errorText}</ErrorText>
           ) : (
             <ErrorText />
           )}
@@ -86,10 +84,10 @@ function Login({ toggle }) {
             {loading ? "Loading..." : "Log In"}
           </Button>
         </FormContainer>
-      </div>
-      <div style={{ width: "40%" }}>
+      </LoginContainer>
+      <LoginSplitContainer>
         <LoginSplit toggle={toggle} />
-      </div>
+      </LoginSplitContainer>
     </LoginPageContainer>
   );
   // }
@@ -103,6 +101,25 @@ const LoginPageContainer = styled.div`
   text-align: center;
   display: flex;
   min-height: 500px;
+  @media (max-width: 900px) {
+    flex-direction: column;
+  }
+`;
+
+const LoginContainer = styled.div`
+  width: 60%;
+  height: auto;
+  margin: auto;
+  @media (max-width: 900px) {
+    width: 90%;
+  }
+`;
+
+const LoginSplitContainer = styled.div`
+  width: 40%;
+  @media (max-width: 900px) {
+    width: 100%;
+  }
 `;
 
 const FormHeading = styled.h1`
@@ -123,6 +140,9 @@ const FormInput = styled.input`
   background-color: #e6e6e6;
   border-radius: 5px;
   border: none;
+  @media (max-width: 900px) {
+    width: 75%;
+  }
 `;
 
 const Button = styled.button`
@@ -134,6 +154,9 @@ const Button = styled.button`
   background-color: #c06c84;
   color: #f2f2f2;
   font-size: 1em;
+  @media (max-width: 900px) {
+    width: 50%;
+  }
 `;
 
 const ErrorText = styled.p`
