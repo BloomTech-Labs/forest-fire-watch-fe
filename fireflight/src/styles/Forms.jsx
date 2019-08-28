@@ -58,7 +58,7 @@ export const FormContainer=styled.div`
 
 export const FormSelect=styled.select`
     width:300px;
-    margin:.5rem;
+    margin: .75rem .5rem .5rem 1.5rem;
     padding:15px;
     font-size:.75rem;
     background-color:#e6e6e6;
