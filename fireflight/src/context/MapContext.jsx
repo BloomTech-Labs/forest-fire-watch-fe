@@ -1,7 +1,7 @@
 import React, { useReducer, createContext } from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import axios from "axios";
-import { SET_VIEWPORT, SET_ADDRESS } from "./types";
+import { SET_VIEWPORT, SET_ADDRESS, SET_COORDS } from "./types";
 
 const mapReducer = (state, action) => {
   switch (action.type) {
@@ -9,6 +9,16 @@ const mapReducer = (state, action) => {
       return {
         ...state,
         viewport: action.payload
+      };
+    case SET_COORDS:
+      return {
+        ...state,
+        userCoordinates: action.payload,
+        viewport: {
+          ...state.viewport,
+          longitude: action.payload.longitude,
+          latitude: action.payload.latitude
+        }
       };
     case SET_ADDRESS:
       return {
@@ -34,7 +44,7 @@ export const MapProvider = props => {
       zoom: 8
     },
     userAddress: "",
-    userCoordinates: []
+    userCoordinates: {}
   });
 
   const token =
@@ -58,9 +68,9 @@ export const MapProvider = props => {
         console.log(res.data.features[0].center[0]);
         console.log(res.data.features[0].center[1]);
         dispatch({
-          type: SET_VIEWPORT,
+          type: SET_COORDS,
           payload: {
-            ...state.viewport,
+            ...state.userCoordinates,
             latitude: res.data.features[0].center[1],
             longitude: res.data.features[0].center[0]
           }

@@ -14,6 +14,8 @@ const Map = () => {
     MapContext
   );
 
+  console.log(state);
+
   // hook for current selected fire to display popup on the map
   const [selectedFire, setSelectedFire] = useState(null);
   const [fireData, setFireData] = useState([
@@ -67,11 +69,8 @@ const Map = () => {
           setViewport(viewport);
         }}
       >
-        marker data here, example below
-        <Marker
-          latitude={state.viewport.latitude}
-          longitude={state.viewport.longitude}
-        >
+        Marker Issue to be fixed
+        <Marker latitude={0} longitude={0}>
           <img
             src={locationIcon}
             height="35"
