@@ -31,8 +31,10 @@ function Login({ toggle }) {
     setLoading(true);
     const credentials = { username, password };
 
-    axios
-      .post(`${localURL}/login`, credentials)
+    setErrorStatus(false)
+    setErrorText("")
+
+    context.state.remote.login(credentials)
       .then(res => {
         localStorage.setItem("token", res.data.token);
         //set global context token
@@ -44,8 +46,8 @@ function Login({ toggle }) {
         return <Redirect to="/" />;
       })
       .catch(err => {
+        setErrorText("Username or Password Invalid");
         setErrorStatus(true);
-        setErrorText(err.response.data);
         setLoading(false);
       });
   }
@@ -65,7 +67,7 @@ function Login({ toggle }) {
             placeholder="Username"
           />
           {errorStatus ? (
-            <ErrorText>{errorText.username}</ErrorText>
+            <ErrorText>{errorText}</ErrorText>
           ) : (
             <ErrorText />
           )}

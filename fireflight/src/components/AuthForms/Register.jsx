@@ -25,6 +25,7 @@ function Register({ toggle }) {
   const [errorText, setErrorText] = useState({});
 
   const data = useContext(FireContext);
+  
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -39,9 +40,7 @@ function Register({ toggle }) {
 
     if (password === passwordConf) {
       const newUser = { username, password };
-      axios
-        // There are local and deployed server variables at top of file.
-        .post(`${localURL}/register`, newUser)
+      data.state.remote.register(newUser)
         .then(res => {
           setUsername("");
           setPassword("");
@@ -51,7 +50,7 @@ function Register({ toggle }) {
         })
         .catch(err => {
           setErrorStatus(true);
-          setErrorText(err.response.data);
+          setErrorText(err.response.message);
           setLoading(false);
         });
     } else {

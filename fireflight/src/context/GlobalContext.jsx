@@ -1,4 +1,4 @@
-import React, { useReducer, createContext } from "react";
+import React, { useReducer, createContext,useState } from "react";
 // import FireContext from "./contextProvider";
 import connector from "../helpers/connects";
 import { FireContext, defaultValues } from "./contextProvider";
@@ -45,7 +45,12 @@ function GlobalContext(props) {
   // SET HOOKS EXPLANATION:
   // The concept of the set functions is exactly the same as in a regular hook. We use the set function to set the data inside the state. These functions (think redux actions) use dispatch to pass the newly set data into the reducer. State is then updated properly.
 
-  const setUser = newUser => {};
+  const setUser = newUser => {
+    dispatch({
+      type:SET_NAME,
+      payload:newUser
+    })
+  };
   const setToken = newToken => {};
 
   const setLocation = newLocation => {};
