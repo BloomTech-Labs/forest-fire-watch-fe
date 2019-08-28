@@ -36,10 +36,6 @@ function Login({ toggle }) {
 
     context.state.remote.login(credentials)
       .then(res => {
-        localStorage.setItem("token", res.data.token);
-        //set global context token
-        context.setToken(res.data.token);
-        //end
         setUsername("");
         setPassword("");
         setLoading(false);

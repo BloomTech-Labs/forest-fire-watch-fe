@@ -2,6 +2,7 @@ import React,{useState,useContext,useEffect} from 'react'
 import AddressContext from '../context/addressContextProvider'
 import {FireContext} from '../context/contextProvider'
 import { isArray } from 'util';
+import {Button,ErrorText,FormContainer,FormInput,Form,FormSelect} from '../styles/Forms'
 
 function Address(props) {
     
@@ -108,7 +109,6 @@ function Address(props) {
 
     useEffect(()=>{
         const fetch=async ()=>{
-            console.log('this one')
             try{
                 let temp=await global.state.remote.fetchLocations()
             }catch(err){
@@ -119,17 +119,18 @@ function Address(props) {
     },[])
 
     const edit=e=>{
-        console.log(e.target.value);
-        if(e.target.value===-1){
+        if(e.target.value==-1){
             setZip('')
             setState('')
             setApartment('')
             setStreet('')
             setId(null)
         }else{
-            let temp = address.state.addresses.filter(i=>i.id===e.target.value)[0]
-            temp=temp.split(',').map(i=>i.trim())
-            setId(id)
+            let temp = address.state.addresses.filter(i=>{
+                return i.id==e.target.value
+            })[0]
+            setId(temp.id)
+            temp=temp.address.split(',').map(i=>i.trim())
             setStreet(temp[0])
             setApartment(temp[1])
             setCity(temp[2])
@@ -138,9 +139,27 @@ function Address(props) {
         }
     }
 
+    const remove=async e=>{
+        e.preventDefault()
+        try{
+            let res = await global.state.remote.deleteLocation(id)
+            res = global.state.remote.fetchLocations()
+            setZip('')
+            setState('')
+            setApartment('')
+            setStreet('')
+            setId(null)
+            setSaveState('Deleted')          
+            address.reset()  
+        }
+        catch(err){
+            setSaveState(err)
+        }
+    }
+
     return (
-        <>
-            <>
+        <FormContainer>
+            {/* <>
                 <button onClick={testSubmit}>
                     test submit
                 </button>
@@ -148,26 +167,26 @@ function Address(props) {
                     test fetch
                 </button>
                 <br></br>
-            </>
-            <select onChange={edit}>
+            </> */}
+            <FormSelect onChange={edit}>
                 <option value={-1}>Add an Address</option>
                 {address.state.addresses.map(i=>(
-                    <option value={i.id}>{i.address}</option>
+                    <option value={i.id} key={i.id}>{i.address}</option>
                 ))}
-            </select>
-            <form onSubmit={testSubmit}>
-                <label>Street Address   :<input type="text" name="street" value={street} onChange={e=>{setStreet(e.target.value)}}/></label><br/>
-                <label>Apartment Number :<input type="text" name="apartment" value={apartment} onChange={e=>setApartment(e.target.value)}/></label><br/>
-                <label>City             :<input type="text" name="city" value={city} onChange={e=>setCity(e.target.value)}/></label><br/>
-                <label>State            :<input type="text" name="state" value={state} onChange={e=>setState(e.target.value)}/></label><br/>
-                <label>Zip Code         :<input type="number" name="zip" value={zip} onChange={e=>setZip(e.target.value)}/></label><br/>
-                <button type="submit">Save Location</button><br/>
-                <button onClick="Delete">Delete</button>
-            </form>
-            <div>
+            </FormSelect>
+            <Form onSubmit={testSubmit}>
+                <label>Street Address   :</label><FormInput type="text" name="street" value={street} onChange={e=>{setStreet(e.target.value)}}/><br/>
+                <label>Apartment Number :</label><FormInput type="text" name="apartment" value={apartment} onChange={e=>setApartment(e.target.value)}/><br/>
+                <label>City             :</label><FormInput type="text" name="city" value={city} onChange={e=>setCity(e.target.value)}/><br/>
+                <label>State            :</label><FormInput type="text" name="state" value={state} onChange={e=>setState(e.target.value)}/><br/>
+                <label>Zip Code         :</label><FormInput type="number" name="zip" value={zip} onChange={e=>setZip(e.target.value)}/><br/>
+                <Button type="submit">Save Location</Button><br/>
+                <Button onClick={remove}>Delete</Button>
+            </Form>
+            <ErrorText>
                 {saveState}
-            </div>
-        </>
+            </ErrorText>
+        </FormContainer>
     )
 }
 

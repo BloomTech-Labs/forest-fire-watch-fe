@@ -34,7 +34,7 @@ class connector{
             localStorage.setItem('token',data.token)
             this.connector.defaults.headers.common['Authorization']=data.token
             let who = await this.self()
-            return stats(true,who.username);
+            return new stats(true,who.username);
         }else{
             //success failed
             throw {status:false,data:"Login Failed"}
@@ -102,9 +102,9 @@ class connector{
         try {
             let user=await this.self();
             if(isArray(locs))
-                locs=locs.map(i=>({user_id:user.user_id,address:i}))
+                locs=locs.map(i=>({user_id:user.user_id,address:i,radius:5}))
             else
-                locs={user_id:user.user_id,address:locs}
+                locs={user_id:user.user_id,address:locs,radius:0}
             console.log(locs);
             let response = await this.connector.post(`${this.coreString}locations`,locs)
             let data = await response.data
@@ -122,7 +122,8 @@ class connector{
     async updateLocation(add,id){
         try{
             let user = await this.self()
-            let res=await this.connector.put(`${this.coreString}locations/${id}`,add.address)
+            let sender={address:add,user_id:user.user_id,radius:5}
+            let res=await this.connector.put(`${this.coreString}locations/${id}`,sender)
             let data = await res.data
             return new stats(true,add)
         }catch(err){
