@@ -1,20 +1,9 @@
-import React, { useReducer, createContext, useState } from "react";
-import axios from "axios";
-
+import React, { useReducer, createContext } from "react";
 // import FireContext from "./contextProvider";
 import connector from "../helpers/connects";
 import { FireContext, defaultValues } from "./contextProvider";
 
-import {
-  SET_LOCATION,
-  SET_NAME,
-  GET_FIRES_START,
-  GET_FIRES_SUCCESS,
-  GET_FIRES_ERROR,
-  GET_USER_LOCATIONS_START,
-  GET_USER_LOCATIONS_SUCCESS,
-  GET_USER_LOCATIONS_ERROR
-} from "./types";
+import { SET_LOCATION, SET_NAME } from "./types";
 
 // REDUCER EXPLANATION:
 // We use a reducer for the same reason we would use it in redux. It combines the previous state with the updated state.
@@ -32,16 +21,6 @@ const globalReducer = (state, action) => {
         ...state,
         name: action.payload
       };
-    case GET_FIRES_SUCCESS:
-      return {
-        ...state,
-        fireInfo: action.payload
-      };
-    case GET_USER_LOCATIONS_SUCCESS:
-      return {
-        ...state,
-        userLocations: action.payload
-      };
     default:
       return {
         ...state
@@ -51,10 +30,6 @@ const globalReducer = (state, action) => {
 
 // CREATE CONTEXT EXPLANATION:
 // We initialize FireContext as an empty createContext object. We don't want to initialize any of our default variables inside createContext because then they won't run through our reducer.
-
-const baseDeployedURL = "https://fireflight-lambda.herokuapp.com";
-const baseLocalURL = "http://localhost:5000";
-const DSbaseURL = "https://fire-data-api.herokuapp.com";
 
 function GlobalContext(props) {
   //   const [user, setUser] = useState(null);
@@ -79,38 +54,6 @@ function GlobalContext(props) {
   const setToken = newToken => {};
 
   const setLocation = newLocation => {};
-
-  //ex location:
-  //  {
-  //    "user_coords" : [-122.347204, 47.653278],
-  //    "distance" : 1000
-  // }
-  const setFires = location => dispatch => {
-    dispatch({ type: GET_FIRES_START });
-    console.log("GET_FIRES_START");
-    axios
-      .post(`${DSbaseURL}/check_fires`, location)
-      .then(res => {
-        dispatch({ type: GET_FIRES_SUCCESS, payload: res.data });
-      })
-      .catch(err => {
-        console.log(err);
-        dispatch({ type: GET_FIRES_ERROR, payload: err });
-      });
-  };
-
-  const setUserLocations = () => dispatch => {
-    dispatch({ type: GET_USER_LOCATIONS_START });
-    axios
-      .get(`${baseLocalURL}/api/locations/`)
-      .then(res => {
-        dispatch({ type: GET_USER_LOCATIONS_SUCCESS, payload: res.data });
-      })
-      .catch(err => {
-        console.log(err);
-        dispatch({ type: GET_USER_LOCATIONS_ERROR, payload: err });
-      });
-  };
 
   //structure
   /**
@@ -158,9 +101,7 @@ function GlobalContext(props) {
         dispatch,
         setUser,
         setToken,
-        setLocation,
-        setFires,
-        setUserLocations
+        setLocation
       }}
     >
       {props.children}
