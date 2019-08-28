@@ -10,7 +10,15 @@ export const UPDATE='UPDATE'
 export default React.createContext({
     updateAddresses:(addresses)=>{},
     fetchAddresses:()=>{},
+    saveAddress:(address)=>{},
+    updateAddress:(address,id)=>{},
+    clear:()=>{},
+    reset:()=>{},
     state:{
-        addresses:[]
+        addresses:[],
+        fetching:false,
+        error:undefined,
+        tester:false,
+        current:null
     }
 })

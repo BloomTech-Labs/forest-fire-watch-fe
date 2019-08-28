@@ -70,7 +70,7 @@ function AddressContextProvider(props) {
                 return{
                     ...state,
                     tester:false,
-                    current:null
+                    addresses:[]
                 }
                 break;
             case UPDATE:
@@ -94,11 +94,15 @@ function AddressContextProvider(props) {
             payload:payload
         })
     }
-
-    useEffect(()=>{
+    const reset=async()=>{
+        clear()
         global.state.remote.fetchLocations().then(data=>{
             updateAddresses(data.reason)
         })
+    }
+
+    useEffect(()=>{
+        reset()
     },[])
 
     const fetchAddress=async ()=>{
@@ -121,6 +125,7 @@ function AddressContextProvider(props) {
         return global.state.remote.saveLocations(str)
             .then(data=>{
                 updateAddresses(data.reason.address)
+                reset()
                 return data.reason
             }).catch(err=>{
                 console.error("something went wrong", err);
@@ -148,6 +153,7 @@ function AddressContextProvider(props) {
         saveAddress,
         updateAddress,
         clear,
+        reset,
         state
     }
 
