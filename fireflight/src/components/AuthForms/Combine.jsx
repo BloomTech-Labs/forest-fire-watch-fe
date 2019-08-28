@@ -23,14 +23,7 @@ const Combine = ({
     }
   };
   return (
-    <Modal
-      show={show}
-      close={close}
-      setRegister={setRegisterStatus}
-      setLogin={setLoginStatus}
-      showRegisterStatus={showRegister}
-      showLoginStatus={showLogin}
-    >
+    <Modal show={show} close={close}>
       {showLogin && <Login toggle={toggleForms} />}
       {showRegister && <Register toggle={toggleForms} />}
     </Modal>
