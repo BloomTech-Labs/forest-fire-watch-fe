@@ -13,6 +13,7 @@ const Map = () => {
   const { state, setViewport, setAddress, setCoordinates } = useContext(
     MapContext
   );
+  const [userCoords, setUserCoords] = useState();
 
   console.log(state);
 
@@ -57,8 +58,22 @@ const Map = () => {
   useEffect(() => {
     if (state.userAddress !== "") {
       setCoordinates();
+      setUserCoords({ ...state.userCoordinates });
     }
   }, [state.userAddress]);
+
+  let userMarker;
+
+  if (state.userCoordinates.latitude && state.userCoordinates.longitude) {
+    userMarker = (
+      <Marker
+        latitude={state.userCoordinates.latitude}
+        longitude={state.userCoordinates.longitude}
+      >
+        <img src={locationIcon} height="35" width="20" style={{ zIndex: -1 }} />
+      </Marker>
+    );
+  }
 
   return (
     <div>
@@ -70,14 +85,7 @@ const Map = () => {
         }}
       >
         Marker Issue to be fixed
-        <Marker latitude={0} longitude={0}>
-          <img
-            src={locationIcon}
-            height="35"
-            width="20"
-            style={{ zIndex: -1 }}
-          />
-        </Marker>
+        {userMarker};
         {fireData.map(fire => {
           return (
             // return marker for each fire datapoint
