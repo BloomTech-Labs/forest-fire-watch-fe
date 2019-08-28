@@ -114,6 +114,32 @@ class connector{
         }
     }
 
+    /**
+     * 
+     * @param {Address} add Address to swap to
+     * @param {id} id Id to change
+     */
+    async updateLocation(add,id){
+        try{
+            let user = await this.self()
+            let res=await this.connector.put(`${this.coreString}locations/${id}`,add.address)
+            let data = await res.data
+            return new stats(true,add)
+        }catch(err){
+            throw new stats(false,err)
+        }
+    }
+
+    async deleteLocation(id){
+        try{
+            let user = await this.self()
+            let res=await this.connector.delete(`${this.coreString}locations/${id}`)
+            let data=await res.data
+            return new stats(true,'deleted '+id)
+        }catch(err){
+            throw new stats(false,err)
+        }
+    }
 }
 
 const connect = new connector();

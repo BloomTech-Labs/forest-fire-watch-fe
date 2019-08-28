@@ -1,5 +1,5 @@
 import React,{useReducer,useContext,useEffect} from 'react'
-import AddressContext,{UPDATE_ADDRESSES, FETCHING_ADDRESSES,ERROR,CLEAR,NONE} from './addressContextProvider';
+import AddressContext,{UPDATE_ADDRESSES, FETCHING_ADDRESSES,ERROR,CLEAR,NONE,UPDATE} from './addressContextProvider';
 import {FireContext} from './contextProvider'
 import { isArray } from 'util';
 
@@ -43,7 +43,6 @@ function AddressContextProvider(props) {
                         addresses:[...state.addresses,action.payload],
                         tester:true
                     }
-                
                 break;
             case FETCHING_ADDRESSES:
                 return{
@@ -74,6 +73,13 @@ function AddressContextProvider(props) {
                     current:null
                 }
                 break;
+            case UPDATE:
+                return{
+                    ...state,
+                    tester:false,
+                    current:null,
+                    addresses: state.addresses.map(i=>(i.id===action.payload.id)?action.payload:i)
+                }
             default:
                 return defaultState;
                 break;
@@ -114,7 +120,6 @@ function AddressContextProvider(props) {
     const saveAddress=async str=>{
         return global.state.remote.saveLocations(str)
             .then(data=>{
-                console.log(data.reason);
                 updateAddresses(data.reason.address)
                 return data.reason
             }).catch(err=>{
@@ -127,10 +132,21 @@ function AddressContextProvider(props) {
         dispatch({type:CLEAR})
     }
 
+    const updateAddress=async (address,id)=>{
+        return global.state.remote.updateLocation(address,id)
+            .then(data=>{
+                dispatch({
+                    type:UPDATE,
+                    payload:data.reason
+                })
+            })
+    }
+
     const ctx={
         updateAddresses,
         fetchAddress,
         saveAddress,
+        updateAddress,
         clear,
         state
     }

@@ -39,28 +39,46 @@ function Address(props) {
             setSaveState("Please fill out Street Address, Zip Code, and State")
             return;
         }
-
-        let temp = await address.saveAddress(addy)
-        try {
-            console.log(temp);
-            if(temp){
-                setSaveState(`Saved as ${temp.address}`)
-                setZip('')
-                setState('')
-                setApartment('')
-                setStreet('')
-                setCity('')
-            }else{
-                setSaveState('Data is undefined')
-                setZip('')
-                setState('')
-                setApartment('')
-                setStreet('')
-                setCity('')
+        if(id==null){
+            let temp = await address.saveAddress(addy)
+            try {
+                console.log(temp);
+                if(temp){
+                    setSaveState(`Saved as ${temp.address}`)
+                    setZip('')
+                    setState('')
+                    setApartment('')
+                    setStreet('')
+                    setCity('')
+                }else{
+                    setSaveState('Data is undefined')
+                    setZip('')
+                    setState('')
+                    setApartment('')
+                    setStreet('')
+                    setCity('')
+                }
+            } catch (err) {
+                console.error(err);
+            }   
+        }
+        else{
+            let temp = await address.updateAddress(addy,id)
+            try {
+                if(temp){
+                    setSaveState(`Updated as ${temp.address}`)
+                }else{
+                    setSaveState('Data is undefined')
+                    setZip('')
+                    setState('')
+                    setApartment('')
+                    setStreet('')
+                    setCity('')
+                }
+            } catch (err) {
+                console.error(err);
             }
-        } catch (err) {
-            console.error(err);
-        }   
+        }
     }
 
     const parseCSV=async direction=>{
@@ -143,7 +161,8 @@ function Address(props) {
                 <label>City             :<input type="text" name="city" value={city} onChange={e=>setCity(e.target.value)}/></label><br/>
                 <label>State            :<input type="text" name="state" value={state} onChange={e=>setState(e.target.value)}/></label><br/>
                 <label>Zip Code         :<input type="number" name="zip" value={zip} onChange={e=>setZip(e.target.value)}/></label><br/>
-                <button type="submit">Save Location</button>
+                <button type="submit">Save Location</button><br/>
+                <button onClick="Delete">Delete</button>
             </form>
             <div>
                 {saveState}
