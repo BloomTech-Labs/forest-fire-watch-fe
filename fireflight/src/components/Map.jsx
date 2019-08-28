@@ -1,26 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
 
-const Map = ({ height }) => {
-  // hook for viewport data, should eventually be taken from user location
-  const [viewport, setViewport] = useState({
-    width: "100%",
-    height: window.innerWidth < 900 ? 350 : 500,
-    latitude: 37.7577,
-    longitude: -122.4376,
-    zoom: 8
-  });
+import { MapContext } from "../context/MapContext";
+
+import fireIcon from "../images/fireIcon.png";
+import locationIcon from "../images/locationIcon.png";
+import axiosWithAuth from "../utils/axiosWithAuth";
+
+import axios from "axios";
+
+const Map = () => {
+  const { state, setViewport, setAddress, setCoordinates } = useContext(
+    MapContext
+  );
+  const [userCoords, setUserCoords] = useState();
+
+  console.log(state);
 
   // hook for current selected fire to display popup on the map
   const [selectedFire, setSelectedFire] = useState(null);
-
-  // mapbox API token
-  const token =
-    process.env.REACT_APP_MAPBOX_TOKEN ||
-    "pk.eyJ1Ijoia2VuMTI4NiIsImEiOiJjanpuMXdlb2UwZzlkM2JsY2t2aTVkcGFoIn0.eGKKY2f3oC5s8GqsyB70Yg";
-
-  // dummy data.
-  const dummyFireData = [
+  const [fireData, setFireData] = useState([
     {
       location: "location1",
       latitude: 37.757,
@@ -31,7 +30,12 @@ const Map = ({ height }) => {
       latitude: 37.68,
       longitude: -122
     }
-  ];
+  ]);
+
+  // mapbox API token
+  const token =
+    process.env.REACT_APP_MAPBOX_TOKEN ||
+    "pk.eyJ1Ijoia2VuMTI4NiIsImEiOiJjanpuMXdlb2UwZzlkM2JsY2t2aTVkcGFoIn0.eGKKY2f3oC5s8GqsyB70Yg";
 
   // useEffect hook to cause the ESC key to close a popup by setting selectedFire state to null
   useEffect(() => {
@@ -48,50 +52,58 @@ const Map = ({ height }) => {
   }, []);
 
   useEffect(() => {
-    const sampleAddress = "223 E. Concord Street, Orlando, FL 32801";
-
-    fetch(
-      `https://api.mapbox.com/geocoding/v5/mapbox.places/${sampleAddress}.json?access_token=${token}&types=address&limit=1`
-    )
-      .then(response => {
-        if (!response.ok) {
-          throw new Error("Failed to fetch.");
-        }
-        return response.json();
-      })
-      .then(data => {
-        console.log(data);
-        console.log(data.features[0].geometry.coordinates);
-        // result is [-81.374366, 28.551327] array, [longitude, latitude] format
-        // https://docs.mapbox.com/api/search/#geocoding
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    setAddress();
   }, []);
+
+  useEffect(() => {
+    if (state.userAddress !== "") {
+      setCoordinates();
+      setUserCoords({ ...state.userCoordinates });
+    }
+  }, [state.userAddress]);
+
+  let userMarker;
+
+  if (state.userCoordinates.latitude && state.userCoordinates.longitude) {
+    userMarker = (
+      <Marker
+        latitude={state.userCoordinates.latitude}
+        longitude={state.userCoordinates.longitude}
+      >
+        <img src={locationIcon} height="35" width="20" style={{ zIndex: -1 }} />
+      </Marker>
+    );
+  }
 
   return (
     <div>
       <ReactMapGL
-        {...viewport}
+        {...state.viewport}
         mapboxApiAccessToken={token}
         onViewportChange={viewport => {
           setViewport(viewport);
         }}
       >
-        marker data here, example below
-        {dummyFireData.map(fire => {
+        Marker Issue to be fixed
+        {userMarker};
+        {fireData.map(fire => {
           return (
             // return marker for each fire datapoint
             <Marker latitude={fire.latitude} longitude={fire.longitude}>
-              <button
+              {/* <button
                 style={{ width: "20px", height: "15px" }}
                 onClick={e => {
                   e.preventDefault();
                   setSelectedFire(fire);
                 }}
               />
-              FIRE
+              FIRE */}
+              <img
+                src={fireIcon}
+                height="35"
+                width="35"
+                style={{ zIndex: 3 }}
+              />
             </Marker>
           );
         })}
