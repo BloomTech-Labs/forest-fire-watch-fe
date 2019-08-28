@@ -8,7 +8,11 @@ const defaultValues = {
   setUser: newUser => {},
   setToken: newToken => {},
   setLocation: newLocation => {},
-  name: "Mike"
+  name: "Mike",
+  setFires: location => {},
+  fireInfo: [],
+  userLocations:[],
+  setUserLocations:[]
 };
 
 //set default state for autocomplete

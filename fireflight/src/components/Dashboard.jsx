@@ -1,9 +1,12 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 
+import AlertModal from "./AlertModal"
 import Map from "./Map";
 
 const Dashboard = () => {
+  const [alert, setAlert] = useState(false)
+
   return (
     <DashboardWrapper>
       <Heading>Dashboard</Heading>
