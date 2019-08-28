@@ -4,6 +4,7 @@ import Navigation from "./components/Navigation";
 import Home from "./components/Home";
 import Danger from "./components/Danger";
 import Update from "./components/Update";
+import Dashboard from "./components/Dashboard";
 
 import AuthForms from "./components/AuthForms/AuthForms";
 
@@ -54,12 +55,13 @@ function App() {
       <Route exact path="/" component={Home} />
       <Route path="/update" component={Update} />
       <Route path="/danger" component={Danger} />
+      <Route path="/dashboard" component={Dashboard} />
       <AddressContext>
         <Route path="/address" component={Address} />
         <Route path="/map" component={Map} />
       </AddressContext>
+    
 
-      {/* <button onClick={() => setName()}>CLICK ME!</button> */}
     </AppWrapper>
   );
 }
@@ -68,5 +70,4 @@ export default App;
 
 const AppWrapper = styled.div`
   position: "relative";
-  margin: 25;
 `;

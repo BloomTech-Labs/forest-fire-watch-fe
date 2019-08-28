@@ -28,6 +28,7 @@ const ModalWrapper = styled.div`
   position: absolute;
   left: 0;
   right: 0;
+  z-index: 10;
 `;
 
 const ModalBody = styled.div`
