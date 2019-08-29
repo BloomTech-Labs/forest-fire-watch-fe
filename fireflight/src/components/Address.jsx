@@ -16,6 +16,7 @@ function Address(props) {
     const [city,setCity]=useState('')
     const [saveState,setSaveState]=useState('')
     const [id,setId]=useState(undefined)
+    const [radius,setRadius]=useState(10)
     const [err,setErr]=useState(undefined)
 
     const testFetch=e=>{
@@ -40,10 +41,10 @@ function Address(props) {
             setSaveState("Please fill out Street Address, Zip Code, and State")
             return;
         }
+
         if(id==null){
-            let temp = await address.saveAddress(addy)
+            let temp = await address.saveAddress(addy,radius)
             try {
-                console.log(temp);
                 if(temp){
                     setSaveState(`Saved as ${temp.address}`)
                     setZip('')
@@ -51,6 +52,7 @@ function Address(props) {
                     setApartment('')
                     setStreet('')
                     setCity('')
+                    setRadius(10)
                 }else{
                     setSaveState('Data is undefined')
                     setZip('')
@@ -58,23 +60,19 @@ function Address(props) {
                     setApartment('')
                     setStreet('')
                     setCity('')
+                    setRadius(10)
                 }
             } catch (err) {
                 console.error(err);
             }   
         }
         else{
-            let temp = await address.updateAddress(addy,id)
+            let temp = await address.updateAddress(addy,radius,id)
             try {
                 if(temp){
                     setSaveState(`Updated as ${temp.address}`)
                 }else{
-                    setSaveState('Data is undefined')
-                    setZip('')
-                    setState('')
-                    setApartment('')
-                    setStreet('')
-                    setCity('')
+                    setSaveState('Server Error')
                 }
             } catch (err) {
                 console.error(err);
@@ -125,11 +123,13 @@ function Address(props) {
             setApartment('')
             setStreet('')
             setId(null)
+            setRadius(10)
         }else{
             let temp = address.state.addresses.filter(i=>{
                 return i.id==e.target.value
             })[0]
             setId(temp.id)
+            setRadius(temp.radius)
             temp=temp.address.split(',').map(i=>i.trim())
             setStreet(temp[0])
             setApartment(temp[1])
@@ -149,6 +149,7 @@ function Address(props) {
             setApartment('')
             setStreet('')
             setId(null)
+            setRadius(1)
             setSaveState('Deleted')          
             address.reset()  
         }
@@ -180,6 +181,7 @@ function Address(props) {
                 <label>City             :</label><FormInput type="text" name="city" value={city} onChange={e=>setCity(e.target.value)}/><br/>
                 <label>State            :</label><FormInput type="text" name="state" value={state} onChange={e=>setState(e.target.value)}/><br/>
                 <label>Zip Code         :</label><FormInput type="number" name="zip" value={zip} onChange={e=>setZip(e.target.value)}/><br/>
+                <label>Radius           :</label><FormInput type="number" name="radius" value={radius} onChange={e=>setRadius(e.target.value)} min="10" step="1"/><br/>
                 <Button type="submit">Save Location</Button><br/>
                 <Button onClick={remove}>Delete</Button>
             </Form>
