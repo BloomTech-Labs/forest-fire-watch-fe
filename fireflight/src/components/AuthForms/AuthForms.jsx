@@ -22,6 +22,7 @@ const AuthForms = ({
         showRegister={registerFormStatus}
         setLoginStatus={setLoginFormStatus}
         setRegisterStatus={setRegisterFormStatus}
+        setShowAuthForms={setShowAuthForms}
       />
     </>
   );

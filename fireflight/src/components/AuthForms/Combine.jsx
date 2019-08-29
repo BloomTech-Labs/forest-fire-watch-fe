@@ -10,10 +10,10 @@ const Combine = ({
   showLogin,
   showRegister,
   setLoginStatus,
-  setRegisterStatus
+  setRegisterStatus,
+  setShowAuthForms
 }) => {
   const toggleForms = () => {
-    console.log("working");
     if (showRegister) {
       setRegisterStatus(false);
       setLoginStatus(true);
@@ -24,8 +24,12 @@ const Combine = ({
   };
   return (
     <Modal show={show} close={close}>
-      {showLogin && <Login toggle={toggleForms} />}
-      {showRegister && <Register toggle={toggleForms} />}
+      {showLogin && (
+        <Login toggle={toggleForms} setShowAuthForms={setShowAuthForms} />
+      )}
+      {showRegister && (
+        <Register toggle={toggleForms} setShowAuthForms={setShowAuthForms} />
+      )}
     </Modal>
   );
 };
