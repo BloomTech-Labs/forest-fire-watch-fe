@@ -1,15 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 
 import PublicMap from "./PublicMap";
-import { MapProvider } from "../context/MapContext";
+import { PublicMapProvider } from "../context/PublicMapContext";
 
 function Home() {
   return (
-    <div>
-      <MapProvider>
-        <PublicMap />
-      </MapProvider>
-    </div>
+    <PublicMapProvider>
+      <PublicMap />
+    </PublicMapProvider>
   );
 }
 
