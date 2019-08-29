@@ -72,6 +72,7 @@ const Map = () => {
   }, [state.userCoordinates]);
 
   let userMarker;
+  let firesDisplay;
 
   if (state.userCoordinates.latitude && state.userCoordinates.longitude) {
     userMarker = (
@@ -83,8 +84,6 @@ const Map = () => {
       </Marker>
     );
   }
-
-  let firesDisplay;
 
   if (state.fireData.length > 0) {
     console.log("fireData: ", state.fireData);
