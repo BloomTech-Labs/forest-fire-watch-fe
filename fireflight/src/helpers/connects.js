@@ -95,49 +95,46 @@ class connector {
     }
   }
 
-  /**
-   *
-   * @param {location} locs save location to server and return the saved location
-   */
-  async saveLocations(locs) {
-    try {
-      let user = await this.self();
-      if (isArray(locs))
-        locs = locs.map(i => ({
-          user_id: user.user_id,
-          address: i,
-          radius: 5
-        }));
-      else locs = { user_id: user.user_id, address: locs, radius: 0 };
-      console.log(locs);
-      let response = await this.connector.post(
-        `${this.coreString}locations`,
-        locs
-      );
-      let data = await response.data;
-      return new stats(true, data);
-    } catch (err) {
-      throw err;
+
+    /**
+     * 
+     * @param {location} locs save location to server and return the saved location
+     * @param {number} radius radius to change
+     */
+    async saveLocations(locs,radius){
+        try {
+            let user=await this.self();
+            if(isArray(locs))
+                locs=locs.map(i=>({user_id:user.user_id,address:i,radius:radius}))
+            else
+                locs={user_id:user.user_id,address:locs,radius:radius}
+            console.log(locs);
+            let response = await this.connector.post(`${this.coreString}locations`,locs)
+            let data = await response.data
+            return new stats(true,data)
+        } catch (err) {
+            throw err
+        }
     }
   }
 
-  /**
-   *
-   * @param {Address} add Address to swap to
-   * @param {id} id Id to change
-   */
-  async updateLocation(add, id) {
-    try {
-      let user = await this.self();
-      let sender = { address: add, user_id: user.user_id, radius: 5 };
-      let res = await this.connector.put(
-        `${this.coreString}locations/${id}`,
-        sender
-      );
-      let data = await res.data;
-      return new stats(true, add);
-    } catch (err) {
-      throw new stats(false, err);
+
+    /**
+     * 
+     * @param {Address} add Address to swap to
+     * @param {id} id Id to change
+     * @param {number} radius radius to change
+     */
+    async updateLocation(add,radius,id){
+        try{
+            let user = await this.self()
+            let sender={address:add,user_id:user.user_id,radius:radius}
+            let res=await this.connector.put(`${this.coreString}locations/${id}`,sender)
+            let data = await res.data
+            return new stats(true,add)
+        }catch(err){
+            throw new stats(false,err)
+        }
     }
   }
 
