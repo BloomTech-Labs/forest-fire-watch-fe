@@ -48,7 +48,7 @@ export const PublicMapProvider = props => {
   const [publicMapState, dispatch] = useReducer(publicMapReducer, {
     viewport: {
       width: "100%",
-      height: "95vh",
+      height: "100vh",
       latitude: 37.7749,
       longitude: -122.4194,
       zoom: 8
@@ -80,7 +80,7 @@ export const PublicMapProvider = props => {
       .then(res => {
         setViewport({
           width: "100%",
-          height: "95vh",
+          height: "100vh",
           latitude: res.data.features[0].center[1],
           longitude: res.data.features[0].center[0],
           zoom: 5
