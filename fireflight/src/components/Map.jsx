@@ -24,18 +24,6 @@ const Map = () => {
 
   // hook for current selected fire to display popup on the map
   const [selectedFire, setSelectedFire] = useState(null);
-  // const [fireData, setFireData] = useState([
-  //   {
-  //     location: "location1",
-  //     latitude: 37.757,
-  //     longitude: -122.437
-  //   },
-  //   {
-  //     location: "location2",
-  //     latitude: 37.68,
-  //     longitude: -122
-  //   }
-  // ]);
 
   // mapbox API token
   const token =
@@ -74,8 +62,9 @@ const Map = () => {
           state.userCoordinates.longitude,
           state.userCoordinates.latitude
         ],
-        distance: 500
+        distance: state.userRadius
       };
+      console.log("radius", state.userRadius);
       console.log("location", location);
       setFires(location);
     }
@@ -111,7 +100,6 @@ const Map = () => {
             width="35"
             style={{ zIndex: 3 }}
             onClick={e => {
-              e.preventDefault();
               setSelectedFire(fire[0]);
             }}
           />
@@ -129,8 +117,8 @@ const Map = () => {
           setViewport(viewport);
         }}
       >
-        Marker Issue to be fixed
-        {userMarker};{firesDisplay};
+        {userMarker}
+        {firesDisplay}
         {/* sets selectedFire state to clicked on location */}
         {selectedFire ? (
           <Popup
