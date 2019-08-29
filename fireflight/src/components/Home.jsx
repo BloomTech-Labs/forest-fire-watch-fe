@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 
-import Map from "./PrivateMap";
+import PublicMap from "./PublicMap";
 
 function Home() {
   return (
     <div>
-      <Map />
+      <PublicMap />
     </div>
   );
 }

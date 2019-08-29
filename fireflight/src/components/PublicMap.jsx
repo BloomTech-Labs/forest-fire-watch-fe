@@ -10,24 +10,18 @@ const token =
   "pk.eyJ1Ijoia2VuMTI4NiIsImEiOiJjanpuMXdlb2UwZzlkM2JsY2t2aTVkcGFoIn0.eGKKY2f3oC5s8GqsyB70Yg";
 
 const PublicMap = () => {
-  // useEffect hook to cause the ESC key to close a popup by setting selectedFire state to null
-  useEffect(() => {
-    const listener = e => {
-      if (e.key === "Escape") {
-        setSelectedFire(null);
-      }
-    };
-    window.addEventListener("keydown", listener);
-
-    return () => {
-      window.removeEventListener("keydown", listener);
-    };
-  }, []);
+  const [viewport, setViewport] = useState({
+    width: "100%",
+    height: "100vh",
+    latitude: 37.7749,
+    longitude: -122.4194,
+    zoom: 8
+  });
 
   return (
     <div>
       <ReactMapGL
-        {...state.viewport}
+        {...viewport}
         mapboxApiAccessToken={token}
         onViewportChange={viewport => {
           setViewport(viewport);
