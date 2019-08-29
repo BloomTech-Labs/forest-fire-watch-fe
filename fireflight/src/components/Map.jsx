@@ -105,15 +105,16 @@ const Map = () => {
       return (
         // return marker for each fire datapoint
         <Marker latitude={fire[0][1]} longitude={fire[0][0]}>
-          <button
-            style={{ width: "20px", height: "15px" }}
+          <img
+            src={fireIcon}
+            height="35"
+            width="35"
+            style={{ zIndex: 3 }}
             onClick={e => {
               e.preventDefault();
-              setSelectedFire(fire);
+              setSelectedFire(fire[0]);
             }}
           />
-          FIRE
-          <img src={fireIcon} height="35" width="35" style={{ zIndex: 3 }} />
         </Marker>
       );
     });
@@ -133,13 +134,15 @@ const Map = () => {
         {/* sets selectedFire state to clicked on location */}
         {selectedFire ? (
           <Popup
-            latitude={selectedFire.latitude}
-            longitude={selectedFire.longitude}
+            latitude={selectedFire[1]}
+            longitude={selectedFire[0]}
             onClose={() => {
               setSelectedFire(null);
             }}
           >
-            <div>{selectedFire.location}</div>
+            <div>
+              Lat: {selectedFire[1]}, Long: {selectedFire[0]}
+            </div>
           </Popup>
         ) : null}
       </ReactMapGL>
