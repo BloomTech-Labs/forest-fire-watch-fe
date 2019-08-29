@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { MapProvider } from "../context/MapContext";
 
-import Map from "./Map";
+import PrivateMap from "./PrivateMap";
 
 const Dashboard = () => {
   return (
@@ -15,10 +15,10 @@ const Dashboard = () => {
         <MapDiv>
           <DivHeading>Active Fires</DivHeading>
           <MapProvider>
-            <Map />
+            <PrivateMap />
           </MapProvider>
         </MapDiv>
-        <ProfileDiv>
+        <ProfileDiv onClick={() => (window.location.href = "/address")}>
           <DivHeading>My Profile</DivHeading>
         </ProfileDiv>
       </ContentContainer>
@@ -97,6 +97,7 @@ const ProfileDiv = styled.div`
   border-radius: 8px;
   padding: 10px;
   box-shadow: 2px 5px 15px black;
+  cursor: pointer;
   @media (min-width: 900px) {
     order: 3;
   }

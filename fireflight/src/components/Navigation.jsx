@@ -16,6 +16,7 @@ function Navigation({
   const data = useContext(FireContext);
   const [menuToggle, setMenuToggle] = useState(false);
 
+<<<<<<< HEAD
   useEffect(()=>{
     let w=Math.max(document.documentElement.clientWidth,window.innerWidth || 0)
     if (w>576){
@@ -26,6 +27,11 @@ function Navigation({
   const logout=e=>{
     data.state.remote.logout()
   }
+=======
+  const logout = e => {
+    data.state.remote.logout();
+  };
+>>>>>>> 294ecdcfa32680b70b649ab11b98609a161b419a
 
   return (
     <NavContainer>
@@ -43,7 +49,7 @@ function Navigation({
               </NavLink>
             </MenuItem>
 
-            {localStorage.getItem('token') == null && (
+            {localStorage.getItem("token") == null && (
               <React.Fragment>
                 <MenuItem
                   onClick={() => {
@@ -65,7 +71,7 @@ function Navigation({
                 </MenuItem>
               </React.Fragment>
             )}
-            {localStorage.getItem('token') != null && (
+            {localStorage.getItem("token") != null && (
               <React.Fragment>
                   <NavLink to='/dashboard' activeClassName="current">
                     <MenuItem data-temp="here">
@@ -158,6 +164,7 @@ const MenuContainer = styled.div`
   right: 0;
   display: flex;
   flex-direction: column;
+<<<<<<< HEAD
   background-color:${v.AccentColorTransparency};
   ${v.tablet}{
     position:static;
@@ -166,6 +173,9 @@ const MenuContainer = styled.div`
     text-align:center;
     background-color:transparent;
   }
+=======
+  z-index: 2;
+>>>>>>> 294ecdcfa32680b70b649ab11b98609a161b419a
 `;
 
 const MenuItem = styled.div`
