@@ -81,7 +81,7 @@ const FormContainer = styled.div`
   position: absolute;
   display: flex;
   justify-content: center;
-  z-index: 4;
+  z-index: 3;
   left: 0;
   right: 0;
   margin: auto;
