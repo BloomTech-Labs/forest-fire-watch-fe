@@ -90,7 +90,12 @@ const PrivateMap = () => {
         latitude={state.userCoordinates.latitude}
         longitude={state.userCoordinates.longitude}
       >
-        <img src={locationIcon} height="35" width="20" style={{ zIndex: -1 }} />
+        <img
+          src={locationIcon}
+          height="35"
+          width="20"
+          style={{ zIndex: -1, transform: "translate(-10px, -35px)" }}
+        />
       </Marker>
     );
   }
@@ -109,7 +114,7 @@ const PrivateMap = () => {
             src={fireIcon}
             height="35"
             width="35"
-            style={{ zIndex: 3 }}
+            style={{ zIndex: 3, transform: "translate(-17.5px, -35px)" }}
             onClick={e => {
               e.preventDefault();
               setSelectedFire(fire[0]);
@@ -129,7 +134,6 @@ const PrivateMap = () => {
           setViewport(viewport);
         }}
       >
-        Marker Issue to be fixed
         {userMarker};{firesDisplay};
         {/* sets selectedFire state to clicked on location */}
         {selectedFire ? (

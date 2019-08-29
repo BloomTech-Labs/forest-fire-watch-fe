@@ -27,7 +27,12 @@ const PublicMap = () => {
   if (coordinates.latitude && coordinates.longitude) {
     userMarker = (
       <Marker latitude={coordinates.latitude} longitude={coordinates.longitude}>
-        <img src={locationIcon} height="35" width="20" style={{ zIndex: -1 }} />
+        <img
+          src={locationIcon}
+          height="35"
+          width="20"
+          style={{ zIndex: -1, transform: "translate(-10px, -35px)" }}
+        />
       </Marker>
     );
   }
@@ -43,7 +48,12 @@ const PublicMap = () => {
           longitude={fire.longitude}
           key={`${fire.distance}_${fire.latitude}`}
         >
-          <img src={fireIcon} height="35" width="35" style={{ zIndex: 3 }} />
+          <img
+            src={fireIcon}
+            height="35"
+            width="35"
+            style={{ zIndex: 3, transform: "translate(-17.5px, -35px)" }}
+          />
         </Marker>
       );
     });
@@ -59,7 +69,7 @@ const PublicMap = () => {
           value={address}
           onChange={e => setAddress(e.target.value)}
         />
-        <FormButton onClick={handleSubmit}>SUBMIT</FormButton>
+        <FormButton onClick={handleSubmit}>SEARCH</FormButton>
       </FormContainer>
       <ReactMapGL
         {...viewport}
@@ -100,4 +110,12 @@ const FormInput = styled.input`
   }
 `;
 
-const FormButton = styled.button``;
+const FormButton = styled.button`
+  height: 48px;
+  width: 100px;
+  margin: auto 0px;
+  border-radius: 5px;
+  background-color: #c06c84;
+  font-size: 1em;
+  border: solid 1px black;
+`;
