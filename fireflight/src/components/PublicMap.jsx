@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from "react";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import styled from "styled-components";
 
+import { MapContext } from "../context/MapContext";
+
 import fireIcon from "../images/fireIcon.png";
 import locationIcon from "../images/locationIcon.png";
 
@@ -11,13 +13,15 @@ const token =
   "pk.eyJ1Ijoia2VuMTI4NiIsImEiOiJjanpuMXdlb2UwZzlkM2JsY2t2aTVkcGFoIn0.eGKKY2f3oC5s8GqsyB70Yg";
 
 const PublicMap = () => {
+  const { state } = useContext(MapContext);
   const [viewport, setViewport] = useState({
     width: "100%",
-    height: "100vh",
+    height: "95vh",
     latitude: 37.7749,
     longitude: -122.4194,
     zoom: 8
   });
+  console.log(state);
 
   return (
     <div>
