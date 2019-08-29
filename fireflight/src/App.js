@@ -8,15 +8,11 @@ import Dashboard from "./components/Dashboard";
 
 import AuthForms from "./components/AuthForms/AuthForms";
 
-import Map from "./components/Map";
 import Address from "./components/Address";
 import AddressContext from "./context/AddressContext";
 import styled from "styled-components";
 
 import { FireContext } from "./context/contextProvider";
-
-// AUTH FORM MODAL:
-// Will refactor everything in regards to the auth form modal into one single component to clean up APP.js
 
 function App() {
   const [token, setToken] = useState("");
@@ -58,9 +54,10 @@ function App() {
       <Route path="/update" component={Update} />
       <Route path="/danger" component={Danger} />
       <Route path="/dashboard" component={Dashboard} />
+      <Route path="/home" component={Home} />
       <AddressContext>
         <Route path="/address" component={Address} />
-        <Route path="/map" component={Map} />
+        {/* <Route path="/map" component={Map} /> */}
       </AddressContext>
     </AppWrapper>
   );

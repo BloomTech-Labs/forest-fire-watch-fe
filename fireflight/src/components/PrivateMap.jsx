@@ -9,7 +9,7 @@ import axiosWithAuth from "../utils/axiosWithAuth";
 
 import axios from "axios";
 
-const Map = () => {
+const PrivateMap = () => {
   const {
     state,
     setViewport,
@@ -150,4 +150,4 @@ const Map = () => {
   );
 };
 
-export default Map;
+export default PrivateMap;

@@ -11,9 +11,9 @@ function Navigation({
   const data = useContext(FireContext);
   const [menuToggle, setMenuToggle] = useState(false);
 
-  const logout=e=>{
-    data.state.remote.logout()
-  }
+  const logout = e => {
+    data.state.remote.logout();
+  };
 
   return (
     <NavContainer>
@@ -30,7 +30,7 @@ function Navigation({
               </NavLink>
             </MenuItem>
 
-            {localStorage.getItem('token') == null && (
+            {localStorage.getItem("token") == null && (
               <React.Fragment>
                 <MenuItem
                   onClick={() => {
@@ -52,7 +52,7 @@ function Navigation({
                 </MenuItem>
               </React.Fragment>
             )}
-            {localStorage.getItem('token') != null && (
+            {localStorage.getItem("token") != null && (
               <React.Fragment>
                 <MenuItem>
                   <NavLink to="/update" activeClassName="current">
@@ -109,6 +109,7 @@ const MenuContainer = styled.div`
   right: 0;
   display: flex;
   flex-direction: column;
+  z-index: 2;
 `;
 
 const MenuItem = styled.div`

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { MapProvider } from "../context/MapContext";
 
-import Map from "./Map";
+import PrivateMap from "./PrivateMap";
 
 const Dashboard = () => {
   return (
@@ -15,7 +15,7 @@ const Dashboard = () => {
         <MapDiv>
           <DivHeading>Active Fires</DivHeading>
           <MapProvider>
-            <Map />
+            <PrivateMap />
           </MapProvider>
         </MapDiv>
         <ProfileDiv onClick={() => (window.location.href = "/address")}>
