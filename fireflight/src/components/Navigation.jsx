@@ -16,7 +16,6 @@ function Navigation({
   const data = useContext(FireContext);
   const [menuToggle, setMenuToggle] = useState(false);
 
-<<<<<<< HEAD
   useEffect(()=>{
     let w=Math.max(document.documentElement.clientWidth,window.innerWidth || 0)
     if (w>576){
@@ -27,11 +26,6 @@ function Navigation({
   const logout=e=>{
     data.state.remote.logout()
   }
-=======
-  const logout = e => {
-    data.state.remote.logout();
-  };
->>>>>>> 294ecdcfa32680b70b649ab11b98609a161b419a
 
   return (
     <NavContainer>

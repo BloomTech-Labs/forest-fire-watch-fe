@@ -14,14 +14,11 @@ import styled from "styled-components";
 
 import { FireContext } from "./context/contextProvider";
 
-<<<<<<< HEAD
 import * as v from './styles/vars'
 
 // AUTH FORM MODAL:
 // Will refactor everything in regards to the auth form modal into one single component to clean up APP.js
 
-=======
->>>>>>> 294ecdcfa32680b70b649ab11b98609a161b419a
 function App() {
   const [token, setToken] = useState("");
   // The 3 hooks below are used for showing and toggling between the login & register forms. These can most likely be refactored to use context API.
