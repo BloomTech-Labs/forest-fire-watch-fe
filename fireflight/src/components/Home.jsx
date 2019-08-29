@@ -5,9 +5,11 @@ import { PublicMapProvider } from "../context/PublicMapContext";
 
 function Home() {
   return (
-    <PublicMapProvider>
-      <PublicMap />
-    </PublicMapProvider>
+    <div style={{ width: "100%" }}>
+      <PublicMapProvider>
+        <PublicMap />
+      </PublicMapProvider>
+    </div>
   );
 }
 

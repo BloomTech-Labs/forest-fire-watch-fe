@@ -36,5 +36,5 @@ const BackDrop = styled.div`
   position: fixed;
   transition: all 1.3s;
   width: 100%;
-  z-index: 1;
+  z-index: 5;
 `;

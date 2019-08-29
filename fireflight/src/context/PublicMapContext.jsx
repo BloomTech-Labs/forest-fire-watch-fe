@@ -1,6 +1,13 @@
 import React, { useReducer, createContext } from "react";
 import axios from "axios";
-import { SET_VIEWPORT, SET_ADDRESS } from "./types";
+import {
+  SET_VIEWPORT,
+  SET_ADDRESS,
+  SET_FIRE_DATA,
+  SET_COORDINATES
+} from "./types";
+
+const DSbaseURL = "https://fire-data-api.herokuapp.com";
 
 const token =
   process.env.REACT_APP_MAPBOX_TOKEN ||
@@ -18,6 +25,16 @@ const publicMapReducer = (state, action) => {
         ...state,
         address: action.payload
       };
+    case SET_COORDINATES:
+      return {
+        ...state,
+        coordinates: action.payload
+      };
+    case SET_FIRE_DATA:
+      return {
+        ...state,
+        fireData: action.payload
+      };
     default:
       return {
         ...state
@@ -31,7 +48,7 @@ export const PublicMapProvider = props => {
   const [publicMapState, dispatch] = useReducer(publicMapReducer, {
     viewport: {
       width: "100%",
-      height: "95vh",
+      height: "100vh",
       latitude: 37.7749,
       longitude: -122.4194,
       zoom: 8
@@ -55,13 +72,63 @@ export const PublicMapProvider = props => {
     });
   };
 
+  const getData = () => {
+    axios
+      .get(
+        `https://api.mapbox.com/geocoding/v5/mapbox.places/${publicMapState.address}.json?access_token=${token}`
+      )
+      .then(res => {
+        setViewport({
+          width: "100%",
+          height: "100vh",
+          latitude: res.data.features[0].center[1],
+          longitude: res.data.features[0].center[0],
+          zoom: 5
+        });
+        dispatch({
+          type: SET_COORDINATES,
+          payload: {
+            latitude: res.data.features[0].center[1],
+            longitude: res.data.features[0].center[0]
+          }
+        });
+        axios
+          .post(`${DSbaseURL}/check_fires`, {
+            user_coords: [
+              res.data.features[0].center[0],
+              res.data.features[0].center[1]
+            ],
+            distance: 5000
+          })
+          .then(res => {
+            if (res.data.Alert) {
+              let fires = res.data.Fires.map(fire => {
+                return {
+                  distance: fire[1],
+                  latitude: fire[0][1],
+                  longitude: fire[0][0]
+                };
+              });
+              dispatch({
+                type: SET_FIRE_DATA,
+                payload: fires
+              });
+            }
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      });
+  };
+
   return (
     <PublicMapContext.Provider
       value={{
         publicMapState,
         dispatch,
         setViewport,
-        setAddress
+        setAddress,
+        getData
       }}
     >
       {props.children}
