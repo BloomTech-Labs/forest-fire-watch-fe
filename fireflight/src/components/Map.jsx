@@ -90,7 +90,6 @@ const Map = () => {
     console.log("fireData: ", state.fireData);
     console.log("fireData2: ", state.fireData[0]);
     firesDisplay = state.fireData.map(fire => {
-      console.log(fire[0][0]);
       return (
         // return marker for each fire datapoint
         <Marker latitude={fire[0][1]} longitude={fire[0][0]}>
