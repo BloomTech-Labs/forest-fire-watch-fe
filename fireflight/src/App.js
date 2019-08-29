@@ -14,6 +14,11 @@ import styled from "styled-components";
 
 import { FireContext } from "./context/contextProvider";
 
+import * as v from './styles/vars'
+
+// AUTH FORM MODAL:
+// Will refactor everything in regards to the auth form modal into one single component to clean up APP.js
+
 function App() {
   const [token, setToken] = useState("");
   // The 3 hooks below are used for showing and toggling between the login & register forms. These can most likely be refactored to use context API.
@@ -67,4 +72,10 @@ export default App;
 
 const AppWrapper = styled.div`
   position: "relative";
+  display:flex;
+  flex-direction:column;
+  ${v.tablet}{
+    flex-direction:row;
+  }
+  background-image:linear-gradient(#F67280,#6C5B7B,#322C7D)
 `;
