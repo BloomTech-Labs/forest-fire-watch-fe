@@ -30,7 +30,7 @@ export default Dashboard;
 
 const DashboardWrapper = styled.div`
   width: 100%;
-  background-image: linear-gradient(to bottom, #6c5b7b, #355c7d);
+  /* background-image: linear-gradient(to bottom, #6c5b7b, #355c7d); */
   height: 100vh;
   text-align: center;
 `;

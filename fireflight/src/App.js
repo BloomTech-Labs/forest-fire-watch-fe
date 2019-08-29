@@ -15,6 +15,8 @@ import styled from "styled-components";
 
 import { FireContext } from "./context/contextProvider";
 
+import * as v from './styles/vars'
+
 // AUTH FORM MODAL:
 // Will refactor everything in regards to the auth form modal into one single component to clean up APP.js
 
@@ -70,4 +72,10 @@ export default App;
 
 const AppWrapper = styled.div`
   position: "relative";
+  display:flex;
+  flex-direction:column;
+  ${v.tablet}{
+    flex-direction:row;
+  }
+  background-image:linear-gradient(#F67280,#6C5B7B,#322C7D)
 `;
