@@ -121,8 +121,8 @@ function AddressContextProvider(props) {
             })
     }
 
-    const saveAddress=async str=>{
-        return global.state.remote.saveLocations(str)
+    const saveAddress=async (str,radius)=>{
+        return global.state.remote.saveLocations(str,radius)
             .then(data=>{
                 updateAddresses(data.reason.address)
                 reset()
@@ -137,8 +137,8 @@ function AddressContextProvider(props) {
         dispatch({type:CLEAR})
     }
 
-    const updateAddress=async (address,id)=>{
-        return global.state.remote.updateLocation(address,id)
+    const updateAddress=async (address,radius,id)=>{
+        return global.state.remote.updateLocation(address,radius,id)
             .then(data=>{
                 dispatch({
                     type:UPDATE,
