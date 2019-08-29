@@ -158,8 +158,8 @@ const MenuContainer = styled.div`
   right: 0;
   display: flex;
   flex-direction: column;
-<<<<<<< HEAD
   background-color:${v.AccentColorTransparency};
+  z-index: 2;
   ${v.tablet}{
     position:static;
     right:auto;
@@ -167,9 +167,6 @@ const MenuContainer = styled.div`
     text-align:center;
     background-color:transparent;
   }
-=======
-  z-index: 2;
->>>>>>> 294ecdcfa32680b70b649ab11b98609a161b419a
 `;
 
 const MenuItem = styled.div`
