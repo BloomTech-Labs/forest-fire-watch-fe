@@ -118,7 +118,7 @@ const NavContainer = styled.div`
   }
   a.current{
     color:${v.AccentColor};
-    background-color:white;
+    background-color:lightgrey;
   }
 `;
 
