@@ -91,7 +91,7 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
               setShowLogin(false);
             }}
           >
-            Create an account to receive personalized alerts
+            Create an account for a more personalized experience
           </TriggeredButton>
         ) : null}
       </Container>

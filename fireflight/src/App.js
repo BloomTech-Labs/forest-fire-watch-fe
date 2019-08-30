@@ -22,9 +22,7 @@ import * as v from "./styles/vars";
 function App() {
   const [token, setToken] = useState("");
   // The 3 hooks below are used for showing and toggling between the login & register forms. These can most likely be refactored to use context API.
-  const [showAuthForms, setShowAuthForms] = useState(
-    localStorage.getItem("token") ? false : true
-  );
+  const [showAuthForms, setShowAuthForms] = useState(false);
   const [loginFormStatus, setLoginFormStatus] = useState(true);
   const [registerFormStatus, setRegisterFormStatus] = useState(false);
 

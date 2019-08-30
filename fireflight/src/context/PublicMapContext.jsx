@@ -129,18 +129,15 @@ export const PublicMapProvider = props => {
   };
 
   const setTrigger = () => {
-    if (publicMapState.trigger === false) {
-      setTimeout(() => {
-        dispatch({
-          type: SET_TRIGGER,
-          payload: true
-        });
-      }, 5000);
-    } else {
-      dispatch({
-        type: SET_TRIGGER,
-        payload: false
-      });
+    if (!localStorage.getItem("token")) {
+      if (publicMapState.trigger === false) {
+        setTimeout(() => {
+          dispatch({
+            type: SET_TRIGGER,
+            payload: true
+          });
+        }, 5000);
+      }
     }
   };
 
