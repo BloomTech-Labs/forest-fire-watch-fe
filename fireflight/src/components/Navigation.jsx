@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import { FireContext } from "../context/contextProvider";
 import { withRouter, NavLink, Link } from "react-router-dom";
 import styled from "styled-components";
-<<<<<<< HEAD
 import logo from '../images/fireIcon.png'
 import user from '../images/user.svg'
 import dashboard from '../images/dashboard.svg'
@@ -10,13 +9,6 @@ import dashboardAlt from '../images/active-dashboard.svg'
 import maps from '../images/maps.svg'
 import mapsAlt from '../images/active-maps.svg'
 import * as v from '../styles/vars'
-=======
-import logo from "../images/fireIcon.png";
-import user from "../images/user.svg";
-import dashboard from "../images/dashboard.svg";
-import maps from "../images/maps.svg";
-import * as v from "../styles/vars";
->>>>>>> 5f5b22c0f86251b1c02977ed1dff8345b4adf6e9
 
 function Navigation({
   toggleAuthForms,
