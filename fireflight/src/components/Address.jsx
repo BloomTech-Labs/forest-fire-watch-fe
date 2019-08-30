@@ -2,7 +2,7 @@ import React,{useState,useContext,useEffect} from 'react'
 import AddressContext from '../context/addressContextProvider'
 import {FireContext} from '../context/contextProvider'
 import { isArray } from 'util';
-import {Button,ErrorText,FormContainer,FormInput,Form,FormSelect} from '../styles/Forms'
+import {Button,ErrorText,FormContainer, Form, FormSelect, FormTextGroup, GoodButton, FormRangeGroup} from '../styles/Forms'
 
 function Address(props) {
     
@@ -176,13 +176,26 @@ function Address(props) {
                 ))}
             </FormSelect>
             <Form onSubmit={testSubmit}>
-                <label>Street Address   :</label><FormInput type="text" name="street" value={street} onChange={e=>{setStreet(e.target.value)}}/><br/>
-                <label>Apartment Number :</label><FormInput type="text" name="apartment" value={apartment} onChange={e=>setApartment(e.target.value)}/><br/>
-                <label>City             :</label><FormInput type="text" name="city" value={city} onChange={e=>setCity(e.target.value)}/><br/>
-                <label>State            :</label><FormInput type="text" name="state" value={state} onChange={e=>setState(e.target.value)}/><br/>
-                <label>Zip Code         :</label><FormInput type="number" name="zip" value={zip} onChange={e=>setZip(e.target.value)}/><br/>
-                <label>Radius           :</label><FormInput type="number" name="radius" value={radius} onChange={e=>setRadius(e.target.value)} min="10" step="1"/><br/>
-                <Button type="submit">Save Location</Button><br/>
+                <FormTextGroup>
+                    <div>Street Address   :</div><input type="text" name="street" value={street} onChange={e=>{setStreet(e.target.value)}}/>
+                </FormTextGroup>
+                <FormTextGroup>
+                    <div>Apartment Number :</div><input type="text" name="apartment" value={apartment} onChange={e=>setApartment(e.target.value)}/>
+                </FormTextGroup>
+                <FormTextGroup>
+                    <div>City             :</div><input type="text" name="city" value={city} onChange={e=>setCity(e.target.value)}/>
+                </FormTextGroup>
+                <FormTextGroup>
+                    <div>State            :</div><input type="text" name="state" value={state} onChange={e=>setState(e.target.value)}/>
+                </FormTextGroup>
+                <FormTextGroup>
+                    <div>Zip Code         :</div><input type="number" name="zip" value={zip} onChange={e=>setZip(e.target.value)}/>
+                </FormTextGroup>
+                <FormRangeGroup>
+                    <div>Radius           :</div><input type="range" name="radius" value={radius} onChange={e=>setRadius(e.target.value)} min="10" step="1"/><br/>
+                    <div>{radius} miles</div>
+                </FormRangeGroup>
+                <GoodButton type="submit">Save Location</GoodButton><br/>
                 <Button onClick={remove}>Delete</Button>
             </Form>
             <ErrorText>

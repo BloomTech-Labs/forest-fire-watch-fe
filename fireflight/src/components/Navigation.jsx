@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { FireContext } from "../context/contextProvider";
-import { withRouter, NavLink, Link } from "react-router-dom";
+import { withRouter, NavLink, Link,Redirect } from "react-router-dom";
 import styled from "styled-components";
 import logo from '../images/fireIcon.png'
 import user from '../images/user.svg'
@@ -32,6 +32,12 @@ function Navigation({
   const logout = e => {
     data.state.remote.logout();
   };
+
+  const protec=['/dashboard','/address','/maps','/profile']
+
+  if(localStorage.getItem('token')==null&& protec.includes(location.pathname)){
+    return <Redirect to="/"/>
+  }
 
   return (
     <NavContainer>
@@ -107,7 +113,7 @@ function Navigation({
                         :
                         <img src={maps} alt="Map Icon"/>
                       }
-                      View the Map.
+                      View the Map
                     </MenuItem>
                 </NavLink>
                 <MenuItem>
