@@ -62,7 +62,7 @@ function App() {
       <Route path="/home" component={Home} />
       <AddressContext>
         <Route path="/address" component={Address} />
-        {/* <Route path="/map" component={Map} /> */}
+        <Route path="/map" component={Map} />
       </AddressContext>
     </AppWrapper>
   );

@@ -5,13 +5,16 @@ import styled from "styled-components";
 import logo from '../images/fireIcon.png'
 import user from '../images/user.svg'
 import dashboard from '../images/dashboard.svg'
+import dashboardAlt from '../images/active-dashboard.svg'
 import maps from '../images/maps.svg'
+import mapsAlt from '../images/active-maps.svg'
 import * as v from '../styles/vars'
 
 function Navigation({
   toggleAuthForms,
   toggleLoginStatus,
-  toggleRegisterStatus
+  toggleRegisterStatus,
+  location
 }) {
   const data = useContext(FireContext);
   const [menuToggle, setMenuToggle] = useState(false);
@@ -36,12 +39,12 @@ function Navigation({
         <HamburgerMenuBar />
         {menuToggle ? (
           <MenuContainer>
-            <MenuItem>
-              <NavLink exact to="/" activeClassName="current"> 
-              {/* Will be profile page later */}
-                Home
-              </NavLink>
-            </MenuItem>
+            <NavLink exact to="/" activeClassName="current"> 
+                <MenuItem>
+                  {/* Will be profile page later */}
+                    Home
+                </MenuItem>
+            </NavLink>
 
             {localStorage.getItem("token") == null && (
               <React.Fragment>
@@ -69,7 +72,11 @@ function Navigation({
               <React.Fragment>
                   <NavLink to='/dashboard' activeClassName="current">
                     <MenuItem data-temp="here">
-                        <img src={dashboard} alt="Dashboard Icon"/>
+                        {location.pathname.includes("/dashboard") ?
+                            <img src={dashboardAlt} alt=""/>
+                          :
+                            <img src={dashboard} alt="Dashboard Icon"/>
+                        }
                         Dashboard
                     </MenuItem>
                   </NavLink>
@@ -78,12 +85,26 @@ function Navigation({
                     Update
                   </NavLink>
                 </MenuItem> */}
-                <MenuItem>
-                  <NavLink to="/address" activeClassName="current">
-                    <img src={maps} alt="Maps Icon"/>
+                <NavLink to="/address" activeClassName="current">
+                  <MenuItem>
+                    {location.pathname.includes("/address") ?
+                          <img src={mapsAlt} alt="Maps Icon"/>
+                        :
+                          <img src={maps} alt="Maps Icon"/>
+                    }
                     Input Your Address
-                  </NavLink>
-                </MenuItem>
+                  </MenuItem>
+                </NavLink>
+                <NavLink to="/maps" activeClassName="current">
+                    <MenuItem>
+                      {location.pathname.includes('maps')?
+                        <img src={mapsAlt} alt="Map Icon"/>
+                        :
+                        <img src={maps} alt="Map Icon"/>
+                      }
+                      View the Map.
+                    </MenuItem>
+                </NavLink>
                 <MenuItem>
                   <Link to="/" onClick={logout}>
                     Logout
@@ -98,7 +119,7 @@ function Navigation({
   );
 }
 
-export default Navigation;
+export default withRouter(Navigation);
 
 const NavContainer = styled.div`
   width: 100%;
