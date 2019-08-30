@@ -18,9 +18,9 @@ const Dashboard = () => {
             <PrivateMap />
           </MapProvider>
         </MapDiv>
-        <ProfileDiv onClick={() => (window.location.href = "/address")}>
-          <DivHeading>My Profile</DivHeading>
-        </ProfileDiv>
+        <AddressesDiv onClick={() => (window.location.href = "/address")}>
+          <DivHeading>Input Addresses</DivHeading>
+        </AddressesDiv>
       </ContentContainer>
     </DashboardWrapper>
   );
@@ -36,7 +36,6 @@ const DashboardWrapper = styled.div`
 `;
 
 const Heading = styled.h1`
-  color: #f2f3f4;
   padding: 15px 0px;
   margin: 0;
 `;
@@ -88,7 +87,7 @@ const MapDiv = styled.div`
   }
 `;
 
-const ProfileDiv = styled.div`
+const AddressesDiv = styled.div`
   width: 90%;
   max-width: 500px;
   height: 50px;

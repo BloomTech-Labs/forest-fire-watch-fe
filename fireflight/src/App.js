@@ -14,7 +14,7 @@ import styled from "styled-components";
 
 import { FireContext } from "./context/contextProvider";
 
-import * as v from './styles/vars'
+import * as v from "./styles/vars";
 
 // AUTH FORM MODAL:
 // Will refactor everything in regards to the auth form modal into one single component to clean up APP.js
@@ -22,9 +22,7 @@ import * as v from './styles/vars'
 function App() {
   const [token, setToken] = useState("");
   // The 3 hooks below are used for showing and toggling between the login & register forms. These can most likely be refactored to use context API.
-  const [showAuthForms, setShowAuthForms] = useState(
-    localStorage.getItem("token") ? false : true
-  );
+  const [showAuthForms, setShowAuthForms] = useState(false);
   const [loginFormStatus, setLoginFormStatus] = useState(true);
   const [registerFormStatus, setRegisterFormStatus] = useState(false);
 
@@ -55,11 +53,30 @@ function App() {
         toggleLoginStatus={setLoginFormStatus}
         toggleRegisterStatus={setRegisterFormStatus}
       />
-      <Route exact path="/" component={Home} />
+      <Route
+        exact
+        path="/"
+        render={() => (
+          <Home
+            setShowAuth={setShowAuthForms}
+            setShowRegister={setRegisterFormStatus}
+            setShowLogin={setLoginFormStatus}
+          />
+        )}
+      />
       <Route path="/update" component={Update} />
       <Route path="/danger" component={Danger} />
       <Route path="/dashboard" component={Dashboard} />
-      <Route path="/home" component={Home} />
+      <Route
+        path="/home"
+        render={() => (
+          <Home
+            setShowAuth={setShowAuthForms}
+            setShowRegister={setRegisterFormStatus}
+            setShowLogin={setLoginFormStatus}
+          />
+        )}
+      />
       <AddressContext>
         <Route path="/address" component={Address} />
         <Route path="/map" component={Map} />
@@ -72,10 +89,10 @@ export default App;
 
 const AppWrapper = styled.div`
   position: "relative";
-  display:flex;
-  flex-direction:column;
-  ${v.tablet}{
-    flex-direction:row;
+  display: flex;
+  flex-direction: column;
+  ${v.tablet} {
+    flex-direction: row;
   }
-  background-image:linear-gradient(#F67280,#6C5B7B,#322C7D)
+  background-image: linear-gradient(#f67280, #6c5b7b, #322c7d);
 `;

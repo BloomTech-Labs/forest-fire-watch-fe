@@ -24,18 +24,6 @@ const PrivateMap = () => {
 
   // hook for current selected fire to display popup on the map
   const [selectedFire, setSelectedFire] = useState(null);
-  // const [fireData, setFireData] = useState([
-  //   {
-  //     location: "location1",
-  //     latitude: 37.757,
-  //     longitude: -122.437
-  //   },
-  //   {
-  //     location: "location2",
-  //     latitude: 37.68,
-  //     longitude: -122
-  //   }
-  // ]);
 
   // mapbox API token
   const token =
@@ -74,8 +62,9 @@ const PrivateMap = () => {
           state.userCoordinates.longitude,
           state.userCoordinates.latitude
         ],
-        distance: 500
+        distance: state.userRadius
       };
+      console.log("radius", state.userRadius);
       console.log("location", location);
       setFires(location);
     }
@@ -83,6 +72,7 @@ const PrivateMap = () => {
   }, [state.userCoordinates]);
 
   let userMarker;
+  let firesDisplay;
 
   if (state.userCoordinates.latitude && state.userCoordinates.longitude) {
     userMarker = (
@@ -90,18 +80,20 @@ const PrivateMap = () => {
         latitude={state.userCoordinates.latitude}
         longitude={state.userCoordinates.longitude}
       >
-        <img src={locationIcon} height="35" width="20" style={{ zIndex: -1 }} />
+        <img
+          src={locationIcon}
+          height="35"
+          width="20"
+          style={{ zIndex: -1, transform: "translate(-10px, -35px)" }}
+        />
       </Marker>
     );
   }
-
-  let firesDisplay;
 
   if (state.fireData.length > 0) {
     console.log("fireData: ", state.fireData);
     console.log("fireData2: ", state.fireData[0]);
     firesDisplay = state.fireData.map(fire => {
-      console.log(fire[0][0]);
       return (
         // return marker for each fire datapoint
         <Marker latitude={fire[0][1]} longitude={fire[0][0]}>
@@ -109,9 +101,8 @@ const PrivateMap = () => {
             src={fireIcon}
             height="35"
             width="35"
-            style={{ zIndex: 3 }}
+            style={{ zIndex: 3, transform: "translate(-17.5px, -35px)" }}
             onClick={e => {
-              e.preventDefault();
               setSelectedFire(fire[0]);
             }}
           />
@@ -129,8 +120,10 @@ const PrivateMap = () => {
           setViewport(viewport);
         }}
       >
-        Marker Issue to be fixed
-        {userMarker};{firesDisplay};
+
+        {userMarker};
+        {firesDisplay}
+
         {/* sets selectedFire state to clicked on location */}
         {selectedFire ? (
           <Popup
