@@ -44,21 +44,12 @@ function Navigation({
         <HamburgerMenuBar />
         {menuToggle ? (
           <MenuContainer>
-<<<<<<< HEAD
             <NavLink exact to="/" activeClassName="current"> 
                 <MenuItem>
                   {/* Will be profile page later */}
                     Home
                 </MenuItem>
             </NavLink>
-=======
-            <MenuItem>
-              <NavLink exact to="/" activeClassName="current">
-                {/* Will be profile page later */}
-                Home
-              </NavLink>
-            </MenuItem>
->>>>>>> 5f5b22c0f86251b1c02977ed1dff8345b4adf6e9
 
             {localStorage.getItem("token") == null && (
               <React.Fragment>
