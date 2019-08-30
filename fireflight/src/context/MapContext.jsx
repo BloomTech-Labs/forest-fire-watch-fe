@@ -30,7 +30,8 @@ const mapReducer = (state, action) => {
     case SET_ADDRESS:
       return {
         ...state,
-        userAddress: action.payload
+        userAddress: action.payload.address,
+        userRadius: action.payload.radius
       };
     case GET_FIRES_SUCCESS:
       return {
@@ -57,6 +58,7 @@ export const MapProvider = props => {
     },
     userAddress: "",
     userCoordinates: {},
+    userRadius: 0,
     fireData: []
   });
 
@@ -96,9 +98,10 @@ export const MapProvider = props => {
     axiosWithAuth()
       .get(`locations`)
       .then(res => {
+        console.log(res);
         dispatch({
           type: SET_ADDRESS,
-          payload: res.data[0].address
+          payload: res.data[0]
         });
       })
       .catch(err => {
