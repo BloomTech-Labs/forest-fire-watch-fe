@@ -1,7 +1,14 @@
 import React, { useReducer, createContext } from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import axios from "axios";
-import { SET_VIEWPORT, SET_ADDRESS, SET_COORDS } from "./types";
+import {
+  SET_VIEWPORT,
+  SET_ADDRESS,
+  SET_COORDS,
+  GET_FIRES_SUCCESS,
+  GET_FIRES_ERROR,
+  GET_FIRES_START
+} from "./types";
 
 const mapReducer = (state, action) => {
   switch (action.type) {
@@ -23,7 +30,13 @@ const mapReducer = (state, action) => {
     case SET_ADDRESS:
       return {
         ...state,
-        userAddress: action.payload
+        userAddress: action.payload.address,
+        userRadius: action.payload.radius
+      };
+    case GET_FIRES_SUCCESS:
+      return {
+        ...state,
+        fireData: action.payload
       };
     default:
       return {
@@ -44,7 +57,9 @@ export const MapProvider = props => {
       zoom: 8
     },
     userAddress: "",
-    userCoordinates: {}
+    userCoordinates: {},
+    userRadius: 0,
+    fireData: []
   });
 
   const token =
@@ -64,9 +79,9 @@ export const MapProvider = props => {
         `https://api.mapbox.com/geocoding/v5/mapbox.places/${state.userAddress}.json?access_token=${token}`
       )
       .then(res => {
-        console.log(res.data);
-        console.log(res.data.features[0].center[0]);
-        console.log(res.data.features[0].center[1]);
+        // console.log(res.data);
+        // console.log(res.data.features[0].center[0]);
+        // console.log(res.data.features[0].center[1]);
         dispatch({
           type: SET_COORDS,
           payload: {
@@ -86,7 +101,7 @@ export const MapProvider = props => {
         console.log(res);
         dispatch({
           type: SET_ADDRESS,
-          payload: res.data[0].address
+          payload: res.data[0]
         });
       })
       .catch(err => {
@@ -94,9 +109,33 @@ export const MapProvider = props => {
       });
   };
 
+  const DSbaseURL = "https://fire-data-api.herokuapp.com";
+
+  const setFires = location => {
+    dispatch({ type: GET_FIRES_START });
+    console.log("GET_FIRES_START");
+    axios
+      .post(`${DSbaseURL}/check_fires`, location)
+      .then(res => {
+        console.log("Fetching fire data...", res);
+        dispatch({ type: GET_FIRES_SUCCESS, payload: res.data.Fires });
+      })
+      .catch(err => {
+        console.log(err);
+        dispatch({ type: GET_FIRES_ERROR, payload: err });
+      });
+  };
+
   return (
     <MapContext.Provider
-      value={{ state, dispatch, setViewport, setAddress, setCoordinates }}
+      value={{
+        state,
+        dispatch,
+        setViewport,
+        setAddress,
+        setCoordinates,
+        setFires
+      }}
     >
       {props.children}
     </MapContext.Provider>
