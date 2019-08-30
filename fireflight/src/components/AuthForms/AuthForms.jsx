@@ -22,6 +22,7 @@ const AuthForms = ({
         showRegister={registerFormStatus}
         setLoginStatus={setLoginFormStatus}
         setRegisterStatus={setRegisterFormStatus}
+        setShowAuthForms={setShowAuthForms}
       />
     </>
   );
@@ -35,4 +36,5 @@ const BackDrop = styled.div`
   position: fixed;
   transition: all 1.3s;
   width: 100%;
+  z-index: 5;
 `;

@@ -11,7 +11,7 @@ import RegisterSplit from "./RegisterSplit";
 const deployedURL = "https://fireflight-lambda.herokuapp.com/api/auth";
 const localURL = "http://localhost:5000/api/auth";
 
-function Register({ toggle }) {
+function Register({ toggle, setShowAuthForms }) {
   //useInput is a custom hook that should be used for all controlled inputs
   const [username, setUsername, handleUsername] = useInput("", "username");
   const [password, setPassword, handlePassword] = useInput("", "password");
@@ -46,7 +46,7 @@ function Register({ toggle }) {
           setPassword("");
           setPasswordConf("");
           setLoading(false);
-          // return <Redirect to="/login" />;
+          setShowAuthForms(false);
         })
         .catch(err => {
           console.log(err.response);

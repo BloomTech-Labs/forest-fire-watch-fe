@@ -11,7 +11,7 @@ import LoginSplit from "./LoginSplit";
 const deployedURL = "https://fireflight-lambda.herokuapp.com/api/auth";
 const localURL = "http://localhost:5000/api/auth";
 
-function Login({ toggle }) {
+function Login({ toggle, setShowAuthForms }) {
   //useInput is a custom hook that should be used for all controlled inputs
   const [username, setUsername, handleUsername] = useInput("", "username");
   const [password, setPassword, handlePassword] = useInput("", "password");
@@ -31,15 +31,16 @@ function Login({ toggle }) {
     setLoading(true);
     const credentials = { username, password };
 
-    setErrorStatus(false)
-    setErrorText("")
+    setErrorStatus(false);
+    setErrorText("");
 
-    context.state.remote.login(credentials)
+    context.state.remote
+      .login(credentials)
       .then(res => {
         setUsername("");
         setPassword("");
         setLoading(false);
-        return <Redirect to="/" />;
+        setShowAuthForms(false);
       })
       .catch(err => {
         setErrorText("Username or Password Invalid");
@@ -47,9 +48,7 @@ function Login({ toggle }) {
         setLoading(false);
       });
   }
-  // if (localStorage.getItem("token")) {
-  //   return <Redirect to="/" />;
-  // } else {
+
   return (
     <LoginPageContainer>
       <LoginContainer>
@@ -62,11 +61,7 @@ function Login({ toggle }) {
             onChange={handleUsername}
             placeholder="Username"
           />
-          {errorStatus ? (
-            <ErrorText>{errorText}</ErrorText>
-          ) : (
-            <ErrorText />
-          )}
+          {errorStatus ? <ErrorText>{errorText}</ErrorText> : <ErrorText />}
 
           <FormInput
             type="password"

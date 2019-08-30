@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { MapProvider } from "../context/MapContext";
 
-import Map from "./Map";
+import PrivateMap from "./PrivateMap";
 
 const Dashboard = () => {
   return (
@@ -15,12 +15,12 @@ const Dashboard = () => {
         <MapDiv>
           <DivHeading>Active Fires</DivHeading>
           <MapProvider>
-            <Map />
+            <PrivateMap />
           </MapProvider>
         </MapDiv>
-        <ProfileDiv>
-          <DivHeading>My Profile</DivHeading>
-        </ProfileDiv>
+        <AddressesDiv onClick={() => (window.location.href = "/address")}>
+          <DivHeading>Input Addresses</DivHeading>
+        </AddressesDiv>
       </ContentContainer>
     </DashboardWrapper>
   );
@@ -30,13 +30,12 @@ export default Dashboard;
 
 const DashboardWrapper = styled.div`
   width: 100%;
-  background-image: linear-gradient(to bottom, #6c5b7b, #355c7d);
+  /* background-image: linear-gradient(to bottom, #6c5b7b, #355c7d); */
   height: 100vh;
   text-align: center;
 `;
 
 const Heading = styled.h1`
-  color: #f2f3f4;
   padding: 15px 0px;
   margin: 0;
 `;
@@ -88,7 +87,7 @@ const MapDiv = styled.div`
   }
 `;
 
-const ProfileDiv = styled.div`
+const AddressesDiv = styled.div`
   width: 90%;
   max-width: 500px;
   height: 50px;
@@ -97,6 +96,7 @@ const ProfileDiv = styled.div`
   border-radius: 8px;
   padding: 10px;
   box-shadow: 2px 5px 15px black;
+  cursor: pointer;
   @media (min-width: 900px) {
     order: 3;
   }
