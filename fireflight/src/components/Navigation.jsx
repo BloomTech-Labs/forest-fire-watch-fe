@@ -75,7 +75,6 @@ function Navigation({
             )}
             {localStorage.getItem("token") != null && (
               <React.Fragment>
-<<<<<<< HEAD
                   <NavLink to='/dashboard' activeClassName="current">
                     <MenuItem data-temp="here">
                         {location.pathname.includes("/dashboard") ?
@@ -86,20 +85,11 @@ function Navigation({
                         Dashboard
                     </MenuItem>
                   </NavLink>
-=======
-                <NavLink to="/dashboard" activeClassName="current">
-                  <MenuItem data-temp="here">
-                    <img src={dashboard} alt="Dashboard Icon" />
-                    Dashboard
-                  </MenuItem>
-                </NavLink>
->>>>>>> 5f5b22c0f86251b1c02977ed1dff8345b4adf6e9
                 {/* <MenuItem>
                   <NavLink to="/update" activeClassName="current">
                     Update
                   </NavLink>
                 </MenuItem> */}
-<<<<<<< HEAD
                 <NavLink to="/address" activeClassName="current">
                   <MenuItem>
                     {location.pathname.includes("/address") ?
@@ -107,11 +97,6 @@ function Navigation({
                         :
                           <img src={maps} alt="Maps Icon"/>
                     }
-=======
-                <MenuItem>
-                  <NavLink to="/address" activeClassName="current">
-                    <img src={maps} alt="Maps Icon" />
->>>>>>> 5f5b22c0f86251b1c02977ed1dff8345b4adf6e9
                     Input Your Address
                   </MenuItem>
                 </NavLink>
