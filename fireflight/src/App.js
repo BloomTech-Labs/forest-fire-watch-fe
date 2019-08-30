@@ -22,9 +22,7 @@ import * as v from "./styles/vars";
 function App() {
   const [token, setToken] = useState("");
   // The 3 hooks below are used for showing and toggling between the login & register forms. These can most likely be refactored to use context API.
-  const [showAuthForms, setShowAuthForms] = useState(
-    localStorage.getItem("token") ? false : true
-  );
+  const [showAuthForms, setShowAuthForms] = useState(false);
   const [loginFormStatus, setLoginFormStatus] = useState(true);
   const [registerFormStatus, setRegisterFormStatus] = useState(false);
 
@@ -55,11 +53,30 @@ function App() {
         toggleLoginStatus={setLoginFormStatus}
         toggleRegisterStatus={setRegisterFormStatus}
       />
-      <Route exact path="/" component={Home} />
+      <Route
+        exact
+        path="/"
+        render={() => (
+          <Home
+            setShowAuth={setShowAuthForms}
+            setShowRegister={setRegisterFormStatus}
+            setShowLogin={setLoginFormStatus}
+          />
+        )}
+      />
       <Route path="/update" component={Update} />
       <Route path="/danger" component={Danger} />
       <Route path="/dashboard" component={Dashboard} />
-      <Route path="/home" component={Home} />
+      <Route
+        path="/home"
+        render={() => (
+          <Home
+            setShowAuth={setShowAuthForms}
+            setShowRegister={setRegisterFormStatus}
+            setShowLogin={setLoginFormStatus}
+          />
+        )}
+      />
       <AddressContext>
         <Route path="/address" component={Address} />
         {/* <Route path="/map" component={Map} /> */}

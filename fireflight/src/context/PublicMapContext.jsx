@@ -4,7 +4,8 @@ import {
   SET_VIEWPORT,
   SET_ADDRESS,
   SET_FIRE_DATA,
-  SET_COORDINATES
+  SET_COORDINATES,
+  SET_TRIGGER
 } from "./types";
 
 const DSbaseURL = "https://fire-data-api.herokuapp.com";
@@ -35,6 +36,11 @@ const publicMapReducer = (state, action) => {
         ...state,
         fireData: action.payload
       };
+    case SET_TRIGGER:
+      return {
+        ...state,
+        trigger: action.payload
+      };
     default:
       return {
         ...state
@@ -55,7 +61,8 @@ export const PublicMapProvider = props => {
     },
     address: "",
     coordinates: {},
-    fireData: []
+    fireData: [],
+    trigger: false
   });
 
   const setViewport = newViewport => {
@@ -98,7 +105,7 @@ export const PublicMapProvider = props => {
               res.data.features[0].center[0],
               res.data.features[0].center[1]
             ],
-            distance: 5000
+            distance: 500
           })
           .then(res => {
             if (res.data.Alert) {
@@ -121,6 +128,19 @@ export const PublicMapProvider = props => {
       });
   };
 
+  const setTrigger = () => {
+    if (!localStorage.getItem("token")) {
+      if (publicMapState.trigger === false) {
+        setTimeout(() => {
+          dispatch({
+            type: SET_TRIGGER,
+            payload: true
+          });
+        }, 5000);
+      }
+    }
+  };
+
   return (
     <PublicMapContext.Provider
       value={{
@@ -128,7 +148,8 @@ export const PublicMapProvider = props => {
         dispatch,
         setViewport,
         setAddress,
-        getData
+        getData,
+        setTrigger
       }}
     >
       {props.children}
