@@ -31,10 +31,10 @@ function Address(props) {
     const testSubmit=async e=>{
         if(e){
             e.preventDefault()
-            setZip('95969')
-            setState('CA')
-            setStreet('750 Henshaw Ave')
-            parseCSV('to')
+            // setZip('95969')
+            // setState('CA')
+            // setStreet('750 Henshaw Ave')
+            // parseCSV('to')
         }
 
         if(! [zip,state,street].every(i=>i.length>0) ){
