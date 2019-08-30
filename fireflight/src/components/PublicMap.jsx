@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import styled from "styled-components";
+import { tablet, desktop } from "../styles/vars";
 
 import { PublicMapContext } from "../context/PublicMapContext";
 
+import Modal from "./Modal/Modal";
 import fireIcon from "../images/fireIcon.png";
 import locationIcon from "../images/locationIcon.png";
 
@@ -12,14 +14,19 @@ const token =
   process.env.REACT_APP_MAPBOX_TOKEN ||
   "pk.eyJ1Ijoia2VuMTI4NiIsImEiOiJjanpuMXdlb2UwZzlkM2JsY2t2aTVkcGFoIn0.eGKKY2f3oC5s8GqsyB70Yg";
 
-const PublicMap = () => {
-  const { publicMapState, setViewport, setAddress, getData } = useContext(
-    PublicMapContext
-  );
-  const { viewport, address, coordinates, fireData } = publicMapState;
+const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
+  const {
+    publicMapState,
+    setViewport,
+    setAddress,
+    getData,
+    setTrigger
+  } = useContext(PublicMapContext);
+  const { viewport, address, coordinates, fireData, trigger } = publicMapState;
 
   const handleSubmit = () => {
     getData();
+    setTrigger();
   };
 
   let userMarker;
@@ -58,19 +65,37 @@ const PublicMap = () => {
       );
     });
   }
+  let infoText;
+
+  infoText = <InfoText>All searches are based on a 500 mile radius</InfoText>;
 
   return (
     <div style={{ position: "relative" }}>
-      <FormContainer>
-        <FormInput
-          type="text"
-          name="Search Address"
-          placeholder="Search Address"
-          value={address}
-          onChange={e => setAddress(e.target.value)}
-        />
-        <FormButton onClick={handleSubmit}>SEARCH</FormButton>
-      </FormContainer>
+      <Container>
+        <FormContainer>
+          <FormInput
+            type="text"
+            name="Address"
+            placeholder="Address"
+            value={address}
+            onChange={e => setAddress(e.target.value)}
+          />
+          <FormButton onClick={handleSubmit}>Find Active Fires</FormButton>
+        </FormContainer>
+        {infoText}
+        {trigger ? (
+          <TriggeredButton
+            onClick={() => {
+              setShowAuth(true);
+              setShowRegister(true);
+              setShowLogin(false);
+            }}
+          >
+            Create an account to receive personalized alerts
+          </TriggeredButton>
+        ) : null}
+      </Container>
+
       <ReactMapGL
         {...viewport}
         mapboxApiAccessToken={token}
@@ -87,35 +112,69 @@ const PublicMap = () => {
 
 export default PublicMap;
 
-const FormContainer = styled.div`
+const Container = styled.div`
   position: absolute;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  width: 100%;
   z-index: 3;
-  left: 0;
-  right: 0;
-  margin: auto;
+`;
+
+const FormContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  @media (max-width: 576px) {
+    justify-content: center;
+    width: 90%;
+    margin: auto;
+  }
 `;
 
 const FormInput = styled.input`
-  width: 300px;
-  margin: 25px;
-  padding: 15px;
-  font-size: 0.75em;
+  width: 250px;
+  margin: 25px 25px 5px;
+  padding: 10px;
+  font-size: 1em;
   background-color: white;
   border-radius: 5px;
   border: solid 1px black;
-  @media (max-width: 900px) {
-    width: 75%;
+  @media (max-width: 576px) {
+    width: 200px;
+    padding: 8px;
   }
 `;
 
 const FormButton = styled.button`
-  height: 48px;
-  width: 100px;
-  margin: auto 0px;
+  height: 38px;
+  width: 150px;
+  margin: 25px 0px 5px;
   border-radius: 5px;
   background-color: #c06c84;
   font-size: 1em;
   border: solid 1px black;
+  @media (max-width: 576px) {
+    height: 35px;
+    width: 125px;
+    font-size: 0.8em;
+  }
+`;
+
+const InfoText = styled.div`
+  text-align: center;
+`;
+
+const TriggeredButton = styled.button`
+  font-size: 1em;
+  max-width: 250px;
+  margin: 25px auto;
+  border-radius: 5px;
+  box-shadow: 5px 5px 15px black;
+  background-color: #f67280;
+  padding: 5px 0px;
+  cursor: pointer;
+  &:hover {
+    box-shadow: none;
+  }
 `;
