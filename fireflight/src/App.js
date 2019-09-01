@@ -7,12 +7,15 @@ import Update from "./components/Update";
 import Dashboard from "./components/Dashboard";
 
 import AuthForms from "./components/AuthForms/AuthForms";
+import Modal from "./components/Modal/Modal";
+import Alerts from "./components/Alerts";
 
 import Address from "./components/Address";
 import AddressContext from "./context/AddressContext";
 import styled from "styled-components";
 
-import { FireContext } from "./context/contextProvider";
+import { GlobalContext } from "./context/contextProvider";
+import { AlertProvider } from "./context/AlertContext";
 
 import * as v from "./styles/vars";
 
@@ -26,7 +29,7 @@ function App() {
   const [loginFormStatus, setLoginFormStatus] = useState(true);
   const [registerFormStatus, setRegisterFormStatus] = useState(false);
 
-  const global = useContext(FireContext);
+  const global = useContext(GlobalContext);
 
   useEffect(() => {
     //getLogin gets login information upon page load here;
@@ -39,6 +42,12 @@ function App() {
 
   return (
     <AppWrapper>
+      <BackDrop />
+      <Modal show={true}>
+        <AlertProvider>
+          <Alerts />
+        </AlertProvider>
+      </Modal>
       <AuthForms
         showAuthForms={showAuthForms}
         setShowAuthForms={setShowAuthForms}
@@ -94,5 +103,20 @@ const AppWrapper = styled.div`
   ${v.tablet} {
     flex-direction: row;
   }
-  background-image: linear-gradient(#f8b195, #f67280, #c06c84, #6c5b7b, #355c7d);
+  background-image: linear-gradient(
+    #f8b195,
+    #f67280,
+    #c06c84,
+    #6c5b7b,
+    #355c7d
+  );
+`;
+
+const BackDrop = styled.div`
+  background-color: rgba(48, 49, 48, 0.42);
+  height: 100%;
+  position: fixed;
+  transition: all 1.3s;
+  width: 100%;
+  z-index: 5;
 `;

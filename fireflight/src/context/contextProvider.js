@@ -1,5 +1,5 @@
 import React from "react";
-import remote from '../helpers/connects'
+import remote from "../helpers/connects";
 
 const defaultValues = {
   user: null,
@@ -13,6 +13,6 @@ const defaultValues = {
 };
 
 //set default state for autocomplete
-const FireContext = React.createContext(defaultValues);
+const GlobalContext = React.createContext(defaultValues);
 
-export { FireContext, defaultValues };
+export { GlobalContext, defaultValues };
