@@ -79,7 +79,7 @@ function App() {
       />
       <AddressContext>
         <Route path="/address" component={Address} />
-        {/* <Route path="/map" component={Map} /> */}
+        <Route path="/map" component={Map} />
       </AddressContext>
     </AppWrapper>
   );
@@ -94,5 +94,5 @@ const AppWrapper = styled.div`
   ${v.tablet} {
     flex-direction: row;
   }
-  background-image: linear-gradient(#f67280, #6c5b7b, #322c7d);
+  background-image: linear-gradient(#f8b195, #f67280, #c06c84, #6c5b7b, #355c7d);
 `;
