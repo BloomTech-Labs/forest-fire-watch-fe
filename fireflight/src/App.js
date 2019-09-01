@@ -42,8 +42,8 @@ function App() {
 
   return (
     <AppWrapper>
-      <BackDrop />
-      <Modal show={true}>
+      {/* <BackDrop /> */}
+      <Modal show={false}>
         <AlertProvider>
           <Alerts />
         </AlertProvider>

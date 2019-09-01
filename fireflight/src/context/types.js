@@ -10,4 +10,4 @@ export const SET_FIRE_DATA = "SET_FIRE_DATA";
 export const SET_COORDINATES = "SET_COORDINATES";
 export const SET_TRIGGER = "SET_TRIGGER";
 export const GET_LOCATIONS = "GET_LOCATIONS";
-export const GET_COORDS = "GET_COORDS";
+export const GET_FIREDATA = "GET_COORDS";

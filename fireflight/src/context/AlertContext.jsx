@@ -1,7 +1,9 @@
 import React, { useReducer, createContext } from "react";
 import axios from "axios";
 import axiosWithAuth from "../utils/axiosWithAuth";
-import { GET_COORDS } from "./types";
+import { GET_FIREDATA } from "./types";
+
+const DSbaseURL = "https://fire-data-api.herokuapp.com";
 
 const token =
   process.env.REACT_APP_MAPBOX_TOKEN ||
@@ -9,10 +11,10 @@ const token =
 
 const alertReducer = (state, action) => {
   switch (action.type) {
-    case GET_COORDS:
+    case GET_FIREDATA:
       return {
         ...state,
-        coords: action.payload
+        fireData: [...state.fireData, action.payload]
       };
     default:
       return {
@@ -25,12 +27,13 @@ export const AlertContext = createContext();
 
 export const AlertProvider = props => {
   const [alertState, dispatch] = useReducer(alertReducer, {
-    coords: []
+    fireData: []
   });
 
   const getCoords = () => {
     let locations = [];
     let coords = [];
+    let fireData = [];
     axiosWithAuth()
       .get("locations")
       .then(res => {
@@ -43,15 +46,25 @@ export const AlertProvider = props => {
               `https://api.mapbox.com/geocoding/v5/mapbox.places/${loc}.json?access_token=${token}`
             )
             .then(res => {
-              coords.push({
-                address: loc,
-                lat: res.data.features[0].center[1],
-                long: res.data.features[0].center[0]
-              });
-              dispatch({
-                type: GET_COORDS,
-                payload: coords
-              });
+              axios
+                .post(`${DSbaseURL}/check_fires`, {
+                  user_coords: [
+                    res.data.features[0].center[0],
+                    res.data.features[0].center[1]
+                  ],
+                  distance: 500
+                })
+                .then(res => {
+                  if (res.data.Alert) {
+                    dispatch({
+                      type: GET_FIREDATA,
+                      payload: {
+                        address: loc,
+                        fireData: res.data.Fires
+                      }
+                    });
+                  }
+                });
             });
         });
       })

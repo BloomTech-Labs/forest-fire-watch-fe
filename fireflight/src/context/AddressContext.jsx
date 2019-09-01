@@ -93,7 +93,7 @@ function AddressContextProvider(props) {
     }
   };
 
-  const [state, dispatch] = useReducer(reducers, defaultState);
+  const [addressState, dispatch] = useReducer(reducers, defaultState);
 
   const updateAddresses = async payload => {
     dispatch({
@@ -165,7 +165,7 @@ function AddressContextProvider(props) {
     updateAddress,
     clear,
     reset,
-    state
+    addressState
   };
 
   return (
