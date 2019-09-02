@@ -4,12 +4,12 @@ import { MapProvider } from "../context/MapContext";
 
 import PrivateMap from "./PrivateMap";
 
-const Dashboard = () => {
+const Dashboard = ({ toggleShowAlerts }) => {
   return (
     <DashboardWrapper>
       <Heading>Dashboard</Heading>
       <ContentContainer>
-        <AlertsDiv>
+        <AlertsDiv onClick={() => toggleShowAlerts(true)}>
           <DivHeading>View Todays Alerts</DivHeading>
         </AlertsDiv>
         <MapDiv>

@@ -7,8 +7,7 @@ import Update from "./components/Update";
 import Dashboard from "./components/Dashboard";
 
 import AuthForms from "./components/AuthForms/AuthForms";
-import Modal from "./components/Modal/Modal";
-import Alerts from "./components/Alerts";
+import AlertsContainer from "./components/AlertsContainer";
 
 import Address from "./components/Address";
 import AddressContext from "./context/AddressContext";
@@ -28,6 +27,7 @@ function App() {
   const [showAuthForms, setShowAuthForms] = useState(false);
   const [loginFormStatus, setLoginFormStatus] = useState(true);
   const [registerFormStatus, setRegisterFormStatus] = useState(false);
+  const [alertStatus, setAlertStatus] = useState(false);
 
   const global = useContext(GlobalContext);
 
@@ -42,12 +42,12 @@ function App() {
 
   return (
     <AppWrapper>
-      {/* <BackDrop /> */}
-      <Modal show={false}>
-        <AlertProvider>
-          <Alerts />
-        </AlertProvider>
-      </Modal>
+      <AlertProvider>
+        <AlertsContainer
+          show={alertStatus}
+          close={() => setAlertStatus(false)}
+        />
+      </AlertProvider>
       <AuthForms
         showAuthForms={showAuthForms}
         setShowAuthForms={setShowAuthForms}
@@ -75,7 +75,15 @@ function App() {
       />
       <Route path="/update" component={Update} />
       <Route path="/danger" component={Danger} />
-      <Route path="/dashboard" component={Dashboard} />
+      <Route
+        path="/dashboard"
+        render={() => (
+          <Dashboard
+            toggleShowAlerts={setAlertStatus}
+            showAlertStatus={alertStatus}
+          />
+        )}
+      />
       <Route
         path="/home"
         render={() => (
@@ -110,13 +118,4 @@ const AppWrapper = styled.div`
     #6c5b7b,
     #355c7d
   );
-`;
-
-const BackDrop = styled.div`
-  background-color: rgba(48, 49, 48, 0.42);
-  height: 100%;
-  position: fixed;
-  transition: all 1.3s;
-  width: 100%;
-  z-index: 5;
 `;
