@@ -49,7 +49,7 @@ function Register({ toggle, setShowAuthForms }) {
           setShowAuthForms(false);
         })
         .catch(err => {
-          console.log(err.response);
+          console.log(err);
           setErrorStatus(true);
           setErrorText(err.response.data);
           setLoading(false);

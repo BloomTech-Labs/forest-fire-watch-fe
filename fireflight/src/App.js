@@ -5,6 +5,8 @@ import Home from "./components/Home";
 import Danger from "./components/Danger";
 import Update from "./components/Update";
 import Dashboard from "./components/Dashboard";
+import PrivateMap from "./components/PrivateMap";
+import { MapProvider } from "./context/MapContext";
 
 import AuthForms from "./components/AuthForms/AuthForms";
 import AlertsContainer from "./components/AlertsContainer";
@@ -87,7 +89,9 @@ function App() {
       />
       <AddressContext>
         <Route path="/address" component={Address} />
-        <Route path="/map" component={Map} />
+        <MapProvider>
+          <Route path="/maps" component={PrivateMap} />
+        </MapProvider>
       </AddressContext>
     </AppWrapper>
   );

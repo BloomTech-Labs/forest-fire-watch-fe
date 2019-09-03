@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+
 import { GlobalContext } from "../context/contextProvider";
 import { withRouter, NavLink, Link, Redirect } from "react-router-dom";
 import styled from "styled-components";

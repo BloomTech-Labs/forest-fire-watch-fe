@@ -2,12 +2,15 @@ import axios from "axios";
 
 const axiosWithAuth = () => {
   const token = localStorage.getItem("token");
+  const deployedURL = "https://fireflight-lambda.herokuapp.com/api/";
+  const localURL = "http://localhost:5000/api/";
+
   return axios.create({
     headers: {
       "Content-Type": "application/json",
       Authorization: token
     },
-    baseURL: "http://localhost:5000/api/" //replace with heroku address,
+    baseURL: deployedURL //replace with heroku address,
   });
 };
 
