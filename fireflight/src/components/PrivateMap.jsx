@@ -23,8 +23,6 @@ const PrivateMap = () => {
   const [userMarker, setUserMarker] = useState();
   const [firesDisplay, setFiresDisplay] = useState();
 
-  // console.log(state);
-
   // hook for current selected fire to display popup on the map
   const [selectedFire, setSelectedFire] = useState(null);
 
@@ -191,6 +189,7 @@ const PrivateMap = () => {
         </Popup>
       ) : null}
     </ReactMapGL>
+
   );
 };
 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-import { FireContext } from "../context/contextProvider";
+
+import { GlobalContext } from "../context/contextProvider";
 import { withRouter, NavLink, Link, Redirect } from "react-router-dom";
 import styled from "styled-components";
 import logo from "../images/fireIcon.png";
@@ -16,7 +17,7 @@ function Navigation({
   toggleRegisterStatus,
   location
 }) {
-  const data = useContext(FireContext);
+  const data = useContext(GlobalContext);
   const [menuToggle, setMenuToggle] = useState(false);
 
   useEffect(() => {

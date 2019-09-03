@@ -1,7 +1,7 @@
 import React, { useReducer, createContext } from "react";
 // import FireContext from "./contextProvider";
 import connector from "../helpers/connects";
-import { FireContext, defaultValues } from "./contextProvider";
+import { GlobalContext, defaultValues } from "./contextProvider";
 
 import { SET_LOCATION, SET_NAME } from "./types";
 
@@ -31,7 +31,7 @@ const globalReducer = (state, action) => {
 // CREATE CONTEXT EXPLANATION:
 // We initialize FireContext as an empty createContext object. We don't want to initialize any of our default variables inside createContext because then they won't run through our reducer.
 
-function GlobalContext(props) {
+function GlobalProvider(props) {
   //   const [user, setUser] = useState(null);
   //   const [token, setToken] = useState(null);
   //   const [location, setLocation] = useState(null);
@@ -91,7 +91,7 @@ function GlobalContext(props) {
   // To gain access to the data, we import our FireContext object into the component. We can then access the data with the useContext() hook, passing FireContext into the hook.
 
   return (
-    <FireContext.Provider
+    <GlobalContext.Provider
       value={{
         // user,
         // token,
@@ -105,8 +105,8 @@ function GlobalContext(props) {
       }}
     >
       {props.children}
-    </FireContext.Provider>
+    </GlobalContext.Provider>
   );
 }
 
-export default GlobalContext;
+export default GlobalProvider;
