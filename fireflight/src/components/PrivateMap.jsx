@@ -20,8 +20,6 @@ const PrivateMap = () => {
   } = useContext(MapContext);
   const [userCoords, setUserCoords] = useState();
 
-  // console.log(state);
-
   // hook for current selected fire to display popup on the map
   const [selectedFire, setSelectedFire] = useState(null);
 

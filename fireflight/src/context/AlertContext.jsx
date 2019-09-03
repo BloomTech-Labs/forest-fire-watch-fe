@@ -62,12 +62,13 @@ export const AlertProvider = props => {
       .get("locations")
       .then(res => {
         res.data.forEach(loc => {
-          locations.push(loc.address);
+          console.log(loc);
+          locations.push({ address: loc.address, radius: loc.radius });
         });
         locations.forEach(loc => {
           axios
             .get(
-              `https://api.mapbox.com/geocoding/v5/mapbox.places/${loc}.json?access_token=${token}`
+              `https://api.mapbox.com/geocoding/v5/mapbox.places/${loc.address}.json?access_token=${token}`
             )
             .then(res => {
               axios
@@ -76,14 +77,14 @@ export const AlertProvider = props => {
                     res.data.features[0].center[0],
                     res.data.features[0].center[1]
                   ],
-                  distance: 500
+                  distance: loc.radius
                 })
                 .then(res => {
                   if (res.data.Alert) {
                     dispatch({
                       type: GET_FIREDATA,
                       payload: {
-                        address: loc,
+                        address: loc.address,
                         fireData: res.data.Fires
                       }
                     });
