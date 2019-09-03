@@ -1,0 +1,34 @@
+
+*** USER EXPERIENCE IMPROVEMENTS ***
+
+- Need to be able to toggle between locations in the dashboard.
+- Fine active fires button in homepage needs mobile styling improvement.
+- Address doesn't have radius included.
+- Dynamic radius  
+  - Radius is not saved with address but is instead chosen dynamically via select menu.
+- Alerts are not rendering firedata
+- Address form needs mobile styling improvements
+- Remove opacity in navbar / mobile hamburg menu.
+- View map?
+  - An expanded version of the dashboard map?
+- Sidebar menu items are not being rendered properly when switching from mobile to desktop view.
+- Button on map to center you back over your location.
+- Side nav active link styling when not logged in needs improvement.
+- Dynamic radius on home page map.
+- Distance in miles scale for mapbox?
+  - https://docs.mapbox.com/mapbox-gl-js/example/measure/
+- Dashboard map is not showing active fires. This could be linked to the radius as there is not radius for the location I am using.
+- Click on fire icons on maps to get exact distance from fire.
+
+
+*** CODING IMPROVEMENTS ***
+
+- context is not being utilized properly.
+  - Several functions are not DRY.
+- The data flow of getting a logged in users locations, turning it into lat / long coords and then passing coords to get firedata is not clean. Possibly move this entire functionality to backend?
+- Alert provider in app.js is not being used correctly. There are a couple components being passed inside this provider as to avoid mis-rendering the components.
+- Update.jsx?
+- Danger.jsx?
+- GlobalContext not being used for anything.
+- Tokens need to be passed into a .env
+- BACKEND.. Error handling for location data?
