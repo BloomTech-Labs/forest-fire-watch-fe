@@ -5,6 +5,8 @@ import Home from "./components/Home";
 import Danger from "./components/Danger";
 import Update from "./components/Update";
 import Dashboard from "./components/Dashboard";
+import PrivateMap from "./components/PrivateMap";
+import { MapProvider } from "./context/MapContext";
 
 import AuthForms from "./components/AuthForms/AuthForms";
 
@@ -79,7 +81,9 @@ function App() {
       />
       <AddressContext>
         <Route path="/address" component={Address} />
-        <Route path="/map" component={Map} />
+        <MapProvider>
+          <Route path="/maps" component={PrivateMap} />
+        </MapProvider>
       </AddressContext>
     </AppWrapper>
   );
@@ -94,5 +98,11 @@ const AppWrapper = styled.div`
   ${v.tablet} {
     flex-direction: row;
   }
-  background-image: linear-gradient(#f8b195, #f67280, #c06c84, #6c5b7b, #355c7d);
+  background-image: linear-gradient(
+    #f8b195,
+    #f67280,
+    #c06c84,
+    #6c5b7b,
+    #355c7d
+  );
 `;
