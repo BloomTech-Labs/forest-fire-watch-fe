@@ -16,6 +16,7 @@ function Address(props) {
     const [city,setCity]=useState('')
     const [saveState,setSaveState]=useState('')
     const [id,setId]=useState(undefined)
+    const [name,setName]=useState('')
     const [radius,setRadius]=useState(10)
     const [err,setErr]=useState(undefined)
 
@@ -43,7 +44,7 @@ function Address(props) {
         }
 
         if(id==null){
-            let temp = await address.saveAddress(addy,radius)
+            let temp = await address.saveAddress(addy,radius,name)
             try {
                 if(temp){
                     setSaveState(`Saved as ${temp.address}`)
@@ -53,6 +54,7 @@ function Address(props) {
                     setStreet('')
                     setCity('')
                     setRadius(10)
+                    setName('')
                 }else{
                     setSaveState('Data is undefined')
                     setZip('')
@@ -61,13 +63,14 @@ function Address(props) {
                     setStreet('')
                     setCity('')
                     setRadius(10)
+                    setName('')
                 }
             } catch (err) {
                 console.error(err);
             }   
         }
         else{
-            let temp = await address.updateAddress(addy,radius,id)
+            let temp = await address.updateAddress(addy,radius,name,id)
             try {
                 if(temp){
                     setSaveState(`Updated as ${temp.address}`)
@@ -124,12 +127,14 @@ function Address(props) {
             setStreet('')
             setId(null)
             setRadius(10)
+            setName('')
         }else{
             let temp = address.state.addresses.filter(i=>{
                 return i.id==e.target.value
             })[0]
             setId(temp.id)
             setRadius(temp.radius)
+            setName(temp.address_label||'')
             temp=temp.address.split(',').map(i=>i.trim())
             setStreet(temp[0])
             setApartment(temp[1])
@@ -150,7 +155,8 @@ function Address(props) {
             setStreet('')
             setId(null)
             setRadius(1)
-            setSaveState('Deleted')          
+            setName('')   
+            setSaveState('Deleted')
             address.reset()  
         }
         catch(err){
@@ -172,10 +178,13 @@ function Address(props) {
             <FormSelect onChange={edit}>
                 <option value={-1}>Add an Address</option>
                 {address.state.addresses.map(i=>(
-                    <option value={i.id} key={i.id}>{i.address}</option>
+                    <option value={i.id} key={i.id}>{i.address_label||i.address}</option>
                 ))}
             </FormSelect>
             <Form onSubmit={testSubmit}>
+                <FormTextGroup>
+                    <div>Label   :</div><input type="text" name="name" value={name} onChange={e=>setName(e.target.value)}/>
+                </FormTextGroup>
                 <FormTextGroup>
                     <div>Street Address   :</div><input type="text" name="street" value={street} onChange={e=>{setStreet(e.target.value)}}/>
                 </FormTextGroup>
