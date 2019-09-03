@@ -18,7 +18,7 @@ const AlertsContainer = () => {
     setAlertViewed(true);
   };
 
-  console.log(fireData);
+  // console.log(fireData);
 
   useEffect(() => {
     if (alertViewed === false && fireData.length > 0) {
