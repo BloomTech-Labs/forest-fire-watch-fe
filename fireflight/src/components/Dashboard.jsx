@@ -1,16 +1,20 @@
-import React from "react";
+import React, { useEffect, useContext, useState } from "react";
 import styled from "styled-components";
 import { MapProvider } from "../context/MapContext";
+import { NavLink } from "react-router-dom";
+
+import { AlertContext } from "../context/AlertContext";
 
 import PrivateMap from "./PrivateMap";
 
-const Dashboard = ({ toggleShowAlerts }) => {
+const Dashboard = () => {
+  const { setShowAlert } = useContext(AlertContext);
   return (
     <DashboardWrapper>
       <Heading>Dashboard</Heading>
       <ContentContainer>
-        <AlertsDiv onClick={() => toggleShowAlerts(true)}>
-          <DivHeading>View Todays Alerts</DivHeading>
+        <AlertsDiv>
+          <DivHeading onClick={setShowAlert}>View Todays Alerts</DivHeading>
         </AlertsDiv>
         <MapDiv>
           <DivHeading>Active Fires</DivHeading>
@@ -18,8 +22,14 @@ const Dashboard = ({ toggleShowAlerts }) => {
             <PrivateMap />
           </MapProvider>
         </MapDiv>
-        <AddressesDiv onClick={() => (window.location.href = "/address")}>
-          <DivHeading>Input Addresses</DivHeading>
+
+        <AddressesDiv>
+          <NavLink
+            to="/address"
+            style={{ color: "black", textDecoration: "none" }}
+          >
+            <DivHeading>Input Addresses</DivHeading>
+          </NavLink>
         </AddressesDiv>
       </ContentContainer>
     </DashboardWrapper>
@@ -30,8 +40,7 @@ export default Dashboard;
 
 const DashboardWrapper = styled.div`
   width: 100%;
-  /* background-image: linear-gradient(to bottom, #6c5b7b, #355c7d); */
-  height: 100vh;
+  height: 100%;
   text-align: center;
 `;
 
@@ -65,6 +74,7 @@ const AlertsDiv = styled.div`
   border-radius: 8px;
   padding: 10px;
   box-shadow: 2px 5px 15px black;
+  cursor: pointer;
   @media (min-width: 900px) {
     order: 2;
     margin: auto;

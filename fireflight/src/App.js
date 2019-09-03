@@ -27,7 +27,6 @@ function App() {
   const [showAuthForms, setShowAuthForms] = useState(false);
   const [loginFormStatus, setLoginFormStatus] = useState(true);
   const [registerFormStatus, setRegisterFormStatus] = useState(false);
-  const [alertStatus, setAlertStatus] = useState(false);
 
   const global = useContext(GlobalContext);
 
@@ -43,25 +42,25 @@ function App() {
   return (
     <AppWrapper>
       <AlertProvider>
-        <AlertsContainer
-          show={alertStatus}
-          close={() => setAlertStatus(false)}
-        />
-      </AlertProvider>
-      <AuthForms
-        showAuthForms={showAuthForms}
-        setShowAuthForms={setShowAuthForms}
-        loginFormStatus={loginFormStatus}
-        registerFormStatus={registerFormStatus}
-        setLoginFormStatus={setLoginFormStatus}
-        setRegisterFormStatus={setRegisterFormStatus}
-      />
+        <AlertsContainer />
 
-      <Navigation
-        toggleAuthForms={setShowAuthForms}
-        toggleLoginStatus={setLoginFormStatus}
-        toggleRegisterStatus={setRegisterFormStatus}
-      />
+        <AuthForms
+          showAuthForms={showAuthForms}
+          setShowAuthForms={setShowAuthForms}
+          loginFormStatus={loginFormStatus}
+          registerFormStatus={registerFormStatus}
+          setLoginFormStatus={setLoginFormStatus}
+          setRegisterFormStatus={setRegisterFormStatus}
+        />
+
+        <Navigation
+          toggleAuthForms={setShowAuthForms}
+          toggleLoginStatus={setLoginFormStatus}
+          toggleRegisterStatus={setRegisterFormStatus}
+        />
+
+        <Route path="/dashboard" component={Dashboard} />
+      </AlertProvider>
       <Route
         exact
         path="/"
@@ -75,15 +74,7 @@ function App() {
       />
       <Route path="/update" component={Update} />
       <Route path="/danger" component={Danger} />
-      <Route
-        path="/dashboard"
-        render={() => (
-          <Dashboard
-            toggleShowAlerts={setAlertStatus}
-            showAlertStatus={alertStatus}
-          />
-        )}
-      />
+
       <Route
         path="/home"
         render={() => (
@@ -105,7 +96,7 @@ function App() {
 export default App;
 
 const AppWrapper = styled.div`
-  position: "relative";
+  position: relative;
   display: flex;
   flex-direction: column;
   ${v.tablet} {

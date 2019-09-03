@@ -1,7 +1,7 @@
 import React, { useReducer, createContext } from "react";
 import axios from "axios";
 import axiosWithAuth from "../utils/axiosWithAuth";
-import { GET_FIREDATA } from "./types";
+import { GET_FIREDATA, SET_SHOW_ALERT, SET_ALERT_VIEWED } from "./types";
 
 const DSbaseURL = "https://fire-data-api.herokuapp.com";
 
@@ -16,6 +16,16 @@ const alertReducer = (state, action) => {
         ...state,
         fireData: [...state.fireData, action.payload]
       };
+    case SET_ALERT_VIEWED:
+      return {
+        ...state,
+        alertViewed: action.payload
+      };
+    case SET_SHOW_ALERT:
+      return {
+        ...state,
+        showAlert: action.payload
+      };
     default:
       return {
         ...state
@@ -27,13 +37,27 @@ export const AlertContext = createContext();
 
 export const AlertProvider = props => {
   const [alertState, dispatch] = useReducer(alertReducer, {
-    fireData: []
+    fireData: [],
+    alertViewed: false,
+    showAlert: false
   });
+
+  const setAlertViewed = change => {
+    dispatch({
+      type: SET_ALERT_VIEWED,
+      payload: change
+    });
+  };
+
+  const setShowAlert = change => {
+    dispatch({
+      type: SET_SHOW_ALERT,
+      payload: change
+    });
+  };
 
   const getCoords = () => {
     let locations = [];
-    let coords = [];
-    let fireData = [];
     axiosWithAuth()
       .get("locations")
       .then(res => {
@@ -74,7 +98,9 @@ export const AlertProvider = props => {
   };
 
   return (
-    <AlertContext.Provider value={{ alertState, dispatch, getCoords }}>
+    <AlertContext.Provider
+      value={{ alertState, dispatch, getCoords, setShowAlert, setAlertViewed }}
+    >
       {props.children}
     </AlertContext.Provider>
   );
