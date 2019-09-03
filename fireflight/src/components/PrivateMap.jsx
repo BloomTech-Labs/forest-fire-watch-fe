@@ -58,22 +58,6 @@ const PrivateMap = () => {
     }
   }, [state.userAddress]);
 
-  useEffect(() => {
-    if (state.userCoordinates.latitude && state.userCoordinates.longitude) {
-      const location = {
-        user_coords: [
-          state.userCoordinates.longitude,
-          state.userCoordinates.latitude
-        ],
-        distance: state.userRadius
-      };
-      console.log("radius", state.userRadius);
-      console.log("location", location);
-      setFires(location);
-    }
-    console.log("fireData", state.fireData);
-  }, [state.userCoordinates]);
-
   // let userMarker;
   // let firesDisplay;
 
@@ -126,6 +110,23 @@ const PrivateMap = () => {
   useEffect(() => {
     createFiresDisplay();
   }, [state.fireData]);
+
+  useEffect(() => {
+    if (state.userCoordinates.latitude && state.userCoordinates.longitude) {
+      const location = {
+        user_coords: [
+          state.userCoordinates.longitude,
+          state.userCoordinates.latitude
+        ],
+        distance: state.userRadius
+      };
+      console.log("radius", state.userRadius);
+      console.log("location", location);
+      console.log("fireData setting", state.fireData);
+      setFires(location);
+    }
+    console.log("fireData", state.fireData);
+  }, [state.userCoordinates]);
 
   // if (state.userCoordinates.latitude && state.userCoordinates.longitude) {
   //   userMarker = (
