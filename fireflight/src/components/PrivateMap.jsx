@@ -120,8 +120,7 @@ const PrivateMap = () => {
           setViewport(viewport);
         }}
       >
-
-        {userMarker};
+        {userMarker}
         {firesDisplay}
 
         {/* sets selectedFire state to clicked on location */}
