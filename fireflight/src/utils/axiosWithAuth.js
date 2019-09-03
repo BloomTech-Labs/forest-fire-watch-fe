@@ -10,7 +10,7 @@ const axiosWithAuth = () => {
       "Content-Type": "application/json",
       Authorization: token
     },
-    baseURL: localURL //replace with heroku address,
+    baseURL: deployedURL //replace with heroku address,
   });
 };
 
