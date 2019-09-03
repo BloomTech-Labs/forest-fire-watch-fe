@@ -38,8 +38,8 @@ function Address(props) {
             // parseCSV('to')
         }
 
-        if(! [zip,state,street].every(i=>i.length>0) ){
-            setSaveState("Please fill out Street Address, Zip Code, and State")
+        if(! [zip,state,street,name].every(i=>i.length>0) ){
+            setSaveState("Please fill out Street Address, Zip Code, and State, and Give the Location a Label")
             return;
         }
 
