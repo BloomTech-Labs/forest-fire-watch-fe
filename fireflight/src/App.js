@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route,Redirect } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import Home from "./components/Home";
 import Danger from "./components/Danger";
@@ -35,8 +35,14 @@ function App() {
   useEffect(() => {
     //getLogin gets login information upon page load here;
     const getLogin = async () => {
-      let user = await global.state.remote.self();
-      global.setUser(user.username);
+      try{
+        let user = await global.state.remote.self();
+        global.setUser(user.username);
+      }catch(err){
+        localStorage.removeItem('token')
+        global.setUser('')
+        return(<Redirect to='/'/>)
+      }
     };
     getLogin();
   }, []); //[] here means this will only run once
