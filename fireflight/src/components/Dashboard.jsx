@@ -1,6 +1,5 @@
 import React, { useEffect, useContext, useState } from "react";
 import styled from "styled-components";
-import { MapProvider } from "../context/MapContext";
 import { NavLink } from "react-router-dom";
 
 import { AlertContext } from "../context/AlertContext";
@@ -18,9 +17,7 @@ const Dashboard = () => {
         </AlertsDiv>
         <MapDiv>
           <DivHeading>Active Fires</DivHeading>
-          <MapProvider>
-            <PrivateMap />
-          </MapProvider>
+          <PrivateMap />
         </MapDiv>
 
         <AddressesDiv>

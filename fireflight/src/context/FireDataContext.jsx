@@ -143,6 +143,7 @@ export const FireDataProvider = ({ children }) => {
               type: GET_USER_COORDINATES,
               payload: {
                 address_label: loc.address_label,
+                address: loc.address,
                 latitude: res.data.features[0].center[1],
                 longitude: res.data.features[0].center[0],
                 radius: loc.radius,
@@ -179,10 +180,9 @@ export const FireDataProvider = ({ children }) => {
   };
 
   const getPrivateMapData = id => {
-    let selection = fireDataState.userCoordinates.filter(
-      item => item.id === id
-    );
+    let selection = fireDataState.userCoordinates.filter(item => item.id == id);
     selection = selection[0];
+
     axios
       .post(`${DSbaseURL}/check_fires`, {
         user_coords: [selection.longitude, selection.latitude],

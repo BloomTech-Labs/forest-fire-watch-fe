@@ -1,29 +1,20 @@
 import React, { useState, useEffect, useContext } from "react";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
+import styled from "styled-components";
 
-import { MapContext } from "../context/MapContext";
 import { FireDataContext } from "../context/FireDataContext";
 
 import fireIcon from "../images/fireIcon.png";
 import locationIcon from "../images/locationIcon.png";
 
 const PrivateMap = () => {
-  const {
-    state,
-    setViewport,
-    setAddress,
-    setCoordinates,
-    setFires,
-    fireData
-  } = useContext(MapContext);
-  const [userCoords, setUserCoords] = useState();
-  const [userMarker, setUserMarker] = useState();
-  const [firesDisplay, setFiresDisplay] = useState();
-
   const { fireDataState, setPrivateViewport, getPrivateMapData } = useContext(
     FireDataContext
   );
   const { privateMapViewport, privateMapData, userCoordinates } = fireDataState;
+  const [userMarker, setUserMarker] = useState();
+  const [firesDisplay, setFiresDisplay] = useState();
+  const [selectedLocation, setSelectedLocation] = useState();
 
   // hook for current selected fire to display popup on the map
   const [selectedFire, setSelectedFire] = useState(null);
@@ -49,16 +40,15 @@ const PrivateMap = () => {
 
   useEffect(() => {
     if (userCoordinates.length > 0) {
-      getPrivateMapData(2);
+      setSelectedLocation(userCoordinates[0].id);
     }
   }, [userCoordinates]);
 
   useEffect(() => {
-    if (state.userAddress !== "") {
-      setCoordinates();
-      setUserCoords({ ...state.userCoordinates });
+    if (selectedLocation) {
+      getPrivateMapData(selectedLocation);
     }
-  }, [state.userAddress]);
+  }, [selectedLocation]);
 
   useEffect(() => {
     createUserMarker();
@@ -66,10 +56,7 @@ const PrivateMap = () => {
 
   useEffect(() => {
     createFiresDisplay();
-  }, [state.fireData]);
-
-  // let userMarker;
-  // let firesDisplay;
+  }, [privateMapData.Alert]);
 
   const createUserMarker = () => {
     if (privateMapData.latitude && privateMapData.longitude) {
@@ -90,13 +77,15 @@ const PrivateMap = () => {
   };
 
   const createFiresDisplay = async () => {
-    if (state.fireData.length > 0) {
-      console.log("fireData: ", state.fireData);
-      console.log("fireData2: ", state.fireData[0]);
-      let fires = await state.fireData.map(fire => {
+    if (privateMapData.Alert) {
+      let fires = await privateMapData.Fires.map(fire => {
         return (
           // return marker for each fire datapoint
-          <Marker latitude={fire[0][1]} longitude={fire[0][0]}>
+          <Marker
+            latitude={fire[0][1]}
+            longitude={fire[0][0]}
+            key={fire[0][0] + fire[0][1]}
+          >
             <img
               src={fireIcon}
               height="35"
@@ -113,87 +102,62 @@ const PrivateMap = () => {
     }
   };
 
-  useEffect(() => {
-    if (state.userCoordinates.latitude && state.userCoordinates.longitude) {
-      const location = {
-        user_coords: [
-          state.userCoordinates.longitude,
-          state.userCoordinates.latitude
-        ],
-        distance: state.userRadius
-      };
-      console.log("radius", state.userRadius);
-      console.log("location", location);
-      console.log("fireData setting", state.fireData);
-      setFires(location);
-    }
-    console.log("fireData", state.fireData);
-  }, [state.userCoordinates]);
-
-  // if (state.userCoordinates.latitude && state.userCoordinates.longitude) {
-  //   userMarker = (
-  //     <Marker
-  //       latitude={state.userCoordinates.latitude}
-  //       longitude={state.userCoordinates.longitude}
-  //     >
-  //       <img
-  //         src={locationIcon}
-  //         height="35"
-  //         width="20"
-  //         style={{ zIndex: -1, transform: "translate(-10px, -35px)" }}
-  //       />
-  //     </Marker>
-  //   );
-  // }
-
-  // if (state.fireData.length > 0) {
-  //   console.log("fireData: ", state.fireData);
-  //   console.log("fireData2: ", state.fireData[0]);
-  //   firesDisplay = state.fireData.map(fire => {
-  //     return (
-  //       // return marker for each fire datapoint
-  //       <Marker latitude={fire[0][1]} longitude={fire[0][0]}>
-  //         <img
-  //           src={fireIcon}
-  //           height="35"
-  //           width="35"
-  //           style={{ zIndex: 3, transform: "translate(-17.5px, -35px)" }}
-  //           onClick={e => {
-  //             setSelectedFire(fire[0]);
-  //           }}
-  //         />
-  //       </Marker>
-  //     );
-  //   });
-  // }
-
   return (
-    <ReactMapGL
-      {...privateMapViewport}
-      mapboxApiAccessToken={token}
-      onViewportChange={privateMapViewport => {
-        setPrivateViewport(privateMapViewport);
-      }}
-    >
-      {userMarker}
-      {firesDisplay}
+    <div style={{ position: "relative" }}>
+      <Container>
+        <LocationSelect onChange={e => setSelectedLocation(e.target.value)}>
+          {userCoordinates.map(coord => (
+            <SelectOption value={coord.id} key={coord.address + coord.id}>
+              {coord.address_label
+                ? coord.address_label
+                : coord.address.slice(0, 15)}
+            </SelectOption>
+          ))}
+        </LocationSelect>
+      </Container>
 
-      {/* sets selectedFire state to clicked on location */}
-      {selectedFire ? (
-        <Popup
-          latitude={selectedFire[1]}
-          longitude={selectedFire[0]}
-          onClose={() => {
-            setSelectedFire(null);
-          }}
-        >
-          <div>
-            Lat: {selectedFire[1]}, Long: {selectedFire[0]}
-          </div>
-        </Popup>
-      ) : null}
-    </ReactMapGL>
+      <ReactMapGL
+        {...privateMapViewport}
+        mapboxApiAccessToken={token}
+        onViewportChange={privateMapViewport => {
+          setPrivateViewport(privateMapViewport);
+        }}
+      >
+        {userMarker}
+        {firesDisplay}
+
+        {/* sets selectedFire state to clicked on location */}
+        {selectedFire ? (
+          <Popup
+            latitude={selectedFire[1]}
+            longitude={selectedFire[0]}
+            onClose={() => {
+              setSelectedFire(null);
+            }}
+          >
+            <div>
+              Lat: {selectedFire[1]}, Long: {selectedFire[0]}
+            </div>
+          </Popup>
+        ) : null}
+      </ReactMapGL>
+    </div>
   );
 };
 
 export default PrivateMap;
+
+const Container = styled.div`
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  z-index: 3;
+`;
+
+const LocationSelect = styled.select`
+  width: 125px;
+  margin: 10px 10px 10px auto;
+`;
+
+const SelectOption = styled.option``;
