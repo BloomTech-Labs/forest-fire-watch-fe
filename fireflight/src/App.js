@@ -17,21 +17,27 @@ import styled from "styled-components";
 
 import { GlobalContext } from "./context/contextProvider";
 import { AlertProvider } from "./context/AlertContext";
-import { FireDataProvider } from "./context/FireDataContext";
+
+import { FireDataContext } from "./context/FireDataContext";
 
 import * as v from "./styles/vars";
+
+const token = localStorage.getItem("token");
 
 // AUTH FORM MODAL:
 // Will refactor everything in regards to the auth form modal into one single component to clean up APP.js
 
 function App() {
-  const [token, setToken] = useState("");
   // The 3 hooks below are used for showing and toggling between the login & register forms. These can most likely be refactored to use context API.
   const [showAuthForms, setShowAuthForms] = useState(false);
   const [loginFormStatus, setLoginFormStatus] = useState(true);
   const [registerFormStatus, setRegisterFormStatus] = useState(false);
 
   const global = useContext(GlobalContext);
+  const fireDataContext = useContext(FireDataContext);
+  const { userLocations } = fireDataContext.fireDataState;
+
+  console.log(fireDataContext);
 
   useEffect(() => {
     //getLogin gets login information upon page load here;
@@ -41,6 +47,18 @@ function App() {
     };
     getLogin();
   }, []); //[] here means this will only run once
+
+  useEffect(() => {
+    if (token) {
+      fireDataContext.getUserLocations();
+    }
+  }, [token]);
+
+  useEffect(() => {
+    if (token) {
+      fireDataContext.getCoordinates();
+    }
+  }, [token, userLocations]);
 
   return (
     <AppWrapper>
@@ -76,9 +94,9 @@ function App() {
         )}
       />
       <Route path="/update" component={Update} />
-      <FireDataProvider>
-        <Route path="/danger" component={Danger} />
-      </FireDataProvider>
+
+      <Route path="/danger" component={Danger} />
+
       <Route
         path="/home"
         render={() => (

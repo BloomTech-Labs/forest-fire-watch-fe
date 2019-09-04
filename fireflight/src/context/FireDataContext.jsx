@@ -11,7 +11,8 @@ import {
   GET_PRIVATE_MAP_DATA,
   SET_PRIVATE_VIEWPORT,
   SET_PUBLIC_VIEWPORT,
-  GET_ALERT_DATA
+  GET_ALERT_DATA,
+  SET_TRIGGER_REGISTRATION_BUTTON
 } from "./fireDataTypes";
 
 const DSbaseURL = "https://fire-data-api.herokuapp.com";
@@ -54,6 +55,21 @@ const fireDataReducer = (state, action) => {
         privateMapData: action.payload,
         privateMapViewport: action.viewport
       };
+    case SET_PRIVATE_VIEWPORT:
+      return {
+        ...state,
+        privateMapViewport: action.payload
+      };
+    case SET_PUBLIC_VIEWPORT:
+      return {
+        ...state,
+        publicMapViewport: action.payload
+      };
+    case SET_TRIGGER_REGISTRATION_BUTTON:
+      return {
+        ...state,
+        triggerRegistrationButton: action.payload
+      };
     default:
       return {
         ...state
@@ -85,7 +101,8 @@ export const FireDataProvider = ({ children }) => {
       latitude: 37.7749,
       longitude: -122.4194,
       zoom: 8
-    }
+    },
+    triggerRegistrationButton: false
   });
 
   const getUserLocations = () => {
@@ -138,7 +155,6 @@ export const FireDataProvider = ({ children }) => {
   };
 
   const getPublicMapData = () => {
-    console.log(fireDataState.publicCoordinates);
     axios
       .post(`${DSbaseURL}/check_fires`, {
         user_coords: [
@@ -189,6 +205,33 @@ export const FireDataProvider = ({ children }) => {
       });
   };
 
+  const setPrivateViewport = viewport => {
+    dispatch({
+      type: SET_PRIVATE_VIEWPORT,
+      payload: viewport
+    });
+  };
+
+  const setPublicViewport = viewport => {
+    dispatch({
+      type: SET_PUBLIC_VIEWPORT,
+      payload: viewport
+    });
+  };
+
+  const setTriggerRegistrationButton = () => {
+    if (!localStorage.getItem("token")) {
+      if (fireDataState.triggerRegistrationButton === false) {
+        setTimeout(() => {
+          dispatch({
+            type: SET_TRIGGER_REGISTRATION_BUTTON,
+            payload: true
+          });
+        }, 5000);
+      }
+    }
+  };
+
   return (
     <FireDataContext.Provider
       value={{
@@ -197,7 +240,10 @@ export const FireDataProvider = ({ children }) => {
         getUserLocations,
         getPublicMapData,
         getCoordinates,
-        getPrivateMapData
+        getPrivateMapData,
+        setPublicViewport,
+        setPrivateViewport,
+        setTriggerRegistrationButton
       }}
     >
       {children}
