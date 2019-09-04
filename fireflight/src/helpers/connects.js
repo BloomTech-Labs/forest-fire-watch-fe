@@ -7,17 +7,23 @@ class connector {
    * This class is built as a helper to deal with all connection requests.
    */
   constructor() {
-    console.log("loading");
     this.connector = axios;
     if (process.env.NODE_ENV === "production")
       this.coreString = "https://fireflight-lambda.herokuapp.com/api/";
     //http here
     else this.coreString = "http://localhost:5000/api/";
     this.fireflight = process.env.REACT_APP_FIREFLIGHT;
-    if (localStorage.getItem("token") != null)
+    if (localStorage.getItem("token") != null){
       this.connector.defaults.headers.common[
         "Authorization"
       ] = localStorage.getItem("token");
+      this.self().then(data=>{
+        this.user=data.username
+      }).catch(err=>{
+        localStorage.removeItem('token')
+        this.connector.defaults.headers.common["Authorization"]=undefined
+      })
+    }
     this.user = null;
   }
 
