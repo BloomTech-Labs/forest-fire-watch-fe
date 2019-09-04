@@ -110,7 +110,7 @@ function Navigation({
                     Input Your Address
                   </MenuItem>
                 </NavLink>
-                <NavLink to="/maps" activeClassName="current">
+                {/* <NavLink to="/maps" activeClassName="current">
                   <MenuItem>
                     {location.pathname.includes("maps") ? (
                       <img src={mapsAlt} alt="Map Icon" />
@@ -119,7 +119,7 @@ function Navigation({
                     )}
                     View the Map
                   </MenuItem>
-                </NavLink>
+                </NavLink> */}
                 <MenuItem>
                   <Link to="/" onClick={logout}>
                     Logout

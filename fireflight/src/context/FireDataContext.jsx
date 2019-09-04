@@ -70,6 +70,11 @@ const fireDataReducer = (state, action) => {
         ...state,
         triggerRegistrationButton: action.payload
       };
+    case GET_ALERT_DATA:
+      return {
+        ...state,
+        alertData: action.payload
+      };
     default:
       return {
         ...state
@@ -102,7 +107,8 @@ export const FireDataProvider = ({ children }) => {
       longitude: -122.4194,
       zoom: 8
     },
-    triggerRegistrationButton: false
+    triggerRegistrationButton: false,
+    alertData: []
   });
 
   const getUserLocations = () => {
@@ -239,6 +245,29 @@ export const FireDataProvider = ({ children }) => {
     }
   };
 
+  const getAlertData = () => {
+    let alertLocations = [];
+    fireDataState.userCoordinates.forEach(coord => {
+      console.log(coord);
+      axios
+        .post(`${DSbaseURL}/check_fires`, {
+          user_coords: [coord.longitude, coord.latitude],
+          distance: 500
+        })
+        .then(res => {
+          if (res.data.Alert) {
+            alertLocations.push(
+              coord.address_label ? coord.address_label : coord.address
+            );
+          }
+        });
+    });
+    dispatch({
+      type: GET_ALERT_DATA,
+      payload: alertLocations
+    });
+  };
+
   return (
     <FireDataContext.Provider
       value={{
@@ -250,7 +279,8 @@ export const FireDataProvider = ({ children }) => {
         getPrivateMapData,
         setPublicViewport,
         setPrivateViewport,
-        setTriggerRegistrationButton
+        setTriggerRegistrationButton,
+        getAlertData
       }}
     >
       {children}

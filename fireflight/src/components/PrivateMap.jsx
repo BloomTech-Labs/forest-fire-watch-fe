@@ -158,6 +158,8 @@ const Container = styled.div`
 const LocationSelect = styled.select`
   width: 125px;
   margin: 10px 10px 10px auto;
+  border: 1px solid grey;
+  height: 25px;
 `;
 
 const SelectOption = styled.option``;

@@ -107,11 +107,9 @@ function App() {
           />
         )}
       />
+      {/* <Route path="/maps" component={PrivateMap} /> */}
       <AddressContext>
         <Route path="/address" component={Address} />
-        <MapProvider>
-          <Route path="/maps" component={PrivateMap} />
-        </MapProvider>
       </AddressContext>
     </AppWrapper>
   );
