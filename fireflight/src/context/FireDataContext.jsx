@@ -97,7 +97,7 @@ export const FireDataProvider = ({ children }) => {
     privateMapData: {},
     privateMapViewport: {
       width: "100%",
-      height: "100vh",
+      height: window.innerWidth < 900 ? 350 : 500,
       latitude: 37.7749,
       longitude: -122.4194,
       zoom: 8
@@ -193,10 +193,17 @@ export const FireDataProvider = ({ children }) => {
       .then(res => {
         dispatch({
           type: GET_PRIVATE_MAP_DATA,
-          payload: res.data,
+          payload: {
+            ...res.data,
+            latitude: selection.latitude,
+            longitude: selection.longitude,
+            radius: selection.radius
+              ? selection.radius
+              : fireDataState.publicRadius
+          },
           viewport: {
             width: "100%",
-            height: "100vh",
+            height: window.innerWidth < 900 ? 350 : 500,
             latitude: selection.latitude,
             longitude: selection.longitude,
             zoom: 8
