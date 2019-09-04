@@ -17,6 +17,7 @@ import styled from "styled-components";
 
 import { GlobalContext } from "./context/contextProvider";
 import { AlertProvider } from "./context/AlertContext";
+import { FireDataProvider } from "./context/FireDataContext";
 
 import * as v from "./styles/vars";
 
@@ -75,8 +76,9 @@ function App() {
         )}
       />
       <Route path="/update" component={Update} />
-      <Route path="/danger" component={Danger} />
-
+      <FireDataProvider>
+        <Route path="/danger" component={Danger} />
+      </FireDataProvider>
       <Route
         path="/home"
         render={() => (
