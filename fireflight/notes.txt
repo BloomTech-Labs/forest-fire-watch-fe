@@ -33,3 +33,33 @@
 - GlobalContext not being used for anything.
 - Tokens need to be passed into a .env
 - BACKEND.. Error handling for location data?
+
+
+
+
+
+PUBLIC MAP CONTEXT STEPS
+
+- Get address from input.
+- Convert address to coordinates.
+- Pass coordinates to DS server
+- Get fireData back for map.
+  - this fireData must be stored separately than the user fireData
+
+PRIVATE MAP CONTEXT STEPS
+
+- Get user's locations.
+- User selects a location from dropdown.
+- Location is converted to coordinates.
+- Pass coordinates to DS server
+- Get fireData back for map.
+  - this fireData must be stored separately than the public fireData
+
+ALERT CONTEXT STEPS
+
+- Get user's locations.
+- Loop through locations and get coordinates for each one.
+  - Connect the coordinates with the location address / name.
+  - Pass coordinates to DS server
+  - Get firedata back for Alerts
+    - Data should contain the locations name / address along with an array of all the fireData
