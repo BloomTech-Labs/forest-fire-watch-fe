@@ -28,7 +28,7 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
     publicCoordinates,
     triggerRegistrationButton
   } = fireDataState;
-  const [address, setAddress] = useState();
+  const [address, setAddress] = useState("");
   const [firesDisplay, setFiresDisplay] = useState();
   const [userMarker, setUserMarker] = useState();
 
@@ -40,8 +40,6 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
       });
       setTriggerRegistrationButton();
     }
-
-    // console.log(fireData);
   };
 
   useEffect(() => {
