@@ -45,22 +45,14 @@ const fireDataReducer = (state, action) => {
     case GET_PUBLIC_MAP_DATA:
       return {
         ...state,
-        publicMapData: action.payload
+        publicMapData: action.payload,
+        publicMapViewport: action.viewport
       };
     case GET_PRIVATE_MAP_DATA:
       return {
         ...state,
-        privateMapData: action.payload
-      };
-    case SET_PUBLIC_VIEWPORT:
-      return {
-        ...state,
-        publicMapViewport: action.payload
-      };
-    case SET_PRIVATE_VIEWPORT:
-      return {
-        ...state,
-        privateMapViewport: action.payload
+        privateMapData: action.payload,
+        privateMapViewport: action.viewport
       };
     default:
       return {
@@ -158,7 +150,14 @@ export const FireDataProvider = ({ children }) => {
       .then(res => {
         dispatch({
           type: GET_PUBLIC_MAP_DATA,
-          payload: res.data
+          payload: res.data,
+          viewport: {
+            width: "100%",
+            height: "100vh",
+            latitude: fireDataState.publicCoordinates.latitude,
+            longitude: fireDataState.publicCoordinates.longitude,
+            zoom: 8
+          }
         });
       });
   };
@@ -167,11 +166,7 @@ export const FireDataProvider = ({ children }) => {
     let selection = fireDataState.userCoordinates.filter(
       item => item.id === id
     );
-
     selection = selection[0];
-
-    console.log(selection);
-
     axios
       .post(`${DSbaseURL}/check_fires`, {
         user_coords: [selection.longitude, selection.latitude],
@@ -182,7 +177,14 @@ export const FireDataProvider = ({ children }) => {
       .then(res => {
         dispatch({
           type: GET_PRIVATE_MAP_DATA,
-          payload: res.data
+          payload: res.data,
+          viewport: {
+            width: "100%",
+            height: "100vh",
+            latitude: selection.latitude,
+            longitude: selection.longitude,
+            zoom: 8
+          }
         });
       });
   };
