@@ -94,11 +94,10 @@ export const MapProvider = props => {
   };
 
   const setAddress = () => {
-    console.log("Setting address...");
     axiosWithAuth()
       .get(`locations`)
       .then(res => {
-        console.log(res);
+        console.log("Setting Address...", res);
         dispatch({
           type: SET_ADDRESS,
           payload: res.data[0]

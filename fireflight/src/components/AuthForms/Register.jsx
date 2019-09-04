@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Link, Redirect } from "react-router-dom";
-import { FireContext } from "../../context/contextProvider";
+import { GlobalContext } from "../../context/contextProvider";
 import axios from "axios";
 
 import useInput from "../../utils/useInput";
@@ -24,7 +24,7 @@ function Register({ toggle, setShowAuthForms }) {
   const [errorStatus, setErrorStatus] = useState(false);
   const [errorText, setErrorText] = useState({});
 
-  const data = useContext(FireContext);
+  const data = useContext(GlobalContext);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -49,7 +49,7 @@ function Register({ toggle, setShowAuthForms }) {
           setShowAuthForms(false);
         })
         .catch(err => {
-          console.log(err.response);
+          console.log(err);
           setErrorStatus(true);
           setErrorText(err.response.data);
           setLoading(false);

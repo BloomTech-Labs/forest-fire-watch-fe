@@ -25,13 +25,10 @@ const ModalWrapper = styled.div`
   transition: all 0.8s;
   width: 80%;
   max-width: 900px;
-  min-height: 500px;
   position: absolute;
   left: 0;
   right: 0;
   z-index: 10;
 `;
 
-const ModalBody = styled.div`
-  min-height: 500px;
-`;
+const ModalBody = styled.div``;

@@ -27,6 +27,7 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
   const handleSubmit = () => {
     getData();
     setTrigger();
+    // console.log(fireData);
   };
 
   let userMarker;

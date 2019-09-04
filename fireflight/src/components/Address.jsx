@@ -1,8 +1,17 @@
-import React,{useState,useContext,useEffect} from 'react'
-import AddressContext from '../context/addressContextProvider'
-import {FireContext} from '../context/contextProvider'
-import { isArray } from 'util';
-import {Button,ErrorText,FormContainer, Form, FormSelect, FormTextGroup, GoodButton, FormRangeGroup} from '../styles/Forms'
+import React, { useState, useContext, useEffect } from "react";
+import AddressContext from "../context/addressContextProvider";
+import { GlobalContext } from "../context/contextProvider";
+import { isArray } from "util";
+import {
+  Button,
+  ErrorText,
+  FormContainer,
+  Form,
+  FormSelect,
+  FormTextGroup,
+  GoodButton,
+  FormRangeGroup
+} from "../styles/Forms";
 
 function Address(props) {
     
@@ -20,23 +29,22 @@ function Address(props) {
     const [radius,setRadius]=useState(10)
     const [err,setErr]=useState(undefined)
 
-    const testFetch=e=>{
-        if(e)
-            e.preventDefault()
-        address.fetchAddress().then(()=>{
-            console.log('render time');
-            console.log(address.state.address);
-        })
-    }
+  const testFetch = e => {
+    if (e) e.preventDefault();
+    address.fetchAddress().then(() => {
+      console.log("render time");
+      console.log(address.state.address);
+    });
+  };
 
-    const testSubmit=async e=>{
-        if(e){
-            e.preventDefault()
-            // setZip('95969')
-            // setState('CA')
-            // setStreet('750 Henshaw Ave')
-            // parseCSV('to')
-        }
+  const testSubmit = async e => {
+    if (e) {
+      e.preventDefault();
+      // setZip('95969')
+      // setState('CA')
+      // setStreet('750 Henshaw Ave')
+      // parseCSV('to')
+    }
 
         if(! [zip,state,street,name].every(i=>i.length>0) ){
             setSaveState("Please fill out Street Address, Zip Code, and State, and Give the Location a Label")
@@ -81,43 +89,45 @@ function Address(props) {
                 console.error(err);
             }
         }
+      } catch (err) {
+        console.error(err);
+      }
     }
+  };
 
-    const parseCSV=async direction=>{
-        if(direction==='to'){
-            setAddy(`${street}, ${apartment}, ${city}, ${state}, ${zip}`)
-        }else{
-            if(addy.length>0){
-                let temp=addy.split(',').map(s=>s.trim())
-                console.log(temp);
-                setStreet(temp[0])
-                setApartment(temp[1])
-                setCity(temp[2])
-                setState(temp[3])
-                setZip(temp[4])
-            }
-        }
+  const parseCSV = async direction => {
+    if (direction === "to") {
+      setAddy(`${street}, ${apartment}, ${city}, ${state}, ${zip}`);
+    } else {
+      if (addy.length > 0) {
+        let temp = addy.split(",").map(s => s.trim());
+        console.log(temp);
+        setStreet(temp[0]);
+        setApartment(temp[1]);
+        setCity(temp[2]);
+        setState(temp[3]);
+        setZip(temp[4]);
+      }
     }
+  };
 
-    useEffect(()=>{
-        parseCSV('to')
-        return (e=>{
-            parseCSV('to')
-        })
-    }
-    ,[street,zip,apartment,state,city]
-    )
+  useEffect(() => {
+    parseCSV("to");
+    return e => {
+      parseCSV("to");
+    };
+  }, [street, zip, apartment, state, city]);
 
-    useEffect(()=>{
-        const fetch=async ()=>{
-            try{
-                let temp=await global.state.remote.fetchLocations()
-            }catch(err){
-                console.error(err);
-            }
-        }
-        fetch()
-    },[])
+  useEffect(() => {
+    const fetch = async () => {
+      try {
+        let temp = await global.state.remote.fetchLocations();
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    fetch();
+  }, []);
 
     const edit=e=>{
         if(e.target.value==-1){
@@ -143,6 +153,7 @@ function Address(props) {
             setZip(temp[4])
         }
     }
+  };
 
     const remove=async e=>{
         e.preventDefault()
@@ -163,10 +174,11 @@ function Address(props) {
             setSaveState(err)
         }
     }
+  };
 
-    return (
-        <FormContainer>
-            {/* <>
+  return (
+    <FormContainer>
+      {/* <>
                 <button onClick={testSubmit}>
                     test submit
                 </button>
@@ -214,4 +226,4 @@ function Address(props) {
     )
 }
 
-export default Address
+export default Address;

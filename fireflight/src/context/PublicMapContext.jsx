@@ -108,6 +108,7 @@ export const PublicMapProvider = props => {
             distance: 500
           })
           .then(res => {
+            console.log(res.data);
             if (res.data.Alert) {
               let fires = res.data.Fires.map(fire => {
                 return {

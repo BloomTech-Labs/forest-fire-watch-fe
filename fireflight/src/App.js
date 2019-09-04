@@ -5,14 +5,18 @@ import Home from "./components/Home";
 import Danger from "./components/Danger";
 import Update from "./components/Update";
 import Dashboard from "./components/Dashboard";
+import PrivateMap from "./components/PrivateMap";
+import { MapProvider } from "./context/MapContext";
 
 import AuthForms from "./components/AuthForms/AuthForms";
+import AlertsContainer from "./components/AlertsContainer";
 
 import Address from "./components/Address";
 import AddressContext from "./context/AddressContext";
 import styled from "styled-components";
 
-import { FireContext } from "./context/contextProvider";
+import { GlobalContext } from "./context/contextProvider";
+import { AlertProvider } from "./context/AlertContext";
 
 import * as v from "./styles/vars";
 
@@ -26,7 +30,7 @@ function App() {
   const [loginFormStatus, setLoginFormStatus] = useState(true);
   const [registerFormStatus, setRegisterFormStatus] = useState(false);
 
-  const global = useContext(FireContext);
+  const global = useContext(GlobalContext);
 
   useEffect(() => {
     //getLogin gets login information upon page load here;
@@ -45,20 +49,26 @@ function App() {
 
   return (
     <AppWrapper>
-      <AuthForms
-        showAuthForms={showAuthForms}
-        setShowAuthForms={setShowAuthForms}
-        loginFormStatus={loginFormStatus}
-        registerFormStatus={registerFormStatus}
-        setLoginFormStatus={setLoginFormStatus}
-        setRegisterFormStatus={setRegisterFormStatus}
-      />
+      <AlertProvider>
+        <AlertsContainer />
 
-      <Navigation
-        toggleAuthForms={setShowAuthForms}
-        toggleLoginStatus={setLoginFormStatus}
-        toggleRegisterStatus={setRegisterFormStatus}
-      />
+        <AuthForms
+          showAuthForms={showAuthForms}
+          setShowAuthForms={setShowAuthForms}
+          loginFormStatus={loginFormStatus}
+          registerFormStatus={registerFormStatus}
+          setLoginFormStatus={setLoginFormStatus}
+          setRegisterFormStatus={setRegisterFormStatus}
+        />
+
+        <Navigation
+          toggleAuthForms={setShowAuthForms}
+          toggleLoginStatus={setLoginFormStatus}
+          toggleRegisterStatus={setRegisterFormStatus}
+        />
+
+        <Route path="/dashboard" component={Dashboard} />
+      </AlertProvider>
       <Route
         exact
         path="/"
@@ -72,7 +82,7 @@ function App() {
       />
       <Route path="/update" component={Update} />
       <Route path="/danger" component={Danger} />
-      <Route path="/dashboard" component={Dashboard} />
+
       <Route
         path="/home"
         render={() => (
@@ -85,7 +95,9 @@ function App() {
       />
       <AddressContext>
         <Route path="/address" component={Address} />
-        <Route path="/map" component={Map} />
+        <MapProvider>
+          <Route path="/maps" component={PrivateMap} />
+        </MapProvider>
       </AddressContext>
     </AppWrapper>
   );
@@ -94,11 +106,17 @@ function App() {
 export default App;
 
 const AppWrapper = styled.div`
-  position: "relative";
+  position: relative;
   display: flex;
   flex-direction: column;
   ${v.tablet} {
     flex-direction: row;
   }
-  background-image: linear-gradient(#f8b195, #f67280, #c06c84, #6c5b7b, #355c7d);
+  background-image: linear-gradient(
+    #f8b195,
+    #f67280,
+    #c06c84,
+    #6c5b7b,
+    #355c7d
+  );
 `;

@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { FireContext } from "../../context/contextProvider";
+import { GlobalContext } from "../../context/contextProvider";
 import axios from "axios";
 import { Link, Redirect } from "react-router-dom";
 import useInput from "../../utils/useInput";
@@ -19,7 +19,7 @@ function Login({ toggle, setShowAuthForms }) {
   const [errorStatus, setErrorStatus] = useState(false);
   const [errorText, setErrorText] = useState({});
   //get global context (think redux store)
-  const context = useContext(FireContext);
+  const context = useContext(GlobalContext);
 
   //view context once / example of how to use
   useEffect(() => {
