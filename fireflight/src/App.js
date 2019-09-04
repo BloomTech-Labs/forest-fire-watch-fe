@@ -6,7 +6,6 @@ import Danger from "./components/Danger";
 import Update from "./components/Update";
 import Dashboard from "./components/Dashboard";
 import PrivateMap from "./components/PrivateMap";
-import { MapProvider } from "./context/MapContext";
 
 import AuthForms from "./components/AuthForms/AuthForms";
 import AlertsContainer from "./components/AlertsContainer";
@@ -16,7 +15,6 @@ import AddressContext from "./context/AddressContext";
 import styled from "styled-components";
 
 import { GlobalContext } from "./context/contextProvider";
-import { AlertProvider } from "./context/AlertContext";
 
 import { FireDataContext } from "./context/FireDataContext";
 
@@ -69,26 +67,25 @@ function App() {
 
   return (
     <AppWrapper>
-      <AlertProvider>
-        <AlertsContainer />
+      <AlertsContainer />
 
-        <AuthForms
-          showAuthForms={showAuthForms}
-          setShowAuthForms={setShowAuthForms}
-          loginFormStatus={loginFormStatus}
-          registerFormStatus={registerFormStatus}
-          setLoginFormStatus={setLoginFormStatus}
-          setRegisterFormStatus={setRegisterFormStatus}
-        />
+      <AuthForms
+        showAuthForms={showAuthForms}
+        setShowAuthForms={setShowAuthForms}
+        loginFormStatus={loginFormStatus}
+        registerFormStatus={registerFormStatus}
+        setLoginFormStatus={setLoginFormStatus}
+        setRegisterFormStatus={setRegisterFormStatus}
+      />
 
-        <Navigation
-          toggleAuthForms={setShowAuthForms}
-          toggleLoginStatus={setLoginFormStatus}
-          toggleRegisterStatus={setRegisterFormStatus}
-        />
+      <Navigation
+        toggleAuthForms={setShowAuthForms}
+        toggleLoginStatus={setLoginFormStatus}
+        toggleRegisterStatus={setRegisterFormStatus}
+      />
 
-        <Route path="/dashboard" component={Dashboard} />
-      </AlertProvider>
+      <Route path="/dashboard" component={Dashboard} />
+
       <Route
         exact
         path="/"
