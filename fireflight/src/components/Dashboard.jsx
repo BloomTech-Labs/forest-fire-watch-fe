@@ -3,12 +3,12 @@ import styled from "styled-components";
 
 import { NavLink } from "react-router-dom";
 
-import { AlertContext } from "../context/AlertContext";
+import { FireDataContext } from "../context/FireDataContext";
 
 import PrivateMap from "./PrivateMap";
 
 const Dashboard = () => {
-  const { setShowAlert } = useContext(AlertContext);
+  const { setShowAlert } = useContext(FireDataContext);
   return (
     <DashboardWrapper>
       <Heading>Dashboard</Heading>

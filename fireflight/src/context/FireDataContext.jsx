@@ -12,6 +12,8 @@ import {
   SET_PRIVATE_VIEWPORT,
   SET_PUBLIC_VIEWPORT,
   GET_ALERT_DATA,
+  SET_ALERT_VIEWED,
+  SET_SHOW_ALERT,
   SET_TRIGGER_REGISTRATION_BUTTON
 } from "./fireDataTypes";
 
@@ -73,7 +75,20 @@ const fireDataReducer = (state, action) => {
     case GET_ALERT_DATA:
       return {
         ...state,
-        alertData: action.payload
+        alertData: [
+          ...state.alertData,
+          !state.alertData.includes(action.payload) ? action.payload : null
+        ]
+      };
+    case SET_ALERT_VIEWED:
+      return {
+        ...state,
+        alertViewed: action.payload
+      };
+    case SET_SHOW_ALERT:
+      return {
+        ...state,
+        showAlert: action.payload
       };
     default:
       return {
@@ -108,7 +123,9 @@ export const FireDataProvider = ({ children }) => {
       zoom: 8
     },
     triggerRegistrationButton: false,
-    alertData: []
+    alertData: [],
+    alertViewed: false,
+    showAlert: false
   });
 
   const getUserLocations = () => {
@@ -246,25 +263,34 @@ export const FireDataProvider = ({ children }) => {
   };
 
   const getAlertData = () => {
-    let alertLocations = [];
     fireDataState.userCoordinates.forEach(coord => {
-      console.log(coord);
       axios
         .post(`${DSbaseURL}/check_fires`, {
           user_coords: [coord.longitude, coord.latitude],
-          distance: 500
+          distance: coord.radius
         })
         .then(res => {
           if (res.data.Alert) {
-            alertLocations.push(
-              coord.address_label ? coord.address_label : coord.address
-            );
+            dispatch({
+              type: GET_ALERT_DATA,
+              payload: coord.address
+            });
           }
         });
     });
+  };
+
+  const setAlertViewed = change => {
     dispatch({
-      type: GET_ALERT_DATA,
-      payload: alertLocations
+      type: SET_ALERT_VIEWED,
+      payload: change
+    });
+  };
+
+  const setShowAlert = change => {
+    dispatch({
+      type: SET_SHOW_ALERT,
+      payload: change
     });
   };
 
@@ -280,7 +306,9 @@ export const FireDataProvider = ({ children }) => {
         setPublicViewport,
         setPrivateViewport,
         setTriggerRegistrationButton,
-        getAlertData
+        getAlertData,
+        setAlertViewed,
+        setShowAlert
       }}
     >
       {children}

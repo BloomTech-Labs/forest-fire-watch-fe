@@ -34,10 +34,13 @@ function App() {
   const [registerFormStatus, setRegisterFormStatus] = useState(false);
 
   const global = useContext(GlobalContext);
-  const fireDataContext = useContext(FireDataContext);
-  const { userLocations } = fireDataContext.fireDataState;
-
-  console.log(fireDataContext);
+  const {
+    fireDataState,
+    getUserLocations,
+    getCoordinates,
+    getAlertData
+  } = useContext(FireDataContext);
+  const { userLocations, userCoordinates } = fireDataState;
 
   useEffect(() => {
     //getLogin gets login information upon page load here;
@@ -50,15 +53,19 @@ function App() {
 
   useEffect(() => {
     if (token) {
-      fireDataContext.getUserLocations();
+      getUserLocations();
     }
   }, [token]);
 
   useEffect(() => {
     if (token) {
-      fireDataContext.getCoordinates();
+      getCoordinates();
     }
   }, [token, userLocations]);
+
+  useEffect(() => {
+    getAlertData();
+  }, [userCoordinates]);
 
   return (
     <AppWrapper>

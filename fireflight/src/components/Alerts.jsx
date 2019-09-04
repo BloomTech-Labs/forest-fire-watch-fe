@@ -4,13 +4,8 @@ import { FireDataContext } from "../context/FireDataContext";
 import styled from "styled-components";
 
 const Alerts = () => {
-  const { fireDataState, getAlertData } = useContext(FireDataContext);
-  const { alertData, userCoordinates } = fireDataState;
-
-  useEffect(() => {
-    console.log("WORKING");
-    getAlertData();
-  }, [userCoordinates]);
+  const { fireDataState } = useContext(FireDataContext);
+  const { alertData } = fireDataState;
 
   let myAlerts;
 
