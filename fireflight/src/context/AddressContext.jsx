@@ -129,59 +129,9 @@ function AddressContextProvider(props) {
       });
   };
 
-  const saveAddress = async (str, radius) => {
-    return global.state.remote
-      .saveLocations(str, radius)
-      .then(data => {
-        updateAddresses(data.reason.address);
-        reset();
-        return data.reason;
-      })
-      .catch(err => {
-        console.error("something went wrong", err);
-        throw err;
-      });
-  };
-
-  const clear = () => {
-    dispatch({ type: CLEAR });
-  };
-
-  const updateAddress = async (address, radius, id) => {
-    return global.state.remote
-      .updateLocation(address, radius, id)
-      .then(data => {
-        dispatch({
-            type:UPDATE_ADDRESSES,
-            payload:payload
-        })
-    }
-    const reset=async()=>{
-        clear()
-        global.state.remote.fetchLocations().then(data=>{
-            updateAddresses(data.reason)
-        })
-    }
-
     useEffect(()=>{
         reset()
     },[])
-
-    const fetchAddress=async ()=>{
-        dispatch({type:FETCHING_ADDRESSES})
-        return global.state.remote.fetchLocations()
-            .then( data => {
-                if(data.reason.length<1){
-                    dispatch({type:NONE})
-                }
-                else{
-                    console.log(data.reason);
-                    updateAddresses(data.reason)
-                }
-            }).catch( err =>{
-                dispatch({type:ERROR,payload:err})
-            })
-    }
 
     const saveAddress=async (str,radius,name)=>{
         console.log(name);

@@ -208,6 +208,7 @@ const MenuContainer = styled.div`
 
 const MenuItem = styled.div`
   padding: 10px;
+  cursor:pointer;
   img {
     display: none;
     margin: auto;
