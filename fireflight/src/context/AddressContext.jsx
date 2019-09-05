@@ -103,7 +103,6 @@ function AddressContextProvider(props) {
   };
 
   const reset = async () => {
-    console.log("called reset");
     clear();
     global.state.remote.fetchLocations().then(data => {
       updateAddresses(data.reason);
@@ -118,7 +117,6 @@ function AddressContextProvider(props) {
         if (data.reason.length < 1) {
           dispatch({ type: NONE });
         } else {
-          console.log(data.reason);
           updateAddresses(data.reason);
         }
       })
@@ -128,12 +126,10 @@ function AddressContextProvider(props) {
   };
 
     useEffect(()=>{
-        console.log("effect loaded");
         reset()
     },[])
 
     const saveAddress=async (str,radius,name)=>{
-        console.log(name);
         return global.state.remote.saveLocations(str,radius,name)
             .then(data=>{
                 updateAddresses(data.reason.address)
