@@ -6,7 +6,6 @@ import Danger from "./components/Danger";
 import Update from "./components/Update";
 import Dashboard from "./components/Dashboard";
 import PrivateMap from "./components/PrivateMap";
-import { MapProvider } from "./context/MapContext";
 
 import AuthForms from "./components/AuthForms/AuthForms";
 import AlertsContainer from "./components/AlertsContainer";
@@ -16,21 +15,30 @@ import AddressContext from "./context/AddressContext";
 import styled from "styled-components";
 
 import { GlobalContext } from "./context/contextProvider";
-import { AlertProvider } from "./context/AlertContext";
+
+import { FireDataContext } from "./context/FireDataContext";
 
 import * as v from "./styles/vars";
+
+const token = localStorage.getItem("token");
 
 // AUTH FORM MODAL:
 // Will refactor everything in regards to the auth form modal into one single component to clean up APP.js
 
 function App() {
-  const [token, setToken] = useState("");
   // The 3 hooks below are used for showing and toggling between the login & register forms. These can most likely be refactored to use context API.
   const [showAuthForms, setShowAuthForms] = useState(false);
   const [loginFormStatus, setLoginFormStatus] = useState(true);
   const [registerFormStatus, setRegisterFormStatus] = useState(false);
 
   const global = useContext(GlobalContext);
+  const {
+    fireDataState,
+    getUserLocations,
+    getCoordinates,
+    getAlertData
+  } = useContext(FireDataContext);
+  const { userLocations, userCoordinates } = fireDataState;
 
   useEffect(() => {
     //getLogin gets login information upon page load here;
@@ -47,28 +55,43 @@ function App() {
     getLogin();
   }, []); //[] here means this will only run once
 
+  useEffect(() => {
+    if (token) {
+      getUserLocations();
+    }
+  }, [token]);
+
+  useEffect(() => {
+    if (token) {
+      getCoordinates();
+    }
+  }, [token, userLocations]);
+
+  useEffect(() => {
+    getAlertData();
+  }, [userCoordinates]);
+
   return (
     <AppWrapper>
-      <AlertProvider>
-        <AlertsContainer />
+      <AlertsContainer />
 
-        <AuthForms
-          showAuthForms={showAuthForms}
-          setShowAuthForms={setShowAuthForms}
-          loginFormStatus={loginFormStatus}
-          registerFormStatus={registerFormStatus}
-          setLoginFormStatus={setLoginFormStatus}
-          setRegisterFormStatus={setRegisterFormStatus}
-        />
+      <AuthForms
+        showAuthForms={showAuthForms}
+        setShowAuthForms={setShowAuthForms}
+        loginFormStatus={loginFormStatus}
+        registerFormStatus={registerFormStatus}
+        setLoginFormStatus={setLoginFormStatus}
+        setRegisterFormStatus={setRegisterFormStatus}
+      />
 
-        <Navigation
-          toggleAuthForms={setShowAuthForms}
-          toggleLoginStatus={setLoginFormStatus}
-          toggleRegisterStatus={setRegisterFormStatus}
-        />
+      <Navigation
+        toggleAuthForms={setShowAuthForms}
+        toggleLoginStatus={setLoginFormStatus}
+        toggleRegisterStatus={setRegisterFormStatus}
+      />
 
-        <Route path="/dashboard" component={Dashboard} />
-      </AlertProvider>
+      <Route path="/dashboard" component={Dashboard} />
+
       <Route
         exact
         path="/"
@@ -81,6 +104,7 @@ function App() {
         )}
       />
       <Route path="/update" component={Update} />
+
       <Route path="/danger" component={Danger} />
 
       <Route
@@ -93,11 +117,9 @@ function App() {
           />
         )}
       />
+      {/* <Route path="/maps" component={PrivateMap} /> */}
       <AddressContext>
         <Route path="/address" component={Address} />
-        <MapProvider>
-          <Route path="/maps" component={PrivateMap} />
-        </MapProvider>
       </AddressContext>
     </AppWrapper>
   );

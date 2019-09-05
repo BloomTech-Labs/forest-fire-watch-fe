@@ -1,28 +1,22 @@
 import React, { useState, useEffect, useContext } from "react";
 
-import { AlertContext } from "../context/AlertContext";
+import { FireDataContext } from "../context/FireDataContext";
 import styled from "styled-components";
 
 const Alerts = () => {
-  const { alertState, getCoords } = useContext(AlertContext);
-  const { fireData } = alertState;
-
-  console.log(fireData);
-
-  useEffect(() => {
-    getCoords();
-  }, []);
+  const { fireDataState } = useContext(FireDataContext);
+  const { alertData } = fireDataState;
 
   let myAlerts;
 
-  if (fireData.length > 0) {
+  if (alertData.length > 0) {
     myAlerts = (
       <AlertContainer>
         <AlertHeading>
           There are active fires near the following locations...
         </AlertHeading>
-        {fireData.map(loc => (
-          <LocAddress key={loc.address}>{loc.address}</LocAddress>
+        {alertData.map(loc => (
+          <LocAddress key={loc}>{loc}</LocAddress>
         ))}
         <h5>Please check that map for further details</h5>
       </AlertContainer>

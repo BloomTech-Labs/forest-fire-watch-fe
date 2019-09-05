@@ -1,14 +1,14 @@
 import React, { useEffect, useContext, useState } from "react";
 import styled from "styled-components";
-import { MapProvider } from "../context/MapContext";
+
 import { NavLink } from "react-router-dom";
 
-import { AlertContext } from "../context/AlertContext";
+import { FireDataContext } from "../context/FireDataContext";
 
 import PrivateMap from "./PrivateMap";
 
 const Dashboard = () => {
-  const { setShowAlert } = useContext(AlertContext);
+  const { setShowAlert } = useContext(FireDataContext);
   return (
     <DashboardWrapper>
       <Heading>Dashboard</Heading>
@@ -18,9 +18,7 @@ const Dashboard = () => {
         </AlertsDiv>
         <MapDiv>
           <DivHeading>Active Fires</DivHeading>
-          <MapProvider>
-            <PrivateMap />
-          </MapProvider>
+          <PrivateMap />
         </MapDiv>
 
         <AddressesDiv>
