@@ -77,14 +77,14 @@ function App() {
   }, [token]);
 
   useEffect(() => {
+    getAlertData();
+  }, [userCoordinates]);
+
+  useEffect(() => {
     if (token) {
       getCoordinates();
     }
   }, [token, userLocations]);
-
-  useEffect(() => {
-    getAlertData();
-  }, [userCoordinates]);
 
   return (
     <AppWrapper>
