@@ -78,7 +78,7 @@ function App() {
 
   useEffect(() => {
     getAlertData();
-  }, [userCoordinates]);
+  }, [userCoordinates, token]);
 
   useEffect(() => {
     if (token) {
