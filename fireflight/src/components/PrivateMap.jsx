@@ -3,14 +3,16 @@ import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import styled from "styled-components";
 
 import { FireDataContext } from "../context/FireDataContext";
+import AddressContext from "../context/addressContextProvider";
 
 import fireIcon from "../images/fireIcon.png";
 import locationIcon from "../images/locationIcon.png";
 
-const PrivateMap = () => {
+const PrivateMap = ({ selects }) => {
   const { fireDataState, setPrivateViewport, getPrivateMapData } = useContext(
     FireDataContext
   );
+  const { state } = useContext(AddressContext);
   const { privateMapViewport, privateMapData, userCoordinates } = fireDataState;
   const [userMarker, setUserMarker] = useState();
   const [firesDisplay, setFiresDisplay] = useState();
@@ -18,6 +20,7 @@ const PrivateMap = () => {
 
   // hook for current selected fire to display popup on the map
   const [selectedFire, setSelectedFire] = useState(null);
+  const [selectOptions, setSelectOptions] = useState();
 
   // mapbox API token
   const token =
@@ -41,8 +44,11 @@ const PrivateMap = () => {
   useEffect(() => {
     if (userCoordinates.length > 0) {
       setSelectedLocation(userCoordinates[0].id);
+      createSelectLocations();
     }
   }, [userCoordinates]);
+
+  useEffect(() => {});
 
   useEffect(() => {
     if (selectedLocation) {
@@ -102,17 +108,20 @@ const PrivateMap = () => {
     }
   };
 
+  const createSelectLocations = () => {
+    let selectOptionsContainer = state.addresses.map(coord => (
+      <SelectOption value={coord.id} key={coord.address + coord.id}>
+        {coord.address_label ? coord.address_label : coord.address.slice(0, 15)}
+      </SelectOption>
+    ));
+    setSelectOptions(selectOptionsContainer);
+  };
+
   return (
     <div style={{ position: "relative" }}>
       <Container>
         <LocationSelect onChange={e => setSelectedLocation(e.target.value)}>
-          {userCoordinates.map(coord => (
-            <SelectOption value={coord.id} key={coord.address + coord.id}>
-              {coord.address_label
-                ? coord.address_label
-                : coord.address.slice(0, 15)}
-            </SelectOption>
-          ))}
+          {selectOptions}
         </LocationSelect>
       </Container>
 

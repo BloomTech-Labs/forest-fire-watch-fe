@@ -13,16 +13,18 @@ class connector {
     //http here
     else this.coreString = "http://localhost:5000/api/";
     this.fireflight = process.env.REACT_APP_FIREFLIGHT;
-    if (localStorage.getItem("token") != null){
+    if (localStorage.getItem("token") != null) {
       this.connector.defaults.headers.common[
         "Authorization"
       ] = localStorage.getItem("token");
-      this.self().then(data=>{
-        this.user=data.username
-      }).catch(err=>{
-        localStorage.removeItem('token')
-        this.connector.defaults.headers.common["Authorization"]=undefined
-      })
+      this.self()
+        .then(data => {
+          this.user = data.username;
+        })
+        .catch(err => {
+          localStorage.removeItem("token");
+          this.connector.defaults.headers.common["Authorization"] = undefined;
+        });
     }
     this.user = null;
   }
@@ -114,9 +116,15 @@ class connector {
           user_id: user.user_id,
           address: i,
           radius: radius,
-          address_label:name||''
+          address_label: name || ""
         }));
-      else locs = { user_id: user.user_id, address: locs, radius: radius,address_label:name||'' };
+      else
+        locs = {
+          user_id: user.user_id,
+          address: locs,
+          radius: radius,
+          address_label: name || ""
+        };
       let response = await this.connector.post(
         `${this.coreString}locations`,
         locs
@@ -137,7 +145,12 @@ class connector {
   async updateLocation(add, radius, name, id) {
     try {
       let user = await this.self();
-      let sender = { address: add, user_id: user.user_id, radius: radius,address_label:name||'' };
+      let sender = {
+        address: add,
+        user_id: user.user_id,
+        radius: radius,
+        address_label: name || ""
+      };
       let res = await this.connector.put(
         `${this.coreString}locations/${id}`,
         sender

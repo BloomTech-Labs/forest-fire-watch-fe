@@ -110,7 +110,7 @@ function Register({ toggle, setShowAuthForms }) {
             />
 
             <Button type="submit" disabled={loading}>
-              {loading ? "Loading..." : "Register"}
+              {loading ? "Loading..." : "Sign Up"}
             </Button>
           </FormContainer>
         </RegisterContainer>
@@ -127,6 +127,14 @@ const RegPageContainer = styled.div`
   text-align: center;
   display: flex;
   min-height: 500px;
+  background-image: linear-gradient(
+    #f8b195,
+    #f67280,
+    #c06c84,
+    #6c5b7b,
+    #355c7d
+  );
+  border-radius: 25px;
   @media (max-width: 900px) {
     flex-direction: column;
   }
@@ -150,9 +158,9 @@ const RegisterSplitContainer = styled.div`
   }
 `;
 
-const FormHeading = styled.h1`
+const FormHeading = styled.h2`
   margin-bottom: 25px;
-  color: #355c7d;
+  color: #f2f3f4;
 `;
 
 const FormContainer = styled.form`
@@ -165,9 +173,14 @@ const FormInput = styled.input`
   margin: auto;
   padding: 15px;
   font-size: 0.75em;
-  background-color: #e6e6e6;
+  background-color: #355c7d;
+  color: #f2f3f4;
   border-radius: 5px;
   border: none;
+  &::placeholder {
+    color: #f2f3f4;
+    opacity: 0.75;
+  }
   @media (max-width: 900px) {
     width: 75%;
   }
@@ -177,11 +190,12 @@ const Button = styled.button`
   width: 200px;
   margin: 20px auto;
   padding: 10px 15px;
-  border-radius: 55px;
+  border-radius: 5px;
   border: none;
-  background-color: #c06c84;
-  color: #f2f2f2;
+  background-color: #f2f3f4;
+  color: #355c7d;
   font-size: 1em;
+  box-shadow: 1px 2px 5px black;
   @media (max-width: 900px) {
     width: 50%;
   }

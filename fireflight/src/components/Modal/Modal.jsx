@@ -18,13 +18,13 @@ export default Modal;
 
 const ModalWrapper = styled.div`
   background-color: #f2f2f2;
-  border-radius: 25px;
+  border-radius: 8px;
   border: none;
   box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
   margin: 100px auto 0;
   transition: all 0.8s;
   width: 80%;
-  max-width: 900px;
+  max-width: 700px;
   position: absolute;
   left: 0;
   right: 0;

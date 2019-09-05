@@ -1,6 +1,7 @@
-import React, { useReducer, createContext } from "react";
+import React, { useReducer, createContext, useContext } from "react";
 import axios from "axios";
 import axiosWithAuth from "../utils/axiosWithAuth";
+import { GlobalContext } from "./contextProvider";
 
 import {
   GET_USER_LOCATIONS,
@@ -43,7 +44,7 @@ const fireDataReducer = (state, action) => {
     case GET_USER_COORDINATES:
       return {
         ...state,
-        userCoordinates: [...state.userCoordinates, action.payload]
+        userCoordinates: action.payload
       };
     case GET_PUBLIC_MAP_DATA:
       return {
@@ -128,6 +129,9 @@ export const FireDataProvider = ({ children }) => {
     showAlert: false
   });
 
+  const global = useContext(GlobalContext);
+  console.log(global);
+
   const getUserLocations = () => {
     axiosWithAuth()
       .get("locations")
@@ -156,24 +160,26 @@ export const FireDataProvider = ({ children }) => {
           });
         });
     } else {
+      let payload = [];
       fireDataState.userLocations.forEach(loc => {
         axios
           .get(
             `https://api.mapbox.com/geocoding/v5/mapbox.places/${loc.address}.json?access_token=${token}`
           )
           .then(res => {
-            dispatch({
-              type: GET_USER_COORDINATES,
-              payload: {
-                address_label: loc.address_label,
-                address: loc.address,
-                latitude: res.data.features[0].center[1],
-                longitude: res.data.features[0].center[0],
-                radius: loc.radius,
-                id: loc.id
-              }
+            payload.push({
+              address_label: loc.address_label,
+              address: loc.address,
+              latitude: res.data.features[0].center[1],
+              longitude: res.data.features[0].center[0],
+              radius: loc.radius,
+              id: loc.id
             });
           });
+      });
+      dispatch({
+        type: GET_USER_COORDINATES,
+        payload: payload
       });
     }
   };

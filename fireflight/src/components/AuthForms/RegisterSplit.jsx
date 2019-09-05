@@ -31,8 +31,11 @@ const RegisterSplitWrapper = styled.div`
   }
 `;
 
-const Heading = styled.h2`
-  margin-top: 0px;
+const Heading = styled.h3`
+  margin: 0px auto auto;
+  width: 75%;
+  text-align: right;
+  line-height: 30px;
   @media (max-width: 900px) {
     margin-top: 15px;
   }
@@ -40,15 +43,21 @@ const Heading = styled.h2`
 
 const Text = styled.p`
   width: 75%;
+  text-align: right;
   margin: auto;
+  padding-top: 10px;
+  line-height: 20px;
+  font-weight: 300;
+  font-size: 0.8rem;
 `;
 
 const Button = styled.button`
-  width: 60%;
+  width: 50%;
   margin: 25px auto;
   background: none;
-  border-color: white;
-  border-radius: 25px;
+  border-color: #f2f3f4;
+  border-radius: 5px;
   padding: 10px;
-  color: white;
+  color: #f2f3f4;
+  font-size: 1em;
 `;
