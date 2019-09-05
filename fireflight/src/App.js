@@ -84,7 +84,7 @@ function App() {
 
   useEffect(() => {
     getAlertData();
-  }, [userCoordinates]);
+  }, [token, userLocations]);
 
   return (
     <AppWrapper>

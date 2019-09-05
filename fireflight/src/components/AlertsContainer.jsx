@@ -8,9 +8,12 @@ import Alerts from "./Alerts";
 import styled from "styled-components";
 
 const AlertsContainer = () => {
-  const { fireDataState, setShowAlert, setAlertViewed } = useContext(
-    FireDataContext
-  );
+  const {
+    fireDataState,
+    setShowAlert,
+    setAlertViewed,
+    getAlertData
+  } = useContext(FireDataContext);
   const { alertData, alertViewed, showAlert } = fireDataState;
 
   const token = localStorage.getItem("token");
@@ -19,6 +22,10 @@ const AlertsContainer = () => {
     setShowAlert(false);
     setAlertViewed(true);
   };
+
+  useEffect(() => {
+    getAlertData();
+  }, [showAlert]);
 
   // console.log(fireData);
 

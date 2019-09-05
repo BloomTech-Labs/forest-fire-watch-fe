@@ -16,13 +16,14 @@ const Dashboard = () => {
     <DashboardWrapper>
       <ContentContainer>
         <AlertsDiv>
-          <DivHeading onClick={setShowAlert}>View Todays Alerts</DivHeading>
+          <DivHeading onClick={() => setShowAlert(true)}>
+            View Todays Alerts
+          </DivHeading>
         </AlertsDiv>
         <MapDiv>
           <DivHeading>Active Fires</DivHeading>
           <PrivateMap />
         </MapDiv>
-
         <AddressesDiv>
           <NavLink
             to="/address"
