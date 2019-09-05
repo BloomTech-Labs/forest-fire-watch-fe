@@ -8,7 +8,15 @@ import { FireDataContext } from "../context/FireDataContext";
 import PrivateMap from "./PrivateMap";
 
 const Dashboard = () => {
-  const { setShowAlert } = useContext(FireDataContext);
+  const { fireDataState, setShowAlert, getUserLocations } = useContext(
+    FireDataContext
+  );
+
+  useEffect(() => {
+    getUserLocations();
+  }, []);
+
+  console.log(fireDataState);
   return (
     <DashboardWrapper>
       <ContentContainer>

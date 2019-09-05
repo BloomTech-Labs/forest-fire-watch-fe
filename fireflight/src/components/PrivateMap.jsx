@@ -18,6 +18,7 @@ const PrivateMap = () => {
 
   // hook for current selected fire to display popup on the map
   const [selectedFire, setSelectedFire] = useState(null);
+  const [selectOptions, setSelectOptions] = useState([]);
 
   // mapbox API token
   const token =
@@ -41,6 +42,7 @@ const PrivateMap = () => {
   useEffect(() => {
     if (userCoordinates.length > 0) {
       setSelectedLocation(userCoordinates[0].id);
+      createSelectLocations();
     }
   }, [userCoordinates]);
 
@@ -100,6 +102,15 @@ const PrivateMap = () => {
       });
       setFiresDisplay(fires);
     }
+  };
+
+  const createSelectLocations = async () => {
+    let selectOptionsContainer = userCoordinates.map(coord => (
+      <SelectOption value={coord.id} key={coord.address + coord.id}>
+        {coord.address_label ? coord.address_label : coord.address.slice(0, 15)}
+      </SelectOption>
+    ));
+    setSelectOptions(selectOptionsContainer);
   };
 
   return (
