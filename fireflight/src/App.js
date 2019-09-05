@@ -58,14 +58,16 @@ function App() {
   }, []); //[] here means this will only run once
 
   useEffect(() => {
-    const fetch = async () => {
-      try {
-        let temp = await global.state.remote.fetchLocations();
-      } catch (err) {
-        console.error(err);
-      }
-    };
-    fetch();
+    if (token) {
+      const fetch = async () => {
+        try {
+          let temp = await global.state.remote.fetchLocations();
+        } catch (err) {
+          console.error(err);
+        }
+      };
+      fetch();
+    }
   }, [token]);
 
   useEffect(() => {
