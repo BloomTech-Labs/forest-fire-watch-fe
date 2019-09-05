@@ -169,6 +169,7 @@ function Address(props) {
         }
     };
 
+    console.log(address.state);
   return (
     <FormContainer>
       {/* <>

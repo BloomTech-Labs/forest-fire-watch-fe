@@ -101,16 +101,14 @@ function AddressContextProvider(props) {
       payload: payload
     });
   };
+
   const reset = async () => {
+    console.log("called reset");
     clear();
     global.state.remote.fetchLocations().then(data => {
       updateAddresses(data.reason);
     });
   };
-
-  useEffect(() => {
-    reset();
-  }, []);
 
   const fetchAddress = async () => {
     dispatch({ type: FETCHING_ADDRESSES });
@@ -130,6 +128,7 @@ function AddressContextProvider(props) {
   };
 
     useEffect(()=>{
+        console.log("effect loaded");
         reset()
     },[])
 
