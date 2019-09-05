@@ -20,6 +20,8 @@ import { FireDataContext } from "./context/FireDataContext";
 
 import * as v from "./styles/vars";
 
+import "./App.css";
+
 const token = localStorage.getItem("token");
 
 // AUTH FORM MODAL:

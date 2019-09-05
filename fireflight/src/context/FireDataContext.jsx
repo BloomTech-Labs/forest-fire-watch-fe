@@ -1,6 +1,7 @@
-import React, { useReducer, createContext } from "react";
+import React, { useReducer, createContext, useContext } from "react";
 import axios from "axios";
 import axiosWithAuth from "../utils/axiosWithAuth";
+import { GlobalContext } from "./contextProvider";
 
 import {
   GET_USER_LOCATIONS,
@@ -127,6 +128,9 @@ export const FireDataProvider = ({ children }) => {
     alertViewed: false,
     showAlert: false
   });
+
+  const global = useContext(GlobalContext);
+  console.log(global);
 
   const getUserLocations = () => {
     axiosWithAuth()
