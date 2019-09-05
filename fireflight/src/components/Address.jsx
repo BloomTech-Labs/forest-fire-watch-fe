@@ -32,8 +32,6 @@ function Address(props) {
     const testFetch = e => {
         if (e) e.preventDefault();
         address.fetchAddress().then(() => {
-        console.log("render time");
-        console.log(address.state.address);
         });
     };
 
@@ -96,7 +94,6 @@ function Address(props) {
         } else {
             if (addy.length > 0) {
                 let temp = addy.split(",").map(s => s.trim());
-                console.log(temp);
                 setStreet(temp[0]);
                 setApartment(temp[1]);
                 setCity(temp[2]);
