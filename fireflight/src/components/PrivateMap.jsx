@@ -45,7 +45,7 @@ const PrivateMap = () => {
 
   useEffect(() => {
     if (userCoordinates.length > 0) {
-      setSelectedLocation(userCoordinates[0].id);
+      setSelectedLocation(state.addresses[0].id);
       createSelectLocations();
     }
   }, [userCoordinates]);
