@@ -3,7 +3,7 @@ import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import styled from "styled-components";
 import { tablet, desktop } from "../styles/vars";
 
-import { PublicMapContext } from "../context/PublicMapContext";
+import { FireDataContext } from "../context/FireDataContext";
 
 import Modal from "./Modal/Modal";
 import fireIcon from "../images/fireIcon.png";
@@ -16,56 +16,91 @@ const token =
 
 const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
   const {
-    publicMapState,
-    setViewport,
-    setAddress,
-    getData,
-    setTrigger
-  } = useContext(PublicMapContext);
-  const { viewport, address, coordinates, fireData, trigger } = publicMapState;
+    fireDataState,
+    setPublicViewport,
+    getCoordinates,
+    getPublicMapData,
+    setTriggerRegistrationButton
+  } = useContext(FireDataContext);
+  const {
+    publicMapViewport,
+    publicMapData,
+    publicCoordinates,
+    triggerRegistrationButton
+  } = fireDataState;
+  const [address, setAddress] = useState("");
+  const [firesDisplay, setFiresDisplay] = useState();
+  const [userMarker, setUserMarker] = useState();
 
   const handleSubmit = () => {
-    getData();
-    setTrigger();
-    // console.log(fireData);
+    if (address) {
+      getCoordinates({
+        address: address,
+        address_label: null
+      });
+      setTriggerRegistrationButton();
+    }
   };
 
-  let userMarker;
+  useEffect(() => {
+    if (Object.keys(publicCoordinates).length > 0) {
+      getPublicMapData();
+    }
+  }, [publicCoordinates]);
 
-  if (coordinates.latitude && coordinates.longitude) {
-    userMarker = (
-      <Marker latitude={coordinates.latitude} longitude={coordinates.longitude}>
-        <img
-          src={locationIcon}
-          height="35"
-          width="20"
-          style={{ zIndex: -1, transform: "translate(-10px, -35px)" }}
-        />
-      </Marker>
-    );
-  }
+  useEffect(() => {
+    createFiresDisplay();
+  }, [publicMapData]);
 
-  let activeFires = [];
+  useEffect(() => {
+    createUserMarker();
+  }, [publicCoordinates.latitude]);
 
-  if (fireData.length > 0) {
-    activeFires = fireData.map(fire => {
-      return (
-        // return marker for each fire datapoint
+  const createUserMarker = () => {
+    if (publicCoordinates.latitude && publicCoordinates.longitude) {
+      setUserMarker(
         <Marker
-          latitude={fire.latitude}
-          longitude={fire.longitude}
-          key={`${fire.distance}_${fire.latitude}`}
+          latitude={publicCoordinates.latitude}
+          longitude={publicCoordinates.longitude}
         >
           <img
-            src={fireIcon}
+            src={locationIcon}
             height="35"
-            width="35"
-            style={{ zIndex: 3, transform: "translate(-17.5px, -35px)" }}
+            width="20"
+            style={{ zIndex: -1, transform: "translate(-10px, -35px)" }}
           />
         </Marker>
       );
-    });
-  }
+    }
+  };
+
+  const createFiresDisplay = async () => {
+    if (publicMapData.Alert) {
+      let fires = await publicMapData.Fires.map(fire => {
+        return (
+          // return marker for each fire datapoint
+          <Marker
+            latitude={fire[0][1]}
+            longitude={fire[0][0]}
+            key={fire[0][0] + fire[0][1]}
+          >
+            <img
+              src={fireIcon}
+              height="35"
+              width="35"
+              style={{ zIndex: 3, transform: "translate(-17.5px, -35px)" }}
+              // onClick={e => {
+              //   setSelectedFire(fire[0]);
+              // }}
+            />
+          </Marker>
+        );
+      });
+      console.log(fires);
+      setFiresDisplay(fires);
+    }
+  };
+
   let infoText;
 
   infoText = <InfoText>All searches are based on a 500 mile radius</InfoText>;
@@ -84,7 +119,7 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
           <FormButton onClick={handleSubmit}>Find Active Fires</FormButton>
         </FormContainer>
         {infoText}
-        {trigger ? (
+        {triggerRegistrationButton ? (
           <TriggeredButton
             onClick={() => {
               setShowAuth(true);
@@ -98,14 +133,14 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
       </Container>
 
       <ReactMapGL
-        {...viewport}
+        {...publicMapViewport}
         mapboxApiAccessToken={token}
-        onViewportChange={viewport => {
-          setViewport(viewport);
+        onViewportChange={publicMapViewport => {
+          setPublicViewport(publicMapViewport);
         }}
       >
         {userMarker}
-        {activeFires}
+        {firesDisplay}
       </ReactMapGL>
     </div>
   );

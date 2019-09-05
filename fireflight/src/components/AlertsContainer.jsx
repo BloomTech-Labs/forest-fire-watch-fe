@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
 
-import { AlertContext } from "../context/AlertContext";
+import { FireDataContext } from "../context/FireDataContext";
 
 import Modal from "./Modal/Modal";
 import Alerts from "./Alerts";
@@ -8,8 +8,10 @@ import Alerts from "./Alerts";
 import styled from "styled-components";
 
 const AlertsContainer = () => {
-  const { alertState, setShowAlert, setAlertViewed } = useContext(AlertContext);
-  const { fireData, alertViewed, showAlert } = alertState;
+  const { fireDataState, setShowAlert, setAlertViewed } = useContext(
+    FireDataContext
+  );
+  const { alertData, alertViewed, showAlert } = fireDataState;
 
   const token = localStorage.getItem("token");
 
@@ -21,10 +23,11 @@ const AlertsContainer = () => {
   // console.log(fireData);
 
   useEffect(() => {
-    if (alertViewed === false && fireData.length > 0) {
+    console.log(alertData);
+    if (alertViewed === false && alertData.length > 0) {
       setShowAlert(true);
     }
-  }, [fireData]);
+  }, [alertData]);
 
   if (token) {
     return (
