@@ -59,6 +59,19 @@ function App() {
 
   useEffect(() => {
     if (token) {
+      const fetch = async () => {
+        try {
+          let temp = await global.state.remote.fetchLocations();
+        } catch (err) {
+          console.error(err);
+        }
+      };
+      fetch();
+    }
+  }, [token]);
+
+  useEffect(() => {
+    if (token) {
       getUserLocations();
     }
   }, [token]);

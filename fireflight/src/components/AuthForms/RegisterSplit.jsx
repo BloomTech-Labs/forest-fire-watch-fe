@@ -7,7 +7,8 @@ const RegisterSplit = ({ toggle }) => {
       <div>
         <Heading>Welcome Back!</Heading>
         <Text>
-          To keep conneted with us please login with your personal info
+          To keep conneted with us FireFlight please sign in with your personal
+          info
         </Text>
         <Button onClick={() => toggle()}>Sign In</Button>
       </div>
@@ -21,7 +22,7 @@ const RegisterSplitWrapper = styled.div`
   width: 100%;
   height: 100%;
   background-image: linear-gradient(to bottom, #6c5b7b, #355c7d);
-  border-radius: 25px 0px 0px 25px;
+  border-radius: 8px 0px 0px 8px;
   color: white;
   display: flex;
   flex-direction: column;
@@ -34,7 +35,7 @@ const RegisterSplitWrapper = styled.div`
 const Heading = styled.h3`
   margin: 0px auto auto;
   width: 75%;
-  text-align: right;
+  text-align: left;
   line-height: 30px;
   @media (max-width: 900px) {
     margin-top: 15px;
@@ -43,7 +44,7 @@ const Heading = styled.h3`
 
 const Text = styled.p`
   width: 75%;
-  text-align: right;
+  text-align: left;
   margin: auto;
   padding-top: 10px;
   line-height: 20px;

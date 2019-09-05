@@ -197,6 +197,7 @@ const MenuContainer = styled.div`
   flex-direction: column;
   background-color: ${v.AccentColorTransparency};
   z-index: 2;
+
   ${v.tablet} {
     position: static;
     right: auto;
@@ -209,7 +210,7 @@ const MenuContainer = styled.div`
 const MenuItem = styled.div`
   cursor: pointer;
   padding: 10px;
-  cursor:pointer;
+  cursor: pointer;
   img {
     display: none;
     margin: auto;
@@ -217,6 +218,7 @@ const MenuItem = styled.div`
   }
   ${v.tablet} {
     padding: auto;
+    width: 80px;
     img {
       display: block;
     }

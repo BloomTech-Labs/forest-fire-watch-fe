@@ -129,9 +129,6 @@ export const FireDataProvider = ({ children }) => {
     showAlert: false
   });
 
-  const global = useContext(GlobalContext);
-  console.log(global);
-
   const getUserLocations = () => {
     axiosWithAuth()
       .get("locations")

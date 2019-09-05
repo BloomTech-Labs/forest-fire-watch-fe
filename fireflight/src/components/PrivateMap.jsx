@@ -8,11 +8,12 @@ import AddressContext from "../context/addressContextProvider";
 import fireIcon from "../images/fireIcon.png";
 import locationIcon from "../images/locationIcon.png";
 
-const PrivateMap = ({ selects }) => {
+const PrivateMap = () => {
   const { fireDataState, setPrivateViewport, getPrivateMapData } = useContext(
     FireDataContext
   );
   const { state } = useContext(AddressContext);
+
   const { privateMapViewport, privateMapData, userCoordinates } = fireDataState;
   const [userMarker, setUserMarker] = useState();
   const [firesDisplay, setFiresDisplay] = useState();
@@ -29,6 +30,7 @@ const PrivateMap = ({ selects }) => {
 
   // useEffect hook to cause the ESC key to close a popup by setting selectedFire state to null
   useEffect(() => {
+    console.log(state);
     const listener = e => {
       if (e.key === "Escape") {
         setSelectedFire(null);
@@ -47,8 +49,6 @@ const PrivateMap = ({ selects }) => {
       createSelectLocations();
     }
   }, [userCoordinates]);
-
-  useEffect(() => {});
 
   useEffect(() => {
     if (selectedLocation) {
