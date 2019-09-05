@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { BrowserRouter as Router, Route,Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import Home from "./components/Home";
 import Danger from "./components/Danger";
@@ -45,13 +45,13 @@ function App() {
   useEffect(() => {
     //getLogin gets login information upon page load here;
     const getLogin = async () => {
-      try{
+      try {
         let user = await global.state.remote.self();
         global.setUser(user.username);
-      }catch(err){
-        localStorage.removeItem('token')
-        global.setUser('')
-        return(<Redirect to='/'/>)
+      } catch (err) {
+        localStorage.removeItem("token");
+        global.setUser("");
+        return <Redirect to="/" />;
       }
     };
     getLogin();
@@ -75,52 +75,53 @@ function App() {
 
   return (
     <AppWrapper>
-      <AlertsContainer />
-
-      <AuthForms
-        showAuthForms={showAuthForms}
-        setShowAuthForms={setShowAuthForms}
-        loginFormStatus={loginFormStatus}
-        registerFormStatus={registerFormStatus}
-        setLoginFormStatus={setLoginFormStatus}
-        setRegisterFormStatus={setRegisterFormStatus}
-      />
-
-      <Navigation
-        toggleAuthForms={setShowAuthForms}
-        toggleLoginStatus={setLoginFormStatus}
-        toggleRegisterStatus={setRegisterFormStatus}
-      />
-
-      <Route path="/dashboard" component={Dashboard} />
-
-      <Route
-        exact
-        path="/"
-        render={() => (
-          <Home
-            setShowAuth={setShowAuthForms}
-            setShowRegister={setRegisterFormStatus}
-            setShowLogin={setLoginFormStatus}
-          />
-        )}
-      />
-      <Route path="/update" component={Update} />
-
-      <Route path="/danger" component={Danger} />
-
-      <Route
-        path="/home"
-        render={() => (
-          <Home
-            setShowAuth={setShowAuthForms}
-            setShowRegister={setRegisterFormStatus}
-            setShowLogin={setLoginFormStatus}
-          />
-        )}
-      />
-      {/* <Route path="/maps" component={PrivateMap} /> */}
       <AddressContext>
+        <AlertsContainer />
+
+        <AuthForms
+          showAuthForms={showAuthForms}
+          setShowAuthForms={setShowAuthForms}
+          loginFormStatus={loginFormStatus}
+          registerFormStatus={registerFormStatus}
+          setLoginFormStatus={setLoginFormStatus}
+          setRegisterFormStatus={setRegisterFormStatus}
+        />
+
+        <Navigation
+          toggleAuthForms={setShowAuthForms}
+          toggleLoginStatus={setLoginFormStatus}
+          toggleRegisterStatus={setRegisterFormStatus}
+        />
+
+        <Route path="/dashboard" component={Dashboard} />
+
+        <Route
+          exact
+          path="/"
+          render={() => (
+            <Home
+              setShowAuth={setShowAuthForms}
+              setShowRegister={setRegisterFormStatus}
+              setShowLogin={setLoginFormStatus}
+            />
+          )}
+        />
+        <Route path="/update" component={Update} />
+
+        <Route path="/danger" component={Danger} />
+
+        <Route
+          path="/home"
+          render={() => (
+            <Home
+              setShowAuth={setShowAuthForms}
+              setShowRegister={setRegisterFormStatus}
+              setShowLogin={setLoginFormStatus}
+            />
+          )}
+        />
+        {/* <Route path="/maps" component={PrivateMap} /> */}
+
         <Route path="/address" component={Address} />
       </AddressContext>
     </AppWrapper>

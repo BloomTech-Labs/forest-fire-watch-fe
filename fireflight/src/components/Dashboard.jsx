@@ -12,11 +12,6 @@ const Dashboard = () => {
     FireDataContext
   );
 
-  useEffect(() => {
-    getUserLocations();
-  }, []);
-
-  console.log(fireDataState);
   return (
     <DashboardWrapper>
       <ContentContainer>
