@@ -103,7 +103,7 @@ const LoginPageContainer = styled.div`
     #6c5b7b,
     #355c7d
   );
-  border-radius: 25px;
+  border-radius: 8px;
 
   @media (max-width: 900px) {
     flex-direction: column;

@@ -19,7 +19,7 @@ const LoginSplitWrapper = styled.div`
   width: 100%;
   height: 100%;
   background-image: linear-gradient(to bottom, #6c5b7b, #355c7d);
-  border-radius: 0px 25px 25px 0px;
+  border-radius: 0px 8px 8px 0px;
   color: white;
   display: flex;
   flex-direction: column;
