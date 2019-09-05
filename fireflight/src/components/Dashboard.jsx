@@ -56,7 +56,7 @@ const ContentContainer = styled.div`
   }
 `;
 
-const DivHeading = styled.h2`
+const DivHeading = styled.h3`
   padding: 10px 0px;
   margin: 0;
 `;
@@ -66,7 +66,6 @@ const AlertsDiv = styled.div`
   max-width: 500px;
   height: 50px;
   margin: 10px auto;
-  background-color: #373d3f;
   background: rgba(55, 61, 63, 0.65);
   box-shadow: 1px 2px 10px black;
   color: #f2f3f4;

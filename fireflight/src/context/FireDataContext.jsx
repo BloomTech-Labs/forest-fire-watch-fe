@@ -113,7 +113,7 @@ export const FireDataProvider = ({ children }) => {
       height: "100vh",
       latitude: 37.7749,
       longitude: -122.4194,
-      zoom: 8
+      zoom: 7
     },
     privateMapData: {},
     privateMapViewport: {
@@ -121,7 +121,7 @@ export const FireDataProvider = ({ children }) => {
       height: window.innerWidth < 900 ? 350 : 500,
       latitude: 37.7749,
       longitude: -122.4194,
-      zoom: 8
+      zoom: 7
     },
     triggerRegistrationButton: false,
     alertData: [],
@@ -199,7 +199,7 @@ export const FireDataProvider = ({ children }) => {
             height: "100vh",
             latitude: fireDataState.publicCoordinates.latitude,
             longitude: fireDataState.publicCoordinates.longitude,
-            zoom: 8
+            zoom: 7
           }
         });
       });
@@ -232,7 +232,7 @@ export const FireDataProvider = ({ children }) => {
             height: window.innerWidth < 900 ? 350 : 500,
             latitude: selection.latitude,
             longitude: selection.longitude,
-            zoom: 8
+            zoom: 7
           }
         });
       });
