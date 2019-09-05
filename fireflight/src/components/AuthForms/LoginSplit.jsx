@@ -5,9 +5,9 @@ const LoginSplit = ({ toggle }) => {
   return (
     <LoginSplitWrapper>
       <div>
-        <Heading>Hello Friend!</Heading>
-        <Text>Enter your personal details and start the journey with us</Text>
-        <Button onClick={() => toggle()}>Sign Up</Button>
+        <Heading>Make plans now for the wildfire season</Heading>
+        <Text>Take control of you and your families well-being</Text>
+        <Button onClick={() => toggle()}>Create Account</Button>
       </div>
     </LoginSplitWrapper>
   );
@@ -29,8 +29,11 @@ const LoginSplitWrapper = styled.div`
   }
 `;
 
-const Heading = styled.h2`
-  margin-top: 0px;
+const Heading = styled.h3`
+  margin: 0px auto auto;
+  width: 75%;
+  text-align: left;
+  line-height: 30px;
   @media (max-width: 900px) {
     margin-top: 15px;
   }
@@ -38,15 +41,21 @@ const Heading = styled.h2`
 
 const Text = styled.p`
   width: 75%;
+  text-align: left;
   margin: auto;
+  padding-top: 10px;
+  line-height: 20px;
+  font-weight: 300;
+  font-size: 0.8rem;
 `;
 
 const Button = styled.button`
-  width: 60%;
+  width: 50%;
   margin: 25px auto;
   background: none;
-  border-color: white;
-  border-radius: 25px;
+  border-color: #f2f3f4;
+  border-radius: 5px;
   padding: 10px;
-  color: white;
+  color: #f2f3f4;
+  font-size: 1em;
 `;

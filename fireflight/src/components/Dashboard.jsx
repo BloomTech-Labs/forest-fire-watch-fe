@@ -11,7 +11,6 @@ const Dashboard = () => {
   const { setShowAlert } = useContext(FireDataContext);
   return (
     <DashboardWrapper>
-      <Heading>Dashboard</Heading>
       <ContentContainer>
         <AlertsDiv>
           <DivHeading onClick={setShowAlert}>View Todays Alerts</DivHeading>
@@ -24,7 +23,7 @@ const Dashboard = () => {
         <AddressesDiv>
           <NavLink
             to="/address"
-            style={{ color: "black", textDecoration: "none" }}
+            style={{ color: "#f2f3f4", textDecoration: "none" }}
           >
             <DivHeading>Input Addresses</DivHeading>
           </NavLink>
@@ -40,11 +39,7 @@ const DashboardWrapper = styled.div`
   width: 100%;
   height: 100%;
   text-align: center;
-`;
-
-const Heading = styled.h1`
-  padding: 15px 0px;
-  margin: 0;
+  margin-top: 5%;
 `;
 
 const ContentContainer = styled.div`
@@ -68,10 +63,13 @@ const AlertsDiv = styled.div`
   max-width: 500px;
   height: 50px;
   margin: 10px auto;
-  background-color: #f2f3f4;
+  background-color: #373d3f;
+  background: rgba(55, 61, 63, 0.65);
+  box-shadow: 1px 2px 10px black;
+  color: #f2f3f4;
   border-radius: 8px;
   padding: 10px;
-  box-shadow: 2px 5px 15px black;
+
   cursor: pointer;
   @media (min-width: 900px) {
     order: 2;
@@ -84,14 +82,16 @@ const MapDiv = styled.div`
   max-width: 500px;
   height: auto;
   margin: 15px auto;
-  background-color: #f2f3f4;
+  background: rgba(55, 61, 63, 0.65);
+  box-shadow: 1px 2px 10px black;
+  color: #f2f3f4;
   border-radius: 8px;
   padding: 10px;
-  box-shadow: 2px 5px 15px black;
   @media (min-width: 900px) {
     grid-column: 1;
     grid-row: 1 / 3;
     max-width: 1000px;
+    margin: auto;
   }
 `;
 
@@ -100,12 +100,14 @@ const AddressesDiv = styled.div`
   max-width: 500px;
   height: 50px;
   margin: 15px auto;
-  background-color: #f2f3f4;
+  background: rgba(55, 61, 63, 0.65);
+  box-shadow: 1px 2px 10px black;
+  color: #f2f3f4;
   border-radius: 8px;
   padding: 10px;
-  box-shadow: 2px 5px 15px black;
   cursor: pointer;
   @media (min-width: 900px) {
     order: 3;
+    margin: auto;
   }
 `;
