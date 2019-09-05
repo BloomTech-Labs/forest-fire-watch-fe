@@ -12,7 +12,7 @@ const PrivateMap = () => {
   const { fireDataState, setPrivateViewport, getPrivateMapData } = useContext(
     FireDataContext
   );
-  const { state } = useContext(AddressContext);
+  const { state,reset } = useContext(AddressContext);
 
   const { privateMapViewport, privateMapData, userCoordinates } = fireDataState;
   const [userMarker, setUserMarker] = useState();
