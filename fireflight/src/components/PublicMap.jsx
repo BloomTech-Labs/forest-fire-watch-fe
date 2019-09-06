@@ -82,7 +82,7 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
           <Marker
             latitude={fire[0][1]}
             longitude={fire[0][0]}
-            key={fire[0][0] + fire[0][1]}
+            key={fire[0][0] + fire[0][1] + fire[1]}
           >
             <img
               src={fireIcon}
@@ -96,7 +96,6 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
           </Marker>
         );
       });
-      console.log(fires);
       setFiresDisplay(fires);
     }
   };
@@ -187,7 +186,8 @@ const FormButton = styled.button`
   width: 150px;
   margin: 25px 0px 5px;
   border-radius: 5px;
-  background-color: #c06c84;
+  background-color: #355c7d;
+  color: #f2f3f4;
   font-size: 1em;
   border: solid 1px black;
   cursor: pointer;
@@ -203,6 +203,7 @@ const InfoText = styled.div`
   text-align: center;
   @media (max-width: 576px) {
     font-size: 0.8em;
+    text-decoration: underline;
   }
 `;
 

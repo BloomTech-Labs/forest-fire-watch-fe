@@ -25,7 +25,8 @@ const AlertsContainer = () => {
 
   useEffect(() => {
     getAlertData();
-  }, []);
+  }, [showAlert]);
+
 
   // console.log(fireData);
 

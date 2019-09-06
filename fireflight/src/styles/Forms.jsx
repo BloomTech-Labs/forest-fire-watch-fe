@@ -37,7 +37,7 @@ export const Button = styled.button`
     width: 200px;
     padding: 8px;
   }
-  box-shadow: 0.25rem 0.25rem 0.25rem black;
+  box-shadow: 1px 2px 5px black;
   cursor: pointer;
 `;
 
@@ -55,14 +55,16 @@ export const ErrorText = styled.div`
 `;
 
 export const FormContainer = styled.div`
-  background-color: #373d3f;
-  border-radius: 25px;
+  border-radius: 8px;
   border: none;
-  box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+  background: rgba(55, 61, 63, 0.65);
+  box-shadow: 1px 2px 10px black;
+  color: #f2f3f4;
   margin: 0.5rem;
   transition: all 0.8s;
   width: 90%;
   min-height: 500px;
+  height: 80%;
   padding: 1rem;
   ${v.tablet} {
     box-sizing: border-box;
