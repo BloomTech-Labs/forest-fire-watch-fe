@@ -103,7 +103,7 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
 
   let infoText;
 
-  infoText = <InfoText>All searches are based on a 500 mile radius</InfoText>;
+  infoText = <InfoText>* All searches are based on a 500 mile radius</InfoText>;
 
   return (
     <div style={{ position: "relative" }}>
@@ -199,7 +199,11 @@ const FormButton = styled.button`
 `;
 
 const InfoText = styled.div`
+  font-size: 0.9em;
   text-align: center;
+  @media (max-width: 576px) {
+    font-size: 0.8em;
+  }
 `;
 
 const TriggeredButton = styled.button`

@@ -110,7 +110,7 @@ function Register({ toggle, setShowAuthForms }) {
             />
 
             <Button type="submit" disabled={loading}>
-              {loading ? "Loading..." : "Sign Up"}
+              {loading ? "Loading..." : "Create Account"}
             </Button>
           </FormContainer>
         </RegisterContainer>

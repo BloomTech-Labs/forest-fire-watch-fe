@@ -192,18 +192,18 @@ const HamburgerMenuBar = styled.div`
 
 const MenuContainer = styled.div`
   position: absolute;
+  background-color: ${v.AccentColorTransparency};
   right: 0;
   display: flex;
   flex-direction: column;
-  background-color: ${v.AccentColorTransparency};
   z-index: 2;
 
   ${v.tablet} {
+    background-color: transparent;
     position: static;
     right: auto;
     margin: auto;
     text-align: center;
-    background-color: transparent;
   }
 `;
 
