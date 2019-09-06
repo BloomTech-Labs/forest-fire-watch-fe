@@ -57,5 +57,6 @@ const Button = styled.button`
   border-radius: 5px;
   padding: 10px;
   color: #f2f3f4;
+  cursor: pointer;
   font-size: 1em;
 `;

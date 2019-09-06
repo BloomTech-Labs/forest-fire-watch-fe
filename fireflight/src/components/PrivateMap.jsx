@@ -8,6 +8,8 @@ import AddressContext from "../context/addressContextProvider";
 import fireIcon from "../images/fireIcon.png";
 import locationIcon from "../images/locationIcon.png";
 
+const dotenv = require("dotenv");
+
 const PrivateMap = () => {
   const { fireDataState, setPrivateViewport, getPrivateMapData } = useContext(
     FireDataContext
@@ -25,8 +27,9 @@ const PrivateMap = () => {
 
   // mapbox API token
   const token =
-    process.env.REACT_APP_MAPBOX_TOKEN ||
-    "pk.eyJ1Ijoia2VuMTI4NiIsImEiOiJjanpuMXdlb2UwZzlkM2JsY2t2aTVkcGFoIn0.eGKKY2f3oC5s8GqsyB70Yg";
+    process.env.REACT_APP_MAPBOX_TOKEN;
+    //  ||
+    // "pk.eyJ1Ijoia2VuMTI4NiIsImEiOiJjanpuMXdlb2UwZzlkM2JsY2t2aTVkcGFoIn0.eGKKY2f3oC5s8GqsyB70Yg";
 
   // useEffect hook to cause the ESC key to close a popup by setting selectedFire state to null
   useEffect(() => {

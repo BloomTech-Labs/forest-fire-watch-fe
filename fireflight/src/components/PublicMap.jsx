@@ -190,6 +190,7 @@ const FormButton = styled.button`
   background-color: #c06c84;
   font-size: 1em;
   border: solid 1px black;
+  cursor: pointer;
   @media (max-width: 576px) {
     height: 35px;
     width: 125px;
