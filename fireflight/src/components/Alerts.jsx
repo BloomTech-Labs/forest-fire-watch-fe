@@ -9,6 +9,8 @@ const Alerts = () => {
   const { fireDataState } = useContext(FireDataContext);
   const { alertData } = fireDataState;
 
+  console.log(fireDataState);
+
   let myAlerts;
 
   if (alertData.length > 0) {

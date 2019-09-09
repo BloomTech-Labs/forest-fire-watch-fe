@@ -68,15 +68,16 @@ function Login({ toggle, setShowAuthForms }) {
             name="password"
             value={password}
             onChange={handlePassword}
-            placeholder="password"
+            placeholder="Password"
           />
+          <p><ForgotPw href='#'>Forgot your Password?</ForgotPw></p>
           {errorStatus ? (
             <ErrorText>{errorText.password}</ErrorText>
           ) : (
             <ErrorText />
           )}
           <Button type="submit" disabled={loading}>
-            {loading ? "Loading..." : "Log In"}
+            {loading ? "Loading..." : "Sign In"}
           </Button>
         </FormContainer>
       </LoginContainer>
@@ -130,6 +131,7 @@ const LoginSplitContainer = styled.div`
 const FormHeading = styled.h2`
   margin-bottom: 50px;
   color: #f2f3f4;
+  font-weight: bold;
 `;
 
 const FormContainer = styled.form`
@@ -155,6 +157,12 @@ const FormInput = styled.input`
   }
 `;
 
+const ForgotPw = styled.a`
+  color: #FFF;
+  font-size: 0.75em;
+  text-decoration: none;
+`;
+
 const Button = styled.button`
   width: 200px;
   margin: 20px auto;
@@ -165,6 +173,7 @@ const Button = styled.button`
   color: #355c7d;
   font-size: 1em;
   box-shadow: 1px 2px 5px black;
+  cursor: pointer;
   @media (max-width: 900px) {
     width: 50%;
   }

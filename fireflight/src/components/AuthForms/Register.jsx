@@ -110,7 +110,7 @@ function Register({ toggle, setShowAuthForms }) {
             />
 
             <Button type="submit" disabled={loading}>
-              {loading ? "Loading..." : "Sign Up"}
+              {loading ? "Loading..." : "Create Account"}
             </Button>
           </FormContainer>
         </RegisterContainer>
@@ -196,6 +196,7 @@ const Button = styled.button`
   color: #355c7d;
   font-size: 1em;
   box-shadow: 1px 2px 5px black;
+  cursor: pointer;
   @media (max-width: 900px) {
     width: 50%;
   }

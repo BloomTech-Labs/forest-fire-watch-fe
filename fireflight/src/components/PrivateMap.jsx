@@ -8,6 +8,8 @@ import AddressContext from "../context/addressContextProvider";
 import fireIcon from "../images/fireIcon.png";
 import locationIcon from "../images/locationIcon.png";
 
+const dotenv = require("dotenv");
+
 const PrivateMap = () => {
   const { fireDataState, setPrivateViewport, getPrivateMapData } = useContext(
     FireDataContext
@@ -25,8 +27,9 @@ const PrivateMap = () => {
 
   // mapbox API token
   const token =
-    process.env.REACT_APP_MAPBOX_TOKEN ||
-    "pk.eyJ1Ijoia2VuMTI4NiIsImEiOiJjanpuMXdlb2UwZzlkM2JsY2t2aTVkcGFoIn0.eGKKY2f3oC5s8GqsyB70Yg";
+    process.env.REACT_APP_MAPBOX_TOKEN;
+    //  ||
+    // "pk.eyJ1Ijoia2VuMTI4NiIsImEiOiJjanpuMXdlb2UwZzlkM2JsY2t2aTVkcGFoIn0.eGKKY2f3oC5s8GqsyB70Yg";
 
   // useEffect hook to cause the ESC key to close a popup by setting selectedFire state to null
   useEffect(() => {
@@ -98,7 +101,7 @@ const PrivateMap = () => {
               width="35"
               style={{ zIndex: 3, transform: "translate(-17.5px, -35px)" }}
               onClick={e => {
-                setSelectedFire(fire[0]);
+                setSelectedFire(fire);
               }}
             />
           </Marker>
@@ -138,14 +141,17 @@ const PrivateMap = () => {
         {/* sets selectedFire state to clicked on location */}
         {selectedFire ? (
           <Popup
-            latitude={selectedFire[1]}
-            longitude={selectedFire[0]}
+            latitude={selectedFire[0][1]}
+            longitude={selectedFire[0][0]}
             onClose={() => {
               setSelectedFire(null);
             }}
           >
             <div>
-              Lat: {selectedFire[1]}, Long: {selectedFire[0]}
+              <PopupText>
+                This fire is {selectedFire[1].toFixed(0)} miles away from your
+                location
+              </PopupText>
             </div>
           </Popup>
         ) : null}
@@ -172,3 +178,9 @@ const LocationSelect = styled.select`
 `;
 
 const SelectOption = styled.option``;
+
+const PopupText = styled.p`
+  color: #355c7d;
+  padding: 0px;
+  margin: 0px;
+`;

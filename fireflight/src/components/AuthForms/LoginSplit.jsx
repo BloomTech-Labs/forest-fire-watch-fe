@@ -5,8 +5,8 @@ const LoginSplit = ({ toggle }) => {
   return (
     <LoginSplitWrapper>
       <div>
-        <Heading>Make plans now for the wildfire season</Heading>
-        <Text>Take control of you and your families well-being</Text>
+        <Heading>Make plans now for wildfire season</Heading>
+        <Text>Take control of you and your family's well-being.</Text>
         <Button onClick={() => toggle()}>Create Account</Button>
       </div>
     </LoginSplitWrapper>
@@ -27,10 +27,14 @@ const LoginSplitWrapper = styled.div`
   @media (max-width: 900px) {
     border-radius: 0px 0px 25px 25px;
   }
+  @media (max-width: 576px) {
+    display: none;
+  }
 `;
 
 const Heading = styled.h3`
   margin: 0px auto auto;
+  font-weight: 500;
   width: 75%;
   text-align: left;
   line-height: 30px;
@@ -57,5 +61,6 @@ const Button = styled.button`
   border-radius: 5px;
   padding: 10px;
   color: #f2f3f4;
+  cursor: pointer;
   font-size: 1em;
 `;
