@@ -3,7 +3,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { GlobalContext } from "../context/contextProvider";
 import { withRouter, NavLink, Link, Redirect } from "react-router-dom";
 import styled from "styled-components";
-import logo from "../images/fireIcon.png";
+import logo from "../images/FF-logo.png";
 import user from "../images/user.svg";
 import dashboard from "../images/dashboard.svg";
 import dashboardAlt from "../images/active-dashboard.svg";
@@ -157,6 +157,10 @@ const NavContainer = styled.div`
     color: ${v.AccentColor};
     background-color: lightgrey;
   }
+  @media (max-width: 576px) {
+    background-image: linear-gradient(to bottom, #355C7D, #F67280 60%);
+    height: 125px;
+  }
 `;
 
 const Logo = styled.div`
@@ -176,7 +180,6 @@ const HamburgerMenu = styled.div`
   ${v.tablet}{
     padding:0;
     width:auto;
-    background-color:transparent;
   }
 `;
 
@@ -187,6 +190,9 @@ const HamburgerMenuBar = styled.div`
   margin: 5px 0;
   ${v.tablet} {
     display: none;
+  }
+  @media (max-width: 576px) {
+    
   }
 `;
 
