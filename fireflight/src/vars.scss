@@ -1,0 +1,22 @@
+// Media Queries
+$tablet: '@media(min-width: 576px)';
+$desktop: '@media(min-width: 992px)';
+
+// Background Colors
+$bgColor: '#FFF';
+$cardBgColor: #373d3f;
+
+// Colors
+$accentColor: #355C7D;
+$accentColorTransparency: 'rgba(53, 95, 125, .75)';
+$raven: #373d3f;
+$ruby: #c02f1d;
+$lilia: #f2f3f4;
+
+// Fonts
+$fontStack: 'font-family: "Helvetica Neue", Helvetica, Arial';
+
+// Misc
+$cardDropShadow: 'box-shadow: 0 3px 4px #000';
+$clearAnchors: 'text-decoration: none', 'color: #FFF';
+$inputFormColor: #6a859c;

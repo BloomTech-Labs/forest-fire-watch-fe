@@ -20,7 +20,7 @@ import { FireDataContext } from "./context/FireDataContext";
 
 import * as v from "./styles/vars";
 
-import "./App.css";
+import "./App.scss";
 
 const token = localStorage.getItem("token");
 
