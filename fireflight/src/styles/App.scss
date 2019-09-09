@@ -1,7 +1,9 @@
 @import './vars.scss';
 
-body {
+html, body {
   font-family: $fontStack;
+  margin: 0;
+  padding: 0;
 }
 
 h1 {
