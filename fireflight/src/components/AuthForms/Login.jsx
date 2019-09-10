@@ -5,7 +5,7 @@ import { Link, Redirect } from "react-router-dom";
 import useInput from "../../utils/useInput";
 import styled from "styled-components";
 //not sure if we are using redux or hooks with context, so taking my best guess...
-import logo from '../../images/FF-logo.png';
+import logo from "../../images/FF-logo.png";
 import LoginSplit from "./LoginSplit";
 
 const deployedURL = "https://fireflight-lambda.herokuapp.com/api/auth";
@@ -52,9 +52,9 @@ function Login({ toggle, setShowAuthForms }) {
   return (
     <LoginPageContainer>
       <LoginContainer>
-        <img src={logo} alt='FireFlight' />
-        <h2 className='form-heading'>Welcome Back!</h2>
-        <p className='form-text'>Sign in to continue</p>
+        <img src={logo} alt="FireFlight" />
+        <h2 className="form-heading">Welcome Back!</h2>
+        <p className="form-text">Sign in to continue</p>
         <div class="fb-login-button" data-width="150px" data-size="medium" data-button-type="login_with" data-auto-logout-link="true" data-use-continue-as="false" />
         <FormContainer onSubmit={handleSubmit}>
           <FormInput
@@ -79,7 +79,7 @@ function Login({ toggle, setShowAuthForms }) {
           ) : (
             <ErrorText />
           )}
-          <button className='auth-btn' type="submit" disabled={loading}>
+          <button className="auth-btn" type="submit" disabled={loading}>
             {loading ? "Loading..." : "Sign In"}
           </button>
         </FormContainer>

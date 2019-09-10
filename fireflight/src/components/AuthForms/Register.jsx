@@ -5,7 +5,7 @@ import axios from "axios";
 
 import useInput from "../../utils/useInput";
 import styled from "styled-components";
-import logo from '../../images/FF-logo.png';
+import logo from "../../images/FF-logo.png";
 import RegisterSplit from "./RegisterSplit";
 
 const deployedURL = "https://fireflight-lambda.herokuapp.com/api/auth";
@@ -71,7 +71,7 @@ function Register({ toggle, setShowAuthForms }) {
           <RegisterSplit toggle={toggle} />
         </RegisterSplitContainer>
         <RegisterContainer>
-          <img src={logo} alt='FireFlight' />
+          <img src={logo} alt="FireFlight" />
           <FormHeading>Create Account</FormHeading>
           <FormContainer onSubmit={handleSubmit}>
             <FormInput
