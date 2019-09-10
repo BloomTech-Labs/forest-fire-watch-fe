@@ -52,7 +52,7 @@ function Login({ toggle, setShowAuthForms }) {
   return (
     <LoginPageContainer>
       <LoginContainer>
-        <FormHeading>Sign in with FireFlight</FormHeading>
+        <FormHeading>Welcome Back!</FormHeading>
         <FormContainer onSubmit={handleSubmit}>
           <FormInput
             type="text"
