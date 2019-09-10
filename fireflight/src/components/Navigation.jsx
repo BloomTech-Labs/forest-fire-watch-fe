@@ -167,7 +167,7 @@ const NavContainer = styled.div`
 const Logo = styled.div`
   img {
     max-height: 65px;
-    margin: 0;
+    padding: 5px;
   }
 `;
 
