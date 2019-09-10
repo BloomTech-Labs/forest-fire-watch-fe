@@ -7,7 +7,7 @@ const LoginSplit = ({ toggle }) => {
       <div>
         <Heading>Make plans now for wildfire season</Heading>
         <Text>Take control of you and your family's well-being.</Text>
-        <Button onClick={() => toggle()}>Create Account</Button>
+        <button className="split-btn" onClick={() => toggle()}>Create Account</button>
       </div>
     </LoginSplitWrapper>
   );
@@ -51,16 +51,4 @@ const Text = styled.p`
   line-height: 20px;
   font-weight: 300;
   font-size: 0.8rem;
-`;
-
-const Button = styled.button`
-  width: 50%;
-  margin: 25px auto;
-  background: none;
-  border-color: #f2f3f4;
-  border-radius: 5px;
-  padding: 10px;
-  color: #f2f3f4;
-  cursor: pointer;
-  font-size: 1em;
 `;
