@@ -1,11 +1,13 @@
 // Variables / Mixins
-@import 'vars';
+@import "vars";
 
 // Components
-@import 'buttons';
+@import "buttons";
+@import "model";
+@import "model-splits";
 
 html, body {
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
   margin: 0;
   padding: 0;
 }
