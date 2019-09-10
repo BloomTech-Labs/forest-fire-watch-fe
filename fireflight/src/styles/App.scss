@@ -1,33 +1,23 @@
-@import './vars.scss';
+// Variables / Mixins
+@import 'vars';
+
+// Components
+@import 'buttons';
 
 html, body {
-  font-family: $fontStack;
+  font-family: 'Noto Sans KR', sans-serif;
   margin: 0;
   padding: 0;
 }
 
-h1 {
-  font-size: 48px;
-  font-weight: 700;
-}
-
-h2 {
-  font-size: 32px;
+.form-heading {
+  color: #f2f3f4;
   font-weight: 500;
 }
 
-h3 {
-  font-size: 24px;
-  font-weight: 500;
-}
-
-h4 {
-  font-size: 16px;
-  font-weight: 500;
-}
-
-h5 {
-  font-size: 14px;
+.form-text {
+  color: #f2f3f4;
+  font-size: 0.9em;
   font-weight: 300;
 }
 

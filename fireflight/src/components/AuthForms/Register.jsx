@@ -110,9 +110,9 @@ function Register({ toggle, setShowAuthForms }) {
               placeholder="Confirm Password"
             />
 
-            <Button type="submit" disabled={loading}>
+            <button className="auth-btn" type="submit" disabled={loading}>
               {loading ? "Loading..." : "Create Account"}
-            </Button>
+            </button>
           </FormContainer>
         </RegisterContainer>
       </RegPageContainer>
@@ -152,7 +152,7 @@ const RegisterContainer = styled.div`
 `;
 
 const RegisterSplitContainer = styled.div`
-  width: 40%;
+  width: 50%;
   @media (max-width: 900px) {
     width: 100%;
     order: 2;
@@ -184,22 +184,6 @@ const FormInput = styled.input`
   }
   @media (max-width: 900px) {
     width: 75%;
-  }
-`;
-
-const Button = styled.button`
-  width: 200px;
-  margin: 20px auto;
-  padding: 10px 15px;
-  border-radius: 5px;
-  border: none;
-  background-color: #f2f3f4;
-  color: #355c7d;
-  font-size: 1em;
-  box-shadow: 1px 2px 5px black;
-  cursor: pointer;
-  @media (max-width: 900px) {
-    width: 50%;
   }
 `;
 

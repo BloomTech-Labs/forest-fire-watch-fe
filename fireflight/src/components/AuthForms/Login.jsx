@@ -53,7 +53,8 @@ function Login({ toggle, setShowAuthForms }) {
     <LoginPageContainer>
       <LoginContainer>
         <img src={logo} alt='FireFlight' />
-        <FormHeading>Welcome Back!</FormHeading>
+        <h2 className='form-heading'>Welcome Back!</h2>
+        <p className='form-text'>Sign in to continue</p>
         <div class="fb-login-button" data-width="150px" data-size="medium" data-button-type="login_with" data-auto-logout-link="true" data-use-continue-as="false" />
         <FormContainer onSubmit={handleSubmit}>
           <FormInput
@@ -78,9 +79,9 @@ function Login({ toggle, setShowAuthForms }) {
           ) : (
             <ErrorText />
           )}
-          <Button type="submit" disabled={loading}>
+          <button className='auth-btn' type="submit" disabled={loading}>
             {loading ? "Loading..." : "Sign In"}
-          </Button>
+          </button>
         </FormContainer>
       </LoginContainer>
       <LoginSplitContainer>
@@ -124,15 +125,10 @@ const LoginContainer = styled.div`
 `;
 
 const LoginSplitContainer = styled.div`
-  width: 40%;
+  width: 50%;
   @media (max-width: 900px) {
     width: 100%;
   }
-`;
-
-const FormHeading = styled.h2`
-  color: #f2f3f4;
-  font-weight: bold;
 `;
 
 const FormContainer = styled.form`
@@ -162,22 +158,6 @@ const ForgotPw = styled.a`
   color: #FFF;
   font-size: 0.75em;
   text-decoration: none;
-`;
-
-const Button = styled.button`
-  width: 200px;
-  margin: 20px auto;
-  padding: 10px 15px;
-  border-radius: 5px;
-  border: none;
-  background-color: #f2f3f4;
-  color: #355c7d;
-  font-size: 1em;
-  box-shadow: 1px 2px 5px black;
-  cursor: pointer;
-  @media (max-width: 900px) {
-    width: 50%;
-  }
 `;
 
 const ErrorText = styled.p`

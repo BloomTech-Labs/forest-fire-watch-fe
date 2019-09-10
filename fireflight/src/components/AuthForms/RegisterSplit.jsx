@@ -7,10 +7,9 @@ const RegisterSplit = ({ toggle }) => {
       <div>
         <Heading>Welcome Back!</Heading>
         <Text>
-          To keep conneted with us FireFlight please sign in with your personal
-          info
+          To keep conneted with us FireFlight please sign in with your FireFlight account
         </Text>
-        <Button onClick={() => toggle()}>Sign In</Button>
+        <button className="split-btn" onClick={() => toggle()}>Sign In</button>
       </div>
     </RegisterSplitWrapper>
   );
@@ -54,16 +53,4 @@ const Text = styled.p`
   line-height: 20px;
   font-weight: 300;
   font-size: 0.8rem;
-`;
-
-const Button = styled.button`
-  width: 50%;
-  margin: 25px auto;
-  background: none;
-  border-color: #f2f3f4;
-  border-radius: 5px;
-  padding: 10px;
-  color: #f2f3f4;
-  cursor: pointer;
-  font-size: 1em;
 `;

@@ -168,6 +168,7 @@ const Logo = styled.div`
   img {
     max-height: 65px;
     padding: 5px;
+    margin-bottom: 5px;
   }
 `;
 

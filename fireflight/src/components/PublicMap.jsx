@@ -206,7 +206,7 @@ const InfoText = styled.div`
     font-size: 0.7em;
     position: absolute;
     top: 110px;
-    left: 70px;
+    left: 50px;
     text-decoration: none;
   }
 `;
