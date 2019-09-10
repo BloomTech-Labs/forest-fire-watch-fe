@@ -14,5 +14,3 @@ const Modal = ({ show, children }) => {
 };
 
 export default Modal;
-
-
