@@ -9,7 +9,7 @@ const Alerts = () => {
   const { fireDataState } = useContext(FireDataContext);
   const { alertData } = fireDataState;
 
-  console.log(fireDataState);
+  // console.log(fireDataState);
 
   let myAlerts;
 

@@ -38,9 +38,14 @@ function App() {
     fireDataState,
     getUserLocations,
     getCoordinates,
-    getAlertData
+    getAlertData,
+    getAllFires
   } = useContext(FireDataContext);
   const { userLocations, userCoordinates } = fireDataState;
+
+  useEffect(() => {
+    getAllFires();
+  }, []);
 
   useEffect(() => {
     //getLogin gets login information upon page load here;
