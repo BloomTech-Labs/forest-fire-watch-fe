@@ -1,0 +1,12 @@
+.navStyle{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #263238;
+    height: 65px
+}
+
+.Logo {
+    max-height:65px;
+    margin:0;
+  }
