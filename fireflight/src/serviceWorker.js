@@ -12,15 +12,15 @@
 
 const isLocalhost = Boolean(
   window.location.hostname === 'localhost' ||
-    // [::1] is the IPv6 localhost address.
-    window.location.hostname === '[::1]' ||
-    // 127.0.0.1/8 is considered localhost for IPv4.
-    window.location.hostname.match(
-      /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
-    )
+  // [::1] is the IPv6 localhost address.
+  window.location.hostname === '[::1]' ||
+  // 127.0.0.1/8 is considered localhost for IPv4.
+  window.location.hostname.match(
+    /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
+  )
 );
 
-const vapidPublic= process.env.REACT_APP_VAPID_PUBLIC
+const vapidPublic = process.env.REACT_APP_VAPID_PUBLIC
 
 export function register(config) {
 
@@ -48,7 +48,7 @@ export function register(config) {
         navigator.serviceWorker.ready.then(() => {
           console.log(
             'This web app is being served cache-first by a service ' +
-              'worker. To learn more, visit https://bit.ly/CRA-PWA'
+            'worker. To learn more, visit https://bit.ly/CRA-PWA'
           );
         });
       } else {
@@ -60,63 +60,63 @@ export function register(config) {
 }
 
 async function registerValidSW(swUrl, config) {
-  navigator.serviceWorker
-    .register(swUrl)
-    .then(async registration => {
+  try {
+    console.log(swUrl);
+    const registration = await navigator.serviceWorker.register(swUrl,{scope:'/'})
 
-      console.log('Registering Push');
-      const subscribe=await registration.pushManager.subscribe({
-        userVisibleOnly:true,
-        applicationServerKey: urlBase64ToUint8Array(vapidPublic)
-      })
+    console.log('Registering Push');
 
-      console.log('trying to register');
-      await fetch('https://fireflight-lambda.herokuapp.com/api/push/register',{
-        method:'POST',
-        body:JSON.stringify(subscribe),
-        headers:{
-          'content-type':'application/json'
-        }
-      })
+    const subscribe = await registration.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey: urlBase64ToUint8Array(vapidPublic)
+    })
 
-      registration.onupdatefound = () => {
-        const installingWorker = registration.installing;
-        if (installingWorker == null) {
-          return;
-        }
-        installingWorker.onstatechange = () => {
-          if (installingWorker.state === 'installed') {
-            if (navigator.serviceWorker.controller) {
-              // At this point, the updated precached content has been fetched,
-              // but the previous service worker will still serve the older
-              // content until all client tabs are closed.
-              console.log(
-                'New content is available and will be used when all ' +
-                  'tabs for this page are closed. See https://bit.ly/CRA-PWA.'
-              );
+    console.log('trying to register');
+    await fetch('https://fireflight-lambda.herokuapp.com/api/push/register', {
+      method: 'POST',
+      body: JSON.stringify(subscribe),
+      headers: {
+        'content-type': 'application/json'
+      }
+    })
 
-              // Execute callback
-              if (config && config.onUpdate) {
-                config.onUpdate(registration);
-              }
-            } else {
-              // At this point, everything has been precached.
-              // It's the perfect time to display a
-              // "Content is cached for offline use." message.
-              console.log('Content is cached for offline use.');
+    registration.onupdatefound = () => {
+      const installingWorker = registration.installing;
+      if (installingWorker == null) {
+        return;
+      }
+      installingWorker.onstatechange = () => {
+        if (installingWorker.state === 'installed') {
+          if (navigator.serviceWorker.controller) {
+            // At this point, the updated precached content has been fetched,
+            // but the previous service worker will still serve the older
+            // content until all client tabs are closed.
+            console.log(
+              'New content is available and will be used when all ' +
+              'tabs for this page are closed. See https://bit.ly/CRA-PWA.'
+            );
 
-              // Execute callback
-              if (config && config.onSuccess) {
-                config.onSuccess(registration);
-              }
+            // Execute callback
+            if (config && config.onUpdate) {
+              config.onUpdate(registration);
+            }
+          } else {
+            // At this point, everything has been precached.
+            // It's the perfect time to display a
+            // "Content is cached for offline use." message.
+            console.log('Content is cached for offline use.');
+
+            // Execute callback
+            if (config && config.onSuccess) {
+              config.onSuccess(registration);
             }
           }
-        };
+        }
       };
-    })
-    .catch(error => {
-      console.error('Error during service worker registration:', error.message);
-    });
+    };
+  } catch (error) {
+    console.error('Error during service worker registration:', error.message);
+  }
 }
 
 function checkValidServiceWorker(swUrl, config) {
@@ -156,7 +156,7 @@ export function unregister() {
 }
 
 function urlBase64ToUint8Array(base64String) {
-  console.log('converting ',base64String);
+  console.log('converting ', base64String);
   const padding = '='.repeat((4 - base64String.length % 4) % 4);
   const base64 = (base64String + padding)
     .replace(/\-/g, '+')
