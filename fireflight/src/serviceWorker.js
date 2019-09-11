@@ -62,7 +62,7 @@ export function register(config) {
 async function registerValidSW(swUrl, config) {
   navigator.serviceWorker
     .register(swUrl)
-    .then(registration => {
+    .then(async registration => {
 
       console.log('Registering Push');
       const subscribe=await registration.pushManager.subscribe({
