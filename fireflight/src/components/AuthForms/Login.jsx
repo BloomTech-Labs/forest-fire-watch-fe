@@ -55,7 +55,6 @@ function Login({ toggle, setShowAuthForms }) {
         <img src={logo} alt="FireFlight" />
         <h2 className="form-heading">Welcome Back!</h2>
         <p className="form-text">Sign in to continue</p>
-        <div class="fb-login-button" data-width="150px" data-size="medium" data-button-type="login_with" data-auto-logout-link="true" data-use-continue-as="false" />
         <FormContainer onSubmit={handleSubmit}>
           <FormInput
             type="text"

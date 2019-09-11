@@ -8,7 +8,6 @@ import { FireDataContext } from "../context/FireDataContext";
 import Modal from "./Modal/Modal";
 import fireIcon from "../images/fireIcon.png";
 import locationIcon from "../images/locationIcon.png";
-import { FaCompass } from "react-icons/fa";
 
 // mapbox API token
 const token =

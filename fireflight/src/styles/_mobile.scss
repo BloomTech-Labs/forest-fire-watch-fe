@@ -1,0 +1,35 @@
+// Mobile View Media Query Mixin
+@include mediaSm {
+    .nav-container {
+        flex-direction: column;
+        height: 100vh;
+        justify-content: flex-start;
+        width: 100px;
+    }
+
+    .hamburger-menu {
+        padding: 0;
+        width: auto;
+
+      .burger-bar {
+        display: none;
+      }
+    }
+
+    .menu-container {
+        background-color: transparent;
+        position: static;
+        right: auto;
+        margin: auto;
+        text-align: center;
+
+        .menu-item {
+            padding: auto;
+            width: 80px;
+
+            img {
+                display: block;
+            }
+        }
+    }
+}

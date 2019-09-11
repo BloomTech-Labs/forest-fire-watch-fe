@@ -73,6 +73,7 @@ function Register({ toggle, setShowAuthForms }) {
         <RegisterContainer>
           <img src={logo} alt="FireFlight" />
           <FormHeading>Create Account</FormHeading>
+          <div class="fb-login-button" data-width="150px" data-size="medium" data-button-type="login_with" data-auto-logout-link="true" data-use-continue-as="false" />
           <FormContainer onSubmit={handleSubmit}>
             <FormInput
               type="text"
