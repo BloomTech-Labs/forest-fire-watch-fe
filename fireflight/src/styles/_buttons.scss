@@ -1,0 +1,38 @@
+.auth-btn {
+    width: 200px;
+    margin: 20px auto;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    background-color: #f2f3f4;
+    color: #355c7d;
+    font-size: 1em;
+    box-shadow: 1px 2px 5px black;
+    cursor: pointer;
+  
+    &:hover {
+      background-color: #355c7d;
+      color: #f2f3f4;
+    }
+  
+    @media (max-width: 900px) {
+      width: 50%;
+    }
+  }
+
+  .split-btn {
+    width: 50%;
+    margin: 25px auto;
+    background: none;
+    border-color: #f2f3f4;
+    border-radius: 5px;
+    padding: 10px;
+    color: #f2f3f4;
+    cursor: pointer;
+    font-size: 1em;
+
+    &:hover {
+      background-color: #f2f3f4;
+      color: #355c7d;
+    }
+  }

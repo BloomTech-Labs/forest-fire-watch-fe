@@ -192,9 +192,9 @@ const FormButton = styled.button`
   border: solid 1px black;
   cursor: pointer;
   @media (max-width: 576px) {
-    height: 35px;
-    width: 125px;
-    font-size: 0.8em;
+    position: absolute;
+    top: 40px;
+    width: 200px;
   }
 `;
 
@@ -202,8 +202,11 @@ const InfoText = styled.div`
   font-size: 0.9em;
   text-align: center;
   @media (max-width: 576px) {
-    font-size: 0.8em;
-    text-decoration: underline;
+    font-size: 0.7em;
+    position: absolute;
+    top: 110px;
+    left: 50px;
+    text-decoration: none;
   }
 `;
 

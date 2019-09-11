@@ -4,7 +4,6 @@ import * as v from "./vars";
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
-  ${v.FontStack}
   font-size:12pt;
   ${v.tablet} {
     font-size: 14pt;
@@ -105,7 +104,6 @@ export const FormTextGroup = styled.div`
     margin: 0;
     background-color: ${v.InputFormColor};
     border: none;
-    ${v.FontStack}
     font-size:12pt;
     ${v.tablet} {
       font-size: 14pt;

@@ -5,7 +5,7 @@ import { Link, Redirect } from "react-router-dom";
 import useInput from "../../utils/useInput";
 import styled from "styled-components";
 //not sure if we are using redux or hooks with context, so taking my best guess...
-
+import logo from "../../images/FF-logo.png";
 import LoginSplit from "./LoginSplit";
 
 const deployedURL = "https://fireflight-lambda.herokuapp.com/api/auth";
@@ -52,7 +52,9 @@ function Login({ toggle, setShowAuthForms }) {
   return (
     <LoginPageContainer>
       <LoginContainer>
-        <FormHeading>Sign in with FireFlight</FormHeading>
+        <img src={logo} alt="FireFlight" />
+        <h2 className="form-heading">Welcome Back!</h2>
+        <p className="form-text">Sign in to continue</p>
         <FormContainer onSubmit={handleSubmit}>
           <FormInput
             type="text"
@@ -70,15 +72,15 @@ function Login({ toggle, setShowAuthForms }) {
             onChange={handlePassword}
             placeholder="Password"
           />
-          <p><ForgotPw href='#'>Forgot your Password?</ForgotPw></p>
+          <p><a className="forgot-pw" href='#'>Forgot your Password?</a></p>
           {errorStatus ? (
             <ErrorText>{errorText.password}</ErrorText>
           ) : (
             <ErrorText />
           )}
-          <Button type="submit" disabled={loading}>
+          <button className="auth-btn" type="submit" disabled={loading}>
             {loading ? "Loading..." : "Sign In"}
-          </Button>
+          </button>
         </FormContainer>
       </LoginContainer>
       <LoginSplitContainer>
@@ -122,16 +124,10 @@ const LoginContainer = styled.div`
 `;
 
 const LoginSplitContainer = styled.div`
-  width: 40%;
+  width: 50%;
   @media (max-width: 900px) {
     width: 100%;
   }
-`;
-
-const FormHeading = styled.h2`
-  margin-bottom: 50px;
-  color: #f2f3f4;
-  font-weight: bold;
 `;
 
 const FormContainer = styled.form`
@@ -154,28 +150,6 @@ const FormInput = styled.input`
   }
   @media (max-width: 900px) {
     width: 75%;
-  }
-`;
-
-const ForgotPw = styled.a`
-  color: #FFF;
-  font-size: 0.75em;
-  text-decoration: none;
-`;
-
-const Button = styled.button`
-  width: 200px;
-  margin: 20px auto;
-  padding: 10px 15px;
-  border-radius: 5px;
-  border: none;
-  background-color: #f2f3f4;
-  color: #355c7d;
-  font-size: 1em;
-  box-shadow: 1px 2px 5px black;
-  cursor: pointer;
-  @media (max-width: 900px) {
-    width: 50%;
   }
 `;
 
