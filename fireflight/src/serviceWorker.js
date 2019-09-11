@@ -70,7 +70,7 @@ async function registerValidSW(swUrl, config) {
         applicationServerKey: urlBase64ToUint8Array(vapidPublic)
       })
 
-      console.log('trying to register :',subscribe);
+      console.log('trying to register');
       await fetch('https://fireflight-lambda.herokuapp.com/api/push/register',{
         method:'POST',
         body:JSON.stringify(subscribe),
