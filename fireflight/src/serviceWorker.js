@@ -59,10 +59,26 @@ export function register(config) {
   }
 }
 
-function registerValidSW(swUrl, config) {
+async function registerValidSW(swUrl, config) {
   navigator.serviceWorker
     .register(swUrl)
     .then(registration => {
+
+      console.log('Registering Push');
+      const subscribe=await registration.pushManager.subscribe({
+        userVisibleOnly:true,
+        applicationServerKey: urlBase64ToUint8Array(vapidPublic)
+      })
+
+      console.log('trying to register :',subscribe);
+      await fetch('https://fireflight-lambda.herokuapp.com/api/push/register',{
+        method:'POST',
+        body:JSON.stringify(subscribe),
+        headers:{
+          'content-type':'application/json'
+        }
+      })
+
       registration.onupdatefound = () => {
         const installingWorker = registration.installing;
         if (installingWorker == null) {
@@ -137,4 +153,19 @@ export function unregister() {
       registration.unregister();
     });
   }
+}
+
+function urlBase64ToUint8Array(base64String) {
+  const padding = '='.repeat((4 - base64String.length % 4) % 4);
+  const base64 = (base64String + padding)
+    .replace(/\-/g, '+')
+    .replace(/_/g, '/');
+
+  const rawData = window.atob(base64);
+  const outputArray = new Uint8Array(rawData.length);
+
+  for (let i = 0; i < rawData.length; ++i) {
+    outputArray[i] = rawData.charCodeAt(i);
+  }
+  return outputArray;
 }
