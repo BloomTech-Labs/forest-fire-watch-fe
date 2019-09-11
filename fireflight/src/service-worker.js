@@ -6,6 +6,6 @@ self.addEventListener('push',ev=>{
     console.log('push seen',data);
     self.registration.showNotification(data.title,{
         body:"Worker Registered",
-        icon:icon
+        icon:icon 
     })
 })
