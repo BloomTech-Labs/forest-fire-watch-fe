@@ -15,7 +15,8 @@ import {
   GET_ALERT_DATA,
   SET_ALERT_VIEWED,
   SET_SHOW_ALERT,
-  SET_TRIGGER_REGISTRATION_BUTTON
+  SET_TRIGGER_REGISTRATION_BUTTON,
+  SET_ALL_FIRES
 } from "./fireDataTypes";
 
 const DSbaseURL = "https://fire-data-api.herokuapp.com";
@@ -49,7 +50,6 @@ const fireDataReducer = (state, action) => {
     case GET_PUBLIC_MAP_DATA:
       return {
         ...state,
-        publicMapData: action.payload,
         publicMapViewport: action.viewport
       };
     case GET_PRIVATE_MAP_DATA:
@@ -91,6 +91,11 @@ const fireDataReducer = (state, action) => {
         ...state,
         showAlert: action.payload
       };
+    case SET_ALL_FIRES:
+      return {
+        ...state,
+        allFires: action.payload
+      };
     default:
       return {
         ...state
@@ -111,9 +116,9 @@ export const FireDataProvider = ({ children }) => {
     publicMapViewport: {
       width: "100%",
       height: "100vh",
-      latitude: 37.7749,
-      longitude: -122.4194,
-      zoom: 7
+      latitude: 39.8283,
+      longitude: -98.5795,
+      zoom: 3.3
     },
     privateMapData: {},
     privateMapViewport: {
@@ -126,8 +131,23 @@ export const FireDataProvider = ({ children }) => {
     triggerRegistrationButton: false,
     alertData: [],
     alertViewed: false,
-    showAlert: false
+    showAlert: false,
+    allFires: []
   });
+
+  const getAllFires = () => {
+    axios
+      .get(`${DSbaseURL}/all_fires`)
+      .then(res => {
+        dispatch({
+          type: SET_ALL_FIRES,
+          payload: res.data.Fires
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   const getUserLocations = () => {
     axiosWithAuth()
@@ -182,27 +202,16 @@ export const FireDataProvider = ({ children }) => {
   };
 
   const getPublicMapData = () => {
-    axios
-      .post(`${DSbaseURL}/check_fires`, {
-        user_coords: [
-          fireDataState.publicCoordinates.longitude,
-          fireDataState.publicCoordinates.latitude
-        ],
-        distance: fireDataState.publicRadius
-      })
-      .then(res => {
-        dispatch({
-          type: GET_PUBLIC_MAP_DATA,
-          payload: res.data,
-          viewport: {
-            width: "100%",
-            height: "100vh",
-            latitude: fireDataState.publicCoordinates.latitude,
-            longitude: fireDataState.publicCoordinates.longitude,
-            zoom: 7
-          }
-        });
-      });
+    dispatch({
+      type: GET_PUBLIC_MAP_DATA,
+      viewport: {
+        width: "100%",
+        height: "100vh",
+        latitude: fireDataState.publicCoordinates.latitude,
+        longitude: fireDataState.publicCoordinates.longitude,
+        zoom: 3.3
+      }
+    });
   };
 
   const getPrivateMapData = id => {
@@ -311,7 +320,8 @@ export const FireDataProvider = ({ children }) => {
         setTriggerRegistrationButton,
         getAlertData,
         setAlertViewed,
-        setShowAlert
+        setShowAlert,
+        getAllFires
       }}
     >
       {children}

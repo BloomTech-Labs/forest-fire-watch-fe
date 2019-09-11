@@ -8,7 +8,6 @@ import { FireDataContext } from "../context/FireDataContext";
 import Modal from "./Modal/Modal";
 import fireIcon from "../images/fireIcon.png";
 import locationIcon from "../images/locationIcon.png";
-import { FaCompass } from "react-icons/fa";
 
 // mapbox API token
 const token =
@@ -27,7 +26,8 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
     publicMapViewport,
     publicMapData,
     publicCoordinates,
-    triggerRegistrationButton
+    triggerRegistrationButton,
+    allFires
   } = fireDataState;
   const [address, setAddress] = useState("");
   const [firesDisplay, setFiresDisplay] = useState();
@@ -51,7 +51,7 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
 
   useEffect(() => {
     createFiresDisplay();
-  }, [publicMapData]);
+  }, [allFires]);
 
   useEffect(() => {
     createUserMarker();
@@ -76,29 +76,27 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
   };
 
   const createFiresDisplay = async () => {
-    if (publicMapData.Alert) {
-      let fires = await publicMapData.Fires.map(fire => {
-        return (
-          // return marker for each fire datapoint
-          <Marker
-            latitude={fire[0][1]}
-            longitude={fire[0][0]}
-            key={fire[0][0] + fire[0][1] + fire[1]}
-          >
-            <img
-              src={fireIcon}
-              height="35"
-              width="35"
-              style={{ zIndex: 3, transform: "translate(-17.5px, -35px)" }}
-              // onClick={e => {
-              //   setSelectedFire(fire[0]);
-              // }}
-            />
-          </Marker>
-        );
-      });
-      setFiresDisplay(fires);
-    }
+    let fires = await allFires.map(fire => {
+      return (
+        // return marker for each fire datapoint
+        <Marker
+          latitude={fire[1]}
+          longitude={fire[0]}
+          key={fire[0] + fire[1] + fire[1]}
+        >
+          <img
+            src={fireIcon}
+            height="35"
+            width="35"
+            style={{ zIndex: 3, transform: "translate(-17.5px, -35px)" }}
+            // onClick={e => {
+            //   setSelectedFire(fire[0]);
+            // }}
+          />
+        </Marker>
+      );
+    });
+    setFiresDisplay(fires);
   };
 
   let infoText;
