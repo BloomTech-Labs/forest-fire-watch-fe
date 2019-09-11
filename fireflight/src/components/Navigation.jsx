@@ -55,7 +55,7 @@ function Navigation({
           <div className="menu-container">
             <NavLink exact to="/" activeClassName="current">
               <div className="menu-item">
-                {/* Will be profile page later */}
+                {/* Will be profile page/dashboard later */}
                 <i className="fas fa-home fa-lg" /> <br />
                 Home
               </div>
@@ -90,7 +90,7 @@ function Navigation({
                 <NavLink to="/dashboard" activeClassName="current">
                   <div className="menu-item" data-temp="here">
                     {location.pathname.includes("/dashboard") ? (
-                      <img src={dashboardAlt} alt="" />
+                      <img src={dashboardAlt} alt="Alternate Dashboard Icon" />
                     ) : (
                       <img src={dashboard} alt="Dashboard Icon" />
                     )}

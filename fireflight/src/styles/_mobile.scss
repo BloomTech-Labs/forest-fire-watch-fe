@@ -1,5 +1,32 @@
 // Mobile View Media Query Mixin
+
 @include mediaSm {
+        // Navigation Bar
+        .nav-container {
+            background-image: linear-gradient(to bottom, #355C7D, #F67280 60%);
+            flex-direction: column;
+            height: 125px;
+            justify-content: flex-start;
+            width: 100%;
+        }
+    
+        // Hamburger Bar
+        .hamburger-menu {
+            padding: 0;
+            width: auto;
+        }
+    
+        // Forms
+        .form-btn {
+            position: absolute;
+            top: 40px;
+            width: 200px;
+        }    
+}
+
+// Medium to Large Media Screens
+
+@include mediaMd {
     .nav-container {
         flex-direction: column;
         height: 100vh;
@@ -33,3 +60,4 @@
         }
     }
 }
+

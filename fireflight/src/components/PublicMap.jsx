@@ -115,7 +115,7 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
             value={address}
             onChange={e => setAddress(e.target.value)}
           />
-          <FormButton onClick={handleSubmit}>Find Active Fires</FormButton>
+          <button className="form-btn" onClick={handleSubmit}>Find Active Fires</button>
         </FormContainer>
         {infoText}
         {triggerRegistrationButton ? (
@@ -178,23 +178,6 @@ const FormInput = styled.input`
   @media (max-width: 576px) {
     width: 200px;
     padding: 8px;
-  }
-`;
-
-const FormButton = styled.button`
-  height: 38px;
-  width: 150px;
-  margin: 25px 0px 5px;
-  border-radius: 5px;
-  background-color: #355c7d;
-  color: #f2f3f4;
-  font-size: 1em;
-  border: solid 1px black;
-  cursor: pointer;
-  @media (max-width: 576px) {
-    position: absolute;
-    top: 40px;
-    width: 200px;
   }
 `;
 

@@ -1,22 +1,25 @@
 // Media Queries
 @mixin mediaSm{
-    @media(min-width: 576px) {
+    @media(max-width: 576px) {
         @content;
     }
 } 
 
-@mixin mediaLg{
-    @media(min-width: 992px) {
+@mixin mediaMd {
+    @media(min-width: 577px)  {
         @content;
     }
-}  
+} 
 
 @mixin easeOut {
-    transition: all 0.6s ease-out;
+    transition: all 0.5s ease-out;
 }
 
+// Fonts
+$header: Noto Sans KR, sans-serif;
+$content: Arial, Helvetica, sans-serif;
+
 // Background Colors
-$bgColor: '#FFF';
 $cardBgColor: #373d3f;
 
 // Colors
@@ -28,5 +31,4 @@ $lilia: #f2f3f4;
 
 // Misc
 $cardDropShadow: 'box-shadow: 0 3px 4px #000';
-$clearAnchors: 'text-decoration: none', 'color: #FFF';
 $inputFormColor: #6a859c;
