@@ -72,7 +72,7 @@ function Login({ toggle, setShowAuthForms }) {
             onChange={handlePassword}
             placeholder="Password"
           />
-          <p><ForgotPw href='#'>Forgot your Password?</ForgotPw></p>
+          <p><a className="forgot-pw" href='#'>Forgot your Password?</a></p>
           {errorStatus ? (
             <ErrorText>{errorText.password}</ErrorText>
           ) : (
@@ -151,12 +151,6 @@ const FormInput = styled.input`
   @media (max-width: 900px) {
     width: 75%;
   }
-`;
-
-const ForgotPw = styled.a`
-  color: #FFF;
-  font-size: 0.75em;
-  text-decoration: none;
 `;
 
 const ErrorText = styled.p`

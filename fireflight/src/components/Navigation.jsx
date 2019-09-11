@@ -63,23 +63,25 @@ function Navigation({
 
             {localStorage.getItem("token") == null && (
               <React.Fragment>
-                <div className="menu-item"
+                <div className="menu-item inactive"
                   onClick={() => {
                     toggleAuthForms(true);
                     toggleRegisterStatus(true);
                     toggleLoginStatus(false);
                   }}
                 >
-                  <p>Register</p>
+                  <i className="fas fa-user-plus fa-lg" /> <br />
+                  Register
                 </div>
-                <div className="menu-item"
+                <div className="menu-item inactive"
                   onClick={() => {
                     toggleAuthForms(true);
                     toggleRegisterStatus(false);
                     toggleLoginStatus(true);
                   }}
                 >
-                  <p>Login</p>
+                  <i className="fas fa-user-check fa-lg" /> <br />
+                  Login
                 </div>
               </React.Fragment>
             )}
