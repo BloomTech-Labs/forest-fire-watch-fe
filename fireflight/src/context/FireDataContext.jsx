@@ -2,13 +2,14 @@ import React, { useReducer, createContext, useContext } from "react";
 import axios from "axios";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import { GlobalContext } from "./contextProvider";
+import { haversineDistance } from "../utils/haversineDistance"
 
 import {
   GET_USER_LOCATIONS,
   GET_SELECTED_ADDRESS,
   GET_PUBLIC_COORDINATES,
   GET_USER_COORDINATES,
-  GET_PUBLIC_MAP_DATA,
+  ADD_PUBLIC_MAP_LOCATION,
   GET_PRIVATE_MAP_DATA,
   SET_PRIVATE_VIEWPORT,
   SET_PUBLIC_VIEWPORT,
@@ -16,7 +17,8 @@ import {
   SET_ALERT_VIEWED,
   SET_SHOW_ALERT,
   SET_TRIGGER_REGISTRATION_BUTTON,
-  SET_ALL_FIRES
+  SET_ALL_FIRES,
+  SET_LOCAL_FIRES
 } from "./fireDataTypes";
 
 const DSbaseURL = "https://fire-data-api.herokuapp.com";
@@ -47,7 +49,7 @@ const fireDataReducer = (state, action) => {
         ...state,
         userCoordinates: action.payload
       };
-    case GET_PUBLIC_MAP_DATA:
+    case ADD_PUBLIC_MAP_LOCATION:
       return {
         ...state,
         publicMapViewport: action.viewport
@@ -96,6 +98,11 @@ const fireDataReducer = (state, action) => {
         ...state,
         allFires: action.payload
       };
+    case SET_LOCAL_FIRES:
+      return {
+        ...state,
+        localFires: action.payload
+      };
     default:
       return {
         ...state
@@ -132,7 +139,8 @@ export const FireDataProvider = ({ children }) => {
     alertData: [],
     alertViewed: false,
     showAlert: false,
-    allFires: []
+    allFires: [],
+    localFires: []
   });
 
   const getAllFires = () => {
@@ -148,6 +156,27 @@ export const FireDataProvider = ({ children }) => {
         console.log(err);
       });
   };
+
+  const setLocalFires = () => { 
+    let localArray = [];
+    
+    fireDataState.allFires.forEach(fire => {
+      let distance = haversineDistance(
+        [fireDataState.publicCoordinates.latitude, fireDataState.publicCoordinates.longitude],
+        [fire[1], fire[0]],
+        true
+      );
+
+      if (distance <= 500) {
+        localArray.push(fire);
+      }
+    })
+    console.log(localArray)
+    dispatch({
+      type: SET_LOCAL_FIRES,
+      payload: localArray
+    })
+  }
 
   const getUserLocations = () => {
     axiosWithAuth()
@@ -176,34 +205,12 @@ export const FireDataProvider = ({ children }) => {
             }
           });
         });
-    } else {
-      let payload = [];
-      fireDataState.userLocations.forEach(loc => {
-        axios
-          .get(
-            `https://api.mapbox.com/geocoding/v5/mapbox.places/${loc.address}.json?access_token=${token}`
-          )
-          .then(res => {
-            payload.push({
-              address_label: loc.address_label,
-              address: loc.address,
-              latitude: res.data.features[0].center[1],
-              longitude: res.data.features[0].center[0],
-              radius: loc.radius,
-              id: loc.id
-            });
-          });
-      });
-      dispatch({
-        type: GET_USER_COORDINATES,
-        payload: payload
-      });
-    }
+    } 
   };
 
-  const getPublicMapData = () => {
+  const addPublicMapLocation = () => {
     dispatch({
-      type: GET_PUBLIC_MAP_DATA,
+      type: ADD_PUBLIC_MAP_LOCATION,
       viewport: {
         width: "100%",
         height: "100vh",
@@ -312,7 +319,7 @@ export const FireDataProvider = ({ children }) => {
         fireDataState,
         dispatch,
         getUserLocations,
-        getPublicMapData,
+        addPublicMapLocation,
         getCoordinates,
         getPrivateMapData,
         setPublicViewport,
@@ -321,7 +328,8 @@ export const FireDataProvider = ({ children }) => {
         getAlertData,
         setAlertViewed,
         setShowAlert,
-        getAllFires
+        getAllFires,
+        setLocalFires
       }}
     >
       {children}

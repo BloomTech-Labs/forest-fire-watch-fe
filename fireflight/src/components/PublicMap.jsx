@@ -7,7 +7,9 @@ import { FireDataContext } from "../context/FireDataContext";
 
 import Modal from "./Modal/Modal";
 import fireIcon from "../images/fireIcon.png";
+import exclamationMark from "../images/exclaim.jpg";
 import locationIcon from "../images/locationIcon.png";
+import { SET_LOCAL_FIRES } from "../context/fireDataTypes";
 
 // mapbox API token
 const token =
@@ -19,18 +21,21 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
     fireDataState,
     setPublicViewport,
     getCoordinates,
-    getPublicMapData,
-    setTriggerRegistrationButton
+    addPublicMapLocation,
+    setTriggerRegistrationButton,
+    setLocalFires
   } = useContext(FireDataContext);
   const {
     publicMapViewport,
     publicMapData,
     publicCoordinates,
     triggerRegistrationButton,
-    allFires
+    allFires,
+    localFires
   } = fireDataState;
   const [address, setAddress] = useState("");
   const [firesDisplay, setFiresDisplay] = useState();
+  const [localFiresDisplay, setLocalFiresDisplay] = useState();
   const [userMarker, setUserMarker] = useState();
 
   const handleSubmit = () => {
@@ -39,23 +44,30 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
         address: address,
         address_label: null
       });
+      setLocalFires();
       setTriggerRegistrationButton();
     }
-  };
+    };
 
   useEffect(() => {
     if (Object.keys(publicCoordinates).length > 0) {
-      getPublicMapData();
+      addPublicMapLocation();
     }
   }, [publicCoordinates]);
 
   useEffect(() => {
-    createFiresDisplay();
+    createFiresDisplay(allFires);
   }, [allFires]);
+
+  useEffect(() => {
+    createFiresDisplay(localFires);
+  }, [publicCoordinates]);
 
   useEffect(() => {
     createUserMarker();
   }, [publicCoordinates.latitude]);
+
+  console.log(localFires)
 
   const createUserMarker = () => {
     if (publicCoordinates.latitude && publicCoordinates.longitude) {
@@ -75,8 +87,8 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
     }
   };
 
-  const createFiresDisplay = async () => {
-    let fires = await allFires.map(fire => {
+  const createFiresDisplay = async (arr) => {
+    let fires = await arr.map(fire => {
       return (
         // return marker for each fire datapoint
         <Marker
@@ -85,7 +97,7 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
           key={fire[0] + fire[1] + fire[1]}
         >
           <img
-            src={fireIcon}
+            src={arr.length === allFires.length ? fireIcon : exclamationMark}
             height="35"
             width="35"
             style={{ zIndex: 3, transform: "translate(-17.5px, -35px)" }}
@@ -96,7 +108,11 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
         </Marker>
       );
     });
-    setFiresDisplay(fires);
+    if (arr.length === allFires.length) {
+    setFiresDisplay(fires)
+    } else {
+      setLocalFiresDisplay(fires)
+    };
   };
 
   let infoText;
@@ -139,6 +155,7 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
       >
         {userMarker}
         {firesDisplay}
+        {localFiresDisplay}
       </ReactMapGL>
     </div>
   );
