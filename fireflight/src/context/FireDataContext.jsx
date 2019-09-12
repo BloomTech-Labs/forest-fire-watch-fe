@@ -175,11 +175,11 @@ export const FireDataProvider = ({ children }) => {
       });
   };
 
-  const getCoordinates = address => {
+  const getCoordinates = (address,radius) => {
     if (address) {
       axios
         .get(
-          `https://api.mapbox.com/geocoding/v5/mapbox.places/${address.address}.json?access_token=${token}`
+          `https://api.mapbox.com/geocoding/v5/mapbox.places/${address}.json?access_token=${token}`
         )
         .then(res => {
           let localArray = [];
@@ -191,7 +191,7 @@ export const FireDataProvider = ({ children }) => {
               true
             );
 
-            if (distance <= 500) {
+            if (distance <= radius) {
               localArray.push(fire);
             }
           });

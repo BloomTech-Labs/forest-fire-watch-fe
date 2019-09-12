@@ -51,7 +51,7 @@ function Register({ toggle, setShowAuthForms }) {
         .catch(err => {
           console.log(err);
           setErrorStatus(true);
-          setErrorText(err.response.data);
+          // setErrorText(err.response.data);
           setLoading(false);
         });
     } else {

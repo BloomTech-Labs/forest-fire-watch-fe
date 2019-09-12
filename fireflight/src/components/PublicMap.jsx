@@ -30,21 +30,19 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
     publicCoordinatesMarker,
     localFireMarkers
   } = fireDataState;
+
   const [address, setAddress] = useState("");
+
+  const [radius, setRadius] = useState();
 
   const handleSubmit = () => {
     if (address) {
-      getCoordinates({
-        address: address,
-        address_label: null
-      });
+      getCoordinates(address,radius);
       setTriggerRegistrationButton();
     }
   };
 
-  let infoText;
 
-  infoText = <InfoText>* All searches are based on a 500 mile radius</InfoText>;
 
   return (
     <div style={{ position: "relative" }}>
@@ -57,9 +55,15 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
             value={address}
             onChange={e => setAddress(e.target.value)}
           />
+          <FormRadiusInput
+            type="text"
+            name="Radius"
+            placeholder="Radius (miles)"
+            value={radius}
+            onChange={e => setRadius(e.target.value)}
+          />
           <FormButton onClick={handleSubmit}>Find Active Fires</FormButton>
         </FormContainer>
-        {infoText}
         {triggerRegistrationButton ? (
           <TriggeredButton
             onClick={() => {
@@ -112,7 +116,21 @@ const FormContainer = styled.div`
 
 const FormInput = styled.input`
   width: 250px;
-  margin: 25px 25px 5px;
+  margin: 25px 7.5px 5px;
+  padding: 10px;
+  font-size: 1em;
+  background-color: white;
+  border-radius: 5px;
+  border: solid 1px black;
+  @media (max-width: 576px) {
+    width: 200px;
+    padding: 8px;
+  }
+`;
+
+const FormRadiusInput = styled.input`
+  width: 150px;
+  margin: 25px 17.5px 5px 10px;
   padding: 10px;
   font-size: 1em;
   background-color: white;
@@ -125,7 +143,7 @@ const FormInput = styled.input`
 `;
 
 const FormButton = styled.button`
-  height: 38px;
+  height: 39.5px;
   width: 150px;
   margin: 25px 0px 5px;
   border-radius: 5px;
