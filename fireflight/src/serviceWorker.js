@@ -24,9 +24,8 @@ const vapidPublic = process.env.REACT_APP_VAPID_PUBLIC
 
 export function register(config) {
 
-  console.log(process.env.PUBLIC_URL);
-
-  if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
+  // if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
+  if ('serviceWorker' in navigator) {
     // The URL constructor is available in all browsers that support SW.
     const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href);
     if (publicUrl.origin !== window.location.origin) {
@@ -35,9 +34,11 @@ export function register(config) {
       // serve assets; see https://github.com/facebook/create-react-app/issues/2374
       return;
     }
-
+    
     window.addEventListener('load', () => {
-      const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
+
+      const swFileName=process.env.NODE_ENV==='production'?'service-worker.js':'custom-sw.js'
+      const swUrl = `${process.env.PUBLIC_URL}/${swFileName}`;
 
       if (isLocalhost) {
         // This is running on localhost. Let's check if a service worker still exists or not.
@@ -61,26 +62,7 @@ export function register(config) {
 
 async function registerValidSW(swUrl, config) {
   try {
-    console.log(swUrl);
     const registration = await navigator.serviceWorker.register(swUrl)
-    
-    try {
-      console.log(registration);
-      const subscription = await registration.pushManager.subscribe({
-        userVisibleOnly: true,
-        applicationServerKey: urlBase64ToUint8Array(vapidPublic)
-      })
-      console.log('trying to register');
-      await fetch('https://fireflight-lambda.herokuapp.com/api/push/register', {
-        method: 'POST',
-        body: JSON.stringify(subscription),
-        headers: {
-          'content-type': 'application/json'
-        }
-      })
-    } catch (err) {
-      console.error(err.message);
-    }
 
     registration.onupdatefound = async () => {
       const installingWorker = registration.installing;
@@ -159,21 +141,4 @@ export function unregister() {
       registration.unregister();
     });
   }
-}
-
-function urlBase64ToUint8Array(base64String) {
-  console.log('converting ', base64String);
-  const padding = '='.repeat((4 - base64String.length % 4) % 4);
-  const base64 = (base64String + padding)
-    .replace(/\-/g, '+')
-    .replace(/_/g, '/');
-
-  const rawData = window.atob(base64);
-  const outputArray = new Uint8Array(rawData.length);
-
-  for (let i = 0; i < rawData.length; ++i) {
-    outputArray[i] = rawData.charCodeAt(i);
-  }
-  console.log('done converting');
-  return outputArray;
 }

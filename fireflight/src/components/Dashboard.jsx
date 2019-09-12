@@ -7,10 +7,17 @@ import { FireDataContext } from "../context/FireDataContext";
 
 import PrivateMap from "./PrivateMap";
 
+import {subscribeUser as getSub} from '../subscriptions';
+
 const Dashboard = () => {
   const { fireDataState, setShowAlert, getUserLocations } = useContext(
     FireDataContext
   );
+
+    const testSub=e=>{
+      console.log('testing subscription processing');
+      getSub();
+    }
 
   return (
     <DashboardWrapper>
@@ -31,6 +38,9 @@ const Dashboard = () => {
           >
             <DivHeading>Input Addresses</DivHeading>
           </NavLink>
+          <button onClick={testSub}>
+            Test Push Subscription
+          </button>
         </AddressesDiv>
       </ContentContainer>
     </DashboardWrapper>
