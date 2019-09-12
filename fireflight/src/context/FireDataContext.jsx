@@ -2,14 +2,17 @@ import React, { useReducer, createContext, useContext } from "react";
 import axios from "axios";
 import axiosWithAuth from "../utils/axiosWithAuth";
 import { GlobalContext } from "./contextProvider";
-import { haversineDistance } from "../utils/haversineDistance"
+import { Marker } from "react-map-gl";
+import { haversineDistance } from "../utils/haversineDistance";
+
+import fireIcon from "../images/fireIcon.png";
+import exclamationMark from "../images/exclaim.png";
+import locationIcon from "../images/locationIcon.png";
 
 import {
   GET_USER_LOCATIONS,
   GET_SELECTED_ADDRESS,
   GET_PUBLIC_COORDINATES,
-  GET_USER_COORDINATES,
-  ADD_PUBLIC_MAP_LOCATION,
   GET_PRIVATE_MAP_DATA,
   SET_PRIVATE_VIEWPORT,
   SET_PUBLIC_VIEWPORT,
@@ -17,8 +20,7 @@ import {
   SET_ALERT_VIEWED,
   SET_SHOW_ALERT,
   SET_TRIGGER_REGISTRATION_BUTTON,
-  SET_ALL_FIRES,
-  SET_LOCAL_FIRES
+  SET_ALL_FIRES
 } from "./fireDataTypes";
 
 const DSbaseURL = "https://fire-data-api.herokuapp.com";
@@ -42,17 +44,9 @@ const fireDataReducer = (state, action) => {
     case GET_PUBLIC_COORDINATES:
       return {
         ...state,
-        publicCoordinates: action.payload
-      };
-    case GET_USER_COORDINATES:
-      return {
-        ...state,
-        userCoordinates: action.payload
-      };
-    case ADD_PUBLIC_MAP_LOCATION:
-      return {
-        ...state,
-        publicMapViewport: action.viewport
+        publicCoordinates: action.payload[0],
+        publicCoordinatesMarker: action.payload[1],
+        localFireMarkers: action.payload[2]
       };
     case GET_PRIVATE_MAP_DATA:
       return {
@@ -96,12 +90,8 @@ const fireDataReducer = (state, action) => {
     case SET_ALL_FIRES:
       return {
         ...state,
-        allFires: action.payload
-      };
-    case SET_LOCAL_FIRES:
-      return {
-        ...state,
-        localFires: action.payload
+        allFires: action.payload[0],
+        allFireMarkers: action.payload[1]
       };
     default:
       return {
@@ -117,6 +107,7 @@ export const FireDataProvider = ({ children }) => {
     userLocations: [],
     addresses: [],
     publicCoordinates: {},
+    publicCoordinatesMarker: [],
     publicRadius: 500,
     userCoordinates: [],
     publicMapData: {},
@@ -140,43 +131,38 @@ export const FireDataProvider = ({ children }) => {
     alertViewed: false,
     showAlert: false,
     allFires: [],
-    localFires: []
+    allFireMarkers: [],
+    localFires: [],
+    localFireMarkers: []
   });
 
   const getAllFires = () => {
     axios
       .get(`${DSbaseURL}/all_fires`)
       .then(res => {
+        const localArray = res.data.Fires.map((fire, index) => (
+          <Marker latitude={fire[1]} longitude={fire[0]} key={fire[0] + index}>
+            <img
+              src={fireIcon}
+              height="35"
+              width="35"
+              style={{ zIndex: 3, transform: "translate(-17.5px, -35px)" }}
+              // onClick={e => {
+              //   setSelectedFire(fire[0]);
+              // }}
+            />
+          </Marker>
+        ));
+
         dispatch({
           type: SET_ALL_FIRES,
-          payload: res.data.Fires
+          payload: [res.data.Fires, localArray]
         });
       })
       .catch(err => {
         console.log(err);
       });
   };
-
-  const setLocalFires = () => { 
-    let localArray = [];
-    
-    fireDataState.allFires.forEach(fire => {
-      let distance = haversineDistance(
-        [fireDataState.publicCoordinates.latitude, fireDataState.publicCoordinates.longitude],
-        [fire[1], fire[0]],
-        true
-      );
-
-      if (distance <= 500) {
-        localArray.push(fire);
-      }
-    })
-    console.log(localArray)
-    dispatch({
-      type: SET_LOCAL_FIRES,
-      payload: localArray
-    })
-  }
 
   const getUserLocations = () => {
     axiosWithAuth()
@@ -196,29 +182,61 @@ export const FireDataProvider = ({ children }) => {
           `https://api.mapbox.com/geocoding/v5/mapbox.places/${address.address}.json?access_token=${token}`
         )
         .then(res => {
-          dispatch({
-            type: GET_PUBLIC_COORDINATES,
-            payload: {
-              address_label: address.address_label,
-              latitude: res.data.features[0].center[1],
-              longitude: res.data.features[0].center[0]
+          let localArray = [];
+
+          fireDataState.allFires.forEach(fire => {
+            let distance = haversineDistance(
+              [res.data.features[0].center[1], res.data.features[0].center[0]],
+              [fire[1], fire[0]],
+              true
+            );
+
+            if (distance <= 500) {
+              localArray.push(fire);
             }
           });
-        });
-    } 
-  };
 
-  const addPublicMapLocation = () => {
-    dispatch({
-      type: ADD_PUBLIC_MAP_LOCATION,
-      viewport: {
-        width: "100%",
-        height: "100vh",
-        latitude: fireDataState.publicCoordinates.latitude,
-        longitude: fireDataState.publicCoordinates.longitude,
-        zoom: 3.3
-      }
-    });
+          const localMarkers = localArray.map((fire, index) => (
+            <Marker
+              latitude={fire[1]}
+              longitude={fire[0]}
+              key={"localMarker" + fire[0] + index}
+            >
+              <img
+                src={exclamationMark}
+                height="25"
+                width="35"
+                style={{ zIndex: 3, transform: "translate(-17.5px, -52px)" }}
+                // onClick={e => {
+                //   setSelectedFire(fire[0]);
+                // }}
+              />
+            </Marker>
+          ));
+
+          dispatch({
+            type: GET_PUBLIC_COORDINATES,
+            payload: [
+              {
+                latitude: res.data.features[0].center[1],
+                longitude: res.data.features[0].center[0]
+              },
+              <Marker
+                latitude={res.data.features[0].center[1]}
+                longitude={res.data.features[0].center[0]}
+              >
+                <img
+                  src={locationIcon}
+                  height="35"
+                  width="20"
+                  style={{ zIndex: -1, transform: "translate(-10px, -35px)" }}
+                />
+              </Marker>,
+              localMarkers
+            ]
+          });
+        });
+    }
   };
 
   const getPrivateMapData = id => {
@@ -319,7 +337,6 @@ export const FireDataProvider = ({ children }) => {
         fireDataState,
         dispatch,
         getUserLocations,
-        addPublicMapLocation,
         getCoordinates,
         getPrivateMapData,
         setPublicViewport,
@@ -328,8 +345,7 @@ export const FireDataProvider = ({ children }) => {
         getAlertData,
         setAlertViewed,
         setShowAlert,
-        getAllFires,
-        setLocalFires
+        getAllFires
       }}
     >
       {children}

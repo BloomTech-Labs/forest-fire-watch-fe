@@ -21,22 +21,16 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
     fireDataState,
     setPublicViewport,
     getCoordinates,
-    addPublicMapLocation,
-    setTriggerRegistrationButton,
-    setLocalFires
+    setTriggerRegistrationButton
   } = useContext(FireDataContext);
   const {
     publicMapViewport,
-    publicMapData,
-    publicCoordinates,
     triggerRegistrationButton,
-    allFires,
-    localFires
+    allFireMarkers,
+    publicCoordinatesMarker,
+    localFireMarkers
   } = fireDataState;
   const [address, setAddress] = useState("");
-  const [firesDisplay, setFiresDisplay] = useState();
-  const [localFiresDisplay, setLocalFiresDisplay] = useState();
-  const [userMarker, setUserMarker] = useState();
 
   const handleSubmit = () => {
     if (address) {
@@ -44,75 +38,8 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
         address: address,
         address_label: null
       });
-      setLocalFires();
       setTriggerRegistrationButton();
     }
-    };
-
-  useEffect(() => {
-    if (Object.keys(publicCoordinates).length > 0) {
-      addPublicMapLocation();
-    }
-  }, [publicCoordinates]);
-
-  useEffect(() => {
-    createFiresDisplay(allFires);
-  }, [allFires]);
-
-  useEffect(() => {
-    createFiresDisplay(localFires);
-  }, [publicCoordinates]);
-
-  useEffect(() => {
-    createUserMarker();
-  }, [publicCoordinates.latitude]);
-
-  console.log(localFires)
-
-  const createUserMarker = () => {
-    if (publicCoordinates.latitude && publicCoordinates.longitude) {
-      setUserMarker(
-        <Marker
-          latitude={publicCoordinates.latitude}
-          longitude={publicCoordinates.longitude}
-        >
-          <img
-            src={locationIcon}
-            height="35"
-            width="20"
-            style={{ zIndex: -1, transform: "translate(-10px, -35px)" }}
-          />
-        </Marker>
-      );
-    }
-  };
-
-  const createFiresDisplay = async (arr) => {
-    let fires = await arr.map(fire => {
-      return (
-        // return marker for each fire datapoint
-        <Marker
-          latitude={fire[1]}
-          longitude={fire[0]}
-          key={fire[0] + fire[1] + fire[1]}
-        >
-          <img
-            src={arr.length === allFires.length ? fireIcon : exclamationMark}
-            height="35"
-            width="35"
-            style={{ zIndex: 3, transform: "translate(-17.5px, -35px)" }}
-            // onClick={e => {
-            //   setSelectedFire(fire[0]);
-            // }}
-          />
-        </Marker>
-      );
-    });
-    if (arr.length === allFires.length) {
-    setFiresDisplay(fires)
-    } else {
-      setLocalFiresDisplay(fires)
-    };
   };
 
   let infoText;
@@ -153,9 +80,9 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
           setPublicViewport(publicMapViewport);
         }}
       >
-        {userMarker}
-        {firesDisplay}
-        {localFiresDisplay}
+        {publicCoordinatesMarker}
+        {allFireMarkers}
+        {localFireMarkers}
       </ReactMapGL>
     </div>
   );
