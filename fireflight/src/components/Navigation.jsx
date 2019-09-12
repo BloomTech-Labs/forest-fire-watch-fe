@@ -45,7 +45,7 @@ function Navigation({
       <div className="logo">
         <img src={logo} alt="FireFlight Logo" />
       </div>
-      <div className="hamburger-menu" onClick={() => setMenuToggle(!menuToggle)}>
+      <div className="dropdown-menu" onClick={() => setMenuToggle(!menuToggle)}>
         <div className="menu-wrapper">
           <div className="burger-bar" />
           <div className="burger-bar" />

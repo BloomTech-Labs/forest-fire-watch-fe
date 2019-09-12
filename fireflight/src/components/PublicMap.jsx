@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import styled from "styled-components";
-import { tablet, desktop } from "../styles/vars";
 
 import { FireDataContext } from "../context/FireDataContext";
 
@@ -108,7 +107,9 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
     <div style={{ position: "relative" }}>
       <Container>
         <FormContainer>
-          <FormInput
+          <i className="fas fa-compass fa-lg" />
+          <input 
+            className="form-input"
             type="text"
             name="Address"
             placeholder="Address"
@@ -164,20 +165,6 @@ const FormContainer = styled.div`
     justify-content: center;
     width: 90%;
     margin: auto;
-  }
-`;
-
-const FormInput = styled.input`
-  width: 250px;
-  margin: 25px 25px 5px;
-  padding: 10px;
-  font-size: 1em;
-  background-color: white;
-  border-radius: 5px;
-  border: solid 1px black;
-  @media (max-width: 576px) {
-    width: 200px;
-    padding: 8px;
   }
 `;
 

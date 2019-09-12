@@ -1,9 +1,6 @@
 .nav-container {
     width: 100%;
     height: 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     border-bottom: 1px solid grey;
     position: sticky;
     top: 0;
@@ -16,17 +13,18 @@
         margin-bottom: 15px;
       }
 
-      .hamburger-menu {
+      .dropdown-menu {
         background-color: $accentColorTransparency;
         height: auto;
         padding: 5px;
         width: 25px;
 
         .burger-bar {
-          width: 25px;
-          height: 3px;
           background-color: black;
+          border-radius: 25px;
+          height: 3px;
           margin: 5px 0;
+          width: 25px;
         }
         
         a {
