@@ -102,7 +102,7 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
 
   let infoText;
 
-  infoText = <InfoText>* All searches are based on a 500 mile radius</InfoText>;
+  infoText = <div className="info-text">* All searches are based on a 500 mile radius</div>;
 
   return (
     <div style={{ position: "relative" }}>
@@ -178,18 +178,6 @@ const FormInput = styled.input`
   @media (max-width: 576px) {
     width: 200px;
     padding: 8px;
-  }
-`;
-
-const InfoText = styled.div`
-  font-size: 0.9em;
-  text-align: center;
-  @media (max-width: 576px) {
-    font-size: 0.7em;
-    position: absolute;
-    top: 110px;
-    left: 50px;
-    text-decoration: none;
   }
 `;
 

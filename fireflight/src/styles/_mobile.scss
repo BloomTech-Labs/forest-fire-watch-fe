@@ -4,9 +4,8 @@
         // Navigation Bar
         .nav-container {
             background-image: linear-gradient(to bottom, #355C7D, #F67280 60%);
-            flex-direction: column;
+            flex-direction: row;
             height: 125px;
-            justify-content: flex-start;
             width: 100%;
         }
     
@@ -21,7 +20,15 @@
             position: absolute;
             top: 40px;
             width: 200px;
-        }    
+        }
+        
+        .info-text {
+            font-size: 0.7em;
+            position: absolute;
+            top: 110px;
+            left: 65px;
+            text-decoration: none;
+        }
 }
 
 // Medium to Large Media Screens

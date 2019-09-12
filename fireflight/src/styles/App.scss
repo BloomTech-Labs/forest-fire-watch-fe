@@ -40,5 +40,10 @@ a, p {
   font-weight: 300;
 }
 
+.info-text {
+  font-size: 0.9em;
+  text-align: center;
+}
+
 // Mobile View Import
 @import "mobile";
