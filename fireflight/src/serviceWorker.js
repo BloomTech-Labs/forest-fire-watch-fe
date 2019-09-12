@@ -72,11 +72,11 @@ async function registerValidSW(swUrl, config) {
 
       console.log('Registering Push');
 
-      const subscribe = await registration.pushManager.subscribe({
-        userVisibleOnly: true,
-        applicationServerKey: urlBase64ToUint8Array(vapidPublic)
-      })
       try {
+        const subscribe = await registration.pushManager.subscribe({
+          userVisibleOnly: true,
+          applicationServerKey: urlBase64ToUint8Array(vapidPublic)
+        })
         console.log('trying to register');
         await fetch('https://fireflight-lambda.herokuapp.com/api/push/register', {
           method: 'POST',
