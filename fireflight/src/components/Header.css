@@ -10,3 +10,9 @@
     max-height:65px;
     margin:0;
   }
+  .userName{
+      color: white;
+      margin-right:50px;
+      font-size: 16px
+      /* margin-top:20px */
+  }

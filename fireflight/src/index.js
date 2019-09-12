@@ -4,11 +4,12 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router } from "react-router-dom";
 import GlobalState from './context/GlobalContext'
-
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Header from './components/Header'
 //setting state to global for use
 ReactDOM.render(
     <GlobalState>
+        <Header/>
         <Router>
             <App/>
         </Router>
