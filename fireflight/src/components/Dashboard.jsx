@@ -14,11 +14,6 @@ const Dashboard = () => {
     FireDataContext
   );
 
-    const testSub=e=>{
-      console.log('testing subscription processing');
-      getSub();
-    }
-
   return (
     <DashboardWrapper>
       <ContentContainer>
@@ -38,9 +33,6 @@ const Dashboard = () => {
           >
             <DivHeading>Input Addresses</DivHeading>
           </NavLink>
-          <button onClick={testSub}>
-            Test Push Subscription
-          </button>
         </AddressesDiv>
       </ContentContainer>
     </DashboardWrapper>
