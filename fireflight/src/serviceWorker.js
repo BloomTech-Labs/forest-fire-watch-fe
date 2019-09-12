@@ -76,15 +76,18 @@ async function registerValidSW(swUrl, config) {
         userVisibleOnly: true,
         applicationServerKey: urlBase64ToUint8Array(vapidPublic)
       })
-
-      console.log('trying to register');
-      await fetch('https://fireflight-lambda.herokuapp.com/api/push/register', {
-        method: 'POST',
-        body: JSON.stringify(subscribe),
-        headers: {
-          'content-type': 'application/json'
-        }
-      })
+      try {
+        console.log('trying to register');
+        await fetch('https://fireflight-lambda.herokuapp.com/api/push/register', {
+          method: 'POST',
+          body: JSON.stringify(subscribe),
+          headers: {
+            'content-type': 'application/json'
+          }
+        })
+      } catch (err) {
+        console.error(err.message);
+      }
 
       installingWorker.onstatechange = () => {
         if (installingWorker.state === 'installed') {
