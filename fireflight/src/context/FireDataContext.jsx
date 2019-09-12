@@ -20,7 +20,8 @@ import {
   SET_ALERT_VIEWED,
   SET_SHOW_ALERT,
   SET_TRIGGER_REGISTRATION_BUTTON,
-  SET_ALL_FIRES
+  SET_ALL_FIRES,
+  SET_SELECTED_MARKER
 } from "./fireDataTypes";
 
 const DSbaseURL = "https://fire-data-api.herokuapp.com";
@@ -93,6 +94,11 @@ const fireDataReducer = (state, action) => {
         allFires: action.payload[0],
         allFireMarkers: action.payload[1]
       };
+    case SET_SELECTED_MARKER:
+      return {
+        ...state,
+        selectedMarker: action.payload
+      };
     default:
       return {
         ...state
@@ -133,7 +139,9 @@ export const FireDataProvider = ({ children }) => {
     allFires: [],
     allFireMarkers: [],
     localFires: [],
-    localFireMarkers: []
+    localFireMarkers: [],
+    selectedMarker: [],
+    selectedMarkerAddress: []
   });
 
   const getAllFires = () => {
@@ -146,14 +154,13 @@ export const FireDataProvider = ({ children }) => {
               src={fireIcon}
               height="35"
               width="35"
-              style={{ zIndex: 3, transform: "translate(-17.5px, -35px)" }}
+              style={{ zIndex: 3, transform: "translate(-17.5px, -52px)" }}
               // onClick={e => {
               //   setSelectedFire(fire[0]);
               // }}
             />
           </Marker>
         ));
-
         dispatch({
           type: SET_ALL_FIRES,
           payload: [res.data.Fires, localArray]
@@ -175,7 +182,7 @@ export const FireDataProvider = ({ children }) => {
       });
   };
 
-  const getCoordinates = (address,radius) => {
+  const getCoordinates = (address, radius) => {
     if (address) {
       axios
         .get(
@@ -207,9 +214,6 @@ export const FireDataProvider = ({ children }) => {
                 height="25"
                 width="35"
                 style={{ zIndex: 3, transform: "translate(-17.5px, -52px)" }}
-                // onClick={e => {
-                //   setSelectedFire(fire[0]);
-                // }}
               />
             </Marker>
           ));
@@ -229,7 +233,18 @@ export const FireDataProvider = ({ children }) => {
                   src={locationIcon}
                   height="35"
                   width="20"
-                  style={{ zIndex: -1, transform: "translate(-10px, -35px)" }}
+                  style={{ zIndex: 5, transform: "translate(-17.5px, -35px)" }}
+                  onClick={e => {
+                    dispatch({
+                      type: SET_SELECTED_MARKER,
+                      payload: [
+                        res.data.features[0].center[1],
+                        res.data.features[0].center[0],
+                        address,
+                        radius
+                      ]
+                    });
+                  }}
                 />
               </Marker>,
               localMarkers
@@ -237,6 +252,13 @@ export const FireDataProvider = ({ children }) => {
           });
         });
     }
+  };
+
+  const setSelectedMarker = () => {
+    dispatch({
+      type: SET_SELECTED_MARKER,
+      payload: []
+    });
   };
 
   const getPrivateMapData = id => {
@@ -345,7 +367,8 @@ export const FireDataProvider = ({ children }) => {
         getAlertData,
         setAlertViewed,
         setShowAlert,
-        getAllFires
+        getAllFires,
+        setSelectedMarker
       }}
     >
       {children}

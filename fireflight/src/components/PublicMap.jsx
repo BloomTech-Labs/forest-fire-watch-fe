@@ -5,12 +5,6 @@ import { tablet, desktop } from "../styles/vars";
 
 import { FireDataContext } from "../context/FireDataContext";
 
-import Modal from "./Modal/Modal";
-import fireIcon from "../images/fireIcon.png";
-import exclamationMark from "../images/exclaim.jpg";
-import locationIcon from "../images/locationIcon.png";
-import { SET_LOCAL_FIRES } from "../context/fireDataTypes";
-
 // mapbox API token
 const token =
   process.env.REACT_APP_MAPBOX_TOKEN ||
@@ -21,28 +15,43 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
     fireDataState,
     setPublicViewport,
     getCoordinates,
-    setTriggerRegistrationButton
+    setTriggerRegistrationButton,
+    setSelectedMarker
   } = useContext(FireDataContext);
   const {
     publicMapViewport,
     triggerRegistrationButton,
     allFireMarkers,
     publicCoordinatesMarker,
-    localFireMarkers
+    localFireMarkers,
+    selectedMarker
   } = fireDataState;
 
   const [address, setAddress] = useState("");
 
   const [radius, setRadius] = useState();
 
+  console.log(selectedMarker);
+
+  useEffect(() => {
+    const listener = e => {
+      if (e.key === "Escape") {
+        setSelectedMarker();
+      }
+    };
+    window.addEventListener("keydown", listener);
+
+    return () => {
+      window.removeEventListener("keydown", listener);
+    };
+  }, []);
+
   const handleSubmit = () => {
     if (address) {
-      getCoordinates(address,radius);
+      getCoordinates(address, radius);
       setTriggerRegistrationButton();
     }
   };
-
-
 
   return (
     <div style={{ position: "relative" }}>
@@ -84,9 +93,22 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
           setPublicViewport(publicMapViewport);
         }}
       >
-        {publicCoordinatesMarker}
         {allFireMarkers}
         {localFireMarkers}
+        {publicCoordinatesMarker}
+        {selectedMarker.length > 0 ? (
+          <Popup
+            latitude={selectedMarker[0]}
+            longitude={selectedMarker[1]}
+            onClose={() => {
+              setSelectedMarker();
+            }}
+          >
+            <div>
+              <PopupText>THIS IS A TEST</PopupText>
+            </div>
+          </Popup>
+        ) : null}
       </ReactMapGL>
     </div>
   );
@@ -183,4 +205,10 @@ const TriggeredButton = styled.button`
   &:hover {
     box-shadow: none;
   }
+`;
+
+const PopupText = styled.p`
+  color: #355c7d;
+  padding: 0px;
+  margin: 0px;
 `;
