@@ -64,27 +64,28 @@ async function registerValidSW(swUrl, config) {
     console.log(swUrl);
     const registration = await navigator.serviceWorker.register(swUrl,{scope:'/'})
 
-    console.log('Registering Push');
-
-    const subscribe = await registration.pushManager.subscribe({
-      userVisibleOnly: true,
-      applicationServerKey: urlBase64ToUint8Array(vapidPublic)
-    })
-
-    console.log('trying to register');
-    await fetch('https://fireflight-lambda.herokuapp.com/api/push/register', {
-      method: 'POST',
-      body: JSON.stringify(subscribe),
-      headers: {
-        'content-type': 'application/json'
-      }
-    })
-
     registration.onupdatefound = () => {
       const installingWorker = registration.installing;
       if (installingWorker == null) {
         return;
       }
+
+      console.log('Registering Push');
+
+      const subscribe = await registration.pushManager.subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: urlBase64ToUint8Array(vapidPublic)
+      })
+
+      console.log('trying to register');
+      await fetch('https://fireflight-lambda.herokuapp.com/api/push/register', {
+        method: 'POST',
+        body: JSON.stringify(subscribe),
+        headers: {
+          'content-type': 'application/json'
+        }
+      })
+
       installingWorker.onstatechange = () => {
         if (installingWorker.state === 'installed') {
           if (navigator.serviceWorker.controller) {
