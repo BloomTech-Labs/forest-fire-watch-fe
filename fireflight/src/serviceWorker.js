@@ -73,7 +73,7 @@ async function registerValidSW(swUrl, config) {
       console.log('Registering Push');
 
       try {
-        const subscribe = await registration.pushManager.subscribe({
+        const subscribe = await installingWorker.pushManager.subscribe({
           userVisibleOnly: true,
           applicationServerKey: urlBase64ToUint8Array(vapidPublic)
         })
