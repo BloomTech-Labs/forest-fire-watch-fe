@@ -64,7 +64,7 @@ async function registerValidSW(swUrl, config) {
     console.log(swUrl);
     const registration = await navigator.serviceWorker.register(swUrl,{scope:'/'})
 
-    registration.onupdatefound = () => {
+    registration.onupdatefound = async () => {
       const installingWorker = registration.installing;
       if (installingWorker == null) {
         return;
