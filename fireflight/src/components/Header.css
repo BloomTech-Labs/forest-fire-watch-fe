@@ -5,14 +5,44 @@
     background-color: #263238;
     height: 65px
 }
-
-.Logo {
+.button {
+    border: 2pt solid white;
+    color: white;
+    height: 30px;
+    border-radius: 20px;
+    margin: 10px;
+    background-color: transparent;
+}
+.button:hover {
+    color: #263238;
+    background-color: white;
+    font-weight: bold;
+}
+.logo {
+    display: flex;
+}
+.LogoPic {
     max-height:65px;
     margin:0;
   }
-  .userName{
+  .logoName {
       color: white;
-      margin-right:50px;
+      font-weight: bold;
+      font-size: 25px;
+      margin-top: 15px;
+      margin-left: 25px;
+  }
+  .userName{
+      color: white  ;
+      font-weight: bold;
+      margin-right:30px;
+      margin-top: 20px;
       font-size: 16px
       /* margin-top:20px */
   }
+  .right {
+      display: flex;
+      align-items: center;
+  }
+/* 53 95 125 a.75 */
+/* #263238 */
