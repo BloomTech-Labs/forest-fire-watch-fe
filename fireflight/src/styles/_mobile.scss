@@ -1,24 +1,67 @@
 // Mobile View Media Query Mixin
-
 @include mediaSm {
-        // Navigation Bar
-        .nav-container {
-            background-image: linear-gradient(to bottom, #355C7D, #F67280 60%);
-            flex-direction: row;
-            height: 125px;
-            width: 100%;
+    // Navigation Bar
+    .nav-container {
+        background-image: linear-gradient(to bottom, #355C7D, #F67280 60%);
+        height: 80px;
+        width: 100%;
+
+        // FireFlight Logo
+        .brand {
+            float: left;
+
+            .logo {
+                height: 50px;
+                width: 40px;
+            }
+                
+            .logo-txt {
+                color: white;
+                font-family: $header;
+            }
         }
-    
-        // Hamburger Bar
-        .hamburger-menu {
-            padding: 0;
-            width: auto;
-        }
+
+         // Dropdown Menu      
+          .dropdown {
+              margin-top: 12.5px;
+              position: relative;
+              float: right;
+
+              .fa-plus-circle {
+                border: 2px solid $accentColor;
+                border-radius: 50%;
+                color: #FFF;
+                cursor: pointer;
+                margin: 15px;
+
+                &:hover {
+                    color: $accentColor;
+                    border: 2px solid #FFF;
+                    transform: rotate(45deg);
+                    @include easeOut;
+                }
+              }
+
+              .dropdown-content {
+                display: block;
+                right: 0;
+                background-color: $accentColor;
+                min-width: 160px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 2;
+
+                    a {
+                      color: $accentColor;
+                      display: block;
+                  }
+               }
+           }
+       }
     
         // Forms
         .form-btn {
             position: absolute;
-            top: 40px;
+            top: 42.5px;
             width: 200px;
         }
         
@@ -29,28 +72,34 @@
             left: 65px;
             text-decoration: none;
         }
-}
 
-// Medium to Large Media Screens
+        .form-input {
+            padding: 5px;
+            width: 200px;
+        }
+      }
 
+// Medium View
 @include mediaMd {
     .nav-container {
-        flex-direction: column;
         height: 100vh;
-        justify-content: flex-start;
         width: 100px;
-    }
 
-    .hamburger-menu {
+    .logo-txt {
+        display: none;
+    }
+  }
+    
+    .dropdown {
         padding: 0;
         width: auto;
 
-      .burger-bar {
+      .fa-plus-circle {
         display: none;
       }
     }
 
-    .menu-container {
+    .dropdown-content {
         background-color: transparent;
         position: static;
         right: auto;
