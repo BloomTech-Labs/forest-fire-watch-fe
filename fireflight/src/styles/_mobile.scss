@@ -1,4 +1,4 @@
-// Mobile View Media Query Mixin
+// Mobile View
 @include mediaSm {
     // Navigation Bar
     .nav-container {
@@ -28,7 +28,7 @@
               float: right;
 
               .fa-plus-circle {
-                border: 2px solid $accentColor;
+                border: 3px solid $accentColor;
                 border-radius: 50%;
                 color: #FFF;
                 cursor: pointer;
@@ -36,7 +36,7 @@
 
                 &:hover {
                     color: $accentColor;
-                    border: 2px solid #FFF;
+                    border: 3px solid #FFF;
                     transform: rotate(45deg);
                     @include easeOut;
                 }
@@ -69,15 +69,19 @@
             font-size: 0.7em;
             position: absolute;
             top: 110px;
-            left: 65px;
+            left: 75px;
             text-decoration: none;
         }
 
-        .form-input {
+        .address-input {
             padding: 5px;
             width: 200px;
         }
-      }
+      
+      .fa-user-circle, .fa-key, .fa-lock {
+        left: 3px;
+    }
+}
 
 // Medium View
 @include mediaMd {

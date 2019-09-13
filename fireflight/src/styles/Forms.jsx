@@ -25,16 +25,15 @@ export const FormInput = styled.input`
 `;
 
 export const Button = styled.button`
-  width: 250px;
-  margin: 25px 25px 5px;
-  padding: 10px;
-  font-size: 1em;
-  background-color: white;
-  border-radius: 5px;
-  border: solid 1px black;
+padding: 10px;
+font-size: 1em;
+background-color: white;
+border-radius: 5px;
+border: solid 1px black;
+width: 250px;
   @media (max-width: 576px) {
-    width: 200px;
     padding: 8px;
+    width: 200px;
   }
   box-shadow: 1px 2px 5px black;
   cursor: pointer;

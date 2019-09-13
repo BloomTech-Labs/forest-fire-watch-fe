@@ -27,6 +27,8 @@ a, p {
 .forgot-pw {
   color: $lilia;
   font-size: 0.75em;
+  position: relative;
+  top: 35px;
   text-decoration: none;
 
   &:hover {

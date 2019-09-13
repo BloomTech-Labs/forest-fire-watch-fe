@@ -56,7 +56,9 @@ function Login({ toggle, setShowAuthForms }) {
         <h2 className="form-heading">Welcome Back!</h2>
         <p className="form-text">Sign in to continue</p>
         <FormContainer onSubmit={handleSubmit}>
-          <FormInput
+          <i className="fas fa-user-circle fa-lg" />
+          <input
+            className="form-input"
             type="text"
             name="username"
             value={username}
@@ -65,7 +67,9 @@ function Login({ toggle, setShowAuthForms }) {
           />
           {errorStatus ? <ErrorText>{errorText}</ErrorText> : <ErrorText />}
 
-          <FormInput
+          <i className="fas fa-key fa-lg" />
+          <input
+            className="form-input"
             type="password"
             name="password"
             value={password}
@@ -133,24 +137,6 @@ const LoginSplitContainer = styled.div`
 const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
-`;
-
-const FormInput = styled.input`
-  width: 300px;
-  margin: auto;
-  padding: 15px;
-  font-size: 0.75em;
-  background-color: #355c7d;
-  color: #f2f3f4;
-  border-radius: 5px;
-  border: none;
-  &::placeholder {
-    color: #f2f3f4;
-    opacity: 0.75;
-  }
-  @media (max-width: 900px) {
-    width: 75%;
-  }
 `;
 
 const ErrorText = styled.p`
