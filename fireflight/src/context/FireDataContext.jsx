@@ -8,6 +8,7 @@ import { haversineDistance } from "../utils/haversineDistance";
 import fireIcon from "../images/fireIcon.png";
 import exclamationMark from "../images/exclaim.png";
 import locationIcon from "../images/locationIcon.png";
+import locationIconGreen from "../images/locationIconGreen.png"
 
 import {
   GET_USER_LOCATIONS,
@@ -21,7 +22,10 @@ import {
   SET_SHOW_ALERT,
   SET_TRIGGER_REGISTRATION_BUTTON,
   SET_ALL_FIRES,
-  SET_SELECTED_MARKER
+  SET_SELECTED_MARKER,
+  SET_SAVED_LOCATION,
+  DELETE_LOCATION_MARKER,
+  SET_USER_LOCATIONS
 } from "./fireDataTypes";
 
 const DSbaseURL = "https://fire-data-api.herokuapp.com";
@@ -99,6 +103,25 @@ const fireDataReducer = (state, action) => {
         ...state,
         selectedMarker: action.payload
       };
+    case SET_SAVED_LOCATION: // FINISH THIS //
+      return {
+        ...state,
+        selectedMarker: []
+      };
+    case DELETE_LOCATION_MARKER:
+      return {
+        ...state,
+        publicCoordinatesMarker: [],
+        selectedMarker: []
+      };
+    case SET_USER_LOCATIONS:
+      return {
+        ...state,
+        userLocationMarkers: action.payload[0],
+        userLocalFireMarkers: action.payload[1]
+      };
+
+
     default:
       return {
         ...state
@@ -141,7 +164,9 @@ export const FireDataProvider = ({ children }) => {
     localFires: [],
     localFireMarkers: [],
     selectedMarker: [],
-    selectedMarkerAddress: []
+    selectedMarkerAddress: [],
+    userLocationMarkers: [],
+    userLocalFireMarkers: []
   });
 
   const getAllFires = () => {
@@ -154,10 +179,10 @@ export const FireDataProvider = ({ children }) => {
               src={fireIcon}
               height="35"
               width="35"
-              style={{ zIndex: 3, transform: "translate(-17.5px, -52px)" }}
-              // onClick={e => {
-              //   setSelectedFire(fire[0]);
-              // }}
+              style={{ zIndex: 3, transform: "translate(-17.5px, -35px)" }}
+            // onClick={e => {
+            //   setSelectedFire(fire[0]);
+            // }}
             />
           </Marker>
         ));
@@ -171,16 +196,29 @@ export const FireDataProvider = ({ children }) => {
       });
   };
 
-  const getUserLocations = () => {
-    axiosWithAuth()
-      .get("locations")
-      .then(res => {
-        dispatch({
-          type: GET_USER_LOCATIONS,
-          payload: res.data
-        });
-      });
+  const deleteLocationMarker = () => {
+    dispatch({
+      type: DELETE_LOCATION_MARKER
+    });
   };
+
+  const saveLocationMarker = () => {
+
+    const theToken = localStorage.getItem("token");
+
+    if (theToken) {
+      console.log("inside theToken conditional")
+      axiosWithAuth()
+        .post("locations", { address: fireDataState.selectedMarker[2], radius: fireDataState.selectedMarker[3] })
+        .then(res => {
+          dispatch({
+            type: SET_SAVED_LOCATION
+          })
+        });
+    } else {
+      alert("Please log in to save a location.")
+    }
+  }
 
   const getCoordinates = (address, radius) => {
     if (address) {
@@ -252,6 +290,92 @@ export const FireDataProvider = ({ children }) => {
           });
         });
     }
+  };
+
+  const getUserLocations = () => {
+    axiosWithAuth()
+      .get("locations")
+      .then(res => {
+        console.log(res.data)
+        dispatch({
+          type: GET_USER_LOCATIONS,
+          payload: res.data
+        });
+      });
+  };
+
+  const setUserLocations = () => {
+    
+      axiosWithAuth()
+        .get("locations")
+        .then(res => {
+          console.log(res.data)
+          let localArray = [];
+          res.data.forEach(loc => {
+            console.log("all fires here " ,fireDataState.allFires)
+            fireDataState.allFires.forEach(fire => {
+              let distance = haversineDistance(
+                [loc.latitude, loc.longitude],
+                [fire[1], fire[0]],
+                true
+              );
+                console.log(distance, loc.radius)
+              if (distance <= loc.radius) {
+                localArray.push(fire);
+                
+                console.log("First" , localArray)
+              }
+            })
+          })
+          console.log("second ", localArray)
+          const localMarkers = localArray.map((fire, index) => (
+            <Marker
+              latitude={fire[1]}
+              longitude={fire[0]}
+              key={"localMarker" + fire[0] + index}
+            >
+              <img
+                src={exclamationMark}
+                height="25"
+                width="35"
+                style={{ zIndex: 3, transform: "translate(-17.5px, -52px)" }}
+              />
+            </Marker>
+          ));
+          console.log(localMarkers)
+          const userLocs = res.data.map((uLoc, index) => (
+            <Marker
+              latitude={uLoc.latitude}
+              longitude={uLoc.longitude}
+            >
+              <img
+                src={locationIconGreen}
+                height="35"
+                width="20"
+                style={{ zIndex: 5, transform: "translate(-17.5px, -35px)" }}
+              // onClick={e => {
+              //   dispatch({
+              //     type: SET_SELECTED_MARKER,
+              //     payload: [
+              //       res.data.features[0].center[1],
+              //       res.data.features[0].center[0],
+              //       address,
+              //       radius
+              //     ]
+              //   });
+              // }}
+              />
+            </Marker>
+          ))
+          dispatch({
+            type: SET_USER_LOCATIONS,
+            payload: [
+              userLocs,
+              localMarkers
+            ]
+          });
+        });
+
   };
 
   const setSelectedMarker = () => {
@@ -368,7 +492,10 @@ export const FireDataProvider = ({ children }) => {
         setAlertViewed,
         setShowAlert,
         getAllFires,
-        setSelectedMarker
+        setSelectedMarker,
+        deleteLocationMarker,
+        saveLocationMarker,
+        setUserLocations
       }}
     >
       {children}

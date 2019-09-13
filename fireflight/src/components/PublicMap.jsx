@@ -5,6 +5,9 @@ import { tablet, desktop } from "../styles/vars";
 
 import { FireDataContext } from "../context/FireDataContext";
 
+var circleRadius = 100
+var linearOffset = Math.round(Math.sqrt(0.5 * Math.pow(circleRadius, 2)));
+
 // mapbox API token
 const token =
   process.env.REACT_APP_MAPBOX_TOKEN ||
@@ -16,7 +19,9 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
     setPublicViewport,
     getCoordinates,
     setTriggerRegistrationButton,
-    setSelectedMarker
+    setSelectedMarker,
+    deleteLocationMarker,
+    saveLocationMarker
   } = useContext(FireDataContext);
   const {
     publicMapViewport,
@@ -24,14 +29,16 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
     allFireMarkers,
     publicCoordinatesMarker,
     localFireMarkers,
-    selectedMarker
+    selectedMarker,
+    userLocationMarkers,
+    userLocalFireMarkers
   } = fireDataState;
 
   const [address, setAddress] = useState("");
 
   const [radius, setRadius] = useState();
 
-  console.log(selectedMarker);
+  // console.log(selectedMarker);
 
   useEffect(() => {
     const listener = e => {
@@ -94,18 +101,28 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
         }}
       >
         {allFireMarkers}
+        {userLocalFireMarkers}
+        {console.log("YO RIGHT HERE ", userLocalFireMarkers)}
         {localFireMarkers}
         {publicCoordinatesMarker}
+        {userLocationMarkers}
         {selectedMarker.length > 0 ? (
           <Popup
+            closeOnClick = {false}
+            anchor = "top"
             latitude={selectedMarker[0]}
             longitude={selectedMarker[1]}
             onClose={() => {
               setSelectedMarker();
             }}
           >
-            <div>
-              <PopupText>THIS IS A TEST</PopupText>
+            <div style = {{ display: "flex" , flexDirection:"column"}}>
+              <button style = {{ marginBottom: 6 }} onClick={e => saveLocationMarker()} >
+                Save this location 
+              </button>
+              <button style = {{ marginTop: 6 }} onClick={e => deleteLocationMarker()} >
+                Delete this pin 
+              </button>
             </div>
           </Popup>
         ) : null}
