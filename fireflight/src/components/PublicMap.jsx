@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import styled from "styled-components";
-import { tablet, desktop } from "../styles/vars";
 
 import { FireDataContext } from "../context/FireDataContext";
 
@@ -102,20 +101,22 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
 
   let infoText;
 
-  infoText = <InfoText>* All searches are based on a 500 mile radius</InfoText>;
+  infoText = <div className="info-text">* All searches are based on a 500 mile radius</div>;
 
   return (
     <div style={{ position: "relative" }}>
       <Container>
         <FormContainer>
-          <FormInput
+          <i className="fas fa-compass fa-lg" />
+          <input 
+            className="form-input"
             type="text"
             name="Address"
             placeholder="Address"
             value={address}
             onChange={e => setAddress(e.target.value)}
           />
-          <FormButton onClick={handleSubmit}>Find Active Fires</FormButton>
+          <button className="form-btn" onClick={handleSubmit}>Find Active Fires</button>
         </FormContainer>
         {infoText}
         {triggerRegistrationButton ? (
@@ -164,49 +165,6 @@ const FormContainer = styled.div`
     justify-content: center;
     width: 90%;
     margin: auto;
-  }
-`;
-
-const FormInput = styled.input`
-  width: 250px;
-  margin: 25px 25px 5px;
-  padding: 10px;
-  font-size: 1em;
-  background-color: white;
-  border-radius: 5px;
-  border: solid 1px black;
-  @media (max-width: 576px) {
-    width: 200px;
-    padding: 8px;
-  }
-`;
-
-const FormButton = styled.button`
-  height: 38px;
-  width: 150px;
-  margin: 25px 0px 5px;
-  border-radius: 5px;
-  background-color: #355c7d;
-  color: #f2f3f4;
-  font-size: 1em;
-  border: solid 1px black;
-  cursor: pointer;
-  @media (max-width: 576px) {
-    position: absolute;
-    top: 40px;
-    width: 200px;
-  }
-`;
-
-const InfoText = styled.div`
-  font-size: 0.9em;
-  text-align: center;
-  @media (max-width: 576px) {
-    font-size: 0.7em;
-    position: absolute;
-    top: 110px;
-    left: 50px;
-    text-decoration: none;
   }
 `;
 

@@ -1,0 +1,42 @@
+.fa-compass {
+    background-color: #FFF;
+    border: solid 1px #000;
+    border-right: none;
+    border-radius: 5px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    color: #555;
+    margin: 25px 0px 5px 25px;
+    padding: 11px;
+}
+
+.form-input {
+    border: solid 1px #000;
+    border-left: none;
+    border-radius: 5px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    margin: 25px 25px 5px 0px;
+    padding: 10px;
+    font-size: 1em;
+    background-color: white;
+    width: 250px;
+}
+
+.form-btn {
+    height: 38px;
+    width: 150px;
+    margin: 25px 0px 5px;
+    border-radius: 5px;
+    background-color: $accentColor;
+    color: $lilia;
+    font-size: 1em;
+    border: solid 1px black;
+    cursor: pointer;
+
+    &:hover {
+        color: $accentColor;
+        background-color: $lilia;
+        @include easeOut;
+    }
+}
