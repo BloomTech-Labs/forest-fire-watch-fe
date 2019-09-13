@@ -8,9 +8,9 @@
 
 🚫 Each student has a required minimum number of meaningful PRs each week per the rubric. Contributing to docs does NOT count as a PR to meet your weekly requirements.
 
-# Fire Flight
+# FireFlight
 
-You can find the deployed project at [fireflightapp.com](fireflightapp.com).
+You can find the deployed project at [fireflightapp.com](https://www.fireflightapp.com).
 
 ## 4️⃣ Contributors
 
