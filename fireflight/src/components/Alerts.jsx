@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 
 import { FireDataContext } from "../context/FireDataContext";
 import styled from "styled-components";

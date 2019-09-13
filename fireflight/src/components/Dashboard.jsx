@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 
 import { NavLink } from "react-router-dom";
@@ -8,9 +8,7 @@ import { FireDataContext } from "../context/FireDataContext";
 import PrivateMap from "./PrivateMap";
 
 const Dashboard = () => {
-  const { fireDataState, setShowAlert, getUserLocations } = useContext(
-    FireDataContext
-  );
+  const { setShowAlert } = useContext(FireDataContext);
 
   return (
     <DashboardWrapper>

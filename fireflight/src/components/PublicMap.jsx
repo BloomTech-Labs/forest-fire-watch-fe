@@ -1,12 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
-import ReactMapGL, { Marker, Popup } from "react-map-gl";
+import ReactMapGL, { Popup } from "react-map-gl";
 import styled from "styled-components";
-import { tablet, desktop } from "../styles/vars";
 
 import { FireDataContext } from "../context/FireDataContext";
-
-var circleRadius = 100
-var linearOffset = Math.round(Math.sqrt(0.5 * Math.pow(circleRadius, 2)));
 
 // mapbox API token
 const token =
@@ -36,7 +32,7 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
 
   const [address, setAddress] = useState("");
 
-  const [radius, setRadius] = useState();
+  const [radius, setRadius] = useState("");
 
   // console.log(selectedMarker);
 
@@ -59,6 +55,35 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
       setTriggerRegistrationButton();
     }
   };
+
+  const tempLocationPopup = (
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      <button
+        style={{ marginBottom: 6 }}
+        onClick={e => {
+          saveLocationMarker();
+          deleteLocationMarker();
+        }}
+      >
+        Save this location
+      </button>
+      <button style={{ marginTop: 6 }} onClick={e => deleteLocationMarker()}>
+        Delete this pin
+      </button>
+    </div>
+  );
+
+  const savedLocationPopup = (
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      {/* <button style={{ marginBottom: 6 }}>Toggle Notifications</button> */}
+      <Switch>
+        <Checkbox type="checkbox" />
+
+        <Slider></Slider>
+      </Switch>
+      <button style={{ marginTop: 6 }}>Delete this pin</button>
+    </div>
+  );
 
   return (
     <div style={{ position: "relative" }}>
@@ -102,28 +127,23 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
       >
         {allFireMarkers}
         {userLocalFireMarkers}
-        {console.log("YO RIGHT HERE ", userLocalFireMarkers)}
         {localFireMarkers}
-        {publicCoordinatesMarker}
+
         {userLocationMarkers}
+        {publicCoordinatesMarker}
         {selectedMarker.length > 0 ? (
           <Popup
-            closeOnClick = {false}
-            anchor = "top"
+            closeOnClick={false}
+            anchor="top"
             latitude={selectedMarker[0]}
             longitude={selectedMarker[1]}
             onClose={() => {
               setSelectedMarker();
             }}
           >
-            <div style = {{ display: "flex" , flexDirection:"column"}}>
-              <button style = {{ marginBottom: 6 }} onClick={e => saveLocationMarker()} >
-                Save this location 
-              </button>
-              <button style = {{ marginTop: 6 }} onClick={e => deleteLocationMarker()} >
-                Delete this pin 
-              </button>
-            </div>
+            {selectedMarker[4] === "savedLocation"
+              ? savedLocationPopup
+              : tempLocationPopup}
           </Popup>
         ) : null}
       </ReactMapGL>
@@ -228,4 +248,57 @@ const PopupText = styled.p`
   color: #355c7d;
   padding: 0px;
   margin: 0px;
+`;
+
+const Switch = styled.label`
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+`;
+
+const Checkbox = styled.input`
+  /* opacity: 0; */
+  width: 0;
+  height: 0;
+  &:checked {
+    background-color: #2196f3;
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  &:focus {
+    box-shadow: 0 0 1px #2196f3;
+  }
+`;
+
+const Slider = styled.span`
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  /* -webkit-transition: 0.4s; */
+  /* transition: 0.4s; */
+  background-color: #2196f3;
+  box-shadow: 0 0 1px #2196f3;
+  border-radius: 34px;
+
+  &:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    /* -webkit-transition: 0.4s;
+    transition: 0.4s;
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px); */
+    transform: translateX(26px);
+    border-radius: 50%;
+  }
 `;

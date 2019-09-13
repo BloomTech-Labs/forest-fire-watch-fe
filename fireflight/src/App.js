@@ -5,7 +5,6 @@ import Home from "./components/Home";
 import Danger from "./components/Danger";
 import Update from "./components/Update";
 import Dashboard from "./components/Dashboard";
-import PrivateMap from "./components/PrivateMap";
 
 import AuthForms from "./components/AuthForms/AuthForms";
 import AlertsContainer from "./components/AlertsContainer";
