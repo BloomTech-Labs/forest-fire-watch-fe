@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useContext } from "react";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import Navigation from "./components/Navigation";
@@ -20,6 +21,8 @@ import { FireDataContext } from "./context/FireDataContext";
 import * as v from "./styles/vars";
 
 import "./styles/App.scss";
+
+require('dotenv').config();
 
 const token = localStorage.getItem("token");
 

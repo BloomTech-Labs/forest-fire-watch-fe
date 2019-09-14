@@ -95,7 +95,9 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
     <div style={{ position: "relative" }}>
       <Container>
         <FormContainer>
-          <FormInput
+          <i className="fas fa-compass fa-lg" />
+          <input
+            className="address-input"
             type="text"
             name="Address"
             placeholder="Address"

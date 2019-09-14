@@ -42,23 +42,19 @@ function Navigation({
 
   return (
     <div className="nav-container">
-      <div className="logo">
-        <img src={logo} alt="FireFlight Logo" />
+      <div className="brand">
+        <img className="logo" src={logo} alt="FireFlight Logo" />
+        <span className="logo-txt">FireFlight</span>
       </div>
-      <div
-        className="hamburger-menu"
-        onClick={() => setMenuToggle(!menuToggle)}
-      >
-        <div className="menu-wrapper">
-          <div className="burger-bar" />
-          <div className="burger-bar" />
-          <div className="burger-bar" />
+      <div className="dropdown" onClick={() => setMenuToggle(!menuToggle)}>
+        <div className="drop-btn">
+          <i className="fas fa-plus-circle fa-2x" />
         </div>
         {menuToggle ? (
-          <div className="menu-container">
+          <div className="dropdown-content">
             <NavLink exact to="/" activeClassName="current">
               <div className="menu-item">
-                {/* Will be profile page later */}
+                {/* Will be profile page/dashboard later */}
                 <i className="fas fa-home fa-lg" /> <br />
                 Home
               </div>
@@ -95,7 +91,7 @@ function Navigation({
                 <NavLink to="/dashboard" activeClassName="current">
                   <div className="menu-item" data-temp="here">
                     {location.pathname.includes("/dashboard") ? (
-                      <img src={dashboardAlt} alt="" />
+                      <img src={dashboardAlt} alt="Alternate Dashboard Icon" />
                     ) : (
                       <img src={dashboard} alt="Dashboard Icon" />
                     )}
@@ -138,7 +134,7 @@ function Navigation({
         ) : // end menu-container
         null}
       </div>
-      {/* end hamburger-menu */}
+      {/* end dropdown-menu */}
     </div>
     // end nav-container
   );
