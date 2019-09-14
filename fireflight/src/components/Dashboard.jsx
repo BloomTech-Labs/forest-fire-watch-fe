@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 
 import { FireDataContext } from "../context/FireDataContext";
 
-import PrivateMap from "./PrivateMap";
+// import PrivateMap from "./PrivateMap";
 
 const Dashboard = () => {
   const { setShowAlert } = useContext(FireDataContext);
@@ -18,10 +18,10 @@ const Dashboard = () => {
             View Todays Alerts
           </DivHeading>
         </AlertsDiv>
-        <MapDiv>
+        {/* <MapDiv>
           <DivHeading>Active Fires</DivHeading>
           <PrivateMap />
-        </MapDiv>
+        </MapDiv> */}
         <AddressesDiv>
           <NavLink
             to="/address"

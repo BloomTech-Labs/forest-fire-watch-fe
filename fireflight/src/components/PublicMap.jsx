@@ -75,7 +75,6 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
 
   const savedLocationPopup = (
     <div style={{ display: "flex", flexDirection: "column" }}>
-      {/* <button style={{ marginBottom: 6 }}>Toggle Notifications</button> */}
       <CheckBoxWrapper>
         <CheckBox id="checkbox" type="checkbox" />
         <CheckBoxLabel htmlFor="checkbox" />
@@ -86,7 +85,6 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
 
   const fireLocationPopup = (
     <div style={{ display: "flex", flexDirection: "column" }}>
-      {/* <button style={{ marginBottom: 6 }}>Toggle Notifications</button> */}
       THIS IS A FIRE
     </div>
   );

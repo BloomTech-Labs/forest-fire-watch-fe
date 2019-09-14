@@ -13,12 +13,7 @@ import {
   GET_USER_LOCATIONS,
   GET_SELECTED_ADDRESS,
   GET_PUBLIC_COORDINATES,
-  GET_PRIVATE_MAP_DATA,
-  SET_PRIVATE_VIEWPORT,
   SET_PUBLIC_VIEWPORT,
-  GET_ALERT_DATA,
-  SET_ALERT_VIEWED,
-  SET_SHOW_ALERT,
   SET_TRIGGER_REGISTRATION_BUTTON,
   SET_ALL_FIRES,
   SET_SELECTED_MARKER,
@@ -52,17 +47,6 @@ const fireDataReducer = (state, action) => {
         publicCoordinatesMarker: action.payload[1],
         localFireMarkers: action.payload[2]
       };
-    case GET_PRIVATE_MAP_DATA:
-      return {
-        ...state,
-        privateMapData: action.payload,
-        privateMapViewport: action.viewport
-      };
-    case SET_PRIVATE_VIEWPORT:
-      return {
-        ...state,
-        privateMapViewport: action.payload
-      };
     case SET_PUBLIC_VIEWPORT:
       return {
         ...state,
@@ -72,24 +56,6 @@ const fireDataReducer = (state, action) => {
       return {
         ...state,
         triggerRegistrationButton: action.payload
-      };
-    case GET_ALERT_DATA:
-      return {
-        ...state,
-        alertData: [
-          ...state.alertData,
-          !state.alertData.includes(action.payload) ? action.payload : null
-        ]
-      };
-    case SET_ALERT_VIEWED:
-      return {
-        ...state,
-        alertViewed: action.payload
-      };
-    case SET_SHOW_ALERT:
-      return {
-        ...state,
-        showAlert: action.payload
       };
     case SET_ALL_FIRES:
       return {
@@ -412,48 +378,6 @@ export const FireDataProvider = ({ children }) => {
     });
   };
 
-  const getPrivateMapData = id => {
-    let selection = fireDataState.userCoordinates.filter(
-      item => item.id === id
-    );
-    selection = selection[0];
-
-    axios
-      .post(`${DSbaseURL}/check_fires`, {
-        user_coords: [selection.longitude, selection.latitude],
-        distance: selection.radius
-          ? selection.radius
-          : fireDataState.publicRadius
-      })
-      .then(res => {
-        dispatch({
-          type: GET_PRIVATE_MAP_DATA,
-          payload: {
-            ...res.data,
-            latitude: selection.latitude,
-            longitude: selection.longitude,
-            radius: selection.radius
-              ? selection.radius
-              : fireDataState.publicRadius
-          },
-          viewport: {
-            width: "100%",
-            height: window.innerWidth < 900 ? 350 : 500,
-            latitude: selection.latitude,
-            longitude: selection.longitude,
-            zoom: 7
-          }
-        });
-      });
-  };
-
-  const setPrivateViewport = viewport => {
-    dispatch({
-      type: SET_PRIVATE_VIEWPORT,
-      payload: viewport
-    });
-  };
-
   const setPublicViewport = viewport => {
     dispatch({
       type: SET_PUBLIC_VIEWPORT,
@@ -474,38 +398,6 @@ export const FireDataProvider = ({ children }) => {
     }
   };
 
-  const getAlertData = () => {
-    fireDataState.userCoordinates.forEach(coord => {
-      axios
-        .post(`${DSbaseURL}/check_fires`, {
-          user_coords: [coord.longitude, coord.latitude],
-          distance: coord.radius
-        })
-        .then(res => {
-          if (res.data.Alert) {
-            dispatch({
-              type: GET_ALERT_DATA,
-              payload: coord.address
-            });
-          }
-        });
-    });
-  };
-
-  const setAlertViewed = change => {
-    dispatch({
-      type: SET_ALERT_VIEWED,
-      payload: change
-    });
-  };
-
-  const setShowAlert = change => {
-    dispatch({
-      type: SET_SHOW_ALERT,
-      payload: change
-    });
-  };
-
   return (
     <FireDataContext.Provider
       value={{
@@ -513,13 +405,8 @@ export const FireDataProvider = ({ children }) => {
         dispatch,
         getUserLocations,
         getCoordinates,
-        getPrivateMapData,
         setPublicViewport,
-        setPrivateViewport,
         setTriggerRegistrationButton,
-        getAlertData,
-        setAlertViewed,
-        setShowAlert,
         getAllFires,
         setSelectedMarker,
         deleteLocationMarker,

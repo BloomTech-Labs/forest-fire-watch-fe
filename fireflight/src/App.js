@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useContext } from "react";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import Navigation from "./components/Navigation";
@@ -8,7 +7,6 @@ import Update from "./components/Update";
 import Dashboard from "./components/Dashboard";
 
 import AuthForms from "./components/AuthForms/AuthForms";
-import AlertsContainer from "./components/AlertsContainer";
 
 import Address from "./components/Address";
 import AddressContext from "./context/AddressContext";
@@ -22,7 +20,7 @@ import * as v from "./styles/vars";
 
 import "./styles/App.scss";
 
-require('dotenv').config();
+require("dotenv").config();
 
 const token = localStorage.getItem("token");
 
@@ -36,15 +34,9 @@ function App() {
   const [registerFormStatus, setRegisterFormStatus] = useState(false);
 
   const global = useContext(GlobalContext);
-  const {
-    fireDataState,
-    getUserLocations,
-    getCoordinates,
-    getAlertData,
-    getAllFires,
-    setUserLocations
-  } = useContext(FireDataContext);
-  const { userLocations, userCoordinates } = fireDataState;
+  const { fireDataState, getAllFires, setUserLocations } = useContext(
+    FireDataContext
+  );
 
   useEffect(() => {
     getAllFires();
@@ -82,27 +74,9 @@ function App() {
     }
   }, [token]);
 
-  useEffect(() => {
-    if (token) {
-      getUserLocations();
-    }
-  }, [token]);
-
-  useEffect(() => {
-    getAlertData();
-  }, [userCoordinates, token]);
-
-  useEffect(() => {
-    if (token) {
-      getCoordinates();
-    }
-  }, [token, userLocations]);
-
   return (
     <AppWrapper>
       <AddressContext>
-        <AlertsContainer />
-
         <AuthForms
           showAuthForms={showAuthForms}
           setShowAuthForms={setShowAuthForms}
@@ -145,7 +119,6 @@ function App() {
             />
           )}
         />
-        {/* <Route path="/maps" component={PrivateMap} /> */}
 
         <Route path="/address" component={Address} />
       </AddressContext>
