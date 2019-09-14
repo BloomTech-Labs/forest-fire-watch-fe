@@ -13,6 +13,7 @@
     &:hover {
       background-color: $accentColor;
       color: $lilia;
+      @include easeOut;
     }
   
     @media (max-width: 900px) {
@@ -35,5 +36,6 @@
     &:hover {
       background-color: $lilia;
       color: $accentColor;
+      @include easeOut;
     }
   }
