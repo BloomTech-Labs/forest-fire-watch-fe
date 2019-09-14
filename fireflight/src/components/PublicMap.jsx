@@ -84,6 +84,13 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
     </div>
   );
 
+  const fireLocationPopup = (
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      {/* <button style={{ marginBottom: 6 }}>Toggle Notifications</button> */}
+      THIS IS A FIRE
+    </div>
+  );
+
   return (
     <div style={{ position: "relative" }}>
       <Container>
@@ -140,9 +147,9 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
               setSelectedMarker();
             }}
           >
-            {selectedMarker[4] === "savedLocation"
-              ? savedLocationPopup
-              : tempLocationPopup}
+            {selectedMarker[4] === "savedLocation" && savedLocationPopup}
+            {selectedMarker[4] === "tempLocation" && tempLocationPopup}
+            {selectedMarker[4] === "fireLocation" && fireLocationPopup}
           </Popup>
         ) : null}
       </ReactMapGL>
@@ -251,6 +258,7 @@ const PopupText = styled.p`
 
 const CheckBoxWrapper = styled.div`
   position: relative;
+  margin: auto 0px auto auto;
 `;
 const CheckBoxLabel = styled.label`
   position: absolute;

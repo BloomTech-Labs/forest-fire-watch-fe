@@ -180,9 +180,12 @@ export const FireDataProvider = ({ children }) => {
               width="35"
               style={{ zIndex: 3, transform: "translate(-17.5px, -35px)" }}
               alt=""
-              // onClick={e => {
-              //   setSelectedFire(fire[0]);
-              // }}
+              onClick={e => {
+                dispatch({
+                  type: SET_SELECTED_MARKER,
+                  payload: [fire[1], fire[0], null, null, "fireLocation"]
+                });
+              }}
             />
           </Marker>
         ));
@@ -228,17 +231,18 @@ export const FireDataProvider = ({ children }) => {
                   width="20"
                   style={{ zIndex: 5, transform: "translate(-17.5px, -35px)" }}
                   alt=""
-                  // onClick={e => {
-                  //   dispatch({
-                  //     type: SET_SELECTED_MARKER,
-                  //     payload: [
-                  //       res.data.features[0].center[1],
-                  //       res.data.features[0].center[0],
-                  //       address,
-                  //       radius
-                  //     ]
-                  //   });
-                  // }}
+                  onClick={e => {
+                    dispatch({
+                      type: SET_SELECTED_MARKER,
+                      payload: [
+                        fireDataState.selectedMarker[0],
+                        fireDataState.selectedMarker[1],
+                        fireDataState.selectedMarker[2],
+                        fireDataState.selectedMarker[3],
+                        "savedLocation"
+                      ]
+                    });
+                  }}
                 />
               </Marker>
             ]
@@ -310,7 +314,8 @@ export const FireDataProvider = ({ children }) => {
                         res.data.features[0].center[1],
                         res.data.features[0].center[0],
                         address,
-                        radius
+                        radius,
+                        "tempLocation"
                       ]
                     });
                   }}
