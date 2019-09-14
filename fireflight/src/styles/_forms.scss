@@ -48,7 +48,7 @@
     margin: -25px auto;
     padding: 15px 15px 15px 50px;
     font-size: 0.75em;
-    width: 75%;
+    width: 70%;
 
     &::placeholder {
       color: #f2f3f4;
@@ -70,6 +70,7 @@
     color: $lilia;
     font-size: 1em;
     width: 150px;
+    @include easeOut;
 
     &:hover {
         color: $accentColor;

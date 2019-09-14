@@ -99,9 +99,7 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
     }
   };
 
-  let infoText;
-
-  infoText = <div className="info-text">* All searches are based on a 500 mile radius</div>;
+ let infoText = <div className="info-text">* All searches are based on a 500 mile radius</div>;
 
   return (
     <div style={{ position: "relative" }}>
@@ -118,7 +116,9 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
           />
           <button className="form-btn" onClick={handleSubmit}>Find Active Fires</button>
         </FormContainer>
-        {infoText}
+        {/* Address Form Subtext */}
+        { infoText }
+        {/* ==================== */}
         {triggerRegistrationButton ? (
           <TriggeredButton
             onClick={() => {
