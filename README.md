@@ -2,17 +2,11 @@
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/65d8b884-4807-40de-a05b-0cc08b7ddf48/deploy-status)](https://app.netlify.com/sites/fireflightapp/deploys)
 
-🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your portfolio. This is intended to be a guideline, feel free to add your own flare to it.
-
-🚫 The numbers 1️⃣ through 5️⃣ next to each item represent the week that part of the docs needs to be comepleted by.  Make sure to delete the numbers by the end of Labs.
-
-🚫 Each student has a required minimum number of meaningful PRs each week per the rubric. Contributing to docs does NOT count as a PR to meet your weekly requirements.
-
 # FireFlight
 
 You can find the deployed project at [fireflightapp.com](https://www.fireflightapp.com).
 
-## 4️⃣ Contributors
+## Contributors
 
 |                                       [Brandon Porter](https://github.com/AshenPheonix)                                        |                                       [Student 2](https://github.com/)                                        |                                       [Student 3](https://github.com/)                                        |                                       [Student 4](https://github.com/)                                        |                                       [Eric Nunn](https://github.com/ericNunnDev)                                        |
 | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
@@ -23,25 +17,20 @@ You can find the deployed project at [fireflightapp.com](https://www.fireflighta
 <br>
 <br>
 
-🚫 4️⃣ Optional examples of using images with links for your tech stack, make sure to change these to fit your project
-
-<!-- [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier) -->
-
-
 ## Project Overview
 
 [Trello Board](https://trello.com/b/LHd7GbuL/labs15-forest-fire)
 
 [Product Canvas](https://www.notion.so/Forest-Fire-Prediction-and-Rescue-Coordination-7eb1595c5f1643fca8e48a89c6086fdf)
 
-1️⃣ [UX Design files](🚫add link to design files here) - 🚫 delete if not applicable
+[UX Design files](https://www.dropbox.com/sh/gknqzhazljiw16t/AAALcR4-2XljeEPDXM6Wjhu_a?dl=0)
 
 ## Specifications
 
  This applicaation is designed to help people understand when they are in danger of being struck by a wild fire, and hopefully give them time to get out.
 
 
-### 4️⃣ Key Features
+### Key Features
 
 -    feature one
 -    feature two
@@ -81,7 +70,7 @@ You can find the deployed project at [fireflightapp.com](https://www.fireflighta
 
 #### Front end deployed to `Netlify`
 
-#### [Back end](https://github.com/labs15-forest-fire/backend) built using:
+#### [Backend](https://github.com/labs15-forest-fire/backend) built using:
 
 #### ExpressJS
 
@@ -101,17 +90,11 @@ You can find the deployed project at [fireflightapp.com](https://www.fireflighta
 
 # APIs
 
-## BCrypt/JWT
-
-🚫Replace text below with a description of the API
-
-Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do things A little happy sunlight shining through there. Let all these little things happen. Don't fight them. Learn to use them. Even the worst thing we can do here is good.
-
 ## Mapbox
 
-This api gives the application the abilty to convert adresses to latlong for our backend applications. Later, this will give us the ability to show more data to the users.
+-  This api gives the application the abilty to convert addresses to lat/long for our backend applications. Later, this will give us the ability to show more data to the users.
 
-# 3️⃣ Environment Variables
+# Environment Variables
 
 In order for the app to function correctly, the user must set up their own environment variables. There should be a .env file containing the following:
 
@@ -128,18 +111,12 @@ In order for the app to function correctly, the user must set up their own envir
     *  REACT_APP_clientid - this is the Stripe_connect clientID, generated in Stripe_connect settings
     *  REACT_APP_stripe_plan - this is the ID for a second Stripe subscription plan, generated under Stripe products
 
-# 5️⃣ Content Licenses
-
-🚫For all content - images, icons, etc, use this table to document permission of use. Remove the two placeholders and add you content to this table
+# Content Licenses
 
 | Image Filename | Source / Creator | License                                                                      |
 | -------------- | ---------------- | ---------------------------------------------------------------------------- |
 | doodles.png    | Nicole Bennett   | [Creative Commons](https://www.toptal.com/designers/subtlepatterns/doodles/) |
 | rings.svg      | Sam Herbert      | [MIT](https://github.com/SamHerbert/SVG-Loaders)                             |
-
-# 4️⃣ Testing
-
-🚫Document what you used for testing and why
 
 # Installation Instructions
 

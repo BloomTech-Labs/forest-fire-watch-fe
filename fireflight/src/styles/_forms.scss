@@ -1,4 +1,5 @@
 // Font Awesome Icon Styles
+// Address Input Compass Icon
 .fa-compass {
     background-color: #FFF;
     border: solid 1px #000;
@@ -11,6 +12,7 @@
     padding: 11px;
 }
 
+// Auth Input Icons
 .fa-user-circle, .fa-key, .fa-lock {
     background-color: #355c7d;
     border-top-left-radius: 5px;
@@ -21,8 +23,8 @@
     padding: 14.5px 0;
     position: relative;
     top: 19px;
-    left: 12px;
-    width: 55px;
+    left: 20px;
+    width: 50px;
 }
 
 // Address Input Bar
@@ -47,7 +49,7 @@
     color: #f2f3f4;
     margin: -25px auto;
     padding: 15px 15px 15px 50px;
-    font-size: 0.75em;
+    font-size: 0.8em;
     width: 70%;
 
     &::placeholder {
@@ -57,24 +59,5 @@
 
     @include mediaLg {
         width: 75%;
-    }
-}
-
-.form-btn {
-    cursor: pointer;
-    border: solid 1px black;
-    border-radius: 5px;
-    height: 38px;
-    margin: 25px 0px 5px;
-    background-color: $accentColor;
-    color: $lilia;
-    font-size: 1em;
-    width: 150px;
-    @include easeOut;
-
-    &:hover {
-        color: $accentColor;
-        background-color: $lilia;
-        @include easeOut;
     }
 }
