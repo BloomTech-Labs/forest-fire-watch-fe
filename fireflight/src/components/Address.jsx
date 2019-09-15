@@ -134,7 +134,7 @@ function Address(props) {
       setName("");
     } else {
       let temp = address.state.addresses.filter(i => {
-        return i.id == e.target.value;
+        return i.id === e.target.value;
       })[0];
       setId(temp.id);
       setRadius(temp.radius);
