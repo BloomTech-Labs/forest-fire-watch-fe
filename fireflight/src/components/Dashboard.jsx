@@ -9,28 +9,63 @@ import { FireDataContext } from "../context/FireDataContext";
 // import PrivateMap from "./PrivateMap";
 
 const Dashboard = () => {
-  const { userDataState, getUserData } = useContext(UserDataContext);
+  const {
+    userDataState,
+    getUserData,
+    updateTextAlerts,
+    updatePushAlerts
+  } = useContext(UserDataContext);
+  const { username, phone, receiveSMS, receivePush } = userDataState;
 
   useEffect(() => {
     getUserData();
   }, []);
 
-  console.log(userDataState);
   return (
     <DashboardWrapper>
       <ContentContainer>
         <PersonalInfo>
           <DivHeading>Personal Info</DivHeading>
-          <p></p>
+          <DataDiv>
+            <h4>Username:</h4>
+            <h4>{username}</h4>
+          </DataDiv>
+          <DataDiv>
+            <h4>Phone:</h4>
+            <h4>{phone === null ? "Not Provided" : phone}</h4>
+          </DataDiv>
+          <DataDiv>
+            <h4>Receive Text Alerts:</h4>
+            <CheckBoxWrapper>
+              <CheckBox
+                id="checkbox1"
+                type="checkbox"
+                onChange={e => {
+                  updateTextAlerts(e.target.checked);
+                }}
+                checked={receiveSMS}
+              />
+              <CheckBoxLabel htmlFor="checkbox1" />
+            </CheckBoxWrapper>
+          </DataDiv>
+          <DataDiv>
+            <h4>Receive Push Notifications:</h4>
+            <CheckBoxWrapper>
+              <CheckBox
+                id="checkbox2"
+                type="checkbox"
+                onChange={e => {
+                  updatePushAlerts(e.target.checked);
+                }}
+                checked={receivePush}
+              />
+              <CheckBoxLabel htmlFor="checkbox2" />
+            </CheckBoxWrapper>
+          </DataDiv>
         </PersonalInfo>
-        <AddressesDiv>
-          <NavLink
-            to="/address"
-            style={{ color: "#f2f3f4", textDecoration: "none" }}
-          >
-            <DivHeading>Input Addresses</DivHeading>
-          </NavLink>
-        </AddressesDiv>
+        <LocationsInfo>
+          <DivHeading>Saved Locations</DivHeading>
+        </LocationsInfo>
       </ContentContainer>
     </DashboardWrapper>
   );
@@ -49,11 +84,6 @@ const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  @media (min-width: 900px) {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    grid-template-rows: 1fr 1fr;
-  }
 `;
 
 const DivHeading = styled.h3`
@@ -64,33 +94,71 @@ const DivHeading = styled.h3`
 const PersonalInfo = styled.div`
   width: 90%;
   max-width: 500px;
-  height: 50px;
   margin: 10px auto;
   background: rgba(42, 47, 48);
   color: #f2f3f4;
   border-radius: 8px;
   padding: 10px;
-
-  cursor: pointer;
-  @media (min-width: 900px) {
-    order: 2;
-    margin: auto;
-  }
 `;
 
-const AddressesDiv = styled.div`
+const LocationsInfo = styled.div`
   width: 90%;
   max-width: 500px;
-  height: 50px;
-  margin: 15px auto;
-  background: rgba(55, 61, 63, 0.65);
-  box-shadow: 1px 2px 10px black;
+  margin: 10px auto;
+  background: rgba(42, 47, 48);
   color: #f2f3f4;
   border-radius: 8px;
   padding: 10px;
+`;
+
+const DataDiv = styled.div`
+  width: 60%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+`;
+
+const CheckBoxWrapper = styled.div`
+  position: relative;
+  margin: auto 0px auto auto;
+`;
+const CheckBoxLabel = styled.label`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 42px;
+  height: 26px;
+  border-radius: 15px;
+  background: #bebebe;
   cursor: pointer;
-  @media (min-width: 900px) {
-    order: 3;
-    margin: auto;
+  &::after {
+    content: "";
+    display: block;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    margin: 3px;
+    background: #ffffff;
+    box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2);
+    transition: 0.2s;
+  }
+`;
+const CheckBox = styled.input`
+  opacity: 0;
+  z-index: 1;
+  border-radius: 15px;
+  width: 42px;
+  height: 26px;
+  &:checked + ${CheckBoxLabel} {
+    background: #4fbe79;
+    &::after {
+      content: "";
+      display: block;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      margin-left: 21px;
+      transition: 0.2s;
+    }
   }
 `;
