@@ -44,7 +44,7 @@ class connector {
       localStorage.setItem("token", data.token);
       this.connector.defaults.headers.common["Authorization"] = data.token;
       let who = await this.self();
-      window.location.href = "/dashboard";
+      window.location.href = "/";
       return new stats(true, who.username);
     } else {
       //success failed

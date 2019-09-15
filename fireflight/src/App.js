@@ -13,7 +13,7 @@ import AddressContext from "./context/AddressContext";
 import styled from "styled-components";
 
 import { GlobalContext } from "./context/contextProvider";
-
+import { UserDataProvider } from "./context/UserDataContext";
 import { FireDataContext } from "./context/FireDataContext";
 
 import * as v from "./styles/vars";
@@ -43,7 +43,9 @@ function App() {
   }, []);
 
   useEffect(() => {
-    setUserLocations();
+    if (token) {
+      setUserLocations();
+    }
   }, [fireDataState.allFires]);
 
   useEffect(() => {
@@ -58,7 +60,9 @@ function App() {
         return <Redirect to="/" />;
       }
     };
-    getLogin();
+    if (token) {
+      getLogin();
+    }
   }, []); //[] here means this will only run once
 
   useEffect(() => {
@@ -91,9 +95,9 @@ function App() {
           toggleLoginStatus={setLoginFormStatus}
           toggleRegisterStatus={setRegisterFormStatus}
         />
-
-        <Route path="/dashboard" component={Dashboard} />
-
+        <UserDataProvider>
+          <Route path="/dashboard" component={Dashboard} />
+        </UserDataProvider>
         <Route
           exact
           path="/"

@@ -1,5 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
+import { UserDataProvider, UserDataContext } from "../context/UserDataContext";
 
 import { NavLink } from "react-router-dom";
 
@@ -8,20 +9,20 @@ import { FireDataContext } from "../context/FireDataContext";
 // import PrivateMap from "./PrivateMap";
 
 const Dashboard = () => {
-  const { setShowAlert } = useContext(FireDataContext);
+  const { userDataState, getUserData } = useContext(UserDataContext);
 
+  useEffect(() => {
+    getUserData();
+  }, []);
+
+  console.log(userDataState);
   return (
     <DashboardWrapper>
       <ContentContainer>
-        <AlertsDiv>
-          <DivHeading onClick={() => setShowAlert(true)}>
-            View Todays Alerts
-          </DivHeading>
-        </AlertsDiv>
-        {/* <MapDiv>
-          <DivHeading>Active Fires</DivHeading>
-          <PrivateMap />
-        </MapDiv> */}
+        <PersonalInfo>
+          <DivHeading>Personal Info</DivHeading>
+          <p></p>
+        </PersonalInfo>
         <AddressesDiv>
           <NavLink
             to="/address"
@@ -60,13 +61,12 @@ const DivHeading = styled.h3`
   margin: 0;
 `;
 
-const AlertsDiv = styled.div`
+const PersonalInfo = styled.div`
   width: 90%;
   max-width: 500px;
   height: 50px;
   margin: 10px auto;
-  background: rgba(55, 61, 63, 0.65);
-  box-shadow: 1px 2px 10px black;
+  background: rgba(42, 47, 48);
   color: #f2f3f4;
   border-radius: 8px;
   padding: 10px;
@@ -74,24 +74,6 @@ const AlertsDiv = styled.div`
   cursor: pointer;
   @media (min-width: 900px) {
     order: 2;
-    margin: auto;
-  }
-`;
-
-const MapDiv = styled.div`
-  width: 90%;
-  max-width: 500px;
-  height: auto;
-  margin: 15px auto;
-  background: rgba(55, 61, 63, 0.65);
-  box-shadow: 1px 2px 10px black;
-  color: #f2f3f4;
-  border-radius: 8px;
-  padding: 10px;
-  @media (min-width: 900px) {
-    grid-column: 1;
-    grid-row: 1 / 3;
-    max-width: 1000px;
     margin: auto;
   }
 `;
