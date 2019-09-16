@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useContext } from "react";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import Navigation from "./components/Navigation";
@@ -6,24 +5,22 @@ import Home from "./components/Home";
 import Danger from "./components/Danger";
 import Update from "./components/Update";
 import Dashboard from "./components/Dashboard";
-import PrivateMap from "./components/PrivateMap";
 
 import AuthForms from "./components/AuthForms/AuthForms";
-import AlertsContainer from "./components/AlertsContainer";
 
 import Address from "./components/Address";
 import AddressContext from "./context/AddressContext";
 import styled from "styled-components";
 
 import { GlobalContext } from "./context/contextProvider";
-
+import { UserDataProvider } from "./context/UserDataContext";
 import { FireDataContext } from "./context/FireDataContext";
 
 import * as v from "./styles/vars";
 
 import "./styles/App.scss";
 
-require('dotenv').config();
+require("dotenv").config();
 
 const token = localStorage.getItem("token");
 
@@ -37,13 +34,19 @@ function App() {
   const [registerFormStatus, setRegisterFormStatus] = useState(false);
 
   const global = useContext(GlobalContext);
-  const {
-    fireDataState,
-    getUserLocations,
-    getCoordinates,
-    getAlertData
-  } = useContext(FireDataContext);
-  const { userLocations, userCoordinates } = fireDataState;
+  const { fireDataState, getAllFires, setUserLocations } = useContext(
+    FireDataContext
+  );
+
+  useEffect(() => {
+    getAllFires();
+  }, []);
+
+  useEffect(() => {
+    if (token) {
+      setUserLocations();
+    }
+  }, [fireDataState.allFires]);
 
   useEffect(() => {
     //getLogin gets login information upon page load here;
@@ -57,7 +60,9 @@ function App() {
         return <Redirect to="/" />;
       }
     };
-    getLogin();
+    if (token) {
+      getLogin();
+    }
   }, []); //[] here means this will only run once
 
   useEffect(() => {
@@ -73,27 +78,9 @@ function App() {
     }
   }, [token]);
 
-  useEffect(() => {
-    if (token) {
-      getUserLocations();
-    }
-  }, [token]);
-
-  useEffect(() => {
-    getAlertData();
-  }, [userCoordinates, token]);
-
-  useEffect(() => {
-    if (token) {
-      getCoordinates();
-    }
-  }, [token, userLocations]);
-
   return (
     <AppWrapper>
       <AddressContext>
-        <AlertsContainer />
-
         <AuthForms
           showAuthForms={showAuthForms}
           setShowAuthForms={setShowAuthForms}
@@ -108,9 +95,9 @@ function App() {
           toggleLoginStatus={setLoginFormStatus}
           toggleRegisterStatus={setRegisterFormStatus}
         />
-
-        <Route path="/dashboard" component={Dashboard} />
-
+        <UserDataProvider>
+          <Route path="/dashboard" component={Dashboard} />
+        </UserDataProvider>
         <Route
           exact
           path="/"
@@ -136,7 +123,6 @@ function App() {
             />
           )}
         />
-        {/* <Route path="/maps" component={PrivateMap} /> */}
 
         <Route path="/address" component={Address} />
       </AddressContext>

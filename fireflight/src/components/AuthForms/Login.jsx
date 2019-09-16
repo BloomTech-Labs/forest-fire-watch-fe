@@ -1,15 +1,10 @@
 import React, { useState, useContext, useEffect } from "react";
 import { GlobalContext } from "../../context/contextProvider";
-import axios from "axios";
-import { Link, Redirect } from "react-router-dom";
 import useInput from "../../utils/useInput";
 import styled from "styled-components";
 //not sure if we are using redux or hooks with context, so taking my best guess...
 import logo from "../../images/FF-logo.png";
 import LoginSplit from "./LoginSplit";
-
-const deployedURL = "https://fireflight-lambda.herokuapp.com/api/auth";
-const localURL = "http://localhost:5000/api/auth";
 
 function Login({ toggle, setShowAuthForms }) {
   //useInput is a custom hook that should be used for all controlled inputs
@@ -76,7 +71,11 @@ function Login({ toggle, setShowAuthForms }) {
             onChange={handlePassword}
             placeholder="Password"
           />
-          <p><a className="forgot-pw" href='#'>Forgot your Password?</a></p>
+          <p>
+            <a className="forgot-pw" href="#">
+              Forgot your Password?
+            </a>
+          </p>
           {errorStatus ? (
             <ErrorText>{errorText.password}</ErrorText>
           ) : (

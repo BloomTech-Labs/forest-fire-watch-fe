@@ -1,15 +1,11 @@
 import React, { useState, useContext } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { GlobalContext } from "../../context/contextProvider";
-import axios from "axios";
 
 import useInput from "../../utils/useInput";
 import styled from "styled-components";
 import logo from "../../images/FF-logo.png";
 import RegisterSplit from "./RegisterSplit";
-
-const deployedURL = "https://fireflight-lambda.herokuapp.com/api/auth";
-const localURL = "http://localhost:5000/api/auth";
 
 function Register({ toggle, setShowAuthForms }) {
   //useInput is a custom hook that should be used for all controlled inputs
@@ -51,7 +47,7 @@ function Register({ toggle, setShowAuthForms }) {
         .catch(err => {
           console.log(err);
           setErrorStatus(true);
-          setErrorText(err.response.data);
+          // setErrorText(err.response.data);
           setLoading(false);
         });
     } else {
@@ -73,7 +69,14 @@ function Register({ toggle, setShowAuthForms }) {
         <RegisterContainer>
           <img src={logo} alt="FireFlight" />
           <FormHeading>Create Account</FormHeading>
-          <div class="fb-login-button" data-width="150px" data-size="medium" data-button-type="login_with" data-auto-logout-link="true" data-use-continue-as="false" />
+          <div
+            class="fb-login-button"
+            data-width="150px"
+            data-size="medium"
+            data-button-type="login_with"
+            data-auto-logout-link="true"
+            data-use-continue-as="false"
+          />
           <FormContainer onSubmit={handleSubmit}>
           <i className="fas fa-user-circle fa-lg" />
             <input

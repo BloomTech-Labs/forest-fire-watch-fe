@@ -44,7 +44,7 @@ function Navigation({
     <div className="nav-container">
       <div className="brand">
         <img className="logo" src={logo} alt="FireFlight Logo" />
-        <span className="logo-txt">FireFlight</span> 
+        <span className="logo-txt">FireFlight</span>
       </div>
       <div className="dropdown" onClick={() => setMenuToggle(!menuToggle)}>
         <div className="drop-btn">
@@ -62,7 +62,8 @@ function Navigation({
 
             {localStorage.getItem("token") == null && (
               <React.Fragment>
-                <div className="menu-item inactive"
+                <div
+                  className="menu-item inactive"
                   onClick={() => {
                     toggleAuthForms(true);
                     toggleRegisterStatus(true);
@@ -72,7 +73,8 @@ function Navigation({
                   <i className="fas fa-user-plus fa-lg" /> <br />
                   Register
                 </div>
-                <div className="menu-item inactive"
+                <div
+                  className="menu-item inactive"
                   onClick={() => {
                     toggleAuthForms(true);
                     toggleRegisterStatus(false);
@@ -129,11 +131,11 @@ function Navigation({
               </React.Fragment>
             )}
           </div>
-          // end menu-container
-        ) : null}
+        ) : // end menu-container
+        null}
       </div>
       {/* end dropdown-menu */}
-    </div> 
+    </div>
     // end nav-container
   );
 }
