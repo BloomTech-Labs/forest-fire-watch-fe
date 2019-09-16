@@ -22,6 +22,8 @@ function Register({ toggle, setShowAuthForms }) {
 
   const data = useContext(GlobalContext);
 
+  console.log(errorText);
+
   function handleSubmit(e) {
     e.preventDefault();
     setLoading(true);
@@ -47,7 +49,7 @@ function Register({ toggle, setShowAuthForms }) {
         .catch(err => {
           console.log(err);
           setErrorStatus(true);
-          // setErrorText(err.response.data);
+          setErrorText(err.response.data);
           setLoading(false);
         });
     } else {
@@ -78,13 +80,12 @@ function Register({ toggle, setShowAuthForms }) {
             data-use-continue-as="false"
           />
           <FormContainer onSubmit={handleSubmit}>
-          <i className="fas fa-user-circle fa-lg" />
+            <i className="fas fa-user-circle fa-lg" />
             <input
               className="form-input"
               type="text"
               name="username"
               value={username}
-              // onChange={e=>setUsername(e.value)}
               onChange={handleUsername}
               placeholder="Username"
             />
@@ -93,7 +94,7 @@ function Register({ toggle, setShowAuthForms }) {
             ) : (
               <ErrorText />
             )}
-          <i className="fas fa-lock fa-lg" />
+            <i className="fas fa-lock fa-lg" />
             <input
               className="form-input"
               type="password"
@@ -103,12 +104,12 @@ function Register({ toggle, setShowAuthForms }) {
               onChange={handlePassword}
               placeholder="Password"
             />
-            {errorStatus && password !== passwordConf ? (
+            {errorStatus ? (
               <ErrorText>{errorText.password}</ErrorText>
             ) : (
               <ErrorText />
             )}
-            
+
             <i className="fas fa-key fa-lg" />
             <input
               className="form-input"
