@@ -14,10 +14,10 @@ You can find the deployed project at [fireflightapp.com](fireflightapp.com).
 |                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/ashenPheonix)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Jackcornellober)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/mjmangus16)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/ken1286)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/ericNunnDev)             |
 | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](www.linkedin.com/in/brandon-m-porte) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/eric-nunn/) |
 
-|                                       [Liv Johnson](https://github.com/livjab)                                        |                                       [Ned Horsey](https://github.com/)                                        |                                       [Kobe McKee](https://github.com/kmacmckee)                                        |                                       [Chris Reilly](https://github.com/duckets615)                                        |                                       [Chad Jemmett](https://github.com/ceejaay)                                        |
+|                                       [Liv Johnson](https://github.com/livjab)                                        |                                       [Ned Horsey](https://github.com/)                                        |                                       [Kobe McKee](https://github.com/kmacmckee)                                        |                                       [Student](https://github.com/)                                        |                                       [Chad Jemmett](https://github.com/ceejaay)                                        |
 | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
-|                      [<img src="https://avatars2.githubusercontent.com/u/23245487?s=460&v=4" width = "200" />](https://github.com/livjab)                       |                      [<img src="https://avatars1.githubusercontent.com/u/44828872?s=460&v=4" width = "200" />](https://github.com/Rice-from-data)                       |                      [<img src="https://avatars2.githubusercontent.com/u/47466036?s=460&v=4" width = "200" />](https://github.com/kmacmckee)                       |                      [<img src="https://avatars3.githubusercontent.com/u/33557104?s=460&v=4" width = "200" />](https://github.com/duckets615)                       |                      [<img src="https://avatars1.githubusercontent.com/u/867243" width ="200" />](https://github.com/ceejaay)                       |
-|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/livjab)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Rice-from-data)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/kmacmckee)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/duckets615)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/ceejaay)             |
+|                      [<img src="https://avatars2.githubusercontent.com/u/23245487?s=460&v=4" width = "200" />](https://github.com/livjab)                       |                      [<img src="https://avatars1.githubusercontent.com/u/44828872?s=460&v=4" width = "200" />](https://github.com/Rice-from-data)                       |                      [<img src="https://avatars2.githubusercontent.com/u/47466036?s=460&v=4" width = "200" />](https://github.com/kmacmckee)                       |                      [<img src="" width = "200" />](https://github.com/duckets615)                       |                      [<img src="https://avatars1.githubusercontent.com/u/867243" width ="200" />](https://github.com/ceejaay)                       |
+|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/livjab)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Rice-from-data)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/kmacmckee)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/ceejaay)             |
 | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](www.linkedin.com/in/brandon-m-porte) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/eric-nunn/) |
 
 |                                       [Student](https://github.com/livjab)                                        |                                       [Student](https://github.com/)                                        |                                       [student](https://github.com/kmacmckee)                                        |           |                                                                         |
@@ -123,7 +123,7 @@ This api gives the application the abilty to convert adresses to latlong for our
 
 In order for the app to function correctly, the user must set up their own environment variables. There should be a .env file containing the following:
 
-🚫These are just examples, replace them with the specifics for your app
+
 
     *  REACT_APP_apiKey - this is your Google API key, which can be generated in the Google Cloud Console
     *  REACT_APP_authDomain - when you set up your Firebase project, this information will be in the dashboard
@@ -136,16 +136,11 @@ In order for the app to function correctly, the user must set up their own envir
     *  REACT_APP_clientid - this is the Stripe_connect clientID, generated in Stripe_connect settings
     *  REACT_APP_stripe_plan - this is the ID for a second Stripe subscription plan, generated under Stripe products
 
-# 5️⃣ Content Licenses
+# Content Licenses
+  All content created by [Jeffery Wicks]("#")
 
-🚫For all content - images, icons, etc, use this table to document permission of use. Remove the two placeholders and add you content to this table
 
-| Image Filename | Source / Creator | License                                                                      |
-| -------------- | ---------------- | ---------------------------------------------------------------------------- |
-| doodles.png    | Nicole Bennett   | [Creative Commons](https://www.toptal.com/designers/subtlepatterns/doodles/) |
-| rings.svg      | Sam Herbert      | [MIT](https://github.com/SamHerbert/SVG-Loaders)                             |
-
-# 4️⃣ Testing
+# Testing
 
 🚫Document what you used for testing and why
 
