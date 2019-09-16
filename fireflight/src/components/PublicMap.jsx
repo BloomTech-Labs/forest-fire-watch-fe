@@ -179,23 +179,9 @@ const FormContainer = styled.div`
   }
 `;
 
-const FormInput = styled.input`
-  width: 250px;
-  margin: 25px 7.5px 5px;
-  padding: 10px;
-  font-size: 1em;
-  background-color: white;
-  border-radius: 5px;
-  border: solid 1px black;
-  @media (max-width: 576px) {
-    width: 200px;
-    padding: 8px;
-  }
-`;
-
 const FormRadiusInput = styled.input`
   width: 150px;
-  margin: 25px 17.5px 5px 10px;
+  margin: 25px 17.5px 5px 0;
   padding: 10px;
   font-size: 1em;
   background-color: white;
@@ -224,18 +210,6 @@ const FormButton = styled.button`
   }
 `;
 
-const InfoText = styled.div`
-  font-size: 0.9em;
-  text-align: center;
-  @media (max-width: 576px) {
-    font-size: 0.7em;
-    position: absolute;
-    top: 110px;
-    left: 50px;
-    text-decoration: none;
-  }
-`;
-
 const TriggeredButton = styled.button`
   font-size: 1em;
   max-width: 250px;
@@ -248,12 +222,6 @@ const TriggeredButton = styled.button`
   &:hover {
     box-shadow: none;
   }
-`;
-
-const PopupText = styled.p`
-  color: #355c7d;
-  padding: 0px;
-  margin: 0px;
 `;
 
 const CheckBoxWrapper = styled.div`
