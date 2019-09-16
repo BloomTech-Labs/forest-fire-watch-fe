@@ -10,7 +10,7 @@ You can find the deployed project at [fireflightapp.com](fireflightapp.com).
 
 |                                       [Brandon Porter](https://github.com/AshenPheonix)                                        |                                       [Jack Ober](https://github.com/Jackcornellober)                                        |                                       [Michael Mangus](https://github.com/mjmangus16)                                        |                                       [Ken Ridenour](https://github.com/ken1286)                                        |                                       [Eric Nunn](https://github.com/ericNunnDev)                                        |
 | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
-|                      [<img src="https://avatars1.githubusercontent.com/u/6516394" width = "200" />](https://github.com/AshenPheonix)                       |                      [<img src="https://avatars0.githubusercontent.com/u/49887364?s=460&v=4" width = "200" />](https://github.com/Jackcornellober)                       |                      [<img src="https://media.licdn.com/dms/image/C4D03AQHbZ16uQD92Hg/profile-displayphoto-shrink_200_200/0?e=1574294400&v=beta&t=Xmg1e7TqC2xhj9qUY_oZd1SzSljnc8KViekjS4N5DOo" width = "200" />](https://github.com/mjmangus16)                       |                      [<img src="https://avatars1.githubusercontent.com/u/44625066?s=460&v=4" width = "200" />](https://github.com/ken1286)                       |                      [<img src="https://avatars1.githubusercontent.com/u/41123891?s=460&v=4" width = "200" />](https://github.com/ericNunnDev)                       |
+|                      [<img src="https://avatars1.githubusercontent.com/u/6516394" width = "200" />](https://github.com/AshenPheonix)                       |                      [<img src="https://avatars0.githubusercontent.com/u/49887364?s=460&v=4" width = "200" />](https://github.com/Jackcornellober)                       |                      [<img src="https://media.licdn.com/dms/image/C4D03AQHbZ16uQD92Hg/profile-displayphoto-shrink_200_200/0?e=1574294400&v=beta&t=Xmg1e7TqC2xhj9qUY_oZd1SzSljnc8KViekjS4N5DOo" width = "200" />](https://github.com/mjmangus16)                       |                      [<img src="https://media.licdn.com/dms/image/C4E03AQGANL84wC2x_Q/profile-displayphoto-shrink_200_200/0?e=1574294400&v=beta&t=hysfilqVD39N4kD_eSjlOptoaO1HzYm4osgxBnQECAA" width = "200" />](https://github.com/ken1286)                       |                      [<img src="https://avatars1.githubusercontent.com/u/41123891?s=460&v=4" width = "200" />](https://github.com/ericNunnDev)                       |
 |                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/ashenPheonix)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Jackcornellober)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/mjmangus16)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/ken1286)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/ericNunnDev)             |
 |[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](www.linkedin.com/in/brandon-m-porte) |[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/jack-ober-b6647b151/)|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/mjmangus16/)|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/kenridenour/)|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/eric-nunn/)|
 
@@ -35,14 +35,14 @@ You can find the deployed project at [fireflightapp.com](fireflightapp.com).
 
 [Product Canvas](https://www.notion.so/Forest-Fire-Prediction-and-Rescue-Coordination-7eb1595c5f1643fca8e48a89c6086fdf)
 
-1️⃣ [UX Design files](🚫add link to design files here) - 🚫 delete if not applicable
+ [UX Design files](🚫add link to design files here) - 🚫 delete if not applicable
 
 ## Specifications
 
  This applicaation is designed to help people understand when they are in danger of being struck by a wild fire, and hopefully give them time to get out.
 
 
-### 4️⃣ Key Features
+###  Key Features
 
 -    User can log in and add multiple addresses. They can also set a distance from that address where the app will provide data about wild fires.
 -    User can see wildfires within the range they set.
@@ -115,7 +115,7 @@ Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do 
 
 This api gives the application the abilty to convert adresses to latlong for our backend applications. Later, this will give us the ability to show more data to the users.
 
-# 3️⃣ Environment Variables
+#  Environment Variables
 
 In order for the app to function correctly, the user must set up their own environment variables. There should be a .env file containing the following:
 
