@@ -58,45 +58,44 @@
         }
     }
     
-    // Address Bar Icon
-    .fa-compass {
-        position: relative;
-        margin: 1em 0 0 2.5em;
-        top: 1.85em;
-        padding: 11.5px;
-    }
-
-    // Forms
-    // Map Form Container
-    .map-form-container {
-        display: block;
-        // Address Input
-        .address-input {
-            margin: 0 0 0 6em;
-            width: 175px;
-        }
-        // Radius Input 
-          .radius-input {
-              margin: 0.5em 0 0 6.25em;
-              padding: 8px;
-              width: 125px;
-          }
-        //  Public Map Form Button 
-          .form-btn {
-              margin: 0.5em 0 0 5.25em;
-              width: 175px;
-          }
-        }
-    
-        .form-input {
-            width: 60%;
-        }
-
       .fa-user-circle, .fa-key, .fa-lock {
         left: 5px;
         margin-left: 5px;
     }
-}
+
+    .map-form-container {
+        margin: 0 auto;
+        padding: 1em;
+
+        .fa-compass {
+            display: none;
+        }
+
+        .address-input {
+            border-left: solid 1px #000;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+            
+        &::placeholder {
+            text-align: center;
+        }
+      }
+
+      .radius-input {
+
+        &::placeholder {
+            text-align: center;
+        }
+      }
+
+      .form-btn {
+          height: 60px;
+          position: relative;
+          right: 0.5em;
+          width: 200px;
+      }
+    }
+  }
 
 // Medium View
 @include mediaMd {
@@ -129,6 +128,10 @@
             padding: auto;
             width: 80px;
         }
+    }
+
+    .form-btn {
+        display: block;
     }
 }
 
