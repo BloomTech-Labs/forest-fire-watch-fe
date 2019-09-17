@@ -60,7 +60,7 @@ function Login({ toggle, setShowAuthForms }) {
             onChange={handleUsername}
             placeholder="Username"
           />
-          {errorStatus ? <ErrorText>{errorText}</ErrorText> : <ErrorText />}
+          {errorStatus ? <p className="error-text">{errorText}</p> : <p className="error-text" />}
 
           <i className="fas fa-key fa-lg" />
           <input
@@ -77,9 +77,9 @@ function Login({ toggle, setShowAuthForms }) {
             </a>
           </p>
           {errorStatus ? (
-            <ErrorText>{errorText.password}</ErrorText>
+            <p className="error-text">{errorText.password}</p>
           ) : (
-            <ErrorText />
+            <p className="error-text" />
           )}
           <button className="auth-btn" type="submit" disabled={loading}>
             {loading ? "Loading..." : "Sign In"}
@@ -136,12 +136,4 @@ const LoginSplitContainer = styled.div`
 const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
-`;
-
-const ErrorText = styled.p`
-  color: darkred;
-  font-size: 0.75em;
-  margin: 0px;
-  padding: 2px;
-  height: 15px;
 `;

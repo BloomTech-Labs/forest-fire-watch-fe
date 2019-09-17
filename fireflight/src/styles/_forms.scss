@@ -27,18 +27,32 @@
     width: 50px;
 }
 
-// Address Input Bar
-.address-input {
-    border: solid 1px #000;
-    border-left: none;
-    border-radius: 5px;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    margin: 25px 25px 5px 0px;
-    padding: 10px;
-    font-size: 1em;
-    background-color: white;
-    width: 250px;
+// Map Form Container
+.map-form-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    // Address Input
+    .address-input {
+        border: solid 1px #000;
+        border-left: none;
+        border-radius: 5px;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        margin: 25px 25px 5px 0px;
+        padding: 10px;
+        font-size: 1em;
+        width: 250px;
+    }
+    // Radius Input
+    .radius-input {
+        border: solid 1px black;
+        border-radius: 5px;
+        font-size: 1em;
+        margin: 25px 17.5px 5px 0;
+        padding: 10px;
+        width: 150px;
+    }
 }
 
 // Sign In and Sign Up Forms
