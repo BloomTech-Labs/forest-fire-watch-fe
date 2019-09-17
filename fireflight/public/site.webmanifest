@@ -1,6 +1,6 @@
 {
-    "name": "",
-    "short_name": "",
+    "name": "FireFlight App",
+    "short_name": "FireFlight",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",

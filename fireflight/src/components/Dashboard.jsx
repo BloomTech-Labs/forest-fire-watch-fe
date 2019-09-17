@@ -8,6 +8,8 @@ import { FireDataContext } from "../context/FireDataContext";
 
 // import PrivateMap from "./PrivateMap";
 
+import {subscribeUser as getSub} from '../subscriptions';
+
 const Dashboard = () => {
   const {
     userDataState,

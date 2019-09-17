@@ -12,7 +12,7 @@ class connector {
       this.coreString = "https://fireflight-lambda.herokuapp.com/api/";
     //http here
     else this.coreString = "http://localhost:5000/api/";
-    this.fireflight = process.env.REACT_APP_FIREFLIGHT;
+    this.fireflight = process.env.REACT_APP_MAPBOX_TOKEN;
     if (localStorage.getItem("token") != null) {
       this.connector.defaults.headers.common[
         "Authorization"

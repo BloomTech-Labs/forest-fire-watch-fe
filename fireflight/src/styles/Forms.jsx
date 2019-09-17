@@ -45,7 +45,7 @@ export const GoodButton = styled(Button)`
 `;
 
 export const ErrorText = styled.div`
-  color: darkred;
+  color: red;
   font-size: 0.75em;
   margin: 0px;
   padding: 2px;
