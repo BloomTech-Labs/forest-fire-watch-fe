@@ -92,7 +92,7 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
   return (
     <div style={{ position: "relative" }}>
       <Container>
-        <FormContainer>
+        <div className="map-form-container">
           <i className="fas fa-compass fa-lg" />
           <input
             className="address-input"
@@ -102,15 +102,17 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
             value={address}
             onChange={e => setAddress(e.target.value)}
           />
-          <FormRadiusInput
-            type="text"
+          <input
+            className="radius-input"
+            type="number"
             name="Radius"
             placeholder="Radius (miles)"
             value={radius}
             onChange={e => setRadius(e.target.value)}
           />
-          <FormButton onClick={handleSubmit}>Find Active Fires</FormButton>
-        </FormContainer>
+          <button className="form-btn" onClick={handleSubmit}>Find Active Fires</button>
+        </div>
+        {/* End Form Container */}
         {triggerRegistrationButton ? (
           <TriggeredButton
             onClick={() => {
@@ -165,49 +167,6 @@ const Container = styled.div`
   flex-direction: column;
   width: 100%;
   z-index: 3;
-`;
-
-const FormContainer = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-
-  @media (max-width: 576px) {
-    justify-content: center;
-    width: 90%;
-    margin: auto;
-  }
-`;
-
-const FormRadiusInput = styled.input`
-  width: 150px;
-  margin: 25px 17.5px 5px 0;
-  padding: 10px;
-  font-size: 1em;
-  background-color: white;
-  border-radius: 5px;
-  border: solid 1px black;
-  @media (max-width: 576px) {
-    width: 200px;
-    padding: 8px;
-  }
-`;
-
-const FormButton = styled.button`
-  height: 39.5px;
-  width: 150px;
-  margin: 25px 0px 5px;
-  border-radius: 5px;
-  background-color: #355c7d;
-  color: #f2f3f4;
-  font-size: 1em;
-  border: solid 1px black;
-  cursor: pointer;
-  @media (max-width: 576px) {
-    position: absolute;
-    top: 40px;
-    width: 200px;
-  }
 `;
 
 const TriggeredButton = styled.button`

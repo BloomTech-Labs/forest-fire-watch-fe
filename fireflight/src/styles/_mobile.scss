@@ -33,39 +33,62 @@
                 color: #FFF;
                 cursor: pointer;
                 margin: 15px;
-
+                
                 &:hover {
                     color: $accentColor;
                     border: 3px solid #FFF;
                     transform: rotate(45deg);
                     @include easeOut;
                 }
-              }
-
-              .dropdown-content {
+            }
+            
+            .dropdown-content {
                 display: block;
                 right: 0;
                 background-color: $accentColor;
                 min-width: 160px;
                 box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
                 z-index: 2;
-
-                    a {
-                      color: $accentColor;
-                      display: block;
-                  }
-               }
-           }
-       }
+                
+                a {
+                    color: $accentColor;
+                    display: block;
+                }
+            }
+        }
+    }
     
-        // Forms
+    .fa-compass {
+        position: relative;
+        top: 1px;
+        padding: 11.5px;
+    }
+
+    // Forms
+    // Map Form Container
+    .map-form-container {
+        display: block;
+        margin: 0 auto;
+        // Address Input
+        .address-input {
+            width: 200px;
+        }
+        // Radius Input 
+          .radius-input {
+              display: block;
+              margin: 0 auto;
+              padding: 8px;
+              width: 125px;
+          }
+        //   
+          .form-btn {
+              margin: 10px 0 0 67px;
+              width: 200px;
+          }
+        }
+    
         .form-input {
             width: 60%;
-        }
-        .form-btn {
-            position: absolute;
-            top: 42.5px;
-            width: 200px;
         }
         
         .info-text {
@@ -76,11 +99,7 @@
             text-decoration: none;
         }
 
-        .address-input {
-            padding: 5px;
-            width: 200px;
-        }
-      
+
       .fa-user-circle, .fa-key, .fa-lock {
         left: 5px;
         margin-left: 5px;

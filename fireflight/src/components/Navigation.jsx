@@ -123,8 +123,9 @@ function Navigation({
                     View the Map
                   </div>
                 </NavLink> */}
-                <div className="menu-item">
+                <div className="menu-item inactive">
                   <Link to="/" onClick={logout}>
+                  <i className="fas fa-arrow-circle-left fa-lg" />
                     Logout
                   </Link>
                 </div>
