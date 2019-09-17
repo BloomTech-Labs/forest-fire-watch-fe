@@ -230,6 +230,21 @@ const CheckBoxLabel = styled.label`
     transition: 0.2s;
   }
 `;
+
+const FormRadiusInput = styled.input`
+  width: 150px;
+  margin: 25px 17.5px 5px 10px;
+  padding: 10px;
+  font-size: 1em;
+  background-color: white;
+  border-radius: 5px;
+  border: solid 1px black;
+  @media (max-width: 576px) {
+    width: 200px;
+    padding: 8px;
+  }
+`;
+
 const CheckBox = styled.input`
   opacity: 0;
   z-index: 1;
