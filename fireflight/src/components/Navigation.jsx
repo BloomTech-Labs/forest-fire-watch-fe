@@ -55,7 +55,7 @@ function Navigation({
             <NavLink exact to="/" activeClassName="current">
               <div className="menu-item">
                 {/* Will be profile page/dashboard later */}
-                <i className="fas fa-home fa-lg" /> <br />
+                <i className="fas fa-home fa-lg" />
                 Home
               </div>
             </NavLink>
@@ -91,11 +91,11 @@ function Navigation({
                 <NavLink to="/dashboard" activeClassName="current">
                   <div className="menu-item" data-temp="here">
                     {location.pathname.includes("/dashboard") ? (
-                      <img src={dashboardAlt} alt="Alternate Dashboard Icon" />
+                      <i className="fas fa-id-card fa-lg" />
                     ) : (
-                      <img src={dashboard} alt="Dashboard Icon" />
+                      <i className="fas fa-id-card fa-lg" />
                     )}
-                    Dashboard
+                    My Profile
                   </div>
                 </NavLink>
                 {/* <div className="menu-item">
@@ -106,9 +106,9 @@ function Navigation({
                 <NavLink to="/address" activeClassName="current">
                   <div className="menu-item">
                     {location.pathname.includes("/address") ? (
-                      <img src={mapsAlt} alt="Maps Icon" />
+                      <i className="far fa-map fa-lg" />
                     ) : (
-                      <img src={maps} alt="Maps Icon" />
+                      <i className="far fa-map fa-lg" />
                     )}
                     Input Your Address
                   </div>
@@ -123,8 +123,9 @@ function Navigation({
                     View the Map
                   </div>
                 </NavLink> */}
-                <div className="menu-item">
+                <div className="menu-item inactive">
                   <Link to="/" onClick={logout}>
+                  <i className="fas fa-arrow-circle-left fa-lg" />
                     Logout
                   </Link>
                 </div>

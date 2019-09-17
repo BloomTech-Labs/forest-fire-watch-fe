@@ -114,7 +114,7 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
   return (
     <div style={{ position: "relative" }}>
       <Container>
-        <FormContainer onSubmit = {handleSubmit}>
+        <form onSubmit = {handleSubmit} className="map-form-container">
           <i className="fas fa-compass fa-lg" />
           <input
             className="address-input"
@@ -124,15 +124,17 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
             value={address}
             onChange={e => setAddress(e.target.value)}
           />
-          <FormRadiusInput
-            type="text"
+          <input
+            className="radius-input"
+            type="number"
             name="Radius"
             placeholder="Radius (miles)"
             value={radius}
             onChange={e => setRadius(e.target.value)}
           />
-          <FormButton>Find Active Fires</FormButton>
-        </FormContainer>
+          <button className="form-btn">Find Active Fires</button>
+        </form>
+        {/* End Form Container */}
         {triggerRegistrationButton ? (
           <TriggeredButton
             onClick={() => {
@@ -189,75 +191,6 @@ const Container = styled.div`
   z-index: 3;
 `;
 
-const FormContainer = styled.form`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-
-  @media (max-width: 576px) {
-    justify-content: center;
-    width: 90%;
-    margin: auto;
-  }
-`;
-
-const FormInput = styled.input`
-  width: 250px;
-  margin: 25px 7.5px 5px;
-  padding: 10px;
-  font-size: 1em;
-  background-color: white;
-  border-radius: 5px;
-  border: solid 1px black;
-  @media (max-width: 576px) {
-    width: 200px;
-    padding: 8px;
-  }
-`;
-
-const FormRadiusInput = styled.input`
-  width: 150px;
-  margin: 25px 17.5px 5px 10px;
-  padding: 10px;
-  font-size: 1em;
-  background-color: white;
-  border-radius: 5px;
-  border: solid 1px black;
-  @media (max-width: 576px) {
-    width: 200px;
-    padding: 8px;
-  }
-`;
-
-const FormButton = styled.button`
-  height: 39.5px;
-  width: 150px;
-  margin: 25px 0px 5px;
-  border-radius: 5px;
-  background-color: #355c7d;
-  color: #f2f3f4;
-  font-size: 1em;
-  border: solid 1px black;
-  cursor: pointer;
-  @media (max-width: 576px) {
-    position: absolute;
-    top: 40px;
-    width: 200px;
-  }
-`;
-
-const InfoText = styled.div`
-  font-size: 0.9em;
-  text-align: center;
-  @media (max-width: 576px) {
-    font-size: 0.7em;
-    position: absolute;
-    top: 110px;
-    left: 50px;
-    text-decoration: none;
-  }
-`;
-
 const TriggeredButton = styled.button`
   font-size: 1em;
   max-width: 250px;
@@ -270,12 +203,6 @@ const TriggeredButton = styled.button`
   &:hover {
     box-shadow: none;
   }
-`;
-
-const PopupText = styled.p`
-  color: #355c7d;
-  padding: 0px;
-  margin: 0px;
 `;
 
 const CheckBoxWrapper = styled.div`

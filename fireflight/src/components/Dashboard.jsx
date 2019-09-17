@@ -22,16 +22,12 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <DashboardWrapper>
-      <ContentContainer>
+    <div className="dashboard-wrapper">
+      <div className="content-wrapper">
         <PersonalInfo>
-          <DivHeading>Personal Info</DivHeading>
+          <h3>Welcome {username}!</h3>
           <DataDiv>
-            <h4>Username:</h4>
-            <h4>{username}</h4>
-          </DataDiv>
-          <DataDiv>
-            <h4>Phone:</h4>
+            <h4><i className="fas fa-phone-alt" /></h4>
             <h4>{phone === null ? "Not Provided" : phone}</h4>
           </DataDiv>
           <DataDiv>
@@ -64,32 +60,16 @@ const Dashboard = () => {
           </DataDiv>
         </PersonalInfo>
         <LocationsInfo>
-          <DivHeading>Saved Locations</DivHeading>
+          <h3>Saved Locations</h3>
         </LocationsInfo>
-      </ContentContainer>
-    </DashboardWrapper>
+      </div>
+      {/* End Content Wrapper */}
+    </div>
+    // End Dashboard Wrapper
   );
 };
 
 export default Dashboard;
-
-const DashboardWrapper = styled.div`
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  margin-top: 5%;
-`;
-
-const ContentContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`;
-
-const DivHeading = styled.h3`
-  padding: 10px 0px;
-  margin: 0;
-`;
 
 const PersonalInfo = styled.div`
   width: 90%;
@@ -115,7 +95,7 @@ const DataDiv = styled.div`
   width: 60%;
   margin: auto;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 `;
 
 const CheckBoxWrapper = styled.div`
