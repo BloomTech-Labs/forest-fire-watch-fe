@@ -19,7 +19,8 @@ import {
   SET_SELECTED_MARKER,
   SET_SAVED_LOCATION,
   DELETE_LOCATION_MARKER,
-  SET_USER_LOCATIONS
+  SET_USER_LOCATIONS,
+  TOGGLE_NOTIFICATIONS
 } from "./fireDataTypes";
 
 const DSbaseURL = "https://fire-data-api.herokuapp.com";
@@ -86,6 +87,11 @@ const fireDataReducer = (state, action) => {
         userLocationMarkers: action.payload[0],
         userLocalFireMarkers: action.payload[1]
       };
+    case TOGGLE_NOTIFICATIONS:
+      return {
+        ...state,
+        selectedMarker: [state.selectedMarker[0],state.selectedMarker[1],state.selectedMarker[2],state.selectedMarker[3],state.selectedMarker[4],state.selectedMarker[5],!state.selectedMarker[6]]
+      };
 
     default:
       return {
@@ -131,7 +137,7 @@ export const FireDataProvider = ({ children }) => {
     selectedMarker: [],
     selectedMarkerAddress: [],
     userLocationMarkers: [],
-    userLocalFireMarkers: []
+    userLocalFireMarkers: [],
   });
 
   const getAllFires = () => {
@@ -144,7 +150,7 @@ export const FireDataProvider = ({ children }) => {
               src={fireIcon}
               height="35"
               width="35"
-              style={{ zIndex: 3, transform: "translate(-17.5px, -35px)" }}
+              style={{ zIndex: 100, transform: "translate(-17.5px, -23px)" }}
               alt=""
               onClick={e => {
                 dispatch({
@@ -250,7 +256,7 @@ export const FireDataProvider = ({ children }) => {
                 src={exclamationMark}
                 height="25"
                 width="35"
-                style={{ zIndex: 3, transform: "translate(-17.5px, -52px)" }}
+                style={{ zIndex: 3, transform: "translate(-17.5px, -40px)" }}
                 alt=""
               />
             </Marker>
@@ -294,6 +300,50 @@ export const FireDataProvider = ({ children }) => {
     }
   };
 
+  const deleteUserLocation = () => {
+    axiosWithAuth()
+      .delete(`locations/${fireDataState.selectedMarker[5]}`)
+      .then(res => {
+        dispatch({
+          type: SET_SELECTED_MARKER,
+          payload: []
+        });
+      })
+      .catch(err => {
+        console.log(err.response)
+      })
+
+  }
+
+  const setNotificationStatus = () => {
+    console.log("before axios: ", fireDataState.selectedMarker)
+    axiosWithAuth()
+      .put(`locations/${fireDataState.selectedMarker[5]}`, { notifications: fireDataState.selectedMarker[6] })
+      .then(res => {
+        console.log(res)
+        console.log("after axios: ", fireDataState.selectedMarker)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
+  const toggleNotification = () => {
+    dispatch({
+      type: TOGGLE_NOTIFICATIONS
+    });
+    console.log("before axios: ", fireDataState.selectedMarker)
+    axiosWithAuth()
+      .put(`locations/${fireDataState.selectedMarker[5]}`, { notifications: !fireDataState.selectedMarker[6] })
+      .then(res => {
+        console.log(res)
+        console.log("after axios: ", fireDataState.selectedMarker)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
   const getUserLocations = () => {
     axiosWithAuth()
       .get("locations")
@@ -332,7 +382,7 @@ export const FireDataProvider = ({ children }) => {
               src={exclamationMark}
               height="25"
               width="35"
-              style={{ zIndex: 3, transform: "translate(-17.5px, -52px)" }}
+              style={{ zIndex: 3, transform: "translate(-17.5px, -40px)" }}
               alt=""
             />
           </Marker>
@@ -357,7 +407,9 @@ export const FireDataProvider = ({ children }) => {
                     uLoc.longitude,
                     uLoc.address,
                     uLoc.radius,
-                    "savedLocation"
+                    "savedLocation",
+                    uLoc.id,
+                    uLoc.notifications
                   ]
                 });
               }}
@@ -371,7 +423,18 @@ export const FireDataProvider = ({ children }) => {
       });
   };
 
-  const setSelectedMarker = () => {
+  const updatePopupRadius = (param) => {
+    axiosWithAuth()
+      .put(`locations/${fireDataState.selectedMarker[5]}`, { radius: param })
+      .then(res => {
+        setUserLocations();
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
+  const closeSelectedMarker = () => {
     dispatch({
       type: SET_SELECTED_MARKER,
       payload: []
@@ -408,10 +471,14 @@ export const FireDataProvider = ({ children }) => {
         setPublicViewport,
         setTriggerRegistrationButton,
         getAllFires,
-        setSelectedMarker,
+        closeSelectedMarker,
         deleteLocationMarker,
         saveLocationMarker,
-        setUserLocations
+        setUserLocations,
+        setNotificationStatus,
+        toggleNotification,
+        deleteUserLocation,
+        updatePopupRadius
       }}
     >
       {children}

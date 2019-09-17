@@ -58,6 +58,9 @@ class connector {
   logout() {
     this.connector.defaults.headers.common["Authorization"] = null;
     localStorage.removeItem("token");
+
+    // adding this page refresh to clear lingering location pins from the map upon logout.
+    window.location.reload(false); 
   }
 
   /**

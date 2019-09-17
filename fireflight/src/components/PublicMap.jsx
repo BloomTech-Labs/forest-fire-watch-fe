@@ -15,9 +15,12 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
     setPublicViewport,
     getCoordinates,
     setTriggerRegistrationButton,
-    setSelectedMarker,
+    closeSelectedMarker,
     deleteLocationMarker,
-    saveLocationMarker
+    saveLocationMarker,
+    toggleNotification,
+    deleteUserLocation,
+    updatePopupRadius
   } = useContext(FireDataContext);
   const {
     publicMapViewport,
@@ -27,19 +30,21 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
     localFireMarkers,
     selectedMarker,
     userLocationMarkers,
-    userLocalFireMarkers
+    userLocalFireMarkers,
   } = fireDataState;
 
   const [address, setAddress] = useState("");
 
   const [radius, setRadius] = useState("");
 
+  const [popupRadius, setPopupRadius] = useState("");
+
   // console.log(selectedMarker);
 
   useEffect(() => {
     const listener = e => {
       if (e.key === "Escape") {
-        setSelectedMarker();
+        closeSelectedMarker();
       }
     };
     window.addEventListener("keydown", listener);
@@ -49,7 +54,8 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
     };
   }, []);
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     if (address) {
       getCoordinates(address, radius);
       setTriggerRegistrationButton();
@@ -57,9 +63,9 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
   };
 
   const tempLocationPopup = (
-    <div style={{ display: "flex", flexDirection: "column" }}>
+    <div style={{ display: "flex", flexDirection: "column" }}> 
       <button
-        style={{ marginBottom: 6 }}
+        style={{ marginBottom: 6, marginTop: "7px"}}
         onClick={e => {
           saveLocationMarker();
           deleteLocationMarker();
@@ -75,11 +81,27 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
 
   const savedLocationPopup = (
     <div style={{ display: "flex", flexDirection: "column" }}>
-      <CheckBoxWrapper>
-        <CheckBox id="checkbox" type="checkbox" />
-        <CheckBoxLabel htmlFor="checkbox" />
-      </CheckBoxWrapper>
-      <button style={{ marginTop: 6 }}>Delete this pin</button>
+      <span style={{ marginBottom: "6px", textAlign: "center", textTransform: "uppercase" }}>{selectedMarker[2]}</span>
+      <div style = {{ display: "flex", justifyContent: "space-around" }}>
+        <span >Toggle Notifications:</span> 
+        <CheckBoxWrapper>
+          <CheckBox onChange = {() => {toggleNotification()}} checked={selectedMarker[6]} id="checkbox" type="checkbox" />
+          <CheckBoxLabel htmlFor="checkbox" />
+        </CheckBoxWrapper>
+      </div>
+      
+      <div style = {{ display: "flex", justifyContent: "center" }}>
+        <FormRadiusInput
+              type="text"
+              name="PopupRadius"
+              placeholder="Radius (miles)"
+              value={popupRadius}
+              onChange={e => setPopupRadius(e.target.value)}
+              style ={{ height: 8, width: 110, fontSize: 14, margin: "0 10px 0 0" }}
+            />
+        <button onClick = {() => {updatePopupRadius(popupRadius)}} style = {{ marginTop: 3, height: 24 }}>Set Alert Radius</button>
+      </div>
+      <button onClick = {() => {deleteUserLocation()}} style={{ marginTop: 6 }}>Delete this pin</button>
     </div>
   );
 
@@ -92,7 +114,7 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
   return (
     <div style={{ position: "relative" }}>
       <Container>
-        <FormContainer>
+        <FormContainer onSubmit = {handleSubmit}>
           <i className="fas fa-compass fa-lg" />
           <input
             className="address-input"
@@ -109,7 +131,7 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
             value={radius}
             onChange={e => setRadius(e.target.value)}
           />
-          <FormButton onClick={handleSubmit}>Find Active Fires</FormButton>
+          <FormButton>Find Active Fires</FormButton>
         </FormContainer>
         {triggerRegistrationButton ? (
           <TriggeredButton
@@ -144,7 +166,7 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
             latitude={selectedMarker[0]}
             longitude={selectedMarker[1]}
             onClose={() => {
-              setSelectedMarker();
+              closeSelectedMarker();
             }}
           >
             {selectedMarker[4] === "savedLocation" && savedLocationPopup}
@@ -167,7 +189,7 @@ const Container = styled.div`
   z-index: 3;
 `;
 
-const FormContainer = styled.div`
+const FormContainer = styled.form`
   width: 100%;
   display: flex;
   justify-content: center;
@@ -258,7 +280,7 @@ const PopupText = styled.p`
 
 const CheckBoxWrapper = styled.div`
   position: relative;
-  margin: auto 0px auto auto;
+
 `;
 const CheckBoxLabel = styled.label`
   position: absolute;

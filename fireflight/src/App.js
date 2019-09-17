@@ -44,9 +44,10 @@ function App() {
 
   useEffect(() => {
     if (token) {
+      console.log('effect')
       setUserLocations();
     }
-  }, [fireDataState.allFires]);
+  }, [fireDataState.allFires,fireDataState.selectedMarker]);
 
   useEffect(() => {
     //getLogin gets login information upon page load here;
