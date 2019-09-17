@@ -61,7 +61,7 @@
     // Address Bar Icon
     .fa-compass {
         position: relative;
-        margin: 1em 0 0 2em;
+        margin: 1em 0 0 2.5em;
         top: 1.85em;
         padding: 11.5px;
     }
@@ -72,20 +72,19 @@
         display: block;
         // Address Input
         .address-input {
-            margin: 0 0 0 5.5em;
-            width: 200px;
+            margin: 0 0 0 6em;
+            width: 175px;
         }
         // Radius Input 
           .radius-input {
-              display: block;
-              margin: 0.5em 0 0 7em;
+              margin: 0.5em 0 0 6.25em;
               padding: 8px;
               width: 125px;
           }
         //  Public Map Form Button 
           .form-btn {
-              margin: 0.5em 0 0 5em;
-              width: 200px;
+              margin: 0.5em 0 0 5.25em;
+              width: 175px;
           }
         }
     
