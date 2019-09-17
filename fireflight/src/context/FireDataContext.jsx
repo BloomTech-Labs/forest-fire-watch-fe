@@ -158,26 +158,28 @@ export const FireDataProvider = ({ children }) => {
         });
     } else {
       let payload = [];
-      fireDataState.userLocations.forEach(loc => {
-        axios
-          .get(
-            `https://api.mapbox.com/geocoding/v5/mapbox.places/${loc.address}.json?access_token=${token}`
-          )
-          .then(res => {
-            payload.push({
-              address_label: loc.address_label,
-              address: loc.address,
-              latitude: res.data.features[0].center[1],
-              longitude: res.data.features[0].center[0],
-              radius: loc.radius,
-              id: loc.id
+      if(Array.isArray(fireDataState.userLocations)){
+        fireDataState.userLocations.forEach(loc => {
+          axios
+            .get(
+              `https://api.mapbox.com/geocoding/v5/mapbox.places/${loc.address}.json?access_token=${token}`
+            )
+            .then(res => {
+              payload.push({
+                address_label: loc.address_label,
+                address: loc.address,
+                latitude: res.data.features[0].center[1],
+                longitude: res.data.features[0].center[0],
+                radius: loc.radius,
+                id: loc.id
+              });
             });
-          });
-      });
-      dispatch({
-        type: GET_USER_COORDINATES,
-        payload: payload
-      });
+        });
+        dispatch({
+          type: GET_USER_COORDINATES,
+          payload: payload
+        });
+      }
     }
   };
 

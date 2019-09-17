@@ -14,6 +14,10 @@ const Dashboard = () => {
     FireDataContext
   );
 
+  const subscribe=e=>{
+    getSub()
+  }
+
   return (
     <DashboardWrapper>
       <ContentContainer>
@@ -34,6 +38,12 @@ const Dashboard = () => {
             <DivHeading>Input Addresses</DivHeading>
           </NavLink>
         </AddressesDiv>
+        { Notification.permission==='default'
+          &&
+          <NotificationDiv onClick={subscribe}>
+                Subscribe to notifications for important alerts
+          </NotificationDiv>
+        }
       </ContentContainer>
     </DashboardWrapper>
   );
@@ -116,3 +126,7 @@ const AddressesDiv = styled.div`
     margin: auto;
   }
 `;
+
+const NotificationDiv=styled(AddressesDiv)`
+  cursor:horver;
+`
