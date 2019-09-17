@@ -15,9 +15,12 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
     setPublicViewport,
     getCoordinates,
     setTriggerRegistrationButton,
-    setSelectedMarker,
+    closeSelectedMarker,
     deleteLocationMarker,
-    saveLocationMarker
+    saveLocationMarker,
+    toggleNotification,
+    deleteUserLocation,
+    updatePopupRadius
   } = useContext(FireDataContext);
   const {
     publicMapViewport,
@@ -27,19 +30,21 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
     localFireMarkers,
     selectedMarker,
     userLocationMarkers,
-    userLocalFireMarkers
+    userLocalFireMarkers,
   } = fireDataState;
 
   const [address, setAddress] = useState("");
 
   const [radius, setRadius] = useState("");
 
+  const [popupRadius, setPopupRadius] = useState("");
+
   // console.log(selectedMarker);
 
   useEffect(() => {
     const listener = e => {
       if (e.key === "Escape") {
-        setSelectedMarker();
+        closeSelectedMarker();
       }
     };
     window.addEventListener("keydown", listener);
@@ -49,7 +54,8 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
     };
   }, []);
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     if (address) {
       getCoordinates(address, radius);
       setTriggerRegistrationButton();
@@ -57,9 +63,9 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
   };
 
   const tempLocationPopup = (
-    <div style={{ display: "flex", flexDirection: "column" }}>
+    <div style={{ display: "flex", flexDirection: "column" }}> 
       <button
-        style={{ marginBottom: 6 }}
+        style={{ marginBottom: 6, marginTop: "7px"}}
         onClick={e => {
           saveLocationMarker();
           deleteLocationMarker();
@@ -75,11 +81,27 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
 
   const savedLocationPopup = (
     <div style={{ display: "flex", flexDirection: "column" }}>
-      <CheckBoxWrapper>
-        <CheckBox id="checkbox" type="checkbox" />
-        <CheckBoxLabel htmlFor="checkbox" />
-      </CheckBoxWrapper>
-      <button style={{ marginTop: 6 }}>Delete this pin</button>
+      <span style={{ marginBottom: "6px", textAlign: "center", textTransform: "uppercase" }}>{selectedMarker[2]}</span>
+      <div style = {{ display: "flex", justifyContent: "space-around" }}>
+        <span >Toggle Notifications:</span> 
+        <CheckBoxWrapper>
+          <CheckBox onChange = {() => {toggleNotification()}} checked={selectedMarker[6]} id="checkbox" type="checkbox" />
+          <CheckBoxLabel htmlFor="checkbox" />
+        </CheckBoxWrapper>
+      </div>
+      
+      <div style = {{ display: "flex", justifyContent: "center" }}>
+        <FormRadiusInput
+              type="text"
+              name="PopupRadius"
+              placeholder="Radius (miles)"
+              value={popupRadius}
+              onChange={e => setPopupRadius(e.target.value)}
+              style ={{ height: 8, width: 110, fontSize: 14, margin: "0 10px 0 0" }}
+            />
+        <button onClick = {() => {updatePopupRadius(popupRadius)}} style = {{ marginTop: 3, height: 24 }}>Set Alert Radius</button>
+      </div>
+      <button onClick = {() => {deleteUserLocation()}} style={{ marginTop: 6 }}>Delete this pin</button>
     </div>
   );
 
@@ -92,7 +114,7 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
   return (
     <div style={{ position: "relative" }}>
       <Container>
-        <div className="map-form-container">
+        <form onSubmit = {handleSubmit} className="map-form-container">
           <i className="fas fa-compass fa-lg" />
           <input
             className="address-input"
@@ -110,8 +132,8 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
             value={radius}
             onChange={e => setRadius(e.target.value)}
           />
-          <button className="form-btn" onClick={handleSubmit}>Find Active Fires</button>
-        </div>
+          <button className="form-btn">Find Active Fires</button>
+        </form>
         {/* End Form Container */}
         {triggerRegistrationButton ? (
           <TriggeredButton
@@ -146,7 +168,7 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
             latitude={selectedMarker[0]}
             longitude={selectedMarker[1]}
             onClose={() => {
-              setSelectedMarker();
+              closeSelectedMarker();
             }}
           >
             {selectedMarker[4] === "savedLocation" && savedLocationPopup}
@@ -185,7 +207,7 @@ const TriggeredButton = styled.button`
 
 const CheckBoxWrapper = styled.div`
   position: relative;
-  margin: auto 0px auto auto;
+
 `;
 const CheckBoxLabel = styled.label`
   position: absolute;
@@ -208,6 +230,21 @@ const CheckBoxLabel = styled.label`
     transition: 0.2s;
   }
 `;
+
+const FormRadiusInput = styled.input`
+  width: 150px;
+  margin: 25px 17.5px 5px 10px;
+  padding: 10px;
+  font-size: 1em;
+  background-color: white;
+  border-radius: 5px;
+  border: solid 1px black;
+  @media (max-width: 576px) {
+    width: 200px;
+    padding: 8px;
+  }
+`;
+
 const CheckBox = styled.input`
   opacity: 0;
   z-index: 1;
