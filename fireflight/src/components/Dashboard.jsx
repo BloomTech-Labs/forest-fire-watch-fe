@@ -128,5 +128,5 @@ const AddressesDiv = styled.div`
 `;
 
 const NotificationDiv=styled(AddressesDiv)`
-  cursor:horver;
+  cursor:hover;
 `
