@@ -4,6 +4,7 @@ import axiosWithAuth from "../utils/axiosWithAuth";
 const GET_USER_DATA = "GET_USER_DATA";
 const UPDATE_RECEIVE_SMS = "UPDATE_RECEIVE_SMS";
 const UPDATE_RECEIVE_PUSH = "UPDATE_RECEIVE_PUSH";
+const ADD_PHONE_NUMBER = "ADD_PHONE_NUMBER";
 
 const userDataReducer = (state, action) => {
   switch (action.type) {
@@ -15,6 +16,11 @@ const userDataReducer = (state, action) => {
 
         receivePush: action.payload[2],
         receiveSMS: action.payload[3]
+      };
+    case ADD_PHONE_NUMBER:
+      return {
+        ...state,
+        phone: action.payload
       };
     case UPDATE_RECEIVE_SMS:
       return {
@@ -61,6 +67,19 @@ export const UserDataProvider = ({ children }) => {
       .catch(err => console.log(err.response));
   };
 
+  const addPhoneNumber = number => {
+    const data = { cell_number: number };
+    axiosWithAuth()
+      .put("/users/", data)
+      .then(res => {
+        dispatch({
+          type: ADD_PHONE_NUMBER,
+          payload: number
+        });
+      })
+      .catch(err => console.log(err.response));
+  };
+
   const updateTextAlerts = change => {
     const data = { receive_sms: change };
     axiosWithAuth()
@@ -94,7 +113,8 @@ export const UserDataProvider = ({ children }) => {
         dispatch,
         getUserData,
         updateTextAlerts,
-        updatePushAlerts
+        updatePushAlerts,
+        addPhoneNumber
       }}
     >
       {children}
