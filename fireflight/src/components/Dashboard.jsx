@@ -48,14 +48,14 @@ const Dashboard = () => {
       <button onClick={() => handleAddPhoneNumber()}>Add Phone Number</button>
     </DataDiv>
   );
-  console.log(phone);
+
   return (
     <div className="dashboard-wrapper">
       <div className="content-wrapper">
         <PersonalInfo>
           <h3>Welcome {username}!</h3>
 
-          {phone === 0 ? (
+          {phone === null ? (
             phoneInput
           ) : (
             <DataDiv>

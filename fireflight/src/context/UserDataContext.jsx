@@ -13,7 +13,6 @@ const userDataReducer = (state, action) => {
         ...state,
         username: action.payload[0],
         phone: action.payload[1],
-
         receivePush: action.payload[2],
         receiveSMS: action.payload[3]
       };
@@ -68,7 +67,7 @@ export const UserDataProvider = ({ children }) => {
   };
 
   const addPhoneNumber = number => {
-    const data = { cell_number: number };
+    const data = { cell_number: number.replace(" ", "").replace(" ", "") };
     axiosWithAuth()
       .put("/users/", data)
       .then(res => {
