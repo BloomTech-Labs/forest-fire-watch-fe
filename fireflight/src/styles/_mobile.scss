@@ -1,13 +1,13 @@
 // Mobile View //
 @include mediaSm {
 
-    // Navigation Bar //
+    // Navigation Bar
     .nav-container {
         background-image: linear-gradient(to bottom, #355C7D, #F67280 95%);
         height: 80px;
         width: 100%;
 
-        // FireFlight Logo //
+        // FireFlight Logo
         .brand {
             float: left;
 
@@ -22,7 +22,7 @@
             }
         }
 
-        // Dropdown Menu //     
+        // Dropdown Menu   
         .dropdown {
             margin-top: 12.5px;
             position: relative;
@@ -59,14 +59,13 @@
         }
     }
 
-    .fa-user-circle,
-    .fa-key,
-    .fa-lock {
-        left: 5px;
-        margin-left: 5px;
+    // Sign In and Sign Up Forms
+    .name-error-text {
+        font-size: 0.8em;
+        margin-top: 5px;
+        width: 75%;
     }
-
-    // Map Form //
+    // Map Form
     .map-form-container {
         position: relative;
         left: 1em;
@@ -95,7 +94,7 @@
             }
         }
 
-        //   Find Active Fires Button //
+        //   Find Active Fires Button 
         .form-btn {
             height: 60px;
             position: relative;
@@ -106,7 +105,7 @@
     }
 }
 
-// Medium View //
+// Medium View
 @include mediaMd {
     .nav-container {
         height: 100vh;
