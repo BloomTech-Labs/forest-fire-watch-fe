@@ -53,7 +53,7 @@ const Dashboard = () => {
               <CheckBoxLabel htmlFor="checkbox1" />
             </CheckBoxWrapper>
           </DataDiv>
-          <DataDiv>
+          {/* <DataDiv>
             <h4>Receive Push Notifications:</h4>
             <CheckBoxWrapper>
               <CheckBox
@@ -66,7 +66,7 @@ const Dashboard = () => {
               />
               <CheckBoxLabel htmlFor="checkbox2" />
             </CheckBoxWrapper>
-          </DataDiv>
+          </DataDiv> */}
         </PersonalInfo>
         <LocationsInfo>
           <h3>Saved Locations</h3>

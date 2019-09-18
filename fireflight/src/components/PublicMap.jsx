@@ -52,6 +52,8 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
     };
   }, []);
 
+  console.log(selectedMarker);
+
   const handleSubmit = e => {
     e.preventDefault();
     if (address) {
