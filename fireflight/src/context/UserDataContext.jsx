@@ -12,8 +12,9 @@ const userDataReducer = (state, action) => {
         ...state,
         username: action.payload[0],
         phone: action.payload[1],
-        receiveSMS: action.payload[2],
-        receivePush: action.payload[3]
+
+        receivePush: action.payload[2],
+        receiveSMS: action.payload[3]
       };
     case UPDATE_RECEIVE_SMS:
       return {
@@ -46,6 +47,7 @@ export const UserDataProvider = ({ children }) => {
     axiosWithAuth()
       .get("/users/user")
       .then(res => {
+        console.log(res.data);
         dispatch({
           type: GET_USER_DATA,
           payload: [
@@ -60,24 +62,16 @@ export const UserDataProvider = ({ children }) => {
   };
 
   const updateTextAlerts = change => {
-    dispatch({
-      type: UPDATE_RECEIVE_SMS,
-      payload: change
-    });
-
-    // axiosWithAuth()
-    //   .put("/users/", { receive_sms: change })
-    //   .then(res => {
-    //     console.log(res.data);
-    //   })
-    //   .catch(err => {
-    //     console.log("receiveSMS: ", userDataState.receiveSMS);
-    //     dispatch({
-    //       type: UPDATE_RECEIVE_SMS,
-    //       payload: !userDataState.receiveSMS
-    //     });
-    //     console.log(err.response);
-    //   });
+    const data = { receive_sms: change };
+    axiosWithAuth()
+      .put("/users/", data)
+      .then(res => {
+        dispatch({
+          type: UPDATE_RECEIVE_SMS,
+          payload: change
+        });
+      })
+      .catch(err => console.log(err.response));
   };
 
   const updatePushAlerts = change => {

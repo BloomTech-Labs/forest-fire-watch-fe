@@ -30,7 +30,7 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
     localFireMarkers,
     selectedMarker,
     userLocationMarkers,
-    userLocalFireMarkers,
+    userLocalFireMarkers
   } = fireDataState;
 
   const [address, setAddress] = useState("");
@@ -38,8 +38,6 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
   const [radius, setRadius] = useState("");
 
   const [popupRadius, setPopupRadius] = useState("");
-
-  // console.log(selectedMarker);
 
   useEffect(() => {
     const listener = e => {
@@ -54,7 +52,9 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
     };
   }, []);
 
-  const handleSubmit = (e) => {
+  console.log(selectedMarker);
+
+  const handleSubmit = e => {
     e.preventDefault();
     if (address) {
       getCoordinates(address, radius);
@@ -63,9 +63,9 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
   };
 
   const tempLocationPopup = (
-    <div style={{ display: "flex", flexDirection: "column" }}> 
+    <div style={{ display: "flex", flexDirection: "column" }}>
       <button
-        style={{ marginBottom: 6, marginTop: "7px"}}
+        style={{ marginBottom: 6, marginTop: "7px" }}
         onClick={e => {
           saveLocationMarker();
           deleteLocationMarker();
@@ -81,28 +81,61 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
 
   const savedLocationPopup = (
     <div style={{ display: "flex", flexDirection: "column" }}>
-      <span style={{ marginBottom: "6px", textAlign: "center", textTransform: "uppercase" }}>{selectedMarker[2]}</span><b/>
-      <span style={{ marginBottom: "6px", textAlign: "center"}}> Alert Radius: {selectedMarker[3]}mi </span>
-      <div style = {{ display: "flex", justifyContent: "space-around" }}>
-        <span >Toggle Notifications:</span> 
+      <span
+        style={{
+          marginBottom: "6px",
+          textAlign: "center",
+          textTransform: "uppercase"
+        }}
+      >
+        {selectedMarker[2]}
+      </span>
+      <b />
+      <span style={{ marginBottom: "6px", textAlign: "center" }}>
+        {" "}
+        Alert Radius: {selectedMarker[3]}mi{" "}
+      </span>
+      <div style={{ display: "flex", justifyContent: "space-around" }}>
+        <span>Toggle Notifications:</span>
         <CheckBoxWrapper>
-          <CheckBox onChange = {() => {toggleNotification()}} checked={selectedMarker[6]} id="checkbox" type="checkbox" />
+          <CheckBox
+            onChange={() => {
+              toggleNotification();
+            }}
+            checked={selectedMarker[6]}
+            id="checkbox"
+            type="checkbox"
+          />
           <CheckBoxLabel htmlFor="checkbox" />
         </CheckBoxWrapper>
       </div>
-      
-      <div style = {{ display: "flex", justifyContent: "center" }}>
+
+      <div style={{ display: "flex", justifyContent: "center" }}>
         <FormRadiusInput
-              type="text"
-              name="PopupRadius"
-              placeholder="Radius (miles)"
-              value={popupRadius}
-              onChange={e => setPopupRadius(e.target.value)}
-              style ={{ height: 8, width: 110, fontSize: 14, margin: "0 10px 0 0" }}
-            />
-        <button onClick = {() => {updatePopupRadius(popupRadius)}} style = {{ marginTop: 3, height: 24 }}>Set Alert Radius</button>
+          type="text"
+          name="PopupRadius"
+          placeholder="Radius (miles)"
+          value={popupRadius}
+          onChange={e => setPopupRadius(e.target.value)}
+          style={{ height: 8, width: 110, fontSize: 14, margin: "0 10px 0 0" }}
+        />
+        <button
+          onClick={() => {
+            updatePopupRadius(popupRadius);
+          }}
+          style={{ marginTop: 3, height: 24 }}
+        >
+          Set Alert Radius
+        </button>
       </div>
-      <button onClick = {() => {deleteUserLocation()}} style={{ marginTop: 6 }}>Delete this pin</button>
+      <button
+        onClick={() => {
+          deleteUserLocation();
+        }}
+        style={{ marginTop: 6 }}
+      >
+        Delete this pin
+      </button>
     </div>
   );
 
@@ -115,7 +148,7 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
   return (
     <div style={{ position: "relative" }}>
       <Container>
-        <form onSubmit = {handleSubmit} className="map-form-container">
+        <form onSubmit={handleSubmit} className="map-form-container">
           <i className="fas fa-compass fa-lg" />
           <input
             className="address-input"
@@ -208,7 +241,6 @@ const TriggeredButton = styled.button`
 
 const CheckBoxWrapper = styled.div`
   position: relative;
-
 `;
 const CheckBoxLabel = styled.label`
   position: absolute;
