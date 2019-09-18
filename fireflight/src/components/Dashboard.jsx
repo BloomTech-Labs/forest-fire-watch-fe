@@ -71,20 +71,22 @@ const Dashboard = () => {
         <LocationsInfo>
           <h3>Saved Locations</h3>
           <LocationsTable>
-            <TableRow>
-              <TH>Address</TH>
-              <TH>Radius (miles)</TH>
-              <TH>Alerts</TH>
-              <TH></TH>
-            </TableRow>
-
-            {userLocations.map(loc => (
+            <tbody>
               <TableRow>
-                <td style={{ textTransform: "capitalize" }}>{loc.address}</td>
-                <td>{loc.radius}</td>
-                <td>{loc.notifications === 0 ? "OFF" : "ON"}</td>
+                <TH>Address</TH>
+                <TH>Radius (miles)</TH>
+                <TH>Alerts</TH>
+                <TH></TH>
               </TableRow>
-            ))}
+
+              {userLocations.map((loc, index) => (
+                <TableRow key={index + loc.radius}>
+                  <td style={{ textTransform: "capitalize" }}>{loc.address}</td>
+                  <td>{loc.radius}</td>
+                  <td>{loc.notifications === 0 ? "OFF" : "ON"}</td>
+                </TableRow>
+              ))}
+            </tbody>
           </LocationsTable>
         </LocationsInfo>
       </div>
