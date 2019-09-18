@@ -80,7 +80,7 @@ export const UserDataProvider = ({ children }) => {
   };
 
   const updateTextAlerts = change => {
-    const data = { receive_sms: change };
+    const data = { receive_sms: JSON.stringify(change) };
     axiosWithAuth()
       .put("/users/", data)
       .then(res => {
