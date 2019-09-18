@@ -81,7 +81,8 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
 
   const savedLocationPopup = (
     <div style={{ display: "flex", flexDirection: "column" }}>
-      <span style={{ marginBottom: "6px", textAlign: "center", textTransform: "uppercase" }}>{selectedMarker[2]}</span>
+      <span style={{ marginBottom: "6px", textAlign: "center", textTransform: "uppercase" }}>{selectedMarker[2]}</span><b/>
+      <span style={{ marginBottom: "6px", textAlign: "center"}}> Alert Radius: {selectedMarker[3]}mi </span>
       <div style = {{ display: "flex", justifyContent: "space-around" }}>
         <span >Toggle Notifications:</span> 
         <CheckBoxWrapper>

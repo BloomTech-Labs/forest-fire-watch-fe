@@ -79,7 +79,8 @@ const fireDataReducer = (state, action) => {
       return {
         ...state,
         publicCoordinatesMarker: [],
-        selectedMarker: []
+        selectedMarker: [],
+        localFireMarkers: []
       };
     case SET_USER_LOCATIONS:
       return {
@@ -431,6 +432,10 @@ export const FireDataProvider = ({ children }) => {
       })
       .catch(err => {
         console.log(err)
+      })
+      dispatch({
+        type: SET_SELECTED_MARKER,
+        payload: [fireDataState.selectedMarker[0],fireDataState.selectedMarker[1],fireDataState.selectedMarker[2],param,fireDataState.selectedMarker[4],fireDataState.selectedMarker[5],fireDataState.selectedMarker[6]]
       })
   }
 
