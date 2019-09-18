@@ -2,6 +2,7 @@
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/65d8b884-4807-40de-a05b-0cc08b7ddf48/deploy-status)](https://app.netlify.com/sites/fireflightapp/deploys)
 
+
 # Fire Flight
 
 You can find the deployed project at [fireflightapp.com](fireflightapp.com).
@@ -24,22 +25,20 @@ You can find the deployed project at [fireflightapp.com](fireflightapp.com).
 <br>
 <br>
 
-🚫 4️⃣ Optional examples of using images with links for your tech stack, make sure to change these to fit your project
-
-<!-- [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier) -->
-
-
 ## Project Overview
 
 [Trello Board](https://trello.com/b/LHd7GbuL/labs15-forest-fire)
 
 [Product Canvas](https://www.notion.so/Forest-Fire-Prediction-and-Rescue-Coordination-7eb1595c5f1643fca8e48a89c6086fdf)
 
- [UX Design files](🚫add link to design files here) - 🚫 delete if not applicable
+
+[UX Design files](https://www.dropbox.com/sh/gknqzhazljiw16t/AAALcR4-2XljeEPDXM6Wjhu_a?dl=0)
+
 
 ## Specifications
 
  This applicaation is designed to help people understand when they are in danger of being struck by a wild fire, and hopefully give them time to get out.
+
 
 
 ###  Key Features
@@ -47,6 +46,7 @@ You can find the deployed project at [fireflightapp.com](fireflightapp.com).
 -    User can log in and add multiple addresses. They can also set a distance from that address where the app will provide data about wild fires.
 -    User can see wildfires within the range they set.
 -    Application will alert user when  fire is withing their set radius. Either by SMS or push notification in the web browser.
+
 
 
 ## Tech Stack
@@ -85,7 +85,7 @@ You can find the deployed project at [fireflightapp.com](fireflightapp.com).
 
 #### Front end deployed to `Netlify`
 
-#### [Back end](https://github.com/labs15-forest-fire/backend) built using:
+#### [Backend](https://github.com/labs15-forest-fire/backend) built using:
 
 #### ExpressJS
 
@@ -105,17 +105,13 @@ You can find the deployed project at [fireflightapp.com](fireflightapp.com).
 
 # APIs
 
-## BCrypt/JWT
-
-🚫Replace text below with a description of the API
-
-Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do things A little happy sunlight shining through there. Let all these little things happen. Don't fight them. Learn to use them. Even the worst thing we can do here is good.
-
 ## Mapbox
 
-This api gives the application the abilty to convert adresses to latlong for our backend applications. Later, this will give us the ability to show more data to the users.
+-  This api gives the application the abilty to convert addresses to lat/long for our backend applications. Later, this will give us the ability to show more data to the users.
+
 
 #  Environment Variables
+
 
 In order for the app to function correctly, the user must set up their own environment variables. There should be a .env file containing the following:
 
@@ -133,12 +129,12 @@ In order for the app to function correctly, the user must set up their own envir
     *  REACT_APP_stripe_plan - this is the ID for a second Stripe subscription plan, generated under Stripe products
 
 # Content Licenses
-  All content created by [Jeffery Wicks]("#")
+
+  All content created by [Jeffery Wicks]("https://www.linkedin.com/in/jeffwicks-interactiondesign/")
+
 
 
 # Testing
-
-🚫Document what you used for testing and why
 
 # Installation Instructions
 

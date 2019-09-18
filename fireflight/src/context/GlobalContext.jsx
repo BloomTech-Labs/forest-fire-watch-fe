@@ -1,6 +1,5 @@
-import React, { useReducer, createContext } from "react";
+import React, { useReducer } from "react";
 // import FireContext from "./contextProvider";
-import connector from "../helpers/connects";
 import { GlobalContext, defaultValues } from "./contextProvider";
 
 import { SET_LOCATION, SET_NAME } from "./types";

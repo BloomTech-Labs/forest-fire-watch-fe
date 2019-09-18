@@ -134,7 +134,7 @@ function Address(props) {
       setName("");
     } else {
       let temp = address.state.addresses.filter(i => {
-        return i.id == e.target.value;
+        return i.id === e.target.value;
       })[0];
       setId(temp.id);
       setRadius(temp.radius);
@@ -183,7 +183,7 @@ function Address(props) {
         {address.state.addresses.map(i => (
           <option value={i.id} key={i.id}>
             {i.address_label || i.address}
-          </option>
+          </option> 
         ))}
       </FormSelect>
       <Form onSubmit={testSubmit}>

@@ -12,7 +12,7 @@ class connector {
       this.coreString = "https://fireflight-lambda.herokuapp.com/api/";
     //http here
     else this.coreString = "http://localhost:5000/api/";
-    this.fireflight = process.env.REACT_APP_FIREFLIGHT;
+    this.fireflight = process.env.REACT_APP_MAPBOX_TOKEN;
     if (localStorage.getItem("token") != null) {
       this.connector.defaults.headers.common[
         "Authorization"
@@ -38,13 +38,13 @@ class connector {
     let res = await axios.post(this.coreString + "auth/login", creds);
 
     let data = await res.data;
-
+    console.log(data)
     if (res.status == 200) {
       //success test
       localStorage.setItem("token", data.token);
       this.connector.defaults.headers.common["Authorization"] = data.token;
       let who = await this.self();
-      window.location.href = "/dashboard";
+      window.location.href = "/";
       return new stats(true, who.username);
     } else {
       //success failed
@@ -58,6 +58,9 @@ class connector {
   logout() {
     this.connector.defaults.headers.common["Authorization"] = null;
     localStorage.removeItem("token");
+
+    // adding this page refresh to clear lingering location pins from the map upon logout.
+    window.location.reload(false); 
   }
 
   /**
