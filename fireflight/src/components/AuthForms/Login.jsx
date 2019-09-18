@@ -50,8 +50,10 @@ function Login({ toggle, setShowAuthForms }) {
         <img src={logo} alt="FireFlight" />
         <h2 className="form-heading">Welcome Back!</h2>
         <p className="form-text">Sign in to continue</p>
-        <FormContainer onSubmit={handleSubmit}>
-          <i className="fas fa-user-circle fa-lg" />
+        <form className="auth-form-container" onSubmit={handleSubmit}>
+          <label htmlFor="username">
+            <i className="fas fa-user-circle fa-lg" />
+          </label>
           <input
             className="form-input"
             type="text"
@@ -60,9 +62,11 @@ function Login({ toggle, setShowAuthForms }) {
             onChange={handleUsername}
             placeholder="Username"
           />
-          {errorStatus ? <p className="error-text">{errorText}</p> : <p className="error-text" />}
-
-          <i className="fas fa-key fa-lg" />
+          {errorStatus ? <p className="name-error-text">{errorText}</p> : <p className="user-error-text" />}
+          <br />
+          <label htmlFor="password">
+            <i className="fas fa-key fa-lg" />
+          </label>
           <input
             className="form-input"
             type="password"
@@ -77,14 +81,14 @@ function Login({ toggle, setShowAuthForms }) {
             </a>
           </p>
           {errorStatus ? (
-            <p className="error-text">{errorText.password}</p>
+            <p className="pw-error-text">{errorText.password}</p>
           ) : (
-            <p className="error-text" />
+            <p className="pw-error-text" />
           )}
           <button className="auth-btn" type="submit" disabled={loading}>
             {loading ? "Loading..." : "Sign In"}
           </button>
-        </FormContainer>
+        </form>
       </LoginContainer>
       <LoginSplitContainer>
         <LoginSplit toggle={toggle} />
@@ -131,9 +135,4 @@ const LoginSplitContainer = styled.div`
   @media (max-width: 900px) {
     width: 100%;
   }
-`;
-
-const FormContainer = styled.form`
-  display: flex;
-  flex-direction: column;
 `;

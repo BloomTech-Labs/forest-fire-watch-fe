@@ -70,7 +70,7 @@ function Register({ toggle, setShowAuthForms }) {
         </RegisterSplitContainer>
         <RegisterContainer>
           <img src={logo} alt="FireFlight" />
-          <FormHeading>Create Account</FormHeading>
+          <h2 className="form-heading">Create Account</h2>
           <div
             className="fb-login-button"
             data-width="150px"
@@ -79,8 +79,10 @@ function Register({ toggle, setShowAuthForms }) {
             data-auto-logout-link="true"
             data-use-continue-as="false"
           />
-          <FormContainer onSubmit={handleSubmit}>
+          <form className="auth-form-container" onSubmit={handleSubmit}>
+          <label htmlFor="username">
             <i className="fas fa-user-circle fa-lg" />
+          </label>
             <input
               className="form-input"
               type="text"
@@ -94,7 +96,9 @@ function Register({ toggle, setShowAuthForms }) {
             ) : (
               <ErrorText />
             )}
+            <label htmlFor="password">
             <i className="fas fa-lock fa-lg" />
+            </label>
             <input
               className="form-input"
               type="password"
@@ -109,8 +113,9 @@ function Register({ toggle, setShowAuthForms }) {
             ) : (
               <ErrorText />
             )}
-
+            <label htmlFor="password">
             <i className="fas fa-key fa-lg" />
+            </label>
             <input
               className="form-input"
               type="password"
@@ -124,7 +129,7 @@ function Register({ toggle, setShowAuthForms }) {
             <button className="auth-btn" type="submit" disabled={loading}>
               {loading ? "Loading..." : "Create Account"}
             </button>
-          </FormContainer>
+          </form>
         </RegisterContainer>
       </RegPageContainer>
     );

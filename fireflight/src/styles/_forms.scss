@@ -1,20 +1,3 @@
-// Auth Input Icons
-.fa-user-circle,
-.fa-key,
-.fa-lock {
-    background-color: #355c7d;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    color: #FFF;
-    padding: 14.5px 0;
-    position: relative;
-    top: 19px;
-    left: 20px;
-    width: 50px;
-}
-
 // Map Form Container
 .map-form-container {
     width: 100%;
@@ -56,26 +39,5 @@
         margin: 25px 17.5px 5px 0;
         padding: 10px;
         width: 150px;
-    }
-}
-
-// Sign In and Sign Up Forms
-.form-input {
-    background-color: #355c7d;
-    border: none;
-    border-radius: 5px;
-    color: #f2f3f4;
-    margin: -25px auto;
-    padding: 15px 15px 15px 50px;
-    font-size: 0.8em;
-    width: 70%;
-
-    &::placeholder {
-        color: #f2f3f4;
-        opacity: 0.8;
-    }
-
-    @include mediaLg {
-        width: 75%;
     }
 }
