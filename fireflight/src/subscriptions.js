@@ -6,6 +6,7 @@ function urlBase64ToUint8Array(base64String) {
     .replace(/\-/g, "+")
     .replace(/_/g, "/");
 
+<<<<<<< HEAD
   const rawData = window.atob(base64);
   const outputArray = new Uint8Array(rawData.length);
 
@@ -14,6 +15,19 @@ function urlBase64ToUint8Array(base64String) {
   }
   console.log("done converting");
   return outputArray;
+=======
+const sendSubscription=sub=>{
+    const location = process.env.NODE_ENV === 'development'?'http://localhost:5000/api/push/register':'https://fireflight-lambda.herokuapp.com/api/push/register';
+    console.log('yo', location);
+    return fetch(location,{
+        method:'POST',
+        body:JSON.stringify(sub),
+        headers:{
+            'content-type':'application/json',
+            'Authorization':localStorage.getItem('token')
+        }
+    })
+>>>>>>> 0f37e855a50ef7537305b2fd551a89de7f2e08dd
 }
 
 const sendSubscription = sub => {
@@ -46,6 +60,7 @@ export const subscribeUser = async () => {
       if (reg === null) {
         console.log("no subscription, making request");
         try {
+<<<<<<< HEAD
           const newSub = await registration.pushManager.subscribe({
             applicationServerKey: convertVapid,
             userVisibleOnly: true
@@ -53,6 +68,39 @@ export const subscribeUser = async () => {
 
           console.log("new sub added");
           sendSubscription(newSub);
+=======
+            console.log('sub attempt');
+            const registration = await navigator.serviceWorker.ready
+            
+            console.log(registration);
+
+            if(!registration.pushManager){
+                console.log('Push Manager Unavailable');
+                return;
+            }
+            const reg = await registration.pushManager.getSubscription()
+            if(reg===null){
+                console.log('no subscription, making request');
+                try {
+                    const newSub=await registration.pushManager.subscribe({
+                        applicationServerKey:convertVapid,
+                        userVisibleOnly:true
+                    })
+        
+                    console.log('new sub added');
+                    sendSubscription(newSub)
+                } catch (err) {
+                    if(Notification.permission!=='granted'){
+                        console.log('no permission');
+                    }else{
+                        console.error('error durring subscription',err.message);
+                    }
+                }
+            }else{
+                console.log('current sub detected');
+                sendSubscription(reg)
+            }
+>>>>>>> 0f37e855a50ef7537305b2fd551a89de7f2e08dd
         } catch (err) {
           if (Notification.permission !== "granted") {
             console.log("no permission");

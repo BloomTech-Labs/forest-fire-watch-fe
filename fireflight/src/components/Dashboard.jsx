@@ -26,7 +26,9 @@ const Dashboard = () => {
     getUserLocations();
   }, []);
 
-  console.log(fireDataState);
+  const subscribe=e=>{
+    getSub()
+  }
 
   return (
     <div className="dashboard-wrapper">
