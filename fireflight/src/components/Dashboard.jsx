@@ -8,7 +8,7 @@ import { FireDataContext } from "../context/FireDataContext";
 
 // import PrivateMap from "./PrivateMap";
 
-import {subscribeUser as getSub} from '../subscriptions';
+import { subscribeUser as getSub } from "../subscriptions";
 
 const Dashboard = () => {
   const {
@@ -23,13 +23,17 @@ const Dashboard = () => {
     getUserData();
   }, []);
 
+  console.log(userDataState);
+
   return (
     <div className="dashboard-wrapper">
       <div className="content-wrapper">
         <PersonalInfo>
           <h3>Welcome {username}!</h3>
           <DataDiv>
-            <h4><i className="fas fa-phone-alt" /></h4>
+            <h4>
+              <i className="fas fa-phone-alt" />
+            </h4>
             <h4>{phone === null ? "Not Provided" : phone}</h4>
           </DataDiv>
           <DataDiv>
