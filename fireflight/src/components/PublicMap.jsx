@@ -188,6 +188,7 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
         onViewportChange={publicMapViewport => {
           setPublicViewport(publicMapViewport);
         }}
+        mapStyle="mapbox://styles/fireflightapp/ck0phflzd21ga1dod56swx4p7"
       >
         {allFireMarkers}
         {userLocalFireMarkers}
