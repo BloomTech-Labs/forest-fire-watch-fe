@@ -3,10 +3,6 @@ import React, { useState, useEffect, useContext } from "react";
 import { GlobalContext } from "../context/contextProvider";
 import { withRouter, NavLink, Link, Redirect } from "react-router-dom";
 import logo from "../images/FF-logo.png";
-import dashboard from "../images/dashboard.svg";
-import dashboardAlt from "../images/active-dashboard.svg";
-import maps from "../images/maps.svg";
-import mapsAlt from "../images/active-maps.svg";
 
 function Navigation({
   toggleAuthForms,
@@ -123,11 +119,11 @@ function Navigation({
                     View the Map
                   </div>
                 </NavLink> */}
-                <div className="menu-item inactive">
-                  <Link to="/" onClick={logout}>
+                <div className="menu-item">
+                  <NavLink to="/" onClick={logout}>
                   <i className="fas fa-arrow-circle-left fa-lg" />
                     Logout
-                  </Link>
+                  </NavLink>
                 </div>
               </React.Fragment>
             )}

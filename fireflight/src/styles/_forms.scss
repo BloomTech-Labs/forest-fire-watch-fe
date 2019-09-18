@@ -1,5 +1,7 @@
 // Auth Input Icons
-.fa-user-circle, .fa-key, .fa-lock {
+.fa-user-circle,
+.fa-key,
+.fa-lock {
     background-color: #355c7d;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
@@ -19,18 +21,20 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+
     // Address Input Compass Icon
-.fa-compass {
-    background-color: #FFF;
-    border: solid 1px #000;
-    border-right: none;
-    border-radius: 5px;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    color: #555;
-    margin: 25px 0px 5px 25px;
-    padding: 11px;
-}
+    .fa-compass {
+        background-color: #FFF;
+        border: solid 1px #000;
+        border-right: none;
+        border-radius: 5px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        color: #555;
+        margin: 25px 0px 5px 25px;
+        padding: 11px;
+    }
+
     // Address Input
     .address-input {
         border: solid 1px #000;
@@ -43,6 +47,7 @@
         font-size: 1em;
         width: 250px;
     }
+
     // Radius Input
     .radius-input {
         border: solid 1px black;
@@ -66,8 +71,8 @@
     width: 70%;
 
     &::placeholder {
-      color: #f2f3f4;
-      opacity: 0.8;
+        color: #f2f3f4;
+        opacity: 0.8;
     }
 
     @include mediaLg {

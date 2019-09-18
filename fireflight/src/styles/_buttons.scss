@@ -12,9 +12,9 @@
   @include easeOut;
 
   &:hover {
-      color: $accentColor;
-      background-color: $lilia;
-      @include easeOut;
+    color: $accentColor;
+    background-color: $lilia;
+    @include easeOut;
   }
 }
 
@@ -28,34 +28,34 @@
   margin: 50px auto;
   padding: 10px 15px;
   width: 200px;
-    @include easeOut;
-  
-    &:hover {
-      background-color: $accentColor;
-      color: $lilia;
-      @include easeOut;
-    }
-  
-    @media (max-width: 900px) {
-      width: 50%;
-    }
-  }
+  @include easeOut;
 
-  .split-btn {
-    width: 50%;
-    margin: 25px auto;
-    background: none;
-    border-color: $lilia;
-    border-radius: 5px;
-    padding: 10px;
+  &:hover {
+    background-color: $accentColor;
     color: $lilia;
-    cursor: pointer;
-    font-size: 1em;
     @include easeOut;
-
-    &:hover {
-      background-color: $lilia;
-      color: $accentColor;
-      @include easeOut;
-    }
   }
+
+  @media (max-width: 900px) {
+    width: 50%;
+  }
+}
+
+.split-btn {
+  width: 50%;
+  margin: 25px auto;
+  background: none;
+  border-color: $lilia;
+  border-radius: 5px;
+  padding: 10px;
+  color: $lilia;
+  cursor: pointer;
+  font-size: 1em;
+  @include easeOut;
+
+  &:hover {
+    background-color: $lilia;
+    color: $accentColor;
+    @include easeOut;
+  }
+}

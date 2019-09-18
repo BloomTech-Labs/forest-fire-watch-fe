@@ -1,12 +1,13 @@
-// Mobile View
+// Mobile View //
 @include mediaSm {
-    // Navigation Bar
+
+    // Navigation Bar //
     .nav-container {
-        background-image: linear-gradient(to bottom, #355C7D, #F67280 60%);
+        background-image: linear-gradient(to bottom, #355C7D, #F67280 95%);
         height: 80px;
         width: 100%;
 
-        // FireFlight Logo
+        // FireFlight Logo //
         .brand {
             float: left;
 
@@ -14,26 +15,26 @@
                 height: 50px;
                 width: 40px;
             }
-                
+
             .logo-txt {
                 color: white;
                 font-family: $header;
             }
         }
 
-         // Dropdown Menu      
-          .dropdown {
-              margin-top: 12.5px;
-              position: relative;
-              float: right;
+        // Dropdown Menu //     
+        .dropdown {
+            margin-top: 12.5px;
+            position: relative;
+            float: right;
 
-              .fa-plus-circle {
+            .fa-plus-circle {
                 border: 3px solid $accentColor;
                 border-radius: 50%;
                 color: #FFF;
                 cursor: pointer;
                 margin: 15px;
-                
+
                 &:hover {
                     color: $accentColor;
                     border: 3px solid #FFF;
@@ -41,15 +42,15 @@
                     @include easeOut;
                 }
             }
-            
+
             .dropdown-content {
                 display: block;
                 right: 0;
                 background-color: $accentColor;
                 min-width: 160px;
-                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
                 z-index: 2;
-                
+
                 a {
                     color: $lilia;
                     display: block;
@@ -57,12 +58,15 @@
             }
         }
     }
-    
-      .fa-user-circle, .fa-key, .fa-lock {
+
+    .fa-user-circle,
+    .fa-key,
+    .fa-lock {
         left: 5px;
         margin-left: 5px;
     }
 
+    // Map Form //
     .map-form-container {
         position: relative;
         left: 1em;
@@ -76,49 +80,50 @@
             border-top-left-radius: 5px;
             border-bottom-left-radius: 5px;
             margin-bottom: 0;
-            
-        &::placeholder {
-            text-align: center;
+
+            &::placeholder {
+                text-align: center;
+            }
         }
-      }
 
-      .radius-input {
-          margin-top: 10px;
-          margin-bottom: 0;
+        .radius-input {
+            margin-top: 10px;
+            margin-bottom: 0;
 
-        &::placeholder {
-            text-align: center;
+            &::placeholder {
+                text-align: center;
+            }
         }
-      }
 
-      .form-btn {
-          height: 60px;
-          position: relative;
-          margin-top: 10px;
-          margin-right: 1.25em;
-          width: 200px;
-      }
+        //   Find Active Fires Button //
+        .form-btn {
+            height: 60px;
+            position: relative;
+            margin-top: 10px;
+            margin-right: 1.25em;
+            width: 200px;
+        }
     }
-  }
+}
 
-// Medium View
+// Medium View //
 @include mediaMd {
     .nav-container {
         height: 100vh;
         width: 100px;
 
-    .logo-txt {
-        display: none;
+        .logo-txt {
+            display: none;
+        }
     }
-  }
-    
+
     .dropdown {
         padding: 0;
         width: auto;
 
-      .fa-plus-circle {
-        display: none;
-      }
+        .fa-plus-circle {
+            display: none;
+        }
     }
 
     .dropdown-content {
@@ -134,4 +139,3 @@
         }
     }
 }
-
