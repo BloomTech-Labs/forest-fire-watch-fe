@@ -17,13 +17,16 @@ const Dashboard = () => {
     updateTextAlerts,
     updatePushAlerts
   } = useContext(UserDataContext);
+  const { fireDataState, getUserLocations } = useContext(FireDataContext);
+  const { userLocations } = fireDataState;
   const { username, phone, receiveSMS, receivePush } = userDataState;
 
   useEffect(() => {
     getUserData();
+    getUserLocations();
   }, []);
 
-  console.log(userDataState);
+  console.log(fireDataState);
 
   return (
     <div className="dashboard-wrapper">
@@ -67,6 +70,22 @@ const Dashboard = () => {
         </PersonalInfo>
         <LocationsInfo>
           <h3>Saved Locations</h3>
+          <LocationsTable>
+            <TableRow>
+              <TH>Address</TH>
+              <TH>Radius (miles)</TH>
+              <TH>Alerts</TH>
+              <TH></TH>
+            </TableRow>
+
+            {userLocations.map(loc => (
+              <TableRow>
+                <td style={{ textTransform: "capitalize" }}>{loc.address}</td>
+                <td>{loc.radius}</td>
+                <td>{loc.notifications === 0 ? "OFF" : "ON"}</td>
+              </TableRow>
+            ))}
+          </LocationsTable>
         </LocationsInfo>
       </div>
       {/* End Content Wrapper */}
@@ -95,6 +114,18 @@ const LocationsInfo = styled.div`
   color: #f2f3f4;
   border-radius: 8px;
   padding: 10px;
+`;
+
+const LocationsTable = styled.table`
+  width: 100%;
+  margin-top: 15px;
+  border-spacing: 15px;
+`;
+
+const TableRow = styled.tr``;
+
+const TH = styled.th`
+  text-decoration: underline;
 `;
 
 const DataDiv = styled.div`
