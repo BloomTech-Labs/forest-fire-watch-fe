@@ -18,6 +18,7 @@ function urlBase64ToUint8Array(base64String) {
 
 const sendSubscription=sub=>{
     const location = process.env.NODE_ENV === 'development'?'http://localhost:5000/api/push/register':'https://fireflight-lambda.herokuapp.com/api/push/register';
+    console.log('yo', location);
     return fetch(location,{
         method:'POST',
         body:JSON.stringify(sub),
@@ -34,11 +35,12 @@ export const subscribeUser=async ()=>{
             console.log('sub attempt');
             const registration = await navigator.serviceWorker.ready
             
+            console.log(registration);
+
             if(!registration.pushManager){
                 console.log('Push Manager Unavailable');
                 return;
             }
-    
             const reg = await registration.pushManager.getSubscription()
             if(reg===null){
                 console.log('no subscription, making request');
