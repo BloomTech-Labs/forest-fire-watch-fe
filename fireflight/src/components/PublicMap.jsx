@@ -90,6 +90,11 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
       >
         {selectedMarker[2]}
       </span>
+      <b />
+      <span style={{ marginBottom: "6px", textAlign: "center" }}>
+        {" "}
+        Alert Radius: {selectedMarker[3]}mi{" "}
+      </span>
       <div style={{ display: "flex", justifyContent: "space-around" }}>
         <span>Toggle Notifications:</span>
         <CheckBoxWrapper>

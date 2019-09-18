@@ -1,37 +1,40 @@
 .split-wrapper {
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(rgba(60, 90, 120, 0.5), rgba(60, 90, 120, 0.5)), url("../images/bonfire.jpg");
-    background-size: cover;
-    border-radius: 0px 8px 8px 0px;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    @media (max-width: 900px) {
-      border-radius: 0px 0px 25px 25px;
-    }
-    @media (max-width: 576px) {
-      display: none;
-    }
-    .split-content {
-        margin-top: 2em;
-        text-align: center;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(60, 90, 120, 0.5), rgba(60, 90, 120, 0.5)), url("../images/bonfire.jpg");
+  background-size: cover;
+  border-radius: 0px 8px 8px 0px;
+  color: white;
+  display: flex;
+  flex-direction: column;
 
-        h1 {
-            font-weight: 500;
-            line-height: 30px;
-            padding: 0 1em;
-        }
-    
-        p {
-            width: 75%;
-            text-align: center;
-            margin: auto;
-            padding-top: 10px;
-            line-height: 20px;
-            font-weight: 200;
-            font-size: 0.8rem;
-        }
+  @media (max-width: 900px) {
+    border-radius: 0px 0px 25px 25px;
+  }
+
+  @media (max-width: 576px) {
+    display: none;
+  }
+
+  .split-content {
+    margin-top: 2em;
+    text-align: center;
+
+    h1 {
+      font-weight: 500;
+      line-height: 30px;
+      padding: 0 1em;
     }
-    
+
+    p {
+      width: 75%;
+      text-align: center;
+      margin: auto;
+      padding-top: 10px;
+      line-height: 20px;
+      font-weight: 200;
+      font-size: 0.8rem;
+    }
+  }
+
 }

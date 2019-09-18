@@ -183,7 +183,7 @@ function Address(props) {
         {address.state.addresses.map(i => (
           <option value={i.id} key={i.id}>
             {i.address_label || i.address}
-          </option>
+          </option> 
         ))}
       </FormSelect>
       <Form onSubmit={testSubmit}>

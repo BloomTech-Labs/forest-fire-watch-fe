@@ -1,15 +1,15 @@
 // Media Queries
-@mixin mediaSm{
+@mixin mediaSm {
     @media(max-width: 576px) {
         @content;
     }
-} 
+}
 
 @mixin mediaMd {
-    @media(min-width: 577px)  {
+    @media(min-width: 577px) {
         @content;
     }
-} 
+}
 
 @mixin mediaLg {
     @media (max-width: 900px) {
@@ -22,8 +22,11 @@
 }
 
 // Fonts
-$header: Noto Sans KR, sans-serif;
-$content: Arial, Helvetica, sans-serif;
+$header: Noto Sans KR,
+sans-serif;
+$content: Arial,
+Helvetica,
+sans-serif;
 
 // Background Colors
 $cardBgColor: #373d3f;
