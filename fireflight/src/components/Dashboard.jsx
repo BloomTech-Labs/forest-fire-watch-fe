@@ -148,7 +148,3 @@ const CheckBox = styled.input`
     }
   }
 `;
-
-const NotificationDiv=styled(AddressesDiv)`
-  cursor:hover;
-`
