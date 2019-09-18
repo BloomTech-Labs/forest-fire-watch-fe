@@ -62,7 +62,7 @@ function Login({ toggle, setShowAuthForms }) {
             onChange={handleUsername}
             placeholder="Username"
           />
-          {errorStatus ? <p className="name-error-text">{errorText}</p> : <p className="user-error-text" />}
+          {errorStatus ? <span className="name-error-text">{errorText}</span> : <span className="user-error-text" />}
           <br />
           <label htmlFor="password">
             <i className="fas fa-key fa-lg" />
@@ -80,11 +80,6 @@ function Login({ toggle, setShowAuthForms }) {
               Forgot your Password?
             </a>
           </p>
-          {errorStatus ? (
-            <p className="pw-error-text">{errorText.password}</p>
-          ) : (
-            <p className="pw-error-text" />
-          )}
           <button className="auth-btn" type="submit" disabled={loading}>
             {loading ? "Loading..." : "Sign In"}
           </button>

@@ -175,16 +175,6 @@ const RegisterSplitContainer = styled.div`
   }
 `;
 
-const FormHeading = styled.h2`
-  margin-bottom: 25px;
-  color: #f2f3f4;
-`;
-
-const FormContainer = styled.form`
-  display: flex;
-  flex-direction: column;
-`;
-
 const ErrorText = styled.p`
   color: darkred;
   font-size: 0.75em;

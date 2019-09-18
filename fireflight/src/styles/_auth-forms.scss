@@ -25,6 +25,7 @@
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     color: #f2f3f4;
+    margin-top: 10px;
     padding: 15.5px 15px 12.5px 5px;
     font-size: 0.8em;
     width: 60%;
@@ -41,9 +42,9 @@
 
 // Login and Signup Error Text
 .name-error-text {
-    background-color: white;
+    background-color: red;
     border-radius: 5px;
-    color: red;
+    color: $lilia;
     margin: 5px 0 0 5px;
     padding: 5px;
     position: absolute;
