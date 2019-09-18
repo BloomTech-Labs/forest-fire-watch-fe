@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { UserDataProvider, UserDataContext } from "../context/UserDataContext";
 
@@ -15,32 +15,57 @@ const Dashboard = () => {
     userDataState,
     getUserData,
     updateTextAlerts,
-    updatePushAlerts
+    updatePushAlerts,
+    addPhoneNumber
   } = useContext(UserDataContext);
   const { fireDataState, getUserLocations } = useContext(FireDataContext);
   const { userLocations } = fireDataState;
   const { username, phone, receiveSMS, receivePush } = userDataState;
+  const [phoneNumber, setPhoneNumber] = useState("");
 
   useEffect(() => {
     getUserData();
     getUserLocations();
   }, []);
 
-  const subscribe=e=>{
-    getSub()
-  }
+  const subscribe = e => {
+    getSub();
+  };
 
+  const handleAddPhoneNumber = () => {
+    addPhoneNumber(phoneNumber);
+  };
+
+  const phoneInput = (
+    <DataDiv>
+      <input
+        type="text"
+        placeholder="ex. 123 456 7890"
+        style={{ height: 20 }}
+        value={phoneNumber}
+        onChange={e => setPhoneNumber(e.target.value)}
+      />
+      <button onClick={() => handleAddPhoneNumber()}>Add Phone Number</button>
+    </DataDiv>
+  );
+  console.log(phone);
   return (
     <div className="dashboard-wrapper">
       <div className="content-wrapper">
         <PersonalInfo>
           <h3>Welcome {username}!</h3>
-          <DataDiv>
-            <h4>
-              <i className="fas fa-phone-alt" />
-            </h4>
-            <h4>{phone === null ? "Not Provided" : phone}</h4>
-          </DataDiv>
+
+          {phone === 0 ? (
+            phoneInput
+          ) : (
+            <DataDiv>
+              <h4>
+                <i className="fas fa-phone-alt" />
+              </h4>
+              <h4>{phone}</h4>
+            </DataDiv>
+          )}
+
           <DataDiv>
             <h4>Receive Text Alerts:</h4>
             <CheckBoxWrapper>
