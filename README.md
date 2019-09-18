@@ -2,17 +2,25 @@
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/65d8b884-4807-40de-a05b-0cc08b7ddf48/deploy-status)](https://app.netlify.com/sites/fireflightapp/deploys)
 
-# FireFlight
 
-You can find the deployed project at [fireflightapp.com](https://www.fireflightapp.com).
+# Fire Flight
+
+You can find the deployed project at [fireflightapp.com](fireflightapp.com).
 
 ## Contributors
 
-|                                       [Brandon Porter](https://github.com/AshenPheonix)                                        |                                       [Student 2](https://github.com/)                                        |                                       [Student 3](https://github.com/)                                        |                                       [Student 4](https://github.com/)                                        |                                       [Eric Nunn](https://github.com/ericNunnDev)                                        |
+|                                       [Brandon Porter](https://github.com/AshenPheonix)                                        |                                       [Jack Ober](https://github.com/Jackcornellober)                                        |                                       [Michael Mangus](https://github.com/mjmangus16)                                        |                                       [Ken Ridenour](https://github.com/ken1286)                                        |                                       [Eric Nunn](https://github.com/ericNunnDev)                                        |
 | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
-|                      [<img src="https://avatars1.githubusercontent.com/u/6516394" width = "200" />](https://github.com/AshenPheonix)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/)                       |                      [<img src="https://avatars1.githubusercontent.com/u/41123891?s=460&v=4" width = "200" />](https://github.com/ericNunnDev)                       |
-|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/AshenPheonix)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/honda0306)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Mister-Corn)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/NandoTheessen)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/ericNunnDev)             |
-| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](www.linkedin.com/in/brandon-m-porte) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/eric-nunn/) |
+|                      [<img src="https://avatars1.githubusercontent.com/u/6516394" width = "200" />](https://github.com/AshenPheonix)                       |                      [<img src="https://avatars0.githubusercontent.com/u/49887364?s=460&v=4" width = "200" />](https://github.com/Jackcornellober)                       |                      [<img src="https://media.licdn.com/dms/image/C4D03AQHbZ16uQD92Hg/profile-displayphoto-shrink_200_200/0?e=1574294400&v=beta&t=Xmg1e7TqC2xhj9qUY_oZd1SzSljnc8KViekjS4N5DOo" width = "200" />](https://github.com/mjmangus16)                       |                      [<img src="https://media.licdn.com/dms/image/C4E03AQGANL84wC2x_Q/profile-displayphoto-shrink_200_200/0?e=1574294400&v=beta&t=hysfilqVD39N4kD_eSjlOptoaO1HzYm4osgxBnQECAA" width = "200" />](https://github.com/ken1286)                       |                      [<img src="https://avatars1.githubusercontent.com/u/41123891?s=460&v=4" width = "200" />](https://github.com/ericNunnDev)                       |
+|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/ashenPheonix)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Jackcornellober)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/mjmangus16)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/ken1286)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/ericNunnDev)             |
+|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](www.linkedin.com/in/brandon-m-porte) |[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/jack-ober-b6647b151/)|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/mjmangus16/)|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/kenridenour/)|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/eric-nunn/)|
+
+|                                       [Liv Johnson](https://github.com/livjab)                                        |                                       [Ned Horsey](https://github.com/)                                        |                                       [Kobe McKee](https://github.com/kmacmckee)                                        |                                       [Student](https://github.com/)                                        |                                       [Chad Jemmett](https://github.com/ceejaay)                                        |
+| :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
+|                      [<img src="https://avatars2.githubusercontent.com/u/23245487?s=460&v=4" width = "200" />](https://github.com/livjab)                       |                      [<img src="https://media.licdn.com/dms/image/C4D03AQG_WyzQaCQ9-w/profile-displayphoto-shrink_200_200/0?e=1574294400&v=beta&t=ynyVKeNvEkSpvdqgwec7PdvekjdXnOvhLrj1XJ2ZO4A" width = "200" />](https://github.com/Rice-from-data)                       |                      [<img src="https://avatars2.githubusercontent.com/u/47466036?s=460&v=4" width = "200" />](https://github.com/kmacmckee)                       |                      [<img src="https://media.licdn.com/dms/image/C5603AQF4APfWi6rhbA/profile-displayphoto-shrink_200_200/0?e=1574294400&v=beta&t=5vYYy-TRsPjnilfHB48kJXZ15K_NRCh6WpA46ZrfGG8" width = "200" />](https://github.com/)                       |                      [<img src="https://avatars1.githubusercontent.com/u/867243" width ="200" />](https://github.com/ceejaay)                       |
+|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/livjab)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Rice-from-data)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/kmacmckee)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/ceejaay)             |
+|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/liv-johnson-015523144/) |[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/edmond-horsey/)|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/kobemckee/)|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/jeffwicks-interactiondesign/)|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/chad-jemmett-a3a0a347/)|
+
 
 <br>
 <br>
@@ -23,22 +31,29 @@ You can find the deployed project at [fireflightapp.com](https://www.fireflighta
 
 [Product Canvas](https://www.notion.so/Forest-Fire-Prediction-and-Rescue-Coordination-7eb1595c5f1643fca8e48a89c6086fdf)
 
+
 [UX Design files](https://www.dropbox.com/sh/gknqzhazljiw16t/AAALcR4-2XljeEPDXM6Wjhu_a?dl=0)
+
 
 ## Specifications
 
  This applicaation is designed to help people understand when they are in danger of being struck by a wild fire, and hopefully give them time to get out.
 
 
-### Key Features
 
--    feature one
--    feature two
--    feature three
--    feature four
--    feature five
+###  Key Features
+
+-    User can log in and add multiple addresses. They can also set a distance from that address where the app will provide data about wild fires.
+-    User can see wildfires within the range they set.
+-    Application will alert user when  fire is withing their set radius. Either by SMS or push notification in the web browser.
+
+
 
 ## Tech Stack
+  - React
+  - Node.js
+  - Twillio
+  - MapBox
 
 ### Front end built using:
 
@@ -94,11 +109,13 @@ You can find the deployed project at [fireflightapp.com](https://www.fireflighta
 
 -  This api gives the application the abilty to convert addresses to lat/long for our backend applications. Later, this will give us the ability to show more data to the users.
 
-# Environment Variables
+
+#  Environment Variables
+
 
 In order for the app to function correctly, the user must set up their own environment variables. There should be a .env file containing the following:
 
-🚫These are just examples, replace them with the specifics for your app
+
 
     *  REACT_APP_apiKey - this is your Google API key, which can be generated in the Google Cloud Console
     *  REACT_APP_authDomain - when you set up your Firebase project, this information will be in the dashboard
@@ -113,10 +130,11 @@ In order for the app to function correctly, the user must set up their own envir
 
 # Content Licenses
 
-| Image Filename | Source / Creator | License                                                                      |
-| -------------- | ---------------- | ---------------------------------------------------------------------------- |
-| doodles.png    | Nicole Bennett   | [Creative Commons](https://www.toptal.com/designers/subtlepatterns/doodles/) |
-| rings.svg      | Sam Herbert      | [MIT](https://github.com/SamHerbert/SVG-Loaders)                             |
+  All content created by [Jeffery Wicks]("https://www.linkedin.com/in/jeffwicks-interactiondesign/")
+
+
+
+# Testing
 
 # Installation Instructions
 
