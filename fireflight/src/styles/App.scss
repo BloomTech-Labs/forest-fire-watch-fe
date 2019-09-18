@@ -9,12 +9,14 @@
 @import "model-splits";
 @import "dashboard";
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
 }
 
-a, p {
+a,
+p {
   font-family: $content;
   font-weight: bold;
 }
