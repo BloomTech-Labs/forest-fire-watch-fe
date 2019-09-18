@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect, useContext } from "react";
 
 import { FireDataContext } from "../context/FireDataContext";
 
@@ -26,7 +26,6 @@ const AlertsContainer = () => {
   useEffect(() => {
     getAlertData();
   }, [showAlert]);
-
 
   // console.log(fireData);
 

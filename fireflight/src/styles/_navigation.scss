@@ -21,9 +21,15 @@
         color: $lilia;
         text-decoration: none;
 
+        &:hover {
+          background-color: lightgrey;
+          color: #355C7D;
+        }
+
         &.current{
           background-color: lightgrey;
-          color: $accentColor;
+          color: #355C7D;
+          padding: 0px;
         }
       }
     }
@@ -46,6 +52,11 @@
         }
       }
 
+      .fas, .far {
+        display: block;
+        padding: 5px;
+      }
+
       .menu-item {
         color: #FFF;
         cursor: pointer;
@@ -54,5 +65,3 @@
         padding: 10px;
       }
     }
-
-

@@ -1,4 +1,4 @@
-// Mobile View Media Query Mixin
+// Mobile View
 @include mediaSm {
     // Navigation Bar
     .nav-container {
@@ -28,56 +28,78 @@
               float: right;
 
               .fa-plus-circle {
-                border: 2px solid $accentColor;
+                border: 3px solid $accentColor;
                 border-radius: 50%;
                 color: #FFF;
                 cursor: pointer;
                 margin: 15px;
-
+                
                 &:hover {
                     color: $accentColor;
-                    border: 2px solid #FFF;
+                    border: 3px solid #FFF;
                     transform: rotate(45deg);
                     @include easeOut;
                 }
-              }
-
-              .dropdown-content {
+            }
+            
+            .dropdown-content {
                 display: block;
                 right: 0;
                 background-color: $accentColor;
                 min-width: 160px;
                 box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
                 z-index: 2;
-
-                    a {
-                      color: $accentColor;
-                      display: block;
-                  }
-               }
-           }
-       }
+                
+                a {
+                    color: $lilia;
+                    display: block;
+                }
+            }
+        }
+    }
     
-        // Forms
-        .form-btn {
-            position: absolute;
-            top: 42.5px;
-            width: 200px;
-        }
-        
-        .info-text {
-            font-size: 0.7em;
-            position: absolute;
-            top: 110px;
-            left: 65px;
-            text-decoration: none;
+      .fa-user-circle, .fa-key, .fa-lock {
+        left: 5px;
+        margin-left: 5px;
+    }
+
+    .map-form-container {
+        position: relative;
+        left: 1em;
+
+        .fa-compass {
+            display: none;
         }
 
-        .form-input {
-            padding: 5px;
-            width: 200px;
+        .address-input {
+            border-left: solid 1px #000;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+            margin-bottom: 0;
+            
+        &::placeholder {
+            text-align: center;
         }
       }
+
+      .radius-input {
+          margin-top: 10px;
+          margin-bottom: 0;
+
+        &::placeholder {
+            text-align: center;
+        }
+      }
+
+      .form-btn {
+          height: 60px;
+          position: relative;
+          margin-top: 10px;
+          margin-right: 1.25em;
+          width: 200px;
+      }
+    }
+  }
 
 // Medium View
 @include mediaMd {
@@ -109,10 +131,6 @@
         .menu-item {
             padding: auto;
             width: 80px;
-
-            img {
-                display: block;
-            }
         }
     }
 }

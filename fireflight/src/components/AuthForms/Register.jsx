@@ -1,15 +1,11 @@
 import React, { useState, useContext } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { GlobalContext } from "../../context/contextProvider";
-import axios from "axios";
 
 import useInput from "../../utils/useInput";
 import styled from "styled-components";
 import logo from "../../images/FF-logo.png";
 import RegisterSplit from "./RegisterSplit";
-
-const deployedURL = "https://fireflight-lambda.herokuapp.com/api/auth";
-const localURL = "http://localhost:5000/api/auth";
 
 function Register({ toggle, setShowAuthForms }) {
   //useInput is a custom hook that should be used for all controlled inputs
@@ -25,6 +21,8 @@ function Register({ toggle, setShowAuthForms }) {
   const [errorText, setErrorText] = useState({});
 
   const data = useContext(GlobalContext);
+
+  console.log(errorText);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -73,13 +71,21 @@ function Register({ toggle, setShowAuthForms }) {
         <RegisterContainer>
           <img src={logo} alt="FireFlight" />
           <FormHeading>Create Account</FormHeading>
-          <div class="fb-login-button" data-width="150px" data-size="medium" data-button-type="login_with" data-auto-logout-link="true" data-use-continue-as="false" />
+          <div
+            className="fb-login-button"
+            data-width="150px"
+            data-size="medium"
+            data-button-type="login_with"
+            data-auto-logout-link="true"
+            data-use-continue-as="false"
+          />
           <FormContainer onSubmit={handleSubmit}>
-            <FormInput
+            <i className="fas fa-user-circle fa-lg" />
+            <input
+              className="form-input"
               type="text"
               name="username"
               value={username}
-              // onChange={e=>setUsername(e.value)}
               onChange={handleUsername}
               placeholder="Username"
             />
@@ -88,8 +94,9 @@ function Register({ toggle, setShowAuthForms }) {
             ) : (
               <ErrorText />
             )}
-
-            <FormInput
+            <i className="fas fa-lock fa-lg" />
+            <input
+              className="form-input"
               type="password"
               name="password"
               value={password}
@@ -97,12 +104,15 @@ function Register({ toggle, setShowAuthForms }) {
               onChange={handlePassword}
               placeholder="Password"
             />
-            {errorStatus && password !== passwordConf ? (
+            {errorStatus ? (
               <ErrorText>{errorText.password}</ErrorText>
             ) : (
               <ErrorText />
             )}
-            <FormInput
+
+            <i className="fas fa-key fa-lg" />
+            <input
+              className="form-input"
               type="password"
               name="passwordConf"
               value={passwordConf}
@@ -168,24 +178,6 @@ const FormHeading = styled.h2`
 const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
-`;
-
-const FormInput = styled.input`
-  width: 300px;
-  margin: auto;
-  padding: 15px;
-  font-size: 0.75em;
-  background-color: #355c7d;
-  color: #f2f3f4;
-  border-radius: 5px;
-  border: none;
-  &::placeholder {
-    color: #f2f3f4;
-    opacity: 0.75;
-  }
-  @media (max-width: 900px) {
-    width: 75%;
-  }
 `;
 
 const ErrorText = styled.p`

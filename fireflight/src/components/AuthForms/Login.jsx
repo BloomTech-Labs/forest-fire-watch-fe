@@ -1,15 +1,10 @@
 import React, { useState, useContext, useEffect } from "react";
 import { GlobalContext } from "../../context/contextProvider";
-import axios from "axios";
-import { Link, Redirect } from "react-router-dom";
 import useInput from "../../utils/useInput";
 import styled from "styled-components";
 //not sure if we are using redux or hooks with context, so taking my best guess...
 import logo from "../../images/FF-logo.png";
 import LoginSplit from "./LoginSplit";
-
-const deployedURL = "https://fireflight-lambda.herokuapp.com/api/auth";
-const localURL = "http://localhost:5000/api/auth";
 
 function Login({ toggle, setShowAuthForms }) {
   //useInput is a custom hook that should be used for all controlled inputs
@@ -56,27 +51,35 @@ function Login({ toggle, setShowAuthForms }) {
         <h2 className="form-heading">Welcome Back!</h2>
         <p className="form-text">Sign in to continue</p>
         <FormContainer onSubmit={handleSubmit}>
-          <FormInput
+          <i className="fas fa-user-circle fa-lg" />
+          <input
+            className="form-input"
             type="text"
             name="username"
             value={username}
             onChange={handleUsername}
             placeholder="Username"
           />
-          {errorStatus ? <ErrorText>{errorText}</ErrorText> : <ErrorText />}
+          {errorStatus ? <p className="error-text">{errorText}</p> : <p className="error-text" />}
 
-          <FormInput
+          <i className="fas fa-key fa-lg" />
+          <input
+            className="form-input"
             type="password"
             name="password"
             value={password}
             onChange={handlePassword}
             placeholder="Password"
           />
-          <p><a className="forgot-pw" href='#'>Forgot your Password?</a></p>
+          <p>
+            <a className="forgot-pw" href="#">
+              Forgot your Password?
+            </a>
+          </p>
           {errorStatus ? (
-            <ErrorText>{errorText.password}</ErrorText>
+            <p className="error-text">{errorText.password}</p>
           ) : (
-            <ErrorText />
+            <p className="error-text" />
           )}
           <button className="auth-btn" type="submit" disabled={loading}>
             {loading ? "Loading..." : "Sign In"}
@@ -133,30 +136,4 @@ const LoginSplitContainer = styled.div`
 const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
-`;
-
-const FormInput = styled.input`
-  width: 300px;
-  margin: auto;
-  padding: 15px;
-  font-size: 0.75em;
-  background-color: #355c7d;
-  color: #f2f3f4;
-  border-radius: 5px;
-  border: none;
-  &::placeholder {
-    color: #f2f3f4;
-    opacity: 0.75;
-  }
-  @media (max-width: 900px) {
-    width: 75%;
-  }
-`;
-
-const ErrorText = styled.p`
-  color: darkred;
-  font-size: 0.75em;
-  margin: 0px;
-  padding: 2px;
-  height: 15px;
 `;

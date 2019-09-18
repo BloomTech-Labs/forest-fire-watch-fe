@@ -44,7 +44,7 @@ class connector {
       localStorage.setItem("token", data.token);
       this.connector.defaults.headers.common["Authorization"] = data.token;
       let who = await this.self();
-      window.location.href = "/dashboard";
+      window.location.href = "/";
       return new stats(true, who.username);
     } else {
       //success failed
@@ -58,6 +58,9 @@ class connector {
   logout() {
     this.connector.defaults.headers.common["Authorization"] = null;
     localStorage.removeItem("token");
+
+    // adding this page refresh to clear lingering location pins from the map upon logout.
+    window.location.reload(false); 
   }
 
   /**
