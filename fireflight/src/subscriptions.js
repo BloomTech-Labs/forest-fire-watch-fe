@@ -17,10 +17,7 @@ function urlBase64ToUint8Array(base64String) {
 }
 
 const sendSubscription = sub => {
-  const location =
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:5000/api/push/register"
-      : "https://fireflight-lambda.herokuapp.com/api/push/register";
+  const location = "https://fireflight-lambda.herokuapp.com/api/push/register";
   return fetch(location, {
     method: "POST",
     body: JSON.stringify(sub),
@@ -51,7 +48,7 @@ export const subscribeUser = async () => {
             userVisibleOnly: true
           });
 
-          console.log("new sub added");
+          console.log("new sub added", newSub);
           sendSubscription(newSub);
         } catch (err) {
           if (Notification.permission !== "granted") {
