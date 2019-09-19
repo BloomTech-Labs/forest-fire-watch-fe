@@ -61,6 +61,8 @@ export const subscribeUser = async () => {
           } else {
             console.error("error durring subscription", err.message);
           }
+        }catch(error){
+          console.error('error in request :', error);
         }
       } else {
         console.log("current sub detected");
