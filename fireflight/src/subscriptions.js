@@ -57,7 +57,7 @@ export const subscribeUser = async () => {
             sendSubscription(newSub);
           }).catch(err=>{
             console.error('error subbing',err);
-          });
+          }); 
           
         } catch (err) {
           console.error('error');
