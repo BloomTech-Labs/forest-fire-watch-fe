@@ -8,8 +8,6 @@ import { FireDataContext } from "../context/FireDataContext";
 
 // import PrivateMap from "./PrivateMap";
 
-import { subscribeUser as getSub } from "../subscriptions";
-
 const Dashboard = () => {
   const {
     userDataState,
@@ -28,9 +26,7 @@ const Dashboard = () => {
     getUserLocations();
   }, []);
 
-  const subscribe = e => {
-    getSub();
-  };
+  const subscribe = e => {};
 
   const handleAddPhoneNumber = () => {
     addPhoneNumber(phoneNumber);
@@ -80,7 +76,8 @@ const Dashboard = () => {
               <CheckBoxLabel htmlFor="checkbox1" />
             </CheckBoxWrapper>
           </DataDiv>
-          {/* <DataDiv>
+
+          <DataDiv>
             <h4>Receive Push Notifications:</h4>
             <CheckBoxWrapper>
               <CheckBox
@@ -93,7 +90,7 @@ const Dashboard = () => {
               />
               <CheckBoxLabel htmlFor="checkbox2" />
             </CheckBoxWrapper>
-          </DataDiv> */}
+          </DataDiv>
         </PersonalInfo>
         <LocationsInfo>
           <h3>Saved Locations</h3>
@@ -207,4 +204,8 @@ const CheckBox = styled.input`
       transition: 0.2s;
     }
   }
+`;
+
+const Button = styled.button`
+  background-color: green;
 `;

@@ -1,6 +1,8 @@
 import React, { useReducer, createContext } from "react";
 import axiosWithAuth from "../utils/axiosWithAuth";
 
+import { subscribeUser as getSub } from "../subscriptions";
+
 const GET_USER_DATA = "GET_USER_DATA";
 const UPDATE_RECEIVE_SMS = "UPDATE_RECEIVE_SMS";
 const UPDATE_RECEIVE_PUSH = "UPDATE_RECEIVE_PUSH";
@@ -93,16 +95,23 @@ export const UserDataProvider = ({ children }) => {
   };
 
   const updatePushAlerts = change => {
-    dispatch({
-      type: UPDATE_RECEIVE_PUSH,
-      payload: change
-    });
-    // axiosWithAuth()
-    //   .put("/users/", { receive_push: change })
-    //   .then(res => {
-    //     console.log(res.data);
-    //   })
-    //   .catch(err => console.log(err.response));
+    if (Notification.permission === "default") {
+      getSub();
+    } else if (Notification.permission === "denied") {
+      alert(
+        "You must allow notifications in your browser settings to activate this feature"
+      );
+    } else {
+      axiosWithAuth()
+        .put("/users/", { receive_push: change })
+        .then(res => {
+          dispatch({
+            type: UPDATE_RECEIVE_PUSH,
+            payload: change
+          });
+        })
+        .catch(err => console.log(err.response));
+    }
   };
 
   return (
