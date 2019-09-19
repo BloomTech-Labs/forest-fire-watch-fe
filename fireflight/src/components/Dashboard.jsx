@@ -105,7 +105,7 @@ const Dashboard = () => {
               <CheckBoxLabel htmlFor="checkbox2" />
             </CheckBoxWrapper>
           </DataDiv>
-          {/* <button onClick={e=>{subscribeUser()}}>Check</button> */}
+          {window.showDebug && <button onClick={e=>{subscribeUser()}}>Check</button>}
         </PersonalInfo>
         <LocationsInfo>
           <h3>Saved Locations</h3>
