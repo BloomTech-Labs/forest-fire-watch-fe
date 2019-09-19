@@ -69,7 +69,17 @@ export const UserDataProvider = ({ children }) => {
   };
 
   const addPhoneNumber = number => {
-    const data = { cell_number: number.replace(" ", "").replace(" ", "") };
+    const data = {
+      cell_number: number
+        .split(" ")
+        .join("")
+        .split("-")
+        .join("")
+        .split("(")
+        .join("")
+        .split(")")
+        .join("")
+    };
     axiosWithAuth()
       .put("/users/", data)
       .then(res => {
@@ -82,9 +92,8 @@ export const UserDataProvider = ({ children }) => {
   };
 
   const updateTextAlerts = change => {
-    const data = { receive_sms: change };
     axiosWithAuth()
-      .put("/users/", data)
+      .put("/users/", { receive_sms: change })
       .then(res => {
         dispatch({
           type: UPDATE_RECEIVE_SMS,
