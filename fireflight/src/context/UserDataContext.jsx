@@ -106,7 +106,7 @@ export const UserDataProvider = ({ children }) => {
   const updatePushAlerts = change => {
     if (Notification.permission === "default") {
       console.log('yo');
-      getSub();
+      return getSub();
     } else if (Notification.permission === "denied") {
       alert(
         "You must allow notifications in your browser settings to activate this feature"
