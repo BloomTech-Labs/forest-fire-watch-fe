@@ -19,7 +19,6 @@ function urlBase64ToUint8Array(base64String) {
 const sendSubscription = sub => {
   const location = "https://fireflight-lambda.herokuapp.com/api/push/register";
   try {
-    console.log('yo')
     return fetch(location, {
       method: "POST",
       body: JSON.stringify(sub),
@@ -45,13 +44,13 @@ export const subscribeUser = async () => {
       }
 
       const reg = await registration.pushManager.getSubscription();
+      console.log(reg);
       if (reg === null) {
         console.log("no subscription, making request");
         try {
-          console.log('attempting subscription', process.env.REACT_APP_VAPID_PUBLIC);
+          console.log('attempting subscription',registration);
           const newSub = await registration.pushManager.subscribe({
-            applicationServerKey: convertVapid,
-            userVisibleOnly: true
+            applicationServerKey: convertVapid
           });
           
           console.log("new sub added", newSub);
