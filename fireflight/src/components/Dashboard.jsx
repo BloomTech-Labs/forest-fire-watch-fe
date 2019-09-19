@@ -8,6 +8,8 @@ import { FireDataContext } from "../context/FireDataContext";
 
 // import PrivateMap from "./PrivateMap";
 
+import {subscribeUser} from '../subscriptions.js'
+
 const Dashboard = () => {
   const {
     userDataState,
@@ -103,6 +105,7 @@ const Dashboard = () => {
               <CheckBoxLabel htmlFor="checkbox2" />
             </CheckBoxWrapper>
           </DataDiv>
+          {/* <button onClick={e=>{subscribeUser()}}>Check</button> */}
         </PersonalInfo>
         <LocationsInfo>
           <h3>Saved Locations</h3>
