@@ -56,13 +56,12 @@ export const subscribeUser = async () => {
           console.log("new sub added", newSub);
           sendSubscription(newSub);
         } catch (err) {
+          console.error('error');
           if (Notification.permission !== "granted") {
             console.log("no permission");
           } else {
             console.error("error durring subscription", err.message);
           }
-        }catch(error){
-          console.error('error in request :', error);
         }
       } else {
         console.log("current sub detected");
