@@ -70,8 +70,6 @@ async function registerValidSW(swUrl, config) {
         return;
       }
 
-      console.log('Registering Push');
-
 
       installingWorker.onstatechange = () => {
         if (installingWorker.state === 'installed') {
