@@ -30,7 +30,7 @@ const Dashboard = () => {
   const subscribe = e => {};
 
   const handleAddPhoneNumber = () => {
-    if (phoneNumber.length > 0) {
+    if (phoneNumber.length > 9) {
       setEditPhone(false);
       addPhoneNumber(phoneNumber);
     }
