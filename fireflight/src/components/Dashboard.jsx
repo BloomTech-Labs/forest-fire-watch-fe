@@ -20,6 +20,7 @@ const Dashboard = () => {
   const { userLocations } = fireDataState;
   const { username, phone, receiveSMS, receivePush } = userDataState;
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [showEditPhone, setEditPhone] = useState(false);
 
   useEffect(() => {
     getUserData();
@@ -29,19 +30,25 @@ const Dashboard = () => {
   const subscribe = e => {};
 
   const handleAddPhoneNumber = () => {
-    addPhoneNumber(phoneNumber);
+    if (phoneNumber.length > 9) {
+      setEditPhone(false);
+      addPhoneNumber(phoneNumber);
+    }
   };
 
   const phoneInput = (
     <DataDiv>
       <input
+        className="form-input-phone"
         type="text"
-        placeholder="ex. 123 456 7890"
-        style={{ height: 20 }}
+        name="phone"
         value={phoneNumber}
         onChange={e => setPhoneNumber(e.target.value)}
+        placeholder="ex. 123 456 7890"
       />
-      <button onClick={() => handleAddPhoneNumber()}>Add Phone Number</button>
+      <button className="phone-btn" onClick={() => handleAddPhoneNumber()}>
+        {showEditPhone ? "Submit" : "Add Phone Number"}
+      </button>
     </DataDiv>
   );
 
@@ -51,7 +58,7 @@ const Dashboard = () => {
         <PersonalInfo>
           <h3>Welcome {username}!</h3>
 
-          {phone === null ? (
+          {phone === null || showEditPhone ? (
             phoneInput
           ) : (
             <DataDiv>
@@ -59,6 +66,11 @@ const Dashboard = () => {
                 <i className="fas fa-phone-alt" />
               </h4>
               <h4>{phone}</h4>
+              <i
+                onClick={() => setEditPhone(true)}
+                style={{ margin: "auto 0px", cursor: "pointer" }}
+                class="fas fa-pencil-alt"
+              ></i>
             </DataDiv>
           )}
 
@@ -68,8 +80,8 @@ const Dashboard = () => {
               <CheckBox
                 id="checkbox1"
                 type="checkbox"
-                onChange={e => {
-                  updateTextAlerts(e.target.checked);
+                onChange={() => {
+                  updateTextAlerts(!receiveSMS);
                 }}
                 checked={receiveSMS}
               />
@@ -84,7 +96,7 @@ const Dashboard = () => {
                 id="checkbox2"
                 type="checkbox"
                 onChange={e => {
-                  updatePushAlerts(e.target.checked);
+                  updatePushAlerts(!receivePush);
                 }}
                 checked={receivePush}
               />
@@ -158,7 +170,7 @@ const DataDiv = styled.div`
   width: 60%;
   margin: auto;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 `;
 
 const CheckBoxWrapper = styled.div`

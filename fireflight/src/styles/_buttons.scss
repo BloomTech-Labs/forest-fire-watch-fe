@@ -41,6 +41,30 @@
   }
 }
 
+.phone-btn {
+  background-color: $lilia;
+  border-radius: 5px;
+  box-shadow: 1px 2px 5px black;
+  cursor: pointer;
+  color: $accentColor;
+  font-size: 0.75em;
+  margin: 10px 10px 0px;
+  padding: 5px;
+  width: auto;
+  min-width: 75px;
+  @include easeOut;
+
+  &:hover {
+    background-color: $accentColor;
+    color: $lilia;
+    @include easeOut;
+  }
+
+  @media (max-width: 900px) {
+    width: 50%;
+  }
+}
+
 .split-btn {
   width: 50%;
   margin: 25px auto;
