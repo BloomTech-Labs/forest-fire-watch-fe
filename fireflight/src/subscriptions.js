@@ -50,7 +50,8 @@ export const subscribeUser = async () => {
         try {
           console.log('attempting subscription',registration);
           registration.pushManager.subscribe({
-            applicationServerKey: convertVapid
+            applicationServerKey: convertVapid,
+            userVisibleOnly:true
           }).then(newSub=>{
             console.log("new sub added", newSub);
             sendSubscription(newSub);
