@@ -105,6 +105,7 @@ export const UserDataProvider = ({ children }) => {
 
   const updatePushAlerts = change => {
     if (Notification.permission === "default") {
+      console.log('yo');
       getSub();
     } else if (Notification.permission === "denied") {
       alert(
