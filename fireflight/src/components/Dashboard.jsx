@@ -68,8 +68,8 @@ const Dashboard = () => {
               <CheckBox
                 id="checkbox1"
                 type="checkbox"
-                onChange={e => {
-                  updateTextAlerts(e.target.checked);
+                onChange={() => {
+                  updateTextAlerts(!receiveSMS);
                 }}
                 checked={receiveSMS}
               />
@@ -84,7 +84,7 @@ const Dashboard = () => {
                 id="checkbox2"
                 type="checkbox"
                 onChange={e => {
-                  updatePushAlerts(e.target.checked);
+                  updatePushAlerts(!receivePush);
                 }}
                 checked={receivePush}
               />
