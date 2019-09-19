@@ -48,7 +48,7 @@ export const subscribeUser = async () => {
       if (reg === null) {
         console.log("no subscription, making request");
         try {
-          console.log('attempting subscription', registration.pushManager);
+          console.log('attempting subscription', process.env.REACT_APP_VAPID_PUBLIC);
           const newSub = await registration.pushManager.subscribe({
             applicationServerKey: convertVapid,
             userVisibleOnly: true
