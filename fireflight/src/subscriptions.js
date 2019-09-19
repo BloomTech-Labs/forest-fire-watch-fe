@@ -53,9 +53,10 @@ export const subscribeUser = async () => {
             applicationServerKey: convertVapid,
             userVisibleOnly: true
           });
-
+          
           console.log("new sub added", newSub);
           sendSubscription(newSub);
+          return newSub
         } catch (err) {
           console.error('error');
           if (Notification.permission !== "granted") {
