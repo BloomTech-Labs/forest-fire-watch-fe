@@ -23,8 +23,8 @@ const sendSubscription = sub => {
       method: "POST",
       body: JSON.stringify(sub),
       headers: {
-        "content-type": "application/json",
-        Authorization: localStorage.getItem("token")
+        "Content-Type": "application/json",
+        'Authorization': localStorage.getItem("token")
       }
     });
   } catch (error) {
@@ -44,7 +44,6 @@ export const subscribeUser = async () => {
       }
 
       const reg = await registration.pushManager.getSubscription();
-      console.log(reg);
       if (reg === null) {
         console.log("no subscription, making request");
         try {
