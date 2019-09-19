@@ -58,7 +58,7 @@ export const subscribeUser = async () => {
           }).catch(err=>{
             console.error('error subbing',err);
           }); 
-          
+           
         } catch (err) {
           console.error('error');
           if (Notification.permission !== "granted") {
