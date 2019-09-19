@@ -19,6 +19,7 @@ function urlBase64ToUint8Array(base64String) {
 const sendSubscription = sub => {
   const location = "https://fireflight-lambda.herokuapp.com/api/push/register";
   try {
+    console.log('yo')
     return fetch(location, {
       method: "POST",
       body: JSON.stringify(sub),
