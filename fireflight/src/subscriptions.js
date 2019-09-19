@@ -49,13 +49,15 @@ export const subscribeUser = async () => {
         console.log("no subscription, making request");
         try {
           console.log('attempting subscription',registration);
-          const newSub = await registration.pushManager.subscribe({
+          registration.pushManager.subscribe({
             applicationServerKey: convertVapid
+          }).then(newSub=>{
+            console.log("new sub added", newSub);
+            sendSubscription(newSub);
+          }).catch(err=>{
+            console.error('error subbing',err);
           });
           
-          console.log("new sub added", newSub);
-          sendSubscription(newSub);
-          return newSub
         } catch (err) {
           console.error('error');
           if (Notification.permission !== "granted") {
