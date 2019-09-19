@@ -18,14 +18,18 @@ function urlBase64ToUint8Array(base64String) {
 
 const sendSubscription = sub => {
   const location = "https://fireflight-lambda.herokuapp.com/api/push/register";
-  return fetch(location, {
-    method: "POST",
-    body: JSON.stringify(sub),
-    headers: {
-      "content-type": "application/json",
-      Authorization: localStorage.getItem("token")
-    }
-  });
+  try {
+    return fetch(location, {
+      method: "POST",
+      body: JSON.stringify(sub),
+      headers: {
+        "content-type": "application/json",
+        Authorization: localStorage.getItem("token")
+      }
+    });
+  } catch (error) {
+    console.error('Error :', error);
+  }
 };
 
 export const subscribeUser = async () => {
