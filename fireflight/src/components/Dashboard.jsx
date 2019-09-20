@@ -8,7 +8,7 @@ import { FireDataContext } from "../context/FireDataContext";
 
 // import PrivateMap from "./PrivateMap";
 
-import {subscribeUser} from '../subscriptions.js'
+import { subscribeUser } from "../subscriptions.js";
 
 const Dashboard = () => {
   const {
@@ -122,7 +122,7 @@ const Dashboard = () => {
                 <TableRow key={index + loc.radius}>
                   <td style={{ textTransform: "capitalize" }}>{loc.address}</td>
                   <td>{loc.radius}</td>
-                  <td>{loc.notifications === 0 ? "OFF" : "ON"}</td>
+                  <td>{loc.notifications ? "ON" : "OFF"}</td>
                 </TableRow>
               ))}
             </tbody>
