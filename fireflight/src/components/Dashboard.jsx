@@ -71,7 +71,7 @@ const Dashboard = () => {
               <i
                 onClick={() => setEditPhone(true)}
                 style={{ margin: "auto 0px", cursor: "pointer" }}
-                class="fas fa-pencil-alt"
+                className="fas fa-pencil-alt"
               ></i>
             </DataDiv>
           )}
@@ -105,7 +105,7 @@ const Dashboard = () => {
               <CheckBoxLabel htmlFor="checkbox2" />
             </CheckBoxWrapper>
           </DataDiv>
-          {window.showDebug && <button onClick={e=>{subscribeUser()}}>Check</button>}
+          {process.env.NODE_ENV==='development' && <button onClick={e=>{subscribeUser()}}>Check</button>}
         </PersonalInfo>
         <LocationsInfo>
           <h3>Saved Locations</h3>

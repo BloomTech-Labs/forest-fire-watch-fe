@@ -20,8 +20,6 @@ const isLocalhost = Boolean(
   )
 );
 
-const vapidPublic = process.env.REACT_APP_VAPID_PUBLIC
-
 export function register(config) {
 
   // if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
@@ -100,7 +98,7 @@ async function registerValidSW(swUrl, config) {
         }
       };
     };
-  } catch (error) {
+  } catch (error) { 
     console.error('Error during service worker registration:', error.message);
   }
 }
