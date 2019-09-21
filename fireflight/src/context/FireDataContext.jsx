@@ -23,7 +23,7 @@ import {
   TOGGLE_NOTIFICATIONS
 } from "./fireDataTypes";
 
-const DSbaseURL = "https://fire-data-api.herokuapp.com";
+const DSbaseURL = "https://test-fire-api.herokuapp.com";
 
 const token =
   process.env.REACT_APP_MAPBOX_TOKEN ||
@@ -91,7 +91,15 @@ const fireDataReducer = (state, action) => {
     case TOGGLE_NOTIFICATIONS:
       return {
         ...state,
-        selectedMarker: [state.selectedMarker[0],state.selectedMarker[1],state.selectedMarker[2],state.selectedMarker[3],state.selectedMarker[4],state.selectedMarker[5],!state.selectedMarker[6]]
+        selectedMarker: [
+          state.selectedMarker[0],
+          state.selectedMarker[1],
+          state.selectedMarker[2],
+          state.selectedMarker[3],
+          state.selectedMarker[4],
+          state.selectedMarker[5],
+          !state.selectedMarker[6]
+        ]
       };
 
     default:
@@ -138,7 +146,7 @@ export const FireDataProvider = ({ children }) => {
     selectedMarker: [],
     selectedMarkerAddress: [],
     userLocationMarkers: [],
-    userLocalFireMarkers: [],
+    userLocalFireMarkers: []
   });
 
   const getAllFires = () => {
@@ -153,12 +161,12 @@ export const FireDataProvider = ({ children }) => {
               width="35"
               style={{ zIndex: 100, transform: "translate(-17.5px, -23px)" }}
               alt=""
-              onClick={e => {
-                dispatch({
-                  type: SET_SELECTED_MARKER,
-                  payload: [fire[1], fire[0], null, null, "fireLocation"]
-                });
-              }}
+              // onClick={e => {
+              //   dispatch({
+              //     type: SET_SELECTED_MARKER,
+              //     payload: [fire[1], fire[0], null, null, "fireLocation"]
+              //   });
+              // }}
             />
           </Marker>
         ));
@@ -311,39 +319,42 @@ export const FireDataProvider = ({ children }) => {
         });
       })
       .catch(err => {
-        console.log(err.response)
-      })
-
-  }
+        console.log(err.response);
+      });
+  };
 
   const setNotificationStatus = () => {
-    console.log("before axios: ", fireDataState.selectedMarker)
+    console.log("before axios: ", fireDataState.selectedMarker);
     axiosWithAuth()
-      .put(`locations/${fireDataState.selectedMarker[5]}`, { notifications: fireDataState.selectedMarker[6] })
+      .put(`locations/${fireDataState.selectedMarker[5]}`, {
+        notifications: fireDataState.selectedMarker[6]
+      })
       .then(res => {
-        console.log(res)
-        console.log("after axios: ", fireDataState.selectedMarker)
+        console.log(res);
+        console.log("after axios: ", fireDataState.selectedMarker);
       })
       .catch(err => {
-        console.log(err)
-      })
-  }
+        console.log(err);
+      });
+  };
 
   const toggleNotification = () => {
     dispatch({
       type: TOGGLE_NOTIFICATIONS
     });
-    console.log("before axios: ", fireDataState.selectedMarker)
+    console.log("before axios: ", fireDataState.selectedMarker);
     axiosWithAuth()
-      .put(`locations/${fireDataState.selectedMarker[5]}`, { notifications: !fireDataState.selectedMarker[6] })
+      .put(`locations/${fireDataState.selectedMarker[5]}`, {
+        notifications: !fireDataState.selectedMarker[6]
+      })
       .then(res => {
-        console.log(res)
-        console.log("after axios: ", fireDataState.selectedMarker)
+        console.log(res);
+        console.log("after axios: ", fireDataState.selectedMarker);
       })
       .catch(err => {
-        console.log(err)
-      })
-  }
+        console.log(err);
+      });
+  };
 
   const getUserLocations = () => {
     axiosWithAuth()
@@ -392,13 +403,13 @@ export const FireDataProvider = ({ children }) => {
           <Marker
             latitude={uLoc.latitude}
             longitude={uLoc.longitude}
-            key={`greenMarker${index}${uLoc.latitude}`}
+            key={`greenMarker${index}${uLoc.latitude}${index}`}
           >
             <img
               src={locationIconGreen}
               height="35"
               width="20"
-              style={{ zIndex: 5, transform: "translate(-17.5px, -35px)" }}
+              style={{ zIndex: 5, transform: "translate(-7.5px, -35px)" }}
               alt=""
               onClick={e => {
                 dispatch({
@@ -424,20 +435,28 @@ export const FireDataProvider = ({ children }) => {
       });
   };
 
-  const updatePopupRadius = (param) => {
+  const updatePopupRadius = param => {
     axiosWithAuth()
       .put(`locations/${fireDataState.selectedMarker[5]}`, { radius: param })
       .then(res => {
         setUserLocations();
       })
       .catch(err => {
-        console.log(err)
-      })
-      dispatch({
-        type: SET_SELECTED_MARKER,
-        payload: [fireDataState.selectedMarker[0],fireDataState.selectedMarker[1],fireDataState.selectedMarker[2],param,fireDataState.selectedMarker[4],fireDataState.selectedMarker[5],fireDataState.selectedMarker[6]]
-      })
-  }
+        console.log(err);
+      });
+    dispatch({
+      type: SET_SELECTED_MARKER,
+      payload: [
+        fireDataState.selectedMarker[0],
+        fireDataState.selectedMarker[1],
+        fireDataState.selectedMarker[2],
+        param,
+        fireDataState.selectedMarker[4],
+        fireDataState.selectedMarker[5],
+        fireDataState.selectedMarker[6]
+      ]
+    });
+  };
 
   const closeSelectedMarker = () => {
     dispatch({
