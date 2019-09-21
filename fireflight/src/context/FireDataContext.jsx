@@ -286,7 +286,7 @@ export const FireDataProvider = ({ children }) => {
                   src={locationIcon}
                   height="35"
                   width="20"
-                  style={{ zIndex: 5, transform: "translate(-17.5px, -35px)" }}
+                  style={{ zIndex: 5, transform: "translate(-7.5px, -35px)" }}
                   alt=""
                   onClick={e => {
                     dispatch({
