@@ -4,6 +4,8 @@ import styled from "styled-components";
 
 import { FireDataContext } from "../context/FireDataContext";
 
+import MapLegend from "./MapLegend";
+
 // mapbox API token
 const token =
   process.env.REACT_APP_MAPBOX_TOKEN ||
@@ -145,6 +147,7 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
 
   return (
     <div style={{ position: "relative" }}>
+      <MapLegend />
       <Container>
         <form onSubmit={handleSubmit} className="map-form-container">
           <i className="fas fa-compass fa-lg" />
