@@ -54,12 +54,13 @@ You can find the deployed project at [fireflightapp.com](fireflightapp.com).
   - Node.js
   - Twillio
   - MapBox
+  - Axios
 
 ### Front end built using:
 
 #### React 16.9
 
--    Everyone in project is familiar with it.
+-    React is a flexible, easy-to-use library. Our SPA benefits from React's use of components.
 
 #### Hooks
 
@@ -112,14 +113,12 @@ You can find the deployed project at [fireflightapp.com](fireflightapp.com).
 
 #  Environment Variables
 
-
+  NA
 
 
 # Content Licenses
 
   All content created by [Jeffery Wicks]("https://www.linkedin.com/in/jeffwicks-interactiondesign/")
-
-
 
 # Testing
 
@@ -128,7 +127,7 @@ You can find the deployed project at [fireflightapp.com](fireflightapp.com).
 1.  Fork this repository.
 2.  Clone this repository.
 3.  Navigate into the 'fireflight' directory.
-4.  Use npm install, yarn install, or pnpm install.
+4.  Use yarn install.
 5.  Checkout your own branch and start hacking.
 
 ## Other Scripts
@@ -145,7 +144,7 @@ When contributing to this repository, please first discuss the change you wish t
 Please note we have a [code of conduct](./CODE_OF_CONDUCT.md). Please follow it in all your interactions with the project.
 
 ## Issue/Bug Request
-   
+ 
  **If you are having an issue with the existing project code, please submit a bug report under the following guidelines:**
  - Check first to see if your issue has already been reported.
  - Check to see if the issue has recently been fixed by attempting to reproduce the issue using the latest master branch in the repository.
