@@ -16,7 +16,6 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
     fireDataState,
     setPublicViewport,
     getCoordinates,
-    setTriggerRegistrationButton,
     closeSelectedMarker,
     deleteLocationMarker,
     saveLocationMarker,
@@ -26,7 +25,6 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
   } = useContext(FireDataContext);
   const {
     publicMapViewport,
-    triggerRegistrationButton,
     allFireMarkers,
     publicCoordinatesMarker,
     localFireMarkers,
@@ -58,7 +56,6 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
     e.preventDefault();
     if (address) {
       getCoordinates(address, radius);
-      setTriggerRegistrationButton();
     }
   };
 
@@ -170,17 +167,6 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
           <button className="form-btn">Find Active Fires</button>
         </form>
         {/* End Form Container */}
-        {triggerRegistrationButton ? (
-          <TriggeredButton
-            onClick={() => {
-              setShowAuth(true);
-              setShowRegister(true);
-              setShowLogin(false);
-            }}
-          >
-            Create an account for a more personalized experience
-          </TriggeredButton>
-        ) : null}
       </Container>
 
       <ReactMapGL

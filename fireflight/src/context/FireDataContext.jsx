@@ -53,11 +53,6 @@ const fireDataReducer = (state, action) => {
         ...state,
         publicMapViewport: action.payload
       };
-    case SET_TRIGGER_REGISTRATION_BUTTON:
-      return {
-        ...state,
-        triggerRegistrationButton: action.payload
-      };
     case SET_ALL_FIRES:
       return {
         ...state,
@@ -135,10 +130,6 @@ export const FireDataProvider = ({ children }) => {
       longitude: -122.4194,
       zoom: 7
     },
-    triggerRegistrationButton: false,
-    alertData: [],
-    alertViewed: false,
-    showAlert: false,
     allFires: [],
     allFireMarkers: [],
     localFires: [],
@@ -157,9 +148,9 @@ export const FireDataProvider = ({ children }) => {
           <Marker latitude={fire[1]} longitude={fire[0]} key={fire[0] + index}>
             <img
               src={fireIcon}
-              height="35"
-              width="35"
-              style={{ zIndex: 100, transform: "translate(-17.5px, -23px)" }}
+              height="20"
+              width="15"
+              style={{ zIndex: 100, transform: "translate(-10px, -9px)" }}
               alt=""
               // onClick={e => {
               //   dispatch({
@@ -190,7 +181,6 @@ export const FireDataProvider = ({ children }) => {
     const theToken = localStorage.getItem("token");
 
     if (theToken) {
-      console.log(fireDataState.selectedMarker);
       axiosWithAuth()
         .post("locations", {
           address: fireDataState.selectedMarker[2],
@@ -472,19 +462,6 @@ export const FireDataProvider = ({ children }) => {
     });
   };
 
-  const setTriggerRegistrationButton = () => {
-    if (!localStorage.getItem("token")) {
-      if (fireDataState.triggerRegistrationButton === false) {
-        setTimeout(() => {
-          dispatch({
-            type: SET_TRIGGER_REGISTRATION_BUTTON,
-            payload: true
-          });
-        }, 5000);
-      }
-    }
-  };
-
   return (
     <FireDataContext.Provider
       value={{
@@ -493,7 +470,6 @@ export const FireDataProvider = ({ children }) => {
         getUserLocations,
         getCoordinates,
         setPublicViewport,
-        setTriggerRegistrationButton,
         getAllFires,
         closeSelectedMarker,
         deleteLocationMarker,
