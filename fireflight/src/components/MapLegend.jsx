@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import fireIcon from "../images/fireIcon.png";
@@ -7,18 +7,28 @@ import locationIcon from "../images/locationIcon.png";
 import locationIconGreen from "../images/locationIconGreen.png";
 
 const MapLegend = () => {
+  const [showLegend, setShowLegend] = useState(false);
+
   return (
     <LegendContainer>
       <h4
         style={{
           textAlign: "center",
           textDecoration: "underline",
-          margin: 10
+          padding: 10,
+          margin: 0,
+          cursor: "pointer"
+        }}
+        onClick={() => setShowLegend(!showLegend)}
+      >
+        Legend
+      </h4>
+      <div
+        style={{
+          display: showLegend ? "flex" : "none",
+          flexDirection: "column"
         }}
       >
-        Map Legend
-      </h4>
-      <div style={{ display: "flex", flexDirection: "column" }}>
         <LegendItem>
           <LegendText>Temp. Location Marker:</LegendText>
           <img
@@ -73,7 +83,7 @@ const MapLegend = () => {
 export default MapLegend;
 
 const LegendContainer = styled.div`
-  width: 300px;
+  width: 250px;
   height: auto;
   position: absolute;
   right: 0;
