@@ -253,9 +253,9 @@ export const FireDataProvider = ({ children }) => {
             >
               <img
                 src={exclamationMark}
-                height="25"
-                width="35"
-                style={{ zIndex: 3, transform: "translate(-17.5px, -40px)" }}
+                height="20"
+                width="27"
+                style={{ zIndex: 3, transform: "translate(-15px, -29px)" }}
                 alt=""
               />
             </Marker>
@@ -382,9 +382,9 @@ export const FireDataProvider = ({ children }) => {
           >
             <img
               src={exclamationMark}
-              height="25"
-              width="35"
-              style={{ zIndex: 3, transform: "translate(-17.5px, -40px)" }}
+              height="20"
+              width="27"
+              style={{ zIndex: 3, transform: "translate(-15px, -29px)" }}
               alt=""
             />
           </Marker>
