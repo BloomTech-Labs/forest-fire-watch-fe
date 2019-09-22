@@ -11,3 +11,7 @@ self.addEventListener('push',ev=>{
         console.error(err.message);
     }
 })
+
+self.addEventListener('fetch',e=>{
+    
+})
