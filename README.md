@@ -114,6 +114,9 @@ You can find the deployed project at [fireflightapp.com](fireflightapp.com).
 
 
 
+# Privacy Policy
+
+Please read our privacy policy [*here => Privacy Policy*](https://app.termly.io/document/privacy-policy/865784e8-0f1a-42be-b3f9-4afbb2b7ad45)
 
 # Content Licenses
 
