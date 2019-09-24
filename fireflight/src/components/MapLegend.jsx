@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 
 import fireIcon from "../images/fireIcon.png";
 import exclamationMark from "../images/exclaim.png";
@@ -10,7 +9,7 @@ const MapLegend = () => {
   const [showLegend, setShowLegend] = useState(false);
 
   return (
-    <LegendContainer>
+    <div className="legend-container">
       <h4
         style={{
           textAlign: "center",
@@ -29,8 +28,8 @@ const MapLegend = () => {
           flexDirection: "column"
         }}
       >
-        <LegendItem>
-          <LegendText>Temp. Location Marker:</LegendText>
+        <span className="legend-item">
+          <h5 className="legend-text">Temp. Location Marker:</h5>
           <img
             src={locationIcon}
             height="25"
@@ -38,9 +37,9 @@ const MapLegend = () => {
             style={{ zIndex: 5, transform: "translate(0px, 10px)" }}
             alt=""
           />
-        </LegendItem>
-        <LegendItem>
-          <LegendText>Saved Location Marker:</LegendText>
+        </span>
+        <span className="legend-item">
+          <h5 className="legend-text">Saved Location Marker:</h5>
           <img
             src={locationIconGreen}
             height="25"
@@ -48,9 +47,9 @@ const MapLegend = () => {
             style={{ zIndex: 5, transform: "translate(0px, 10px)" }}
             alt=""
           />
-        </LegendItem>
-        <LegendItem>
-          <LegendText>Wildfire Marker:</LegendText>
+        </span>
+        <span className="legend-item">
+          <h5 className="legend-text">Wildfire Marker:</h5>
           <img
             src={fireIcon}
             height="20"
@@ -58,9 +57,9 @@ const MapLegend = () => {
             style={{ zIndex: 5, transform: "translate(0px, 10px)" }}
             alt=""
           />
-        </LegendItem>
-        <LegendItem>
-          <LegendText>Fire Within Radius:</LegendText>
+        </span>
+        <span className="legend-item">
+          <h5 className="legend-text">Fire Within Radius:</h5>
           <img
             src={exclamationMark}
             height="20"
@@ -68,47 +67,16 @@ const MapLegend = () => {
             style={{ zIndex: 5, transform: "translate(0px, 10px)" }}
             alt=""
           />
-        </LegendItem>
-        <Info>
+        </span>
+        <p className="legend-info">
           Location markers can be clicked. There are actions available on the
           Temp. Location Marker that will allow you to save that location to
           your profile. Once saved, you can choose to receive alerts for that
           location and adjust the alert radius.
-        </Info>
+        </p>
       </div>
-    </LegendContainer>
+    </div>
   );
 };
 
 export default MapLegend;
-
-const LegendContainer = styled.div`
-  width: 250px;
-  height: auto;
-  position: absolute;
-  right: 0;
-  margin: 75px 25px;
-  background: rgb(0, 0, 0, 0.65);
-  border-radius: 5px;
-  z-index: 10;
-  color: white;
-`;
-
-const LegendItem = styled.span`
-  width: 75%;
-  margin: auto;
-  display: flex;
-  justify-content: space-between;
-`;
-
-const LegendText = styled.h5`
-  margin: 15px;
-`;
-
-const Info = styled.p`
-  width: 90%;
-  margin: 10px auto;
-  text-align: center;
-  font-size: 0.75rem;
-  font-weight: 300;
-`;
