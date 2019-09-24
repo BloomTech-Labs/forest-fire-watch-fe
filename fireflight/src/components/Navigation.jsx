@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 
 import { GlobalContext } from "../context/contextProvider";
 import { withRouter, NavLink, Link, Redirect } from "react-router-dom";
-import logo from "../images/FF-logo.png";
+import logo from "../images/FF-logo2.png";
 
 function Navigation({
   toggleAuthForms,
@@ -66,7 +66,7 @@ function Navigation({
                     toggleLoginStatus(false);
                   }}
                 >
-                  <i className="fas fa-user-plus fa-lg" /> <br />
+                  <i className="fas fa-user-plus fa-lg" /> 
                   Register
                 </div>
                 <div
@@ -77,7 +77,7 @@ function Navigation({
                     toggleLoginStatus(true);
                   }}
                 >
-                  <i className="fas fa-user-check fa-lg" /> <br />
+                  <i className="fas fa-user-check fa-lg" />
                   Login
                 </div>
               </React.Fragment>

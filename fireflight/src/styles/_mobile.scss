@@ -44,17 +44,22 @@
             }
 
             .dropdown-content {
+                background-color: $accentColor;
+                box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
                 display: block;
                 right: 0;
-                background-color: $accentColor;
+                text-align: center;
                 min-width: 160px;
-                box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
                 z-index: 2;
 
                 a {
                     color: $lilia;
                     display: block;
                 }
+
+                .fa-user-plus, .fa-user-check {
+                    margin: 0;
+                  }
             }
         }
     }
