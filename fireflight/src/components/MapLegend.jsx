@@ -13,14 +13,13 @@ const MapLegend = () => {
       <h4
         style={{
           textAlign: "center",
-          textDecoration: "underline",
           padding: 10,
           margin: 0,
           cursor: "pointer"
         }}
         onClick={() => setShowLegend(!showLegend)}
       >
-        Legend
+        * Legend *
       </h4>
       <div
         style={{
@@ -35,7 +34,7 @@ const MapLegend = () => {
             height="25"
             width="15"
             style={{ zIndex: 5, transform: "translate(0px, 10px)" }}
-            alt=""
+            alt="Temporary location marker"
           />
         </span>
         <span className="legend-item">
@@ -45,7 +44,7 @@ const MapLegend = () => {
             height="25"
             width="15"
             style={{ zIndex: 5, transform: "translate(0px, 10px)" }}
-            alt=""
+            alt="Saved location marker"
           />
         </span>
         <span className="legend-item">
@@ -55,7 +54,7 @@ const MapLegend = () => {
             height="20"
             width="15"
             style={{ zIndex: 5, transform: "translate(0px, 10px)" }}
-            alt=""
+            alt="Wildfire marker"
           />
         </span>
         <span className="legend-item">
@@ -65,7 +64,7 @@ const MapLegend = () => {
             height="20"
             width="15"
             style={{ zIndex: 5, transform: "translate(0px, 10px)" }}
-            alt=""
+            alt="Fire within radius"
           />
         </span>
         <p className="legend-info">
