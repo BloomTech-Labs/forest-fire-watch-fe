@@ -1,43 +1,43 @@
-// const convertVapid = urlBase64ToUint8Array(process.env.REACT_APP_VAPID_PUBLIC);
+const convertVapid = urlBase64ToUint8Array(process.env.REACT_APP_VAPID_PUBLIC);
 
-// function urlBase64ToUint8Array(base64String) {
-//   const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
-//   const base64 = (base64String + padding)
-//     .replace(/\-/g, "+")
-//     .replace(/_/g, "/");
+function urlBase64ToUint8Array(base64String) {
+  const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
+  const base64 = (base64String + padding)
+    .replace(/\-/g, "+")
+    .replace(/_/g, "/");
 
-//   const rawData = window.atob(base64);
-//   const outputArray = new Uint8Array(rawData.length);
+  const rawData = window.atob(base64);
+  const outputArray = new Uint8Array(rawData.length);
 
-//   for (let i = 0; i < rawData.length; ++i) {
-//     outputArray[i] = rawData.charCodeAt(i);
-//   }
-//   console.log("done converting");
-//   return outputArray;
-// }
+  for (let i = 0; i < rawData.length; ++i) {
+    outputArray[i] = rawData.charCodeAt(i);
+  }
+  console.log("done converting");
+  return outputArray;
+}
 
-// const sendSubscription = sub => {
-//   const location = "https://fireflight-lambda.herokuapp.com/api/push/register";
-//   return fetch(location, {
-//     method: "POST",
-//     body: JSON.stringify(sub),
-//     headers: {
-//       "content-type": "application/json",
-//       Authorization: localStorage.getItem("token")
-//     }
-//   });
-// };
+const sendSubscription = sub => {
+  const location = "https://fireflight-lambda.herokuapp.com/api/push/register";
+  return fetch(location, {
+    method: "POST",
+    body: JSON.stringify(sub),
+    headers: {
+      "content-type": "application/json",
+      Authorization: localStorage.getItem("token")
+    }
+  });
+};
 
-// export const subscribeUser = async () => {
-//   if ("serviceWorker" in navigator) {
-//     try {
-//       console.log("sub attempt");
-//       const registration = await navigator.serviceWorker.ready;
+export const subscribeUser = async () => {
+  if ("serviceWorker" in navigator) {
+    try {
+      console.log("sub attempt");
+      const registration = await navigator.serviceWorker.ready;
 
-//       if (!registration.pushManager) {
-//         console.log("Push Manager Unavailable");
-//         return;
-//       }
+      if (!registration.pushManager) {
+        console.log("Push Manager Unavailable");
+        return;
+      }
 
       const reg = await registration.pushManager.getSubscription();
       if (reg === null) {
