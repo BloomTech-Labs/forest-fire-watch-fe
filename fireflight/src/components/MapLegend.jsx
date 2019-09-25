@@ -19,7 +19,7 @@ const MapLegend = () => {
         }}
         onClick={() => setShowLegend(!showLegend)}
       >
-        * Map Legend *
+        Map Legend <i className="fas fa-info-circle" />
       </h4>
       <div
         style={{
