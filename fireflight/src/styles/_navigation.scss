@@ -4,7 +4,7 @@
   border-bottom: 1px solid grey;
   position: sticky;
   top: 0;
-  z-index: 4;
+  z-index: 6;
   background-image: $accentColorTransparency;
 
   .brand {
@@ -13,7 +13,7 @@
     margin-bottom: 15px;
 
     .logo {
-      height: 88px;
+      height: 85px;
     }
   }
 

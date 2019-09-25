@@ -19,7 +19,7 @@ const MapLegend = () => {
         }}
         onClick={() => setShowLegend(!showLegend)}
       >
-        * Legend *
+        * Map Legend *
       </h4>
       <div
         style={{
@@ -68,8 +68,8 @@ const MapLegend = () => {
           />
         </span>
         <p className="legend-info">
-          Location markers can be clicked. There are actions available on the
-          Temp. Location Marker that will allow you to save that location to
+          <em>Location markers</em> can be clicked. There are actions available on the
+          <em> temporary location marker</em> that will allow you to save that location to
           your profile. Once saved, you can choose to receive alerts for that
           location and adjust the alert radius.
         </p>
