@@ -23,7 +23,8 @@ import {
   TOGGLE_NOTIFICATIONS
 } from "./fireDataTypes";
 
-const DSbaseURL = "https://test-fire-api.herokuapp.com";
+const DSbaseURL = "https://fire-data-api.herokuapp.com";
+// const DSbaseURL = "https://test-fire-api.herokuapp.com";
 
 const token =
   process.env.REACT_APP_MAPBOX_TOKEN ||
