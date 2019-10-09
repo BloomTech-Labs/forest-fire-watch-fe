@@ -3,7 +3,7 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/65d8b884-4807-40de-a05b-0cc08b7ddf48/deploy-status)](https://app.netlify.com/sites/fireflightapp/deploys)
 
 
-# Fire Flight
+# Forest Fire Watch
 
 You can find the deployed project at [fireflightapp.com](fireflightapp.com).
 
