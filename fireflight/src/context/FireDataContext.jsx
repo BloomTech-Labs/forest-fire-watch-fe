@@ -24,7 +24,6 @@ import {
 } from "./fireDataTypes";
 
 const DSbaseURL = "https://fire-data-api.herokuapp.com";
-// const DSbaseURL = "https://test-fire-api.herokuapp.com";
 
 const token =
   process.env.REACT_APP_MAPBOX_TOKEN ||
@@ -153,12 +152,12 @@ export const FireDataProvider = ({ children }) => {
               width="15"
               style={{ zIndex: 100, transform: "translate(-10px, -9px)" }}
               alt=""
-              // onClick={e => {
-              //   dispatch({
-              //     type: SET_SELECTED_MARKER,
-              //     payload: [fire[1], fire[0], null, null, "fireLocation"]
-              //   });
-              // }}
+            // onClick={e => {
+            //   dispatch({
+            //     type: SET_SELECTED_MARKER,
+            //     payload: [fire[1], fire[0], null, null, "fireLocation"]
+            //   });
+            // }}
             />
           </Marker>
         ));
