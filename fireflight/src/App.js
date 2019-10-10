@@ -16,16 +16,11 @@ import { GlobalContext } from "./context/contextProvider";
 import { UserDataProvider } from "./context/UserDataContext";
 import { FireDataContext } from "./context/FireDataContext";
 
-import ReactGA from 'react-ga';
-
 import * as v from "./styles/vars";
 
 import "./styles/App.scss";
 
 require("dotenv").config();
-
-ReactGA.initialize('UA-149769097-1');
-ReactGA.pageview(window.location.pathname + window.location.search);
 
 const token = localStorage.getItem("token");
 
