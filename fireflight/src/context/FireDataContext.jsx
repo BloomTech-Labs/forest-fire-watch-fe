@@ -152,12 +152,12 @@ export const FireDataProvider = ({ children }) => {
               width="15"
               style={{ zIndex: 100, transform: "translate(-10px, -9px)" }}
               alt=""
-              // onClick={e => {
-              //   dispatch({
-              //     type: SET_SELECTED_MARKER,
-              //     payload: [fire[1], fire[0], null, null, "fireLocation"]
-              //   });
-              // }}
+            // onClick={e => {
+            //   dispatch({
+            //     type: SET_SELECTED_MARKER,
+            //     payload: [fire[1], fire[0], null, null, "fireLocation"]
+            //   });
+            // }}
             />
           </Marker>
         ));
