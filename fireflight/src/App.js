@@ -111,9 +111,11 @@ function App() {
             />
           )}
         />
+        {/* unused component - delete */}
         <Route path="/update" component={Update} />
 
-        <Route path="/danger" component={Danger} />
+        {/* unused component - delete */}
+        <Route path="/danger" component={Danger} /> 
 
         <Route
           path="/home"
