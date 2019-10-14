@@ -12,12 +12,19 @@ display: flex;
 align-items: center;
 
 color: #FFFFFF;
+@media (max-width:768px){
+    font-size:14px
+    line-height: 19px;
+}
 `
 const NavMargin = styled.span`
 @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 font-family: Open-Sans;
 margin-right:57px;
 margin-left:57px;
+@media (max-width:768px){
+    margin:10px
+}
 `
 
 const BodyEl = styled.div`
@@ -25,13 +32,22 @@ display:flex;
 flex-flow:column;
 align-items:center;
 margin-top:120px;
+@media (max-width:768px){
+    margin:60px;
+}
+
 `
 
 const BodyTitle = styled.h1`
 
 width: 495px;
 height: 88px;
-
+@media (max-width:768px){
+    width:269px
+    font-weight: bold;
+    font-size: 38px;
+    line-height: 48px;
+}
 font-family: Oxygen;
 font-style: normal;
 font-weight: bold;
@@ -46,7 +62,11 @@ color: #FFFFFF;
 const BodyDes = styled.h4`
 width: 710px;
 height: 120px;
-
+@media (max-width:768px){
+    width:100%
+    font-size:18px;
+    line-height: 25px;
+}
 font-family: Open Sans;
 font-style: normal;
 font-weight: 300;
@@ -70,6 +90,16 @@ line-height: 33px;
 /* identical to box height */
 
 color: #251400;
+
+@media (max-width:768px){
+    width: 120px;
+height: 37px;
+left: 146.23px;
+top: 373.56px;
+font-weight: 600;
+font-size: 18px;
+line-height: 25px;
+}
 `
 
 const Body = styled.body`
