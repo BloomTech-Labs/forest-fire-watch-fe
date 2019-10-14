@@ -1,8 +1,12 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
+
 // Variables / Mixins
 @import "vars";
 
 // Components
 @import "navigation";
+@import "login";
 @import "auth-forms";
 @import "forms";
 @import "buttons";
@@ -10,6 +14,11 @@
 @import "model";
 @import "model-splits";
 @import "dashboard";
+
+html {
+  font-size: 62.5%;
+  font-family: "Open Sans", sans-serif;
+}
 
 html,
 body {
@@ -21,28 +30,30 @@ a,
 p {
   font-family: $content;
   font-weight: bold;
+  text-decoration: none;
+  font-family: "Open Sans", sans-serif;
 }
 
 .form-heading {
-  color: $lilia;
-  font-family: $header;
-  font-weight: 500;
-}
+  // font-family: $header;
+  // font-weight: 500;
 
-.forgot-pw {
-  color: $lilia;
-  font-size: 0.75em;
-  position: relative;
-  top: 35px;
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
+  width: 245px;
+  height: 49px;
+  font-family: "Open Sans", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 49px;
+  /* identical to box height */
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #000000;
 }
 
 .form-text {
-  color: $lilia;
+  color: black;
   font-size: 0.9em;
   font-weight: 300;
 }
