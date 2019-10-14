@@ -5,7 +5,7 @@ import Home from "./components/Home";
 import Danger from "./components/Danger";
 import Update from "./components/Update";
 import Dashboard from "./components/Dashboard";
-
+import LandingPage from './components/LandingPage'
 import AuthForms from "./components/AuthForms/AuthForms";
 
 import Address from "./components/Address";
@@ -47,7 +47,7 @@ function App() {
       console.log('effect')
       setUserLocations();
     }
-  }, [fireDataState.allFires,fireDataState.selectedMarker]);
+  }, [fireDataState.allFires, fireDataState.selectedMarker]);
 
   useEffect(() => {
     //getLogin gets login information upon page load here;
@@ -80,54 +80,59 @@ function App() {
   }, [token]);
 
   return (
-    <AppWrapper>
-      <AddressContext>
-        <AuthForms
-          showAuthForms={showAuthForms}
-          setShowAuthForms={setShowAuthForms}
-          loginFormStatus={loginFormStatus}
-          registerFormStatus={registerFormStatus}
-          setLoginFormStatus={setLoginFormStatus}
-          setRegisterFormStatus={setRegisterFormStatus}
-        />
+    <div>
+      <AppWrapper>
+        <AddressContext>
+          <AuthForms
+            showAuthForms={showAuthForms}
+            setShowAuthForms={setShowAuthForms}
+            loginFormStatus={loginFormStatus}
+            registerFormStatus={registerFormStatus}
+            setLoginFormStatus={setLoginFormStatus}
+            setRegisterFormStatus={setRegisterFormStatus}
+          />
 
-        <Navigation
-          toggleAuthForms={setShowAuthForms}
-          toggleLoginStatus={setLoginFormStatus}
-          toggleRegisterStatus={setRegisterFormStatus}
-        />
-        <UserDataProvider>
-          <Route path="/dashboard" component={Dashboard} />
-        </UserDataProvider>
-        <Route
-          exact
-          path="/"
-          render={() => (
-            <Home
-              setShowAuth={setShowAuthForms}
-              setShowRegister={setRegisterFormStatus}
-              setShowLogin={setLoginFormStatus}
-            />
-          )}
-        />
-        <Route path="/update" component={Update} />
+          <Navigation
+            toggleAuthForms={setShowAuthForms}
+            toggleLoginStatus={setLoginFormStatus}
+            toggleRegisterStatus={setRegisterFormStatus}
+          />
+          <UserDataProvider>
+            <Route path="/dashboard" component={Dashboard} />
+          </UserDataProvider>
+          <Route
+            exact
+            path="/"
+            render={() => (
+              <Home
+                setShowAuth={setShowAuthForms}
+                setShowRegister={setRegisterFormStatus}
+                setShowLogin={setLoginFormStatus}
+              />
+            )}
+          />
+          <Route path="/update" component={Update} />
 
-        <Route path="/danger" component={Danger} />
+          <Route path="/danger" component={Danger} />
 
-        <Route
-          path="/home"
-          render={() => (
-            <Home
-              setShowAuth={setShowAuthForms}
-              setShowRegister={setRegisterFormStatus}
-              setShowLogin={setLoginFormStatus}
-            />
-          )}
-        />
+          <Route
+            path="/home"
+            render={() => (
+              <Home
+                setShowAuth={setShowAuthForms}
+                setShowRegister={setRegisterFormStatus}
+                setShowLogin={setLoginFormStatus}
+              />
+            )}
+          />
 
-        <Route path="/address" component={Address} />
-      </AddressContext>
-    </AppWrapper>
+          <Route path="/address" component={Address} />
+        </AddressContext>
+      </AppWrapper>
+      <Router>
+        <Route path='/landing-page' component={LandingPage} />
+      </Router>
+    </div>
   );
 }
 
