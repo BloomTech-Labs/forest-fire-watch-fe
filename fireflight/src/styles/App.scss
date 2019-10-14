@@ -3,6 +3,7 @@
 
 // Components
 @import "navigation";
+@import "login";
 @import "auth-forms";
 @import "forms";
 @import "buttons";
@@ -10,6 +11,10 @@
 @import "model";
 @import "model-splits";
 @import "dashboard";
+
+html {
+  font-size: 62.5%;
+}
 
 html,
 body {
@@ -24,13 +29,25 @@ p {
 }
 
 .form-heading {
-  color: $lilia;
-  font-family: $header;
-  font-weight: 500;
+  // font-family: $header;
+  // font-weight: 500;
+
+  width: 245px;
+  height: 49px;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 49px;
+  /* identical to box height */
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #000000;
 }
 
 .forgot-pw {
-  color: $lilia;
+  color: black;
   font-size: 0.75em;
   position: relative;
   top: 35px;
@@ -42,7 +59,7 @@ p {
 }
 
 .form-text {
-  color: $lilia;
+  color: black;
   font-size: 0.9em;
   font-weight: 300;
 }

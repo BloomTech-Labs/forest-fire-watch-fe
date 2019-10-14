@@ -1,0 +1,18 @@
+.login-page-container {
+  //   width: 60%;
+  max-width: 800px;
+  min-height: 50rem;
+  height: 475px;
+  margin: auto;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  border-radius: 2px;
+  flex-direction: column;
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+  }
+}

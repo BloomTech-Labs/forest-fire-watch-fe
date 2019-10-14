@@ -38,16 +38,18 @@ function App() {
     FireDataContext
   );
 
+  console.log("FIRE DATA STATE", fireDataState);
+
   useEffect(() => {
     getAllFires();
   }, []);
 
   useEffect(() => {
     if (token) {
-      console.log('effect')
+      console.log("effect");
       setUserLocations();
     }
-  }, [fireDataState.allFires,fireDataState.selectedMarker]);
+  }, [fireDataState.allFires, fireDataState.selectedMarker]);
 
   useEffect(() => {
     //getLogin gets login information upon page load here;
@@ -114,7 +116,7 @@ function App() {
         <Route path="/update" component={Update} />
 
         {/* unused component - delete */}
-        <Route path="/danger" component={Danger} /> 
+        <Route path="/danger" component={Danger} />
 
         <Route
           path="/home"
