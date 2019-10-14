@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 const HeadingEl = styled.h3`
 font-style: normal;
@@ -22,6 +23,7 @@ const NavMargin = styled.span`
 font-family: Open-Sans;
 margin-right:57px;
 margin-left:57px;
+color:white;
 @media (max-width:768px){
     margin:10px
 }
