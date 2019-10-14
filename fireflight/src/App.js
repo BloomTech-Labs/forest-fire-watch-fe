@@ -17,9 +17,10 @@ import { UserDataProvider } from "./context/UserDataContext";
 import { FireDataContext } from "./context/FireDataContext";
 
 import * as v from "./styles/vars";
+import * as Sentry from '@sentry/browser';
 
 import "./styles/App.scss";
-
+Sentry.init({ dsn: "https://2281acb5134d4680927ead14de3c5727@sentry.io/1775951" });
 require("dotenv").config();
 
 const token = localStorage.getItem("token");
