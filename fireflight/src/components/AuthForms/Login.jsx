@@ -45,6 +45,7 @@ function Login({ toggle, setShowAuthForms }) {
 
   return (
     <div className="login-page-container">
+               <button className="form-close-btn" onClick={() => setShowAuthForms(false)}>x</button>
       <h2 className="form-heading">Welcome Back</h2>
       <form className="auth-form-container" onSubmit={handleSubmit}>
         <div className="input-containers">
