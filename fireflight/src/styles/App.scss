@@ -1,3 +1,6 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
+
 // Variables / Mixins
 @import "vars";
 
@@ -14,6 +17,7 @@
 
 html {
   font-size: 62.5%;
+  font-family: "Open Sans", sans-serif;
 }
 
 html,
@@ -26,6 +30,8 @@ a,
 p {
   font-family: $content;
   font-weight: bold;
+  text-decoration: none;
+  font-family: "Open Sans", sans-serif;
 }
 
 .form-heading {
@@ -34,7 +40,7 @@ p {
 
   width: 245px;
   height: 49px;
-  font-family: Open Sans;
+  font-family: "Open Sans", sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 36px;
@@ -44,18 +50,6 @@ p {
   align-items: center;
   text-align: center;
   color: #000000;
-}
-
-.forgot-pw {
-  color: black;
-  font-size: 0.75em;
-  position: relative;
-  top: 35px;
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
 }
 
 .form-text {

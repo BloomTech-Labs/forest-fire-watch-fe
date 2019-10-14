@@ -47,9 +47,8 @@ function Login({ toggle, setShowAuthForms }) {
     <div className="login-page-container">
       <h2 className="form-heading">Welcome Back</h2>
       <form className="auth-form-container" onSubmit={handleSubmit}>
-        <label htmlFor="email">
-          Email Address
-          {/* <i className="fas fa-user-circle fa-lg" /> */}
+        <div className="input-containers">
+          <label htmlFor="email">Email Address</label>
           <input
             className="form-input"
             type="text"
@@ -58,16 +57,13 @@ function Login({ toggle, setShowAuthForms }) {
             onChange={handleEmail}
             placeholder=""
           />
-        </label>
-        {errorStatus ? (
-          <span className="name-error-text">{errorText}</span>
-        ) : (
-          <span className="user-error-text" />
-        )}
-        <br />
-        <label htmlFor="password">
-          {/* <i className="fas fa-key fa-lg" /> */}
-          Password
+          {errorStatus ? (
+            <span className="name-error-text">{errorText}</span>
+          ) : (
+            <span className="user-error-text" />
+          )}
+          <br />
+          <label htmlFor="password">Password</label>
           <input
             className="form-input"
             type="password"
@@ -76,31 +72,26 @@ function Login({ toggle, setShowAuthForms }) {
             onChange={handlePassword}
             placeholder=""
           />
-        </label>
+          <span className="forgot-pw">
+            <a href="#">Forgot your Password?</a>
+          </span>
+          <button className="auth-btn" type="submit" disabled={loading}>
+            {loading ? "Loading..." : "Sign In"}
+          </button>
+        </div>
         <p>
-          {" "}
           Need to create an account?
           <a className="create-an-account" href="#">
             Sign up Here
           </a>
         </p>
-        <p>
-          <a className="forgot-pw" href="#">
-            Forgot your Password?
-          </a>
-        </p>
-        <button className="auth-btn" type="submit" disabled={loading}>
-          {loading ? "Loading..." : "Sign In"}
-        </button>
       </form>
-
       {/* Remove Registration split */}
       {/* <LoginSplitContainer>
         <LoginSplit toggle={toggle} />
       </LoginSplitContainer> */}
     </div>
   );
-  // }
 }
 
 export default Login;
