@@ -40,13 +40,15 @@ function App() {
     FireDataContext
   );
 
+  console.log("FIRE DATA STATE", fireDataState);
+
   useEffect(() => {
     getAllFires();
   }, []);
 
   useEffect(() => {
     if (token) {
-      console.log('effect')
+      console.log("effect");
       setUserLocations();
     }
   }, [fireDataState.allFires, fireDataState.selectedMarker]);
@@ -112,10 +114,16 @@ function App() {
             />
           )}
         />
+        {/* unused component - delete */}
         <Route path="/update" component={Update} />
 
+        {/* unused component - delete */}
         <Route path="/danger" component={Danger} />
-        <Route path="/landing-page" component={LandingPage} />
+        <Route path="/landing-page" render={() => (
+          <LandingPage toggleAuthForms={setShowAuthForms}
+            toggleLoginStatus={setLoginFormStatus}
+            toggleRegisterStatus={setRegisterFormStatus} />
+        )} />
 
         <Route
           path="/home"

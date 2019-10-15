@@ -97,20 +97,30 @@ width: 100%;
 height: 100%;
 background-image:url('https://www.fireflightapp.com/public/images/wildfire.jpg');
 `
-const LandingPage = (props) => {
+const LandingPage = ({ toggleAuthForms,
+    toggleLoginStatus,
+    toggleRegisterStatus, }) => {
 
 
     return (
         <Body>
             <HeadingEl>
                 <NavMargin>
-                    <h2>Home</h2>
+                    <h2 >Home</h2>
                 </NavMargin>
                 <NavMargin>
-                    <h2>Sign In</h2>
+                    <h2 onClick={() => {
+                        toggleAuthForms(true);
+                        toggleRegisterStatus(false);
+                        toggleLoginStatus(true);
+                    }}>Sign In</h2>
                 </NavMargin>
                 <NavMargin>
-                    <h2>Sign Up</h2>
+                    <h2 onClick={() => {
+                        toggleAuthForms(true);
+                        toggleRegisterStatus(true);
+                        toggleLoginStatus(false);
+                    }}>Sign Up</h2>
                 </NavMargin>
             </HeadingEl>
             <BodyEl>
