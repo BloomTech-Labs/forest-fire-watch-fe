@@ -37,8 +37,6 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
 
   const [popupRadius, setPopupRadius] = useState("");
 
-  const [mapStyle, setMapStyle] = useState({});
-
   useEffect(() => {
     const listener = e => {
       if (e.key === "Escape") {
@@ -177,7 +175,6 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
         }}
         mapStyle="mapbox://styles/astillo/ck1s9i5um5c0x1cmv41xwfagd"
         // mapStyle="mapbox://styles/fireflightapp/ck0phflzd21ga1dod56swx4p7"
-        // mapStyle="mapbox://styles/lilyhzhou/ck1s506sa58oa1cpmhps2e6wy"
         
       >
         {allFireMarkers}
