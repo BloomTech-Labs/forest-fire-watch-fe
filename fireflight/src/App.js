@@ -20,6 +20,7 @@ import * as v from "./styles/vars";
 import * as Sentry from '@sentry/browser';
 
 import "./styles/App.scss";
+import LandingPage from "./components/LandingPage";
 Sentry.init({ dsn: "https://2281acb5134d4680927ead14de3c5727@sentry.io/1775951" });
 require("dotenv").config();
 
@@ -118,6 +119,7 @@ function App() {
 
         {/* unused component - delete */}
         <Route path="/danger" component={Danger} />
+        <Route path="/landing-page" component={LandingPage} />
 
         <Route
           path="/home"
