@@ -35,17 +35,18 @@ p {
   font-family: "Open Sans", sans-serif;
 }
 
-.form-heading {
-  // font-family: $header;
-  // font-weight: 500;
+input {
+  outline: none;
+}
 
+.form-heading {
   margin: 2rem auto;
-  height: 49px;
+  height: 4rem;
   font-family: "Open Sans", sans-serif;
   font-style: normal;
   font-weight: normal;
-  font-size: 36px;
-  line-height: 49px;
+  font-size: 3.6rem;
+  line-height: 4.8rem;
   /* identical to box height */
   display: flex;
   align-items: center;
@@ -69,10 +70,10 @@ p {
   align-self: flex-end;
   font-size: 2rem;
   margin-right: 20px;
+  margin-top: 20px;
   &:hover {
     cursor: pointer;
   }
-
 }
 
 // Mobile View Import
