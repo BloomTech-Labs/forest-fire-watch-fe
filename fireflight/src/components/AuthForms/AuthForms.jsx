@@ -8,7 +8,9 @@ const AuthForms = ({
   loginFormStatus,
   registerFormStatus,
   setLoginFormStatus,
-  setRegisterFormStatus
+  setRegisterFormStatus,
+  passwordFormStatus,
+  setPasswordFormStatus
 }) => {
   return (
     <>
@@ -23,7 +25,9 @@ const AuthForms = ({
         setLoginStatus={setLoginFormStatus}
         setRegisterStatus={setRegisterFormStatus}
         setShowAuthForms={setShowAuthForms}
-      />
+        passwordFormStatus={passwordFormStatus}
+        setPasswordFormStatus={setPasswordFormStatus}
+              />
     </>
   );
 };
