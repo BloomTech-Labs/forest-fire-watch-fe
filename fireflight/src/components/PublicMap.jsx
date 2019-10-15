@@ -7,9 +7,7 @@ import { FireDataContext } from "../context/FireDataContext";
 import MapLegend from "./MapLegend";
 
 // mapbox API token
-const token =
-  process.env.REACT_APP_MAPBOX_TOKEN ||
-  "pk.eyJ1Ijoia2VuMTI4NiIsImEiOiJjanpuMXdlb2UwZzlkM2JsY2t2aTVkcGFoIn0.eGKKY2f3oC5s8GqsyB70Yg";
+const token = 'pk.eyJ1IjoiYXN0aWxsbyIsImEiOiJjazFzOTJ4cTIwM284M2NxcW5hZ2t5cmtxIn0.lX1iNcdfJzPCMgxJkEklDw'
 
 const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
   const {
@@ -38,6 +36,8 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
   const [radius, setRadius] = useState("");
 
   const [popupRadius, setPopupRadius] = useState("");
+
+  const [mapStyle, setMapStyle] = useState({});
 
   useEffect(() => {
     const listener = e => {
@@ -175,7 +175,10 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
         onViewportChange={publicMapViewport => {
           setPublicViewport(publicMapViewport);
         }}
-        mapStyle="mapbox://styles/fireflightapp/ck0phflzd21ga1dod56swx4p7"
+        mapStyle="mapbox://styles/astillo/ck1s9i5um5c0x1cmv41xwfagd"
+        // mapStyle="mapbox://styles/fireflightapp/ck0phflzd21ga1dod56swx4p7"
+        // mapStyle="mapbox://styles/lilyhzhou/ck1s506sa58oa1cpmhps2e6wy"
+        
       >
         {allFireMarkers}
         {userLocalFireMarkers}

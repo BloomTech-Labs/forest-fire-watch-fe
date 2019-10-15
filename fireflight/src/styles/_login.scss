@@ -1,0 +1,53 @@
+.login-page-container {
+  //   width: 60%;
+  max-width: 800px;
+  min-height: 50rem;
+  height: 475px;
+  margin: auto;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  border-radius: 2px;
+  flex-direction: column;
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+  }
+
+  .input-containers {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 462px;
+
+    label {
+      height: 22px;
+      font-size: 16px;
+      line-height: 22px;
+      font-style: normal;
+      font-weight: normal;
+    }
+
+    .forgot-pw {
+      margin-top: 10px;
+    }
+
+    .forgot-pw a {
+      margin-top: 10px;
+      width: 132px;
+      height: 19px;
+      font-style: normal;
+      font-size: 12px;
+      line-height: 16px;
+      color: #adadad;
+    }
+  }
+
+  .create-an-account {
+    margin-left: 5px;
+    color: #70c0f1;
+  }
+}

@@ -23,12 +23,11 @@ import {
   TOGGLE_NOTIFICATIONS
 } from "./fireDataTypes";
 
-const DSbaseURL = "https://fire-data-api.herokuapp.com";
+const DSbaseURL = "https://wildfirewatch.herokuapp.com";
+// const DSbaseURL = "https://fire-data-api.herokuapp.com";
 // const DSbaseURL = "https://test-fire-api.herokuapp.com";
 
-const token =
-  process.env.REACT_APP_MAPBOX_TOKEN ||
-  "pk.eyJ1Ijoia2VuMTI4NiIsImEiOiJjanpuMXdlb2UwZzlkM2JsY2t2aTVkcGFoIn0.eGKKY2f3oC5s8GqsyB70Yg";
+const token = process.env.REACT_APP_MAPBOX_TOKEN || "keep it secret, fool";
 
 const fireDataReducer = (state, action) => {
   switch (action.type) {
@@ -153,12 +152,12 @@ export const FireDataProvider = ({ children }) => {
               width="15"
               style={{ zIndex: 100, transform: "translate(-10px, -9px)" }}
               alt=""
-              // onClick={e => {
-              //   dispatch({
-              //     type: SET_SELECTED_MARKER,
-              //     payload: [fire[1], fire[0], null, null, "fireLocation"]
-              //   });
-              // }}
+            // onClick={e => {
+            //   dispatch({
+            //     type: SET_SELECTED_MARKER,
+            //     payload: [fire[1], fire[0], null, null, "fireLocation"]
+            //   });
+            // }}
             />
           </Marker>
         ));
@@ -363,18 +362,22 @@ export const FireDataProvider = ({ children }) => {
       .get("locations")
       .then(res => {
         let localArray = [];
+        // for each user location, add fires that are within the search radius to localArray
+        // radius = what the user chooses as the radius in their location setting
+        // distance = distance from user location and fire
         res.data.forEach(loc => {
           fireDataState.allFires.forEach(fire => {
             let distance = haversineDistance(
               [loc.latitude, loc.longitude],
-              [fire[1], fire[0]],
-              true
+              [fire[1], fire[0]], // fire latitude, fire longitude (store in variable later and refactor)
+              true // in miles
             );
             if (distance <= loc.radius) {
               localArray.push(fire);
             }
           });
         });
+        // fire markers - setting exclamation points on top of fire images for fires within radius of user location
         const localMarkers = localArray.map((fire, index) => (
           <Marker
             latitude={fire[1]}
@@ -390,6 +393,7 @@ export const FireDataProvider = ({ children }) => {
             />
           </Marker>
         ));
+        // saved user locations
         const userLocs = res.data.map((uLoc, index) => (
           <Marker
             latitude={uLoc.latitude}
@@ -426,6 +430,7 @@ export const FireDataProvider = ({ children }) => {
       });
   };
 
+  // the pop up when you click into a saved location
   const updatePopupRadius = param => {
     axiosWithAuth()
       .put(`locations/${fireDataState.selectedMarker[5]}`, { radius: param })
