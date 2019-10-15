@@ -37,7 +37,7 @@
         top: 128px;
         left: 17px;
 
-        input {
+        &::placeholder {
             font-family: "Open Sans";
             font-style: normal;
             font-weight: normal;
@@ -46,6 +46,7 @@
             display: flex;
             align-items: center;
             color: #A9A9A9;
+            padding-left: 17px;
         }
     }
 
@@ -64,5 +65,17 @@
         position: absolute;
         top: 128px;
         left: 337px;
+
+        &::placeholder {
+            font-family: "Open Sans";
+            font-style: normal;
+            font-weight: normal;
+            font-size: 20px;
+            line-height: 27px;
+            display: flex;
+            align-items: center;
+            color: #A9A9A9;
+            padding-left: 17px;
+        }
     }
 }
