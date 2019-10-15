@@ -119,7 +119,11 @@ function App() {
 
         {/* unused component - delete */}
         <Route path="/danger" component={Danger} />
-        <Route path="/landing-page" component={LandingPage} />
+        <Route path="/landing-page" render={() => (
+          <LandingPage toggleAuthForms={setShowAuthForms}
+            toggleLoginStatus={setLoginFormStatus}
+            toggleRegisterStatus={setRegisterFormStatus} />
+        )} />
 
         <Route
           path="/home"
