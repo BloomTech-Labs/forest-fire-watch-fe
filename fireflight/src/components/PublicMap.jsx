@@ -7,7 +7,7 @@ import { FireDataContext } from "../context/FireDataContext";
 import MapLegend from "./MapLegend";
 
 // mapbox API token
-const token = 'pk.eyJ1IjoiYXN0aWxsbyIsImEiOiJjazFzOTJ4cTIwM284M2NxcW5hZ2t5cmtxIn0.lX1iNcdfJzPCMgxJkEklDw'
+const token = "pk.eyJ1IjoiYXN0aWxsbyIsImEiOiJjazFzOTJ4cTIwM284M2NxcW5hZ2t5cmtxIn0.lX1iNcdfJzPCMgxJkEklDw";
 
 const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
   const {
@@ -145,12 +145,12 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
       <MapLegend />
       <Container>
         <form onSubmit={handleSubmit} className="map-form-container">
-          <i className="fas fa-compass fa-lg" />
+          {/* <i className="fas fa-compass fa-lg" /> */}
           <input
             className="address-input"
             type="text"
             name="Address"
-            placeholder="Address"
+            placeholder="Enter address"
             value={address}
             onChange={e => setAddress(e.target.value)}
           />
@@ -158,11 +158,11 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
             className="radius-input"
             type="number"
             name="Radius"
-            placeholder="Radius (miles)"
+            placeholder="mi"
             value={radius}
             onChange={e => setRadius(e.target.value)}
           />
-          <button className="form-btn">Find Active Fires</button>
+          <button className="form-btn">Search</button>
         </form>
         {/* End Form Container */}
       </Container>
@@ -173,9 +173,7 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
         onViewportChange={publicMapViewport => {
           setPublicViewport(publicMapViewport);
         }}
-        mapStyle="mapbox://styles/astillo/ck1s9i5um5c0x1cmv41xwfagd"
-        // mapStyle="mapbox://styles/fireflightapp/ck0phflzd21ga1dod56swx4p7"
-        
+        mapStyle="mapbox://styles/astillo/ck1s93bpe5bnk1cqsfd34n8ap"
       >
         {allFireMarkers}
         {userLocalFireMarkers}

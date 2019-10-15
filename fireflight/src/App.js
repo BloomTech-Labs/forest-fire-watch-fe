@@ -20,6 +20,7 @@ import * as v from "./styles/vars";
 import * as Sentry from '@sentry/browser';
 
 import "./styles/App.scss";
+import LandingPage from "./components/LandingPage";
 Sentry.init({ dsn: "https://2281acb5134d4680927ead14de3c5727@sentry.io/1775951" });
 require("dotenv").config();
 
@@ -122,6 +123,11 @@ function App() {
 
         {/* unused component - delete */}
         <Route path="/danger" component={Danger} />
+        <Route path="/landing-page" render={() => (
+          <LandingPage toggleAuthForms={setShowAuthForms}
+            toggleLoginStatus={setLoginFormStatus}
+            toggleRegisterStatus={setRegisterFormStatus} />
+        )} />
 
         <Route
           path="/home"
@@ -149,11 +155,6 @@ const AppWrapper = styled.div`
   ${v.tablet} {
     flex-direction: row;
   }
-  background-image: linear-gradient(
-    #f8b195,
-    #f67280,
-    #c06c84,
-    #6c5b7b,
-    #355c7d
+  background-image: url("https://www.fireflightapp.com/public/images/wildfire.jpg")
   );
 `;
