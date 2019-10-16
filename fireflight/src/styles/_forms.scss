@@ -14,6 +14,20 @@
     position: absolute;
     top: 98px;
     left: 17px;
+
+     @media (max-width: 900px) {
+        position: absolute;
+        width: 298px;
+        height: 16px;
+        left: 20px;
+        top: 91px;
+        font-family: Open Sans;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 16px;
+    }
+
   }
 
     .signup-form-text {
@@ -25,6 +39,21 @@
     position: absolute;
     top: 609px;
     left: 96px;
+
+    @media (max-width: 900px) {
+        position: absolute;
+        width: 320px;
+        height: 22px;
+        left: 29px;
+        font-family: Open Sans;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 22px;
+        display: flex;
+        align-items: center;
+        color: #FFFFFF;
+    }
   }
 
   // Address Input
@@ -45,6 +74,16 @@
     align-items: center;
     color: #a9a9a9;
     padding-left: 1.7rem;
+
+    @media (max-width: 900px) {
+        position: absolute;
+        width: 245px;
+        height: 42px;
+        left: 20px;
+        top: 118px;
+        background: #FFFFFF;
+        border-radius: 3px;
+    }
 
     &::placeholder {
       font-family: "Open Sans";
@@ -78,6 +117,17 @@
     color: #a9a9a9;
     margin-left: 1.4rem;
     padding-left: 1rem;
+
+    @media (max-width: 900px) {
+        position: absolute;
+        width: 61.53px;
+        height: 42px;
+        left: 274px;
+        top: 118px;
+        background: #FFFFFF;
+        border-radius: 3px;
+        margin-top: 0;
+    }
 
     &::placeholder {
       font-family: "Open Sans";

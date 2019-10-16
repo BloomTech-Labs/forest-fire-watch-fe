@@ -12,6 +12,13 @@
 
   @media (max-width: 900px) {
     flex-direction: column;
+    position: absolute;
+    width: 318px;
+    height: 354px;
+    left: 29px;
+    top: 78px;
+    background: #FFFFFF;
+    border-radius: 1px;
   }
 
   .input-containers {
@@ -27,6 +34,13 @@
       line-height: 22px;
       font-style: normal;
       font-weight: normal;
+
+      @media (max-width: 900px) {
+        width: 239px;
+        height: 38px;
+        font-size: 14px;
+        line-height: 19px;
+      }
     }
 
     .forgot-pw {

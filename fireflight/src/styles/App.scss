@@ -64,6 +64,15 @@ input {
   align-items: center;
   text-align: center;
   color: #000000;
+
+   @media (max-width: 900px) {
+      font-family: Open Sans;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 25px;
+      color: #000000;
+   }
 }
 
 .form-text {
