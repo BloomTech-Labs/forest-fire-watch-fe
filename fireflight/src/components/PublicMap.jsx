@@ -146,6 +146,7 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
       <Container>
         <form onSubmit={handleSubmit} className="map-form-container">
           {/* <i className="fas fa-compass fa-lg" /> */}
+          <label className="map-form-text">Enter the address you wish to check fire proximity to.</label>
           <input
             className="address-input"
             type="text"
