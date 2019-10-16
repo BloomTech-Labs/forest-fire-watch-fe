@@ -164,6 +164,8 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
             onChange={e => setRadius(e.target.value)}
           />
           <button className="form-btn">Search</button>
+          <label className="signup-form-text">to save addresses and receive notifications</label>
+          <button className="signup-btn">Sign Up</button>
         </form>
         {/* End Form Container */}
       </Container>
