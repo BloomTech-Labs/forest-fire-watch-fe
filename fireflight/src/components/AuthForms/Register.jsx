@@ -38,38 +38,41 @@ function Register({ toggle, setShowAuthForms }) {
     // The errorText is set to the error descriptions that are coming from the server.
     // We then display those error descriptions below in some p tags.
 
-    fire.auth().createUserWithEmailAndPassword(firstName, password)
+    fire.auth().createUserWithEmailAndPassword(email, password)
       .then((user) => {
         console.log(user)
+        if (password === passwordConf) {
+          const UID = user.user.uid
+          const newUser = { firstName, lastName, email, UID };
+        
+          data.state.remote
+            .register(newUser)
+            .then(res => {
+              setFirstName("");
+              setLastName("");
+              setEmail("");
+              setPassword("");
+              setPasswordConf("");
+              setLoading(false);
+              setShowAuthForms(false);
+            })
+            .catch(err => {
+              console.log(err);
+              setErrorStatus(true);
+              setErrorText(err.response.data);
+              setLoading(false);
+            });
+        } else {
+          setErrorStatus(true);
+          setErrorText({ password: "Passwords must match" });
+          setLoading(false);
+        }
       })
       .catch((err) => {
         console.log(err)
       })
 
-    if (password === passwordConf) {
-      const newUser = { firstName, password };
-      data.state.remote
-        .register(newUser)
-        .then(res => {
-          setFirstName("");
-          setLastName("");
-          setEmail("");
-          setPassword("");
-          setPasswordConf("");
-          setLoading(false);
-          setShowAuthForms(false);
-        })
-        .catch(err => {
-          console.log(err);
-          setErrorStatus(true);
-          setErrorText(err.response.data);
-          setLoading(false);
-        });
-    } else {
-      setErrorStatus(true);
-      setErrorText({ password: "Passwords must match" });
-      setLoading(false);
-    }
+
   }
 
   if (data.token != null) {
@@ -155,7 +158,7 @@ function Register({ toggle, setShowAuthForms }) {
             ) : (
                 <ErrorText />
               )}
-            {/* <label htmlFor="password">
+            <label htmlFor="password">
              Confirm Password
             </label>
             <input
@@ -166,7 +169,7 @@ function Register({ toggle, setShowAuthForms }) {
               // onChange={e=>setPasswordConf(e.value)}
               onChange={handlePasswordConf}
               placeholder="Confirm Password"
-            /> */}
+            />
 
             <button className="auth-btn register-btn" type="submit" disabled={loading}>
               {loading ? "Loading..." : "Create Account"}

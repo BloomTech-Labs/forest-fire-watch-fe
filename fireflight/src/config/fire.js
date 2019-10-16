@@ -1,6 +1,6 @@
 import firebase from 'firebase'
 const config = {
-    apiKey: "AIzaSyCrydaAdKVQgdiI2npa_9VmovXTcB0Ud3M",
+    apiKey: process.env.FIREBASE_API_KEY || "AIzaSyCrydaAdKVQgdiI2npa_9VmovXTcB0Ud3M",
     authDomain: "wildfire-watch.firebaseapp.com",
     databaseURL: "https://wildfire-watch.firebaseio.com",
     projectId: "wildfire-watch",

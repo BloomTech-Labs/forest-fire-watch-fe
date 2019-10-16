@@ -23,27 +23,29 @@ function Login({ toggle, setShowAuthForms, passwordFormStatus,
   function handleSubmit(e) {
     e.preventDefault();
     setLoading(true);
-    const credentials = { email, password };
-
-    setErrorStatus(false);
-    setErrorText("");
-
-    context.state.remote
-      .login(credentials)
-      .then(res => {
-        setEmail("");
-        setPassword("");
-        setLoading(false);
-        setShowAuthForms(false);
-      })
-      .catch(err => {
-        setErrorText("Email or Password Invalid");
-        setErrorStatus(true);
-        setLoading(false);
-      });
+   
     fire.auth().signInWithEmailAndPassword(email, password)
       .then((user) => {
         console.log(user)
+        const UID = user.user.uid
+        const credentials = { UID };
+
+        setErrorStatus(false);
+        setErrorText("");
+    
+        context.state.remote
+          .login(credentials)
+          .then(res => {
+            setEmail("");
+            setPassword("");
+            setLoading(false);
+            setShowAuthForms(false);
+          })
+          .catch(err => {
+            setErrorText("Email or Password Invalid");
+            setErrorStatus(true);
+            setLoading(false);
+          });
       })
       .catch((err) => {
         console.log(err)
