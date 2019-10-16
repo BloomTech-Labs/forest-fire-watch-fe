@@ -30,7 +30,7 @@ const BodyEl = styled.div`
 display:flex;
 flex-flow:column;
 align-items:center;
-margin-top:120px;
+margin-top:200px;
 @media (max-width:768px){
     margin:60px;
 }
@@ -104,7 +104,7 @@ const LandingPage = ({ toggleAuthForms,
 
     return (
         <Body>
-            <HeadingEl>
+            {/* <HeadingEl>
                 <NavMargin>
                     <h2 >Home</h2>
                 </NavMargin>
@@ -122,7 +122,7 @@ const LandingPage = ({ toggleAuthForms,
                         toggleLoginStatus(false);
                     }}>Sign Up</h2>
                 </NavMargin>
-            </HeadingEl>
+            </HeadingEl> */}
             <BodyEl>
                 <BodyTitle>
                     Wildfire Watch

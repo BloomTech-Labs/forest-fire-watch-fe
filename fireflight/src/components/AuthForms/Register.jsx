@@ -5,6 +5,8 @@ import { GlobalContext } from "../../context/contextProvider";
 import useInput from "../../utils/useInput";
 import styled from "styled-components";
 
+import fire from '../../config/fire'
+
 
 function Register({ toggle, setShowAuthForms }) {
   //useInput is a custom hook that should be used for all controlled inputs
@@ -36,30 +38,41 @@ function Register({ toggle, setShowAuthForms }) {
     // The errorText is set to the error descriptions that are coming from the server.
     // We then display those error descriptions below in some p tags.
 
-    if (password === passwordConf) {
-      const newUser = { firstName, password };
-      data.state.remote
-        .register(newUser)
-        .then(res => {
-          setFirstName("");
-          setLastName("");
-          setEmail("");
-          setPassword("");
-          setPasswordConf("");
-          setLoading(false);
-          setShowAuthForms(false);
-        })
-        .catch(err => {
-          console.log(err);
+    fire.auth().createUserWithEmailAndPassword(email, password)
+      .then((user) => {
+        console.log(user)
+        if (password === passwordConf) {
+          const UID = user.user.uid
+          const newUser = { firstName, lastName, email, UID };
+        
+          data.state.remote
+            .register(newUser)
+            .then(res => {
+              setFirstName("");
+              setLastName("");
+              setEmail("");
+              setPassword("");
+              setPasswordConf("");
+              setLoading(false);
+              setShowAuthForms(false);
+            })
+            .catch(err => {
+              console.log(err);
+              setErrorStatus(true);
+              setErrorText(err.response.data);
+              setLoading(false);
+            });
+        } else {
           setErrorStatus(true);
-          setErrorText(err.response.data);
+          setErrorText({ password: "Passwords must match" });
           setLoading(false);
-        });
-    } else {
-      setErrorStatus(true);
-      setErrorText({ password: "Passwords must match" });
-      setLoading(false);
-    }
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+
+
   }
 
   if (data.token != null) {
@@ -68,18 +81,18 @@ function Register({ toggle, setShowAuthForms }) {
   } else {
     return (
       <div className="login-page-container register-page-container">
-         <button className="form-close-btn" onClick={() => setShowAuthForms(false)}>x</button>
-          <h2 className="form-heading">Create an Account</h2>
-          <div
-            className="fb-login-button"
-            data-width="150px"
-            data-size="medium"
-            data-button-type="login_with"
-            data-auto-logout-link="true"
-            data-use-continue-as="false"
-          />
-          <form className="auth-form-container" onSubmit={handleSubmit}>
-            <div className="input-containers">
+        <button className="form-close-btn" onClick={() => setShowAuthForms(false)}>x</button>
+        <h2 className="form-heading">Create an Account</h2>
+        <div
+          className="fb-login-button"
+          data-width="150px"
+          data-size="medium"
+          data-button-type="login_with"
+          data-auto-logout-link="true"
+          data-use-continue-as="false"
+        />
+        <form className="auth-form-container" onSubmit={handleSubmit}>
+          <div className="input-containers">
             <label htmlFor="firstName">
               First Name
             </label>
@@ -94,8 +107,8 @@ function Register({ toggle, setShowAuthForms }) {
             {errorStatus ? (
               <ErrorText>{errorText.firstName}</ErrorText> //change error text
             ) : (
-              <ErrorText />
-            )}
+                <ErrorText />
+              )}
             <label htmlFor="lastName">
               Last Name
             </label>
@@ -110,8 +123,8 @@ function Register({ toggle, setShowAuthForms }) {
             {errorStatus ? (
               <ErrorText>{errorText.lastName}</ErrorText>
             ) : (
-              <ErrorText />
-            )}
+                <ErrorText />
+              )}
             <label htmlFor="email">
               Email Address
             </label>
@@ -126,8 +139,8 @@ function Register({ toggle, setShowAuthForms }) {
             {errorStatus ? (
               <ErrorText>{errorText.password}</ErrorText>
             ) : (
-              <ErrorText />
-            )}
+                <ErrorText />
+              )}
             <label htmlFor="password">
               Password
             </label>
@@ -143,9 +156,9 @@ function Register({ toggle, setShowAuthForms }) {
             {errorStatus ? (
               <ErrorText>{errorText.password}</ErrorText>
             ) : (
-              <ErrorText />
-            )}
-            {/* <label htmlFor="password">
+                <ErrorText />
+              )}
+            <label htmlFor="password">
              Confirm Password
             </label>
             <input
@@ -156,20 +169,20 @@ function Register({ toggle, setShowAuthForms }) {
               // onChange={e=>setPasswordConf(e.value)}
               onChange={handlePasswordConf}
               placeholder="Confirm Password"
-            /> */}
+            />
 
             <button className="auth-btn register-btn" type="submit" disabled={loading}>
               {loading ? "Loading..." : "Create Account"}
             </button>
-            </div>
-          </form>
-          <p>
+          </div>
+        </form>
+        <p>
           Already have an account?
           <a className="create-an-account" href="#">
             Sign In Here
           </a>
         </p>
-       
+
       </div>
     );
   }
