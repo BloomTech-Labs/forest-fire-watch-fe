@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { GlobalContext } from "../../context/contextProvider";
 import useInput from "../../utils/useInput";
 import { Link } from "react-router-dom";
-
+import fire from '../../config/fire'
 
 function Login({ toggle, setShowAuthForms, passwordFormStatus,
   setPasswordFormStatus }) {
@@ -41,11 +41,18 @@ function Login({ toggle, setShowAuthForms, passwordFormStatus,
         setErrorStatus(true);
         setLoading(false);
       });
+    fire.auth().signInWithEmailAndPassword(email, password)
+      .then((user) => {
+        console.log(user)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
 
   return (
     <div className="login-page-container">
-               <button className="form-close-btn" onClick={() => setShowAuthForms(false)}>x</button>
+      <button className="form-close-btn" onClick={() => setShowAuthForms(false)}>x</button>
       <h2 className="form-heading">Welcome Back</h2>
       <form className="auth-form-container" onSubmit={handleSubmit}>
         <div className="input-containers">
@@ -61,8 +68,8 @@ function Login({ toggle, setShowAuthForms, passwordFormStatus,
           {errorStatus ? (
             <span className="name-error-text">{errorText}</span>
           ) : (
-            <span className="user-error-text" />
-          )}
+              <span className="user-error-text" />
+            )}
           <br />
           <label htmlFor="password">Password</label>
           <input
