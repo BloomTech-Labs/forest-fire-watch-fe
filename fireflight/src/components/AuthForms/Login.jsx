@@ -1,7 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
 import { GlobalContext } from "../../context/contextProvider";
 import useInput from "../../utils/useInput";
-import { Link } from "react-router-dom";
+import styled from "styled-components";
+//not sure if we are using redux or hooks with context, so taking my best guess...
 
 
 function Login({ toggle, setShowAuthForms, passwordFormStatus,
@@ -73,22 +74,8 @@ function Login({ toggle, setShowAuthForms, passwordFormStatus,
             onChange={handlePassword}
             placeholder=""
           />
-          {errorStatus ? (
-            <span className="name-error-text">{errorText}</span>
-          ) : (
-              <span className="user-error-text" />
-            )}
-          <br />
           <span className="forgot-pw">
-            <Link onClick={() => {
-              setPasswordFormStatus(true)
-              setShowAuthForms(true)
-              toggle(true)
-              // toggleAuthForms(true)
-              // toggleRegisterStatus(false)
-              // toggleLoginStatus(false)
-            }}>Forgot your Password?
-            </Link>
+            <a href="#">Forgot your Password?</a>
           </span>
           <button className="auth-btn" type="submit" disabled={loading}>
             {loading ? "Loading..." : "Sign In"}
@@ -101,10 +88,6 @@ function Login({ toggle, setShowAuthForms, passwordFormStatus,
           </a>
         </p>
       </form>
-      {/* Remove Registration split */}
-      {/* <LoginSplitContainer>
-        <LoginSplit toggle={toggle} />
-      </LoginSplitContainer> */}
     </div>
   );
 }
