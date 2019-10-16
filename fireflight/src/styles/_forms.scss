@@ -1,43 +1,89 @@
 // Map Form Container
 .map-form-container {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 
-    // Address Input Compass Icon
-    .fa-compass {
-        background-color: #FFF;
-        border: solid 1px #000;
-        border-right: none;
-        border-radius: 5px;
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-        color: #555;
-        margin: 25px 0px 5px 25px;
-        padding: 11px;
-    }
+  // Address Input Compass Icon
+  // .fa-compass {
+  //     background-color: #FFF;
+  //     border: solid 1px #000;
+  //     border-right: none;
+  //     border-radius: 5px;
+  //     border-top-right-radius: 0;
+  //     border-bottom-right-radius: 0;
+  //     color: #555;
+  //     margin: 25px 0px 5px 25px;
+  //     padding: 11px;
+  // }
 
-    // Address Input
-    .address-input {
-        border: solid 1px #000;
-        border-left: none;
-        border-radius: 5px;
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-        margin: 25px 25px 5px 0px;
-        padding: 10px;
-        font-size: 1em;
-        width: 250px;
-    }
+  //map form text
+  .map-form-text {
+    color: white;
+    font-size: 1.4rem;
+    position: absolute;
+    top: 98px;
+    left: 17px;
+  }
+  // Address Input
+  .address-input {
+    // border: solid 1px #000;
+    // border-left: none;
+    // border-radius: 5px;
+    // border-top-left-radius: 0;
+    // border-bottom-left-radius: 0;
+    // margin: 25px 25px 5px 0px;
+    // padding: 10px;
+    // font-size: 1em;
+    // width: 250px;
+    width: 306px;
+    height: 52px;
+    background: #ffffff;
+    border-radius: 3px;
+    position: absolute;
+    top: 128px;
+    left: 17px;
 
-    // Radius Input
-    .radius-input {
-        border: solid 1px black;
-        border-radius: 5px;
-        font-size: 1em;
-        margin: 25px 17.5px 5px 0;
-        padding: 10px;
-        width: 150px;
+    &::placeholder {
+      font-family: "Open Sans";
+      font-style: normal;
+      font-weight: normal;
+      font-size: 20px;
+      line-height: 27px;
+      display: flex;
+      align-items: center;
+      color: #a9a9a9;
+      padding-left: 17px;
     }
+  }
+
+  // Radius Input
+  .radius-input {
+    // border: solid 1px black;
+    // border-radius: 5px;
+    // font-size: 1em;
+    // margin: 25px 17.5px 5px 0;
+    // padding: 10px;
+    // width: 150px;
+    width: 84px;
+    height: 52px;
+    background: #ffffff;
+    border-radius: 3px;
+    position: absolute;
+    top: 128px;
+    left: 337px;
+
+    &::placeholder {
+      font-family: "Open Sans";
+      font-style: normal;
+      font-weight: normal;
+      font-size: 20px;
+      line-height: 27px;
+      display: flex;
+      align-items: center;
+      color: #a9a9a9;
+      padding-left: 17px;
+    }
+  }
 }

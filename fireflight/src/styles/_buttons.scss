@@ -1,14 +1,27 @@
 // Find Active Fires Button
 .form-btn {
   cursor: pointer;
-  border: solid 1px black;
-  border-radius: 5px;
-  height: 40px;
-  margin: 25px 0px 5px;
-  background-color: $accentColor;
-  color: $lilia;
-  font-size: 1em;
-  width: 150px;
+  // border: solid 1px black;
+  // border-radius: 5px;
+  // height: 40px;
+  // margin: 25px 0px 5px;
+  // background-color: $accentColor;
+  // color: $lilia;
+  // font-size: 1em;
+  // width: 150px;
+  position: absolute;
+  top: 197px;
+  left: 20px;
+  width: 109px;
+  height: 38px;
+  background: #FFFFFF;
+  border-radius: 3px;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 19px;
+  color: #251400;
   @include easeOut;
 
   &:hover {

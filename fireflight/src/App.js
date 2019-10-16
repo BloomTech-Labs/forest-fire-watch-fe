@@ -34,6 +34,7 @@ function App() {
   const [showAuthForms, setShowAuthForms] = useState(false);
   const [loginFormStatus, setLoginFormStatus] = useState(true);
   const [registerFormStatus, setRegisterFormStatus] = useState(false);
+  const [passwordFormStatus, setPasswordFormStatus] = useState(false);
 
   const global = useContext(GlobalContext);
   const { fireDataState, getAllFires, setUserLocations } = useContext(
@@ -93,6 +94,9 @@ function App() {
           registerFormStatus={registerFormStatus}
           setLoginFormStatus={setLoginFormStatus}
           setRegisterFormStatus={setRegisterFormStatus}
+          passwordFormStatus={passwordFormStatus}
+          setPasswordFormStatus={setPasswordFormStatus}
+
         />
 
         <Navigation
@@ -151,11 +155,6 @@ const AppWrapper = styled.div`
   ${v.tablet} {
     flex-direction: row;
   }
-  background-image: linear-gradient(
-    #f8b195,
-    #f67280,
-    #c06c84,
-    #6c5b7b,
-    #355c7d
+  background-image: url("https://www.fireflightapp.com/public/images/wildfire.jpg")
   );
 `;
