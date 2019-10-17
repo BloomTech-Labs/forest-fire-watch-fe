@@ -17,9 +17,14 @@ import { UserDataProvider } from "./context/UserDataContext";
 import { FireDataContext } from "./context/FireDataContext";
 
 import * as v from "./styles/vars";
+import * as Sentry from "@sentry/browser";
 
 import "./styles/App.scss";
-
+import fire from "./config/fire";
+import LandingPage from "./components/LandingPage";
+Sentry.init({
+  dsn: "https://2281acb5134d4680927ead14de3c5727@sentry.io/1775951"
+});
 require("dotenv").config();
 
 const token = localStorage.getItem("token");
@@ -32,11 +37,15 @@ function App() {
   const [showAuthForms, setShowAuthForms] = useState(false);
   const [loginFormStatus, setLoginFormStatus] = useState(true);
   const [registerFormStatus, setRegisterFormStatus] = useState(false);
+  const [passwordFormStatus, setPasswordFormStatus] = useState(false);
+  const [firebaseUser, setFirebaseUser] = useState({});
 
   const global = useContext(GlobalContext);
   const { fireDataState, getAllFires, setUserLocations } = useContext(
     FireDataContext
   );
+
+  console.log("FIRE DATA STATE", fireDataState);
 
   useEffect(() => {
     getAllFires();
@@ -44,10 +53,10 @@ function App() {
 
   useEffect(() => {
     if (token) {
-      console.log('effect')
+      console.log("effect");
       setUserLocations();
     }
-  }, [fireDataState.allFires,fireDataState.selectedMarker]);
+  }, [fireDataState.allFires, fireDataState.selectedMarker]);
 
   useEffect(() => {
     //getLogin gets login information upon page load here;
@@ -79,6 +88,17 @@ function App() {
     }
   }, [token]);
 
+  const authListener = () => {
+    fire.auth().onAuthStateChanged(user => {
+      if (user) {
+        setFirebaseUser(user);
+        console.log(firebaseUser);
+      } else {
+        setFirebaseUser(null);
+        console.log("no user returned");
+      }
+    });
+  };
   return (
     <AppWrapper>
       <AddressContext>
@@ -89,6 +109,8 @@ function App() {
           registerFormStatus={registerFormStatus}
           setLoginFormStatus={setLoginFormStatus}
           setRegisterFormStatus={setRegisterFormStatus}
+          passwordFormStatus={passwordFormStatus}
+          setPasswordFormStatus={setPasswordFormStatus}
         />
 
         <Navigation
@@ -110,9 +132,21 @@ function App() {
             />
           )}
         />
+        {/* unused component - delete */}
         <Route path="/update" component={Update} />
 
+        {/* unused component - delete */}
         <Route path="/danger" component={Danger} />
+        <Route
+          path="/landing-page"
+          render={() => (
+            <LandingPage
+              toggleAuthForms={setShowAuthForms}
+              toggleLoginStatus={setLoginFormStatus}
+              toggleRegisterStatus={setRegisterFormStatus}
+            />
+          )}
+        />
 
         <Route
           path="/home"
@@ -140,11 +174,6 @@ const AppWrapper = styled.div`
   ${v.tablet} {
     flex-direction: row;
   }
-  background-image: linear-gradient(
-    #f8b195,
-    #f67280,
-    #c06c84,
-    #6c5b7b,
-    #355c7d
+  background-image: url("https://www.fireflightapp.com/public/images/wildfire.jpg")
   );
 `;

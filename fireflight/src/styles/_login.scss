@@ -1,0 +1,65 @@
+.login-page-container {
+  max-width: 800px;
+  min-height: 47rem;
+  height: 400px;
+  margin: auto;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 2px;
+  flex-direction: column;
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+    position: absolute;
+    width: 318px;
+    height: 354px;
+    left: 29px;
+    top: 78px;
+    background: #FFFFFF;
+    border-radius: 1px;
+  }
+
+  .input-containers {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 462px;
+
+    label {
+      height: 22px;
+      font-size: 16px;
+      line-height: 22px;
+      font-style: normal;
+      font-weight: normal;
+
+      @media (max-width: 900px) {
+        width: 239px;
+        height: 38px;
+        font-size: 14px;
+        line-height: 19px;
+      }
+    }
+
+    .forgot-pw {
+      margin-top: 10px;
+    }
+
+    .forgot-pw a {
+      margin-top: 10px;
+      width: 132px;
+      height: 19px;
+      font-style: normal;
+      font-size: 12px;
+      line-height: 16px;
+      color: #adadad;
+    }
+  }
+
+  .create-an-account {
+    margin-left: 5px;
+    color: #70c0f1;
+  }
+}

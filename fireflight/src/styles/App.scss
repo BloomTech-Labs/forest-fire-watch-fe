@@ -1,8 +1,13 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
+
 // Variables / Mixins
 @import "vars";
 
 // Components
 @import "navigation";
+@import "login";
+@import "register";
 @import "auth-forms";
 @import "forms";
 @import "buttons";
@@ -11,38 +16,72 @@
 @import "model-splits";
 @import "dashboard";
 
+html {
+  font-size: 62.5%;
+  font-family: "Open Sans", sans-serif;
+}
+
 html,
 body {
   margin: 0;
   padding: 0;
+  font-style: normal;
+  font-weight: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-style: normal;
+  font-weight: normal;
 }
 
 a,
 p {
   font-family: $content;
   font-weight: bold;
+  text-decoration: none;
+  font-family: "Open Sans", sans-serif;
+}
+
+input {
+  outline: none;
+  border: none;
+}
+
+button {
+  border: none;
 }
 
 .form-heading {
-  color: $lilia;
-  font-family: $header;
-  font-weight: 500;
-}
+  margin: 2rem auto;
+  height: 4rem;
+  font-family: "Open Sans", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 3.6rem;
+  line-height: 4.8rem;
+  /* identical to box height */
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #000000;
 
-.forgot-pw {
-  color: $lilia;
-  font-size: 0.75em;
-  position: relative;
-  top: 35px;
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
+   @media (max-width: 900px) {
+      font-family: Open Sans;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 25px;
+      color: #000000;
+   }
 }
 
 .form-text {
-  color: $lilia;
+  color: black;
   font-size: 0.9em;
   font-weight: 300;
 }
@@ -50,6 +89,17 @@ p {
 .info-text {
   font-size: 0.9em;
   text-align: center;
+}
+
+.form-close-btn {
+  border: none;
+  align-self: flex-end;
+  font-size: 2rem;
+  margin-right: 20px;
+  margin-top: 20px;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 // Mobile View Import
