@@ -8,10 +8,14 @@ class connector {
    */
   constructor() {
     this.connector = axios;
-    if (process.env.NODE_ENV === "production")
+    if (process.env.NODE_ENV === "production") {
       this.coreString = "https://wildfire-watch.herokuapp.com/api/";
-    //http here
-    else this.coreString = "http://localhost:5000/api/";
+    } else if (process.env.NODE_ENV === "staging") {
+      this.coreString = "https://wildfire-watch-staging.herokuapp.com/api/";
+    } else {
+      this.coreString = "http://localhost:5000/api/";
+    }
+
     this.fireflight = process.env.REACT_APP_MAPBOX_TOKEN;
     if (localStorage.getItem("token") != null) {
       this.connector.defaults.headers.common[
@@ -38,7 +42,7 @@ class connector {
     let res = await axios.post(this.coreString + "auth/login", creds);
 
     let data = await res.data;
-    console.log(data)
+    console.log(data);
     if (res.status == 200) {
       //success test
       localStorage.setItem("token", data.token);
@@ -60,7 +64,7 @@ class connector {
     localStorage.removeItem("token");
 
     // adding this page refresh to clear lingering location pins from the map upon logout.
-    window.location.reload(false); 
+    window.location.reload(false);
   }
 
   /**
