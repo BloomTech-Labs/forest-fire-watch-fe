@@ -8,13 +8,14 @@ class connector {
    */
   constructor() {
     this.connector = axios;
-    if (process.env.NODE_ENV === "production") {
-      this.coreString = "https://wildfire-watch.herokuapp.com/api/";
-    } else if (process.env.NODE_ENV === "staging") {
-      this.coreString = "https://wildfire-watch-staging.herokuapp.com/api/";
-    } else {
-      this.coreString = "http://localhost:5000/api/";
-    }
+    this.coreString = "https://wildfire-watch-staging.herokuapp.com/"
+    // if (process.env.NODE_ENV === "production") {
+    //   this.coreString = "https://wildfire-watch.herokuapp.com/api/";
+    // } else if (process.env.NODE_ENV === "staging") {
+    //   this.coreString = "https://wildfire-watch-staging.herokuapp.com/api/";
+    // } else {
+    //   this.coreString = "http://localhost:5000/api/";
+    // }
 
     this.fireflight = process.env.REACT_APP_MAPBOX_TOKEN;
     if (localStorage.getItem("token") != null) {
