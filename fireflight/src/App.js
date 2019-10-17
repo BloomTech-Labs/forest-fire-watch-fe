@@ -17,15 +17,15 @@ import { UserDataProvider } from "./context/UserDataContext";
 import { FireDataContext } from "./context/FireDataContext";
 
 import * as v from "./styles/vars";
-import * as Sentry from '@sentry/browser';
+import * as Sentry from "@sentry/browser";
 
 import "./styles/App.scss";
-import fire from './config/fire';
+import fire from "./config/fire";
 import LandingPage from "./components/LandingPage";
-Sentry.init({ dsn: "https://2281acb5134d4680927ead14de3c5727@sentry.io/1775951" });
+Sentry.init({
+  dsn: "https://2281acb5134d4680927ead14de3c5727@sentry.io/1775951"
+});
 require("dotenv").config();
-
-
 
 const token = localStorage.getItem("token");
 
@@ -38,7 +38,7 @@ function App() {
   const [loginFormStatus, setLoginFormStatus] = useState(true);
   const [registerFormStatus, setRegisterFormStatus] = useState(false);
   const [passwordFormStatus, setPasswordFormStatus] = useState(false);
-  const [firebaseUser, setFirebaseUser] = useState({})
+  const [firebaseUser, setFirebaseUser] = useState({});
 
   const global = useContext(GlobalContext);
   const { fireDataState, getAllFires, setUserLocations } = useContext(
@@ -89,17 +89,16 @@ function App() {
   }, [token]);
 
   const authListener = () => {
-    fire.auth().onAuthStateChanged((user) => {
+    fire.auth().onAuthStateChanged(user => {
       if (user) {
-        setFirebaseUser(user)
-        console.log(firebaseUser)
+        setFirebaseUser(user);
+        console.log(firebaseUser);
+      } else {
+        setFirebaseUser(null);
+        console.log("no user returned");
       }
-      else {
-        setFirebaseUser(null)
-        console.log('no user returned')
-      }
-    })
-  }
+    });
+  };
   return (
     <AppWrapper>
       <AddressContext>
@@ -112,7 +111,6 @@ function App() {
           setRegisterFormStatus={setRegisterFormStatus}
           passwordFormStatus={passwordFormStatus}
           setPasswordFormStatus={setPasswordFormStatus}
-
         />
 
         <Navigation
@@ -139,11 +137,16 @@ function App() {
 
         {/* unused component - delete */}
         <Route path="/danger" component={Danger} />
-        <Route path="/landing-page" render={() => (
-          <LandingPage toggleAuthForms={setShowAuthForms}
-            toggleLoginStatus={setLoginFormStatus}
-            toggleRegisterStatus={setRegisterFormStatus} />
-        )} />
+        <Route
+          path="/landing-page"
+          render={() => (
+            <LandingPage
+              toggleAuthForms={setShowAuthForms}
+              toggleLoginStatus={setLoginFormStatus}
+              toggleRegisterStatus={setRegisterFormStatus}
+            />
+          )}
+        />
 
         <Route
           path="/home"
