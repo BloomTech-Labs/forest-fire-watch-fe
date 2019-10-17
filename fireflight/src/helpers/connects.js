@@ -1,14 +1,14 @@
 import axios from "axios";
 import stats from "./status.js";
 import { isArray } from "util";
-
+import { base_url_local, base_url_staging } from '../src/config/vars'
 class connector {
   /**
    * This class is built as a helper to deal with all connection requests.
    */
   constructor() {
     this.connector = axios;
-    this.coreString = "https://wildfire-watch-staging.herokuapp.com/api/"
+    this.coreString = base_url_staging
     // if (process.env.NODE_ENV === "production") {
     //   this.coreString = "https://wildfire-watch.herokuapp.com/api/";
     // } else if (process.env.NODE_ENV === "staging") {
