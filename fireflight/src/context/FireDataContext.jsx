@@ -4,10 +4,10 @@ import axiosWithAuth from "../utils/axiosWithAuth";
 import { Marker } from "react-map-gl";
 import { haversineDistance } from "../utils/haversineDistance";
 
-import fireIcon from "../images/fireIcon.png";
+import fireIcon from "../images/fireIcon.svg";
 import exclamationMark from "../images/exclaim.png";
-import locationIcon from "../images/locationIcon.png";
-import locationIconGreen from "../images/locationIconGreen.png";
+import locationIcon from "../images/locationIcon.svg";
+import locationIconGreen from "../images/locationIconGreen.svg";
 
 import {
   GET_USER_LOCATIONS,
@@ -152,12 +152,12 @@ export const FireDataProvider = ({ children }) => {
               width="15"
               style={{ zIndex: 100, transform: "translate(-10px, -9px)" }}
               alt=""
-            // onClick={e => {
-            //   dispatch({
-            //     type: SET_SELECTED_MARKER,
-            //     payload: [fire[1], fire[0], null, null, "fireLocation"]
-            //   });
-            // }}
+              // onClick={e => {
+              //   dispatch({
+              //     type: SET_SELECTED_MARKER,
+              //     payload: [fire[1], fire[0], null, null, "fireLocation"]
+              //   });
+              // }}
             />
           </Marker>
         ));
