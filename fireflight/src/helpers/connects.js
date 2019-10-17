@@ -8,7 +8,7 @@ class connector {
    */
   constructor() {
     this.connector = axios;
-    this.coreString = "https://wildfire-watch-staging.herokuapp.com/"
+    this.coreString = "https://wildfire-watch-staging.herokuapp.com/api"
     // if (process.env.NODE_ENV === "production") {
     //   this.coreString = "https://wildfire-watch.herokuapp.com/api/";
     // } else if (process.env.NODE_ENV === "staging") {
