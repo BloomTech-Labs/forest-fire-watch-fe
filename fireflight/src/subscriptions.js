@@ -1,4 +1,4 @@
-import { base_url_local, base_url_staging } from '../src/config/vars'
+import { base_url_local, base_url_staging } from "../src/config/vars";
 const convertVapid = urlBase64ToUint8Array(process.env.REACT_APP_VAPID_PUBLIC);
 
 function urlBase64ToUint8Array(base64String) {
@@ -18,7 +18,7 @@ function urlBase64ToUint8Array(base64String) {
 }
 
 const sendSubscription = sub => {
-  const location = `${base_url_staging}/push/register`;
+  const location = `${base_url_staging}push/register`;
   return fetch(location, {
     method: "POST",
     body: JSON.stringify(sub),
