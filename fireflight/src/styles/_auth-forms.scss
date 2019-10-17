@@ -1,20 +1,28 @@
-.form-container {
+.auth-form-container {
   display: flex;
   flex-direction: column;
+   .input-containers {
+      @media (max-width: 900px) {
+        width: 100%;
+        margin: 0 auto;
+    }
+   }
 }
 
+
+
 // Auth Input Icons
-.fa-user-circle,
-.fa-key,
-.fa-lock {
-  background-color: #355c7d;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  color: #fff;
-  padding: 14px 7px;
-}
+// .fa-user-circle,
+// .fa-key,
+// .fa-lock {
+//   background-color: #355c7d;
+//   border-top-left-radius: 5px;
+//   border-bottom-left-radius: 5px;
+//   border-top-right-radius: 0;
+//   border-bottom-right-radius: 0;
+//   color: #fff;
+//   padding: 14px 7px;
+// }
 
 // Sign In and Sign Up Forms
 .form-input {
@@ -35,6 +43,18 @@
   @include mediaLg {
     width: 75%;
   }
+
+  @media (max-width: 900px) {
+        // position: absolute;
+        margin: 0 auto;
+        width: 239px;
+        height: 38px;
+        // left: 69px;
+        // top: 184px;
+
+        background: #FFFFFF;
+        border: 0.8px solid #969696;
+    }
 }
 
 .form-input-phone {
@@ -73,3 +93,4 @@
   width: 250px;
   z-index: 10;
 }
+

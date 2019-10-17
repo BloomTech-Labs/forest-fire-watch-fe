@@ -4,23 +4,24 @@
     // Navigation Bar
     .nav-container {
         // background-image: linear-gradient(to bottom, #355C7D, #F67280 95%);
-        // height: 80px;
-        // width: 100%;
+        height: 0;
+        width: 100%;
+        
 
-        // FireFlight Logo
-        .brand {
-            float: left;
+        // // FireFlight Logo
+        // .brand {
+        //     float: left;
 
-            .logo {
-                height: 50px;
-                width: 40px;
-            }
+        //     .logo {
+        //         height: 50px;
+        //         width: 40px;
+        //     }
 
-            .logo-txt {
-                color: white;
-                font-family: $header;
-            }
-        }
+        //     .logo-txt {
+        //         color: white;
+        //         font-family: $header;
+        //     }
+        // }
 
         // Dropdown Menu   
         .dropdown {
@@ -44,22 +45,22 @@
             }
 
             .dropdown-content {
-                background-color: $accentColor;
-                box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-                display: block;
-                right: 0;
+                background-color: transparent;
+                position: static;
+                right: auto;
+                margin: auto;
                 text-align: center;
-                min-width: 160px;
-                z-index: 2;
+                padding-left: 15px;
+                padding-top: 20px;
 
                 a {
                     color: $lilia;
                     display: block;
                 }
 
-                .fa-user-plus, .fa-user-check {
-                    margin: 0;
-                  }
+                // .fa-user-plus, .fa-user-check {
+                //     margin: 0;
+                //   }
             }
         }
     }
@@ -75,24 +76,27 @@
         position: relative;
         left: 1em;
 
-        .fa-compass {
-            display: none;
-        }
-
         .address-input {
-            border-left: solid 1px #000;
-            border-top-left-radius: 5px;
-            border-bottom-left-radius: 5px;
-            margin-bottom: 0;
+            // border-left: solid 1px #000;
+            // border-top-left-radius: 5px;
+            // border-bottom-left-radius: 5px;
+            // margin-bottom: 0;
+            position: absolute;
+            width: 245px;
+            height: 42px;
+            left: 20px;
+            top: 118px;
+            background: #FFFFFF;
+            border-radius: 3px;
 
             &::placeholder {
-                text-align: center;
+                 padding-left: 17px;
             }
         }
 
         .radius-input {
-            height: 39px;
-            margin-top: 10px;
+            // height: 39px;
+            // margin-top: 10px;
             margin-bottom: 0;
 
             &::placeholder {
@@ -102,21 +106,27 @@
 
         //   Find Active Fires Button 
         .form-btn {
-            height: 60px;
-            position: relative;
-            margin-top: 10px;
-            margin-right: 1.25em;
-            width: 200px;
+            // height: 60px;
+            // position: relative;
+            // margin-top: 10px;
+            // margin-right: 1.25em;
+            // width: 200px;
+            position: absolute;
+            left: 5.33%;
+            right: 20px;
+            top: 175px;
+            bottom: 75.62%;
+            background: #FFFFFF;
+            border-radius: 3px;
         }
     }
 
-    .legend-container {
-        position: relative;
-        top: 0;
-        left: 0;
-        margin: 0 auto;
-        width: 100%;
-    }
+    // .legend-container {
+    //     position: absolute;
+    //     top: 234px;
+    //     left: 20px;
+    //     height: auto;
+    // }
 }
 
 // Medium View
