@@ -10,7 +10,7 @@
   border-radius: 2px;
   flex-direction: column;
 
-  @media (max-width: 900px) {
+  @media (max-width: $mq-mobile) {
     flex-direction: column;
     position: absolute;
     width: 318px;
@@ -35,7 +35,7 @@
       font-style: normal;
       font-weight: normal;
 
-      @media (max-width: 900px) {
+      @media (max-width: $mq-mobile) {
         width: 239px;
         height: 38px;
         font-size: 14px;

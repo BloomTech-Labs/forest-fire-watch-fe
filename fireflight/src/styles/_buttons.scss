@@ -6,7 +6,7 @@
   left: 2rem;
   width: 10.9rem;
   height: 3.8rem;
-  background: #FFFFFF;
+  background: #ffffff;
   border-radius: 3px;
   font-family: "Open Sans", sans-serif;
   font-style: normal;
@@ -16,11 +16,15 @@
   color: #251400;
   @include easeOut;
 
-  // &:hover {
-  //   color: $accentColor;
-  //   background-color: $lilia;
-  //   @include easeOut;
-  // }
+  @media (max-width: $mq-mobile) {
+    position: absolute;
+    left: 5.33%;
+    right: 20px;
+    top: 175px;
+    bottom: 75.62%;
+    background: #ffffff;
+    border-radius: 3px;
+  }
 }
 
 .signup-btn {
@@ -30,7 +34,7 @@
   left: 16.1rem;
   width: 13.6rem;
   height: 4.8rem;
-  background: #FFFFFF;
+  background: #ffffff;
   border-radius: 3px;
   font-family: Open Sans;
   font-style: normal;
@@ -40,15 +44,15 @@
   color: #251400;
   @include easeOut;
 
-   @media (max-width: 900px) {
-      position: absolute;
-      width: 13.6rem;
-      height: 4.7rem;
-      left: 12.1rem;
-      top: 55rem;
-      background: #FFFFFF;
-      border-radius: 3px;
-   }
+  @media (max-width: 900px) {
+    position: absolute;
+    width: 13.6rem;
+    height: 4.7rem;
+    left: 12.1rem;
+    top: 55rem;
+    background: #ffffff;
+    border-radius: 3px;
+  }
 
   // &:hover {
   //   color: $accentColor;
@@ -108,4 +112,3 @@
     width: 50%;
   }
 }
-

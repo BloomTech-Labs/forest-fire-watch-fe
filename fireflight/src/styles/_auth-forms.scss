@@ -80,14 +80,9 @@
 
 // Login and Signup Error Text
 .name-error-text {
-  background-color: red;
   border-radius: 5px;
-  color: $lilia;
-  margin: 5px 0 0 5px;
-  padding: 5px;
-  position: absolute;
-  top: 32%;
-  left: 8%;
-  width: 250px;
+  color: red;
+  margin-top: 10px;
+  width: 100%;
   z-index: 10;
 }

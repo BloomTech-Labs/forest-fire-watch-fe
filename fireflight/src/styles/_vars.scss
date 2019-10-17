@@ -1,4 +1,8 @@
 // Media Queries
+
+// < 576 (mobile)
+// 576 - 900 (tablet)
+// > 900 (
 @mixin mediaSm {
   @media (max-width: 576px) {
     @content;
@@ -22,8 +26,9 @@
 }
 
 // Media queries
-$mq-mobile: 576px;
-$mq-desktop: 1680px;
+$mq-mobile: 500px;
+$mq-tablet: 800px;
+$mq-desktop: 1000px;
 
 // Fonts
 $header: Noto Sans KR, sans-serif;
