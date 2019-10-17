@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import fireIcon from "../images/fireIcon.svg";
 import exclamationMark from "../images/exclaim.png";
 import locationIcon from "../images/locationIcon.svg";
@@ -6,7 +6,18 @@ import locationIconGreen from "../images/locationIconGreen.svg";
 import mapLegend from "../images/mapLegend.svg";
 
 const MapLegend = () => {
-  const [showLegend, setShowLegend] = useState(true);
+  const [showLegend, setShowLegend] = useState(false);
+
+  //legend toggle open for wider than 576p
+  useEffect(() => {
+    let w = Math.max(
+      document.documentElement.clientWidth,
+      window.innerWidth || 0
+    );
+    if (w > 576) {
+      setShowLegend(true);
+    }
+  }, []);
 
   return (
     <div className="legend-container">
