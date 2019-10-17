@@ -21,6 +21,10 @@
   transition: all 0.5s ease-out;
 }
 
+// Media queries
+$mq-mobile: 576px;
+$mq-desktop: 1680px;
+
 // Fonts
 $header: Noto Sans KR, sans-serif;
 $content: Arial, Helvetica, sans-serif;
