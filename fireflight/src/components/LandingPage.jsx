@@ -1,6 +1,6 @@
 import React from "react";
-import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const HeadingEl = styled.h3`
 font-style: normal;
@@ -15,26 +15,26 @@ color: #FFFFFF;
     font-size:14px
     line-height: 19px;
 }
-`
+`;
 const NavMargin = styled.span`
-@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
-font-family: Open-Sans;
-margin-right:57px;
-margin-left:57px;
-color:white;
-@media (max-width:768px){
-    margin:10px
-}
-`
+  @import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
+  font-family: Open-Sans;
+  margin-right: 57px;
+  margin-left: 57px;
+  color: white;
+  @media (max-width: 768px) {
+    margin: 10px;
+  }
+`;
 const BodyEl = styled.div`
-display:flex;
-flex-flow:column;
-align-items:center;
-margin-top:200px;
-@media (max-width:768px){
-    margin:60px;
-}
-`
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  margin: 100px 0px;
+  @media (max-width: 768px) {
+    margin: 60px;
+  }
+`;
 const BodyTitle = styled.h1`
 width: 495px;
 height: 88px;
@@ -44,7 +44,7 @@ height: 88px;
     font-size: 38px;
     line-height: 48px;
 }
-font-family: Oxygen;
+margin-top: 0;
 font-style: normal;
 font-weight: bold;
 font-size: 70px;
@@ -52,7 +52,7 @@ line-height: 88px;
 display: flex;
 align-items: center;
 color: #FFFFFF;
-`
+`;
 const BodyDes = styled.h4`
 width: 710px;
 height: 120px;
@@ -64,75 +64,63 @@ height: 120px;
 font-family: Open Sans;
 font-style: normal;
 font-weight: 300;
-font-size: 35px;
-line-height: 48px;
+font-size: 3rem;
+line-height: 4.5rem;
 display: flex;
 align-items: center;
 color: #FFFFFF;
-`
+`;
 const Button = styled.button`
-width: 158px;
-height: 49px;
-text-align:center;
-font-family: Open Sans;
-font-style: normal;
-font-weight: 600;
-font-size: 24px;
-line-height: 33px;
-/* identical to box height */
-color: #251400;
-@media (max-width:768px){
+  width: 158px;
+  height: 49px;
+  border: none;
+  text-align: center;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 33px;
+  /* identical to box height */
+  color: #251400;
+  &:hover {
+    cursor: pointer;
+  }
+  @media (max-width: 768px) {
     width: 120px;
-height: 37px;
-left: 146.23px;
-top: 373.56px;
-font-weight: 600;
-font-size: 18px;
-line-height: 25px;
-}
-`
+    height: 37px;
+    left: 146.23px;
+    top: 373.56px;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 25px;
+  }
+`;
 const Body = styled.body`
-position: absolute;
-width: 100%;
-height: 100%;
-background-image:url('https://www.fireflightapp.com/public/images/wildfire.jpg');
-`
-const LandingPage = ({ toggleAuthForms,
-    toggleLoginStatus,
-    toggleRegisterStatus, }) => {
-
-
-    return (
-        <Body>
-            {/* <HeadingEl>
-                <NavMargin>
-                    <h2 >Home</h2>
-                </NavMargin>
-                <NavMargin>
-                    <h2 onClick={() => {
-                        toggleAuthForms(true);
-                        toggleRegisterStatus(false);
-                        toggleLoginStatus(true);
-                    }}>Sign In</h2>
-                </NavMargin>
-                <NavMargin>
-                    <h2 onClick={() => {
-                        toggleAuthForms(true);
-                        toggleRegisterStatus(true);
-                        toggleLoginStatus(false);
-                    }}>Sign Up</h2>
-                </NavMargin>
-            </HeadingEl> */}
-            <BodyEl>
-                <BodyTitle>
-                    Wildfire Watch
-                </BodyTitle>
-                <BodyDes>
-                    The most detailed and updated forest fire information at your fingertips. Customize your notifications, and we've got the rest.
-                </BodyDes>
-                <Link to="/"><Button>Try It Out</Button></Link>
-            </BodyEl>
-        </Body>
-    )
-}
-export default LandingPage
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://www.fireflightapp.com/public/images/wildfire.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+`;
+const LandingPage = ({
+  toggleAuthForms,
+  toggleLoginStatus,
+  toggleRegisterStatus
+}) => {
+  return (
+    <Body>
+      <BodyEl>
+        <BodyTitle>Wildfire Watch</BodyTitle>
+        <BodyDes>
+          The most detailed and updated forest fire information at your
+          fingertips. Customize your notifications, and we've got the rest.
+        </BodyDes>
+        <Link to="/">
+          <Button>Try It Out</Button>
+        </Link>
+      </BodyEl>
+    </Body>
+  );
+};
+export default LandingPage;

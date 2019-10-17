@@ -1,17 +1,22 @@
 import React, { useState } from "react";
-import fireIcon from "../images/fireIcon.png";
+import fireIcon from "../images/fireIcon.svg";
 import exclamationMark from "../images/exclaim.png";
-import locationIcon from "../images/locationIcon.png";
-import locationIconGreen from "../images/locationIconGreen.png";
+import locationIcon from "../images/locationIcon.svg";
+import locationIconGreen from "../images/locationIconGreen.svg";
+import mapLegend from "../images/mapLegend.svg";
 
 const MapLegend = () => {
   const [showLegend, setShowLegend] = useState(true);
 
   return (
     <div className="legend-container">
-      <h4 class="legend-title" onClick={() => setShowLegend(!showLegend)}>
-        Map Legend
-      </h4>
+      <div class="legend-header">
+        <img src={mapLegend} height="18" width="10" alt="map-view" />
+        <h4 class="legend-title" onClick={() => setShowLegend(!showLegend)}>
+          Map Legend
+        </h4>
+      </div>
+
       <div
         style={{
           display: showLegend ? "flex" : "none",
@@ -23,7 +28,7 @@ const MapLegend = () => {
             src={locationIcon}
             height="25"
             width="15"
-            style={{ zIndex: 5, transform: "translate(0px, 10px)" }}
+            style={{ zIndex: 5, transform: "translate(0px, 5px)" }}
             alt="Searched location"
           />
           <h5 className="legend-text">Your searched location</h5>
@@ -33,7 +38,7 @@ const MapLegend = () => {
             src={locationIconGreen}
             height="25"
             width="15"
-            style={{ zIndex: 5, transform: "translate(0px, 10px)" }}
+            style={{ zIndex: 5, transform: "translate(0px, 5px)" }}
             alt="Saved location"
           />
           <h5 className="legend-text">Your saved locations</h5>
@@ -43,7 +48,7 @@ const MapLegend = () => {
             src={fireIcon}
             height="20"
             width="15"
-            style={{ zIndex: 5, transform: "translate(0px, 10px)" }}
+            style={{ zIndex: 5, transform: "translate(0px, 5px)" }}
             alt="Active Fire"
           />
           <h5 className="legend-text">Active Fire</h5>
@@ -53,7 +58,7 @@ const MapLegend = () => {
             src={exclamationMark}
             height="20"
             width="15"
-            style={{ zIndex: 5, transform: "translate(0px, 10px)" }}
+            style={{ zIndex: 5, transform: "translate(0px, 5px)" }}
             alt="Fire within radius"
           />
           <h5 className="legend-text">Fire Within Radius </h5>
