@@ -16,7 +16,7 @@
       gtag("config", "UA-147488135-1");
     </script>
     <meta charset="utf-8" />
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon1.svg" />
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
@@ -24,49 +24,36 @@
       content="Web application to alert you to potential fire danger"
     />
     <link rel="apple-touch-icon" href="logo192.png" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/3d1511cb9a.js"></script>
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <title>Wildfire Watch</title>
+    <title>FireFlight</title>
   </head>
-
   <body>
-    <div id="fb-root"></div>
-    <script
-      async
-      defer
-      crossorigin="anonymous"
-      src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v4.0&appId=392748014702787&autoLogAppEvents=1"
-    ></script>
-    <script>
-      window.fbAsyncInit = function() {
-        FB.init({
-          appId: 392748014702787,
-          cookie: true,
-          xfbml: true,
-          version: "v4.0"
-        });
-        FB.AppEvents.logPageView();
-      };
-      (function(d, s, id) {
-        var js,
-          fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {
-          return;
-        }
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "https://connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-      })(document, "script", "facebook-jssdk");
-    </script>
+   <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v4.0&appId=392748014702787&autoLogAppEvents=1"></script>
+<script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : 392748014702787,
+        cookie     : true,
+        xfbml      : true,
+        version    : 'v4.0'
+      });
+      FB.AppEvents.logPageView();   
+    };
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "https://connect.facebook.net/en_US/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+  </script>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
   </body>

@@ -1,144 +1,43 @@
 // Map Form Container
 .map-form-container {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-
-  // Address Input Compass Icon
-
-  //map form text
-  .map-form-text {
-    color: white;
-    font-size: 1.4rem;
-    position: absolute;
-    top: 98px;
-    left: 17px;
-
-     @media (max-width: 900px) {
-        position: absolute;
-        width: 298px;
-        height: 16px;
-        left: 20px;
-        top: 91px;
-        font-family: Open Sans;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 12px;
-        line-height: 16px;
-    }
-
-  }
-
-    .signup-form-text {
-    color: white;
-    font-size: 1.6rem;
-    line-height: 2.2rem;
-    font-style: normal;
-    font-weight: normal;
-    position: absolute;
-    top: 609px;
-    left: 96px;
-
-    @media (max-width: 900px) {
-        position: absolute;
-        width: 320px;
-        height: 22px;
-        left: 29px;
-        font-family: Open Sans;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 16px;
-        line-height: 22px;
-        display: flex;
-        align-items: center;
-        color: #FFFFFF;
-    }
-  }
-
-  // Address Input
-  .address-input {
-    width: 306px;
-    height: 52px;
-    background: #ffffff;
-    border-radius: 3px;
-    position: absolute;
-    top: 128px;
-    left: 17px;
-    font-family: "Open Sans";
-    font-style: normal;
-    font-weight: normal;
-    font-size: 2rem;
-    line-height: 2.7rem;
+    width: 100%;
     display: flex;
-    align-items: center;
-    color: #a9a9a9;
-    padding-left: 1.7rem;
+    flex-wrap: wrap;
+    justify-content: center;
 
-    @media (max-width: 900px) {
-        position: absolute;
-        width: 245px;
-        height: 42px;
-        left: 20px;
-        top: 118px;
-        background: #FFFFFF;
-        border-radius: 3px;
+    // Address Input Compass Icon
+    .fa-compass {
+        background-color: #FFF;
+        border: solid 1px #000;
+        border-right: none;
+        border-radius: 5px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        color: #555;
+        margin: 25px 0px 5px 25px;
+        padding: 11px;
     }
 
-    &::placeholder {
-      font-family: "Open Sans";
-      font-style: normal;
-      font-weight: normal;
-      font-size: 20px;
-      line-height: 27px;
-      display: flex;
-      align-items: center;
-      color: #a9a9a9;
-      padding-left: 17px;
-    }
-  }
-
-  // Radius Input
-  .radius-input {
-    width: 8.4rem;
-    height: 5.2rem;
-    background: #ffffff;
-    border-radius: 3px;
-    position: absolute;
-    top: 12.8rem;
-    left: 33.7rem;
-    font-family: "Open Sans";
-    font-style: normal;
-    font-weight: normal;
-    font-size: 1.8rem;
-    line-height: 2.5rem;
-    display: flex;
-    align-items: center;
-    color: #a9a9a9;
-    margin-left: 1.4rem;
-    padding-left: 1rem;
-
-    @media (max-width: 900px) {
-        position: absolute;
-        width: 61.53px;
-        height: 42px;
-        left: 274px;
-        top: 118px;
-        background: #FFFFFF;
-        border-radius: 3px;
-        margin-top: 0;
+    // Address Input
+    .address-input {
+        border: solid 1px #000;
+        border-left: none;
+        border-radius: 5px;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        margin: 25px 25px 5px 0px;
+        padding: 10px;
+        font-size: 1em;
+        width: 250px;
     }
 
-    &::placeholder {
-      font-family: "Open Sans";
-      font-style: normal;
-      font-weight: normal;
-      font-size: 20px;
-      line-height: 27px;
-      display: flex;
-      align-items: center;
-      color: #a9a9a9;
-      padding-left: 17px;
+    // Radius Input
+    .radius-input {
+        border: solid 1px black;
+        border-radius: 5px;
+        font-size: 1em;
+        margin: 25px 17.5px 5px 0;
+        padding: 10px;
+        width: 150px;
     }
-  }
 }

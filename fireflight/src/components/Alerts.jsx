@@ -18,7 +18,7 @@ const Alerts = () => {
       <AlertContainer>
         <img src={alertIcon} width="100px" />
         <AlertHeading>
-         There are active fires near the following locations... 
+          There are active fires near the following locations...
         </AlertHeading>
         {alertData.map(loc => (
           <LocAddress key={loc}>{loc}</LocAddress>

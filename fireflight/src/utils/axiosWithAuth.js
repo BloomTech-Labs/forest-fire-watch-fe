@@ -1,10 +1,9 @@
 import axios from "axios";
-import { base_url_staging, base_url_local } from '../config/vars'
 
 const axiosWithAuth = () => {
   const token = localStorage.getItem("token");
-  const deployedURL = base_url_staging;
-  const localURL = base_url_local;
+  const deployedURL = "https://fireflight-lambda.herokuapp.com/api/";
+  const localURL = "http://localhost:5000/api/";
 
   let URL = process.env.NODE_ENV === "production" ? deployedURL : localURL;
 

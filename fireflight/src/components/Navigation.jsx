@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 
 import { GlobalContext } from "../context/contextProvider";
 import { withRouter, NavLink, Link, Redirect } from "react-router-dom";
+import logo from "../images/FF-logo2.png";
 
 function Navigation({
   toggleAuthForms,
@@ -37,13 +38,20 @@ function Navigation({
 
   return (
     <div className="nav-container">
+      <div className="brand">
+        <img className="logo" src={logo} alt="FireFlight Logo" />
+        <span className="logo-txt">FireFlight</span>
+      </div>
       <div className="dropdown" onClick={() => setMenuToggle(!menuToggle)}>
         <div className="drop-btn">
+          <i className="fas fa-plus-circle fa-2x" />
         </div>
         {menuToggle ? (
           <div className="dropdown-content">
             <NavLink exact to="/" activeClassName="current">
               <div className="menu-item">
+                {/* Will be profile page/dashboard later */}
+                <i className="fas fa-home fa-lg" />
                 Home
               </div>
             </NavLink>
@@ -54,21 +62,23 @@ function Navigation({
                   className="menu-item inactive"
                   onClick={() => {
                     toggleAuthForms(true);
-                    toggleRegisterStatus(false);
-                    toggleLoginStatus(true);
+                    toggleRegisterStatus(true);
+                    toggleLoginStatus(false);
                   }}
                 >
-                  Sign In
+                  <i className="fas fa-user-plus fa-lg" /> 
+                  Register
                 </div>
                 <div
                   className="menu-item inactive"
                   onClick={() => {
                     toggleAuthForms(true);
-                    toggleRegisterStatus(true);
-                    toggleLoginStatus(false);
+                    toggleRegisterStatus(false);
+                    toggleLoginStatus(true);
                   }}
                 >
-                  Sign Up
+                  <i className="fas fa-user-check fa-lg" />
+                  Login
                 </div>
               </React.Fragment>
             )}
@@ -128,6 +138,3 @@ function Navigation({
 }
 
 export default withRouter(Navigation);
-
-
-

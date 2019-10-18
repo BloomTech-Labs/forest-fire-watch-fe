@@ -3,49 +3,35 @@ import React from "react";
 import Login from "./Login.jsx";
 import Register from "./Register.jsx";
 import Modal from "../Modal/Modal";
-import Password from "./Password.jsx";
 
 const Combine = ({
   show,
   close,
   showLogin,
   showRegister,
-  showPassword,
   setLoginStatus,
   setRegisterStatus,
-  setShowAuthForms,
-  passwordFormStatus,
-  setPasswordFormStatus
+  setShowAuthForms
 }) => {
   const toggleForms = () => {
     if (showRegister) {
       setRegisterStatus(false);
       setLoginStatus(true);
-      setPasswordFormStatus(false);
     } else if (showLogin) {
       setRegisterStatus(true);
       setLoginStatus(false);
-      setPasswordFormStatus(false);
-    } else if (showPassword) {
-      setPasswordFormStatus(false);
-      setLoginStatus(true);
-      setRegisterStatus(true);
     }
   };
   return (
     <Modal show={show} close={close}>
       {showLogin && (
-        <Login toggle={toggleForms} setShowAuthForms={setShowAuthForms} passwordFormStatus={passwordFormStatus}
-          setPasswordFormStatus={setPasswordFormStatus} />
+        <Login toggle={toggleForms} setShowAuthForms={setShowAuthForms} />
       )}
       {showRegister && (
         <Register toggle={toggleForms} setShowAuthForms={setShowAuthForms} />
       )}
-      {showPassword && (
-        <Password toggle={toggleForms} setShowAuthForms={setShowAuthForms} />
-      )}
     </Modal>
-  )
+  );
 };
 
 export default Combine;

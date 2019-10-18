@@ -10,7 +10,6 @@ import { FireDataContext } from "../context/FireDataContext";
 
 import { subscribeUser } from "../subscriptions.js";
 
-// USER PROFILE PAGE
 const Dashboard = () => {
   const {
     userDataState,

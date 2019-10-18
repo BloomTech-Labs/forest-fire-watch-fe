@@ -1,13 +1,14 @@
 import React, { useState, useContext, useEffect } from "react";
 import { GlobalContext } from "../../context/contextProvider";
 import useInput from "../../utils/useInput";
-import { Link } from "react-router-dom";
-import fire from '../../config/fire'
+import styled from "styled-components";
+//not sure if we are using redux or hooks with context, so taking my best guess...
+import logo from "../../images/FF-logo.png";
+import LoginSplit from "./LoginSplit";
 
-function Login({ toggle, setShowAuthForms, passwordFormStatus,
-  setPasswordFormStatus }) {
+function Login({ toggle, setShowAuthForms }) {
   //useInput is a custom hook that should be used for all controlled inputs
-  const [email, setEmail, handleEmail] = useInput("", "email");
+  const [username, setUsername, handleUsername] = useInput("", "username");
   const [password, setPassword, handlePassword] = useInput("", "password");
   const [loading, setLoading] = useState(false);
   const [errorStatus, setErrorStatus] = useState(false);
@@ -23,95 +24,110 @@ function Login({ toggle, setShowAuthForms, passwordFormStatus,
   function handleSubmit(e) {
     e.preventDefault();
     setLoading(true);
-   
-    fire.auth().signInWithEmailAndPassword(email, password)
-      .then((user) => {
-        console.log(user)
-        const UID = user.user.uid
-        const credentials = { UID };
+    const credentials = { username, password };
 
-        setErrorStatus(false);
-        setErrorText("");
-    
-        context.state.remote
-          .login(credentials)
-          .then(res => {
-            setEmail("");
-            setPassword("");
-            setLoading(false);
-            setShowAuthForms(false);
-          })
-          .catch(err => {
-            setErrorText("Email or Password Invalid");
-            setErrorStatus(true);
-            setLoading(false);
-          });
+    setErrorStatus(false);
+    setErrorText("");
+
+    context.state.remote
+      .login(credentials)
+      .then(res => {
+        setUsername("");
+        setPassword("");
+        setLoading(false);
+        setShowAuthForms(false);
       })
-      .catch((err) => {
-        console.log(err)
-      })
+      .catch(err => {
+        setErrorText("Username or Password Invalid");
+        setErrorStatus(true);
+        setLoading(false);
+      });
   }
 
   return (
-    <div className="login-page-container">
-      <button className="form-close-btn" onClick={() => setShowAuthForms(false)}>x</button>
-      <h2 className="form-heading">Welcome Back</h2>
-      <form className="auth-form-container" onSubmit={handleSubmit}>
-        <div className="input-containers">
-          <label htmlFor="email">Email Address</label>
+    <LoginPageContainer>
+      <LoginContainer>
+        <img src={logo} alt="FireFlight" />
+        <h2 className="form-heading">Welcome Back!</h2>
+        <p className="form-text">Sign in to continue</p>
+        <form className="auth-form-container" onSubmit={handleSubmit}>
+          <label htmlFor="username">
+            <i className="fas fa-user-circle fa-lg" />
+          </label>
           <input
             className="form-input"
             type="text"
-            name="email"
-            value={email}
-            onChange={handleEmail}
-            placeholder=""
+            name="username"
+            value={username}
+            onChange={handleUsername}
+            placeholder="Username"
           />
-          {errorStatus ? (
-            <span className="name-error-text">{errorText}</span>
-          ) : (
-              <span className="user-error-text" />
-            )}
+          {errorStatus ? <span className="name-error-text">{errorText}</span> : <span className="user-error-text" />}
           <br />
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">
+            <i className="fas fa-key fa-lg" />
+          </label>
           <input
             className="form-input"
             type="password"
             name="password"
             value={password}
             onChange={handlePassword}
-            placeholder=""
+            placeholder="Password"
           />
-          {errorStatus ? (
-            <span className="name-error-text">{errorText}</span>
-          ) : (
-              <span className="user-error-text" />
-            )}
-          <br />
-          <span className="forgot-pw">
-            <Link onClick={() => {
-              setPasswordFormStatus(true)
-              setShowAuthForms(true)
-              toggle(true)
-              // toggleAuthForms(true)
-              // toggleRegisterStatus(false)
-              // toggleLoginStatus(false)
-            }}>Forgot your Password?
-            </Link>
-          </span>
+          <p>
+            <a className="forgot-pw" href="#">
+              Forgot your Password?
+            </a>
+          </p>
           <button className="auth-btn" type="submit" disabled={loading}>
             {loading ? "Loading..." : "Sign In"}
           </button>
-        </div>
-        <p>
-          Need to create an account?
-          <a className="create-an-account" href="#">
-            Sign up Here
-          </a>
-        </p>
-      </form>
-    </div>
+        </form>
+      </LoginContainer>
+      <LoginSplitContainer>
+        <LoginSplit toggle={toggle} />
+      </LoginSplitContainer>
+    </LoginPageContainer>
   );
+  // }
 }
 
 export default Login;
+
+const LoginPageContainer = styled.div`
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  display: flex;
+  min-height: 500px;
+  background-image: linear-gradient(
+    #f8b195,
+    #f67280,
+    #c06c84,
+    #6c5b7b,
+    #355c7d
+  );
+  border-radius: 8px;
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+  }
+`;
+
+const LoginContainer = styled.div`
+  width: 60%;
+  height: auto;
+  margin: auto;
+
+  @media (max-width: 900px) {
+    width: 90%;
+  }
+`;
+
+const LoginSplitContainer = styled.div`
+  width: 50%;
+  @media (max-width: 900px) {
+    width: 100%;
+  }
+`;

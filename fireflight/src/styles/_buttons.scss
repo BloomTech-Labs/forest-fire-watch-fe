@@ -1,82 +1,38 @@
 // Find Active Fires Button
 .form-btn {
   cursor: pointer;
-  position: absolute;
-  top: 19.7rem;
-  left: 2rem;
-  width: 10.9rem;
-  height: 3.8rem;
-  background: #FFFFFF;
-  border-radius: 3px;
-  font-family: "Open Sans", sans-serif;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 1.4rem;
-  line-height: 1.9rem;
-  color: #251400;
-  @include easeOut;
-
-  // &:hover {
-  //   color: $accentColor;
-  //   background-color: $lilia;
-  //   @include easeOut;
-  // }
-}
-
-.signup-btn {
-  cursor: pointer;
-  position: absolute;
-  top: 54.1rem;
-  left: 16.1rem;
-  width: 13.6rem;
-  height: 4.8rem;
-  background: #FFFFFF;
-  border-radius: 3px;
-  font-family: Open Sans;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 2.9rem;
-  line-height: 3.9rem;
-  color: #251400;
-  @include easeOut;
-
-   @media (max-width: 900px) {
-      position: absolute;
-      width: 13.6rem;
-      height: 4.7rem;
-      left: 12.1rem;
-      top: 55rem;
-      background: #FFFFFF;
-      border-radius: 3px;
-   }
-
-  // &:hover {
-  //   color: $accentColor;
-  //   background-color: $lilia;
-  //   @include easeOut;
-  // }
-}
-
-.auth-btn {
-  margin-top: 1rem;
-  background-color: $orange;
-  border-radius: 2px;
-  cursor: pointer;
-  color: white;
-  font-size: 1.5rem;
-  width: 119.95px;
-  height: 38px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-  align-self: flex-end;
-  border: none;
-
+  border: solid 1px black;
+  border-radius: 5px;
+  height: 40px;
+  margin: 25px 0px 5px;
+  background-color: $accentColor;
+  color: $lilia;
+  font-size: 1em;
+  width: 150px;
   @include easeOut;
 
   &:hover {
-    background-color: lighten($orange, 10%);
+    color: $accentColor;
+    background-color: $lilia;
+    @include easeOut;
+  }
+}
+
+.auth-btn {
+  background-color: $lilia;
+  border-radius: 5px;
+  box-shadow: 1px 2px 5px black;
+  cursor: pointer;
+  color: $accentColor;
+  font-size: 1em;
+  margin: 50px auto;
+  padding: 10px 15px;
+  width: 200px;
+  @include easeOut;
+
+  &:hover {
+    background-color: $accentColor;
+    color: $lilia;
     @include easeOut;
   }
 
@@ -99,8 +55,8 @@
   @include easeOut;
 
   &:hover {
-    background-color: $orange;
-
+    background-color: $accentColor;
+    color: $lilia;
     @include easeOut;
   }
 
@@ -109,3 +65,21 @@
   }
 }
 
+.split-btn {
+  width: 50%;
+  margin: 25px auto;
+  background: none;
+  border-color: $lilia;
+  border-radius: 5px;
+  padding: 10px;
+  color: $lilia;
+  cursor: pointer;
+  font-size: 1em;
+  @include easeOut;
+
+  &:hover {
+    background-color: $lilia;
+    color: $accentColor;
+    @include easeOut;
+  }
+}
