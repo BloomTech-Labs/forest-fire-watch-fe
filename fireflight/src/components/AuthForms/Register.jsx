@@ -196,35 +196,6 @@ function Register({
 
 export default Register;
 
-// const RegPageContainer = styled.div`
-//   width: 100%;
-//   margin: auto;
-//   text-align: center;
-//   display: flex;
-//   min-height: 500px;
-//   background-image: linear-gradient(
-//     #f8b195,
-//     #f67280,
-//     #c06c84,
-//     #6c5b7b,
-//     #355c7d
-//   );
-//   border-radius: 8px;
-//   @media (max-width: 900px) {
-//     flex-direction: column;
-//   }
-// `;
-
-// const RegisterContainer = styled.div`
-//   width: 60%;
-//   height: auto;
-//   margin: auto;
-//   @media (max-width: 900px) {
-//     width: 90%;
-//     order: 1;
-//   }
-// `;
-
 const ErrorText = styled.p`
   color: darkred;
   font-size: 0.75em;

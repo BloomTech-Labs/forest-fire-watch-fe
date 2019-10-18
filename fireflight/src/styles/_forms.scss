@@ -1,141 +1,156 @@
 // Map Form Container
 .map-form-container {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
 
-  // Address Input Compass Icon
+	@media (max-width: $mq-mobile) {
+		position: relative;
+		left: 1em;
+	}
 
-  //map form text
-  .map-form-text {
-    color: white;
-    font-size: 1.4rem;
-    position: absolute;
-    top: 98px;
-    left: 17px;
+	// Address Input Compass Icon
 
-    @media (max-width: 900px) {
-      position: absolute;
-      width: 298px;
-      height: 16px;
-      left: 20px;
-      top: 91px;
-      font-family: Open Sans;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 12px;
-      line-height: 16px;
-    }
-  }
+	//map form text
+	.map-form-text {
+		color: white;
+		font-size: 1.4rem;
+		position: absolute;
+		top: 98px;
+		left: 17px;
 
-  .signup-form-text {
-    color: white;
-    font-size: 1.6rem;
-    line-height: 2.2rem;
-    font-style: normal;
-    font-weight: normal;
-    position: absolute;
-    top: 609px;
-    left: 96px;
+		@media (max-width: 900px) {
+			position: absolute;
+			width: 298px;
+			height: 16px;
+			left: 20px;
+			top: 91px;
+			font-family: Open Sans;
+			font-style: normal;
+			font-weight: normal;
+			font-size: 12px;
+			line-height: 16px;
+		}
+	}
 
-    @media (max-width: 900px) {
-      position: absolute;
-      width: 320px;
-      height: 22px;
-      left: 29px;
-      font-family: Open Sans;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 16px;
-      line-height: 22px;
-      display: flex;
-      align-items: center;
-      color: #ffffff;
-    }
-  }
+	.signup-form-text {
+		color: white;
+		font-size: 1.6rem;
+		line-height: 2.2rem;
+		font-style: normal;
+		font-weight: normal;
+		position: absolute;
+		top: 609px;
+		left: 96px;
 
-  // Address Input
-  .address-input {
-    width: 30rem;
-    height: 5rem;
-    background: #ffffff;
-    border-radius: 3px;
-    position: absolute;
-    top: 128px;
-    left: 17px;
-    font-family: "Open Sans";
-    font-style: normal;
-    font-weight: normal;
-    font-size: 2rem;
-    line-height: 2.7rem;
-    display: flex;
-    align-items: center;
-    padding-left: 1.7rem;
+		@media (max-width: 900px) {
+			position: absolute;
+			width: 320px;
+			height: 22px;
+			left: 29px;
+			font-family: Open Sans;
+			font-style: normal;
+			font-weight: normal;
+			font-size: 16px;
+			line-height: 22px;
+			display: flex;
+			align-items: center;
+			color: #ffffff;
+		}
+	}
 
-    @media (max-width: 900px) {
-      position: absolute;
-      width: 245px;
-      height: 42px;
-      left: 20px;
-      top: 118px;
-      background: #ffffff;
-      border-radius: 3px;
-    }
+	// Address Input
+	.address-input {
+		width: 30rem;
+		height: 5rem;
+		background: #ffffff;
+		border-radius: 3px;
+		position: absolute;
+		top: 128px;
+		left: 17px;
+		font-family: "Open Sans";
+		font-style: normal;
+		font-weight: normal;
+		font-size: 2rem;
+		line-height: 2.7rem;
+		display: flex;
+		align-items: center;
+		padding-left: 1.7rem;
 
-    &::placeholder {
-      font-family: "Open Sans";
-      font-style: normal;
-      font-weight: normal;
-      font-size: 20px;
-      line-height: 27px;
-      display: flex;
-      align-items: center;
-      color: #a9a9a9;
+		@media (max-width: $mq-mobile) {
+			position: absolute;
+			width: 245px;
+			height: 42px;
+			left: 20px;
+			top: 118px;
+			background: #ffffff;
+			border-radius: 3px;
+		}
+
+		@media (max-width: 900px) {
+			position: absolute;
+			width: 245px;
+			height: 42px;
+			left: 20px;
+			top: 118px;
+			background: #ffffff;
+			border-radius: 3px;
+		}
+
+		&::placeholder {
+			font-family: "Open Sans";
+			font-style: normal;
+			font-weight: normal;
+			font-size: 20px;
+			line-height: 27px;
+			display: flex;
+			align-items: center;
+			color: #a9a9a9;
+			padding-left: 17px;
+		}
+	}
+
+	// Radius Input
+	.radius-input {
+		width: 8.4rem;
+		height: 5rem;
+		background: #ffffff;
+		border-radius: 3px;
+		position: absolute;
+		top: 12.8rem;
+		left: 33.7rem;
+		font-family: "Open Sans";
+		font-style: normal;
+		font-weight: normal;
+		font-size: 1.8rem;
+		line-height: 2.5rem;
+		display: flex;
+		align-items: center;
+		margin-left: 1.4rem;
+		padding-left: 1rem;
+
+		@media (max-width: 900px) {
+			position: absolute;
+			width: 61.53px;
+			height: 42px;
+			left: 274px;
+			top: 118px;
+			background: #ffffff;
+			border-radius: 3px;
+			margin-top: 0;
+		}
+
+		&::placeholder {
+			font-family: "Open Sans";
+			font-style: normal;
+			font-weight: normal;
+			font-size: 20px;
+			line-height: 27px;
+			display: flex;
+			align-items: center;
+			color: #a9a9a9;
       padding-left: 17px;
-    }
-  }
-
-  // Radius Input
-  .radius-input {
-    width: 8.4rem;
-    height: 5rem;
-    background: #ffffff;
-    border-radius: 3px;
-    position: absolute;
-    top: 12.8rem;
-    left: 33.7rem;
-    font-family: "Open Sans";
-    font-style: normal;
-    font-weight: normal;
-    font-size: 1.8rem;
-    line-height: 2.5rem;
-    display: flex;
-    align-items: center;
-    margin-left: 1.4rem;
-    padding-left: 1rem;
-
-    @media (max-width: 900px) {
-      position: absolute;
-      width: 61.53px;
-      height: 42px;
-      left: 274px;
-      top: 118px;
-      background: #ffffff;
-      border-radius: 3px;
-      margin-top: 0;
-    }
-
-    &::placeholder {
-      font-family: "Open Sans";
-      font-style: normal;
-      font-weight: normal;
-      font-size: 20px;
-      line-height: 27px;
-      display: flex;
-      align-items: center;
-      color: #a9a9a9;
-      padding-left: 17px;
-    }
-  }
+		}
+	}
 }
