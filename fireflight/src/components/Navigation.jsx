@@ -17,8 +17,8 @@ function Navigation({
       document.documentElement.clientWidth,
       window.innerWidth || 0
     );
-    if (w > 576) {
-      setMenuToggle(true);
+    if (w > 0) {
+      setMenuToggle(true); //sets menuToggle to be on all the time at any size
     }
   });
 
@@ -37,7 +37,7 @@ function Navigation({
 
   return (
     <div className="nav-container">
-      <div className="dropdown" onClick={() => setMenuToggle(!menuToggle)}>
+      <div className="dropdown" onClick={() => setMenuToggle(true)}>
         <div className="drop-btn">
         </div>
         {menuToggle ? (
