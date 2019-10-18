@@ -5,10 +5,10 @@ import { GlobalContext } from "../../context/contextProvider";
 import useInput from "../../utils/useInput";
 import styled from "styled-components";
 
-import fire from '../../config/fire'
+import fire from '../../config/fire';
 
 
-function Register({ toggle, setShowAuthForms }) {
+function Register({ toggle, setShowAuthForms, showLogin, setRegisterStatus }) {
   //useInput is a custom hook that should be used for all controlled inputs
   const [firstName, setFirstName, handleFirstName] = useInput("", "firstName");
   const [lastName, setLastName, handleLastName] = useInput("", "lastName");
@@ -44,7 +44,7 @@ function Register({ toggle, setShowAuthForms }) {
         if (password === passwordConf) {
           const UID = user.user.uid
           const newUser = { firstName, lastName, email, UID };
-        
+          console.log("data.state.remote", data.state.remote)
           data.state.remote
             .register(newUser)
             .then(res => {
@@ -178,7 +178,12 @@ function Register({ toggle, setShowAuthForms }) {
         </form>
         <p>
           Already have an account?
-          <a className="create-an-account" href="#">
+          <a 
+            className="create-an-account" 
+            href="#to-login-modal" 
+            id="to-login-modal" 
+            onClick={() => showLogin}
+          >
             Sign In Here
           </a>
         </p>
