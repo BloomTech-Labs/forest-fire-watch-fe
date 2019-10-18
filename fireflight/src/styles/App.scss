@@ -11,6 +11,7 @@
 @import "auth-forms";
 @import "forms";
 @import "buttons";
+@import "public-map";
 @import "map-legend";
 @import "model";
 @import "model-splits";
@@ -54,11 +55,17 @@ input {
 
 button {
   border: none;
+  font-family: "Open Sans", sans-serif;
+}
+
+button {
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .form-heading {
   margin: 2rem auto;
-  height: 4rem;
   font-family: "Open Sans", sans-serif;
   font-style: normal;
   font-weight: normal;
@@ -70,14 +77,14 @@ button {
   text-align: center;
   color: #000000;
 
-   @media (max-width: 900px) {
-      font-family: Open Sans;
-      font-style: normal;
-      font-weight: 600;
-      font-size: 18px;
-      line-height: 25px;
-      color: #000000;
-   }
+  @media (max-width: 900px) {
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 25px;
+    color: #000000;
+  }
 }
 
 .form-text {
