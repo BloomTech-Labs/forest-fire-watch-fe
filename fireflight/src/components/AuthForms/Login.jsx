@@ -2,13 +2,15 @@ import React, { useState, useContext, useEffect } from "react";
 import { GlobalContext } from "../../context/contextProvider";
 import useInput from "../../utils/useInput";
 import { Link } from "react-router-dom";
-import fire from "../../config/fire";
 
-function Login({
-  toggle,
-  setShowAuthForms,
+import fire from '../../config/fire';
+
+function Login({ 
+  toggle, 
+  setShowAuthForms, 
   passwordFormStatus,
-  setPasswordFormStatus
+  setPasswordFormStatus,
+
 }) {
   //useInput is a custom hook that should be used for all controlled inputs
   const [email, setEmail, handleEmail] = useInput("", "email");
@@ -114,9 +116,12 @@ function Login({
         </div>
         <p>
           Need to create an account?
-          <a className="create-an-account" href="#">
+          <button 
+            className="create-an-account"
+            onClick={ toggle }
+          >
             Sign up Here
-          </a>
+          </button>
         </p>
       </form>
     </div>
