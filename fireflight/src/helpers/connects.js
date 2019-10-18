@@ -8,16 +8,10 @@ class connector {
    */
   constructor() {
     this.connector = axios;
-    this.coreString = "https://wildfire-watch-staging.herokuapp.com/api/";
-    // if (process.env.NODE_ENV === "production") {
-    //   this.coreString = "https://wildfire-watch.herokuapp.com/api/";
-    // } else if (process.env.NODE_ENV === "staging") {
-    //   this.coreString = "https://wildfire-watch-staging.herokuapp.com/api/";
-    // } else {
-    //   this.coreString = "http://localhost:5000/api/";
-    // }
-
+    this.coreString = process.env.REACT_APP_ENV || base_url_local;
+    // console.log("ENVIRONMENT", this.coreString);
     this.fireflight = process.env.REACT_APP_MAPBOX_TOKEN;
+
     if (localStorage.getItem("token") != null) {
       this.connector.defaults.headers.common[
         "Authorization"
