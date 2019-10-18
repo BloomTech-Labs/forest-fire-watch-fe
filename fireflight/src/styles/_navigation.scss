@@ -17,8 +17,9 @@
 	}
 	.inactive {
 		color: #fff;
-		padding: 0px;
+		padding: 10px;
 		width: 100px;
+		height: auto;
 	}
 
 	.menu-item {
@@ -42,6 +43,7 @@
 		&:hover {
 			background-color: lightgrey;
 			color: #355c7d;
+			height: auto;
 		}
 
 		&.current {
