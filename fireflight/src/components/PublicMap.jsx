@@ -32,6 +32,8 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
     userLocalFireMarkers
   } = fireDataState;
 
+  console.log("viewport", publicMapViewport);
+
   const [address, setAddress] = useState("");
 
   const [radius, setRadius] = useState("");
@@ -141,7 +143,7 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
   );
 
   return (
-    <div style={{ position: "relative" }}>
+    <div style={{ position: "relative", width: "100%", height: "100%" }}>
       <MapLegend />
       <Container>
         <form onSubmit={handleSubmit} className="map-form-container">
@@ -176,8 +178,11 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
 
       <ReactMapGL
         {...publicMapViewport}
+        width="100%"
+        height="100%"
         mapboxApiAccessToken={token}
         onViewportChange={publicMapViewport => {
+          const { width, height } = publicMapViewport;
           setPublicViewport(publicMapViewport);
         }}
         mapStyle="mapbox://styles/astillo/ck1s93bpe5bnk1cqsfd34n8ap"
