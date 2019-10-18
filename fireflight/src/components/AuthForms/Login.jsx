@@ -4,8 +4,12 @@ import useInput from "../../utils/useInput";
 import { Link } from "react-router-dom";
 import fire from '../../config/fire';
 
-function Login({ toggle, setShowAuthForms, passwordFormStatus,
-  setPasswordFormStatus }) {
+function Login({ 
+  toggle, 
+  setShowAuthForms, 
+  passwordFormStatus,
+  setPasswordFormStatus,
+}) {
   //useInput is a custom hook that should be used for all controlled inputs
   const [email, setEmail, handleEmail] = useInput("", "email");
   const [password, setPassword, handlePassword] = useInput("", "password");
@@ -105,9 +109,12 @@ function Login({ toggle, setShowAuthForms, passwordFormStatus,
         </div>
         <p>
           Need to create an account?
-          <a className="create-an-account" href="#">
+          <button 
+            className="create-an-account"
+            onClick={ toggle }
+          >
             Sign up Here
-          </a>
+          </button>
         </p>
       </form>
     </div>

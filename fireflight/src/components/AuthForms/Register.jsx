@@ -8,7 +8,10 @@ import styled from "styled-components";
 import fire from '../../config/fire';
 
 
-function Register({ toggle, setShowAuthForms, showLogin, setRegisterStatus }) {
+function Register({
+  toggle, 
+  setShowAuthForms, 
+}) {
   //useInput is a custom hook that should be used for all controlled inputs
   const [firstName, setFirstName, handleFirstName] = useInput("", "firstName");
   const [lastName, setLastName, handleLastName] = useInput("", "lastName");
@@ -178,14 +181,12 @@ function Register({ toggle, setShowAuthForms, showLogin, setRegisterStatus }) {
         </form>
         <p>
           Already have an account?
-          <a 
-            className="create-an-account" 
-            href="#to-login-modal" 
-            id="to-login-modal" 
-            onClick={() => showLogin}
+          <button 
+            className="create-an-account"  
+            onClick={ toggle }
           >
             Sign In Here
-          </a>
+          </button>
         </p>
 
       </div>
