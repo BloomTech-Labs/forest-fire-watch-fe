@@ -2,10 +2,14 @@ import React, { useState, useContext, useEffect } from "react";
 import { GlobalContext } from "../../context/contextProvider";
 import useInput from "../../utils/useInput";
 import { Link } from "react-router-dom";
-import fire from '../../config/fire'
+import fire from "../../config/fire";
 
-function Login({ toggle, setShowAuthForms, passwordFormStatus,
-  setPasswordFormStatus }) {
+function Login({
+  toggle,
+  setShowAuthForms,
+  passwordFormStatus,
+  setPasswordFormStatus
+}) {
   //useInput is a custom hook that should be used for all controlled inputs
   const [email, setEmail, handleEmail] = useInput("", "email");
   const [password, setPassword, handlePassword] = useInput("", "password");
@@ -23,16 +27,18 @@ function Login({ toggle, setShowAuthForms, passwordFormStatus,
   function handleSubmit(e) {
     e.preventDefault();
     setLoading(true);
-   
-    fire.auth().signInWithEmailAndPassword(email, password)
-      .then((user) => {
-        console.log(user)
-        const UID = user.user.uid
+
+    fire
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(user => {
+        console.log(user);
+        const UID = user.user.uid;
         const credentials = { UID };
 
         setErrorStatus(false);
         setErrorText("");
-    
+
         context.state.remote
           .login(credentials)
           .then(res => {
@@ -47,14 +53,19 @@ function Login({ toggle, setShowAuthForms, passwordFormStatus,
             setLoading(false);
           });
       })
-      .catch((err) => {
-        console.log(err)
-      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   return (
     <div className="login-page-container">
-      <button className="form-close-btn" onClick={() => setShowAuthForms(false)}>x</button>
+      <button
+        className="form-close-btn"
+        onClick={() => setShowAuthForms(false)}
+      >
+        x
+      </button>
       <h2 className="form-heading">Welcome Back</h2>
       <form className="auth-form-container" onSubmit={handleSubmit}>
         <div className="input-containers">
@@ -67,11 +78,6 @@ function Login({ toggle, setShowAuthForms, passwordFormStatus,
             onChange={handleEmail}
             placeholder=""
           />
-          {errorStatus ? (
-            <span className="name-error-text">{errorText}</span>
-          ) : (
-              <span className="user-error-text" />
-            )}
           <br />
           <label htmlFor="password">Password</label>
           <input
@@ -85,18 +91,21 @@ function Login({ toggle, setShowAuthForms, passwordFormStatus,
           {errorStatus ? (
             <span className="name-error-text">{errorText}</span>
           ) : (
-              <span className="user-error-text" />
-            )}
+            <span className="user-error-text" />
+          )}
           <br />
           <span className="forgot-pw">
-            <Link onClick={() => {
-              setPasswordFormStatus(true)
-              setShowAuthForms(true)
-              toggle(true)
-              // toggleAuthForms(true)
-              // toggleRegisterStatus(false)
-              // toggleLoginStatus(false)
-            }}>Forgot your Password?
+            <Link
+              onClick={() => {
+                setPasswordFormStatus(true);
+                setShowAuthForms(true);
+                toggle(true);
+                // toggleAuthForms(true)
+                // toggleRegisterStatus(false)
+                // toggleLoginStatus(false)
+              }}
+            >
+              Forgot your Password?
             </Link>
           </span>
           <button className="auth-btn" type="submit" disabled={loading}>

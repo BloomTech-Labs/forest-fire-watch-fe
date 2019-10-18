@@ -3,7 +3,6 @@ import ReactMapGL, { Popup } from "react-map-gl";
 import styled from "styled-components";
 
 import { FireDataContext } from "../context/FireDataContext";
-
 import MapLegend from "./MapLegend";
 
 // mapbox API token
@@ -33,9 +32,7 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
   } = fireDataState;
 
   const [address, setAddress] = useState("");
-
   const [radius, setRadius] = useState("");
-
   const [popupRadius, setPopupRadius] = useState("");
 
   useEffect(() => {
@@ -141,11 +138,10 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
   );
 
   return (
-    <div style={{ position: "relative" }}>
+    <div style={{ position: "relative", width: "100%", height: "100%" }}>
       <MapLegend />
       <Container>
         <form onSubmit={handleSubmit} className="map-form-container">
-          {/* <i className="fas fa-compass fa-lg" /> */}
           <label className="map-form-text">
             Enter the address you wish to check fire proximity to.
           </label>
@@ -176,8 +172,11 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
 
       <ReactMapGL
         {...publicMapViewport}
+        width="100%"
+        height="100%"
         mapboxApiAccessToken={token}
         onViewportChange={publicMapViewport => {
+          const { width, height } = publicMapViewport;
           setPublicViewport(publicMapViewport);
         }}
         mapStyle="mapbox://styles/astillo/ck1s93bpe5bnk1cqsfd34n8ap"
