@@ -1,81 +1,36 @@
 .nav-container {
-  // width: 100%;
-  height: 40px;
-  display: flex;
-  border-bottom: 1px solid grey;
-  position: sticky;
-  top: 0;
-  z-index: 2;
-  background-color: black;
+	width: 100%;
+	height: 40px;
+	background-color: $orange;
+	display: flex;
+	border-bottom: 1px solid $grey;
+	position: sticky;
+	top: 0;
+	z-index: 2;
+	background-color: $black;
+	color: white;
+	// padding: 30px;
 
-  .brand {
-    height: 90px;
-    padding: 10px;
-    margin-bottom: 15px;
+	@media (max-width: $mq-mobile) {
+		height: 0;
+		width: 100%;
+	}
 
-    // .logo {
-    //   height: 85px;
-    // }
-  }
 
-  .dropdown {
-    background-color: $accentColorTransparency;
+	.menu-item {
+		color: #fff;
+		cursor: pointer;
+		font-style: normal;
+		font-weight: normal;
+		font-size: 18px;
+		line-height: 25px;
+		padding: 10px;
+		padding: auto;
+		width: 80px;
 
-    a {
-      color: $lilia;
-      text-decoration: none;
-
-      &:hover {
-        background-color: lightgrey;
-        color: #355C7D;
-      }
-
-      &.current {
-        // background-color: lightgrey;
-        color: #355C7D;
-      }
-    }
-  }
-}
-
-.dropdown-content {
-  // position: absolute;
-  background-color: $accentColorTransparency;
-  right: 0;
-  display: flex;
-  flex-direction: row;
-  z-index: 2;
-
-  .inactive {
-    color: #FFF;
-    padding: 0px;
-  }
-
-  // .fas,
-  // .far {
-  //   display: block;
-  //   padding: 8px;
-  // }
-
-  .fa-user-plus, .fa-user-check {
-    margin-left: 8px
-  }
-
-  .menu-item {
-    color: #FFF;
-    cursor: pointer;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 25px;
-    padding: 10px;
-    // font-weight: bold;
-    // margin: 0;
-    // padding: 10px;
-
-    &:hover {
-      background-color: lightgrey;
-      color: #355C7D;
-    }
-  }
+		&:hover {
+			background-color: lightgrey;
+			color: #355c7d;
+		}
+	}
 }

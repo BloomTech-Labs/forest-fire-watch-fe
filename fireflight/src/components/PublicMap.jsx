@@ -89,7 +89,7 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
       </span>
       <div style={{ display: "flex", justifyContent: "space-around" }}>
         <span>Toggle Notifications:</span>
-        <CheckBoxWrapper>
+        <div className="checkbox-wrapper">
           <CheckBox
             onChange={() => {
               toggleNotification();
@@ -99,7 +99,7 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
             type="checkbox"
           />
           <CheckBoxLabel htmlFor="checkbox" />
-        </CheckBoxWrapper>
+        </div>
       </div>
 
       <div style={{ display: "flex", justifyContent: "center" }}>
@@ -140,7 +140,7 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
   return (
     <div style={{ position: "relative", width: "100%", height: "100%" }}>
       <MapLegend />
-      <Container>
+      <div className="public-container">
         <form onSubmit={handleSubmit} className="map-form-container">
           <label className="map-form-text">
             Enter the address you wish to check fire proximity to.
@@ -168,7 +168,7 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
           <button className="signup-btn">Sign Up</button>
         </form>
         {/* End Form Container */}
-      </Container>
+      </div>
 
       <ReactMapGL
         {...publicMapViewport}
@@ -209,17 +209,6 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
 
 export default PublicMap;
 
-const Container = styled.div`
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  z-index: 3;
-`;
-
-const CheckBoxWrapper = styled.div`
-  position: relative;
-`;
 const CheckBoxLabel = styled.label`
   position: absolute;
   top: 0;
