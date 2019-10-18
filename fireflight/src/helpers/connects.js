@@ -10,9 +10,11 @@ class connector {
     this.connector = axios;
     // this.coreString = "https://wildfire-watch-staging.herokuapp.com/api/";
 
-    if (process.env.NODE_ENV === "production") {
-      this.coreString = "https://wildfire-watch.herokuapp.com/api/";
-    } else if (process.env.NODE_ENV === "staging") {
+    // if (process.env.NODE_ENV === "production") {
+    //   this.coreString = "https://wildfire-watch.herokuapp.com/api/";
+    // } else
+
+    if (process.env.NODE_ENV === "staging") {
       this.coreString = "https://wildfire-watch-staging.herokuapp.com/api/";
     } else {
       console.log("in else statment");
