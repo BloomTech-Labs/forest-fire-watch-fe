@@ -1,139 +1,167 @@
+// Mobile View //
+@include mediaSm {
 
-// @include mediaSm {
-// Navigation Bar
-//   .nav-container {
-// background-image: linear-gradient(to bottom, #355C7D, #F67280 95%);
-// height: 0;
-// width: 100%;
+    // Navigation Bar
+    .nav-container {
+        // background-image: linear-gradient(to bottom, #355C7D, #F67280 95%);
+        height: 0;
+        width: 100%;
+        
 
-// // FireFlight Logo
-// .brand {
-//     float: left;
+        // // FireFlight Logo
+        // .brand {
+        //     float: left;
 
-//     .logo {
-//         height: 50px;
-//         width: 40px;
-//     }
+        //     .logo {
+        //         height: 50px;
+        //         width: 40px;
+        //     }
 
-//     .logo-txt {
-//         color: white;
-//         font-family: $header;
-//     }
-// }
+        //     .logo-txt {
+        //         color: white;
+        //         font-family: $header;
+        //     }
+        // }
 
-// Dropdown Menu
-// .dropdown {
-//   margin-top: 12.5px;
-//   position: relative;
-//   float: right;
+        // Dropdown Menu   
+        .dropdown {
+            margin-top: 12.5px;
+            position: relative;
+            float: right;
 
-//   .fa-plus-circle {
-//     border: 3px solid $accentColor;
-//     border-radius: 50%;
-//     color: #fff;
-//     cursor: pointer;
-//     margin: 15px;
+            .fa-plus-circle {
+                border: 3px solid $accentColor;
+                border-radius: 50%;
+                color: #FFF;
+                cursor: pointer;
+                margin: 15px;
 
-//     &:hover {
-//       color: $accentColor;
-//       border: 3px solid #fff;
-//       transform: rotate(45deg);
-//       @include easeOut;
-//     }
-//   }
+                &:hover {
+                    color: $accentColor;
+                    border: 3px solid #FFF;
+                    transform: rotate(45deg);
+                    @include easeOut;
+                }
+            }
 
-//   .dropdown-content {
-//     background-color: transparent;
-//     position: static;
-//     right: auto;
-//     margin: auto;
-//     text-align: center;
-//     padding-left: 15px;
-//     padding-top: 20px;
+            .dropdown-content {
+                background-color: transparent;
+                position: static;
+                right: auto;
+                margin: auto;
+                text-align: center;
+                padding-left: 15px;
+                padding-top: 20px;
 
-//     a {
-//       color: $lilia;
-//       display: block;
-//     }
+                a {
+                    color: $lilia;
+                    display: block;
+                }
 
-//     // .fa-user-plus, .fa-user-check {
-//     //     margin: 0;
-//     //   }
-//     //   }
-//     // }
-//   }
+                // .fa-user-plus, .fa-user-check {
+                //     margin: 0;
+                //   }
+            }
+        }
+    }
 
-// Sign In and Sign Up Forms
-//   .name-error-text {
-//     font-size: 0.8em;
-//     margin-top: 5px;
-//     width: 75%;
-//   }
-//   // Map Form
-//   .map-form-container {
-//     position: relative;
-//     left: 1em;
+    // Sign In and Sign Up Forms
+    .name-error-text {
+        font-size: 0.8em;
+        margin-top: 5px;
+        width: 75%;
+    }
+    // Map Form
+    .map-form-container {
+        position: relative;
+        left: 1em;
 
-// .address-input {
-//   // border-left: solid 1px #000;
-//   // border-top-left-radius: 5px;
-//   // border-bottom-left-radius: 5px;
-//   // margin-bottom: 0;
-//   position: absolute;
-//   width: 245px;
-//   height: 42px;
-//   left: 20px;
-//   top: 118px;
-//   background: #ffffff;
-//   border-radius: 3px;
+        .address-input {
+            // border-left: solid 1px #000;
+            // border-top-left-radius: 5px;
+            // border-bottom-left-radius: 5px;
+            // margin-bottom: 0;
+            position: absolute;
+            width: 245px;
+            height: 42px;
+            left: 20px;
+            top: 118px;
+            background: #FFFFFF;
+            border-radius: 3px;
 
-//   &::placeholder {
-//     padding-left: 17px;
-//   }
-// }
+            &::placeholder {
+                 padding-left: 17px;
+            }
+        }
 
-// .radius-input {
-//   // height: 39px;
-//   // margin-top: 10px;
-//   margin-bottom: 0;
+        .radius-input {
+            // height: 39px;
+            // margin-top: 10px;
+            margin-bottom: 0;
 
-//   &::placeholder {
-//     text-align: center;
-//   }
-// }
+            &::placeholder {
+                text-align: center;
+            }
+        }
 
-//   Find Active Fires Button
-// .form-btn {
-//   // height: 60px;
-//   // position: relative;
-//   // margin-top: 10px;
-//   // margin-right: 1.25em;
-//   // width: 200px;
-//   position: absolute;
-//   left: 5.33%;
-//   right: 20px;
-//   top: 175px;
-//   bottom: 75.62%;
-//   background: #ffffff;
-//   border-radius: 3px;
-// }
-//   }
-// }
+        //   Find Active Fires Button 
+        .form-btn {
+            // height: 60px;
+            // position: relative;
+            // margin-top: 10px;
+            // margin-right: 1.25em;
+            // width: 200px;
+            position: absolute;
+            left: 5.33%;
+            right: 20px;
+            top: 175px;
+            bottom: 75.62%;
+            background: #FFFFFF;
+            border-radius: 3px;
+        }
+    }
+
+    // .legend-container {
+    //     position: absolute;
+    //     top: 234px;
+    //     left: 20px;
+    //     height: auto;
+    // }
+}
 
 // Medium View
-// @include mediaMd {
-//   .dropdown-content {
-//     background-color: transparent;
-//     position: static;
-//     right: auto;
-//     margin: auto;
-//     text-align: center;
-//     padding-left: 15px;
-//     padding-top: 20px;
+@include mediaMd {
+    .nav-container {
+        height: 100vh;
+        width: 0;
+        
 
-//     .menu-item {
-//       padding: auto;
-//       width: 80px;
-//     }
-//   }
-// }
+        .logo-txt {
+            display: none;
+        }
+    }
+
+    .dropdown {
+        padding: 0;
+        width: auto;
+
+        .fa-plus-circle {
+            display: none;
+        }
+    }
+
+    .dropdown-content {
+        background-color: transparent;
+        position: static;
+        right: auto;
+        margin: auto;
+        text-align: center;
+        padding-left: 15px;
+        padding-top: 20px;
+
+        .menu-item {
+            padding: auto;
+            width: 80px;
+        }
+    }
+}

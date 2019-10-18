@@ -172,8 +172,8 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
 
       <ReactMapGL
         {...publicMapViewport}
-        width="100%"
-        height="100%"
+        // width="100%"
+        // height="100%"
         mapboxApiAccessToken={token}
         onViewportChange={publicMapViewport => {
           const { width, height } = publicMapViewport;
