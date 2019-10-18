@@ -2,3 +2,5 @@
 base="fireflight/"
 publish="/build"
 command ="yarn build"
+
+environment={NODE_ENV="staging"}
