@@ -4,12 +4,13 @@ import styled from "styled-components";
 
 import { FireDataContext } from "../context/FireDataContext";
 import MapLegend from "./MapLegend";
+import Navigation from "../components/Navigation";
 
 // mapbox API token
 const token =
   "pk.eyJ1IjoiYXN0aWxsbyIsImEiOiJjazFzOTJ4cTIwM284M2NxcW5hZ2t5cmtxIn0.lX1iNcdfJzPCMgxJkEklDw";
 
-const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
+const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister, setShowAuthForms, setLoginFormStatus, setRegisterFormStatus}) => {
   const {
     fireDataState,
     setPublicViewport,
@@ -141,6 +142,10 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
     <div style={{ position: "relative", width: "100%", height: "100%" }}>
       <MapLegend />
       <div className="public-container">
+        <Navigation
+          toggleAuthForms={setShowAuthForms}
+          toggleLoginStatus={setLoginFormStatus}
+          toggleRegisterStatus={setRegisterFormStatus} />
         <form onSubmit={handleSubmit} className="map-form-container">
           <label className="map-form-text">
             Enter the address you wish to check fire proximity to.
@@ -172,7 +177,7 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
 
       <ReactMapGL
         {...publicMapViewport}
-        // width="100%"
+        width="100%"
         // height="100%"
         mapboxApiAccessToken={token}
         onViewportChange={publicMapViewport => {

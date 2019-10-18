@@ -26,8 +26,8 @@ function Navigation({ toggleAuthForms, toggleLoginStatus, toggleRegisterStatus, 
 
 	return (
 		<div className="nav-container">
-			<NavLink exact to="/" activeClassName="current">
-				<div className="menu-item">Home</div>
+			<NavLink exact to="/" activeClassName="current" className="menu-item">Home
+				{/* <div className="menu-item">Home</div> */}
 			</NavLink>
 
 			{localStorage.getItem('token') == null && (

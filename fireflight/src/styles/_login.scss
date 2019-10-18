@@ -35,6 +35,10 @@
       font-style: normal;
       font-weight: normal;
 
+      &:last-child {
+        padding-top: 20px;
+      }
+
       @media (max-width: $mq-mobile) {
         width: 239px;
         height: 38px;
