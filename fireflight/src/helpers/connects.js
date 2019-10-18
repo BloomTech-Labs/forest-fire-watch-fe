@@ -13,15 +13,16 @@ class connector {
     // if (process.env.NODE_ENV === "production") {
     //   this.coreString = "https://wildfire-watch.herokuapp.com/api/";
     // } else
+    this.coreString = process.env.REACT_APP_ENV || "http://localhost:5000/api/";
 
-    if (process.env.NODE_ENV === "staging") {
-      this.coreString = "https://wildfire-watch-staging.herokuapp.com/api/";
-    } else {
-      console.log("in else statment");
-      this.coreString = "http://localhost:5000/api/";
-    }
+    // if (process.env.NODE_ENV === "staging") {
+    //   this.coreString = "https://wildfire-watch-staging.herokuapp.com/api/";
+    // } else {
+    //   console.log("in else statment");
+    //   this.coreString = "http://localhost:5000/api/";
+    // }
 
-    console.log("ENVIRONMENT", process.env.NODE_ENV);
+    console.log("ENVIRONMENT", this.coreString);
 
     this.fireflight = process.env.REACT_APP_MAPBOX_TOKEN;
     if (localStorage.getItem("token") != null) {
