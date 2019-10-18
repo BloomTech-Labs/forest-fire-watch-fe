@@ -155,7 +155,11 @@ function Register({
               onChange={handlePassword}
               placeholder=""
             />
-
+            {errorStatus ? (
+              <ErrorText>{errorText.password}</ErrorText>
+            ) : (
+                <ErrorText />
+              )}
             <label htmlFor="password">Confirm Password</label>
             <input
               className="form-input"
@@ -164,7 +168,7 @@ function Register({
               value={passwordConf}
               // onChange={e=>setPasswordConf(e.value)}
               onChange={handlePasswordConf}
-              placeholder="Confirm Password"
+              placeholder=""
             />
             {errorStatus ? (
               <ErrorText>{errorText.password}</ErrorText>

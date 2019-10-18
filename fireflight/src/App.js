@@ -113,11 +113,11 @@ function App() {
           setPasswordFormStatus={setPasswordFormStatus}
         />
 
-        <Navigation
+        {/* <Navigation
           toggleAuthForms={setShowAuthForms}
           toggleLoginStatus={setLoginFormStatus}
           toggleRegisterStatus={setRegisterFormStatus}
-        />
+        /> */}
         <UserDataProvider>
           <Route path="/dashboard" component={Dashboard} />
         </UserDataProvider>
@@ -129,6 +129,10 @@ function App() {
               setShowAuth={setShowAuthForms}
               setShowRegister={setRegisterFormStatus}
               setShowLogin={setLoginFormStatus}
+              setShowAuthForms={setShowAuthForms}
+              setLoginFormStatus={setLoginFormStatus}
+              setRegisterFormStatus={setRegisterFormStatus}
+              
             />
           )}
         />
@@ -155,6 +159,9 @@ function App() {
               setShowAuth={setShowAuthForms}
               setShowRegister={setRegisterFormStatus}
               setShowLogin={setLoginFormStatus}
+              setShowAuthForms={setShowAuthForms}
+              setLoginFormStatus={setLoginFormStatus}
+              setRegisterFormStatus={setRegisterFormStatus}
             />
           )}
         />
@@ -172,7 +179,7 @@ const AppWrapper = styled.div`
   display: flex;
   flex-direction: column;
   ${v.tablet} {
-    flex-direction: row;
+    flex-direction: column;
   }
   background-image: url("https://www.fireflightapp.com/public/images/wildfire.jpg")
   );

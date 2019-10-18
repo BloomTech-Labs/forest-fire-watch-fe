@@ -41,8 +41,9 @@
 		font-style: normal;
 		font-weight: normal;
 		position: absolute;
-		top: 609px;
-		left: 96px;
+		top: 60.9rem;
+		left: 9.6rem;
+		width: 40rem;
 
 		@media (max-width: 900px) {
 			position: absolute;
@@ -109,6 +110,10 @@
 			color: #a9a9a9;
 			padding-left: 17px;
 		}
+
+		&::-moz-placeholder {
+			line-height: 4.5rem;
+		}
 	}
 
 	// Radius Input
@@ -150,7 +155,11 @@
 			display: flex;
 			align-items: center;
 			color: #a9a9a9;
-      padding-left: 17px;
+			padding-left: 17px;
+		}
+
+		&::-moz-placeholder {
+			line-height: 4.5rem;
 		}
 	}
 }
