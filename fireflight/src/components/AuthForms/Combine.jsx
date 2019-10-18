@@ -35,11 +35,24 @@ const Combine = ({
   return (
     <Modal show={show} close={close}>
       {showLogin && (
-        <Login toggle={toggleForms} setShowAuthForms={setShowAuthForms} passwordFormStatus={passwordFormStatus}
-          setPasswordFormStatus={setPasswordFormStatus} />
+        <Login 
+          toggle={toggleForms} 
+          setShowAuthForms={setShowAuthForms} 
+          passwordFormStatus={passwordFormStatus}
+          setPasswordFormStatus={setPasswordFormStatus} 
+        />
       )}
       {showRegister && (
-        <Register toggle={toggleForms} setShowAuthForms={setShowAuthForms} />
+        <Register 
+          toggle={toggleForms} 
+          setShowAuthForms={setShowAuthForms} 
+          showRegister={showRegister} 
+          showLogin={showLogin} 
+          showPassword={showPassword}
+          setPasswordFormStatus={setPasswordFormStatus}
+          setLoginStatus={setLoginStatus}
+          setRegisterStatus={setRegisterStatus}
+        />
       )}
       {showPassword && (
         <Password toggle={toggleForms} setShowAuthForms={setShowAuthForms} />

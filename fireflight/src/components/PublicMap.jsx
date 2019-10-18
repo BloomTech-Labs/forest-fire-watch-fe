@@ -3,11 +3,11 @@ import ReactMapGL, { Popup } from "react-map-gl";
 import styled from "styled-components";
 
 import { FireDataContext } from "../context/FireDataContext";
-
 import MapLegend from "./MapLegend";
 
 // mapbox API token
-const token = "pk.eyJ1IjoiYXN0aWxsbyIsImEiOiJjazFzOTJ4cTIwM284M2NxcW5hZ2t5cmtxIn0.lX1iNcdfJzPCMgxJkEklDw";
+const token =
+  "pk.eyJ1IjoiYXN0aWxsbyIsImEiOiJjazFzOTJ4cTIwM284M2NxcW5hZ2t5cmtxIn0.lX1iNcdfJzPCMgxJkEklDw";
 
 const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
   const {
@@ -32,9 +32,7 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
   } = fireDataState;
 
   const [address, setAddress] = useState("");
-
   const [radius, setRadius] = useState("");
-
   const [popupRadius, setPopupRadius] = useState("");
 
   useEffect(() => {
@@ -59,18 +57,17 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
 
   const tempLocationPopup = (
     <div style={{ display: "flex", flexDirection: "column" }}>
+      <p>Want to save this location?</p>
       <button
-        style={{ marginBottom: 6, marginTop: "7px" }}
+        className="save-location-btn"
         onClick={e => {
           saveLocationMarker();
           deleteLocationMarker();
         }}
       >
-        Save this location
+        Click here
       </button>
-      <button style={{ marginTop: 6 }} onClick={e => deleteLocationMarker()}>
-        Delete this pin
-      </button>
+      <button onClick={e => deleteLocationMarker()}>Delete this pin</button>
     </div>
   );
 
@@ -141,12 +138,13 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
   );
 
   return (
-    <div style={{ position: "relative" }}>
+    <div style={{ position: "relative", width: "100%", height: "100%" }}>
       <MapLegend />
       <Container>
         <form onSubmit={handleSubmit} className="map-form-container">
-          {/* <i className="fas fa-compass fa-lg" /> */}
-          <label className="map-form-text">Enter the address you wish to check fire proximity to.</label>
+          <label className="map-form-text">
+            Enter the address you wish to check fire proximity to.
+          </label>
           <input
             className="address-input"
             type="text"
@@ -164,7 +162,9 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
             onChange={e => setRadius(e.target.value)}
           />
           <button className="form-btn">Search</button>
-          <label className="signup-form-text">to save addresses and receive notifications</label>
+          <label className="signup-form-text">
+            to save addresses and receive notifications
+          </label>
           <button className="signup-btn">Sign Up</button>
         </form>
         {/* End Form Container */}
@@ -172,8 +172,11 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
 
       <ReactMapGL
         {...publicMapViewport}
+        width="100%"
+        height="100%"
         mapboxApiAccessToken={token}
         onViewportChange={publicMapViewport => {
+          const { width, height } = publicMapViewport;
           setPublicViewport(publicMapViewport);
         }}
         mapStyle="mapbox://styles/astillo/ck1s93bpe5bnk1cqsfd34n8ap"
@@ -212,20 +215,6 @@ const Container = styled.div`
   flex-direction: column;
   width: 100%;
   z-index: 3;
-`;
-
-const TriggeredButton = styled.button`
-  font-size: 1em;
-  max-width: 250px;
-  margin: 25px auto;
-  border-radius: 5px;
-  box-shadow: 5px 5px 15px black;
-  background-color: #f67280;
-  padding: 5px 0px;
-  cursor: pointer;
-  &:hover {
-    box-shadow: none;
-  }
 `;
 
 const CheckBoxWrapper = styled.div`
