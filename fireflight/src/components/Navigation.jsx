@@ -64,11 +64,13 @@ function Navigation({ toggleAuthForms, toggleLoginStatus, toggleRegisterStatus, 
 					{/* <NavLink to="/address" activeClassName="current">
 						<div className="menu-item"> Input Your Address</div>
 					</NavLink> */}
-					<div className="menu-item">
-						<NavLink to="/" onClick={logout}>
-							Logout
+					{/* <div className="menu-item"> */}
+            <NavLink to="/" onClick={logout}>
+              <div className="menu-item" data-temp="here">
+							  Logout
+              </div>
 						</NavLink>
-					</div>
+					{/* </div> */}
 				</React.Fragment>
 			)}
 		</div>
