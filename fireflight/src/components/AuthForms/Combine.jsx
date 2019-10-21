@@ -2,7 +2,7 @@ import React from "react";
 
 import Login from "./Login.jsx";
 import Register from "./Register.jsx";
-import Modal from "../Modal/Modal";
+import Modal from "../Modal";
 import Password from "./Password.jsx";
 
 const Combine = ({
@@ -35,19 +35,19 @@ const Combine = ({
   return (
     <Modal show={show} close={close}>
       {showLogin && (
-        <Login 
-          toggle={toggleForms} 
-          setShowAuthForms={setShowAuthForms} 
+        <Login
+          toggle={toggleForms}
+          setShowAuthForms={setShowAuthForms}
           passwordFormStatus={passwordFormStatus}
-          setPasswordFormStatus={setPasswordFormStatus} 
+          setPasswordFormStatus={setPasswordFormStatus}
         />
       )}
       {showRegister && (
-        <Register 
-          toggle={toggleForms} 
-          setShowAuthForms={setShowAuthForms} 
-          showRegister={showRegister} 
-          showLogin={showLogin} 
+        <Register
+          toggle={toggleForms}
+          setShowAuthForms={setShowAuthForms}
+          showRegister={showRegister}
+          showLogin={showLogin}
           showPassword={showPassword}
           setPasswordFormStatus={setPasswordFormStatus}
           setLoginStatus={setLoginStatus}
@@ -58,7 +58,7 @@ const Combine = ({
         <Password toggle={toggleForms} setShowAuthForms={setShowAuthForms} />
       )}
     </Modal>
-  )
+  );
 };
 
 export default Combine;
