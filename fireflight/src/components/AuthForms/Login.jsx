@@ -114,7 +114,7 @@ function Login({
             {loading ? "Loading..." : "Sign In"}
           </button>
         </div>
-        <p>
+        <p className="modal-crosslink">
           Need to create an account?
           <button 
             className="create-an-account"
