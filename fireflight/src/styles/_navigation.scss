@@ -17,7 +17,6 @@
 	}
 	.inactive {
 		color: #fff;
-		padding: 0px;
 		width: 100px;
 	}
 
@@ -27,21 +26,23 @@
 		font-style: normal;
 		font-weight: normal;
 		font-size: 18px;
-		line-height: 25px;
+		line-height: 20px;
 		padding: 10px;
-		padding: auto;
+		// padding: auto;
 		width: 100px;
 		display: flex;
 		height: 20px;
 		justify-content: center;
 
 		a {
+			color: #fff;
 			width: 80px;
 		}
 
 		&:hover {
 			background-color: lightgrey;
 			color: #355c7d;
+			height: auto;
 		}
 
 		&.current {
