@@ -1,6 +1,17 @@
 .login-page-container.register-page-container {
   max-width: 800px;
   height: auto;
+
+  @media (max-width: $mq-mobile) {
+    flex-direction: column;
+    position: absolute;
+    width: 34rem;
+    height: auto;
+    left: 8rem;
+    top: 8rem;
+    background: #ffffff;
+    border-radius: 1px;
+  }
 }
 
 .auth-btn.register-btn {
