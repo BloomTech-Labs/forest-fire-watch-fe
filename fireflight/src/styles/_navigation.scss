@@ -34,6 +34,13 @@
 		height: 20px;
 		justify-content: center;
 
+		@media (max-width: $mq-mobile) {
+			font-size: 18px;
+			line-height: 20px;
+			padding: 10px;
+			height: 20px;
+		}
+
 		a {
 			color: #fff;
 			width: 80px;
@@ -42,7 +49,7 @@
 		&:hover {
 			background-color: lightgrey;
 			color: #355c7d;
-			height: auto;
+			height: 20px;
 		}
 
 		&.current {
