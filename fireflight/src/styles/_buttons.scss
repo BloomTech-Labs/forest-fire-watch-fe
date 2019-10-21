@@ -30,7 +30,7 @@
 .signup-btn {
   cursor: pointer;
   position: absolute;
-  top: 54.1rem;
+  top: 50.1rem;
   left: 16.1rem;
   width: 13.6rem;
   height: 4.8rem;
@@ -44,12 +44,12 @@
   color: #251400;
   @include easeOut;
 
-  @media (max-width: 900px) {
+  @media (max-width: $mq-tablet) {
     position: absolute;
     width: 13.6rem;
     height: 4.7rem;
     left: 12.1rem;
-    top: 55rem;
+    top: 50rem;
     background: #ffffff;
     border-radius: 3px;
   }
