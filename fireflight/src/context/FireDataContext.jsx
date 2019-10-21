@@ -142,28 +142,27 @@ export const FireDataProvider = ({ children }) => {
 
   const getAllFires = () => {
     axios
-      .get(`${DSbaseURL}/all_fires`)
+      .get(`${DSbaseURL}/fpfire`)
       .then(res => {
-        const localArray = res.data.Fires.map((fire, index) => (
-          <Marker latitude={fire[1]} longitude={fire[0]} key={fire[0] + index}>
+        // console.log("RESPONSE: ", res.data)
+        const localArray = res.data.map((fire, index) => (
+          <Marker
+            latitude={fire.location[1]}
+            longitude={fire.location[0]}
+            key={fire.location[0] + index}
+          >
             <img
               src={fireIcon}
               height="20"
               width="15"
               style={{ zIndex: 100, transform: "translate(-10px, -9px)" }}
               alt=""
-              // onClick={e => {
-              //   dispatch({
-              //     type: SET_SELECTED_MARKER,
-              //     payload: [fire[1], fire[0], null, null, "fireLocation"]
-              //   });
-              // }}
             />
           </Marker>
         ));
         dispatch({
           type: SET_ALL_FIRES,
-          payload: [res.data.Fires, localArray]
+          payload: [res.data, localArray] // setting state of fire data and fire markers
         });
       })
       .catch(err => {
@@ -231,20 +230,20 @@ export const FireDataProvider = ({ children }) => {
           `https://api.mapbox.com/geocoding/v5/mapbox.places/${address}.json?access_token=${token}`
         )
         .then(res => {
+          // console.log("RESULT: ", res.data);
           let localArray = [];
-
           fireDataState.allFires.forEach(fire => {
             let distance = haversineDistance(
               [res.data.features[0].center[1], res.data.features[0].center[0]],
-              [fire[1], fire[0]],
+              [fire.location[1], fire.location[0]],
               true
             );
 
             if (distance <= radius) {
-              localArray.push(fire);
+              localArray.push(fire.location);
             }
           });
-
+          // console.log("localArray: ", localArray);
           const localMarkers = localArray.map((fire, index) => (
             <Marker
               latitude={fire[1]}

@@ -1,5 +1,4 @@
 .login-page-container {
-  // max-width: 800px;
   min-height: 45rem;
   height: auto;
   margin: auto;
@@ -13,10 +12,10 @@
   @media (max-width: $mq-mobile) {
     flex-direction: column;
     position: absolute;
-    width: 318px;
-    height: 354px;
-    left: 29px;
-    top: 78px;
+    width: 33rem;
+    height: 35.4rem;
+    left: 8.5rem;
+    top: 12.5rem;
     background: #ffffff;
     border-radius: 1px;
   }

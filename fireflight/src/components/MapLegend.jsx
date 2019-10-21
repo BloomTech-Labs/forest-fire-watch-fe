@@ -21,9 +21,9 @@ const MapLegend = () => {
 
   return (
     <div className="legend-container">
-      <div class="legend-header">
+      <div className="legend-header">
         <img src={mapLegend} height="18" width="10" alt="map-view" />
-        <h4 class="legend-title" onClick={() => setShowLegend(!showLegend)}>
+        <h4 className="legend-title" onClick={() => setShowLegend(!showLegend)}>
           Map Legend
         </h4>
       </div>

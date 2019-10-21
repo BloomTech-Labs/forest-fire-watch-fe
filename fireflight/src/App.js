@@ -1,30 +1,32 @@
 import React, { useState, useEffect, useContext } from "react";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+
 import Navigation from "./components/Navigation";
 import Home from "./components/Home";
 import Dashboard from "./components/Dashboard";
-
 import AuthForms from "./components/AuthForms/AuthForms";
-
 import Address from "./components/Address";
-import AddressContext from "./context/AddressContext";
-import styled from "styled-components";
+import LandingPage from "./components/LandingPage";
 
 import { GlobalContext } from "./context/contextProvider";
 import { UserDataProvider } from "./context/UserDataContext";
 import { FireDataContext } from "./context/FireDataContext";
+import AddressContext from "./context/AddressContext";
 
 // import Modal from "./components/Modal/Modal"
 
-import * as v from "./styles/vars";
 import * as Sentry from "@sentry/browser";
 
+import * as v from "./styles/vars";
+import styled from "styled-components";
 import "./styles/App.scss";
+
 import fire from "./config/fire";
-import LandingPage from "./components/LandingPage";
+
 Sentry.init({
   dsn: "https://2281acb5134d4680927ead14de3c5727@sentry.io/1775951"
 });
+
 require("dotenv").config();
 
 const token = localStorage.getItem("token");
@@ -33,11 +35,13 @@ const token = localStorage.getItem("token");
 // Will refactor everything in regards to the auth form modal into one single component to clean up APP.js
 
 function App() {
-  // The 3 hooks below are used for showing and toggling between the login & register forms. These can most likely be refactored to use context API.
+  // The 4 hooks below are used for toggling between the login, register, and forgot password forms.
+  // These can most likely be refactored to use context API.
   const [showAuthForms, setShowAuthForms] = useState(false);
   const [loginFormStatus, setLoginFormStatus] = useState(true);
   const [registerFormStatus, setRegisterFormStatus] = useState(false);
   const [passwordFormStatus, setPasswordFormStatus] = useState(false);
+
   const [firebaseUser, setFirebaseUser] = useState({});
 
   const global = useContext(GlobalContext);
@@ -45,7 +49,7 @@ function App() {
     FireDataContext
   );
 
-  console.log("FIRE DATA STATE", fireDataState);
+  // console.log("FIRE DATA STATE", fireDataState);
 
   useEffect(() => {
     getAllFires();
@@ -53,7 +57,6 @@ function App() {
 
   useEffect(() => {
     if (token) {
-      console.log("effect");
       setUserLocations();
     }
   }, [fireDataState.allFires, fireDataState.selectedMarker]);
@@ -73,7 +76,7 @@ function App() {
     if (token) {
       getLogin();
     }
-  }, []); //[] here means this will only run once
+  }, []);
 
   useEffect(() => {
     if (token) {
@@ -99,6 +102,7 @@ function App() {
       }
     });
   };
+
   return (
     <AppWrapper>
       <AddressContext>
@@ -130,7 +134,6 @@ function App() {
               setShowAuthForms={setShowAuthForms}
               setLoginFormStatus={setLoginFormStatus}
               setRegisterFormStatus={setRegisterFormStatus}
-              
             />
           )}
         />
