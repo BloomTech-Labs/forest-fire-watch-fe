@@ -26,8 +26,8 @@ function Navigation({ toggleAuthForms, toggleLoginStatus, toggleRegisterStatus, 
 
 	return (
 		<div className="nav-container">
-			<NavLink exact to="/" activeClassName="current" className="menu-item">Home
-				{/* <div className="menu-item">Home</div> */}
+			<NavLink exact to="/" activeClassName="current">
+				<div className="menu-item">Home</div>
 			</NavLink>
 
 			{localStorage.getItem('token') == null && (
@@ -58,17 +58,19 @@ function Navigation({ toggleAuthForms, toggleLoginStatus, toggleRegisterStatus, 
 				<React.Fragment>
 					<NavLink to="/dashboard" activeClassName="current">
 						<div className="menu-item" data-temp="here">
-							} My Profile
+							Profile
 						</div>
 					</NavLink>
-					<NavLink to="/address" activeClassName="current">
-						<div className="menu-item">} Input Your Address</div>
-					</NavLink>
-					<div className="menu-item">
-						<NavLink to="/" onClick={logout}>
-							Logout
+					{/* <NavLink to="/address" activeClassName="current">
+						<div className="menu-item"> Input Your Address</div>
+					</NavLink> */}
+					{/* <div className="menu-item"> */}
+            <NavLink to="/" onClick={logout}>
+              <div className="menu-item" data-temp="here">
+							  Logout
+              </div>
 						</NavLink>
-					</div>
+					{/* </div> */}
 				</React.Fragment>
 			)}
 		</div>
