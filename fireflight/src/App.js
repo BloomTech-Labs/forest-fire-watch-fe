@@ -13,6 +13,8 @@ import { UserDataProvider } from "./context/UserDataContext";
 import { FireDataContext } from "./context/FireDataContext";
 import AddressContext from "./context/AddressContext";
 
+// import Modal from "./components/Modal/Modal"
+
 import * as Sentry from "@sentry/browser";
 
 import * as v from "./styles/vars";
@@ -123,14 +125,12 @@ function App() {
         <UserDataProvider>
           <Route path="/dashboard" component={Dashboard} />
         </UserDataProvider>
+
         <Route
           exact
           path="/"
           render={() => (
             <Home
-              setShowAuth={setShowAuthForms}
-              setShowRegister={setRegisterFormStatus}
-              setShowLogin={setLoginFormStatus}
               setShowAuthForms={setShowAuthForms}
               setLoginFormStatus={setLoginFormStatus}
               setRegisterFormStatus={setRegisterFormStatus}
@@ -153,9 +153,6 @@ function App() {
           path="/home"
           render={() => (
             <Home
-              setShowAuth={setShowAuthForms}
-              setShowRegister={setRegisterFormStatus}
-              setShowLogin={setLoginFormStatus}
               setShowAuthForms={setShowAuthForms}
               setLoginFormStatus={setLoginFormStatus}
               setRegisterFormStatus={setRegisterFormStatus}

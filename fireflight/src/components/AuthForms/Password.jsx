@@ -2,7 +2,13 @@ import React, { useState, useContext, useEffect } from "react";
 import { GlobalContext } from "../../context/contextProvider";
 import useInput from "../../utils/useInput";
 
-function Password({ toggle, setShowAuthForms}) {
+function Password({ 
+    toggle, 
+    setShowAuthForms, 
+    setRegisterStatus, 
+    setLoginStatus, 
+    setPasswordFormStatus 
+}) {
     //useInput is a custom hook that should be used for all controlled inputs
     const [email, setEmail, handleEmail] = useInput("", "email");
     const [loading, setLoading] = useState(false);
@@ -30,6 +36,7 @@ function Password({ toggle, setShowAuthForms}) {
                 setEmail("");
                 setLoading(false);
                 setShowAuthForms(false);
+
             })
             .catch(err => {
                 setErrorText("Email is Invalid");
@@ -40,7 +47,12 @@ function Password({ toggle, setShowAuthForms}) {
 
     return (
         <div className="login-page-container">
-            <button className="form-close-btn" onClick={() => setShowAuthForms(false)}>x</button>
+            <button 
+                className="form-close-btn" 
+                onClick={() => setShowAuthForms(false)}
+            >
+                x
+            </button>
             <h2 className="form-heading">Password Reset</h2>
             <label>Enter your address and we'll send you a link to reset your password.</label>
             <form className="auth-form-container" onSubmit={handleSubmit}>
@@ -77,6 +89,7 @@ function Password({ toggle, setShowAuthForms}) {
       </LoginSplitContainer> */}
         </div>
     );
+    console.log("Password component rendered")
 }
 
 export default Password;
