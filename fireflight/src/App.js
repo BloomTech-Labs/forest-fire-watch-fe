@@ -2,8 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import Home from "./components/Home";
-import Danger from "./components/Danger";
-import Update from "./components/Update";
 import Dashboard from "./components/Dashboard";
 
 import AuthForms from "./components/AuthForms/AuthForms";
@@ -15,6 +13,8 @@ import styled from "styled-components";
 import { GlobalContext } from "./context/contextProvider";
 import { UserDataProvider } from "./context/UserDataContext";
 import { FireDataContext } from "./context/FireDataContext";
+
+// import Modal from "./components/Modal/Modal"
 
 import * as v from "./styles/vars";
 import * as Sentry from "@sentry/browser";
@@ -121,14 +121,12 @@ function App() {
         <UserDataProvider>
           <Route path="/dashboard" component={Dashboard} />
         </UserDataProvider>
+
         <Route
           exact
           path="/"
           render={() => (
             <Home
-              setShowAuth={setShowAuthForms}
-              setShowRegister={setRegisterFormStatus}
-              setShowLogin={setLoginFormStatus}
               setShowAuthForms={setShowAuthForms}
               setLoginFormStatus={setLoginFormStatus}
               setRegisterFormStatus={setRegisterFormStatus}
@@ -136,11 +134,7 @@ function App() {
             />
           )}
         />
-        {/* unused component - delete */}
-        <Route path="/update" component={Update} />
 
-        {/* unused component - delete */}
-        <Route path="/danger" component={Danger} />
         <Route
           path="/landing-page"
           render={() => (
@@ -156,9 +150,6 @@ function App() {
           path="/home"
           render={() => (
             <Home
-              setShowAuth={setShowAuthForms}
-              setShowRegister={setRegisterFormStatus}
-              setShowLogin={setLoginFormStatus}
               setShowAuthForms={setShowAuthForms}
               setLoginFormStatus={setLoginFormStatus}
               setRegisterFormStatus={setRegisterFormStatus}

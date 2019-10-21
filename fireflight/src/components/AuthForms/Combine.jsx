@@ -21,15 +21,18 @@ const Combine = ({
     if (showRegister) {
       setRegisterStatus(false);
       setLoginStatus(true);
-      setPasswordFormStatus(false);
     } else if (showLogin) {
       setRegisterStatus(true);
       setLoginStatus(false);
-      setPasswordFormStatus(false);
+    }
+  }
+  const toggleForgotPassword = () => {
+    if (showLogin) {
+      setLoginStatus(false);
+      setPasswordFormStatus(true);
     } else if (showPassword) {
-      setPasswordFormStatus(false);
       setLoginStatus(true);
-      setRegisterStatus(true);
+      setPasswordFormStatus(false);
     }
   };
   return (
@@ -40,6 +43,8 @@ const Combine = ({
           setShowAuthForms={setShowAuthForms} 
           passwordFormStatus={passwordFormStatus}
           setPasswordFormStatus={setPasswordFormStatus} 
+          setLoginStatus={setLoginStatus}
+          setRegisterStatus={setRegisterStatus}
         />
       )}
       {showRegister && (
@@ -55,7 +60,13 @@ const Combine = ({
         />
       )}
       {showPassword && (
-        <Password toggle={toggleForms} setShowAuthForms={setShowAuthForms} />
+        <Password 
+          toggleForgotPassword={toggleForgotPassword} 
+          setShowAuthForms={setShowAuthForms} 
+          setPasswordFormStatus={setPasswordFormStatus} 
+          setLoginStatus={setLoginStatus}
+          setRegisterStatus={setRegisterStatus}
+        />
       )}
     </Modal>
   )

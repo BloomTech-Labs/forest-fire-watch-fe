@@ -1,6 +1,7 @@
 import React from "react";
 
 const Modal = ({ handleClose, show, children }) => {
+  console.log("children", children)
   return (
     <div className="model-wrapper"
       style={{

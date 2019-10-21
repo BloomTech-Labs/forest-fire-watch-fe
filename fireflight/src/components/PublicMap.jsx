@@ -10,7 +10,7 @@ import Navigation from "../components/Navigation";
 const token =
   "pk.eyJ1IjoiYXN0aWxsbyIsImEiOiJjazFzOTJ4cTIwM284M2NxcW5hZ2t5cmtxIn0.lX1iNcdfJzPCMgxJkEklDw";
 
-const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister, setShowAuthForms, setLoginFormStatus, setRegisterFormStatus}) => {
+const PublicMap = ({ setShowAuthForms, setLoginFormStatus, setRegisterFormStatus}) => {
   const {
     fireDataState,
     setPublicViewport,
