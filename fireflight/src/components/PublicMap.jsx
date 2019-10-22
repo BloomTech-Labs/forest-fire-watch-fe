@@ -7,10 +7,13 @@ import MapLegend from "./MapLegend";
 import Navigation from "../components/Navigation";
 
 // mapbox API token
-const token =
-  "pk.eyJ1IjoiYXN0aWxsbyIsImEiOiJjazFzOTJ4cTIwM284M2NxcW5hZ2t5cmtxIn0.lX1iNcdfJzPCMgxJkEklDw";
+const token = process.env.REACT_APP_MAPBOX_TOKEN;
 
-const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister, setShowAuthForms, setLoginFormStatus, setRegisterFormStatus}) => {
+const PublicMap = ({
+  setShowAuthForms,
+  setLoginFormStatus,
+  setRegisterFormStatus
+}) => {
   const {
     fireDataState,
     setPublicViewport,
@@ -36,6 +39,7 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister, setShowAuthForm
   const [radius, setRadius] = useState("");
   const [popupRadius, setPopupRadius] = useState("");
 
+  // Add event listener to window - close whatever
   useEffect(() => {
     const listener = e => {
       if (e.key === "Escape") {
@@ -145,7 +149,8 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister, setShowAuthForm
         <Navigation
           toggleAuthForms={setShowAuthForms}
           toggleLoginStatus={setLoginFormStatus}
-          toggleRegisterStatus={setRegisterFormStatus} />
+          toggleRegisterStatus={setRegisterFormStatus}
+        />
         <form onSubmit={handleSubmit} className="map-form-container">
           <label className="map-form-text">
             Enter the address you wish to check fire proximity to.
@@ -167,13 +172,13 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister, setShowAuthForm
             onChange={e => setRadius(e.target.value)}
           />
           <button className="form-btn">Search</button>
-          {localStorage.getItem('token') == null && (
-          <React.Fragment>
-          <label className="signup-form-text">
-            to save addresses and receive notifications
-          </label>
+          {localStorage.getItem("token") == null && (
+            <React.Fragment>
+              <label className="signup-form-text">
+                to save addresses and receive notifications
+              </label>
               <button className="signup-btn">Sign Up</button>
-          </React.Fragment>
+            </React.Fragment>
           )}
         </form>
         {/* End Form Container */}
