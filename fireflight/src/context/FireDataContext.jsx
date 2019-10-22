@@ -134,7 +134,7 @@ export const FireDataProvider = ({ children }) => {
     allFireMarkers: [],
     localFires: [],
     localFireMarkers: [],
-    selectedMarker: [], // [latitude, longitude, address text, radius, "savedLocation", locationId (?), notifications(0 or 1, i think)
+    selectedMarker: [], // [latitude, longitude, address text, radius, "savedLocation" (the string), location_id , notifications(0 or 1 - boolean)
     selectedMarkerAddress: [],
     userLocationMarkers: [],
     userLocalFireMarkers: []
@@ -161,6 +161,14 @@ export const FireDataProvider = ({ children }) => {
               width="15"
               style={{ zIndex: 100, transform: "translate(-10px, -9px)" }}
               alt="Fire marker"
+
+              // tempLocation
+              // onClick={e => {
+              //   dispatch({
+              //     type: SET_SELECTED_MARKER,
+              //     payload: [fire[1], fire[0], null, null, "fireLocation"]
+              //   });
+              // }}
             />
           </Marker>
         ));
@@ -297,6 +305,7 @@ export const FireDataProvider = ({ children }) => {
                   width="20"
                   style={{ zIndex: 5, transform: "translate(-7.5px, -35px)" }}
                   alt=""
+                  // onClick for temporary location markers
                   onClick={e => {
                     dispatch({
                       type: SET_SELECTED_MARKER,

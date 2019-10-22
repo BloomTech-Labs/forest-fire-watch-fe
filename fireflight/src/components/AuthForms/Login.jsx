@@ -3,14 +3,13 @@ import { GlobalContext } from "../../context/contextProvider";
 import useInput from "../../utils/useInput";
 import { Link } from "react-router-dom";
 
-import fire from '../../config/fire';
+import fire from "../../config/fire";
 
-function Login({ 
-  toggle, 
-  setShowAuthForms, 
+function Login({
+  toggle,
+  setShowAuthForms,
   passwordFormStatus,
-  setPasswordFormStatus,
-
+  setPasswordFormStatus
 }) {
   //useInput is a custom hook that should be used for all controlled inputs
   const [email, setEmail, handleEmail] = useInput("", "email");
@@ -41,6 +40,7 @@ function Login({
         setErrorStatus(false);
         setErrorText("");
 
+        // Still needed even though we added Firebase because we return the JWT and store in localStorage
         context.state.remote
           .login(credentials)
           .then(res => {
@@ -50,13 +50,19 @@ function Login({
             setShowAuthForms(false);
           })
           .catch(err => {
+            // catching the error for whatever context.state.remote
+            console.log(err);
             setErrorText("Email or Password Invalid");
             setErrorStatus(true);
             setLoading(false);
           });
       })
       .catch(err => {
+        // catching the entire firebase sign in
         console.log(err);
+        setErrorText(err);
+        setErrorStatus(true);
+        setLoading(false);
       });
   }
 
@@ -91,7 +97,7 @@ function Login({
             placeholder=""
           />
           {errorStatus ? (
-            <span className="name-error-text">{errorText}</span>
+            <span className="name-error-text">{errorText.message}</span>
           ) : (
             <span className="user-error-text" />
           )}
@@ -116,10 +122,7 @@ function Login({
         </div>
         <p className="modal-crosslink">
           Need to create an account?
-          <button 
-            className="create-an-account"
-            onClick={ toggle }
-          >
+          <button className="create-an-account" onClick={toggle}>
             Sign up Here
           </button>
         </p>

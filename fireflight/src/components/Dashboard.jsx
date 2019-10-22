@@ -20,7 +20,7 @@ const Dashboard = () => {
   } = useContext(UserDataContext);
   const { fireDataState, getUserLocations } = useContext(FireDataContext);
   const { userLocations } = fireDataState;
-  const { username, phone, receiveSMS, receivePush } = userDataState;
+  const { email, phone, receiveSMS, receivePush } = userDataState;
   const [phoneNumber, setPhoneNumber] = useState("");
   const [showEditPhone, setEditPhone] = useState(false);
 
@@ -58,7 +58,7 @@ const Dashboard = () => {
     <div className="dashboard-wrapper">
       <div className="content-wrapper">
         <PersonalInfo>
-          <h3>Welcome {username}!</h3>
+          <h3>Welcome {email}!</h3>
 
           {phone === null || showEditPhone ? (
             phoneInput

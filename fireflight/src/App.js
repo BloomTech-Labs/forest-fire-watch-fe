@@ -64,7 +64,7 @@ function App() {
     const getLogin = async () => {
       try {
         let user = await global.state.remote.self();
-        global.setUser(user.username);
+        global.setUser(user.email);
       } catch (err) {
         localStorage.removeItem("token");
         global.setUser("");
