@@ -63,7 +63,7 @@ function Password({
   }
 
   return (
-    <div className="login-page-container">
+    <div className="login-page-container password-reset-container">
       <button
         className="form-close-btn"
         onClick={() => {
@@ -77,6 +77,7 @@ function Password({
       <label>
         Enter your email address and we'll send you a link to reset your password.
       </label>
+      <br />
       <form className="auth-form-container" onSubmit={handleSubmit}>
         <div className="input-containers">
           <label htmlFor="email">Email Address</label>

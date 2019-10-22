@@ -1,5 +1,5 @@
 .login-page-container {
-  min-height: 45rem;
+  min-height: 40rem;
   height: auto;
   margin: auto;
   text-align: center;
@@ -46,13 +46,9 @@
       }
     }
 
-    .forgot-pw {
-      margin-top: 10px;
-    }
-
-    .forgot-pw a {
-      margin-top: 10px;
-      width: 132px;
+    .forgot-pw button {
+      background-color: white;
+      width: 140px;
       height: 19px;
       font-style: normal;
       font-size: 12px;
