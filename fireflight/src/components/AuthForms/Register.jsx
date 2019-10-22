@@ -193,6 +193,10 @@ function Register({
             Sign In Here
           </button>
         </p>
+        <br />
+        <br />
+        <br />
+        <br />
       </div>
     );
   }
