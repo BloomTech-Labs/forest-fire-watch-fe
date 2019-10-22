@@ -2,24 +2,11 @@
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/65d8b884-4807-40de-a05b-0cc08b7ddf48/deploy-status)](https://app.netlify.com/sites/fireflightapp/deploys)
 
-
 # Forest Fire Watch
 
-You can find the deployed project at [fireflightapp.com](fireflightapp.com).
+You can find the deployed project at [wildfire-watch-staging.com](http://wildfire-watch-staging.netlify.com).
 
 ## Contributors
-                                  |                                       [Jack Ober](https://github.com/Jackcornellober)                                        |                                       [Michael Mangus](https://github.com/mjmangus16)                                        |                                       [Ken Ridenour](https://github.com/ken1286)                                        |                                       [Eric Nunn](https://github.com/ericNunnDev)                                        |
-| :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
-|                      [<img src="https://avatars1.githubusercontent.com/u/6516394" width = "200" />](https://github.com/AshenPheonix)                       |                      [<img src="https://avatars0.githubusercontent.com/u/49887364?s=460&v=4" width = "200" />](https://github.com/Jackcornellober)                       |                      [<img src="https://media.licdn.com/dms/image/C4D03AQHbZ16uQD92Hg/profile-displayphoto-shrink_200_200/0?e=1574294400&v=beta&t=Xmg1e7TqC2xhj9qUY_oZd1SzSljnc8KViekjS4N5DOo" width = "200" />](https://github.com/mjmangus16)                       |                      [<img src="https://media.licdn.com/dms/image/C4E03AQGANL84wC2x_Q/profile-displayphoto-shrink_200_200/0?e=1574294400&v=beta&t=hysfilqVD39N4kD_eSjlOptoaO1HzYm4osgxBnQECAA" width = "200" />](https://github.com/ken1286)                       |                      [<img src="https://avatars1.githubusercontent.com/u/41123891?s=460&v=4" width = "200" />](https://github.com/ericNunnDev)                       |
-|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/ashenPheonix)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Jackcornellober)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/mjmangus16)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/ken1286)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/ericNunnDev)             |
-|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](www.linkedin.com/in/brandon-m-porte) |[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/jack-ober-b6647b151/)|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/mjmangus16/)|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/kenridenour/)|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/eric-nunn/)|
-
-|                                       [Liv Johnson](https://github.com/livjab)                                        |                                       [Ned Horsey](https://github.com/)                                        |                                       [Kobe McKee](https://github.com/kmacmckee)                                        |                                       [Jeff Wicks](https://github.com/)                                        |                                       [Chad Jemmett](https://github.com/ceejaay)                                        |
-| :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
-|                      [<img src="https://avatars2.githubusercontent.com/u/23245487?s=460&v=4" width = "200" />](https://github.com/livjab)                       |                      [<img src="https://media.licdn.com/dms/image/C4D03AQG_WyzQaCQ9-w/profile-displayphoto-shrink_200_200/0?e=1574294400&v=beta&t=ynyVKeNvEkSpvdqgwec7PdvekjdXnOvhLrj1XJ2ZO4A" width = "200" />](https://github.com/Rice-from-data)                       |                      [<img src="https://avatars2.githubusercontent.com/u/47466036?s=460&v=4" width = "200" />](https://github.com/kmacmckee)                       |                      [<img src="https://media.licdn.com/dms/image/C5603AQF4APfWi6rhbA/profile-displayphoto-shrink_200_200/0?e=1574294400&v=beta&t=5vYYy-TRsPjnilfHB48kJXZ15K_NRCh6WpA46ZrfGG8" width = "200" />](https://github.com/)                       |                      [<img src="https://avatars1.githubusercontent.com/u/867243" width ="200" />](https://github.com/ceejaay)                       |
-|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/livjab)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Rice-from-data)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/kmacmckee)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/ceejaay)             |
-|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/liv-johnson-015523144/) |[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/edmond-horsey/)|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/kobemckee/)|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/jeffwicks-interactiondesign/)|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/chad-jemmett-a3a0a347/)|
-
 
 <br>
 <br>
@@ -30,53 +17,48 @@ You can find the deployed project at [fireflightapp.com](fireflightapp.com).
 
 [Product Canvas](https://www.notion.so/Forest-Fire-Prediction-and-Rescue-Coordination-7eb1595c5f1643fca8e48a89c6086fdf)
 
-
 [UX Design files](https://www.dropbox.com/sh/gknqzhazljiw16t/AAALcR4-2XljeEPDXM6Wjhu_a?dl=0)
-
 
 ## Specifications
 
- This applicaation is designed to help people understand when they are in danger of being struck by a wild fire, and hopefully give them time to get out.
+This applicaation is designed to help people understand when they are in danger of being struck by a wild fire, and hopefully give them time to get out.
 
+### Key Features
 
-
-###  Key Features
-
--    User can log in and add multiple addresses. They can also set a distance from that address where the app will provide data about wild fires.
--    User can see wildfires within the range they set.
--    Application will alert user when  fire is withing their set radius. Either by SMS or push notification in the web browser.
-
-
+- User can see all wildfires within the United States, as well as see wildfires with a marker within a range they set.
+- User can log in and add multiple addresses. They can also set a distance from that address where the app will provide data about wild fires.
+- Application will alert the user when fire is within their set radius by SMS or push notification in the web browser.
 
 ## Tech Stack
-  - React
-  - Node.js
-  - Twillio
-  - MapBox
+
+- React
+- Node.js
+- Twilio
+- MapBox
 
 ### Front end built using:
 
 #### React 16.9
 
--    Everyone in project is familiar with it.
+- Everyone in project is familiar with it.
 
 #### Hooks
 
--   Hooks cleans up code and reduces the need for class components.
+- Hooks cleans up code and reduces the need for class components.
 
 #### Context API
 
--    Comes with React.
--    Works well with hooks.
+- Comes with React.
+- Works well with hooks.
 
 #### Axios
 
--   For handling API requests, makes AJAX requests a lot easier.
+- For handling API requests, makes AJAX requests a lot easier.
 
 #### MapBox
 
--   Free up to 25,000 users per month and 50,000 map loads per month.
--   Has a React Library.
+- Free up to 25,000 users per month and 50,000 map loads per month.
+- Has a React Library.
 
 #### Node-Sass
 
@@ -88,40 +70,35 @@ You can find the deployed project at [fireflightapp.com](fireflightapp.com).
 
 #### ExpressJS
 
--    The popular back-end NodeJS server code makes making an API much easier.
+- The popular back-end NodeJS server code makes making an API much easier.
 
 #### KNEX
 
--   For management of Database Structrure.
+- For management of Database Structrure.
 
 #### BCRYPT
 
--   For hashing passwords, used to protect password information.
+- For hashing passwords, used to protect password information.
 
 #### JWT
 
--   For handling authorizations.
+- For handling authorizations.
 
 # APIs
 
 ## Mapbox
 
--  This api gives the application the abilty to convert addresses to lat/long for our backend applications. Later, this will give us the ability to show more data to the users.
+- This api gives the application the abilty to convert addresses to lat/long for our backend applications. Later, this will give us the ability to show more data to the users.
 
-
-#  Environment Variables
-
-
+# Environment Variables
 
 # Privacy Policy
 
-Please read our privacy policy [*here => Privacy Policy*](https://app.termly.io/document/privacy-policy/865784e8-0f1a-42be-b3f9-4afbb2b7ad45)
+Please read our privacy policy [_here => Privacy Policy_](https://app.termly.io/document/privacy-policy/865784e8-0f1a-42be-b3f9-4afbb2b7ad45)
 
 # Content Licenses
 
-  All content created by [Jeffery Wicks]("https://www.linkedin.com/in/jeffwicks-interactiondesign/")
-
-
+All content created by [Jeffery Wicks]("https://www.linkedin.com/in/jeffwicks-interactiondesign/")
 
 # Testing
 
@@ -137,7 +114,7 @@ Please read our privacy policy [*here => Privacy Policy*](https://app.termly.io/
 
     * build - creates a build of the application
     * start - starts the production server after a build is created
-    * test - runs tests in **tests** directory 
+    * test - runs tests in **tests** directory
     * eject - copy the configuration files and dependencies into the project so you have full control over them
 
 # Contributing
@@ -147,12 +124,13 @@ When contributing to this repository, please first discuss the change you wish t
 Please note we have a [code of conduct](./CODE_OF_CONDUCT.md). Please follow it in all your interactions with the project.
 
 ## Issue/Bug Request
-   
- **If you are having an issue with the existing project code, please submit a bug report under the following guidelines:**
- - Check first to see if your issue has already been reported.
- - Check to see if the issue has recently been fixed by attempting to reproduce the issue using the latest master branch in the repository.
- - Create a live example of the problem.
- - Submit a detailed bug report including your environment & browser, steps to reproduce the issue, actual and expected outcomes,  where you believe the issue is originating from, and any potential solutions you have considered.
+
+**If you are having an issue with the existing project code, please submit a bug report under the following guidelines:**
+
+- Check first to see if your issue has already been reported.
+- Check to see if the issue has recently been fixed by attempting to reproduce the issue using the latest master branch in the repository.
+- Create a live example of the problem.
+- Submit a detailed bug report including your environment & browser, steps to reproduce the issue, actual and expected outcomes, where you believe the issue is originating from, and any potential solutions you have considered.
 
 ### Feature Requests
 
