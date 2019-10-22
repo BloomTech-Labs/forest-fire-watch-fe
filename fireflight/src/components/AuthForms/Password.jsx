@@ -27,35 +27,39 @@ function Password({
   function handleSubmit(e) {
     e.preventDefault();
     setLoading(true);
-    const credentials = { email };
+    // const credentials = { email };
 
-    setErrorStatus(false);
-    setErrorText("");
+    // setErrorStatus(false);
+    // setErrorText("");
 
-    context.state.remote
-      .login(credentials)
-      .then(res => {
-        setEmail("");
-        setLoading(false);
-        setShowAuthForms(false);
-      })
-      .catch(err => {
-        setErrorText("Email is Invalid");
-        setErrorStatus(true);
-        setLoading(false);
-      });
+    // context.state.remote
+    //   .login(credentials)
+    //   .then(res => {
+    //     setEmail("");
+    //     setLoading(false);
+    //     setShowAuthForms(false);
+    //   })
+    //   .catch(err => {
+    //     setErrorText("Email is Invalid");
+    //     setErrorStatus(true);
+    //     setLoading(false);
+    //   });
 
-    var emailAddress = "user@example.com";
-
-    fire
+  
+     fire
       .auth()
-      .sendPasswordResetEmail(emailAddress)
-      .then(function() {
+      .sendPasswordResetEmail(email)
+      .then(() => {
         // Email sent.
+        setLoading(false)
+        setShowAuthForms(false)
+        setPasswordFormStatus(false)
       })
-      .catch(function(error) {
+      .catch((error) => {
         // An error happened.
+        console.log(error)
       });
+   
   }
 
   return (
