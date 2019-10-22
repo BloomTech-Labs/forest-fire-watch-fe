@@ -4,14 +4,15 @@
 
 # Wildfire Watch
 
-You can find the deployed project at [wildfire-watch-staging.com](http://wildfire-watch-staging.netlify.com).
+You can find the deployed project at [wildfire-watch-staging.com](http://wildfire-watch-staging.netlify.com). Note: this project is currently in-progress.
 
 ## Contributors
 
 <br>
-<br>
 
 ## Project Overview
+
+Wildfire Watch is designed to help people understand when they are in danger of being struck by a wildfire, and hopefully give them time to get out.
 
 [Trello Board](https://trello.com/labs17forestfirewatch)
 
@@ -19,88 +20,55 @@ You can find the deployed project at [wildfire-watch-staging.com](http://wildfir
 
 [UX Design files - need to update]()
 
-## Specifications
-
-This applicaation is designed to help people understand when they are in danger of being struck by a wild fire, and hopefully give them time to get out.
-
 ### Key Features
 
 - User can see all wildfires within the United States, as well as see wildfires with a marker within a range they set.
-- User can log in and add multiple addresses. They can also set a distance from that address where the app will provide data about wild fires.
+- User can log in and add multiple addresses. They can also set a distance from that address where the app will provide data about wildfires.
 - Application will alert the user when fire is within their set radius by SMS or push notification in the web browser.
 
 ## Tech Stack
 
-- React
-- Node.js
-- Twilio
-- MapBox
-
 ### Front end built using:
 
-#### React 16.9
-
-- Everyone in project is familiar with it.
-
-#### Hooks
-
-- Hooks cleans up code and reduces the need for class components.
-
-#### Context API
-
-- Comes with React.
-- Works well with hooks.
-
-#### Axios
-
-- For handling API requests, makes AJAX requests a lot easier.
-
-#### MapBox
-
-- Free up to 25,000 users per month and 50,000 map loads per month.
-- Has a React Library.
-
-#### Node-Sass
-
-- Create-React-App version makes it very simple to use Sass to manage site styles.
+- ReactJS
+- React Hooks
+- Context API
+- Axios
+- MapBox
+- Node-Sass
 
 #### Front end deployed to `Netlify`
 
-#### [Backend](https://github.com/Lambda-School-Labs/forest-fire-watch-be) built using:
+### [Backend](https://github.com/Lambda-School-Labs/forest-fire-watch-be) built using:
 
-#### ExpressJS
-
-- The popular back-end NodeJS server code makes making an API much easier.
-
-#### Firebase Authentication
-
-- For email and password based authentication
-
-#### KNEX
-
-- For management of database structure.
-
-#### JWT
-
-- For handling authorizations.
+- NodeJS
+- ExpressJS
+- Twilio
+- Firebase: email and password based authentication
+- KnexJS: management of database structure
+- JWT: handling authorizations
+- PostgreSQL
 
 # APIs
 
 ## Mapbox
 
-- This API gives the application the abilty to convert addresses to lat/long for our backend applications. Later, this will give us the ability to show more data to the users.
+- This API gives the application the abilty to convert addresses to latitude/longitude for our backend applications.
 
 # Environment Variables
 
-# Privacy Policy
-
-Please read our privacy policy [_here => Privacy Policy_](https://app.termly.io/document/privacy-policy/865784e8-0f1a-42be-b3f9-4afbb2b7ad45)
-
-# Content Licenses
-
-All content created by [Jeffery Wicks]("https://www.linkedin.com/in/jeffwicks-interactiondesign/")
+```
+REACT_APP_VAPID_PUBLIC - for push notifications
+REACT_APP_MAPBOX_TOKEN - provided by Mapbox
+```
 
 # Testing
+
+The following libraries are used for testing:
+
+- testing-library/react
+- jest
+- react-test-renderer
 
 # Installation Instructions
 
