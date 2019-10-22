@@ -49,7 +49,10 @@ function Password({
         <div className="login-page-container">
             <button 
                 className="form-close-btn" 
-                onClick={() => setShowAuthForms(false)}
+                onClick={() => {
+                    setShowAuthForms(false)
+                    setPasswordFormStatus(false)
+                }}
             >
                 x
             </button>
@@ -78,9 +81,12 @@ function Password({
                 </div>
                 <p>
                     Need to create an account?
-          <a className="create-an-account" href="#">
+          <button className="create-an-account" onClick={() => {
+              setRegisterStatus(true)
+              setPasswordFormStatus(false)
+          }}>
                         Sign up Here
-          </a>
+          </button>
                 </p>
             </form>
             {/* Remove Registration split */}

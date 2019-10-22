@@ -10,11 +10,10 @@ const Combine = ({
   close,
   showLogin,
   showRegister,
-  showPassword,
+  passwordFormStatus,
   setLoginStatus,
   setRegisterStatus,
   setShowAuthForms,
-  passwordFormStatus,
   setPasswordFormStatus
 }) => {
   const toggleForms = () => {
@@ -30,7 +29,7 @@ const Combine = ({
     if (showLogin) {
       setLoginStatus(false);
       setPasswordFormStatus(true);
-    } else if (showPassword) {
+    } else if (passwordFormStatus) {
       setLoginStatus(true);
       setPasswordFormStatus(false);
     }
@@ -53,13 +52,13 @@ const Combine = ({
           setShowAuthForms={setShowAuthForms}
           showRegister={showRegister}
           showLogin={showLogin}
-          showPassword={showPassword}
+          passwordFormStatus={passwordFormStatus}
           setPasswordFormStatus={setPasswordFormStatus}
           setLoginStatus={setLoginStatus}
           setRegisterStatus={setRegisterStatus}
         />
       )}
-      {showPassword && (
+      {passwordFormStatus && (
         <Password 
           toggleForgotPassword={toggleForgotPassword} 
           setShowAuthForms={setShowAuthForms} 
