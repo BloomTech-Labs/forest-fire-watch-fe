@@ -6,7 +6,6 @@ import { FireDataContext } from "../context/FireDataContext";
 import MapLegend from "./MapLegend";
 import Navigation from "../components/Navigation";
 
-// mapbox API token
 const token = process.env.REACT_APP_MAPBOX_TOKEN;
 
 const PublicMap = ({
@@ -25,6 +24,7 @@ const PublicMap = ({
     deleteUserLocation,
     updatePopupRadius
   } = useContext(FireDataContext);
+
   const {
     publicMapViewport,
     allFireMarkers,
@@ -35,11 +35,12 @@ const PublicMap = ({
     userLocalFireMarkers
   } = fireDataState;
 
+  console.log("userLocationMarkers: ", userLocationMarkers);
   const [address, setAddress] = useState("");
   const [radius, setRadius] = useState("");
   const [popupRadius, setPopupRadius] = useState("");
 
-  // Add event listener to window - close whatever
+  // Add event listener to window - close whatever pop-up is selected
   useEffect(() => {
     const listener = e => {
       if (e.key === "Escape") {
@@ -198,7 +199,6 @@ const PublicMap = ({
         {allFireMarkers}
         {userLocalFireMarkers}
         {localFireMarkers}
-
         {userLocationMarkers}
         {publicCoordinatesMarker}
         {selectedMarker.length > 0 ? (
