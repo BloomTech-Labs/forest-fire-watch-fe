@@ -35,7 +35,6 @@ const PublicMap = ({
     userLocalFireMarkers
   } = fireDataState;
 
-  console.log("userLocationMarkers: ", userLocationMarkers);
   const [address, setAddress] = useState("");
   const [radius, setRadius] = useState("");
   const [popupRadius, setPopupRadius] = useState("");

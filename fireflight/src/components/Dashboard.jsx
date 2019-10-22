@@ -1,14 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
-import { UserDataProvider, UserDataContext } from "../context/UserDataContext";
+import { UserDataContext } from "../context/UserDataContext";
 
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 
 import { FireDataContext } from "../context/FireDataContext";
 
 // import PrivateMap from "./PrivateMap";
-
-import { subscribeUser } from "../subscriptions.js";
+// import { subscribeUser } from "../subscriptions.js";
 
 // USER PROFILE PAGE
 const Dashboard = () => {
@@ -30,7 +29,7 @@ const Dashboard = () => {
     getUserLocations();
   }, []);
 
-  const subscribe = e => {};
+  // const subscribe = e => {};
 
   const handleAddPhoneNumber = () => {
     if (phoneNumber.length > 9) {
@@ -220,8 +219,4 @@ const CheckBox = styled.input`
       transition: 0.2s;
     }
   }
-`;
-
-const Button = styled.button`
-  background-color: green;
 `;
