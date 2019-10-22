@@ -2,7 +2,7 @@
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/65d8b884-4807-40de-a05b-0cc08b7ddf48/deploy-status)](https://app.netlify.com/sites/fireflightapp/deploys)
 
-# Forest Fire Watch
+# Wildfire Watch
 
 You can find the deployed project at [wildfire-watch-staging.com](http://wildfire-watch-staging.netlify.com).
 
@@ -13,11 +13,11 @@ You can find the deployed project at [wildfire-watch-staging.com](http://wildfir
 
 ## Project Overview
 
-[Trello Board](https://trello.com/b/LHd7GbuL/labs15-forest-fire)
+[Trello Board](https://trello.com/labs17forestfirewatch)
 
 [Product Canvas](https://www.notion.so/Forest-Fire-Prediction-and-Rescue-Coordination-7eb1595c5f1643fca8e48a89c6086fdf)
 
-[UX Design files](https://www.dropbox.com/sh/gknqzhazljiw16t/AAALcR4-2XljeEPDXM6Wjhu_a?dl=0)
+[UX Design files - need to update]()
 
 ## Specifications
 
@@ -66,19 +66,19 @@ This applicaation is designed to help people understand when they are in danger 
 
 #### Front end deployed to `Netlify`
 
-#### [Backend](https://github.com/labs15-forest-fire/backend) built using:
+#### [Backend](https://github.com/Lambda-School-Labs/forest-fire-watch-be) built using:
 
 #### ExpressJS
 
 - The popular back-end NodeJS server code makes making an API much easier.
 
+#### Firebase Authentication
+
+- For email and password based authentication
+
 #### KNEX
 
-- For management of Database Structrure.
-
-#### BCRYPT
-
-- For hashing passwords, used to protect password information.
+- For management of database structure.
 
 #### JWT
 
@@ -88,7 +88,7 @@ This applicaation is designed to help people understand when they are in danger 
 
 ## Mapbox
 
-- This api gives the application the abilty to convert addresses to lat/long for our backend applications. Later, this will give us the ability to show more data to the users.
+- This API gives the application the abilty to convert addresses to lat/long for our backend applications. Later, this will give us the ability to show more data to the users.
 
 # Environment Variables
 
@@ -156,4 +156,4 @@ These contribution guidelines have been adapted from [this good-Contributing.md-
 
 ## Documentation
 
-See [Backend Documentation](https://github.com/labs15-forest-fire/backend) for details on the backend of our project.
+See [Backend Documentation](https://github.com/Lambda-School-Labs/forest-fire-watch-be) for details on the backend of our project.
