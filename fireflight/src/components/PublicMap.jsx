@@ -172,7 +172,11 @@ const PublicMap = ({ setShowAuthForms, setLoginFormStatus, setRegisterFormStatus
           <label className="signup-form-text">
             to save addresses and receive notifications
           </label>
-              <button className="signup-btn">Sign Up</button>
+              <button className="signup-btn" onClick={() => {
+                setShowAuthForms(true)
+                setLoginFormStatus(false)
+                setRegisterFormStatus(true)
+              }}>Sign Up</button>
           </React.Fragment>
           )}
         </form>

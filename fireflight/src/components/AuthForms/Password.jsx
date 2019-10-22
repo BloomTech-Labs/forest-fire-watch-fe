@@ -71,7 +71,7 @@ function Password({
       </button>
       <h2 className="form-heading">Password Reset</h2>
       <label>
-        Enter your address and we'll send you a link to reset your password.
+        Enter your email address and we'll send you a link to reset your password.
       </label>
       <form className="auth-form-container" onSubmit={handleSubmit}>
         <div className="input-containers">
