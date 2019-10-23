@@ -123,10 +123,6 @@ function Login({
             Sign up Here
           </button>
         </p>
-        <br />
-        <br />
-        <br />
-        <br />
       </form>
     </div>
   );

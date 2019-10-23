@@ -1,5 +1,4 @@
 .login-page-container {
-  min-height: 40rem;
   height: auto;
   margin: auto;
   text-align: center;
@@ -8,6 +7,7 @@
   background: #ffffff;
   border-radius: 2px;
   flex-direction: column;
+  padding-bottom: 6rem;
 
   @media (max-width: $mq-mobile) {
     flex-direction: column;
