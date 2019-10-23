@@ -187,6 +187,10 @@ function Register({ toggle, setShowAuthForms }) {
             Sign In Here
           </button>
         </p>
+        <br />
+        <br />
+        <br />
+        <br />
       </div>
     );
   }

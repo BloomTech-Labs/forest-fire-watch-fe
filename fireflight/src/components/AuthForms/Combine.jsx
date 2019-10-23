@@ -10,26 +10,28 @@ const Combine = ({
   close,
   showLogin,
   showRegister,
-  showPassword,
+  passwordFormStatus,
   setLoginStatus,
   setRegisterStatus,
   setShowAuthForms,
-  passwordFormStatus,
   setPasswordFormStatus
 }) => {
   const toggleForms = () => {
     if (showRegister) {
       setRegisterStatus(false);
       setLoginStatus(true);
-      setPasswordFormStatus(false);
     } else if (showLogin) {
       setRegisterStatus(true);
       setLoginStatus(false);
-      setPasswordFormStatus(false);
-    } else if (showPassword) {
-      setPasswordFormStatus(false);
+    }
+  }
+  const toggleForgotPassword = () => {
+    if (showLogin) {
+      setLoginStatus(false);
+      setPasswordFormStatus(true);
+    } else if (passwordFormStatus) {
       setLoginStatus(true);
-      setRegisterStatus(true);
+      setPasswordFormStatus(false);
     }
   };
   return (
@@ -39,7 +41,9 @@ const Combine = ({
           toggle={toggleForms}
           setShowAuthForms={setShowAuthForms}
           passwordFormStatus={passwordFormStatus}
-          setPasswordFormStatus={setPasswordFormStatus}
+          setPasswordFormStatus={setPasswordFormStatus} 
+          setLoginStatus={setLoginStatus}
+          setRegisterStatus={setRegisterStatus}
         />
       )}
       {showRegister && (
@@ -48,14 +52,20 @@ const Combine = ({
           setShowAuthForms={setShowAuthForms}
           showRegister={showRegister}
           showLogin={showLogin}
-          showPassword={showPassword}
+          passwordFormStatus={passwordFormStatus}
           setPasswordFormStatus={setPasswordFormStatus}
           setLoginStatus={setLoginStatus}
           setRegisterStatus={setRegisterStatus}
         />
       )}
-      {showPassword && (
-        <Password toggle={toggleForms} setShowAuthForms={setShowAuthForms} />
+      {passwordFormStatus && (
+        <Password 
+          toggleForgotPassword={toggleForgotPassword} 
+          setShowAuthForms={setShowAuthForms} 
+          setPasswordFormStatus={setPasswordFormStatus} 
+          setLoginStatus={setLoginStatus}
+          setRegisterStatus={setRegisterStatus}
+        />
       )}
     </Modal>
   );

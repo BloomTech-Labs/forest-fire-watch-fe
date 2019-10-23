@@ -5,11 +5,13 @@ import { Link } from "react-router-dom";
 
 import fire from "../../config/fire";
 
-function Login({
-  toggle,
-  setShowAuthForms,
-  passwordFormStatus,
-  setPasswordFormStatus
+function Login({ 
+  toggle, 
+  setShowAuthForms, 
+  setRegisterStatus,
+  setLoginStatus,
+  setPasswordFormStatus,
+  toggleForgotPassword
 }) {
   //useInput is a custom hook that should be used for all controlled inputs
   const [email, setEmail, handleEmail] = useInput("", "email");
@@ -103,18 +105,13 @@ function Login({
           )}
           <br />
           <span className="forgot-pw">
-            <Link
+            <button
               onClick={() => {
                 setPasswordFormStatus(true);
-                setShowAuthForms(true);
-                toggle(true);
-                // toggleAuthForms(true)
-                // toggleRegisterStatus(false)
-                // toggleLoginStatus(false)
-              }}
-            >
+                setLoginStatus(false);
+              }}>
               Forgot your Password?
-            </Link>
+            </button>
           </span>
           <button className="auth-btn" type="submit" disabled={loading}>
             {loading ? "Loading..." : "Sign In"}
@@ -126,6 +123,10 @@ function Login({
             Sign up Here
           </button>
         </p>
+        <br />
+        <br />
+        <br />
+        <br />
       </form>
     </div>
   );

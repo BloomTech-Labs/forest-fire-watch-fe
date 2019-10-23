@@ -36,6 +36,19 @@ function Password({ toggle, setShowAuthForms }) {
         setErrorStatus(true);
         setLoading(false);
       });
+     fire
+      .auth()
+      .sendPasswordResetEmail(email)
+      .then(() => {
+        // Email sent.
+        setLoading(false)
+        setShowAuthForms(false)
+        setPasswordFormStatus(false)
+      })
+      .catch((error) => {
+        // An error happened.
+        console.log(error)
+      });
   }
 
   return (
@@ -48,8 +61,9 @@ function Password({ toggle, setShowAuthForms }) {
       </button>
       <h2 className="form-heading">Password Reset</h2>
       <label>
-        Enter your address and we'll send you a link to reset your password.
+        Enter your email address and we'll send you a link to reset your password.
       </label>
+      <br />
       <form className="auth-form-container" onSubmit={handleSubmit}>
         <div className="input-containers">
           <label htmlFor="email">Email Address</label>
@@ -73,9 +87,15 @@ function Password({ toggle, setShowAuthForms }) {
         </div>
         <p>
           Need to create an account?
-          <a className="create-an-account" href="#">
+          <button
+            className="create-an-account"
+            onClick={() => {
+              setRegisterStatus(true);
+              setPasswordFormStatus(false);
+            }}
+          >
             Sign up Here
-          </a>
+          </button>
         </p>
       </form>
       {/* Remove Registration split */}
@@ -84,6 +104,8 @@ function Password({ toggle, setShowAuthForms }) {
       </LoginSplitContainer> */}
     </div>
   );
+  console.log("Password component rendered");
+
 }
 
 export default Password;
