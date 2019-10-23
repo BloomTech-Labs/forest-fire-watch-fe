@@ -5,14 +5,14 @@ import styled from "styled-components";
 import { FireDataContext } from "../context/FireDataContext";
 import AddressContext from "../context/addressContextProvider";
 
-import fireIcon from "../images/fireIcon.png";
-import locationIcon from "../images/locationIcon.png";
+import fireIcon from "../images/fireIcon.svg";
+import locationIcon from "../images/locationIcon.svg";
 
 const PrivateMap = () => {
   const { fireDataState, setPrivateViewport, getPrivateMapData } = useContext(
     FireDataContext
   );
-  const { state,reset } = useContext(AddressContext);
+  const { state, reset } = useContext(AddressContext);
 
   const { privateMapViewport, privateMapData, userCoordinates } = fireDataState;
   const [userMarker, setUserMarker] = useState();
@@ -24,8 +24,7 @@ const PrivateMap = () => {
   const [selectOptions, setSelectOptions] = useState();
 
   // mapbox API token
-  const token =
-    process.env.REACT_APP_MAPBOX_TOKEN;
+  const token = process.env.REACT_APP_MAPBOX_TOKEN;
 
   // useEffect hook to cause the ESC key to close a popup by setting selectedFire state to null
   useEffect(() => {

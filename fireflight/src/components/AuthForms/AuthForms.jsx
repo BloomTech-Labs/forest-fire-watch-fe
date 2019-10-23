@@ -8,12 +8,18 @@ const AuthForms = ({
   loginFormStatus,
   registerFormStatus,
   setLoginFormStatus,
-  setRegisterFormStatus
+  setRegisterFormStatus,
+  passwordFormStatus,
+  setPasswordFormStatus
 }) => {
   return (
     <>
+      {/* If showAuthForms state is true, show the modal & darkened background */}
       {showAuthForms ? (
-        <BackDrop onClick={() => setShowAuthForms(false)} />
+        <BackDrop onClick={() => {
+          setShowAuthForms(false)
+          setPasswordFormStatus(false)
+        }} />
       ) : null}
       <AuthFormsModal
         show={showAuthForms}
@@ -23,6 +29,8 @@ const AuthForms = ({
         setLoginStatus={setLoginFormStatus}
         setRegisterStatus={setRegisterFormStatus}
         setShowAuthForms={setShowAuthForms}
+        passwordFormStatus={passwordFormStatus}
+        setPasswordFormStatus={setPasswordFormStatus}
       />
     </>
   );

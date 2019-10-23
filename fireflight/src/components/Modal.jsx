@@ -1,6 +1,7 @@
 import React from "react";
 
-const Modal = ({ show, children }) => {
+const Modal = ({ handleClose, show, children }) => {
+  console.log("children", children)
   return (
     <div className="model-wrapper"
       style={{
@@ -8,7 +9,11 @@ const Modal = ({ show, children }) => {
         opacity: show ? "1" : "0"
       }}
     >
-      <div>{children}</div>
+      <div>
+        {children}
+        {/* <button onClick={handleClose}>close</button> */}
+      </div>
+
     </div>
   );
 };

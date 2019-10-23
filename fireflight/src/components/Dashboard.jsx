@@ -1,15 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
-import { UserDataProvider, UserDataContext } from "../context/UserDataContext";
+import { UserDataContext } from "../context/UserDataContext";
 
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 
 import { FireDataContext } from "../context/FireDataContext";
 
 // import PrivateMap from "./PrivateMap";
+// import { subscribeUser } from "../subscriptions.js";
 
-import { subscribeUser } from "../subscriptions.js";
-
+// USER PROFILE PAGE
 const Dashboard = () => {
   const {
     userDataState,
@@ -20,7 +20,7 @@ const Dashboard = () => {
   } = useContext(UserDataContext);
   const { fireDataState, getUserLocations } = useContext(FireDataContext);
   const { userLocations } = fireDataState;
-  const { username, phone, receiveSMS, receivePush } = userDataState;
+  const { email, phone, receiveSMS, receivePush } = userDataState;
   const [phoneNumber, setPhoneNumber] = useState("");
   const [showEditPhone, setEditPhone] = useState(false);
 
@@ -29,7 +29,7 @@ const Dashboard = () => {
     getUserLocations();
   }, []);
 
-  const subscribe = e => {};
+  // const subscribe = e => {};
 
   const handleAddPhoneNumber = () => {
     if (phoneNumber.length > 9) {
@@ -58,7 +58,7 @@ const Dashboard = () => {
     <div className="dashboard-wrapper">
       <div className="content-wrapper">
         <PersonalInfo>
-          <h3>Welcome {username}!</h3>
+          <h3>Welcome {email}!</h3>
 
           {phone === null || showEditPhone ? (
             phoneInput
@@ -219,8 +219,4 @@ const CheckBox = styled.input`
       transition: 0.2s;
     }
   }
-`;
-
-const Button = styled.button`
-  background-color: green;
 `;
