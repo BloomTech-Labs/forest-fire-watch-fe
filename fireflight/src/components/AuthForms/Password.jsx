@@ -57,10 +57,13 @@ function Password({
   }
 
   return (
-    <div className="login-page-container">
+    <div className="password-reset-container login-page-container">
       <button
         className="form-close-btn"
-        onClick={() => setShowAuthForms(false)}
+        onClick={() => {
+         setShowAuthForms(false)
+         setPasswordFormStatus(false)
+        }}
       >
         x
       </button>

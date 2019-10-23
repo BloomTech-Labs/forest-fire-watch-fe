@@ -1,13 +1,17 @@
 .model-wrapper {
-  background-color: $lilia;
-  border-radius: 8px;
+  background-color: white;
+  border-radius: 1px;
   border: none;
   // need to center modal on page
-  margin: 50px auto 0;
+  margin: 5rem auto 0;
   transition: all 0.8s;
   max-width: 700px;
   position: absolute;
   left: 0;
   right: 0;
   z-index: 10;
+
+  @media (max-width: $mq-tablet) {
+    max-width: 400px;
+  }
 }

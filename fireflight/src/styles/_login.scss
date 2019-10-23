@@ -1,5 +1,4 @@
 .login-page-container {
-  min-height: 40rem;
   height: auto;
   margin: auto;
   text-align: center;
@@ -8,6 +7,11 @@
   background: #ffffff;
   border-radius: 2px;
   flex-direction: column;
+  padding-bottom: 6rem;
+
+  @media (max-width: $mq-tablet) {
+
+  }
 
   @media (max-width: $mq-mobile) {
     flex-direction: column;
@@ -25,7 +29,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    width: 462px;
+    width: 46rem;
 
     label {
       height: 22px;
@@ -39,8 +43,8 @@
       }
 
       @media (max-width: $mq-mobile) {
-        width: 239px;
-        height: 38px;
+        // width: 239px;
+        // height: 38px;
         font-size: 14px;
         line-height: 19px;
       }
@@ -48,12 +52,13 @@
 
     .forgot-pw button {
       background-color: white;
-      width: 140px;
+      width: 13.7rem;
       height: 19px;
       font-style: normal;
       font-size: 12px;
       line-height: 16px;
       color: #adadad;
+      padding-left: 0;
     }
   }
 
