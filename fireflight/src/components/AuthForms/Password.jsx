@@ -60,7 +60,10 @@ function Password({
     <div className="login-page-container">
       <button
         className="form-close-btn"
-        onClick={() => setShowAuthForms(false)}
+        onClick={() => {
+         setShowAuthForms(false)
+         setPasswordFormStatus(false)
+        }}
       >
         x
       </button>

@@ -16,7 +16,10 @@ const AuthForms = ({
     <>
       {/* If showAuthForms state is true, show the modal & darkened background */}
       {showAuthForms ? (
-        <BackDrop onClick={() => setShowAuthForms(false)} />
+        <BackDrop onClick={() => {
+          setShowAuthForms(false)
+          setPasswordFormStatus(false)
+        }} />
       ) : null}
       <AuthFormsModal
         show={showAuthForms}
