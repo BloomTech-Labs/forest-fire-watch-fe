@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 
-import Navigation from "./components/Navigation";
+// import Navigation from "./components/Navigation";
 import Home from "./components/Home";
 import Dashboard from "./components/Dashboard";
 import AuthForms from "./components/AuthForms/AuthForms";
@@ -66,7 +66,7 @@ function App() {
     const getLogin = async () => {
       try {
         let user = await global.state.remote.self();
-        global.setUser(user.username);
+        global.setUser(user.email);
       } catch (err) {
         localStorage.removeItem("token");
         global.setUser("");

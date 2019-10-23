@@ -5,14 +5,9 @@ import { GlobalContext } from "../../context/contextProvider";
 import useInput from "../../utils/useInput";
 import styled from "styled-components";
 
-
 import fire from "../../config/fire";
 
-
-function Register({
-  toggle, 
-  setShowAuthForms, 
-}) {
+function Register({ toggle, setShowAuthForms }) {
   //useInput is a custom hook that should be used for all controlled inputs
   const [firstName, setFirstName, handleFirstName] = useInput("", "firstName");
   const [lastName, setLastName, handleLastName] = useInput("", "lastName");
@@ -29,8 +24,6 @@ function Register({
 
   const data = useContext(GlobalContext);
 
-  console.log(errorText);
-
   function handleSubmit(e) {
     e.preventDefault();
     setLoading(true);
@@ -46,10 +39,12 @@ function Register({
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then(user => {
-        console.log(user);
+        console.log("Firebase user object: ", user);
         if (password === passwordConf) {
           const UID = user.user.uid;
-          const newUser = { firstName, lastName, email, UID };
+          const first_name = firstName;
+          const last_name = lastName;
+          const newUser = { first_name, last_name, email, UID };
 
           data.state.remote
             .register(newUser)
@@ -63,19 +58,28 @@ function Register({
               setShowAuthForms(false);
             })
             .catch(err => {
-              console.log(err);
+              // BACKEND REGISTER ENDPOINT
+              console.log(
+                "front end error response from backend register endpoint:",
+                err.response.data
+              );
               setErrorStatus(true);
               setErrorText(err.response.data);
               setLoading(false);
             });
         } else {
+          // IF PASSWORDS DON'T MATCH
           setErrorStatus(true);
           setErrorText({ password: "Passwords must match" });
           setLoading(false);
         }
       })
       .catch(err => {
+        // FIREBASE
         console.log(err);
+        setErrorStatus(true);
+        setErrorText(err); // setting error text to be equal to Firebase error response
+        setLoading(false);
       });
   }
 
@@ -111,11 +115,7 @@ function Register({
               onChange={handleFirstName}
               placeholder=""
             />
-            {errorStatus ? (
-              <ErrorText>{errorText.firstName}</ErrorText> //change error text
-            ) : (
-              <ErrorText />
-            )}
+            <br></br>
             <label htmlFor="lastName">Last Name</label>
             <input
               className="form-input"
@@ -125,11 +125,7 @@ function Register({
               onChange={handleLastName}
               placeholder=""
             />
-            {errorStatus ? (
-              <ErrorText>{errorText.lastName}</ErrorText>
-            ) : (
-              <ErrorText />
-            )}
+            <br></br>
             <label htmlFor="email">Email Address</label>
             <input
               className="form-input"
@@ -139,12 +135,7 @@ function Register({
               onChange={handleEmail}
               placeholder=""
             />
-            {errorStatus ? (
-              // <ErrorText>{errorText.email}</ErrorText>
-              <ErrorText>Email Required</ErrorText>
-            ) : (
-              <ErrorText />
-            )}
+            <br></br>
             <label htmlFor="password">Password</label>
             <input
               className="form-input"
@@ -158,8 +149,8 @@ function Register({
             {errorStatus ? (
               <ErrorText>{errorText.password}</ErrorText>
             ) : (
-                <ErrorText />
-              )}
+              <ErrorText />
+            )}
             <label htmlFor="password">Confirm Password</label>
             <input
               className="form-input"
@@ -175,6 +166,12 @@ function Register({
             ) : (
               <ErrorText />
             )}
+            {/* ERRORS FOR NON-PASSWORD FIELDS */}
+            {errorStatus ? (
+              <ErrorText>{errorText.message}</ErrorText>
+            ) : (
+              <ErrorText />
+            )}
             <button
               className="auth-btn register-btn"
               type="submit"
@@ -186,10 +183,7 @@ function Register({
         </form>
         <p>
           Already have an account?
-          <button 
-            className="create-an-account"  
-            onClick={ toggle }
-          >
+          <button className="create-an-account" onClick={toggle}>
             Sign In Here
           </button>
         </p>

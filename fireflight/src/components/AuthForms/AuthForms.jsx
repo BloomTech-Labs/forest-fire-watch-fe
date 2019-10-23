@@ -12,7 +12,6 @@ const AuthForms = ({
   passwordFormStatus,
   setPasswordFormStatus
 }) => {
-  console.log("show auth forms", showAuthForms);
   return (
     <>
       {/* If showAuthForms state is true, show the modal & darkened background */}

@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import AddressContext from "../context/addressContextProvider";
 import { GlobalContext } from "../context/contextProvider";
-import { isArray } from "util";
+// import { isArray } from "util";
 import {
   Button,
   ErrorText,
@@ -26,7 +26,7 @@ function Address(props) {
   const [id, setId] = useState(undefined);
   const [name, setName] = useState("");
   const [radius, setRadius] = useState(10);
-  const [err, setErr] = useState(undefined);
+  // const [err, setErr] = useState(undefined);
 
   console.log(address);
 
@@ -124,7 +124,7 @@ function Address(props) {
   }, []);
 
   const edit = e => {
-    if (e.target.value == -1) {
+    if (e.target.value === -1) {
       setZip("");
       setState("");
       setApartment("");
@@ -183,7 +183,7 @@ function Address(props) {
         {address.state.addresses.map(i => (
           <option value={i.id} key={i.id}>
             {i.address_label || i.address}
-          </option> 
+          </option>
         ))}
       </FormSelect>
       <Form onSubmit={testSubmit}>

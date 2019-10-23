@@ -13,7 +13,7 @@ const userDataReducer = (state, action) => {
     case GET_USER_DATA:
       return {
         ...state,
-        username: action.payload[0],
+        email: action.payload[0],
         phone: action.payload[1],
         receivePush: action.payload[2],
         receiveSMS: action.payload[3]
@@ -44,7 +44,7 @@ export const UserDataContext = createContext();
 
 export const UserDataProvider = ({ children }) => {
   const [userDataState, dispatch] = useReducer(userDataReducer, {
-    username: "",
+    email: "",
     phone: "",
     receiveSMS: false,
     receivePush: false
@@ -58,7 +58,7 @@ export const UserDataProvider = ({ children }) => {
         dispatch({
           type: GET_USER_DATA,
           payload: [
-            res.data.username,
+            res.data.email,
             res.data.cell_number,
             res.data.receive_push,
             res.data.receive_sms

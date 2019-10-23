@@ -6,9 +6,8 @@ import { FireDataContext } from "../context/FireDataContext";
 import MapLegend from "./MapLegend";
 import Navigation from "../components/Navigation";
 
-// mapbox API token
-const token =
-  "pk.eyJ1IjoiYXN0aWxsbyIsImEiOiJjazFzOTJ4cTIwM284M2NxcW5hZ2t5cmtxIn0.lX1iNcdfJzPCMgxJkEklDw";
+const token = process.env.REACT_APP_MAPBOX_TOKEN;
+
 
 const PublicMap = ({ setShowAuthForms, setLoginFormStatus, setRegisterFormStatus}) => {
   const {
@@ -22,6 +21,7 @@ const PublicMap = ({ setShowAuthForms, setLoginFormStatus, setRegisterFormStatus
     deleteUserLocation,
     updatePopupRadius
   } = useContext(FireDataContext);
+
   const {
     publicMapViewport,
     allFireMarkers,
@@ -36,6 +36,7 @@ const PublicMap = ({ setShowAuthForms, setLoginFormStatus, setRegisterFormStatus
   const [radius, setRadius] = useState("");
   const [popupRadius, setPopupRadius] = useState("");
 
+  // Add event listener to window - close whatever pop-up is selected
   useEffect(() => {
     const listener = e => {
       if (e.key === "Escape") {
@@ -145,7 +146,8 @@ const PublicMap = ({ setShowAuthForms, setLoginFormStatus, setRegisterFormStatus
         <Navigation
           toggleAuthForms={setShowAuthForms}
           toggleLoginStatus={setLoginFormStatus}
-          toggleRegisterStatus={setRegisterFormStatus} />
+          toggleRegisterStatus={setRegisterFormStatus}
+        />
         <form onSubmit={handleSubmit} className="map-form-container">
           <label className="map-form-text">
             Enter the address you wish to check fire proximity to.
@@ -197,7 +199,6 @@ const PublicMap = ({ setShowAuthForms, setLoginFormStatus, setRegisterFormStatus
         {allFireMarkers}
         {userLocalFireMarkers}
         {localFireMarkers}
-
         {userLocationMarkers}
         {publicCoordinatesMarker}
         {selectedMarker.length > 0 ? (

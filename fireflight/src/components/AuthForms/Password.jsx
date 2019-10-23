@@ -1,16 +1,13 @@
 import React, { useState, useContext, useEffect } from "react";
 import { GlobalContext } from "../../context/contextProvider";
 import useInput from "../../utils/useInput";
-
 import fire from "../../config/fire";
-
 function Password({
   toggle,
   setShowAuthForms,
   setRegisterStatus,
   setLoginStatus,
-  setPasswordFormStatus
-}) {
+  setPasswordFormStatus }) {
   //useInput is a custom hook that should be used for all controlled inputs
   const [email, setEmail, handleEmail] = useInput("", "email");
   const [loading, setLoading] = useState(false);
@@ -21,31 +18,29 @@ function Password({
 
   //view context once / example of how to use
   useEffect(() => {
-    console.log(context);
+    console.log("Context from Global Context: ", context);
   }, []);
 
   function handleSubmit(e) {
     e.preventDefault();
     setLoading(true);
-    // const credentials = { email };
+    const credentials = { email };
 
-    // setErrorStatus(false);
-    // setErrorText("");
+    setErrorStatus(false);
+    setErrorText("");
 
-    // context.state.remote
-    //   .login(credentials)
-    //   .then(res => {
-    //     setEmail("");
-    //     setLoading(false);
-    //     setShowAuthForms(false);
-    //   })
-    //   .catch(err => {
-    //     setErrorText("Email is Invalid");
-    //     setErrorStatus(true);
-    //     setLoading(false);
-    //   });
-
-  
+    context.state.remote
+      .login(credentials)
+      .then(res => {
+        setEmail("");
+        setLoading(false);
+        setShowAuthForms(false);
+      })
+      .catch(err => {
+        setErrorText("Email is Invalid");
+        setErrorStatus(true);
+        setLoading(false);
+      });
      fire
       .auth()
       .sendPasswordResetEmail(email)
@@ -59,17 +54,13 @@ function Password({
         // An error happened.
         console.log(error)
       });
-   
   }
 
   return (
-    <div className="login-page-container password-reset-container">
+    <div className="login-page-container">
       <button
         className="form-close-btn"
-        onClick={() => {
-          setShowAuthForms(false);
-          setPasswordFormStatus(false);
-        }}
+        onClick={() => setShowAuthForms(false)}
       >
         x
       </button>
@@ -119,6 +110,7 @@ function Password({
     </div>
   );
   console.log("Password component rendered");
+
 }
 
 export default Password;

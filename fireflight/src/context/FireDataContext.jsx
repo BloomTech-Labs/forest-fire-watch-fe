@@ -11,10 +11,10 @@ import locationIconGreen from "../images/locationIconGreen.svg";
 
 import {
   GET_USER_LOCATIONS,
-  GET_SELECTED_ADDRESS,
+  GET_SELECTED_ADDRESS, // not being used?
   GET_PUBLIC_COORDINATES,
   SET_PUBLIC_VIEWPORT,
-  SET_TRIGGER_REGISTRATION_BUTTON,
+  // SET_TRIGGER_REGISTRATION_BUTTON, // not being used
   SET_ALL_FIRES,
   SET_SELECTED_MARKER,
   SET_SAVED_LOCATION,
@@ -134,17 +134,21 @@ export const FireDataProvider = ({ children }) => {
     allFireMarkers: [],
     localFires: [],
     localFireMarkers: [],
-    selectedMarker: [],
+    selectedMarker: [], // [latitude, longitude, address text, radius, "savedLocation" (the string), location_id , notifications(0 or 1 - boolean)
     selectedMarkerAddress: [],
     userLocationMarkers: [],
     userLocalFireMarkers: []
   });
 
+  /*
+  Get all fires from data science team's endpoint. Response includes name & location keys. 
+
+  */
   const getAllFires = () => {
     axios
       .get(`${DSbaseURL}/fpfire`)
       .then(res => {
-        // console.log("RESPONSE: ", res.data)
+        // console.log("get /fpfire: ", res.data)
         const localArray = res.data.map((fire, index) => (
           <Marker
             latitude={fire.location[1]}
@@ -156,7 +160,15 @@ export const FireDataProvider = ({ children }) => {
               height="20"
               width="15"
               style={{ zIndex: 100, transform: "translate(-10px, -9px)" }}
-              alt=""
+              alt="Fire marker"
+
+              // tempLocation
+              // onClick={e => {
+              //   dispatch({
+              //     type: SET_SELECTED_MARKER,
+              //     payload: [fire[1], fire[0], null, null, "fireLocation"]
+              //   });
+              // }}
             />
           </Marker>
         ));
@@ -223,14 +235,30 @@ export const FireDataProvider = ({ children }) => {
     }
   };
 
+  /* 
+  
+  https://docs.mapbox.com/api/search/#geocoding
+
+  Mapbox Geolocation API converts location text into geographic coordinates. 
+  Takes in address & token, and returns data which includes locations and their lat/long 
+  that may match the input address.
+
+  Then, we are calculating the distance between the location and all fires, converting it into haversine 
+  distance (between two points on sphere), and pushing all fires within the user set radius into an array.
+
+  From that array, we are creating markers w/ an exclamation point above them to indicate fires within the set radius. 
+
+  */
+
   const getCoordinates = (address, radius) => {
     if (address) {
       axios
         .get(
           `https://api.mapbox.com/geocoding/v5/mapbox.places/${address}.json?access_token=${token}`
+          // `https://api.mapbox.com/geocoding/v5/mapbox.places/${address}.json?access_token=${token}&autocomplete=true` //tried adding autocomplete for search bar dropdown but no luck
         )
         .then(res => {
-          // console.log("RESULT: ", res.data);
+          // console.log("Get coordinates: ", res.data);
           let localArray = [];
           fireDataState.allFires.forEach(fire => {
             let distance = haversineDistance(
@@ -277,6 +305,7 @@ export const FireDataProvider = ({ children }) => {
                   width="20"
                   style={{ zIndex: 5, transform: "translate(-7.5px, -35px)" }}
                   alt=""
+                  // onClick for temporary location markers
                   onClick={e => {
                     dispatch({
                       type: SET_SELECTED_MARKER,
@@ -298,7 +327,15 @@ export const FireDataProvider = ({ children }) => {
     }
   };
 
+  /*
+    Deletes a user location (marker)
+    
+    Resets the selected marker state to empty
+  */
+
   const deleteUserLocation = () => {
+    // console.log("deleteUserLocation: ", fireDataState.selectedMarker);
+
     axiosWithAuth()
       .delete(`locations/${fireDataState.selectedMarker[5]}`)
       .then(res => {
@@ -345,10 +382,14 @@ export const FireDataProvider = ({ children }) => {
       });
   };
 
+  /*
+    Returns array of locations for the logged in user
+  */
   const getUserLocations = () => {
     axiosWithAuth()
       .get("locations")
       .then(res => {
+        // console.log("getUserLocations: ".res.data);
         dispatch({
           type: GET_USER_LOCATIONS,
           payload: res.data
@@ -356,19 +397,23 @@ export const FireDataProvider = ({ children }) => {
       });
   };
 
+  /* 
+    For each user location, add fires that are within the search radius to localArray
+    radius = what the user chooses as the radius in their location setting
+    distance = distance from user location and fire
+
+  */
   const setUserLocations = () => {
     axiosWithAuth()
       .get("locations")
       .then(res => {
         let localArray = [];
-        // for each user location, add fires that are within the search radius to localArray
-        // radius = what the user chooses as the radius in their location setting
-        // distance = distance from user location and fire
         res.data.forEach(loc => {
           fireDataState.allFires.forEach(fire => {
+            console.log("set user locations", fire);
             let distance = haversineDistance(
               [loc.latitude, loc.longitude],
-              [fire[1], fire[0]], // fire latitude, fire longitude (store in variable later and refactor)
+              [fire[1], fire[0]],
               true // in miles
             );
             if (distance <= loc.radius) {
