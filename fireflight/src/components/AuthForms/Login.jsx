@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 
 import fire from "../../config/fire";
 
-function Login({ 
-  toggle, 
-  setShowAuthForms, 
+function Login({
+  toggle,
+  setShowAuthForms,
   setRegisterStatus,
   setLoginStatus,
   setPasswordFormStatus,
@@ -101,8 +101,13 @@ function Login({
           {errorStatus ? (
             <span className="name-error-text">{errorText.message}</span>
           ) : (
-            <span className="user-error-text" />
-          )}
+              <span className="user-error-text" />
+            )}
+
+
+          <button className="auth-btn" type="submit" disabled={loading}>
+            {loading ? "Loading..." : "Sign In"}
+          </button>
           <br />
           <span className="forgot-pw">
             <button
@@ -113,9 +118,6 @@ function Login({
               Forgot your Password?
             </button>
           </span>
-          <button className="auth-btn" type="submit" disabled={loading}>
-            {loading ? "Loading..." : "Sign In"}
-          </button>
         </div>
         <p className="modal-crosslink">
           Need to create an account?
