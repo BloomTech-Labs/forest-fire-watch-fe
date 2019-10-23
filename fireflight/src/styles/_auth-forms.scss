@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   .input-containers {
-    @media (max-width: 900px) {
+    @media (max-width: 800px) {
       width: 100%;
       margin: 0 auto;
     }
@@ -38,15 +38,15 @@
   //   opacity: 0.8;
   // }
 
-  @include mediaLg {
-    width: 75%;
-  }
+  // @include mediaLg {
+  //   width: 75%;
+  // }
 
-  @media (max-width: 900px) {
+  @media (max-width: 800px) {
     // position: absolute;
     margin: 0 auto;
-    width: 239px;
-    height: 38px;
+    width: 24rem;
+    height: 3rem;
     // left: 69px;
     // top: 184px;
 
