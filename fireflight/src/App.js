@@ -141,11 +141,9 @@ function App() {
         <Route
           path="/landing-page"
           render={() => (
-            <LandingPage
-              toggleAuthForms={setShowAuthForms}
-              toggleLoginStatus={setLoginFormStatus}
-              toggleRegisterStatus={setRegisterFormStatus}
-            />
+            <LandingPage setShowAuthForms={setShowAuthForms}
+              setLoginFormStatus={setLoginFormStatus}
+              setRegisterFormStatus={setRegisterFormStatus} />
           )}
         />
 
