@@ -1,60 +1,44 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import NavBar from './Navigation'
 
-const HeadingEl = styled.h3`
-font-style: normal;
-font-weight: normal;
-font-size: 18px;
-line-height: 25px;
-/* identical to box height */
-display: flex;
-align-items: center;
-color: #FFFFFF;
-@media (max-width:768px){
-    font-size:14px
-    line-height: 19px;
-}
-`;
-const NavMargin = styled.span`
-  @import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
-  font-family: Open-Sans;
-  margin-right: 57px;
-  margin-left: 57px;
-  color: white;
-  @media (max-width: 768px) {
-    margin: 10px;
-  }
-`;
+
 const BodyEl = styled.div`
   display: flex;
   flex-flow: column;
   align-items: center;
-  margin: 100px 0px;
+  // margin: 100px 0px;
+  height: 100vh;
   @media (max-width: 768px) {
-    margin: 60px;
+    padding: 20px;
   }
+  background-image: url("https://www.fireflightapp.com/public/images/wildfire.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
 `;
+
 const BodyTitle = styled.h1`
-width: 495px;
+width: 100%;
 height: 88px;
-@media (max-width:768px){
-    width:269px
+@media (max-width:500px){
+    width:100%
     font-weight: bold;
     font-size: 38px;
     line-height: 48px;
+    margin-top:60px;
 }
-margin-top: 0;
+margin-top: 250px;
 font-style: normal;
 font-weight: bold;
 font-size: 70px;
 line-height: 88px;
-display: flex;
-align-items: center;
 color: #FFFFFF;
+text-align:center;
 `;
+
 const BodyDes = styled.h4`
-width: 710px;
+width: 70vh;
 height: 120px;
 @media (max-width:768px){
     width:100%
@@ -70,6 +54,14 @@ display: flex;
 align-items: center;
 color: #FFFFFF;
 `;
+
+const Content = styled.div`
+ display: flex;
+ flex-direction: column;
+ justify-content:center;
+ text-align:center;
+
+`
 const Button = styled.button`
   width: 158px;
   height: 49px;
@@ -80,6 +72,7 @@ const Button = styled.button`
   font-weight: 600;
   font-size: 24px;
   line-height: 33px;
+  margin: 0px auto;
   /* identical to box height */
   color: #251400;
   &:hover {
@@ -93,24 +86,18 @@ const Button = styled.button`
     font-weight: 600;
     font-size: 18px;
     line-height: 25px;
+    
   }
 `;
-const Body = styled.body`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-image: url("https://www.fireflightapp.com/public/images/wildfire.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-`;
-const LandingPage = ({
-  toggleAuthForms,
-  toggleLoginStatus,
-  toggleRegisterStatus
-}) => {
+
+const LandingPage = ({ setShowAuthForms, setLoginFormStatus, setRegisterFormStatus }) => {
   return (
-    <Body>
-      <BodyEl>
+
+    <BodyEl>
+      <NavBar toggleAuthForms={setShowAuthForms}
+        toggleLoginStatus={setLoginFormStatus}
+        toggleRegisterStatus={setRegisterFormStatus} />
+      <Content>
         <BodyTitle>Wildfire Watch</BodyTitle>
         <BodyDes>
           The most detailed and updated forest fire information at your
@@ -119,8 +106,10 @@ const LandingPage = ({
         <Link to="/">
           <Button>Try It Out</Button>
         </Link>
-      </BodyEl>
-    </Body>
+      </Content>
+
+    </BodyEl>
+
   );
 };
 export default LandingPage;
