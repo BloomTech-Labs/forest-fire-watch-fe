@@ -24,23 +24,23 @@ function Password({
   function handleSubmit(e) {
     e.preventDefault();
     setLoading(true);
-    const credentials = { email };
+    // const credentials = { email };
 
-    setErrorStatus(false);
-    setErrorText("");
+    // setErrorStatus(false);
+    // setErrorText("");
 
-    context.state.remote
-      .login(credentials)
-      .then(res => {
-        setEmail("");
-        setLoading(false);
-        setShowAuthForms(false);
-      })
-      .catch(err => {
-        setErrorText("Email is Invalid");
-        setErrorStatus(true);
-        setLoading(false);
-      });
+    // context.state.remote
+    //   .login(credentials)
+    //   .then(res => {
+    //     setEmail("");
+    //     setLoading(false);
+    //     setShowAuthForms(false);
+    //   })
+    //   .catch(err => {
+    //     setErrorText("Email is Invalid");
+    //     setErrorStatus(true);
+    //     setLoading(false);
+    //   });
      fire
       .auth()
       .sendPasswordResetEmail(email)

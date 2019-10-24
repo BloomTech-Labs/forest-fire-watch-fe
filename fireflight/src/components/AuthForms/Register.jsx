@@ -7,7 +7,7 @@ import styled from "styled-components";
 
 import fire from "../../config/fire";
 
-function Register({ toggle, setShowAuthForms }) {
+function Register({ toggle, setShowAuthForms, setRegisterStatus }) {
   //useInput is a custom hook that should be used for all controlled inputs
   const [firstName, setFirstName, handleFirstName] = useInput("", "firstName");
   const [lastName, setLastName, handleLastName] = useInput("", "lastName");
