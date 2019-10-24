@@ -84,9 +84,9 @@
     @include easeOut;
   }
 
-  @media (max-width: 900px) {
-    width: 50%;
-  }
+  // @media (max-width: $mq-tablet) {
+  //   width: 50%;
+  // }
 }
 
 .phone-btn {
@@ -108,7 +108,7 @@
     @include easeOut;
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: $mq-tablet) {
     width: 50%;
   }
 }

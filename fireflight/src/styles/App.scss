@@ -78,11 +78,11 @@ button {
   text-align: center;
   color: #000000;
 
-  @media (max-width: 900px) {
+  @media (max-width: $mq-tablet) {
     font-family: Open Sans;
     font-style: normal;
     font-weight: 600;
-    font-size: 18px;
+    font-size: 2.4rem;
     line-height: 25px;
     color: #000000;
   }
