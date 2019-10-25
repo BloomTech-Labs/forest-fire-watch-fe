@@ -9,13 +9,15 @@ const BodyEl = styled.div`
   flex-flow: column;
   align-items: center;
   // margin: 100px 0px;
+  width:100%;
   height: 100vh;
   @media (max-width: 768px) {
     padding: 20px;
   }
-  background-image: url("https://www.fireflightapp.com/public/images/wildfire.jpg");
+  background-image:linear-gradient(rgba(255,255,255,0.075), rgba(255,255,255,0.075)), url("https://www.fireflightapp.com/public/images/wildfire.jpg");
   background-size: cover;
   background-repeat: no-repeat;
+  opacity: .8;
 `;
 
 const BodyTitle = styled.h1`
