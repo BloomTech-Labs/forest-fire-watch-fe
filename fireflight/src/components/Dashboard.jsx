@@ -55,14 +55,13 @@ const Dashboard = () => {
   );
 
   return (
-    <div className="dashboard-wrapper">
-      <div className="content-wrapper">
-        <PersonalInfo>
-          <h3>Welcome {email}!</h3>
+    <div className="content-wrapper">
+      <div className="personal-info">
+        <h3>Welcome {email}!</h3>
 
-          {phone === null || showEditPhone ? (
-            phoneInput
-          ) : (
+        {phone === null || showEditPhone ? (
+          phoneInput
+        ) : (
             <DataDiv>
               <h4>
                 <i className="fas fa-phone-alt" />
@@ -76,97 +75,77 @@ const Dashboard = () => {
             </DataDiv>
           )}
 
-          <DataDiv>
-            <h4>Receive Text Alerts:</h4>
-            <CheckBoxWrapper>
-              <CheckBox
-                id="checkbox1"
-                type="checkbox"
-                onChange={() => {
-                  updateTextAlerts(!receiveSMS);
-                }}
-                checked={receiveSMS}
-              />
-              <CheckBoxLabel htmlFor="checkbox1" />
-            </CheckBoxWrapper>
-          </DataDiv>
+        <DataDiv>
+          <h4>Receive Text Alerts:</h4>
+          <CheckBoxWrapper>
+            <CheckBox
+              id="checkbox1"
+              type="checkbox"
+              onChange={() => {
+                updateTextAlerts(!receiveSMS);
+              }}
+              checked={receiveSMS}
+            />
+            <CheckBoxLabel htmlFor="checkbox1" />
+          </CheckBoxWrapper>
+        </DataDiv>
 
-          <DataDiv>
-            <h4>Receive Push Notifications:</h4>
-            <CheckBoxWrapper>
-              <CheckBox
-                id="checkbox2"
-                type="checkbox"
-                onChange={e => {
-                  updatePushAlerts(!receivePush);
-                }}
-                checked={receivePush}
-              />
-              <CheckBoxLabel htmlFor="checkbox2" />
-            </CheckBoxWrapper>
-          </DataDiv>
-          {/* <button onClick={e=>{subscribeUser()}}>Check</button> */}
-        </PersonalInfo>
-        <LocationsInfo>
-          <h3>Saved Locations</h3>
-          <LocationsTable>
-            <tbody>
-              <TableRow>
-                <TH>Address</TH>
-                <TH>Radius (miles)</TH>
-                <TH>Alerts</TH>
-                <TH></TH>
-              </TableRow>
-
-              {userLocations.map((loc, index) => (
-                <TableRow key={index + loc.radius}>
-                  <td style={{ textTransform: "capitalize" }}>{loc.address}</td>
-                  <td>{loc.radius}</td>
-                  <td>{loc.notifications ? "ON" : "OFF"}</td>
-                </TableRow>
-              ))}
-            </tbody>
-          </LocationsTable>
-        </LocationsInfo>
+        <DataDiv>
+          <h4>Receive Push Notifications:</h4>
+          <CheckBoxWrapper>
+            <CheckBox
+              id="checkbox2"
+              type="checkbox"
+              onChange={e => {
+                updatePushAlerts(!receivePush);
+              }}
+              checked={receivePush}
+            />
+            <CheckBoxLabel htmlFor="checkbox2" />
+          </CheckBoxWrapper>
+        </DataDiv>
+        {/* <button onClick={e=>{subscribeUser()}}>Check</button> */}
       </div>
-      {/* End Content Wrapper */}
+      <div className="locations-info">
+        <h3>Saved Locations</h3>
+        <div className="locations-table">
+          <tbody>
+            <div className="table-row">
+              <TH>Address</TH>
+              <TH>Radius (miles)</TH>
+              <TH>Alerts</TH>
+              <TH></TH>
+            </div>
+
+            {userLocations.map((loc, index) => (
+              <div className="table-row" key={index + loc.radius}>
+                <td style={{ textTransform: "capitalize" }}>{loc.address}</td>
+                <td>{loc.radius}</td>
+                <td>{loc.notifications ? "ON" : "OFF"}</td>
+              </div>
+            ))}
+          </tbody>
+        </div>
+      </div>
     </div>
-    // End Dashboard Wrapper
   );
 };
 
 export default Dashboard;
 
-const PersonalInfo = styled.div`
-  width: 90%;
-  max-width: 500px;
-  margin: 10px auto;
-  background: rgba(42, 47, 48);
-  color: #f2f3f4;
-  border-radius: 8px;
-  padding: 10px;
-`;
-
-const LocationsInfo = styled.div`
-  width: 90%;
-  max-width: 500px;
-  margin: 10px auto;
-  background: rgba(42, 47, 48);
-  color: #f2f3f4;
-  border-radius: 8px;
-  padding: 10px;
-`;
-
-const LocationsTable = styled.table`
-  width: 100%;
-  margin-top: 15px;
-  border-spacing: 15px;
-`;
-
-const TableRow = styled.tr``;
+// const TableRow = styled.tr``;
 
 const TH = styled.th`
   text-decoration: underline;
+  color: black;
+  font-family: Open Sans;
+font-style: normal;
+font-weight: 600;
+font-size: 24px;
+line-height: 33px;
+/* identical to box height */
+display: flex;
+align-items: center;
 `;
 
 const DataDiv = styled.div`
@@ -174,6 +153,15 @@ const DataDiv = styled.div`
   margin: auto;
   display: flex;
   justify-content: space-between;
+  color: black;
+  font-family: Open Sans;
+font-style: normal;
+font-weight: normal;
+font-size: 17px;
+line-height: 22px;
+/* identical to box height, or 129% */
+letter-spacing: -0.41px;
+color: #191A1A;
 `;
 
 const CheckBoxWrapper = styled.div`
