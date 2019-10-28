@@ -115,14 +115,14 @@ const Dashboard = () => {
 
               {userLocations.map((loc, index) => (
                 <div className="table-row" key={index + loc.radius}>
-                  <td style={{ textTransform: "capitalize" }}>{loc.address}</td>
+                  <td>{loc.address}</td>
                   <td>{loc.radius} mi</td>
                   <td>{loc.notifications ? "ON" : "OFF"}</td>
                 </div>
               ))}
             </tbody>
           </div>
-          <button className="auth-btn">Add Location</button>
+          <button className="add-location-btn">Add Location</button>
         </div>
       </div>
     </div>

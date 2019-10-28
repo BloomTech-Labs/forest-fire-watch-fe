@@ -129,6 +129,7 @@
       }
     }
 
+    // LOCATIONS/ADDRESSES
     .locations-info {
       width: 60%;
       margin: 10px auto;
@@ -140,6 +141,28 @@
         line-height: 4.5rem;
         display: flex;
         align-items: center;
+      }
+
+      .add-location-btn {
+        // same as auth-btn (refactor later)
+        margin-top: 1rem;
+        background-color: $orange;
+        border-radius: 2px;
+        cursor: pointer;
+        color: white;
+        font-size: 1.5rem;
+        width: 119.95px;
+        height: 38px;
+        display: flex;
+        justify-content: center;
+        border: none;
+
+        @include easeOut;
+
+        &:hover {
+          background-color: lighten($orange, 10%);
+          @include easeOut;
+        }
       }
 
       .locations-table {
@@ -164,9 +187,5 @@
       padding: 10px 0px;
       margin: 0;
     }
-
-    // .auth-btn {
-    //   margin: 3rem auto;
-    // }
   }
 }
