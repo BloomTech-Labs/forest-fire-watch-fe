@@ -13,6 +13,7 @@
     border-radius: 15px;
     background: #bebebe;
     cursor: pointer;
+
     &::after {
       content: "";
       display: block;
@@ -25,6 +26,7 @@
       transition: 0.2s;
     }
   }
+
   .checkbox {
     opacity: 0;
     z-index: 1;
@@ -32,7 +34,7 @@
     width: 42px;
     height: 26px;
 
-    &:checked .checkbox-label {
+    &:checked + .checkbox-label {
       background: #4fbe79;
       &::after {
         content: "";
