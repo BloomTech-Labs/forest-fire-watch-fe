@@ -21,6 +21,10 @@
 			padding: 1rem;
 			border-bottom: 0.5px solid #191a1a;
 
+			@media (max-width: $mq-mobile) {
+				width: 98%;
+			}
+
 			.profile-name {
 				font-style: normal;
 				font-weight: normal;
@@ -62,6 +66,10 @@
 				flex-direction: row;
 				justify-content: center;
 
+				@media (max-width: $mq-mobile) {
+					flex-direction: column;
+				}
+
 				.notif-box {
 					width: 25rem;
 					margin: 0 2rem;
@@ -78,6 +86,14 @@
 					letter-spacing: -0.41px;
 					color: #191a1a;
 					// background-color: pink;
+
+					@media (max-width: $mq-mobile){
+						width: 100%;
+						margin: 0;
+						font-size: 1.7rem;
+						border-top: 1px solid grey;
+						line-height: 1rem;
+					}
 				}
 			}
 		}
