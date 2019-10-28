@@ -8,6 +8,10 @@
 	align-items: center;
 	padding-left: 20rem;
 
+	@media (max-width: $mq-mobile){
+		max-width: 500px;
+	}
+
 	.profile-item {
 		color: black;
 		font-weight: 600;
@@ -36,5 +40,9 @@
         display: flex;
         justify-content: center;
 		align-self: flex-end;
+
+		@media (max-width: $mq-mobile){
+			margin-left: 5rem;
+		}
 	}
 }

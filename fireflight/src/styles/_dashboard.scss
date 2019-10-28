@@ -1,144 +1,160 @@
 .dashboard-wrapper {
-	display: flex;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .content-wrapper {
+    text-align: center;
+    width: 100%;
+    height: 100vh;
+    display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 
-	.content-wrapper {
-		text-align: center;
-		width: 100%;
-		height: 100vh;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
+    .personal-info {
+      width: 60%;
+      margin: 1rem auto;
+      background: white;
+      color: #f2f3f4;
+      padding: 1rem;
+      border-bottom: 0.5px solid #191a1a;
 
-		.personal-info {
-			width: 60%;
-			margin: 1rem auto;
-			background: white;
-			color: #f2f3f4;
-			padding: 1rem;
-			border-bottom: 0.5px solid #191a1a;
+      @media (max-width: $mq-mobile) {
+		width: 98%;
+		border: none;
+      }
 
-			@media (max-width: $mq-mobile) {
-				width: 98%;
-			}
+      .profile-name {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 3rem;
+        line-height: 4.1rem;
 
-			.profile-name {
-				font-style: normal;
-				font-weight: normal;
-				font-size: 3rem;
-				line-height: 4.1rem;
+        @media (max-width: $mq-mobile) {
+          font-size: 2.5rem;
+          padding: 0;
+        }
+      }
 
-				@media (max-width: $mq-mobile){
-					font-size: 2.5rem;
-					padding: 0;
-				}
-			}
+      .profile-email {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 2.1rem;
+        line-height: 2.9rem;
 
-			.profile-email {
-				font-style: normal;
-				font-weight: normal;
-				font-size: 2.1rem;
-				line-height: 2.9rem;
+        @media (max-width: $mq-mobile) {
+          font-size: 1.6rem;
+          padding: 0;
+        }
+      }
 
-				@media (max-width: $mq-mobile){
-					font-size: 1.6rem;
-					padding: 0;
-				}
-			}
+      .profile-phone {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 2.1rem;
+        line-height: 2.9rem;
 
-			.profile-phone {
-				font-style: normal;
-				font-weight: normal;
-				font-size: 2.1rem;
-				line-height: 2.9rem;
+        @media (max-width: $mq-mobile) {
+          font-size: 1.6rem;
+          padding: 0 0 2.45rem 0;
+        }
+      }
 
-				@media (max-width: $mq-mobile){
-					font-size: 1.6rem;
-					padding: 0;
-				}
-			}
+      .notification-wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
 
-			.notification-wrapper {
-				display: flex;
-				flex-direction: row;
-				justify-content: center;
+        @media (max-width: $mq-mobile) {
+          flex-direction: column;
+        }
 
-				@media (max-width: $mq-mobile) {
-					flex-direction: column;
-				}
+        .notif-box {
+          width: 25rem;
+          margin: 0 2rem;
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-end;
+          color: black;
+          font-family: Open Sans;
+          font-weight: normal;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 2.2rem;
+          line-height: 2.2rem;
+          letter-spacing: -0.41px;
+          color: #191a1a;
+          // background-color: pink;
 
-				.notif-box {
-					width: 25rem;
-					margin: 0 2rem;
-					display: flex;
-					flex-direction: row;
-					justify-content: flex-end;
-					color: black;
-					font-family: Open Sans;
-					font-weight: normal;
-					font-style: normal;
-					font-weight: normal;
-					font-size: 2.2rem;
-					line-height: 2.2rem;
-					letter-spacing: -0.41px;
-					color: #191a1a;
-					// background-color: pink;
+          @media (max-width: $mq-mobile) {
+            width: 100%;
+            margin: 0;
+            font-size: 1.7rem;
+            border-top: 1px solid grey;
+            line-height: 1rem;
+          }
+        }
+      }
+    }
 
-					@media (max-width: $mq-mobile){
-						width: 100%;
-						margin: 0;
-						font-size: 1.7rem;
-						border-top: 1px solid grey;
-						line-height: 1rem;
-					}
-				}
-			}
-		}
+    .locations-info {
+      width: 60%;
+      margin: 10px auto;
+      background: white;
+      color: #f2f3f4;
+      border-radius: 8px;
+      padding: 10px;
 
-		.locations-info {
-			width: 60%;
-			margin: 10px auto;
-			background: white;
-			color: #f2f3f4;
-			border-radius: 8px;
-			padding: 10px;
+      @media (max-width: $mq-mobile) {
+        width: 98%;
+      }
 
-			h3 {
-				font-weight: 600;
-				font-size: 30px;
-				line-height: 45px;
-				display: flex;
-				align-items: center;
-			}
+      h3 {
+        font-weight: 600;
+        font-size: 3rem;
+        line-height: 45px;
+        display: flex;
+        align-items: center;
 
-			.locations-table {
-				width: 100%;
-				margin: 10px auto;
-				background: white;
-				color: #f2f3f4;
-				border-radius: 8px;
+        @media (max-width: $mq-mobile) {
+          font-size: 2.5rem;
+        }
+      }
 
-				.table-row {
-					width: 800px;
-					display: flex;
-					flex-direction: row;
-					justify-content: space-between;
-					text-decoration: none;
-				}
-			}
-		}
+      .locations-table {
+        width: 100%;
+        margin: 10px auto;
+        background: white;
+        color: #f2f3f4;
+        border-radius: 8px;
 
-		h3 {
-			padding: 10px 0px;
-			margin: 0;
-			color: black;
-		}
+        @media (max-width: $mq-mobile) {
+        }
 
-		.auth-btn {
-			margin: 3rem auto;
-		}
-	}
+        .table-row {
+          width: 800px;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          text-decoration: none;
+
+          @media (max-width: $mq-mobile) {
+            width: 98vw;
+          }
+        }
+      }
+    }
+
+    h3 {
+      padding: 10px 0px;
+      margin: 0;
+      color: black;
+    }
+
+    .auth-btn {
+      margin: 3rem auto;
+    }
+  }
 }

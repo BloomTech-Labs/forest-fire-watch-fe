@@ -143,6 +143,10 @@ const TH = styled.th`
 	font-weight: 600;
 	font-size: 24px;
 	line-height: 33px;
+
+	@media (max-width: 500px){
+		font-size: 1.6rem;
+	}
 `;
 
 const DataDiv = styled.div`
