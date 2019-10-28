@@ -4,6 +4,18 @@
   align-items: center;
   justify-content: center;
 
+  .form-input-phone {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1.5rem;
+    width: 60%;
+
+    &::placeholder {
+      opacity: 0.8;
+    }
+  }
+
   .checkbox-label {
     position: absolute;
     top: 0;
@@ -153,8 +165,8 @@
       margin: 0;
     }
 
-    .auth-btn {
-      margin: 3rem auto;
-    }
+    // .auth-btn {
+    //   margin: 3rem auto;
+    // }
   }
 }

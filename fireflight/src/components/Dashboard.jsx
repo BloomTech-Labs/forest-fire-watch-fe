@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { UserDataContext } from "../context/UserDataContext";
 import NavigationProfile from "./NavigationProfile";
-
 import { FireDataContext } from "../context/FireDataContext";
 
 // USER PROFILE PAGE
@@ -19,7 +18,8 @@ const Dashboard = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [showEditPhone, setEditPhone] = useState(false);
 
-  console.log("user locations: ", userLocations);
+  //   console.log("user locations: ", userLocations);
+
   useEffect(() => {
     getUserData();
     getUserLocations();
