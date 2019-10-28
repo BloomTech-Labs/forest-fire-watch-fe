@@ -10,6 +10,7 @@
 
 	@media (max-width: $mq-mobile){
 		max-width: 500px;
+		padding-left: 0;
 	}
 
 	.profile-item {
@@ -42,7 +43,7 @@
 		align-self: flex-end;
 
 		@media (max-width: $mq-mobile){
-			margin-left: 5rem;
+			margin-left: 3rem;
 		}
 	}
 }

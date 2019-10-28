@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
 
   .content-wrapper {
     text-align: center;
@@ -22,8 +23,8 @@
       border-bottom: 0.5px solid #191a1a;
 
       @media (max-width: $mq-mobile) {
-		width: 98%;
-		border: none;
+        width: 98%;
+        border: none;
       }
 
       .profile-name {
@@ -106,6 +107,7 @@
       color: #f2f3f4;
       border-radius: 8px;
       padding: 10px;
+      box-sizing: border-box;
 
       @media (max-width: $mq-mobile) {
         width: 98%;
@@ -131,17 +133,25 @@
         border-radius: 8px;
 
         @media (max-width: $mq-mobile) {
+		  width: 98%;
+		  margin-left: 0;
         }
 
-        .table-row {
-          width: 800px;
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          text-decoration: none;
+        tbody {
+          width: 100%;
+          margin: 0;
+          border: none;
 
-          @media (max-width: $mq-mobile) {
-            width: 98vw;
+          .table-row {
+            width: 800px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            text-decoration: none;
+
+            @media (max-width: $mq-mobile) {
+              width: 95vw;
+            }
           }
         }
       }

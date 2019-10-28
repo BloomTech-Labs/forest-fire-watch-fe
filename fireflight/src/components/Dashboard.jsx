@@ -113,7 +113,7 @@ const Dashboard = () => {
 								<TH>Address</TH>
 								<TH>Radius</TH>
 								<TH>Alerts</TH>
-								<TH />
+								
 							</div>
 
 							{userLocations.map((loc, index) => (
