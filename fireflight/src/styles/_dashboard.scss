@@ -26,6 +26,11 @@
 				font-weight: normal;
 				font-size: 3rem;
 				line-height: 4.1rem;
+
+				@media (max-width: $mq-mobile){
+					font-size: 2.5rem;
+					padding: 0;
+				}
 			}
 
 			.profile-email {
@@ -33,6 +38,11 @@
 				font-weight: normal;
 				font-size: 2.1rem;
 				line-height: 2.9rem;
+
+				@media (max-width: $mq-mobile){
+					font-size: 1.6rem;
+					padding: 0;
+				}
 			}
 
 			.profile-phone {
@@ -40,6 +50,11 @@
 				font-weight: normal;
 				font-size: 2.1rem;
 				line-height: 2.9rem;
+
+				@media (max-width: $mq-mobile){
+					font-size: 1.6rem;
+					padding: 0;
+				}
 			}
 
 			.notification-wrapper {
