@@ -85,7 +85,7 @@
     .personal-info {
       width: 60%;
       margin: 1rem auto;
-      padding: 1rem 0 1rem 1rem;
+      padding: 1rem 0;
       border-bottom: 0.5px solid #191a1a;
 
       @media (max-width: $mq-mobile) {
@@ -148,7 +148,9 @@
           font-weight: normal;
           font-size: 2.2rem;
           line-height: 2.2rem;
-          letter-spacing: -0.41px;
+		  letter-spacing: -0.41px;
+		  padding: 0 10px;
+		  box-sizing: border-box;
 
           @media (max-width: $mq-mobile) {
             width: 100%;
@@ -171,7 +173,8 @@
       width: 60%;
       margin: 10px auto;
       border-radius: 8px;
-      padding: 10px 0 10px 10px;
+	  padding: 10px 0 10px 10px;
+	  box-sizing: border-box;
 
       @media (max-width: $mq-mobile) {
         width: 98%;
