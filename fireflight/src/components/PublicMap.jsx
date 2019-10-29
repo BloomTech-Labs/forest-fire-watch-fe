@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useContext } from "react";
 import ReactMapGL, { Popup } from "react-map-gl";
 import styled from "styled-components";
-
 import { FireDataContext } from "../context/FireDataContext";
 import MapLegend from "./MapLegend";
 import Navigation from "../components/Navigation";
+import Geocoder from 'react-mapbox-gl-geocoder'
 
 const token = process.env.REACT_APP_MAPBOX_TOKEN;
 
 
-const PublicMap = ({ setShowAuthForms, setLoginFormStatus, setRegisterFormStatus}) => {
+const PublicMap = ({ setShowAuthForms, setLoginFormStatus, setRegisterFormStatus }) => {
   const {
     fireDataState,
     setPublicViewport,
@@ -35,6 +35,13 @@ const PublicMap = ({ setShowAuthForms, setLoginFormStatus, setRegisterFormStatus
   const [address, setAddress] = useState("");
   const [radius, setRadius] = useState("");
   const [popupRadius, setPopupRadius] = useState("");
+  const [viewport, setViewport] = useState({
+    latitude: 34.377566,
+    longitude: -113.144528,
+    width: '100vw',
+    height: '100vh',
+    zoom: 4
+  })
 
   // Add event listener to window - close whatever pop-up is selected
   useEffect(() => {
@@ -55,6 +62,13 @@ const PublicMap = ({ setShowAuthForms, setLoginFormStatus, setRegisterFormStatus
     if (address) {
       getCoordinates(address, radius);
     }
+    console.log(getCoordinates(address, radius))
+    setViewport({
+      latitude: location[1],
+      longitude: location[0],
+      zoom: 8,
+      transitionDuration: 500
+    })
   };
 
   const tempLocationPopup = (
@@ -139,6 +153,18 @@ const PublicMap = ({ setShowAuthForms, setLoginFormStatus, setRegisterFormStatus
     </div>
   );
 
+  const queryParams = {
+    country: 'us'
+  }
+  const mapAccess = {
+    mapboxApiAccessToken: token
+  }
+  const [location, setLocation] = useState([]);
+  const onSelected = (viewport, item) => {
+    setAddress(item.place_name)
+    console.log(item)
+    setLocation(item.center)
+  }
   return (
     <div style={{ position: "relative", width: "100%", height: "100%" }}>
       <MapLegend />
@@ -152,13 +178,18 @@ const PublicMap = ({ setShowAuthForms, setLoginFormStatus, setRegisterFormStatus
           <label className="map-form-text">
             Enter the address you wish to check fire proximity to.
           </label>
-          <input
+          {/* <input
             className="address-input"
             type="text"
             name="Address"
             placeholder="Enter address"
             value={address}
             onChange={e => setAddress(e.target.value)}
+          /> */}
+          <Geocoder
+            {...mapAccess} viewport={viewport}
+            queryParams={queryParams} hideOnSelect={true}
+            onSelected={onSelected} className="address-input" value={address} name="Address"
           />
           <input
             className="radius-input"
@@ -170,32 +201,32 @@ const PublicMap = ({ setShowAuthForms, setLoginFormStatus, setRegisterFormStatus
           />
           <button className="form-btn">Search</button>
           {localStorage.getItem('token') == null && (
-          <React.Fragment>
-          <label className="signup-form-text">
-            to save addresses and receive notifications
+            <React.Fragment>
+              <label className="signup-form-text">
+                to save addresses and receive notifications
           </label>
               <button className="signup-btn" onClick={() => {
                 setShowAuthForms(true)
                 setLoginFormStatus(false)
                 setRegisterFormStatus(true)
               }}>Sign Up</button>
-          </React.Fragment>
+            </React.Fragment>
           )}
         </form>
         {/* End Form Container */}
       </div>
 
       <ReactMapGL
-        {...publicMapViewport}
+        {...viewport}
         width="100%"
-        // height="100%"
+        height="600px"
         mapboxApiAccessToken={token}
-        onViewportChange={publicMapViewport => {
-          const { width, height } = publicMapViewport;
-          setPublicViewport(publicMapViewport);
+        onViewportChange={(viewport) => {
+          setViewport(viewport)
         }}
         mapStyle="mapbox://styles/astillo/ck1s93bpe5bnk1cqsfd34n8ap"
       >
+
         {allFireMarkers}
         {userLocalFireMarkers}
         {localFireMarkers}
@@ -215,8 +246,11 @@ const PublicMap = ({ setShowAuthForms, setLoginFormStatus, setRegisterFormStatus
             {selectedMarker[4] === "tempLocation" && tempLocationPopup}
             {selectedMarker[4] === "fireLocation" && fireLocationPopup}
           </Popup>
+
         ) : null}
+
       </ReactMapGL>
+
     </div>
   );
 };
