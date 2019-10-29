@@ -122,14 +122,6 @@ export const FireDataProvider = ({ children }) => {
       longitude: -98.5795,
       zoom: 3.3
     },
-    privateMapData: {},
-    privateMapViewport: {
-      width: "100%",
-      height: window.innerWidth < 900 ? 350 : 500,
-      latitude: 37.7749,
-      longitude: -122.4194,
-      zoom: 7
-    },
     allFires: [],
     allFireMarkers: [],
     localFires: [],
@@ -410,7 +402,7 @@ export const FireDataProvider = ({ children }) => {
         let localArray = [];
         res.data.forEach(loc => {
           fireDataState.allFires.forEach(fire => {
-            console.log("set user locations", fire);
+            // console.log("set user locations", fire);
             let distance = haversineDistance(
               [loc.latitude, loc.longitude],
               [fire[1], fire[0]],

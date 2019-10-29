@@ -28,7 +28,7 @@ function Address(props) {
   const [radius, setRadius] = useState(10);
   // const [err, setErr] = useState(undefined);
 
-  console.log(address);
+  // console.log(address);
 
   const testFetch = e => {
     if (e) e.preventDefault();
