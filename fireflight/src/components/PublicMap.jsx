@@ -189,7 +189,7 @@ const PublicMap = ({ setShowAuthForms, setLoginFormStatus, setRegisterFormStatus
           <Geocoder
             {...mapAccess} viewport={viewport}
             queryParams={queryParams} hideOnSelect={true}
-            onSelected={onSelected} className="address-input" value={address} name="Address"
+            onSelected={onSelected} updateInputOnSelect={true} limit={3}
           />
           <input
             className="radius-input"
@@ -256,6 +256,8 @@ const PublicMap = ({ setShowAuthForms, setLoginFormStatus, setRegisterFormStatus
 };
 
 export default PublicMap;
+
+
 
 const CheckBoxLabel = styled.label`
   position: absolute;
