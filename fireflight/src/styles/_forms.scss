@@ -117,7 +117,7 @@
 		line-height: 2.7rem;
 		display: flex;
 		align-items: center;
-		padding-left: 1.7rem;
+		//padding-left: 1.7rem;
 		&::placeholder {
             font-family: "Open Sans";
             font-style: normal;
@@ -138,9 +138,11 @@
 	.react-geocoder-results{
 		background:white;
 		width:30rem;
+		height:auto;
+		top:48px;
 		position: absolute;
-		margin-top:95px;
 		font-size:2rem;
+		padding-top:10px;
 	}
 
 	.react-geocoder-item{
