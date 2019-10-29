@@ -219,7 +219,6 @@ const PublicMap = ({ setShowAuthForms, setLoginFormStatus, setRegisterFormStatus
       <ReactMapGL
         {...viewport}
         width="100%"
-        height="600px"
         mapboxApiAccessToken={token}
         onViewportChange={(viewport) => {
           setViewport(viewport)
