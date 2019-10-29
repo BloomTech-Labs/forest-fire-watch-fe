@@ -72,18 +72,24 @@ const PublicMap = ({ setShowAuthForms, setLoginFormStatus, setRegisterFormStatus
   };
 
   const tempLocationPopup = (
-    <div style={{ display: "flex", flexDirection: "column" }}>
-      <p>Want to save this location?</p>
+    <div className="save-location-modal">
+      <p style={{
+        fontWeight: "300",
+        fontSize: "12px"
+      }}>Want to save this location?</p>
       <button
+        style={{
+          color: "#66BBF0", 
+          backgroundColor: "white"
+        }}
         className="save-location-btn"
         onClick={e => {
           saveLocationMarker();
           deleteLocationMarker();
         }}
       >
-        Click here
+        Click Here
       </button>
-      <button onClick={e => deleteLocationMarker()}>Delete this pin</button>
     </div>
   );
 
