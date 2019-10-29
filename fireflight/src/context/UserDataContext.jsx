@@ -54,7 +54,7 @@ export const UserDataProvider = ({ children }) => {
     axiosWithAuth()
       .get("/users/user")
       .then(res => {
-        console.log(res.data);
+        console.log("/users/user", res.data);
         dispatch({
           type: GET_USER_DATA,
           payload: [

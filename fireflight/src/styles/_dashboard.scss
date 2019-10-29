@@ -3,7 +3,62 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-sizing: border-box;
+
+  .form-input-phone {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1.5rem;
+    width: 60%;
+
+    &::placeholder {
+      opacity: 0.8;
+    }
+  }
+
+  .checkbox-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 42px;
+    height: 26px;
+    border-radius: 15px;
+    background: #bebebe;
+    cursor: pointer;
+
+    &::after {
+      content: "";
+      display: block;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      margin: 3px;
+      background: #ffffff;
+      box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2);
+      transition: 0.2s;
+    }
+  }
+
+  .checkbox {
+    opacity: 0;
+    z-index: 1;
+    border-radius: 15px;
+    width: 42px;
+    height: 26px;
+
+    &:checked + .checkbox-label {
+      background: #4fbe79;
+      &::after {
+        content: "";
+        display: block;
+        border-radius: 50%;
+        width: 18px;
+        height: 18px;
+        margin-left: 21px;
+        transition: 0.2s;
+      }
+    }
+  }
 
   .content-wrapper {
     text-align: center;
@@ -14,11 +69,21 @@
     justify-content: center;
     align-items: center;
 
+    .phone-edit {
+      // previous team's CSS
+      width: 250px;
+      margin: 0 20px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      font-size: 22px;
+      line-height: 22px;
+      letter-spacing: -0.41px;
+    }
+
     .personal-info {
       width: 60%;
       margin: 1rem auto;
-      background: white;
-      color: #f2f3f4;
       padding: 1rem;
       border-bottom: 0.5px solid #191a1a;
 
@@ -28,8 +93,6 @@
       }
 
       .profile-name {
-        font-style: normal;
-        font-weight: normal;
         font-size: 3rem;
         line-height: 4.1rem;
 
@@ -40,8 +103,6 @@
       }
 
       .profile-email {
-        font-style: normal;
-        font-weight: normal;
         font-size: 2.1rem;
         line-height: 2.9rem;
 
@@ -52,8 +113,6 @@
       }
 
       .profile-phone {
-        font-style: normal;
-        font-weight: normal;
         font-size: 2.1rem;
         line-height: 2.9rem;
 
@@ -82,7 +141,6 @@
           display: flex;
           flex-direction: row;
           justify-content: flex-end;
-          color: black;
           font-family: Open Sans;
           font-weight: normal;
           font-style: normal;
@@ -99,76 +157,73 @@
             font-size: 1.7rem;
             border-top: 1px solid grey;
             line-height: 1rem;
-          }
-        }
-      }
-    }
 
-    .locations-info {
-      width: 60%;
-      margin: 10px auto;
-      background: white;
-      color: #f2f3f4;
-      border-radius: 8px;
-      padding: 10px;
-      box-sizing: border-box;
-
-      @media (max-width: $mq-mobile) {
-        width: 98%;
-      }
-
-      h3 {
-        font-weight: 600;
-        font-size: 3rem;
-        line-height: 45px;
-        display: flex;
-        align-items: center;
-
-        @media (max-width: $mq-mobile) {
-          font-size: 2.5rem;
-        }
-      }
-
-      .locations-table {
-        width: 100%;
-        margin: 10px auto;
-        background: white;
-        color: #f2f3f4;
-        border-radius: 8px;
-
-        @media (max-width: $mq-mobile) {
-          width: 98%;
-          margin-left: 0;
-        }
-
-        tbody {
-          width: 100%;
-          margin: 0;
-          border: none;
-
-          .table-row {
-            width: 800px;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            text-decoration: none;
-
-            @media (max-width: $mq-mobile) {
-              width: 95vw;
+            .checkbox-wrapper {
+              position: relative;
+              margin: auto 0px auto auto;
             }
           }
         }
       }
-    }
 
-    h3 {
-      padding: 10px 0px;
-      margin: 0;
-      color: black;
-    }
+      // LOCATIONS/ADDRESSES
+      .locations-info {
+        width: 60%;
+        margin: 10px auto;
+        border-radius: 8px;
+        padding: 10px;
 
-    .auth-btn {
-      margin: 3rem auto;
+        h3 {
+          font-size: 3rem;
+          line-height: 4.5rem;
+          display: flex;
+          align-items: center;
+        }
+
+        .add-location-btn {
+          // same as auth-btn (refactor later)
+          margin-top: 1rem;
+          background-color: $orange;
+          border-radius: 2px;
+          cursor: pointer;
+          color: white;
+          font-size: 1.5rem;
+          width: 119.95px;
+          height: 38px;
+          display: flex;
+          justify-content: center;
+          border: none;
+
+          @include easeOut;
+
+          &:hover {
+            background-color: lighten($orange, 10%);
+            @include easeOut;
+          }
+        }
+
+        .locations-table {
+          width: 100%;
+          display: table;
+
+          .locations-header {
+            font-size: 2.4rem;
+          }
+
+          .table-row {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            font-size: 1.8rem;
+            margin-top: 1rem;
+          }
+        }
+      }
+
+      h3 {
+        padding: 10px 0px;
+        margin: 0;
+      }
     }
   }
 }

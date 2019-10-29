@@ -55,29 +55,6 @@
   }
 }
 
-.form-input-phone {
-  background-color: #355c7d;
-  border: none;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  color: #f2f3f4;
-  margin-top: 10px;
-  padding: 15.5px 15px 12.5px 5px;
-  font-size: 0.8em;
-  width: 60%;
-
-  &::placeholder {
-    color: $lilia;
-    opacity: 0.8;
-  }
-
-  @include mediaLg {
-    width: 75%;
-  }
-}
-
 // Login and Signup Error Text
 .name-error-text {
   max-width: 24rem;
