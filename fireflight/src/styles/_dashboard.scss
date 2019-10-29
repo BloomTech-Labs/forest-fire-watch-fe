@@ -70,6 +70,10 @@
 
         @media (max-width: $mq-mobile) {
           flex-direction: column;
+
+          &:last-child {
+            border-bottom: 1px solid grey;
+          }
         }
 
         .notif-box {
@@ -133,8 +137,8 @@
         border-radius: 8px;
 
         @media (max-width: $mq-mobile) {
-		  width: 98%;
-		  margin-left: 0;
+          width: 98%;
+          margin-left: 0;
         }
 
         tbody {

@@ -23,6 +23,11 @@
 		padding: 2rem;
 		width: 10rem;
 
+		@media (max-width: $mq-mobile){
+			padding: 0.25rem;
+			text-align: center;
+		}
+
 		&:hover {
 			background-color: white;
 		}
@@ -43,7 +48,7 @@
 		align-self: flex-end;
 
 		@media (max-width: $mq-mobile){
-			margin-left: 3rem;
+			margin-left: 2rem;
 		}
 	}
 }
