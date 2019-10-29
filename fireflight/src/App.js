@@ -12,6 +12,7 @@ import { GlobalContext } from "./context/contextProvider";
 import { UserDataProvider } from "./context/UserDataContext";
 import { FireDataContext } from "./context/FireDataContext";
 import AddressContext from "./context/AddressContext";
+import 'semantic-ui-css/semantic.min.css'
 
 // import Modal from "./components/Modal/Modal"
 

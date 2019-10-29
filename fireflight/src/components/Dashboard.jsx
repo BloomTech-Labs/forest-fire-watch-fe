@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { UserDataContext } from "../context/UserDataContext";
 import NavigationProfile from "./NavigationProfile";
 import { FireDataContext } from "../context/FireDataContext";
-
+import { Icon } from 'semantic-ui-react'
 // USER PROFILE PAGE
 const Dashboard = () => {
   const {
@@ -47,6 +47,9 @@ const Dashboard = () => {
       </button>
     </div>
   );
+  const editEmail = (email) => {
+    console.log("inside editEmail", email)
+  }
 
   return (
     <div className="dashboard-wrapper">
@@ -54,21 +57,21 @@ const Dashboard = () => {
       <div className="content-wrapper">
         <div className="personal-info">
           <h3 className="profile-name">Dora Belme</h3>
-          <h3 className="profile-email">{email}</h3>
+          <h3 className="profile-email">{email}  <Icon name='edit' size="small" onClick={() => editEmail(email)} /></h3>
           <h3 className="profile-phone">{phone}</h3>
 
           {phone === null || showEditPhone ? (
             phoneInput
           ) : (
-            <div className="phone-edit">
-              <h4>{phone}</h4>
-              <i
-                onClick={() => setEditPhone(true)}
-                style={{ margin: "auto 0px", cursor: "pointer" }}
-                class="fas fa-pencil-alt"
-              ></i>
-            </div>
-          )}
+              <div className="phone-edit">
+                <h4>{phone}</h4>
+                <i
+                  onClick={() => setEditPhone(true)}
+                  style={{ margin: "auto 0px", cursor: "pointer" }}
+                  class="fas fa-pencil-alt"
+                ></i>
+              </div>
+            )}
           <div className="notification-wrapper">
             <div className="notif-box">
               <h4>Text Alerts</h4>
