@@ -10,6 +10,7 @@
     padding: 10px;
     font-size: 1.5rem;
     width: 60%;
+    margin-bottom: 10px;
 
     &::placeholder {
       opacity: 0.8;
@@ -46,7 +47,7 @@
     width: 42px;
     height: 26px;
 
-    &:checked + .checkbox-label {
+    &:checked .checkbox-label {
       background: #4fbe79;
       &::after {
         content: "";
@@ -84,7 +85,7 @@
     .personal-info {
       width: 60%;
       margin: 1rem auto;
-      padding: 1rem;
+      padding: 1rem 0;
       border-bottom: 0.5px solid #191a1a;
 
       @media (max-width: $mq-mobile) {
@@ -140,14 +141,16 @@
           margin: 0 2rem;
           display: flex;
           flex-direction: row;
-          justify-content: flex-end;
+          justify-content: space-between;
           font-family: Open Sans;
           font-weight: normal;
           font-style: normal;
           font-weight: normal;
           font-size: 2.2rem;
           line-height: 2.2rem;
-          letter-spacing: -0.41px;
+		  letter-spacing: -0.41px;
+		  padding: 0 10px;
+		  box-sizing: border-box;
 
           @media (max-width: $mq-mobile) {
             width: 100%;
@@ -159,7 +162,7 @@
 
           .checkbox-wrapper {
             position: relative;
-            margin: auto 0px auto auto;
+            margin: auto 0 auto auto;
           }
         }
       }
@@ -170,7 +173,8 @@
       width: 60%;
       margin: 10px auto;
       border-radius: 8px;
-      padding: 10px;
+	  padding: 10px 0 10px 10px;
+	  box-sizing: border-box;
 
       @media (max-width: $mq-mobile) {
         width: 98%;
@@ -197,8 +201,8 @@
         font-size: 1.5rem;
         width: 119.95px;
         height: 38px;
-        display: flex;
-        justify-content: center;
+        // display: flex;
+        // justify-content: center;
         border: none;
 
         @include easeOut;
@@ -206,17 +210,21 @@
         &:hover {
           background-color: lighten($orange, 10%);
           @include easeOut;
-    
         }
       }
 
       .locations-table {
-        width: 100%;
+        width: 95%;
 
-        display: table;
+		display: table;
+		
 
         .locations-header {
-          font-size: 2.4rem;
+		  font-size: 2.4rem;
+		  
+		  @media (max-width: $mq-mobile) {
+            font-size: 1.6rem;
+          }
         }
 
         .table-row {
@@ -224,10 +232,11 @@
           flex-direction: row;
           justify-content: space-between;
           font-size: 1.8rem;
-		  margin-top: 1rem;
-		  
-		  @media (max-width: $mq-mobile) {
-			width: 95vw;}
+          margin-top: 1rem;
+
+        //   @media (max-width: $mq-mobile) {
+        //     width: 95vw;
+        //   }
         }
       }
     }
@@ -236,5 +245,27 @@
       padding: 10px 0px;
       margin: 0;
     }
+  }
+
+  .phone-btn {
+	margin-bottom: 1rem;
+	background-color: $orange;
+	border-radius: 2px;
+	cursor: pointer;
+	color: white;
+	font-size: 1.5rem;
+	// width: auto;
+	// height: 38px;
+	// padding: 10px;
+	font-size: 1.6rem;
+	
+	border: none;
+
+	@include easeOut;
+
+	&:hover {
+	  background-color: lighten($orange, 10%);
+	  @include easeOut;
+	}
   }
 }
