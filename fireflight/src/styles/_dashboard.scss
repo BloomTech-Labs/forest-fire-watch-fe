@@ -10,6 +10,7 @@
     padding: 10px;
     font-size: 1.5rem;
     width: 60%;
+    margin-bottom: 15px;
 
     &::placeholder {
       opacity: 0.8;
@@ -46,7 +47,7 @@
     width: 42px;
     height: 26px;
 
-    &:checked + .checkbox-label {
+    &:checked .checkbox-label {
       background: #4fbe79;
       &::after {
         content: "";
@@ -140,7 +141,7 @@
           margin: 0 2rem;
           display: flex;
           flex-direction: row;
-          justify-content: flex-end;
+          justify-content: space-between;
           font-family: Open Sans;
           font-weight: normal;
           font-style: normal;
@@ -159,7 +160,7 @@
 
           .checkbox-wrapper {
             position: relative;
-            margin: auto 0px auto auto;
+            margin: auto 0 auto auto;
           }
         }
       }
@@ -206,7 +207,6 @@
         &:hover {
           background-color: lighten($orange, 10%);
           @include easeOut;
-    
         }
       }
 
@@ -224,10 +224,11 @@
           flex-direction: row;
           justify-content: space-between;
           font-size: 1.8rem;
-		  margin-top: 1rem;
-		  
-		  @media (max-width: $mq-mobile) {
-			width: 95vw;}
+          margin-top: 1rem;
+
+          @media (max-width: $mq-mobile) {
+            width: 95vw;
+          }
         }
       }
     }
