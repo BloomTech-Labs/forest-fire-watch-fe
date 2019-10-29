@@ -89,7 +89,7 @@ function Password({
             <span className="user-error-text" />
           )}
           <br />
-          <button className="auth-btn" type="submit" disabled={loading}>
+          <button className="default-btn" type="submit" disabled={loading}>
             {loading ? "Loading..." : "Send Email"}
           </button>
         </div>

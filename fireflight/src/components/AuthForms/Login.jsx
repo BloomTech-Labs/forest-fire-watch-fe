@@ -105,7 +105,7 @@ function Login({
             )}
 
 
-          <button className="auth-btn" type="submit" disabled={loading}>
+          <button className="default-btn" type="submit" disabled={loading}>
             {loading ? "Loading..." : "Sign In"}
           </button>
           <br />
