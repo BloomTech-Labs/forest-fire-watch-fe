@@ -1,6 +1,9 @@
 import React, { useState, useContext, useEffect } from "react";
 import AddressContext from "../context/addressContextProvider";
 import { GlobalContext } from "../context/contextProvider";
+import NavigationProfile from "../components/NavigationProfile";
+
+import Geocoder from 'react-mapbox-gl-geocoder'
 // import { isArray } from "util";
 import {
   Button,
@@ -16,12 +19,12 @@ import {
 function Address(props) {
   const address = useContext(AddressContext);
   const global = useContext(GlobalContext);
-  const [addy, setAddy] = useState("");
-  const [zip, setZip] = useState("");
-  const [state, setState] = useState("");
-  const [apartment, setApartment] = useState("");
-  const [street, setStreet] = useState("");
-  const [city, setCity] = useState("");
+  // const [addy, setAddy] = useState("");
+  // const [zip, setZip] = useState("");
+  // const [state, setState] = useState("");
+  // const [apartment, setApartment] = useState("");
+  // const [street, setStreet] = useState("");
+  // const [city, setCity] = useState("");
   const [saveState, setSaveState] = useState("");
   const [id, setId] = useState(undefined);
   const [name, setName] = useState("");
@@ -44,12 +47,12 @@ function Address(props) {
       // parseCSV('to')
     }
 
-    if (![zip, state, street, name].every(i => i.length > 0)) {
-      setSaveState(
-        "Please fill out Street Address, Zip Code, and State, and Give the Location a Label"
-      );
-      return;
-    }
+    // if (![zip, state, street, name].every(i => i.length > 0)) {
+    //   setSaveState(
+    //     "Please fill out Street Address, Zip Code, and State, and Give the Location a Label"
+    //   );
+    //   return;
+    // }
 
     if (id == null) {
       let temp = await address.saveAddress(addy, radius, name);
@@ -169,6 +172,7 @@ function Address(props) {
 
   return (
     <FormContainer>
+            <NavigationProfile />
       {/* <>
                 <button onClick={testSubmit}>
                     test submit

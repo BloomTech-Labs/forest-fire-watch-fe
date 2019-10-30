@@ -23,15 +23,15 @@
 
 		@media (max-width: $mq-tablet) {
 			position: absolute;
-			width: 298px;
+			width: 350px;
 			height: 16px;
 			left: 20px;
 			top: 91px;
 			font-family: Open Sans;
 			font-style: normal;
 			font-weight: normal;
-			font-size: 12px;
-			line-height: 16px;
+			font-size: 14px;
+			// line-height: 2.5rem;
 		}
 	}
 
@@ -86,13 +86,12 @@
 
 	.react-geocoder{
 		width: 30rem;
-		height: 5rem;
+		height: 5.2rem;
 		background: #ffffff;
 		border-radius: 3px;
 		position: absolute;
 		top: 128px;
 		left: 17px;
-		font-family: "Open Sans";
 		font-style: normal;
 		font-weight: normal;
 		font-size: 2rem;
@@ -101,9 +100,6 @@
 		align-items: center;
 		//padding-left: 1.7rem;
 		&::placeholder {
-            font-family: "Open Sans";
-            font-style: normal;
-            font-weight: normal;
             font-size: 20px;
             line-height: 27px;
             display: flex;
@@ -116,52 +112,54 @@
             line-height: 4.5rem;
 		}
 		input{
-			width:30rem; 
-			font-family: "Open Sans";
-            font-style: normal;
-            font-weight: normal;
+			width: 30rem;
             font-size: 20px;
             line-height: 27px;
             display: flex;
             align-items: center;
-            color: #a9a9a9;
             padding-left: 17px;
 		}
 		@media (max-width: $mq-mobile) {
 			position: absolute;
-			width: 245px;
-			height: 42px;
+			width: 297px;
+			height: 44px;
 			left: 20px;
 			top: 118px;
 			background: #ffffff;
 			border-radius: 3px;
 		}
 
-		@media (max-width: $mq-tablet) {
-			position: absolute;
-			width: 245px;
-			height: 42px;
-			left: 20px;
-			top: 118px;
-			background: #ffffff;
-			border-radius: 3px;
-		}
+		// @media (max-width: $mq-tablet) {
+		// 	position: absolute;
+		// 	width: 245px;
+		// 	height: 42px;
+		// 	left: 20px;
+		// 	top: 118px;
+		// 	background: #ffffff;
+		// 	border-radius: 3px;
+		// }
 		
 	}
 
 	.react-geocoder-results{
+		border-top: 0.8px solid #000000;
 		background:white;
 		width:30rem;
+		box-sizing: border-box;
 		height:auto;
 		top:48px;
 		position: absolute;
-		font-size:2rem;
-		padding-top:10px;
+		padding: 1rem 0.8rem;
+		font-size: 1.6rem;
 		z-index:4;
+
+		
 	}
 
 	.react-geocoder-item{
 		width:30rem;
+		padding-top: 1rem;
+		
 
 	}
 	// Radius Input
@@ -172,7 +170,7 @@
 		border-radius: 3px;
 		position: absolute;
 		top: 12.8rem;
-		left: 33.7rem;
+		left: 33rem;
 		font-family: "Open Sans";
 		font-style: normal;
 		font-weight: normal;
@@ -183,11 +181,11 @@
 		margin-left: 1.4rem;
 		padding-left: 1rem;
 
-		@media (max-width: $mq-tablet) {
+		@media (max-width: $mq-mobile) {
 			position: absolute;
 			width: 61.53px;
 			height: 42px;
-			left: 274px;
+			left: 315px;
 			top: 118px;
 			background: #ffffff;
 			border-radius: 3px;

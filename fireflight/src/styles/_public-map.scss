@@ -34,9 +34,15 @@
 		margin-bottom: 6px;
 		margin-top: 3px;
 		color: #66bbf0;
+		background-color: black;
 	}
 
 	.delete-location-btn {
 		margin-top: 6px;
 	}
+}
+
+.save-location-modal {
+	display: flex;
+	flex-direction: column;
 }

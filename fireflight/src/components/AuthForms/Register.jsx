@@ -188,7 +188,7 @@ function Register({ toggle, setShowAuthForms, setRegisterStatus }) {
                 <ErrorText />
               )}
             <button
-              className="auth-btn register-btn"
+              className="default-btn register-btn"
               type="submit"
               disabled={loading}
             >

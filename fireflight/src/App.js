@@ -5,14 +5,15 @@ import { Route, Redirect } from "react-router-dom";
 import Home from "./components/Home";
 import Dashboard from "./components/Dashboard";
 import AuthForms from "./components/AuthForms/AuthForms";
-import Address from "./components/Address";
+// import Address from "./components/Address";
+import Address2 from "./components/Address2";
 import LandingPage from "./components/LandingPage";
 
 import { GlobalContext } from "./context/contextProvider";
 import { UserDataProvider } from "./context/UserDataContext";
 import { FireDataContext } from "./context/FireDataContext";
 import AddressContext from "./context/AddressContext";
-import 'semantic-ui-css/semantic.min.css'
+// import 'semantic-ui-css/semantic.min.css'
 
 // import Modal from "./components/Modal/Modal"
 
@@ -46,7 +47,7 @@ function App() {
   const [firebaseUser, setFirebaseUser] = useState({});
 
   const global = useContext(GlobalContext);
-  const { fireDataState, getAllFires, setUserLocations } = useContext(
+  const { fireDataState, getAllFires, setUserLocations, saveLocationMarker } = useContext(
     FireDataContext
   );
 
@@ -159,7 +160,8 @@ function App() {
           )}
         />
 
-        <Route path="/address" component={Address} />
+        {/* <Route path="/address" component={Address} /> */}
+        <Route path="/address" component={Address2} />
       </AddressContext>
     </AppWrapper>
   );

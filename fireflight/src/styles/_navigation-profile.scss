@@ -8,6 +8,11 @@
 	align-items: center;
 	padding-left: 20rem;
 
+	@media (max-width: $mq-mobile){
+		max-width: 500px;
+		padding-left: 0;
+	}
+
 	.profile-item {
 		color: black;
 		font-weight: 600;
@@ -17,6 +22,11 @@
 		font-weight: normal;
 		padding: 2rem;
 		width: 10rem;
+
+		@media (max-width: $mq-mobile){
+			padding: 0.25rem;
+			text-align: center;
+		}
 
 		&:hover {
 			background-color: white;
@@ -36,5 +46,9 @@
         display: flex;
         justify-content: center;
 		align-self: flex-end;
+
+		@media (max-width: $mq-mobile){
+			margin-left: 2rem;
+		}
 	}
 }
