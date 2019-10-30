@@ -74,7 +74,15 @@ const Dashboard = () => {
         <div className="personal-info">
           <h3 className="profile-name">Dora Belme</h3>
           {/* Checks to see if isEditing is false and if so renders the email of the user and if true will render the input for editing */}
-          {(!isEditing) ? (<h3 className="profile-email">{email}  <Icon name='edit' size="small" onClick={() => setIsEditing(true)} /></h3>) : (<div><input type="email" placeholder="Enter your new Email" className="profile-email" name="newEmail" onChange={(e) => setNewEmail(e.target.value)} className="is-editing-input" /> <button type='submit' onClick={() => changeEmail()}>Change Email</button> </div>)}
+          {(!isEditing)
+            ?
+            (<h3 className="profile-email">{email}  <Icon name='edit' size="small" onClick={() => setIsEditing(true)} /></h3>)
+            :
+            (<div>
+              <input type="email" placeholder="Enter your new Email" className="profile-email" name="newEmail" onChange={(e) => setNewEmail(e.target.value)} className="is-editing-input" />
+              <button type='submit' onClick={() => changeEmail()}>Change Email</button>
+            </div>)
+          }
           <h3 className="profile-phone">{phone}</h3>
 
           {phone === null || showEditPhone ? (
