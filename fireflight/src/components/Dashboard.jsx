@@ -97,35 +97,38 @@ const Dashboard = () => {
 						</div>
 					)}
 					<h3 className="profile-phone">{phone}</h3>
-
-					{phone === null || showEditPhone ? (
-						phoneInput
-					) : (
-						<div className="phone-edit">
-							<h4>{phone}</h4>
-							<i
-								onClick={() => setEditPhone(true)}
-								style={{ margin: 'auto 0px', cursor: 'pointer' }}
-								class="fas fa-pencil-alt"
-							/>
-						</div>
-					)}
-					<div className="notification-wrapper">
-						<div className="notif-box">
-							<h4>Text Alerts</h4>
-							<div className="checkbox-wrapper">
-								<input
-									className="checkbox"
-									id="checkbox1"
-									type="checkbox"
-									onChange={() => {
-										updateTextAlerts(!receiveSMS);
-									}}
-									checked={receiveSMS}
-								/>
-								<label className="checkbox-label" htmlFor="checkbox1" />
-							</div>
-						</div>
+          {phone === null || showEditPhone ? (
+            phoneInput
+          ) : (
+              <div className="phone-edit">
+                <h4>{phone}</h4>
+                <i
+                  onClick={() => setEditPhone(true)}
+                  style={{ margin: "auto 0px", cursor: "pointer" }}
+                  class="fas fa-pencil-alt"
+                ></i>
+              </div>
+            )}
+          <div className="notification-wrapper">
+            <div className="notif-box">
+              <h4>Text Alerts</h4>
+              <div className="checkbox-wrapper">
+                <input
+                  id="checkbox1"
+                  type="checkbox"
+                  onChange={() => {
+                    if (phone) {
+                      updateTextAlerts(!receiveSMS);
+                    }
+                    else {
+                      alert('Please enter your phone number!')
+                    }
+                  }}
+                  checked={receiveSMS}
+                />
+                <label className="checkbox-label" htmlFor="checkbox1" />
+              </div>
+            </div>
 
 						<div className="notif-box">
 							<h4>Push Notifications</h4>
