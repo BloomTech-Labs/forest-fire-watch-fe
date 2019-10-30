@@ -56,6 +56,7 @@ function Register({ toggle, setShowAuthForms, setRegisterStatus }) {
                   setPassword("");
                   setPasswordConf("");
                   setLoading(false);
+                  // setRegisterStatus(false);
                   setShowAuthForms(false);
                 })
                 .catch(err => {
