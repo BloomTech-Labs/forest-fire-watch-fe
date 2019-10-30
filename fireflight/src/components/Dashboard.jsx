@@ -3,6 +3,8 @@ import { UserDataContext } from '../context/UserDataContext';
 import NavigationProfile from './NavigationProfile';
 import { FireDataContext } from '../context/FireDataContext';
 import { Link } from 'react-router-dom';
+import axiosWithAuth from '../utils/axiosWithAuth';
+import fire from '../config/fire';
 
 // USER PROFILE PAGE
 const Dashboard = () => {
@@ -14,6 +16,8 @@ const Dashboard = () => {
 	const { email, phone, receiveSMS, receivePush } = userDataState;
 	const [ phoneNumber, setPhoneNumber ] = useState('');
 	const [ showEditPhone, setEditPhone ] = useState(false);
+	const [ isEditing, setIsEditing ] = useState(false);
+	const [ newEmail, setNewEmail ] = useState('');
 
 	//   console.log("user locations: ", userLocations);
 
@@ -45,6 +49,24 @@ const Dashboard = () => {
 		</div>
 	);
 
+	const changeEmail = () => {
+		console.log(newEmail);
+		axiosWithAuth()
+			.put(`${process.env.REACT_APP_ENV}users/update/${fire.auth().currentUser.uid}`, { email: newEmail })
+			.then((res) => {
+				console.log(res);
+				fire
+					.auth()
+					.currentUser.updateEmail(newEmail)
+					.then((newEmailCreated) => {
+						console.log('new email has been saved in firebase');
+					})
+					.catch((err) => alert(err.message));
+				setIsEditing(false);
+			})
+			.catch((err) => console.log(err));
+	};
+
 	console.log('Userlocations', userLocations[0]);
 
 	return (
@@ -53,7 +75,27 @@ const Dashboard = () => {
 			<div className="content-wrapper">
 				<div className="personal-info">
 					<h3 className="profile-name">Dora Belme</h3>
-					<h3 className="profile-email">{email}</h3>
+					{/* Checks to see if isEditing is false and if so renders the email of the user and if true will render the input for editing */}
+					{!isEditing ? (
+						<h3 className="profile-email">
+							{!newEmail ? `${email}` : `${newEmail}`}{' '}
+							<button onClick={() => setIsEditing(true)}>Edit Email</button>
+						</h3>
+					) : (
+						<div>
+							<input
+								type="email"
+								placeholder="Enter your new Email"
+								className="profile-email"
+								name="newEmail"
+								onChange={(e) => setNewEmail(e.target.value)}
+								className="is-editing-input"
+							/>
+							<button type="submit" onClick={() => changeEmail()}>
+								Change Email
+							</button>
+						</div>
+					)}
 					<h3 className="profile-phone">{phone}</h3>
 
 					{phone === null || showEditPhone ? (
