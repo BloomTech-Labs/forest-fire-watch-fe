@@ -3,7 +3,6 @@ import { UserDataContext } from "../context/UserDataContext";
 import NavigationProfile from "./NavigationProfile";
 import { FireDataContext } from "../context/FireDataContext";
 import { Icon } from 'semantic-ui-react'
-import { consoleSandbox } from "@sentry/utils";
 import axiosWithAuth from '../utils/axiosWithAuth'
 import fire from '../config/fire'
 // USER PROFILE PAGE
