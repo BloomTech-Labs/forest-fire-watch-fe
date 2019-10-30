@@ -47,7 +47,7 @@ function App() {
   const [firebaseUser, setFirebaseUser] = useState({});
 
   const global = useContext(GlobalContext);
-  const { fireDataState, getAllFires, setUserLocations } = useContext(
+  const { fireDataState, getAllFires, setUserLocations, saveLocationMarker } = useContext(
     FireDataContext
   );
 
