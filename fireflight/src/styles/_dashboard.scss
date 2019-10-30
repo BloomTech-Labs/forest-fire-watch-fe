@@ -3,6 +3,21 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	.is-editing-input {
+    background: #FFFFFF;
+    border: 1px solid #BBBBBB;
+    box-sizing: border-box;
+    border-radius: 2px;
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 21px;
+    line-height: 29px;
+    /* identical to box height */
+    align-items: center;
+
+	color: #191A1A;
+  }
 
 	.form-input-phone {
 		border: 1px solid black;
