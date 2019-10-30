@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { FireDataContext } from "../context/FireDataContext";
 import MapLegend from "./MapLegend";
 import Navigation from "../components/Navigation";
-import Geocoder from 'react-mapbox-gl-geocoder'
+import Geocoder from 'react-mapbox-gl-geocoder';
 
 const token = process.env.REACT_APP_MAPBOX_TOKEN;
 
@@ -192,14 +192,6 @@ const PublicMap = ({ setShowAuthForms, setLoginFormStatus, setRegisterFormStatus
           <label className="map-form-text">
             Enter the address you wish to check fire proximity to.
           </label>
-          {/* <input
-            className="address-input"
-            type="text"
-            name="Address"
-            placeholder="Enter address"
-            value={address}
-            onChange={e => setAddress(e.target.value)}
-          /> */}
           <Geocoder
             {...mapAccess} viewport={viewport}
             queryParams={queryParams} hideOnSelect={true}

@@ -5,7 +5,8 @@ import { Route, Redirect } from "react-router-dom";
 import Home from "./components/Home";
 import Dashboard from "./components/Dashboard";
 import AuthForms from "./components/AuthForms/AuthForms";
-import Address from "./components/Address";
+// import Address from "./components/Address";
+import Address2 from "./components/Address2";
 import LandingPage from "./components/LandingPage";
 
 import { GlobalContext } from "./context/contextProvider";
@@ -158,7 +159,8 @@ function App() {
           )}
         />
 
-        <Route path="/address" component={Address} />
+        {/* <Route path="/address" component={Address} /> */}
+        <Route path="/address" component={Address2} />
       </AddressContext>
     </AppWrapper>
   );

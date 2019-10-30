@@ -61,30 +61,30 @@
   // }
 }
 
-.auth-btn {
-  margin-top: 1rem;
-  background-color: $orange;
-  border-radius: 2px;
-  cursor: pointer;
-  color: white;
-  font-size: 1.5rem;
-  width: 119.95px;
-  height: 38px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-  align-self: flex-end;
-  border: none;
+// .default-btn {
+//   margin-top: 1rem;
+//   background-color: $orange;
+//   border-radius: 2px;
+//   cursor: pointer;
+//   color: white;
+//   font-size: 1.5rem;
+//   width: 119.95px;
+//   height: 38px;
+//   display: flex;
+//   align-items: center;
+//   text-align: center;
+//   justify-content: center;
+//   align-self: flex-end;
+//   border: none;
 
-  @include easeOut;
+//   @include easeOut;
 
-  &:hover {
-    background-color: lighten($orange, 10%);
-    @include easeOut;
-  }
+//   &:hover {
+//     background-color: lighten($orange, 10%);
+//     @include easeOut;
+//   }
 
-  // @media (max-width: $mq-tablet) {
-  //   width: 50%;
-  // }
-}
+//   // @media (max-width: $mq-tablet) {
+//   //   width: 50%;
+//   // }
+// }
