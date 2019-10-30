@@ -97,6 +97,22 @@
 			letter-spacing: -0.41px;
 		}
 
+		.is-editing-input {
+			background: #ffffff;
+			border: 1px solid #bbbbbb;
+			box-sizing: border-box;
+			border-radius: 2px;
+			font-family: Open Sans;
+			font-style: normal;
+			font-weight: normal;
+			font-size: 21px;
+			line-height: 29px;
+			/* identical to box height */
+			align-items: center;
+
+			color: #191a1a;
+		}
+
 		.personal-info {
 			width: 60%;
 			margin: 1rem auto;
