@@ -77,8 +77,16 @@ const PublicMap = ({ setShowAuthForms, setLoginFormStatus, setRegisterFormStatus
       <button
         className="save-location-btn"
         onClick={e => {
-          saveLocationMarker();
+          const token = localStorage.getItem("token")
+
+          if (token) {
+            saveLocationMarker();
           deleteLocationMarker();
+          } else {
+            setShowAuthForms(true)
+            setLoginFormStatus(true)
+          }
+          
         }}
       >
         Click here
