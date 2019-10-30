@@ -178,9 +178,9 @@ export const FireDataProvider = ({ children }) => {
 
 	const saveLocationMarker = () => {
 		const theToken = localStorage.getItem('token');
+		// console.log("selected marker", fireDataState.selectedMarker)
 
 		if (theToken) {
-			console.log('jwt:', theToken);
 			axiosWithAuth()
 				.post('locations', {
 					address: fireDataState.selectedMarker[2],
@@ -245,7 +245,7 @@ export const FireDataProvider = ({ children }) => {
 			axios
 				.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${address}.json?access_token=${token}`)
 				.then((res) => {
-					console.log('Get coordinates: ', res.data);
+					// console.log('Get coordinates: ', res.data);
 					let localArray = [];
 					fireDataState.allFires.forEach((fire) => {
 						let distance = haversineDistance(
@@ -270,8 +270,6 @@ export const FireDataProvider = ({ children }) => {
 							/>
 						</Marker>
 					));
-
-					console.log('localArray: ', localMarkers);
 
 					dispatch({
 						type: GET_PUBLIC_COORDINATES,
@@ -335,7 +333,7 @@ export const FireDataProvider = ({ children }) => {
 	};
 
 	const setNotificationStatus = () => {
-		console.log('before axios: ', fireDataState.selectedMarker);
+		// console.log('before axios: ', fireDataState.selectedMarker);
 		axiosWithAuth()
 			.put(`locations/${fireDataState.selectedMarker[5]}`, {
 				notifications: fireDataState.selectedMarker[6]
@@ -353,14 +351,14 @@ export const FireDataProvider = ({ children }) => {
 		dispatch({
 			type: TOGGLE_NOTIFICATIONS
 		});
-		console.log('before axios: ', fireDataState.selectedMarker);
+		// console.log('before axios: ', fireDataState.selectedMarker);
 		axiosWithAuth()
 			.put(`locations/${fireDataState.selectedMarker[5]}`, {
 				notifications: !fireDataState.selectedMarker[6]
 			})
 			.then((res) => {
-				console.log(res);
-				console.log('after axios: ', fireDataState.selectedMarker);
+				// console.log(res);
+				// console.log('after axios: ', fireDataState.selectedMarker);
 			})
 			.catch((err) => {
 				console.log(err);
