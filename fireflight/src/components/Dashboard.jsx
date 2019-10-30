@@ -72,7 +72,7 @@ const Dashboard = () => {
           {/* Checks to see if isEditing is false and if so renders the email of the user and if true will render the input for editing */}
           {(!isEditing)
             ?
-            (<h3 className="profile-email">{(!newEmail) ? `${email}` : `${newEmail}`}  <Icon name='edit' size="small" onClick={() => setIsEditing(true)} /></h3>)
+            (<h3 className="profile-email">{(!newEmail) ? `${email}` : `${newEmail}`}  <button onClick={() => setIsEditing(true)}>Edit email</button></h3>)
             :
             (<div>
               <input type="email" placeholder="Enter your new Email" className="profile-email" name="newEmail" onChange={(e) => setNewEmail(e.target.value)} className="is-editing-input" />
