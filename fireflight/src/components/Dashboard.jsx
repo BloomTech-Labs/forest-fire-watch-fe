@@ -58,6 +58,11 @@ const Dashboard = () => {
     axiosWithAuth().put(`${process.env.REACT_APP_ENV}users/update/${fire.auth().currentUser.uid}`, { email: newEmail })
       .then(res => {
         console.log(res)
+        fire.auth().currentUser.updateEmail(newEmail)
+          .then(newEmailCreated => {
+            console.log("new email has been saved in firebase")
+          })
+          .catch(err => alert(err.message))
         setIsEditing(false)
       })
       .catch(err => console.log(err))
