@@ -3,6 +3,9 @@ import { UserDataContext } from "../context/UserDataContext";
 import NavigationProfile from "./NavigationProfile";
 import { FireDataContext } from "../context/FireDataContext";
 import { Icon } from 'semantic-ui-react'
+import { consoleSandbox } from "@sentry/utils";
+import axiosWithAuth from '../utils/axiosWithAuth'
+import fire from '../config/fire'
 // USER PROFILE PAGE
 const Dashboard = () => {
   const {
@@ -17,7 +20,8 @@ const Dashboard = () => {
   const { email, phone, receiveSMS, receivePush } = userDataState;
   const [phoneNumber, setPhoneNumber] = useState("");
   const [showEditPhone, setEditPhone] = useState(false);
-
+  const [isEditing, setIsEditing] = useState(false)
+  const [newEmail, setNewEmail] = useState("")
   //   console.log("user locations: ", userLocations);
 
   useEffect(() => {
@@ -47,17 +51,21 @@ const Dashboard = () => {
       </button>
     </div>
   );
-  const editEmail = (email) => {
-    console.log("inside editEmail", email)
-  }
 
+
+  const changeEmail = () => {
+    axiosWithAuth().put(`${process.env.REACT_APP_ENV}/users/update/${fire.auth().currentUser.uid}`, newEmail)
+      .then(res => { console.log(res) })
+      .catch(err => console.log(err))
+  }
   return (
     <div className="dashboard-wrapper">
       <NavigationProfile />
       <div className="content-wrapper">
         <div className="personal-info">
           <h3 className="profile-name">Dora Belme</h3>
-          <h3 className="profile-email">{email}  <Icon name='edit' size="small" onClick={() => editEmail(email)} /></h3>
+          {/* Checks to see if isEditing is false and if so renders the email of the user and if true will render the input for editing */}
+          {(!isEditing) ? (<h3 className="profile-email">{email}  <Icon name='edit' size="small" onClick={() => setIsEditing(true)} /></h3>) : (<div><input type="email" placeholder="Enter your new Email" className="profile-email" name="newEmail" onChange={(e) => setNewEmail(e.target.value)} /> <button type='submit' onClick={() => changeEmail()}>Change Email</button> </div>)}
           <h3 className="profile-phone">{phone}</h3>
 
           {phone === null || showEditPhone ? (
