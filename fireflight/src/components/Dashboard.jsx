@@ -104,7 +104,12 @@ const Dashboard = () => {
                   id="checkbox1"
                   type="checkbox"
                   onChange={() => {
-                    updateTextAlerts(!receiveSMS);
+                    if (phone) {
+                      updateTextAlerts(!receiveSMS);
+                    }
+                    else {
+                      alert('Please enter your phone number!')
+                    }
                   }}
                   checked={receiveSMS}
                 />
