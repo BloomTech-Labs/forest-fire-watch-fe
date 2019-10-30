@@ -74,6 +74,7 @@ const Dashboard = () => {
               <h4>Text Alerts</h4>
               <div className="checkbox-wrapper">
                 <input
+                  className="checkbox"
                   id="checkbox1"
                   type="checkbox"
                   onChange={() => {
