@@ -27,7 +27,6 @@ function Register({ toggle, setShowAuthForms, setRegisterStatus }) {
   function handleSubmit(e) {
     e.preventDefault();
     setLoading(true);
-
     // ERROR HANDLING EXPLANATION
     // We first check if password and passwordConf match. We do this on the front end because the passwordConf does not get passed to the backend to check it.
     // The user credentials are then validated on the backend, if they are invalid, the server returns a 400 status code that triggers the catch method in the api call.
@@ -35,52 +34,68 @@ function Register({ toggle, setShowAuthForms, setRegisterStatus }) {
     // The errorText is set to the error descriptions that are coming from the server.
     // We then display those error descriptions below in some p tags.
 
-    fire
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then(user => {
-        console.log("Firebase user object: ", user);
+    const first_name = firstName;
+    const last_name = lastName;
+    if (first_name && last_name) {
+      if (email) {
         if (password === passwordConf) {
-          const UID = user.user.uid;
-          const first_name = firstName;
-          const last_name = lastName;
-          const newUser = { first_name, last_name, email, UID };
+          fire
+            .auth()
+            .createUserWithEmailAndPassword(email, password)
+            .then(user => {
+              console.log("Firebase user object: ", user);
+              const UID = user.user.uid;
+              const newUser = { first_name, last_name, email, UID };
 
-          data.state.remote
-            .register(newUser)
-            .then(res => {
-              setFirstName("");
-              setLastName("");
-              setEmail("");
-              setPassword("");
-              setPasswordConf("");
-              setLoading(false);
-              setShowAuthForms(false);
+              data.state.remote
+                .register(newUser)
+                .then(res => {
+                  setFirstName("");
+                  setLastName("");
+                  setEmail("");
+                  setPassword("");
+                  setPasswordConf("");
+                  setLoading(false);
+                  setShowAuthForms(false);
+                })
+                .catch(err => {
+                  // BACKEND REGISTER ENDPOINT
+                  console.log(
+                    "front end error response from backend register endpoint:",
+                    err.response.data
+                  );
+                  setErrorStatus(true);
+                  setErrorText(err.response.data);
+                  setLoading(false);
+                });
             })
             .catch(err => {
-              // BACKEND REGISTER ENDPOINT
-              console.log(
-                "front end error response from backend register endpoint:",
-                err.response.data
-              );
+              // FIREBASE
+              console.log(err);
               setErrorStatus(true);
-              setErrorText(err.response.data);
+              setErrorText(err); // setting error text to be equal to Firebase error response
               setLoading(false);
             });
-        } else {
-          // IF PASSWORDS DON'T MATCH
-          setErrorStatus(true);
-          setErrorText({ password: "Passwords must match" });
-          setLoading(false);
         }
-      })
-      .catch(err => {
-        // FIREBASE
-        console.log(err);
+        else {
+          setErrorStatus(true);
+          setErrorText({ password: "Your passwords do not match" })
+          setLoading(false)
+        }
+      }
+      else {
         setErrorStatus(true);
-        setErrorText(err); // setting error text to be equal to Firebase error response
-        setLoading(false);
-      });
+        setErrorText({ message: "Your email is required" })
+        setLoading(false)
+      }
+    }
+    else {
+      setErrorStatus(true);
+      setErrorText({ message: "Your full name is required" })
+      setLoading(false)
+    }
+
+
   }
 
   if (data.token != null) {
@@ -149,8 +164,8 @@ function Register({ toggle, setShowAuthForms, setRegisterStatus }) {
             {errorStatus ? (
               <ErrorText>{errorText.password}</ErrorText>
             ) : (
-              <ErrorText />
-            )}
+                <ErrorText />
+              )}
             <label htmlFor="password">Confirm Password</label>
             <input
               className="form-input"
@@ -164,14 +179,14 @@ function Register({ toggle, setShowAuthForms, setRegisterStatus }) {
             {errorStatus ? (
               <ErrorText>{errorText.password}</ErrorText>
             ) : (
-              <ErrorText />
-            )}
+                <ErrorText />
+              )}
             {/* ERRORS FOR NON-PASSWORD FIELDS */}
             {errorStatus ? (
               <ErrorText>{errorText.message}</ErrorText>
             ) : (
-              <ErrorText />
-            )}
+                <ErrorText />
+              )}
             <button
               className="default-btn register-btn"
               type="submit"

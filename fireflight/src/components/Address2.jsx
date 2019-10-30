@@ -19,10 +19,8 @@ function Address2() {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log('address', address);
 		if (address) {
 			getCoordinates(address, radius);
-			console.log('SAVING NEW', getCoordinates(address, radius));
 			saveLocationMarker();
 		}
 		console.log(getCoordinates(address, radius));
