@@ -54,8 +54,12 @@ const Dashboard = () => {
 
 
   const changeEmail = () => {
-    axiosWithAuth().put(`${process.env.REACT_APP_ENV}/users/update/${fire.auth().currentUser.uid}`, newEmail)
-      .then(res => { console.log(res) })
+    console.log(newEmail)
+    axiosWithAuth().put(`${process.env.REACT_APP_ENV}users/update/${fire.auth().currentUser.uid}`, { email: newEmail })
+      .then(res => {
+        console.log(res)
+        setIsEditing(false)
+      })
       .catch(err => console.log(err))
   }
   return (
