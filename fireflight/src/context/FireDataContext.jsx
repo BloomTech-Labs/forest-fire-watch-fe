@@ -327,6 +327,7 @@ export const FireDataProvider = ({ children }) => {
 	const deleteUserLocation = (id) => {
 		console.log(id);
 		console.log('deleteUserLocation: ', fireDataState.selectedMarker);
+		id = fireDataState.selectedMarker[5];
 
 		axiosWithAuth()
 			// .delete(`locations/${fireDataState.selectedMarker[5]}`)
