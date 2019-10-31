@@ -20,7 +20,8 @@ import {
 	SET_SAVED_LOCATION,
 	DELETE_LOCATION_MARKER,
 	SET_USER_LOCATIONS,
-	TOGGLE_NOTIFICATIONS
+	TOGGLE_NOTIFICATIONS,
+	DELETE_USER_LOCATION
 } from './fireDataTypes';
 
 const DSbaseURL = 'https://wildfirewatch.herokuapp.com';
@@ -36,6 +37,13 @@ const fireDataReducer = (state, action) => {
 				...state,
 				userLocations: action.payload
 			};
+
+		case DELETE_USER_LOCATION:
+			return {
+				...state,
+				userLocations: state.userLocations.filter((location) => location.id != action.payload)
+			};
+
 		case GET_SELECTED_ADDRESS:
 			return {
 				...state,
@@ -318,15 +326,22 @@ export const FireDataProvider = ({ children }) => {
     Resets the selected marker state to empty
   */
 
-	const deleteUserLocation = () => {
-		// console.log("deleteUserLocation: ", fireDataState.selectedMarker);
+	const deleteUserLocation = (id) => {
+		console.log(id);
+		console.log('deleteUserLocation: ', fireDataState.selectedMarker);
 
 		axiosWithAuth()
-			.delete(`locations/${fireDataState.selectedMarker[5]}`)
+			// .delete(`locations/${fireDataState.selectedMarker[5]}`)
+			.delete(`locations/${id}`)
 			.then((res) => {
 				dispatch({
 					type: SET_SELECTED_MARKER,
 					payload: []
+				});
+
+				dispatch({
+					type: DELETE_USER_LOCATION,
+					payload: id
 				});
 			})
 			.catch((err) => {
