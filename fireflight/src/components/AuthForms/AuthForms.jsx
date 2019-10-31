@@ -18,6 +18,7 @@ const AuthForms = ({
       {showAuthForms ? (
         <BackDrop onClick={() => {
           setShowAuthForms(false)
+          setLoginFormStatus(false)
           setPasswordFormStatus(false)
         }} />
       ) : null}
