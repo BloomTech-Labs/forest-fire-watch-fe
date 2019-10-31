@@ -38,7 +38,7 @@ class connector {
     let res = await axios.post(this.coreString + "auth/login", creds);
 
     let data = await res.data;
-    console.log(data);
+    // console.log(data);
     if (res.status == 200) {
       //success test
       localStorage.setItem("token", data.token);
