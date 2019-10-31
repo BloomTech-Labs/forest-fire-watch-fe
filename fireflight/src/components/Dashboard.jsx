@@ -20,19 +20,18 @@ const Dashboard = () => {
     deleteLocationMarker,
     deleteUserLocation
   } = useContext(FireDataContext);
-  const { userLocations } = fireDataState;
+  const { userLocations, userLocationMarkers } = fireDataState;
   const { email, phone, receiveSMS, receivePush } = userDataState;
   const [phoneNumber, setPhoneNumber] = useState("");
   const [showEditPhone, setEditPhone] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [newEmail, setNewEmail] = useState("");
   const [viewEmail, setViewEmail] = useState("");
-  //   console.log("user locations: ", userLocations);
 
   useEffect(() => {
     getUserData();
     getUserLocations();
-  }, []);
+  }, [userLocationMarkers]);
 
   const handleAddPhoneNumber = () => {
     if (phoneNumber.length > 9) {
@@ -45,7 +44,7 @@ const Dashboard = () => {
     axiosWithAuth()
       .put(
         `${process.env.REACT_APP_ENV}users/update/${
-          fire.auth().currentUser.uid
+        fire.auth().currentUser.uid
         }`,
         { email: newEmail }
       )
@@ -93,34 +92,34 @@ const Dashboard = () => {
               <button onClick={() => setIsEditing(true)}>Edit email</button>
             </h3>
           ) : (
-            <div>
-              <input
-                type="email"
-                placeholder="Enter your new Email"
-                className="profile-email"
-                name="newEmail"
-                onChange={e => setNewEmail(e.target.value)}
-                className="is-editing-input"
-              />
-              <button type="submit" onClick={() => changeEmail()}>
-                Change Email
+              <div>
+                <input
+                  type="email"
+                  placeholder="Enter your new Email"
+                  className="profile-email"
+                  name="newEmail"
+                  onChange={e => setNewEmail(e.target.value)}
+                  className="is-editing-input"
+                />
+                <button type="submit" onClick={() => changeEmail()}>
+                  Change Email
               </button>
-            </div>
-          )}
+              </div>
+            )}
           <h3 className="profile-phone">{phone}</h3>
 
           {phone === null || showEditPhone ? (
             phoneInput
           ) : (
-            <div className="phone-edit">
-              <h4>{phone}</h4>
-              <i
-                onClick={() => setEditPhone(true)}
-                style={{ margin: "auto 0px", cursor: "pointer" }}
-                class="fas fa-pencil-alt"
-              />
-            </div>
-          )}
+              <div className="phone-edit">
+                <h4>{phone}</h4>
+                <i
+                  onClick={() => setEditPhone(true)}
+                  style={{ margin: "auto 0px", cursor: "pointer" }}
+                  class="fas fa-pencil-alt"
+                />
+              </div>
+            )}
           <div className="notification-wrapper">
             <div className="notif-box">
               <h4>Text Alerts</h4>

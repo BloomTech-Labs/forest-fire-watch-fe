@@ -62,7 +62,6 @@ const PublicMap = ({ setShowAuthForms, setLoginFormStatus, setRegisterFormStatus
     if (address) {
       getCoordinates(address, radius);
     }
-    console.log(getCoordinates(address, radius))
     setViewport({
       latitude: location[1],
       longitude: location[0],
@@ -79,13 +78,13 @@ const PublicMap = ({ setShowAuthForms, setLoginFormStatus, setRegisterFormStatus
       }}>Want to save this location?</p>
       <button
         style={{
-          color: "#66BBF0", 
+          color: "#66BBF0",
           backgroundColor: "white"
         }}
         className="save-location-btn"
         onClick={e => {
           const token = localStorage.getItem("token")
-          
+
           if (token) {
             saveLocationMarker();
             deleteLocationMarker();
@@ -94,7 +93,7 @@ const PublicMap = ({ setShowAuthForms, setLoginFormStatus, setRegisterFormStatus
             setRegisterFormStatus(false)
             setLoginFormStatus(true)
           }
-          
+
         }}
       >
         Click Here
@@ -149,11 +148,11 @@ const PublicMap = ({ setShowAuthForms, setLoginFormStatus, setRegisterFormStatus
           onClick={() => {
             updatePopupRadius(popupRadius);
           }}
-          style={{ 
-            marginTop: 3, 
+          style={{
+            marginTop: 3,
             height: 24,
             backgroundColor: "#FC8D43",
-            color: "white" 
+            color: "white"
           }}
         >
           Set Radius
@@ -163,7 +162,7 @@ const PublicMap = ({ setShowAuthForms, setLoginFormStatus, setRegisterFormStatus
         onClick={() => {
           deleteUserLocation();
         }}
-        style={{ 
+        style={{
           marginTop: 6,
           backgroundColor: "white",
           color: "#66BBF0"

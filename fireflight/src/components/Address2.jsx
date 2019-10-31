@@ -7,7 +7,7 @@ import Geocoder from "react-mapbox-gl-geocoder";
 import { Link } from "react-router-dom";
 
 function Address2(props) {
-  const { getCoordinates, saveLocationMarker } = useContext(FireDataContext);
+  const { getCoordinates, saveLocationMarker, saveInputLocation } = useContext(FireDataContext);
   const addressContext = useContext(AddressContext);
 
   const [address, setAddress] = useState("");
@@ -15,13 +15,19 @@ function Address2(props) {
   const [id, setId] = useState(undefined);
   const [viewport, setViewport] = useState({});
 
+  useEffect(() => {
+
+  }, [])
+
   const handleSubmit = e => {
     e.preventDefault();
     if (address) {
-      getCoordinates(address, radius);
+      getCoordinates(address, radius, true);
       // saveLocationMarker() // can't call this b/c the function is taking in address/radius from another piece of data specific to the markers
-      addressContext.saveAddress(address, radius);
+      // addressContext.saveAddress(address, radius);
+      saveInputLocation(address, location, radius)
     }
+    props.history.push(`/dashboard`)
   };
 
   const queryParams = {
@@ -31,6 +37,8 @@ function Address2(props) {
     mapboxApiAccessToken: process.env.REACT_APP_MAPBOX_TOKEN
   };
   const [location, setLocation] = useState([]);
+
+
 
   const onSelected = (viewport, item) => {
     setAddress(item.place_name);
@@ -71,14 +79,11 @@ function Address2(props) {
               </p>
             </div>
           </div>
-          {/* <Link to="/dashboard"> */}
           <button
             className="default-btn"
-            // onClick={() => props.history.push(`/dashboard`)} // this breaks the location from saving - don't add back
           >
             Save Location
           </button>
-          {/* </Link> */}
         </form>
       </div>
     </React.Fragment>
