@@ -192,6 +192,7 @@ export const FireDataProvider = ({ children }) => {
 			axiosWithAuth()
 				.post('locations', { address, radius })
 				.then((res) => {
+					console.log("locations response", res)
 					dispatch({
 						type: SET_SAVED_LOCATION,
 						payload: [
@@ -297,9 +298,10 @@ export const FireDataProvider = ({ children }) => {
 			axios
 				.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${address}.json?access_token=${token}`)
 				.then((res) => {
-					// console.log('Get coordinates: ', res.data);
+					
 					let localArray = [];
 					fireDataState.allFires.forEach((fire) => {
+						console.log("get cor", fire.location[1], fire.location[0], res.data.features[0].center[1], res.data.features[0].center[0]);
 						let distance = haversineDistance(
 							[res.data.features[0].center[1], res.data.features[0].center[0]],
 							[fire.location[1], fire.location[0]],
@@ -369,10 +371,15 @@ export const FireDataProvider = ({ children }) => {
   */
 
 	const deleteUserLocation = (id) => {
-		console.log(id);
-		console.log('deleteUserLocation: ', fireDataState.selectedMarker);
-		id = fireDataState.selectedMarker[5];
+		console.log("id before", id);
+		// console.log('deleteUserLocation: ', fireDataState.selectedMarker); 
 
+		// If location being deleted is from the form, take id from form
+		// If location deleted is from map, selectedMarker is defined
+		if (!id) {
+			id = fireDataState.selectedMarker[5];
+		}
+		console.log("id after", id);
 		axiosWithAuth()
 			// .delete(`locations/${fireDataState.selectedMarker[5]}`)
 			.delete(`locations/${id}`)
@@ -446,13 +453,17 @@ export const FireDataProvider = ({ children }) => {
   */
 	const setUserLocations = () => {
 		axiosWithAuth().get('locations').then((res) => {
+			console.log(res.data)
 			let localArray = [];
 			res.data.forEach((loc) => {
+				console.log("location", loc)
+				
 				fireDataState.allFires.forEach((fire) => {
-					// console.log("set user locations", fire);
+					console.log("set user locations", fire.location[1], fire.location[0], loc.latitude, loc.longitude);
+
 					let distance = haversineDistance(
 						[loc.latitude, loc.longitude],
-						[fire[1], fire[0]],
+						[-115.77833333333, 47.778888888889],
 						true // in miles
 					);
 					if (distance <= loc.radius) {
@@ -461,8 +472,8 @@ export const FireDataProvider = ({ children }) => {
 				});
 			});
 			// fire markers - setting exclamation points on top of fire images for fires within radius of user location
-			const localMarkers = localArray.map((fire, index) => (
-				<Marker latitude={fire[1]} longitude={fire[0]} key={'localMarker' + fire[0] + index}>
+			const localMarkers = localArray.map((fire, index) => {
+				return (<Marker latitude={fire[1]} longitude={fire[0]} key={'localMarker' + fire[0] + index}>
 					<img
 						src={exclamationMark}
 						height="20"
@@ -470,8 +481,8 @@ export const FireDataProvider = ({ children }) => {
 						style={{ zIndex: 3, transform: 'translate(-15px, -29px)' }}
 						alt=""
 					/>
-				</Marker>
-			));
+				</Marker>)
+			});
 			// saved user locations
 			const userLocs = res.data.map((uLoc, index) => (
 				<Marker
