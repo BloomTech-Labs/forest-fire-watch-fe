@@ -9,118 +9,118 @@ import Geocoder from 'react-mapbox-gl-geocoder';
 const token = process.env.REACT_APP_MAPBOX_TOKEN;
 
 const PublicMap = ({ setShowAuthForms, setLoginFormStatus, setRegisterFormStatus }) => {
-	const {
-		fireDataState,
-		setPublicViewport,
-		getCoordinates,
-		closeSelectedMarker,
-		deleteLocationMarker,
-		saveLocationMarker,
-		toggleNotification,
-		deleteUserLocation,
-		updatePopupRadius
-	} = useContext(FireDataContext);
+  const {
+    fireDataState,
+    setPublicViewport,
+    getCoordinates,
+    closeSelectedMarker,
+    deleteLocationMarker,
+    saveLocationMarker,
+    toggleNotification,
+    deleteUserLocation,
+    updatePopupRadius
+  } = useContext(FireDataContext);
 
-	const {
-		publicMapViewport,
-		allFireMarkers,
-		publicCoordinatesMarker,
-		localFireMarkers,
-		selectedMarker,
-		userLocationMarkers,
-		userLocalFireMarkers
-	} = fireDataState;
+  const {
+    publicMapViewport,
+    allFireMarkers,
+    publicCoordinatesMarker,
+    localFireMarkers,
+    selectedMarker,
+    userLocationMarkers,
+    userLocalFireMarkers
+  } = fireDataState;
 
-	const [ address, setAddress ] = useState('');
-	const [ radius, setRadius ] = useState('');
-	const [ popupRadius, setPopupRadius ] = useState('');
-	const [ viewport, setViewport ] = useState({
-		latitude: 34.377566,
-		longitude: -113.144528,
-		width: '100vw',
-		height: '100vh',
-		zoom: 4
-	});
+  const [address, setAddress] = useState('');
+  const [radius, setRadius] = useState('');
+  const [popupRadius, setPopupRadius] = useState('');
+  const [viewport, setViewport] = useState({
+    latitude: 34.377566,
+    longitude: -113.144528,
+    width: '100vw',
+    height: '100vh',
+    zoom: 4
+  });
 
-	// Add event listener to window - close whatever pop-up is selected
-	useEffect(() => {
-		const listener = (e) => {
-			if (e.key === 'Escape') {
-				closeSelectedMarker();
-			}
-		};
-		window.addEventListener('keydown', listener);
+  // Add event listener to window - close whatever pop-up is selected
+  useEffect(() => {
+    const listener = (e) => {
+      if (e.key === 'Escape') {
+        closeSelectedMarker();
+      }
+    };
+    window.addEventListener('keydown', listener);
 
-		return () => {
-			window.removeEventListener('keydown', listener);
-		};
-	}, []);
+    return () => {
+      window.removeEventListener('keydown', listener);
+    };
+  }, []);
 
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		if (address) {
-			getCoordinates(address, radius);
-		}
-		console.log(getCoordinates(address, radius));
-		setViewport({
-			latitude: location[1],
-			longitude: location[0],
-			zoom: 8,
-			transitionDuration: 500
-		});
-	};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (address) {
+      getCoordinates(address, radius);
+    }
+    console.log(getCoordinates(address, radius));
+    setViewport({
+      latitude: location[1],
+      longitude: location[0],
+      zoom: 8,
+      transitionDuration: 500
+    });
+  };
 
-	const tempLocationPopup = (
-		<div className="save-location-modal">
-			<p
-				style={{
-					fontWeight: '300',
-					fontSize: '12px'
-				}}
-			>
-				Want to save this location?
+  const tempLocationPopup = (
+    <div className="save-location-modal">
+      <p
+        style={{
+          fontWeight: '300',
+          fontSize: '12px'
+        }}
+      >
+        Want to save this location?
 			</p>
-			<button
-				style={{
-					color: '#66BBF0',
-					backgroundColor: 'white'
-				}}
-				className="save-location-btn"
-				onClick={(e) => {
-					const token = localStorage.getItem('token');
+      <button
+        style={{
+          color: '#66BBF0',
+          backgroundColor: 'white'
+        }}
+        className="save-location-btn"
+        onClick={(e) => {
+          const token = localStorage.getItem('token');
 
-					if (token) {
-						saveLocationMarker();
-						deleteLocationMarker();
-					} else {
-						setShowAuthForms(true);
-						setRegisterFormStatus(false);
-						setLoginFormStatus(true);
-					}
-				}}
-			>
-				Click Here
+          if (token) {
+            saveLocationMarker();
+            deleteLocationMarker();
+          } else {
+            setShowAuthForms(true);
+            setRegisterFormStatus(false);
+            setLoginFormStatus(true);
+          }
+        }}
+      >
+        Click Here
 			</button>
-		</div>
-	);
+    </div>
+  );
 
-	const savedLocationPopup = (
-		<div style={{ display: 'flex', flexDirection: 'column' }}>
-			<span
-				style={{
-					marginBottom: '6px',
-					textAlign: 'center',
-					textTransform: 'uppercase',
-					fontSize: '14px',
-					// display: "flex",
-					maxWidth: '25rem'
-				}}
-			>
-				{selectedMarker[2]}
-			</span>
-			<b />
-			<span style={{ marginBottom: '6px', textAlign: 'center' }}> Current Radius: {selectedMarker[3]}mi </span>
-			{/* <div style={{ display: "flex", justifyContent: "space-around" }}>
+  const savedLocationPopup = (
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <span
+        style={{
+          marginBottom: '6px',
+          textAlign: 'center',
+          textTransform: 'uppercase',
+          fontSize: '14px',
+          // display: "flex",
+          maxWidth: '25rem'
+        }}
+      >
+        {selectedMarker[2]}
+      </span>
+      <b />
+      <span style={{ marginBottom: '6px', textAlign: 'center' }}> Current Radius: {selectedMarker[3]}mi </span>
+      {/* <div style={{ display: "flex", justifyContent: "space-around" }}>
         <span>Toggle Notifications:</span>
         <div className="checkbox-wrapper">
           <CheckBox
@@ -135,139 +135,142 @@ const PublicMap = ({ setShowAuthForms, setLoginFormStatus, setRegisterFormStatus
         </div>
       </div> */}
 
-			<div style={{ display: 'flex', justifyContent: 'center' }}>
-				<FormRadiusInput
-					type="text"
-					name="PopupRadius"
-					placeholder="miles"
-					value={popupRadius}
-					onChange={(e) => setPopupRadius(e.target.value)}
-					style={{ height: 8, width: 110, fontSize: 14, margin: '0 10px 0 0' }}
-				/>
-				<button
-					onClick={() => {
-						updatePopupRadius(popupRadius);
-					}}
-					style={{
-						marginTop: 3,
-						height: 24,
-						backgroundColor: '#FC8D43',
-						color: 'white'
-					}}
-				>
-					Set Radius
-				</button>
-			</div>
-			<button
-				onClick={() => {
-					console.log('LOCATION');
-					deleteUserLocation();
-				}}
-				style={{
-					marginTop: 6,
-					backgroundColor: 'white',
-					color: '#66BBF0'
-				}}
-			>
-				Delete this pin
-			</button>
-		</div>
-	);
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <FormRadiusInput
+          type="text"
+          name="PopupRadius"
+          placeholder="miles"
+          value={popupRadius}
+          onChange={e => setPopupRadius(e.target.value)}
+          style={{ height: 8, width: 110, fontSize: 14, margin: "0 10px 0 0" }}
+        />
+        <button
+          onClick={() => {
+            updatePopupRadius(popupRadius);
+          }}
+          style={{
+            marginTop: 3,
+            height: 24,
+            backgroundColor: "#FC8D43",
+            color: "white"
+          }}
+        >
+          Set Radius
+        </button>
+      </div>
+      <button
+        onClick={() => {
+          deleteUserLocation();
+        }}
+        style={{
+          marginTop: 6,
+          backgroundColor: "white",
+          color: "#66BBF0"
+        }}
+      >
+        Delete this pin
+      </button>
+    </div >
+  );
 
-	const fireLocationPopup = <div style={{ display: 'flex', flexDirection: 'column' }}>THIS IS A FIRE</div>;
+  const fireLocationPopup = (
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      THIS IS A FIRE
+    </div>
+  );
 
-	const queryParams = {
-		country: 'us'
-	};
-	const mapAccess = {
-		mapboxApiAccessToken: token
-	};
-	const [ location, setLocation ] = useState([]);
-	const onSelected = (viewport, item) => {
-		setAddress(item.place_name);
-		console.log(item);
-		setLocation(item.center);
-	};
-	return (
-		<div style={{ position: 'relative', width: '100%', height: '100%' }}>
-			<MapLegend />
-			<div className="public-container">
-				<Navigation
-					toggleAuthForms={setShowAuthForms}
-					toggleLoginStatus={setLoginFormStatus}
-					toggleRegisterStatus={setRegisterFormStatus}
-				/>
-				<form onSubmit={handleSubmit} className="map-form-container">
-					<label className="map-form-text">Enter the address you wish to check fire proximity to.</label>
-					<Geocoder
-						{...mapAccess}
-						viewport={viewport}
-						queryParams={queryParams}
-						hideOnSelect={true}
-						onSelected={onSelected}
-						updateInputOnSelect={true}
-						limit={3}
-					/>
-					<input
-						className="radius-input"
-						type="number"
-						name="Radius"
-						placeholder="mi"
-						value={radius}
-						onChange={(e) => setRadius(e.target.value)}
-					/>
-					<button className="form-btn">Search</button>
-					{localStorage.getItem('token') == null && (
-						<React.Fragment>
-							<label className="signup-form-text">to save addresses and receive notifications</label>
-							<button
-								className="signup-btn"
-								onClick={() => {
-									setShowAuthForms(true);
-									setLoginFormStatus(false);
-									setRegisterFormStatus(true);
-								}}
-							>
-								Sign Up
+  const queryParams = {
+    country: 'us'
+  };
+  const mapAccess = {
+    mapboxApiAccessToken: token
+  };
+  const [location, setLocation] = useState([]);
+  const onSelected = (viewport, item) => {
+    setAddress(item.place_name);
+    console.log(item);
+    setLocation(item.center);
+  };
+  return (
+    <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+      <MapLegend />
+      <div className="public-container">
+        <Navigation
+          toggleAuthForms={setShowAuthForms}
+          toggleLoginStatus={setLoginFormStatus}
+          toggleRegisterStatus={setRegisterFormStatus}
+        />
+        <form onSubmit={handleSubmit} className="map-form-container">
+          <label className="map-form-text">Enter the address you wish to check fire proximity to.</label>
+          <Geocoder
+            {...mapAccess}
+            viewport={viewport}
+            queryParams={queryParams}
+            hideOnSelect={true}
+            onSelected={onSelected}
+            updateInputOnSelect={true}
+            limit={3}
+          />
+          <input
+            className="radius-input"
+            type="number"
+            name="Radius"
+            placeholder="mi"
+            value={radius}
+            onChange={(e) => setRadius(e.target.value)}
+          />
+          <button className="form-btn">Search</button>
+          {localStorage.getItem('token') == null && (
+            <React.Fragment>
+              <label className="signup-form-text">to save addresses and receive notifications</label>
+              <button
+                className="signup-btn"
+                onClick={() => {
+                  setShowAuthForms(true);
+                  setLoginFormStatus(false);
+                  setRegisterFormStatus(true);
+                }}
+              >
+                Sign Up
 							</button>
-						</React.Fragment>
-					)}
-				</form>
-				{/* End Form Container */}
-			</div>
+            </React.Fragment>
+          )}
+        </form>
+        {/* End Form Container */}
+      </div>
 
-			<ReactMapGL
-				{...viewport}
-				width="100%"
-				mapboxApiAccessToken={token}
-				onViewportChange={(viewport) => {
-					setViewport(viewport);
-				}}
-				mapStyle="mapbox://styles/astillo/ck1s93bpe5bnk1cqsfd34n8ap"
-			>
-				{allFireMarkers}
-				{userLocalFireMarkers}
-				{localFireMarkers}
-				{userLocationMarkers}
-				{publicCoordinatesMarker}
-				{selectedMarker.length > 0 ? (
-					<Popup
-						closeOnClick={false}
-						anchor="top"
-						latitude={selectedMarker[0]}
-						longitude={selectedMarker[1]}
-						onClose={() => {
-							closeSelectedMarker();
-						}}
-					>
-						{selectedMarker[4] === 'savedLocation' && savedLocationPopup}
-						{selectedMarker[4] === 'tempLocation' && tempLocationPopup}
-						{selectedMarker[4] === 'fireLocation' && fireLocationPopup}
-					</Popup>
-				) : null}
-			</ReactMapGL>
-		</div>
-	);
+      <ReactMapGL
+        {...viewport}
+        width="100%"
+        mapboxApiAccessToken={token}
+        onViewportChange={(viewport) => {
+          setViewport(viewport);
+        }}
+        mapStyle="mapbox://styles/astillo/ck1s93bpe5bnk1cqsfd34n8ap"
+      >
+        {allFireMarkers}
+        {userLocalFireMarkers}
+        {localFireMarkers}
+        {userLocationMarkers}
+        {publicCoordinatesMarker}
+        {selectedMarker.length > 0 ? (
+          <Popup
+            closeOnClick={false}
+            anchor="top"
+            latitude={selectedMarker[0]}
+            longitude={selectedMarker[1]}
+            onClose={() => {
+              closeSelectedMarker();
+            }}
+          >
+            {selectedMarker[4] === 'savedLocation' && savedLocationPopup}
+            {selectedMarker[4] === 'tempLocation' && tempLocationPopup}
+            {selectedMarker[4] === 'fireLocation' && fireLocationPopup}
+          </Popup>
+        ) : null}
+      </ReactMapGL>
+    </div>
+  );
 };
 
 export default PublicMap;
