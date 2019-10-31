@@ -3,7 +3,6 @@ import axios from 'axios';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import { Marker } from 'react-map-gl';
 import { haversineDistance } from '../utils/haversineDistance';
-
 import fireIcon from '../images/fireIcon.svg';
 import exclamationMark from '../images/exclaim.png';
 import locationIcon from '../images/locationIcon.svg';

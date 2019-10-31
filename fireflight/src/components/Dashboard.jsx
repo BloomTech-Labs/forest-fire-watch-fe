@@ -1,10 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
-import { UserDataContext } from "../context/UserDataContext";
-import NavigationProfile from "./NavigationProfile";
-import { FireDataContext } from "../context/FireDataContext";
-import { Link } from "react-router-dom";
-import axiosWithAuth from "../utils/axiosWithAuth";
-import fire from "../config/fire";
+import React, { useContext, useEffect, useState } from 'react'
+import { UserDataContext } from '../context/UserDataContext'
+import NavigationProfile from './NavigationProfile'
+import { FireDataContext } from '../context/FireDataContext'
+import { Link } from 'react-router-dom'
+import axiosWithAuth from '../utils/axiosWithAuth'
+import fire from '../config/fire'
+
 // USER PROFILE PAGE
 const Dashboard = () => {
   const {
@@ -13,54 +14,54 @@ const Dashboard = () => {
     updateTextAlerts,
     updatePushAlerts,
     addPhoneNumber
-  } = useContext(UserDataContext);
+  } = useContext(UserDataContext)
   const {
     fireDataState,
     getUserLocations,
     deleteLocationMarker,
     deleteUserLocation
-  } = useContext(FireDataContext);
-  const { userLocations, userLocationMarkers } = fireDataState;
-  const { email, phone, receiveSMS, receivePush } = userDataState;
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [showEditPhone, setEditPhone] = useState(false);
-  const [isEditing, setIsEditing] = useState(false);
-  const [newEmail, setNewEmail] = useState("");
-  const [viewEmail, setViewEmail] = useState("");
+  } = useContext(FireDataContext)
+  const { userLocations, userLocationMarkers } = fireDataState
+  const { email, phone, receiveSMS, receivePush } = userDataState
+  const [phoneNumber, setPhoneNumber] = useState('')
+  const [showEditPhone, setEditPhone] = useState(false)
+  const [isEditing, setIsEditing] = useState(false)
+  const [newEmail, setNewEmail] = useState('')
+  const [viewEmail, setViewEmail] = useState('')
 
   useEffect(() => {
-    getUserData();
-    getUserLocations();
-  }, [userLocationMarkers]);
+    getUserData()
+    getUserLocations()
+  }, [userLocationMarkers])
 
   const handleAddPhoneNumber = () => {
     if (phoneNumber.length > 9) {
-      setEditPhone(false);
-      addPhoneNumber(phoneNumber);
+      setEditPhone(false)
+      addPhoneNumber(phoneNumber)
     }
-  };
+  }
   const changeEmail = () => {
-    console.log(newEmail);
+    console.log(newEmail)
     axiosWithAuth()
       .put(
         `${process.env.REACT_APP_ENV}users/update/${
-        fire.auth().currentUser.uid
+          fire.auth().currentUser.uid
         }`,
         { email: newEmail }
       )
       .then(res => {
-        console.log(res);
+        console.log(res)
         fire
           .auth()
           .currentUser.updateEmail(newEmail)
           .then(newEmailCreated => {
-            console.log("new email has been saved in firebase");
+            console.log('new email has been saved in firebase')
           })
-          .catch(err => alert(err.message));
-        setIsEditing(false);
+          .catch(err => alert(err.message))
+        setIsEditing(false)
       })
-      .catch(err => console.log(err));
-  };
+      .catch(err => console.log(err))
+  }
   const phoneInput = (
     <div>
       <input
@@ -72,10 +73,10 @@ const Dashboard = () => {
         placeholder="ex. 123 456 7890"
       />
       <button className="phone-btn" onClick={() => handleAddPhoneNumber()}>
-        {showEditPhone ? "Submit" : "Add Phone Number"}
+        {showEditPhone ? 'Submit' : 'Add Phone Number'}
       </button>
     </div>
-  );
+  )
 
   // console.log('Userlocations', userLocations[0].user_id);
 
@@ -88,38 +89,38 @@ const Dashboard = () => {
           {/* Checks to see if isEditing is false and if so renders the email of the user and if true will render the input for editing */}
           {!isEditing ? (
             <h3 className="profile-email">
-              {!newEmail ? `${email}` : `${newEmail}`}{" "}
+              {!newEmail ? `${email}` : `${newEmail}`}{' '}
               <button onClick={() => setIsEditing(true)}>Edit email</button>
             </h3>
           ) : (
-              <div>
-                <input
-                  type="email"
-                  placeholder="Enter your new Email"
-                  className="profile-email"
-                  name="newEmail"
-                  onChange={e => setNewEmail(e.target.value)}
-                  className="is-editing-input"
-                />
-                <button type="submit" onClick={() => changeEmail()}>
-                  Change Email
+            <div>
+              <input
+                type="email"
+                placeholder="Enter your new Email"
+                className="profile-email"
+                name="newEmail"
+                onChange={e => setNewEmail(e.target.value)}
+                className="is-editing-input"
+              />
+              <button type="submit" onClick={() => changeEmail()}>
+                Change Email
               </button>
-              </div>
-            )}
+            </div>
+          )}
           <h3 className="profile-phone">{phone}</h3>
 
           {phone === null || showEditPhone ? (
             phoneInput
           ) : (
-              <div className="phone-edit">
-                <h4>{phone}</h4>
-                <i
-                  onClick={() => setEditPhone(true)}
-                  style={{ margin: "auto 0px", cursor: "pointer" }}
-                  class="fas fa-pencil-alt"
-                />
-              </div>
-            )}
+            <div className="phone-edit">
+              <h4>{phone}</h4>
+              <i
+                onClick={() => setEditPhone(true)}
+                style={{ margin: 'auto 0px', cursor: 'pointer' }}
+                class="fas fa-pencil-alt"
+              />
+            </div>
+          )}
           <div className="notification-wrapper">
             <div className="notif-box">
               <h4>Text Alerts</h4>
@@ -129,7 +130,7 @@ const Dashboard = () => {
                   id="checkbox1"
                   type="checkbox"
                   onChange={() => {
-                    updateTextAlerts(!receiveSMS);
+                    updateTextAlerts(!receiveSMS)
                   }}
                   checked={receiveSMS}
                 />
@@ -145,7 +146,7 @@ const Dashboard = () => {
                   id="checkbox2"
                   type="checkbox"
                   onChange={e => {
-                    updatePushAlerts(!receivePush);
+                    updatePushAlerts(!receivePush)
                   }}
                   checked={receivePush}
                 />
@@ -170,7 +171,7 @@ const Dashboard = () => {
                 <div className="table-row" key={index + loc.radius}>
                   <td className="address-box">{loc.address}</td>
                   <td>{loc.radius} mi</td>
-                  <td>{loc.notifications ? "ON" : "OFF"}</td>
+                  <td>{loc.notifications ? 'ON' : 'OFF'}</td>
                   <button
                     className="add-location-btn"
                     onClick={() => deleteUserLocation(loc.id)}
@@ -187,7 +188,7 @@ const Dashboard = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Dashboard;
+export default Dashboard
