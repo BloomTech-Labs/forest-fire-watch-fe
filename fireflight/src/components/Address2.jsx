@@ -19,7 +19,7 @@ function Address2(props) {
     e.preventDefault();
     if (address) {
       getCoordinates(address, radius);
-
+      // saveLocationMarker() // can't call this b/c the function is taking in address/radius from another piece of data specific to the markers
       addressContext.saveAddress(address, radius);
     }
   };
