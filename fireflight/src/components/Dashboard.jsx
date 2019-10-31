@@ -78,7 +78,7 @@ const Dashboard = () => {
     </div>
   );
 
-  console.log("Userlocations", userLocations[0]);
+  // console.log('Userlocations', userLocations[0].user_id);
 
   return (
     <div className="dashboard-wrapper">
@@ -131,11 +131,6 @@ const Dashboard = () => {
                   type="checkbox"
                   onChange={() => {
                     updateTextAlerts(!receiveSMS);
-                    if (phone) {
-                      updateTextAlerts(!receiveSMS);
-                    } else {
-                      alert("Please enter your phone number!");
-                    }
                   }}
                   checked={receiveSMS}
                 />
