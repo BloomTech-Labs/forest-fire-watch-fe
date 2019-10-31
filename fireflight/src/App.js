@@ -13,7 +13,6 @@ import { GlobalContext } from "./context/contextProvider";
 import { UserDataProvider } from "./context/UserDataContext";
 import { FireDataContext } from "./context/FireDataContext";
 import AddressContext from "./context/AddressContext";
-// import 'semantic-ui-css/semantic.min.css'
 
 // import Modal from "./components/Modal/Modal"
 
@@ -47,9 +46,12 @@ function App() {
   const [firebaseUser, setFirebaseUser] = useState({});
 
   const global = useContext(GlobalContext);
-  const { fireDataState, getAllFires, setUserLocations, saveLocationMarker } = useContext(
-    FireDataContext
-  );
+  const {
+    fireDataState,
+    getAllFires,
+    setUserLocations,
+    saveLocationMarker
+  } = useContext(FireDataContext);
 
   // console.log("FIRE DATA STATE", fireDataState);
 
@@ -143,9 +145,11 @@ function App() {
         <Route
           path="/landing-page"
           render={() => (
-            <LandingPage setShowAuthForms={setShowAuthForms}
+            <LandingPage
+              setShowAuthForms={setShowAuthForms}
               setLoginFormStatus={setLoginFormStatus}
-              setRegisterFormStatus={setRegisterFormStatus} />
+              setRegisterFormStatus={setRegisterFormStatus}
+            />
           )}
         />
 
