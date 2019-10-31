@@ -3,7 +3,6 @@ import axios from 'axios';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import { Marker } from 'react-map-gl';
 import { haversineDistance } from '../utils/haversineDistance';
-
 import fireIcon from '../images/fireIcon.svg';
 import exclamationMark from '../images/exclaim.png';
 import locationIcon from '../images/locationIcon.svg';
@@ -115,7 +114,7 @@ const fireDataReducer = (state, action) => {
 export const FireDataContext = createContext();
 
 export const FireDataProvider = ({ children }) => {
-	const [ fireDataState, dispatch ] = useReducer(fireDataReducer, {
+	const [fireDataState, dispatch] = useReducer(fireDataReducer, {
 		userLocations: [],
 		addresses: [],
 		publicCoordinates: {},
@@ -158,19 +157,19 @@ export const FireDataProvider = ({ children }) => {
 							style={{ zIndex: 100, transform: 'translate(-10px, -9px)' }}
 							alt="Fire marker"
 
-							// tempLocation
-							// onClick={e => {
-							//   dispatch({
-							//     type: SET_SELECTED_MARKER,
-							//     payload: [fire[1], fire[0], null, null, "fireLocation"]
-							//   });
-							// }}
+						// tempLocation
+						// onClick={e => {
+						//   dispatch({
+						//     type: SET_SELECTED_MARKER,
+						//     payload: [fire[1], fire[0], null, null, "fireLocation"]
+						//   });
+						// }}
 						/>
 					</Marker>
 				));
 				dispatch({
 					type: SET_ALL_FIRES,
-					payload: [ res.data, localArray ] // setting state of fire data and fire markers
+					payload: [res.data, localArray] // setting state of fire data and fire markers
 				});
 			})
 			.catch((err) => {
@@ -184,9 +183,54 @@ export const FireDataProvider = ({ children }) => {
 		});
 	};
 
+	const saveInputLocation = (address, location, radius) => {
+		const theToken = localStorage.getItem('token');
+
+		console.log(address, location, radius)
+
+		if (theToken) {
+			axiosWithAuth()
+				.post('locations', { address, radius })
+				.then((res) => {
+					dispatch({
+						type: SET_SAVED_LOCATION,
+						payload: [
+							...fireDataState.userLocationMarkers,
+							<Marker
+								latitude={location[1]}
+								longitude={location[0]}
+								key={`greenMarker${location[1]}`}
+							>
+								<img
+									src={locationIconGreen}
+									height="35"
+									width="20"
+									style={{ zIndex: 5, transform: 'translate(-17.5px, -35px)' }}
+									alt=""
+									onClick={(e) => {
+										dispatch({
+											type: SET_SELECTED_MARKER,
+											payload: [
+												location[1],
+												location[0],
+												address, //address
+												radius, //radius
+												'savedLocation'
+											]
+										});
+									}}
+								/>
+							</Marker>
+						]
+					});
+				});
+		} else {
+			alert('Please log in to save a location.');
+		}
+	}
+
 	const saveLocationMarker = () => {
 		const theToken = localStorage.getItem('token');
-		// console.log("selected marker", fireDataState.selectedMarker)
 
 		if (theToken) {
 			axiosWithAuth()
@@ -248,7 +292,7 @@ export const FireDataProvider = ({ children }) => {
 
   */
 
-	const getCoordinates = (address, radius) => {
+	const getCoordinates = (address, radius, isUserInput = false) => {
 		if (address) {
 			axios
 				.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${address}.json?access_token=${token}`)
@@ -257,8 +301,8 @@ export const FireDataProvider = ({ children }) => {
 					let localArray = [];
 					fireDataState.allFires.forEach((fire) => {
 						let distance = haversineDistance(
-							[ res.data.features[0].center[1], res.data.features[0].center[0] ],
-							[ fire.location[1], fire.location[0] ],
+							[res.data.features[0].center[1], res.data.features[0].center[0]],
+							[fire.location[1], fire.location[0]],
 							true
 						);
 
@@ -286,7 +330,7 @@ export const FireDataProvider = ({ children }) => {
 								latitude: res.data.features[0].center[1],
 								longitude: res.data.features[0].center[0]
 							},
-							<Marker
+							(!isUserInput) ? (<Marker
 								latitude={res.data.features[0].center[1]}
 								longitude={res.data.features[0].center[0]}
 							>
@@ -310,7 +354,7 @@ export const FireDataProvider = ({ children }) => {
 										});
 									}}
 								/>
-							</Marker>,
+							</Marker>) : null,
 							localMarkers
 						]
 					});
@@ -327,6 +371,7 @@ export const FireDataProvider = ({ children }) => {
 	const deleteUserLocation = (id) => {
 		console.log(id);
 		console.log('deleteUserLocation: ', fireDataState.selectedMarker);
+		id = fireDataState.selectedMarker[5];
 
 		axiosWithAuth()
 			// .delete(`locations/${fireDataState.selectedMarker[5]}`)
@@ -385,7 +430,7 @@ export const FireDataProvider = ({ children }) => {
   */
 	const getUserLocations = () => {
 		axiosWithAuth().get('locations').then((res) => {
-			// console.log("getUserLocations: ".res.data);
+			// console.log("getUserLocations: ", res);
 			dispatch({
 				type: GET_USER_LOCATIONS,
 				payload: res.data
@@ -406,8 +451,8 @@ export const FireDataProvider = ({ children }) => {
 				fireDataState.allFires.forEach((fire) => {
 					// console.log("set user locations", fire);
 					let distance = haversineDistance(
-						[ loc.latitude, loc.longitude ],
-						[ fire[1], fire[0] ],
+						[loc.latitude, loc.longitude],
+						[fire[1], fire[0]],
 						true // in miles
 					);
 					if (distance <= loc.radius) {
@@ -459,7 +504,7 @@ export const FireDataProvider = ({ children }) => {
 			));
 			dispatch({
 				type: SET_USER_LOCATIONS,
-				payload: [ userLocs, localMarkers ]
+				payload: [userLocs, localMarkers]
 			});
 		});
 	};
@@ -514,6 +559,7 @@ export const FireDataProvider = ({ children }) => {
 				closeSelectedMarker,
 				deleteLocationMarker,
 				saveLocationMarker,
+				saveInputLocation,
 				setUserLocations,
 				setNotificationStatus,
 				toggleNotification,

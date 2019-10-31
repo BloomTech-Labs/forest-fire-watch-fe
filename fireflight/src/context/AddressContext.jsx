@@ -125,51 +125,52 @@ function AddressContextProvider(props) {
       });
   };
 
-    useEffect(()=>{
+  useEffect(() => {
+    reset()
+  }, [])
+
+  const saveAddress = async (str, radius, name) => {
+    return global.state.remote.saveLocations(str, radius, name)
+      .then(data => {
+        console.log("DATA.REASON", data.reason)
+        updateAddresses(data.reason.address, data.reason.radius, "fire", data.reason.id)
         reset()
-    },[])
+        return data.reason
+      }).catch(err => {
+        console.error(err);
+        throw err
+      })
+  }
 
-    const saveAddress=async (str,radius,name)=>{
-        return global.state.remote.saveLocations(str,radius,name)
-            .then(data=>{
-                updateAddresses(data.reason.address)
-                reset()
-                return data.reason
-            }).catch(err=>{
-                console.error("something went wrong", err);
-                throw err
-            })
-    }
+  const clear = () => {
+    dispatch({ type: CLEAR })
+  }
 
-    const clear=()=>{
-        dispatch({type:CLEAR})
-    }
+  const updateAddress = async (address, radius, name, id) => {
+    return global.state.remote.updateLocation(address, radius, name, id)
+      .then(data => {
+        dispatch({
+          type: UPDATE,
+          payload: data.reason
+        })
+      })
+  }
 
-    const updateAddress=async (address,radius,name,id)=>{
-        return global.state.remote.updateLocation(address,radius,name,id)
-            .then(data=>{
-                dispatch({
-                    type:UPDATE,
-                    payload:data.reason
-                })
-            })
-    }
+  const ctx = {
+    updateAddresses,
+    fetchAddress,
+    saveAddress,
+    updateAddress,
+    clear,
+    reset,
+    state
+  }
 
-    const ctx={
-        updateAddresses,
-        fetchAddress,
-        saveAddress,
-        updateAddress,
-        clear,
-        reset,
-        state
-    }
-
-    return (
-        <AddressContext.Provider value={ctx}>
-            {props.children}
-        </AddressContext.Provider>
-    )
+  return (
+    <AddressContext.Provider value={ctx}>
+      {props.children}
+    </AddressContext.Provider>
+  )
 }
 
 export default AddressContextProvider;
