@@ -1,7 +1,7 @@
 import axios from "axios";
 import stats from "./status.js";
 import { isArray } from "util";
-import { base_url_local } from "../config/vars";
+import { base_url_staging, base_url_local } from "../config/vars";
 class connector {
   /**
    * This class is built as a helper to deal with all connection requests.
