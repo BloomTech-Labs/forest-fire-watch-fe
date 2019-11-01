@@ -1,104 +1,105 @@
 .addlocation-wrapper {
-	width: 80rem;
-	margin: 50px auto 10px;
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	padding: 2rem;
+  width: 70%;
+  margin: 10px auto 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 2rem;
 
-	h2 {
-		font-weight: 600;
-		font-size: 33px;
-		line-height: 45px;
-		margin-bottom: 4rem;
-	}
+  h2 {
+    font-weight: 600;
+    font-size: 33px;
+    line-height: 45px;
+    margin-bottom: 4rem;
+  }
 
-	label {
-		display: block;
-		font-size: 25px;
-		line-height: 34px;
-		margin-bottom: 2rem;
-	}
+  label {
+    display: block;
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+  }
 
-	//
-	.react-geocoder {
-		width: 50rem;
-		height: 59px;
-		background: #ffffff;
-		border: 1px solid #bbbbbb;
-		box-sizing: border-box;
-		border-radius: 2px;
-		&::placeholder {
-			font-size: 20px;
-			line-height: 27px;
-			display: flex;
-			align-items: center;
-			color: #a9a9a9;
-			padding-left: 17px;
-		}
+  .react-geocoder {
+    width: 50rem;
+    height: 59px;
+    background: #ffffff;
+    border: 1px solid #bbbbbb;
+    box-sizing: border-box;
+    border-radius: 2px;
+    &::placeholder {
+      font-size: 20px;
+      line-height: 27px;
+      display: flex;
+      align-items: center;
+      color: #a9a9a9;
+      padding-left: 17px;
+    }
 
-		&::-moz-placeholder {
-			line-height: 4.5rem;
-		}
-		input {
-			width: 46rem;
-			height: 55px;
-			font-size: 20px;
-			display: flex;
-			align-items: center;
-			padding-left: 17px;
-		}
-		// DROPDOWN RESULTS FROM SEARCH BAR
-		.react-geocoder-results {
-			border: 0.5px solid #bbbbbb;
-			background: white;
-			width: 50rem;
-			box-sizing: border-box;
-			height: auto;
-			position: absolute;
-			padding: 1rem 0.8rem;
-			font-size: 1.6rem;
-			z-index: 4;
-		}
-		.react-geocoder-item {
-			width: 50rem;
-			padding-top: 1rem;
-		}
-	}
+    &::-moz-placeholder {
+      line-height: 4.5rem;
+    }
 
-	.radius-wrapper {
-		margin-top: 2rem;
+    input {
+      width: 46rem;
+      height: 55px;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      padding-left: 17px;
+    }
+    // DROPDOWN RESULTS FROM SEARCH BAR
+    .react-geocoder-results {
+      border: 0.5px solid #bbbbbb;
+      background: white;
+      width: 50rem;
+      box-sizing: border-box;
+      height: auto;
+      position: absolute;
+      padding: 1rem 0.8rem;
+      font-size: 1.6rem;
+      z-index: 4;
+    }
+    .react-geocoder-item {
+      width: 50rem;
+      padding-top: 1rem;
+    }
+  }
 
-		.radius-info {
-			display: flex;
-			flex-direction: row;
-			justify-content: center;
-			align-items: center;
-			margin-bottom: 3rem;
-		}
-		.radius-input {
-			width: 8rem;
-			height: 5rem;
-			border: 1px solid #bbbbbb;
-			border-radius: 3px;
-			font-size: 2rem;
-			display: flex;
-			align-items: center;
+  .radius-wrapper {
+    margin-top: 2rem;
 
-			&::placeholder {
-				font-size: 2rem;
-				line-height: 2.7rem;
-				display: flex;
-				align-items: center;
-				color: #a9a9a9;
-				padding-left: 1rem;
-			}
-		}
+    .radius-info {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 3rem;
+    }
+    .radius-input {
+      width: 8rem;
+      height: 5rem;
+      border: 1px solid #bbbbbb;
+      border-radius: 3px;
+      font-size: 2rem;
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
+      box-sizing: border-box;
 
-		.radius-text {
-			font-size: 2rem;
-			padding-left: 3rem;
-			width: 50rem;
-		}
-	}
+      &::placeholder {
+        font-size: 2rem;
+        line-height: 2.7rem;
+        display: flex;
+        align-items: center;
+        color: #a9a9a9;
+        padding-left: 1rem;
+      }
+    }
+
+    .radius-text {
+      font-size: 2rem;
+      padding-left: 3rem;
+      width: 50rem;
+    }
+  }
 }

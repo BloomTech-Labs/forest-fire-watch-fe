@@ -1,308 +1,219 @@
 .dashboard-wrapper {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	.is-editing-input {
-    background: #FFFFFF;
-    border: 1px solid #BBBBBB;
-    box-sizing: border-box;
-    border-radius: 2px;
-    font-family: Open Sans;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 21px;
-    line-height: 29px;
-    /* identical to box height */
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
-	color: #191A1A;
+  h3 {
+    padding: 10px 0px;
+    margin: 0;
   }
 
-	.form-input-phone {
-		border: 1px solid black;
-		border-radius: 5px;
-		padding: 10px;
-		font-size: 1.5rem;
-		width: 60%;
-		margin-bottom: 10px;
+  .content-wrapper {
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-		&::placeholder {
-			opacity: 0.8;
-		}
-	}
+    .is-editing-input {
+      background: #ffffff;
+      border: 1px solid #bbbbbb;
+      box-sizing: border-box;
+      border-radius: 2px;
+      font-size: 1.8rem;
+      padding: 1rem;
+    }
 
-	//   .checkbox-label {
-	//     position: absolute;
-	//     top: 0;
-	//     left: 0;
-	//     width: 42px;
-	//     height: 26px;
-	//     border-radius: 15px;
-	//     background: #bebebe;
-	//     cursor: pointer;
+    .personal-info {
+      width: 70%;
+      margin: 1rem auto;
+      border-bottom: 0.5px solid #191a1a;
 
-	//     &::after {
-	//       content: "";
-	//       display: block;
-	//       border-radius: 50%;
-	//       width: 18px;
-	//       height: 18px;
-	//       margin: 3px;
-	//       background: #ffffff;
-	//       box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2);
-	//       transition: 0.2s;
-	//     }
-	//   }
+      @media (max-width: $mq-mobile) {
+        width: 98%;
+        border: none;
+      }
 
-	//   .checkbox {
-	//     opacity: 0;
-	//     z-index: 1;
-	//     border-radius: 15px;
-	//     width: 42px;
-	//     height: 26px;
+      .profile-field-container {
+        margin: 1rem 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-	//     &:checked + .checkbox-label {
-	//       background: #4fbe79;
-	//       &::after {
-	//         content: "";
-	//         display: block;
-	//         border-radius: 50%;
-	//         width: 18px;
-	//         height: 18px;
-	//         margin-left: 21px;
-	//         transition: 0.2s;
-	//       }
-	//     }
-	//   }
+        .edit-profile-icon {
+          margin-left: 8px;
+          color: $orange;
+        }
+      }
 
-	.content-wrapper {
-		text-align: center;
-		width: 100%;
-		height: 100vh;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
+      .profile-name {
+        font-size: 3rem;
 
-		.phone-edit {
-			// previous team's CSS
-			width: 250px;
-			margin: 0 20px;
-			display: flex;
-			flex-direction: row;
-			justify-content: center;
-			font-size: 22px;
-			line-height: 22px;
-			letter-spacing: -0.41px;
-		}
+        @media (max-width: $mq-mobile) {
+          font-size: 2.5rem;
+          padding: 0;
+        }
+      }
 
-		.is-editing-input {
-			background: #ffffff;
-			border: 1px solid #bbbbbb;
-			box-sizing: border-box;
-			border-radius: 2px;
-			font-family: Open Sans;
-			font-style: normal;
-			font-weight: normal;
-			font-size: 21px;
-			line-height: 29px;
-			/* identical to box height */
-			align-items: center;
+      .profile-field {
+        font-size: 2.1rem;
 
-			color: #191a1a;
-		}
+        @media (max-width: $mq-mobile) {
+          font-size: 1.6rem;
+          padding: 0;
+        }
+      }
 
-		.personal-info {
-			width: 60%;
-			margin: 1rem auto;
-			padding: 1rem 0;
-			border-bottom: 0.5px solid #191a1a;
+      .profile-phone {
+        @media (max-width: $mq-mobile) {
+          font-size: 1.6rem;
+        }
+      }
 
-			@media (max-width: $mq-mobile) {
-				width: 98%;
-				border: none;
-			}
+      .notification-wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
 
-			.profile-name {
-				font-size: 3rem;
-				line-height: 4.1rem;
+        @media (max-width: $mq-mobile) {
+          flex-direction: column;
 
-				@media (max-width: $mq-mobile) {
-					font-size: 2.5rem;
-					padding: 0;
-				}
-			}
+          &:last-child {
+            border-bottom: 1px solid grey;
+          }
+        }
 
-			.profile-email {
-				font-size: 2.1rem;
-				line-height: 2.9rem;
+        .notif-box {
+          width: 25rem;
+          margin: 0 2rem;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          font-family: Open Sans;
+          font-weight: normal;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 2.2rem;
+          line-height: 2.2rem;
+          letter-spacing: -0.41px;
+          padding: 0 10px;
+          box-sizing: border-box;
 
-				@media (max-width: $mq-mobile) {
-					font-size: 1.6rem;
-					padding: 0;
-				}
-			}
+          @media (max-width: $mq-mobile) {
+            width: 100%;
+            margin: 0;
+            font-size: 1.7rem;
+            border-top: 1px solid grey;
+            line-height: 1rem;
+          }
 
-			.profile-phone {
-				font-size: 2.1rem;
-				line-height: 2.9rem;
+          .checkbox-wrapper {
+            position: relative;
+            margin: auto 0 auto auto;
+          }
+        }
+      }
+    }
 
-				@media (max-width: $mq-mobile) {
-					font-size: 1.6rem;
-					padding: 0 0 2.45rem 0;
-				}
-			}
+    // LOCATIONS/ADDRESSES
+    .locations-info {
+      width: 70%;
+      border-radius: 8px;
+      box-sizing: border-box;
 
-			.notification-wrapper {
-				display: flex;
-				flex-direction: row;
-				justify-content: center;
+      @media (max-width: $mq-mobile) {
+        width: 98%;
+      }
 
-				@media (max-width: $mq-mobile) {
-					flex-direction: column;
+      h3 {
+        font-size: 3rem;
+        line-height: 4.5rem;
+        display: flex;
+        align-items: center;
 
-					&:last-child {
-						border-bottom: 1px solid grey;
-					}
-				}
+        @media (max-width: $mq-mobile) {
+          font-size: 2.5rem;
+        }
+      }
 
-				.notif-box {
-					width: 25rem;
-					margin: 0 2rem;
-					display: flex;
-					flex-direction: row;
-					justify-content: space-between;
-					font-family: Open Sans;
-					font-weight: normal;
-					font-style: normal;
-					font-weight: normal;
-					font-size: 2.2rem;
-					line-height: 2.2rem;
-					letter-spacing: -0.41px;
-					padding: 0 10px;
-					box-sizing: border-box;
+      .add-location-btn {
+        margin-top: 1rem;
+        background-color: $orange;
+        border-radius: 2px;
+        cursor: pointer;
+        color: white;
+        font-size: 1.5rem;
+        width: 119.95px;
+        height: 38px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
 
-					@media (max-width: $mq-mobile) {
-						width: 100%;
-						margin: 0;
-						font-size: 1.7rem;
-						border-top: 1px solid grey;
-						line-height: 1rem;
-					}
+        @include easeOut;
 
-					.checkbox-wrapper {
-						position: relative;
-						margin: auto 0 auto auto;
-					}
-				}
-			}
-		}
+        &:hover {
+          background-color: lighten($orange, 10%);
+          @include easeOut;
+        }
+      }
 
-		// LOCATIONS/ADDRESSES
-		.locations-info {
-			width: 60%;
-			margin: 10px auto;
-			border-radius: 8px;
-			padding: 10px 0 10px 10px;
-			box-sizing: border-box;
+      .locations-table {
+        width: 100%;
+        display: table;
 
-			@media (max-width: $mq-mobile) {
-				width: 98%;
-			}
+        .locations-header {
+          font-size: 2.2rem;
+          text-align: left;
 
-			h3 {
-				font-size: 3rem;
-				line-height: 4.5rem;
-				display: flex;
-				align-items: center;
+          @media (max-width: $mq-mobile) {
+            font-size: 1.6rem;
+          }
+        }
 
-				@media (max-width: $mq-mobile) {
-					font-size: 2.5rem;
-				}
-			}
+        .table-row {
+          font-size: 1.6rem;
+          text-align: left;
+          vertical-align: middle;
 
-			.add-location-btn {
-				// same as default-btn (refactor later)
-				margin-top: 1rem;
-				background-color: $orange;
-				border-radius: 2px;
-				cursor: pointer;
-				color: white;
-				font-size: 1.5rem;
-				width: 119.95px;
-				height: 38px;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				border: none;
+          //   @media (max-width: $mq-mobile) {
+          //     width: 95vw;
+          //   }
 
-				@include easeOut;
+          .table-data {
+            padding-top: 1rem;
+            text-align: middle;
+          }
 
-				&:hover {
-					background-color: lighten($orange, 10%);
-					@include easeOut;
-				}
-			}
+          .address-field {
+            width: 45%;
+            padding-right: 2rem;
+          }
 
-			.locations-table {
-				width: 95%;
+          .delete-location-btn {
+            color: $orange;
+            font-size: 3rem;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
 
-				display: table;
+  .save-edit-btn {
+    background-color: $orange;
+    border-radius: 2px;
+    color: white;
+    font-size: 1.2rem;
+    margin-left: 8px;
 
-				.locations-header {
-					font-size: 2.4rem;
+    @include easeOut;
 
-					@media (max-width: $mq-mobile) {
-						font-size: 1.6rem;
-					}
-				}
-
-				.table-row {
-					display: flex;
-					flex-direction: row;
-					justify-content: space-between;
-					font-size: 1.8rem;
-					margin-top: 1rem;
-
-					//   @media (max-width: $mq-mobile) {
-					//     width: 95vw;
-					//   }
-
-					.address-box {
-						width: 30rem;
-						display: flex;
-						justify-content: flex-start;
-					}
-				}
-			}
-		}
-
-		h3 {
-			padding: 10px 0px;
-			margin: 0;
-		}
-	}
-
-	.phone-btn {
-		margin-bottom: 1rem;
-		background-color: $orange;
-		border-radius: 2px;
-		cursor: pointer;
-		color: white;
-		font-size: 1.5rem;
-		// width: auto;
-		// height: 38px;
-		// padding: 10px;
-		font-size: 1.6rem;
-
-		border: none;
-
-		@include easeOut;
-
-		&:hover {
-			background-color: lighten($orange, 10%);
-			@include easeOut;
-		}
-	}
+    &:hover {
+      background-color: lighten($orange, 10%);
+      @include easeOut;
+    }
+  }
 }

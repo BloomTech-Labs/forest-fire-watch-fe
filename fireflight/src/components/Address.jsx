@@ -1,49 +1,48 @@
-import React, { useState, useContext, useEffect } from "react";
-import AddressContext from "../context/addressContextProvider";
-import { GlobalContext } from "../context/contextProvider";
-import NavigationProfile from "./NavigationProfile";
-import { FireDataContext } from "../context/FireDataContext";
-import Geocoder from "react-mapbox-gl-geocoder";
-import { Link } from "react-router-dom";
+import React, { useState, useContext, useEffect } from 'react'
+import NavigationProfile from './NavigationProfile'
+import { FireDataContext } from '../context/FireDataContext'
+import Geocoder from 'react-mapbox-gl-geocoder'
 
 function Address(props) {
-  const { getCoordinates, saveLocationMarker, saveInputLocation } = useContext(FireDataContext);
-  const addressContext = useContext(AddressContext);
+  const {
+    getCoordinates,
+    // saveLocationMarker,
+    saveInputLocation
+  } = useContext(FireDataContext)
+  // const addressContext = useContext(AddressContext);
 
-  const [address, setAddress] = useState("");
-  const [radius, setRadius] = useState("");
-  const [id, setId] = useState(undefined);
-  const [viewport, setViewport] = useState({});
+  const [address, setAddress] = useState('')
+  const [radius, setRadius] = useState('')
+  //   const [id, setId] = useState(undefined)
+  //   const [viewport, setViewport] = useState({})
 
-  useEffect(() => {
+  const viewport = {}
 
-  }, [])
+  useEffect(() => {}, [])
 
   const handleSubmit = e => {
-    e.preventDefault();
+    e.preventDefault()
     if (address) {
-      getCoordinates(address, radius, true);
+      getCoordinates(address, radius, true)
       // saveLocationMarker() // can't call this b/c the function is taking in address/radius from another piece of data specific to the markers
       // addressContext.saveAddress(address, radius);
       saveInputLocation(address, location, radius)
     }
     props.history.push(`/dashboard`)
-  };
+  }
 
   const queryParams = {
-    country: "us"
-  };
+    country: 'us'
+  }
   const mapAccess = {
     mapboxApiAccessToken: process.env.REACT_APP_MAPBOX_TOKEN
-  };
-  const [location, setLocation] = useState([]);
-
-
+  }
+  const [location, setLocation] = useState([])
 
   const onSelected = (viewport, item) => {
-    setAddress(item.place_name);
-    setLocation(item.center);
-  };
+    setAddress(item.place_name)
+    setLocation(item.center)
+  }
 
   return (
     <React.Fragment>
@@ -79,15 +78,11 @@ function Address(props) {
               </p>
             </div>
           </div>
-          <button
-            className="default-btn"
-          >
-            Save Location
-          </button>
+          <button className="default-btn">Save Location</button>
         </form>
       </div>
     </React.Fragment>
-  );
+  )
 }
 
-export default Address;
+export default Address

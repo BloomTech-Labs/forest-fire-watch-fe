@@ -1,6 +1,6 @@
-import React from "react";
-import AuthFormsModal from "./Combine.jsx";
-import styled from "styled-components";
+import React from 'react'
+import AuthFormsModal from './Combine.jsx'
+import styled from 'styled-components'
 
 const AuthForms = ({
   showAuthForms,
@@ -16,11 +16,13 @@ const AuthForms = ({
     <>
       {/* If showAuthForms state is true, show the modal & darkened background */}
       {showAuthForms ? (
-        <BackDrop onClick={() => {
-          setShowAuthForms(false)
-          setLoginFormStatus(false)
-          setPasswordFormStatus(false)
-        }} />
+        <BackDrop
+          onClick={() => {
+            setShowAuthForms(false)
+            setLoginFormStatus(false)
+            setPasswordFormStatus(false)
+          }}
+        />
       ) : null}
       <AuthFormsModal
         show={showAuthForms}
@@ -34,10 +36,10 @@ const AuthForms = ({
         setPasswordFormStatus={setPasswordFormStatus}
       />
     </>
-  );
-};
+  )
+}
 
-export default AuthForms;
+export default AuthForms
 
 const BackDrop = styled.div`
   background-color: rgba(48, 49, 48, 0.42);
@@ -46,4 +48,4 @@ const BackDrop = styled.div`
   transition: all 1.3s;
   width: 100%;
   z-index: 5;
-`;
+`

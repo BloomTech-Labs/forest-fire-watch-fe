@@ -15,7 +15,7 @@
 @import 'public-map';
 @import 'map-legend';
 @import 'model';
-@import 'model-splits';
+// @import 'model-splits';
 @import 'dashboard';
 @import 'address-form';
 
@@ -181,4 +181,9 @@ button {
   // @media (max-width: $mq-tablet) {
   //   width: 50%;
   // }
+}
+
+.edit-profile-icon {
+  font-size: 15px;
+  cursor: pointer;
 }

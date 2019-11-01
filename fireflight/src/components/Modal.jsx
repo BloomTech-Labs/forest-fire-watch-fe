@@ -1,13 +1,12 @@
-import React from "react";
+import React from 'react'
 
 const Modal = ({ handleClose, show, children }) => {
-  console.log("children", children);
   return (
     <div
       className="model-wrapper"
       style={{
-        transform: show ? "translateY(0vh)" : "translateY(-200vh)",
-        opacity: show ? "1" : "0"
+        transform: show ? 'translateY(0vh)' : 'translateY(-200vh)',
+        opacity: show ? '1' : '0'
       }}
     >
       <div>
@@ -15,7 +14,7 @@ const Modal = ({ handleClose, show, children }) => {
         {/* <button onClick={handleClose}>close</button> */}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Modal;
+export default Modal
