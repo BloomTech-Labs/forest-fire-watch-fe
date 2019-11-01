@@ -459,7 +459,7 @@ export const FireDataProvider = ({ children }) => {
 				console.log("location", loc)
 				
 				fireDataState.allFires.forEach((fire) => {
-					console.log("set user locations", fire.location[1], fire.location[0], loc.latitude, loc.longitude);
+					// console.log("set user locations", fire.location[1], fire.location[0], loc.latitude, loc.longitude);
 
 					let distance = haversineDistance(
 						[loc.latitude, loc.longitude],

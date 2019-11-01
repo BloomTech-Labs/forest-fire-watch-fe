@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { GlobalContext } from '../../context/contextProvider'
 import useInput from '../../utils/useInput'
-import { Link } from 'react-router-dom'
 import { FireDataContext } from '../../context/FireDataContext'
 
 import fire from '../../config/fire'

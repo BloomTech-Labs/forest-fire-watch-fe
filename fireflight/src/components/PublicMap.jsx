@@ -15,18 +15,18 @@ const PublicMap = ({
 }) => {
   const {
     fireDataState,
-    setPublicViewport,
+    // setPublicViewport,
     getCoordinates,
     closeSelectedMarker,
     deleteLocationMarker,
     saveLocationMarker,
-    toggleNotification,
+    // toggleNotification,
     deleteUserLocation,
     updatePopupRadius
   } = useContext(FireDataContext)
 
   const {
-    publicMapViewport,
+    // publicMapViewport,
     allFireMarkers,
     publicCoordinatesMarker,
     localFireMarkers,

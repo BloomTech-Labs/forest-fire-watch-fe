@@ -18,16 +18,23 @@ const Dashboard = () => {
   const {
     fireDataState,
     getUserLocations,
-    deleteLocationMarker,
+    // deleteLocationMarker,
     deleteUserLocation
   } = useContext(FireDataContext)
   const { userLocations, userLocationMarkers } = fireDataState
-  const { email, phone, receiveSMS, receivePush } = userDataState
+  const {
+    email,
+    phone,
+    receiveSMS,
+    receivePush,
+    firstName,
+    lastName
+  } = userDataState
   const [phoneNumber, setPhoneNumber] = useState('')
   const [showEditPhone, setEditPhone] = useState(false)
   const [isEditing, setIsEditing] = useState(false)
   const [newEmail, setNewEmail] = useState('')
-  const [viewEmail, setViewEmail] = useState('')
+  // const [viewEmail, setViewEmail] = useState('')
 
   useEffect(() => {
     getUserData()
@@ -85,7 +92,9 @@ const Dashboard = () => {
       <NavigationProfile />
       <div className="content-wrapper">
         <div className="personal-info">
-          <h3 className="profile-name">Dora Belme</h3>
+          <h3 className="profile-name">
+            {firstName} {lastName}
+          </h3>
           {/* Checks to see if isEditing is false and if so renders the email of the user and if true will render the input for editing */}
           {!isEditing ? (
             <h3 className="profile-email">
@@ -97,10 +106,9 @@ const Dashboard = () => {
               <input
                 type="email"
                 placeholder="Enter your new Email"
-                className="profile-email"
+                className="profile-email is-editing-input"
                 name="newEmail"
                 onChange={e => setNewEmail(e.target.value)}
-                className="is-editing-input"
               />
               <button type="submit" onClick={() => changeEmail()}>
                 Change Email
@@ -117,7 +125,7 @@ const Dashboard = () => {
               <i
                 onClick={() => setEditPhone(true)}
                 style={{ margin: 'auto 0px', cursor: 'pointer' }}
-                class="fas fa-pencil-alt"
+                className="fas fa-pencil-alt"
               />
             </div>
           )}
@@ -158,30 +166,35 @@ const Dashboard = () => {
         </div>
         <div className="locations-info">
           <h3>Saved Locations</h3>
-          <div className="locations-table">
-            <tbody>
-              <div className="table-row">
+          <table className="locations-table">
+            <thead>
+              <tr className="table-row">
                 <th className="locations-header">Address</th>
                 <th className="locations-header">Radius</th>
                 <th className="locations-header">Alerts</th>
                 <th className="locations-header">Delete</th>
-              </div>
+              </tr>
+            </thead>
 
+            <tbody>
               {userLocations.map((loc, index) => (
-                <div className="table-row" key={index + loc.radius}>
+                <tr className="table-row" key={index + loc.radius}>
                   <td className="address-box">{loc.address}</td>
                   <td>{loc.radius} mi</td>
                   <td>{loc.notifications ? 'ON' : 'OFF'}</td>
-                  <button
-                    className="add-location-btn"
-                    onClick={() => deleteUserLocation(loc.id)}
-                  >
-                    Delete Location
-                  </button>
-                </div>
+                  <td>
+                    {' '}
+                    <button
+                      className="add-location-btn"
+                      onClick={() => deleteUserLocation(loc.id)}
+                    >
+                      Delete Location
+                    </button>
+                  </td>
+                </tr>
               ))}
             </tbody>
-          </div>
+          </table>
           <Link to="/address">
             <button className="add-location-btn">Add Location</button>
           </Link>
