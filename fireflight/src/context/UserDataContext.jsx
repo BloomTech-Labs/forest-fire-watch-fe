@@ -16,7 +16,9 @@ const userDataReducer = (state, action) => {
         email: action.payload[0],
         phone: action.payload[1],
         receivePush: action.payload[2],
-        receiveSMS: action.payload[3]
+        receiveSMS: action.payload[3],
+        firstName: action.payload[4],
+        lastName: action.payload[5]
       }
     case ADD_PHONE_NUMBER:
       return {
@@ -47,7 +49,9 @@ export const UserDataProvider = ({ children }) => {
     email: '',
     phone: '',
     receiveSMS: false,
-    receivePush: false
+    receivePush: false,
+    firstName: '',
+    lastName: ''
   })
 
   const getUserData = () => {
@@ -61,7 +65,9 @@ export const UserDataProvider = ({ children }) => {
             res.data.email,
             res.data.cell_number,
             res.data.receive_push,
-            res.data.receive_sms
+            res.data.receive_sms,
+            res.data.first_name,
+            res.data.last_name
           ]
         })
       })

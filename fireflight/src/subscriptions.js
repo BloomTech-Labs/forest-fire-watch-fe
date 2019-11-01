@@ -1,4 +1,4 @@
-import { base_url_local, base_url_staging } from "../src/config/vars";
+import { base_url_staging } from "../src/config/vars";
 const convertVapid = urlBase64ToUint8Array(process.env.REACT_APP_VAPID_PUBLIC);
 
 function urlBase64ToUint8Array(base64String) {
@@ -10,7 +10,7 @@ function urlBase64ToUint8Array(base64String) {
   const rawData = window.atob(base64);
   const outputArray = new Uint8Array(rawData.length);
 
-  for (let i = 0; i < rawData.length; ++i) {
+  for (let i = 0;i < rawData.length;++i) {
     outputArray[i] = rawData.charCodeAt(i);
   }
   // console.log("done converting");
