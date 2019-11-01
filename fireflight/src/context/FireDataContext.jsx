@@ -12,7 +12,6 @@ import {
 	GET_USER_LOCATIONS,
 	GET_SELECTED_ADDRESS, // not being used?
 	GET_PUBLIC_COORDINATES,
-	SET_PUBLIC_VIEWPORT,
 	SET_ALL_FIRES,
 	SET_SELECTED_MARKER,
 	SET_SAVED_LOCATION,
@@ -51,11 +50,6 @@ const fireDataReducer = (state, action) => {
 				publicCoordinates: action.payload[0],
 				publicCoordinatesMarker: action.payload[1],
 				localFireMarkers: action.payload[2]
-			};
-		case SET_PUBLIC_VIEWPORT:
-			return {
-				...state,
-				publicMapViewport: action.payload
 			};
 		case SET_ALL_FIRES:
 			return {
@@ -116,9 +110,7 @@ export const FireDataProvider = ({ children }) => {
 		addresses: [],
 		publicCoordinates: {},
 		publicCoordinatesMarker: [],
-		publicRadius: 500,
-		userCoordinates: [],
-		publicMapData: {},
+		// userCoordinates: [], // used in PrivateMap
 		publicMapViewport: {
 			width: '100%',
 			height: '100vh',
@@ -128,10 +120,8 @@ export const FireDataProvider = ({ children }) => {
 		},
 		allFires: [],
 		allFireMarkers: [],
-		localFires: [],
 		localFireMarkers: [],
 		selectedMarker: [], // [latitude, longitude, address text, radius, "savedLocation" (the string), location_id , notifications(0 or 1 - boolean)
-		selectedMarkerAddress: [],
 		userLocationMarkers: [],
 		userLocalFireMarkers: []
 	});
@@ -153,14 +143,12 @@ export const FireDataProvider = ({ children }) => {
 							width="15"
 							style={{ zIndex: 100, transform: 'translate(-10px, -9px)' }}
 							alt="Fire marker"
-
-						tempLocation
-						onClick={e => {
-						  dispatch({
-						    type: SET_SELECTED_MARKER,
-						    payload: [fire[1], fire[0], null, null, "fireLocation"]
-						  });
-						}}
+							onClick={e => {
+							dispatch({
+								type: SET_SELECTED_MARKER,
+								payload: [fire.location[1], fire.location[0], null, null, "fireLocation", null, null, fire.name]
+							});
+							}}
 						/>
 					</Marker>
 				));
@@ -540,13 +528,6 @@ export const FireDataProvider = ({ children }) => {
 		});
 	};
 
-	const setPublicViewport = (viewport) => {
-		dispatch({
-			type: SET_PUBLIC_VIEWPORT,
-			payload: viewport
-		});
-	};
-
 	return (
 		<FireDataContext.Provider
 			value={{
@@ -554,7 +535,6 @@ export const FireDataProvider = ({ children }) => {
 				dispatch,
 				getUserLocations,
 				getCoordinates,
-				setPublicViewport,
 				getAllFires,
 				closeSelectedMarker,
 				deleteLocationMarker,

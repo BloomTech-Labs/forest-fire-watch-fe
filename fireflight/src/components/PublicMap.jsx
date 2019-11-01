@@ -15,7 +15,6 @@ const PublicMap = ({
 }) => {
   const {
     fireDataState,
-    // setPublicViewport,
     getCoordinates,
     closeSelectedMarker,
     deleteLocationMarker,
@@ -181,8 +180,10 @@ const PublicMap = ({
   )
 
   const fireLocationPopup = (
-    <div style={{ display: 'flex', flexDirection: 'column' }}>
-      THIS IS A FIRE
+    <div
+      style={{ display: 'flex', flexDirection: 'column', fontSize: '1.4rem' }}
+    >
+      {selectedMarker[7]}
     </div>
   )
 
