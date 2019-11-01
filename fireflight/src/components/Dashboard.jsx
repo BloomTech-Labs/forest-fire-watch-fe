@@ -176,7 +176,7 @@ const Dashboard = () => {
                 <th className="locations-header">Address</th>
                 <th className="locations-header">Radius</th>
                 <th className="locations-header">Alerts</th>
-                <th className="locations-header">Delete</th>
+                {/* <th className="locations-header">Delete</th> */}
               </tr>
             </thead>
 
