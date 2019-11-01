@@ -57,7 +57,6 @@ const Dashboard = () => {
         { email: newEmail }
       )
       .then(res => {
-        console.log(res)
         fire
           .auth()
           .currentUser.updateEmail(newEmail)
@@ -69,23 +68,6 @@ const Dashboard = () => {
       })
       .catch(err => console.log(err))
   }
-  const phoneInput = (
-    <div>
-      <input
-        className="form-input-phone"
-        type="text"
-        name="phone"
-        value={phoneNumber}
-        onChange={e => setPhoneNumber(e.target.value)}
-        placeholder="ex. 123 456 7890"
-      />
-      <button className="phone-btn" onClick={() => handleAddPhoneNumber()}>
-        {showEditPhone ? 'Submit' : 'Add Phone Number'}
-      </button>
-    </div>
-  )
-
-  // console.log('Userlocations', userLocations[0].user_id);
 
   return (
     <div className="dashboard-wrapper">
@@ -97,35 +79,57 @@ const Dashboard = () => {
           </h3>
           {/* Checks to see if isEditing is false and if so renders the email of the user and if true will render the input for editing */}
           {!isEditing ? (
-            <h3 className="profile-email">
-              {!newEmail ? `${email}` : `${newEmail}`}{' '}
-              <button onClick={() => setIsEditing(true)}>Edit email</button>
-            </h3>
+            <div className="profile-field-container">
+              <h3 className="profile-field profile-email">
+                {!newEmail ? `${email}` : `${newEmail}`}
+              </h3>
+              {/* <button onClick={() => setIsEditing(true)}>Edit email</button> */}
+              <i
+                onClick={() => setIsEditing(true)}
+                className="fas fa-pencil-alt edit-profile-icon"
+              />
+            </div>
           ) : (
-            <div>
+            <div className="profile-field-container">
               <input
                 type="email"
-                placeholder="Enter your new Email"
+                placeholder="Enter your new email"
                 className="profile-email is-editing-input"
                 name="newEmail"
                 onChange={e => setNewEmail(e.target.value)}
               />
-              <button type="submit" onClick={() => changeEmail()}>
-                Change Email
+              <button
+                className="save-edit-btn"
+                type="submit"
+                onClick={() => changeEmail()}
+              >
+                Save
               </button>
             </div>
           )}
-          <h3 className="profile-phone">{phone}</h3>
-
           {phone === null || showEditPhone ? (
-            phoneInput
+            <div className="profile-field-container">
+              <input
+                className="is-editing-input"
+                type="text"
+                name="phone"
+                value={phoneNumber}
+                onChange={e => setPhoneNumber(e.target.value)}
+                placeholder="ex. 123 456 7890"
+              />
+              <button
+                className="save-edit-btn"
+                onClick={() => handleAddPhoneNumber()}
+              >
+                {showEditPhone ? 'Save' : 'Add Phone Number'}
+              </button>
+            </div>
           ) : (
-            <div className="phone-edit">
-              <h4>{phone}</h4>
+            <div className="profile-field-container">
+              <h3 className="profile-field profile-phone">{phone}</h3>
               <i
                 onClick={() => setEditPhone(true)}
-                style={{ margin: 'auto 0px', cursor: 'pointer' }}
-                className="fas fa-pencil-alt"
+                className="fas fa-pencil-alt edit-profile-icon"
               />
             </div>
           )}
@@ -179,17 +183,18 @@ const Dashboard = () => {
             <tbody>
               {userLocations.map((loc, index) => (
                 <tr className="table-row" key={index + loc.radius}>
-                  <td className="address-box">{loc.address}</td>
-                  <td>{loc.radius} mi</td>
-                  <td>{loc.notifications ? 'ON' : 'OFF'}</td>
+                  <td className="table-data address-field">{loc.address}</td>
+                  <td className="table-data radius-field">{loc.radius} mi</td>
+                  <td className="table-data notifications-field">
+                    {loc.notifications ? 'ON' : 'OFF'}
+                  </td>
                   <td>
-                    {' '}
-                    <button
-                      className="add-location-btn"
+                    <div
+                      className="delete-location-btn"
                       onClick={() => deleteUserLocation(loc.id)}
                     >
-                      Delete Location
-                    </button>
+                      x
+                    </div>
                   </td>
                 </tr>
               ))}

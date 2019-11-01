@@ -192,7 +192,6 @@ export const FireDataProvider = ({ children }) => {
 			axiosWithAuth()
 				.post('locations', { address, radius })
 				.then((res) => {
-					console.log("locations response", res)
 					dispatch({
 						type: SET_SAVED_LOCATION,
 						payload: [
@@ -240,7 +239,6 @@ export const FireDataProvider = ({ children }) => {
 					radius: fireDataState.selectedMarker[3]
 				})
 				.then((res) => {
-					console.log('promise: ', res);
 					dispatch({
 						type: SET_SAVED_LOCATION,
 						payload: [
@@ -371,15 +369,9 @@ export const FireDataProvider = ({ children }) => {
   */
 
 	const deleteUserLocation = (id) => {
-		console.log("id before", id);
-		// console.log('deleteUserLocation: ', fireDataState.selectedMarker); 
-
-		// If location being deleted is from the form, take id from form
-		// If location deleted is from map, selectedMarker is defined
 		if (!id) {
 			id = fireDataState.selectedMarker[5];
 		}
-		console.log("id after", id);
 		axiosWithAuth()
 			// .delete(`locations/${fireDataState.selectedMarker[5]}`)
 			.delete(`locations/${id}`)
@@ -395,7 +387,7 @@ export const FireDataProvider = ({ children }) => {
 				});
 			})
 			.catch((err) => {
-				console.log(err.response);
+				console.log(err);
 			});
 	};
 
@@ -456,7 +448,7 @@ export const FireDataProvider = ({ children }) => {
 			console.log(res.data)
 			let localArray = [];
 			res.data.forEach((loc) => {
-				console.log("location", loc)
+				// console.log("location", loc)
 				
 				fireDataState.allFires.forEach((fire) => {
 					// console.log("set user locations", fire.location[1], fire.location[0], loc.latitude, loc.longitude);

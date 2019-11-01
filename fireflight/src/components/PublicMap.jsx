@@ -65,7 +65,7 @@ const PublicMap = ({
     if (address) {
       getCoordinates(address, radius)
     }
-    console.log(getCoordinates(address, radius))
+    // console.log(getCoordinates(address, radius))
     setViewport({
       latitude: location[1],
       longitude: location[0],
@@ -154,7 +154,6 @@ const PublicMap = ({
         <button
           onClick={() => {
             updatePopupRadius(popupRadius)
-            console.log(selectedMarker[5])
           }}
           style={{
             marginTop: 3,
@@ -196,7 +195,6 @@ const PublicMap = ({
   const [location, setLocation] = useState([])
   const onSelected = (viewport, item) => {
     setAddress(item.place_name)
-    console.log(item)
     setLocation(item.center)
   }
   return (
