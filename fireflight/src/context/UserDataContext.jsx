@@ -1,12 +1,12 @@
 import React, { useReducer, createContext } from 'react'
 import axiosWithAuth from '../utils/axiosWithAuth'
-
 import { subscribeUser as getSub } from '../subscriptions'
-
-const GET_USER_DATA = 'GET_USER_DATA'
-const UPDATE_RECEIVE_SMS = 'UPDATE_RECEIVE_SMS'
-const UPDATE_RECEIVE_PUSH = 'UPDATE_RECEIVE_PUSH'
-const ADD_PHONE_NUMBER = 'ADD_PHONE_NUMBER'
+import {
+  GET_USER_DATA,
+  UPDATE_RECEIVE_SMS,
+  UPDATE_RECEIVE_PUSH,
+  ADD_PHONE_NUMBER
+} from './userDataTypes'
 
 const userDataReducer = (state, action) => {
   switch (action.type) {

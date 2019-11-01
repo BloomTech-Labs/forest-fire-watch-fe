@@ -13,7 +13,6 @@ import {
 	GET_SELECTED_ADDRESS, // not being used?
 	GET_PUBLIC_COORDINATES,
 	SET_PUBLIC_VIEWPORT,
-	// SET_TRIGGER_REGISTRATION_BUTTON, // not being used
 	SET_ALL_FIRES,
 	SET_SELECTED_MARKER,
 	SET_SAVED_LOCATION,
@@ -24,8 +23,6 @@ import {
 } from './fireDataTypes';
 
 const DSbaseURL = 'https://wildfirewatch.herokuapp.com';
-// const DSbaseURL = "https://fire-data-api.herokuapp.com";
-// const DSbaseURL = "https://test-fire-api.herokuapp.com";
 
 const token = process.env.REACT_APP_MAPBOX_TOKEN || 'keep it secret, fool';
 
@@ -157,13 +154,13 @@ export const FireDataProvider = ({ children }) => {
 							style={{ zIndex: 100, transform: 'translate(-10px, -9px)' }}
 							alt="Fire marker"
 
-						// tempLocation
-						// onClick={e => {
-						//   dispatch({
-						//     type: SET_SELECTED_MARKER,
-						//     payload: [fire[1], fire[0], null, null, "fireLocation"]
-						//   });
-						// }}
+						tempLocation
+						onClick={e => {
+						  dispatch({
+						    type: SET_SELECTED_MARKER,
+						    payload: [fire[1], fire[0], null, null, "fireLocation"]
+						  });
+						}}
 						/>
 					</Marker>
 				));
