@@ -26,7 +26,7 @@
 }
 
 // Media queries
-$mq-mobile: 500px;
+$mq-mobile: 600px;
 $mq-tablet: 800px;
 $mq-desktop: 1000px;
 
@@ -40,7 +40,7 @@ $cardBgColor: #373d3f;
 // Colors
 // Labs 15
 $accentColor: #355c7d;
-$accentColorTransparency: "rgba(53, 95, 125, .75)";
+$accentColorTransparency: 'rgba(53, 95, 125, .75)';
 // $raven: #373d3f;
 // $ruby: #c02f1d;
 $lilia: #f2f3f4;
@@ -50,7 +50,6 @@ $orange: #fc8d43;
 $white: white;
 $black: black;
 $grey: grey;
-
 
 // Misc
 // $cardDropShadow: "box-shadow: 0 3px 4px #000";

@@ -12,8 +12,6 @@ import {
 	GET_USER_LOCATIONS,
 	GET_SELECTED_ADDRESS, // not being used?
 	GET_PUBLIC_COORDINATES,
-	SET_PUBLIC_VIEWPORT,
-	// SET_TRIGGER_REGISTRATION_BUTTON, // not being used
 	SET_ALL_FIRES,
 	SET_SELECTED_MARKER,
 	SET_SAVED_LOCATION,
@@ -24,8 +22,6 @@ import {
 } from './fireDataTypes';
 
 const DSbaseURL = 'https://wildfirewatch.herokuapp.com';
-// const DSbaseURL = "https://fire-data-api.herokuapp.com";
-// const DSbaseURL = "https://test-fire-api.herokuapp.com";
 
 const token = process.env.REACT_APP_MAPBOX_TOKEN || 'keep it secret, fool';
 
@@ -54,11 +50,6 @@ const fireDataReducer = (state, action) => {
 				publicCoordinates: action.payload[0],
 				publicCoordinatesMarker: action.payload[1],
 				localFireMarkers: action.payload[2]
-			};
-		case SET_PUBLIC_VIEWPORT:
-			return {
-				...state,
-				publicMapViewport: action.payload
 			};
 		case SET_ALL_FIRES:
 			return {
@@ -119,9 +110,7 @@ export const FireDataProvider = ({ children }) => {
 		addresses: [],
 		publicCoordinates: {},
 		publicCoordinatesMarker: [],
-		publicRadius: 500,
-		userCoordinates: [],
-		publicMapData: {},
+		// userCoordinates: [], // used in PrivateMap
 		publicMapViewport: {
 			width: '100%',
 			height: '100vh',
@@ -131,10 +120,8 @@ export const FireDataProvider = ({ children }) => {
 		},
 		allFires: [],
 		allFireMarkers: [],
-		localFires: [],
 		localFireMarkers: [],
 		selectedMarker: [], // [latitude, longitude, address text, radius, "savedLocation" (the string), location_id , notifications(0 or 1 - boolean)
-		selectedMarkerAddress: [],
 		userLocationMarkers: [],
 		userLocalFireMarkers: []
 	});
@@ -156,14 +143,12 @@ export const FireDataProvider = ({ children }) => {
 							width="15"
 							style={{ zIndex: 100, transform: 'translate(-10px, -9px)' }}
 							alt="Fire marker"
-
-						// tempLocation
-						// onClick={e => {
-						//   dispatch({
-						//     type: SET_SELECTED_MARKER,
-						//     payload: [fire[1], fire[0], null, null, "fireLocation"]
-						//   });
-						// }}
+							onClick={e => {
+							dispatch({
+								type: SET_SELECTED_MARKER,
+								payload: [fire.location[1], fire.location[0], null, null, "fireLocation", null, null, fire.name]
+							});
+							}}
 						/>
 					</Marker>
 				));
@@ -192,7 +177,6 @@ export const FireDataProvider = ({ children }) => {
 			axiosWithAuth()
 				.post('locations', { address, radius })
 				.then((res) => {
-					console.log("locations response", res)
 					dispatch({
 						type: SET_SAVED_LOCATION,
 						payload: [
@@ -240,7 +224,6 @@ export const FireDataProvider = ({ children }) => {
 					radius: fireDataState.selectedMarker[3]
 				})
 				.then((res) => {
-					console.log('promise: ', res);
 					dispatch({
 						type: SET_SAVED_LOCATION,
 						payload: [
@@ -371,15 +354,9 @@ export const FireDataProvider = ({ children }) => {
   */
 
 	const deleteUserLocation = (id) => {
-		console.log("id before", id);
-		// console.log('deleteUserLocation: ', fireDataState.selectedMarker); 
-
-		// If location being deleted is from the form, take id from form
-		// If location deleted is from map, selectedMarker is defined
 		if (!id) {
 			id = fireDataState.selectedMarker[5];
 		}
-		console.log("id after", id);
 		axiosWithAuth()
 			// .delete(`locations/${fireDataState.selectedMarker[5]}`)
 			.delete(`locations/${id}`)
@@ -395,7 +372,7 @@ export const FireDataProvider = ({ children }) => {
 				});
 			})
 			.catch((err) => {
-				console.log(err.response);
+				console.log(err);
 			});
 	};
 
@@ -456,7 +433,7 @@ export const FireDataProvider = ({ children }) => {
 			console.log(res.data)
 			let localArray = [];
 			res.data.forEach((loc) => {
-				console.log("location", loc)
+				// console.log("location", loc)
 				
 				fireDataState.allFires.forEach((fire) => {
 					// console.log("set user locations", fire.location[1], fire.location[0], loc.latitude, loc.longitude);
@@ -551,13 +528,6 @@ export const FireDataProvider = ({ children }) => {
 		});
 	};
 
-	const setPublicViewport = (viewport) => {
-		dispatch({
-			type: SET_PUBLIC_VIEWPORT,
-			payload: viewport
-		});
-	};
-
 	return (
 		<FireDataContext.Provider
 			value={{
@@ -565,7 +535,6 @@ export const FireDataProvider = ({ children }) => {
 				dispatch,
 				getUserLocations,
 				getCoordinates,
-				setPublicViewport,
 				getAllFires,
 				closeSelectedMarker,
 				deleteLocationMarker,

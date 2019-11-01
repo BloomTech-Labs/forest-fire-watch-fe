@@ -36,7 +36,7 @@ function Login({
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(user => {
-        console.log(user)
+        console.log("Firebase user:",user)
         const UID = user.user.uid
         const credentials = { UID }
 
