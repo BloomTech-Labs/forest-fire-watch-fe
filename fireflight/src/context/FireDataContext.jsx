@@ -8,6 +8,7 @@ import exclamationMark from '../images/exclaim.png';
 import locationIcon from '../images/locationIcon.svg';
 import locationIconGreen from '../images/locationIconGreen.svg';
 
+
 import {
 	GET_USER_LOCATIONS,
 	GET_SELECTED_ADDRESS, // not being used?
@@ -18,7 +19,8 @@ import {
 	DELETE_LOCATION_MARKER,
 	SET_USER_LOCATIONS,
 	TOGGLE_NOTIFICATIONS,
-	DELETE_USER_LOCATION
+	DELETE_USER_LOCATION,
+	SET_EXCLAMATION_MARKERS
 } from './fireDataTypes';
 
 const DSbaseURL = 'https://wildfirewatch.herokuapp.com';
@@ -94,11 +96,16 @@ const fireDataReducer = (state, action) => {
 					!state.selectedMarker[6]
 				]
 			};
-
+		case SET_EXCLAMATION_MARKERS:
+			return {
+				...state,
+				exclamationMarkers: action.payload
+			}
 		default:
 			return {
 				...state
 			};
+		 
 	}
 };
 
@@ -123,9 +130,54 @@ export const FireDataProvider = ({ children }) => {
 		localFireMarkers: [],
 		selectedMarker: [], // [latitude, longitude, address text, radius, "savedLocation" (the string), location_id , notifications(0 or 1 - boolean)
 		userLocationMarkers: [],
-		userLocalFireMarkers: []
+		userLocalFireMarkers: [],
+		exclamationMarkers: [],
 	});
 
+
+	const renderExclaimMarkers = () => {
+		axios.get(`https://wildfirewatch.herokuapp.com/fpfire`).then(res => {
+			// let firesWithinRadius = []
+			res.data.forEach(fire => {
+				axiosWithAuth()
+					.get(`${process.env.REACT_APP_ENV}locations`)
+					.then(res => {
+						res.data.forEach(savedLocation => {
+							let distance = haversineDistance(
+								[fire.location[1], fire.location[0]],
+								[savedLocation.latitude, savedLocation.longitude],
+								true
+							)
+							if (distance <= savedLocation.radius) {
+								// firesWithinRadius.push(fire)
+								dispatch({
+									type: SET_EXCLAMATION_MARKERS,
+									payload: [...fireDataState.exclamationMarkers, 
+										<Marker
+										latitude={fire.location[1]}
+										longitude={fire.location[0]}
+										// key={'localMarker' + fire.location[0] + index}
+									>
+										<img
+											src={exclamationMark}
+											height="20"
+											width="27"
+											style={{ zIndex: 3, transform: 'translate(-15px, -29px)' }}
+											alt=""
+										/>
+									</Marker>
+									] 
+								});
+							}
+						})
+
+					})
+			})
+		})
+		
+	}
+
+	
 	/*
   Get all fires from data science team's endpoint. Response includes name & location keys. 
 
