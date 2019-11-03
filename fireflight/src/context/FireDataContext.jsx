@@ -492,14 +492,15 @@ export const FireDataProvider = ({ children }) => {
 
 					let distance = haversineDistance(
 						[loc.latitude, loc.longitude],
-						[-115.77833333333, 47.778888888889],
+						[fire.location[1], fire.location[0]],
 						true // in miles
 					);
 					if (distance <= loc.radius) {
-						localArray.push(fire);
+						localArray.push(fire.location);
 					}
 				});
 			});
+
 			// fire markers - setting exclamation points on top of fire images for fires within radius of user location
 			const localMarkers = localArray.map((fire, index) => {
 				return (<Marker latitude={fire[1]} longitude={fire[0]} key={'localMarker' + fire[0] + index}>
@@ -512,6 +513,7 @@ export const FireDataProvider = ({ children }) => {
 					/>
 				</Marker>)
 			});
+
 			// saved user locations
 			const userLocs = res.data.map((uLoc, index) => (
 				<Marker
