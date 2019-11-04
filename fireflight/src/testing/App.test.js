@@ -1,20 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "../App";
-import { render } from "@testing-library/react";
-import "@testing-library/react/cleanup-after-each";
-import { BrowserRouter as Router } from 'react-router-dom'
+import { render, fireEvent } from "./test-utils";
+import { Router } from 'react-router-dom'
+import { createMemoryHistory } from 'history'
 import GlobalState from "../context/GlobalContext";
 import { FireDataProvider } from "../context/FireDataContext";
 
 describe("<App />", () => {
   it("renders without crashing", () => {
-    render(<GlobalState>
-                  <FireDataProvider>
-                    <Router>
-                      <App />
-                    </Router>
-                  </FireDataProvider>
-                </GlobalState>
+    const history = createMemoryHistory()
+    render( 
+      <Router history={history}>
+      <App />
+      </Router>
   )})
 });
