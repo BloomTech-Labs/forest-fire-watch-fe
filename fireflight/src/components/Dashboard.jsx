@@ -2,12 +2,11 @@ import React, { useContext, useEffect, useState } from 'react'
 import { UserDataContext } from '../context/UserDataContext'
 import NavigationProfile from './NavigationProfile'
 import { FireDataContext } from '../context/FireDataContext'
-import { Link } from 'react-router-dom'
 import axiosWithAuth from '../utils/axiosWithAuth'
 import fire from '../config/fire'
 
 // USER PROFILE PAGE
-const Dashboard = () => {
+const Dashboard = props => {
   const {
     userDataState,
     getUserData,
@@ -176,7 +175,6 @@ const Dashboard = () => {
                 <th className="locations-header">Address</th>
                 <th className="locations-header">Radius</th>
                 <th className="locations-header">Alerts</th>
-                {/* <th className="locations-header">Delete</th> */}
               </tr>
             </thead>
 
@@ -200,9 +198,12 @@ const Dashboard = () => {
               ))}
             </tbody>
           </table>
-          <Link to="/address">
-            <button className="add-location-btn">Add Location</button>
-          </Link>
+          <button
+            className="add-location-btn"
+            onClick={() => props.history.push('/address')}
+          >
+            Add Location
+          </button>
         </div>
       </div>
     </div>
