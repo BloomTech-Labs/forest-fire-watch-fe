@@ -45,13 +45,7 @@
   @include easeOut;
 
   @media (max-width: $mq-tablet) {
-    position: absolute;
-    width: 13.6rem;
-    height: 4.7rem;
-    left: 12.1rem;
-    top: 50rem;
-    background: #ffffff;
-    border-radius: 3px;
+    display:none;
   }
 
   // &:hover {
