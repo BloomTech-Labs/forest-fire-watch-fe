@@ -11,7 +11,9 @@ const AllTheProviders = ({ children }) => {
   return (
     <GlobalState>
       <FireDataProvider>
+      	<Router history={history}>
 		{children}
+	</Router>
       </FireDataProvider>
     </GlobalState>
   )
