@@ -65,13 +65,14 @@ const PublicMap = ({
     if (address) {
       getCoordinates(address, radius)
     }
-    // console.log(getCoordinates(address, radius))
     setViewport({
       latitude: location[1],
       longitude: location[0],
       zoom: 8,
       transitionDuration: 500
     })
+    // setAddress('') // doesn't reset address because of the special Geocoder library
+    setRadius('')
   }
 
   const tempLocationPopup = (
@@ -196,6 +197,7 @@ const PublicMap = ({
     mapboxApiAccessToken: token
   }
   const [location, setLocation] = useState([])
+
   const onSelected = (viewport, item) => {
     setAddress(item.place_name)
     setLocation(item.center)
