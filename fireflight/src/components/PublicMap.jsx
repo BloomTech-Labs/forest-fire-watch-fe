@@ -154,6 +154,7 @@ const PublicMap = ({
         <button
           onClick={() => {
             updatePopupRadius(popupRadius)
+            setPopupRadius('')
           }}
           style={{
             marginTop: 3,
