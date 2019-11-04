@@ -31,7 +31,8 @@ const PublicMap = ({
     localFireMarkers,
     selectedMarker,
     userLocationMarkers,
-    userLocalFireMarkers
+    userLocalFireMarkers,
+    exclamationMarkers
   } = fireDataState
 
   const [address, setAddress] = useState('')
@@ -198,6 +199,9 @@ const PublicMap = ({
     setAddress(item.place_name)
     setLocation(item.center)
   }
+
+  console.log('exclamations', exclamationMarkers)
+
   return (
     <div style={{ position: 'relative', width: '100%', height: '100%' }}>
       <MapLegend />
@@ -264,6 +268,7 @@ const PublicMap = ({
         {localFireMarkers}
         {userLocationMarkers}
         {publicCoordinatesMarker}
+        {exclamationMarkers}
         {selectedMarker.length > 0 ? (
           <Popup
             closeOnClick={false}

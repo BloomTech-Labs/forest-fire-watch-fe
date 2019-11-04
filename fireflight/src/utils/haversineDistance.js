@@ -9,7 +9,6 @@ const haversineDistance = (latlngA, latlngB, isMiles) => {
   const toRadian = angle => (Math.PI / 180) * angle
   const distance = (a, b) => (Math.PI / 180) * (a - b)
   const RADIUS_OF_EARTH_IN_KM = 6371
-
   let lat1 = latlngA[0]
   let lat2 = latlngB[0]
   const lon1 = latlngA[1]
