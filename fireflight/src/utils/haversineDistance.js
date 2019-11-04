@@ -19,7 +19,7 @@ const haversineDistance = (latlngA, latlngB, isMiles) => {
 
   lat1 = toRadian(lat1)
   lat2 = toRadian(lat2)
-  console.log(lat1, lat2)
+  // console.log(lat1, lat2)
 
   // Haversine Formula
   const a =

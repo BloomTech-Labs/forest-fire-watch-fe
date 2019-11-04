@@ -7,7 +7,16 @@ import { createMemoryHistory } from 'history'
 describe("<App />", () => {
   it("renders without crashing", () => {
     const history = createMemoryHistory()
-    render( 
-      <App />
-  )})
+    render(<App />)
+  })
+  it("renders Enter the address you wish to check fire proximity to", () => {
+    const app = render(<App />);
+
+    app.getByText(/Enter the address you wish to check fire proximity to/i)
+  })
+  it("renders to save addresses and receive notifications", () => {
+    const app = render(<App />);
+
+    app.getByText(/to save addresses and receive notifications/i)
+  })
 });
