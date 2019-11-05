@@ -41,6 +41,20 @@ const Dashboard = () => {
     getUserLocations()
   }, [userLocationMarkers])
 
+  useEffect(() => {
+    if (receiveSMS === true) {
+      console.log('receiveSMS trigger')
+      axiosWithAuth().get(`scheduler/user`)
+    }
+  }, [receiveSMS])
+
+  useEffect(() => {
+    if (receivePush === true) {
+      console.log('receivePush trigger')
+      axiosWithAuth().get(`scheduler/user`)
+    }
+  }, [receivePush])
+
   const handleAddPhoneNumber = () => {
     if (phoneNumber.length > 9) {
       setEditPhone(false)
@@ -50,12 +64,7 @@ const Dashboard = () => {
   const changeEmail = () => {
     console.log(newEmail)
     axiosWithAuth()
-      .put(
-        `${process.env.REACT_APP_ENV}users/update/${
-          fire.auth().currentUser.uid
-        }`,
-        { email: newEmail }
-      )
+      .put(`users/update/${fire.auth().currentUser.uid}`, { email: newEmail })
       .then(res => {
         fire
           .auth()
