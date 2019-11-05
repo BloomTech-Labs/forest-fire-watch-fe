@@ -47,18 +47,7 @@
 		width: 40rem;
 
 		@media (max-width: $mq-tablet) {
-			position: absolute;
-			width: 320px;
-			height: 22px;
-			left: 29px;
-			font-family: Open Sans;
-			font-style: normal;
-			font-weight: normal;
-			font-size: 16px;
-			line-height: 22px;
-			display: flex;
-			align-items: center;
-			color: #ffffff;
+			display:none;
 		}
 	}
 

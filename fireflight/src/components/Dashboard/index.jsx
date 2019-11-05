@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { UserDataContext } from '../context/UserDataContext'
-import NavigationProfile from './NavigationProfile'
-import { FireDataContext } from '../context/FireDataContext'
-import { Link } from 'react-router-dom'
-import axiosWithAuth from '../utils/axiosWithAuth'
-import fire from '../config/fire'
+import { UserDataContext } from '../../context/UserDataContext'
+import NavigationProfile from '../NavigationProfile'
+import { FireDataContext } from '../../context/FireDataContext'
+import axiosWithAuth from '../../utils/axiosWithAuth'
+import fire from '../../config/fire'
+import LocationsList from './LocationsList'
 
 // USER PROFILE PAGE
-const Dashboard = () => {
+const Dashboard = props => {
   const {
     userDataState,
     getUserData,
@@ -15,12 +15,9 @@ const Dashboard = () => {
     updatePushAlerts,
     addPhoneNumber
   } = useContext(UserDataContext)
-  const {
-    fireDataState,
-    getUserLocations,
-    // deleteLocationMarker,
-    deleteUserLocation
-  } = useContext(FireDataContext)
+  const { fireDataState, getUserLocations, deleteUserLocation } = useContext(
+    FireDataContext
+  )
   const { userLocations, userLocationMarkers } = fireDataState
   const {
     email,
@@ -34,7 +31,11 @@ const Dashboard = () => {
   const [showEditPhone, setEditPhone] = useState(false)
   const [isEditing, setIsEditing] = useState(false)
   const [newEmail, setNewEmail] = useState('')
-  // const [viewEmail, setViewEmail] = useState('')
+
+  const phoneFormatted = phone.replace(
+    /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/,
+    '($1) $2-$3'
+  )
 
   useEffect(() => {
     getUserData()
@@ -64,7 +65,11 @@ const Dashboard = () => {
   const changeEmail = () => {
     console.log(newEmail)
     axiosWithAuth()
-      .put(`users/update/${fire.auth().currentUser.uid}`, { email: newEmail })
+      .put(
+        // `${process.env.REACT_APP_ENV}users/update/${
+        `users/update/${fire.auth().currentUser.uid}`,
+        { email: newEmail }
+      )
       .then(res => {
         fire
           .auth()
@@ -72,7 +77,7 @@ const Dashboard = () => {
           .then(newEmailCreated => {
             console.log('new email has been saved in firebase')
           })
-          .catch(err => alert(err.message))
+          .catch(err => console.log(err))
         setIsEditing(false)
       })
       .catch(err => console.log(err))
@@ -135,7 +140,7 @@ const Dashboard = () => {
             </div>
           ) : (
             <div className="profile-field-container">
-              <h3 className="profile-field profile-phone">{phone}</h3>
+              <h3 className="profile-field profile-phone">{phoneFormatted}</h3>
               <i
                 onClick={() => setEditPhone(true)}
                 className="fas fa-pencil-alt edit-profile-icon"
@@ -177,42 +182,11 @@ const Dashboard = () => {
           </div>
           {/* <button onClick={e=>{subscribeUser()}}>Check</button> */}
         </div>
-        <div className="locations-info">
-          <h3>Saved Locations</h3>
-          <table className="locations-table">
-            <thead>
-              <tr className="table-row">
-                <th className="locations-header">Address</th>
-                <th className="locations-header">Radius</th>
-                <th className="locations-header">Alerts</th>
-                {/* <th className="locations-header">Delete</th> */}
-              </tr>
-            </thead>
-
-            <tbody>
-              {userLocations.map((loc, index) => (
-                <tr className="table-row" key={index + loc.radius}>
-                  <td className="table-data address-field">{loc.address}</td>
-                  <td className="table-data radius-field">{loc.radius} mi</td>
-                  <td className="table-data notifications-field">
-                    {loc.notifications ? 'ON' : 'OFF'}
-                  </td>
-                  <td>
-                    <div
-                      className="delete-location-btn"
-                      onClick={() => deleteUserLocation(loc.id)}
-                    >
-                      x
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <Link to="/address">
-            <button className="add-location-btn">Add Location</button>
-          </Link>
-        </div>
+        <LocationsList
+          userLocations={userLocations}
+          deleteUserLocation={deleteUserLocation}
+          {...props}
+        />
       </div>
     </div>
   )
