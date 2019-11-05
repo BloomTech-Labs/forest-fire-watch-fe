@@ -1,10 +1,12 @@
 import React from "react";
 import Navigation from "../components/Navigation";
-// import Login from "../components/AuthForms/Login"
 import { render, fireEvent } from "./test-utils";
+import { createMemoryHistory } from 'history'
+import fire from "../config/fire";
 
 describe("<Navigation />", () => {
 	it("renders without crashing", () => {
+		const history = createMemoryHistory()
 	   	render(<Navigation />)
 	})
 	it("renders Home", () => {
@@ -12,23 +14,11 @@ describe("<Navigation />", () => {
 	    
 		nav.getByText(/Home/i)
 	})
-	
-	// it('login modal shows the children and a close button', async() => {
-	// 	const handleClose = jest.fn()
-	  
-	// 	// Act
-	// 	const { getByText } = render(
-	// 	  <Login onClose={handleClose}>
-	// 		<div>test</div>
-	// 	  </Login>
-	// 	)
-	// 	// Assert
-	// 	expect(getByText('test')).toBeTruthy()
-	  
-	// 	// // Act
-		// fireEvent.click(getByText(/x/i))
-	  
-		// // Assert
-		// expect(handleClose).toHaveBeenCalledTimes(1)
-	//   })
+	it("displays login modal when clicking Sign In", () => {
+		const { getByText, findByText } = render(<Navigation />)
+
+		fireEvent.click(getByText('Sign In'))
+
+		
+	})
 });
