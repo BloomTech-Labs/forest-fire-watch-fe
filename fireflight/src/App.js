@@ -4,7 +4,7 @@ import axios from 'axios'
 
 // import Navigation from "./components/Navigation";
 import Home from './components/Home'
-import Dashboard from './components/Dashboard'
+import Dashboard from './components/Dashboard/'
 import AuthForms from './components/AuthForms/AuthForms'
 import Address from './components/Address'
 import LandingPage from './components/LandingPage'

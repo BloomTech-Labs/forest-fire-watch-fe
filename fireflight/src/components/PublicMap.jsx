@@ -169,7 +169,13 @@ const PublicMap = ({ setShowAuthForms, setLoginFormStatus, setRegisterFormStatus
 		</div>
 	);
 
-	const fireLocationPopup = <div style={{ display: 'flex', flexDirection: 'column' }}>THIS IS A FIRE</div>;
+  const fireLocationPopup = (
+    <div
+      style={{ display: 'flex', flexDirection: 'column', fontSize: '1.4rem' }}
+    >
+      {selectedMarker[7]}
+    </div>
+  )
 
 	const queryParams = {
 		country: 'us'

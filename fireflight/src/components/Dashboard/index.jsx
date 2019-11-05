@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { UserDataContext } from '../context/UserDataContext'
-import NavigationProfile from './NavigationProfile'
-import { FireDataContext } from '../context/FireDataContext'
-import axiosWithAuth from '../utils/axiosWithAuth'
-import fire from '../config/fire'
+import { UserDataContext } from '../../context/UserDataContext'
+import NavigationProfile from '../NavigationProfile'
+import { FireDataContext } from '../../context/FireDataContext'
+import axiosWithAuth from '../../utils/axiosWithAuth'
+import fire from '../../config/fire'
+import LocationsList from './LocationsList'
 
 // USER PROFILE PAGE
 const Dashboard = props => {
@@ -14,12 +15,9 @@ const Dashboard = props => {
     updatePushAlerts,
     addPhoneNumber
   } = useContext(UserDataContext)
-  const {
-    fireDataState,
-    getUserLocations,
-    // deleteLocationMarker,
-    deleteUserLocation
-  } = useContext(FireDataContext)
+  const { fireDataState, getUserLocations, deleteUserLocation } = useContext(
+    FireDataContext
+  )
   const { userLocations, userLocationMarkers } = fireDataState
   const {
     email,
@@ -33,7 +31,11 @@ const Dashboard = props => {
   const [showEditPhone, setEditPhone] = useState(false)
   const [isEditing, setIsEditing] = useState(false)
   const [newEmail, setNewEmail] = useState('')
-  // const [viewEmail, setViewEmail] = useState('')
+
+  const phoneFormatted = phone.replace(
+    /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/,
+    '($1) $2-$3'
+  )
 
   useEffect(() => {
     getUserData()
@@ -124,7 +126,7 @@ const Dashboard = props => {
             </div>
           ) : (
             <div className="profile-field-container">
-              <h3 className="profile-field profile-phone">{phone}</h3>
+              <h3 className="profile-field profile-phone">{phoneFormatted}</h3>
               <i
                 onClick={() => setEditPhone(true)}
                 className="fas fa-pencil-alt edit-profile-icon"
@@ -166,44 +168,11 @@ const Dashboard = props => {
           </div>
           {/* <button onClick={e=>{subscribeUser()}}>Check</button> */}
         </div>
-        <div className="locations-info">
-          <h3>Saved Locations</h3>
-          <table className="locations-table">
-            <thead>
-              <tr className="table-row">
-                <th className="locations-header">Address</th>
-                <th className="locations-header">Radius</th>
-                <th className="locations-header">Alerts</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              {userLocations.map((loc, index) => (
-                <tr className="table-row" key={index + loc.radius}>
-                  <td className="table-data address-field">{loc.address}</td>
-                  <td className="table-data radius-field">{loc.radius} mi</td>
-                  <td className="table-data notifications-field">
-                    {loc.notifications ? 'ON' : 'OFF'}
-                  </td>
-                  <td>
-                    <div
-                      className="delete-location-btn"
-                      onClick={() => deleteUserLocation(loc.id)}
-                    >
-                      x
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <button
-            className="add-location-btn"
-            onClick={() => props.history.push('/address')}
-          >
-            Add Location
-          </button>
-        </div>
+        <LocationsList
+          userLocations={userLocations}
+          deleteUserLocation={deleteUserLocation}
+          {...props}
+        />
       </div>
     </div>
   )
