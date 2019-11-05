@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { UserDataContext } from '../context/UserDataContext'
-import NavigationProfile from './NavigationProfile'
-import { FireDataContext } from '../context/FireDataContext'
-import axiosWithAuth from '../utils/axiosWithAuth'
-import fire from '../config/fire'
+import { UserDataContext } from '../../context/UserDataContext'
+import NavigationProfile from '../NavigationProfile'
+import { FireDataContext } from '../../context/FireDataContext'
+import axiosWithAuth from '../../utils/axiosWithAuth'
+import fire from '../../config/fire'
+import AddressesList from './AddressesList'
 
 // USER PROFILE PAGE
 const Dashboard = props => {
@@ -14,12 +15,9 @@ const Dashboard = props => {
     updatePushAlerts,
     addPhoneNumber
   } = useContext(UserDataContext)
-  const {
-    fireDataState,
-    getUserLocations,
-    // deleteLocationMarker,
-    deleteUserLocation
-  } = useContext(FireDataContext)
+  const { fireDataState, getUserLocations, deleteUserLocation } = useContext(
+    FireDataContext
+  )
   const { userLocations, userLocationMarkers } = fireDataState
   const {
     email,
@@ -170,44 +168,11 @@ const Dashboard = props => {
           </div>
           {/* <button onClick={e=>{subscribeUser()}}>Check</button> */}
         </div>
-        <div className="locations-info">
-          <h3>Saved Locations</h3>
-          <table className="locations-table">
-            <thead>
-              <tr className="table-row">
-                <th className="locations-header">Address</th>
-                <th className="locations-header">Radius</th>
-                <th className="locations-header">Alerts</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              {userLocations.map((loc, index) => (
-                <tr className="table-row" key={index + loc.radius}>
-                  <td className="table-data address-field">{loc.address}</td>
-                  <td className="table-data radius-field">{loc.radius} mi</td>
-                  <td className="table-data notifications-field">
-                    {loc.notifications ? 'ON' : 'OFF'}
-                  </td>
-                  <td>
-                    <div
-                      className="delete-location-btn"
-                      onClick={() => deleteUserLocation(loc.id)}
-                    >
-                      x
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <button
-            className="add-location-btn"
-            onClick={() => props.history.push('/address')}
-          >
-            Add Location
-          </button>
-        </div>
+        <AddressesList
+          userLocations={userLocations}
+          deleteUserLocation={deleteUserLocation}
+          {...props}
+        />
       </div>
     </div>
   )
