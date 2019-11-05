@@ -4,7 +4,7 @@ import NavigationProfile from '../NavigationProfile'
 import { FireDataContext } from '../../context/FireDataContext'
 import axiosWithAuth from '../../utils/axiosWithAuth'
 import fire from '../../config/fire'
-import AddressesList from './AddressesList'
+import LocationsList from './LocationsList'
 
 // USER PROFILE PAGE
 const Dashboard = props => {
@@ -168,7 +168,7 @@ const Dashboard = props => {
           </div>
           {/* <button onClick={e=>{subscribeUser()}}>Check</button> */}
         </div>
-        <AddressesList
+        <LocationsList
           userLocations={userLocations}
           deleteUserLocation={deleteUserLocation}
           {...props}

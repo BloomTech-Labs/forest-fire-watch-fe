@@ -1,6 +1,6 @@
 import React from 'react'
 
-const AddressesList = props => {
+const LocationsList = props => {
   const { userLocations, deleteUserLocation, history } = props
 
   return (
@@ -45,4 +45,4 @@ const AddressesList = props => {
   )
 }
 
-export default AddressesList
+export default LocationsList
