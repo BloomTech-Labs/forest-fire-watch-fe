@@ -33,7 +33,11 @@ const Dashboard = props => {
   const [showEditPhone, setEditPhone] = useState(false)
   const [isEditing, setIsEditing] = useState(false)
   const [newEmail, setNewEmail] = useState('')
-  // const [viewEmail, setViewEmail] = useState('')
+
+  const phoneFormatted = phone.replace(
+    /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/,
+    '($1) $2-$3'
+  )
 
   useEffect(() => {
     getUserData()
@@ -124,7 +128,7 @@ const Dashboard = props => {
             </div>
           ) : (
             <div className="profile-field-container">
-              <h3 className="profile-field profile-phone">{phone}</h3>
+              <h3 className="profile-field profile-phone">{phoneFormatted}</h3>
               <i
                 onClick={() => setEditPhone(true)}
                 className="fas fa-pencil-alt edit-profile-icon"
