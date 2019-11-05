@@ -1,12 +1,9 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import App from "../App";
 import { render, fireEvent } from "./test-utils";
-import { createMemoryHistory } from 'history'
 
 describe("<App />", () => {
   it("renders without crashing", () => {
-    const history = createMemoryHistory()
     render(<App />)
   })
   it("renders Enter the address you wish to check fire proximity to", () => {
@@ -19,4 +16,13 @@ describe("<App />", () => {
 
     app.getByText(/to save addresses and receive notifications/i)
   })
+  // it("displays login modal when clicking Sign In", async() => {
+	// 	const { getByText, findByText } = render(<App />)
+
+	// 	// act(() => {
+	// 		fireEvent.click(findByText('Sign In'))
+	// 	// })
+
+	// 	await expect(findByText(/Welcome back/i)).toBeTruthy()
+	// })
 });
