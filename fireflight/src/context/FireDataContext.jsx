@@ -20,7 +20,8 @@ import {
 	SET_USER_LOCATIONS,
 	TOGGLE_NOTIFICATIONS,
 	DELETE_USER_LOCATION,
-	SET_EXCLAMATION_MARKERS
+	SET_EXCLAMATION_MARKERS,
+	SET_SAVED_LOCATION_ERROR
 } from './fireDataTypes';
 
 const DSbaseURL = 'https://wildfirewatch.herokuapp.com';
@@ -101,6 +102,11 @@ const fireDataReducer = (state, action) => {
 				...state,
 				exclamationMarkers: action.payload
 			}
+		case SET_SAVED_LOCATION_ERROR:
+			return{
+				...state,
+				errorMessage: action.payload
+			}
 		default:
 			return {
 				...state
@@ -132,6 +138,7 @@ export const FireDataProvider = ({ children }) => {
 		userLocationMarkers: [],
 		userLocalFireMarkers: [],
 		exclamationMarkers: [],
+		errorMessage: 'hello'
 	});
 
 
@@ -222,10 +229,12 @@ export const FireDataProvider = ({ children }) => {
 
 	const saveInputLocation = (address, location, radius) => {
 		const theToken = localStorage.getItem('token');
+		
 
 		console.log(address, location, radius)
 
 		if (theToken) {
+			
 			axiosWithAuth()
 				.post('locations', { address, radius })
 				.then((res) => {
@@ -260,7 +269,13 @@ export const FireDataProvider = ({ children }) => {
 							</Marker>
 						]
 					});
-				});
+				})
+				.catch(err=>{console.log("errorrr", err)
+			dispatch({
+				type: SET_SAVED_LOCATION_ERROR,
+				payload: "hello"
+			})});
+			return true 
 		} else {
 			alert('Please log in to save a location.');
 		}
@@ -336,7 +351,6 @@ export const FireDataProvider = ({ children }) => {
 					
 					let localArray = [];
 					fireDataState.allFires.forEach((fire) => {
-						console.log("get cor", fire.location[1], fire.location[0], res.data.features[0].center[1], res.data.features[0].center[0]);
 						let distance = haversineDistance(
 							[res.data.features[0].center[1], res.data.features[0].center[0]],
 							[fire.location[1], fire.location[0]],

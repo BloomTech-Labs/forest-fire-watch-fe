@@ -7,12 +7,16 @@ function Address(props) {
   const {
     getCoordinates,
     // saveLocationMarker,
-    saveInputLocation
+    saveInputLocation,
+    errorMessage
   } = useContext(FireDataContext)
   // const addressContext = useContext(AddressContext);
 
   const [address, setAddress] = useState('')
   const [radius, setRadius] = useState('')
+
+  console.log('errorMessage', errorMessage)
+
   //   const [id, setId] = useState(undefined)
   //   const [viewport, setViewport] = useState({})
 
@@ -27,6 +31,7 @@ function Address(props) {
       // saveLocationMarker() // can't call this b/c the function is taking in address/radius from another piece of data specific to the markers
       // addressContext.saveAddress(address, radius);
       saveInputLocation(address, location, radius)
+      // console.log('save', saveInputLocation(address, location, radius))
     }
     props.history.push(`/dashboard`)
   }
