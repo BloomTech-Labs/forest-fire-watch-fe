@@ -261,14 +261,15 @@ export const FireDataProvider = ({ children }) => {
 						]
 					});
 				});
-		} else {
-			alert('Please log in to save a location.');
-		}
+			}
+		// } else {
+		// 	alert('Please log in to save a location.');
+		// }
 	}
 
 	const saveLocationMarker = () => {
 		const theToken = localStorage.getItem('token');
-
+		console.log("The Token", theToken) // Token is not here when clicking the Sign In button on the Login modal
 		if (theToken) {
 			axiosWithAuth()
 				.post('locations', {
@@ -308,9 +309,10 @@ export const FireDataProvider = ({ children }) => {
 						]
 					});
 				});
-		} else {
-			alert('Please log in to save a location.');
-		}
+			}
+		// } else {
+		// 	alert('Please log in to save a location.');
+		// }
 	};
 
 	/* 

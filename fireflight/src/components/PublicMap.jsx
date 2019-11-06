@@ -7,7 +7,7 @@ import Navigation from '../components/Navigation'
 import Geocoder from 'react-mapbox-gl-geocoder'
 
 const token = process.env.REACT_APP_MAPBOX_TOKEN
-
+console.log("Token 4", token) //This works
 const PublicMap = ({
   setShowAuthForms,
   setLoginFormStatus,
@@ -95,7 +95,7 @@ const PublicMap = ({
         className="save-location-btn"
         onClick={e => {
           const token = localStorage.getItem('token')
-
+          console.log("Token 5", token) // No token here when in demo mode
           if (token) {
             saveLocationMarker()
             deleteLocationMarker()
