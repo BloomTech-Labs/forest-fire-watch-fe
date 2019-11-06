@@ -64,6 +64,8 @@ const PublicMap = ({
     e.preventDefault()
     if (address) {
       getCoordinates(address, radius)
+      localStorage.setItem('address', address);
+      localStorage.setItem('radius', radius);
     }
     setViewport({
       latitude: location[1],
