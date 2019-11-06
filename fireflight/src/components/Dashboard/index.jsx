@@ -32,7 +32,7 @@ const Dashboard = props => {
   const [isEditing, setIsEditing] = useState(false)
   const [newEmail, setNewEmail] = useState('')
 
-  const phoneFormatted = phone.replace(
+  const phoneFormatted = phoneNumber.replace(
     /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/,
     '($1) $2-$3'
   )
