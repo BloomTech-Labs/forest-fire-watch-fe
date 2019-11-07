@@ -49,10 +49,12 @@ const Dashboard = props => {
   }, [phone])
 
   function formatPhone(phone) {
-    return phone.replace(
-      /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/,
-      '($1) $2-$3'
-    )
+    if (phone != null) {
+      return phone.replace(
+        /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/,
+        '($1) $2-$3'
+      )
+    }
   }
 
   useEffect(() => {
