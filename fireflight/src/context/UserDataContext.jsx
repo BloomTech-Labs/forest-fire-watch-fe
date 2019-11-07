@@ -119,7 +119,7 @@ export const UserDataProvider = ({ children }) => {
   const updatePushAlerts = change => {
     console.log('Notification permission: ' + Notification.permission)
 
-    // getSub()
+    getSub()
 
     if (Notification.permission === 'default') {
       getSub()
