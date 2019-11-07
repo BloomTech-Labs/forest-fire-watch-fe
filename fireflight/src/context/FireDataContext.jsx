@@ -230,9 +230,6 @@ export const FireDataProvider = ({ children }) => {
 
 	const saveInputLocation = (address, location, radius) => {
 		const theToken = localStorage.getItem('token');
-		
-		let errStatus = null
-		console.log(address, location, radius)
 
 		if (theToken) {
 			
@@ -272,6 +269,7 @@ export const FireDataProvider = ({ children }) => {
 					});
 				})
 				.catch(err=>{
+					//updates the error message to this hardcoded var upon 409 or any error
 					dispatch({
 						type: SET_SAVED_LOCATION_ERROR,
 						payload: ['there is an error']
@@ -282,6 +280,13 @@ export const FireDataProvider = ({ children }) => {
 		} else {
 			alert('Please log in to save a location.');
 		}
+	}
+	//updates the error message
+	const updateSavedLocationErrorMessage = (payload) => {
+		dispatch({
+			type: SET_SAVED_LOCATION_ERROR,
+			payload: payload
+		})
 	}
 
 	const saveLocationMarker = () => {
@@ -615,7 +620,8 @@ export const FireDataProvider = ({ children }) => {
 				setNotificationStatus,
 				toggleNotification,
 				deleteUserLocation,
-				updatePopupRadius
+				updatePopupRadius,
+				updateSavedLocationErrorMessage
 			}}
 		>
 			{children}

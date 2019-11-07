@@ -28,13 +28,7 @@ function Address(props) {
     e.preventDefault()
     if (address) {
       getCoordinates(address, radius, true)
-      // saveLocationMarker() // can't call this b/c the function is taking in address/radius from another piece of data specific to the markers
-      // addressContext.saveAddress(address, radius);
-      // saveInputLocation(address, location, radius)
-      console.log('save', saveInputLocation(address, location, radius))
-      setTimeout(() => {
-        console.log('errorMessage', errorMessage)
-      }, 4000)
+      saveInputLocation(address, location, radius)
     }
     props.history.push(`/dashboard`)
   }

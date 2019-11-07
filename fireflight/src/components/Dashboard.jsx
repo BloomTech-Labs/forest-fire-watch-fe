@@ -19,7 +19,8 @@ const Dashboard = () => {
     fireDataState,
     getUserLocations,
     // deleteLocationMarker,
-    deleteUserLocation
+    deleteUserLocation,
+    updateSavedLocationErrorMessage
   } = useContext(FireDataContext)
   const { userLocations, userLocationMarkers } = fireDataState
   const {
@@ -34,7 +35,15 @@ const Dashboard = () => {
   const [showEditPhone, setEditPhone] = useState(false)
   const [isEditing, setIsEditing] = useState(false)
   const [newEmail, setNewEmail] = useState('')
-  // const [viewEmail, setViewEmail] = useState('')
+
+  //checks to see if the error message being set in Address.jsx
+  if (fireDataState.errorMessage[0] === 'there is an error') {
+    alert(
+      'This location is already saved. To update the radius, please click the location on the map.'
+    )
+    //reverts the error message to false
+    updateSavedLocationErrorMessage('false')
+  }
 
   useEffect(() => {
     getUserData()
