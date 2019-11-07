@@ -308,9 +308,10 @@ export const FireDataProvider = ({ children }) => {
 						]
 					});
 				});
-		} else {
-			alert('Please log in to save a location.');
 		}
+		// else {
+		// 	alert('Please log in to save a location.');
+		// }
 	};
 
 	/* 
