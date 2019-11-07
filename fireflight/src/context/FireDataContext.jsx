@@ -103,6 +103,7 @@ const fireDataReducer = (state, action) => {
 				exclamationMarkers: action.payload
 			}
 		case SET_SAVED_LOCATION_ERROR:
+			console.log("action",action.payload)
 			return{
 				...state,
 				errorMessage: action.payload
@@ -138,7 +139,7 @@ export const FireDataProvider = ({ children }) => {
 		userLocationMarkers: [],
 		userLocalFireMarkers: [],
 		exclamationMarkers: [],
-		errorMessage: 'hello'
+		errorMessage: ['']
 	});
 
 
@@ -230,7 +231,7 @@ export const FireDataProvider = ({ children }) => {
 	const saveInputLocation = (address, location, radius) => {
 		const theToken = localStorage.getItem('token');
 		
-
+		let errStatus = null
 		console.log(address, location, radius)
 
 		if (theToken) {
@@ -270,12 +271,14 @@ export const FireDataProvider = ({ children }) => {
 						]
 					});
 				})
-				.catch(err=>{console.log("errorrr", err)
-			dispatch({
-				type: SET_SAVED_LOCATION_ERROR,
-				payload: "hello"
-			})});
-			return true 
+				.catch(err=>{
+					dispatch({
+						type: SET_SAVED_LOCATION_ERROR,
+						payload: ['there is an error']
+					})
+			console.log("within the catch")
+		});
+			
 		} else {
 			alert('Please log in to save a location.');
 		}
