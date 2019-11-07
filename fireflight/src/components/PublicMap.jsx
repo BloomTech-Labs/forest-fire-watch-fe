@@ -75,7 +75,6 @@ const PublicMap = ({
       transitionDuration: 500
     })
     // setAddress('') // doesn't reset address because of the special Geocoder library
-    setRadius('')
   }
 
   const tempLocationPopup = (
@@ -219,7 +218,7 @@ const PublicMap = ({
         />
         <form onSubmit={handleSubmit} className="map-form-container">
           <label className="map-form-text">
-            Enter the address you wish to check fire proximity to.
+            Enter the address and radius you wish to check fire proximity to.
           </label>
           <Geocoder
             {...mapAccess}
@@ -235,7 +234,7 @@ const PublicMap = ({
             type="number"
             name="Radius"
             placeholder="mi"
-            value={radius}
+            value={radius ? radius : 50}
             onChange={e => setRadius(e.target.value)}
           />
           <button className="form-btn">Search</button>
