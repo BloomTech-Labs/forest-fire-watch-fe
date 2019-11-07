@@ -86,6 +86,7 @@ export const UserDataProvider = ({ children }) => {
         .split(')')
         .join('')
     }
+
     axiosWithAuth()
       .put('/users/', data)
       .then(res => {
