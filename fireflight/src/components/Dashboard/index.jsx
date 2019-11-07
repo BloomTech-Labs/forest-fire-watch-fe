@@ -181,7 +181,9 @@ const Dashboard = props => {
                   id="checkbox2"
                   type="checkbox"
                   onChange={e => {
-                    updatePushAlerts(!receivePush)
+                    if (receivePush) {
+                      updatePushAlerts(!receivePush)
+                    }
                   }}
                   checked={receivePush}
                 />
