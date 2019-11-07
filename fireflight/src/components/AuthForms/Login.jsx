@@ -36,7 +36,7 @@ function Login({
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(user => {
-        console.log("Firebase user:",user)
+        console.log('Firebase user:', user)
         const UID = user.user.uid
         const credentials = { UID }
 
@@ -72,9 +72,9 @@ function Login({
         setLoading(false)
       })
 
-    if (localStorage.getItem('address')) {
-      saveLocationMarker()
-    }
+    // if (localStorage.getItem('address')) {
+    //   saveLocationMarker()
+    // }
   }
 
   return (
