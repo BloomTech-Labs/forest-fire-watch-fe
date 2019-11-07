@@ -52,7 +52,6 @@ function Login({
             setLoading(false)
             setShowAuthForms(false)
             if (localStorage.getItem('address')) {
-              console.log('ADDRESS', localStorage.getItem('address'))
               saveLocationMarker()
             }
           })
@@ -71,10 +70,6 @@ function Login({
         setErrorStatus(true)
         setLoading(false)
       })
-
-    // if (localStorage.getItem('address')) {
-    //   saveLocationMarker()
-    // }
   }
 
   return (

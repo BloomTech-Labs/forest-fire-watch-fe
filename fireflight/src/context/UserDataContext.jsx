@@ -86,6 +86,7 @@ export const UserDataProvider = ({ children }) => {
         .split(')')
         .join('')
     }
+
     axiosWithAuth()
       .put('/users/', data)
       .then(res => {
@@ -105,6 +106,12 @@ export const UserDataProvider = ({ children }) => {
           type: UPDATE_RECEIVE_SMS,
           payload: change
         })
+      })
+      .then(res => {
+        if (change) {
+          console.log('receiveSMS trigger')
+          axiosWithAuth().get(`scheduler/triggerSMS`)
+        }
       })
       .catch(err => console.log(err.response))
   }
@@ -128,6 +135,12 @@ export const UserDataProvider = ({ children }) => {
             type: UPDATE_RECEIVE_PUSH,
             payload: change
           })
+        })
+        .then(res => {
+          if (change) {
+            console.log('receivePush trigger')
+            axiosWithAuth().get(`scheduler/triggerPush`)
+          }
         })
         .catch(err => console.log(err.response))
     }

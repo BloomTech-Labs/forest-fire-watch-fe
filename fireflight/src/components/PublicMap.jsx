@@ -64,17 +64,17 @@ const PublicMap = ({
     e.preventDefault()
     if (address) {
       getCoordinates(address, radius)
-      localStorage.setItem('address', address);
-      localStorage.setItem('radius', radius);
+      localStorage.setItem('address', address)
+      localStorage.setItem('radius', radius)
     }
     setViewport({
+      ...viewport,
       latitude: location[1],
       longitude: location[0],
       zoom: 8,
       transitionDuration: 500
     })
     // setAddress('') // doesn't reset address because of the special Geocoder library
-    setRadius('')
   }
 
   const tempLocationPopup = (
@@ -95,7 +95,6 @@ const PublicMap = ({
         className="save-location-btn"
         onClick={e => {
           const token = localStorage.getItem('token')
-
           if (token) {
             saveLocationMarker()
             deleteLocationMarker()
@@ -119,7 +118,6 @@ const PublicMap = ({
           textAlign: 'center',
           textTransform: 'uppercase',
           fontSize: '14px',
-          // display: "flex",
           maxWidth: '25rem'
         }}
       >
@@ -130,20 +128,6 @@ const PublicMap = ({
         {' '}
         Current Radius: {selectedMarker[3]}mi{' '}
       </span>
-      {/* <div style={{ display: "flex", justifyContent: "space-around" }}>
-        <span>Toggle Notifications:</span>
-        <div className="checkbox-wrapper">
-          <CheckBox
-            onChange={() => {
-              toggleNotification();
-            }}
-            checked={selectedMarker[6]}
-            id="checkbox"
-            type="checkbox"
-          />
-          <CheckBoxLabel htmlFor="checkbox" />
-        </div>
-      </div> */}
 
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <FormRadiusInput
@@ -218,7 +202,7 @@ const PublicMap = ({
         />
         <form onSubmit={handleSubmit} className="map-form-container">
           <label className="map-form-text">
-            Enter the address you wish to check fire proximity to.
+            Enter the address and radius you wish to check fire proximity to.
           </label>
           <Geocoder
             {...mapAccess}
@@ -234,7 +218,7 @@ const PublicMap = ({
             type="number"
             name="Radius"
             placeholder="mi"
-            value={radius}
+            value={radius ? radius : 50}
             onChange={e => setRadius(e.target.value)}
           />
           <button className="form-btn">Search</button>
