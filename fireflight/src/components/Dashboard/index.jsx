@@ -15,9 +15,12 @@ const Dashboard = props => {
     updatePushAlerts,
     addPhoneNumber
   } = useContext(UserDataContext)
-  const { fireDataState, getUserLocations, deleteUserLocation } = useContext(
-    FireDataContext
-  )
+  const {
+    fireDataState,
+    getUserLocations,
+    deleteUserLocation,
+    updateSavedLocationErrorMessage
+  } = useContext(FireDataContext)
   const { userLocations, userLocationMarkers } = fireDataState
   const {
     email,
@@ -27,34 +30,37 @@ const Dashboard = props => {
     firstName,
     lastName
   } = userDataState
+
   const [phoneNumber, setPhoneNumber] = useState('')
   const [showEditPhone, setEditPhone] = useState(false)
   const [isEditing, setIsEditing] = useState(false)
   const [newEmail, setNewEmail] = useState('')
 
-  const phoneFormatted = phoneNumber.replace(
-    /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/,
-    '($1) $2-$3'
-  )
+  if (fireDataState.errorMessage[0] === 'there is an error') {
+    alert(
+      'This location is already saved. To update the radius, please click the location on the map.'
+    )
+    //reverts the error message to false
+    updateSavedLocationErrorMessage('false')
+  }
+
+  useEffect(() => {
+    setPhoneNumber(phone)
+  }, [phone])
+
+  function formatPhone(phone) {
+    if (phone != null) {
+      return phone.replace(
+        /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/,
+        '($1) $2-$3'
+      )
+    }
+  }
 
   useEffect(() => {
     getUserData()
     getUserLocations()
   }, [userLocationMarkers])
-
-  useEffect(() => {
-    if (receiveSMS === true) {
-      console.log('receiveSMS trigger')
-      axiosWithAuth().get(`scheduler/user`)
-    }
-  }, [receiveSMS])
-
-  useEffect(() => {
-    if (receivePush === true) {
-      console.log('receivePush trigger')
-      axiosWithAuth().get(`scheduler/user`)
-    }
-  }, [receivePush])
 
   const handleAddPhoneNumber = () => {
     if (phoneNumber.length > 9) {
@@ -62,6 +68,7 @@ const Dashboard = props => {
       addPhoneNumber(phoneNumber)
     }
   }
+
   const changeEmail = () => {
     console.log(newEmail)
     axiosWithAuth()
@@ -127,7 +134,7 @@ const Dashboard = props => {
                 className="is-editing-input"
                 type="text"
                 name="phone"
-                value={phoneNumber}
+                value={formatPhone(phoneNumber)}
                 onChange={e => setPhoneNumber(e.target.value)}
                 placeholder="ex. 123 456 7890"
               />
@@ -140,7 +147,9 @@ const Dashboard = props => {
             </div>
           ) : (
             <div className="profile-field-container">
-              <h3 className="profile-field profile-phone">{phoneFormatted}</h3>
+              <h3 className="profile-field profile-phone">
+                {formatPhone(phoneNumber)}
+              </h3>
               <i
                 onClick={() => setEditPhone(true)}
                 className="fas fa-pencil-alt edit-profile-icon"
