@@ -7,7 +7,7 @@ import Navigation from '../components/Navigation'
 import Geocoder from 'react-mapbox-gl-geocoder'
 
 const token = process.env.REACT_APP_MAPBOX_TOKEN
-console.log("Token 4", token) //This works
+
 const PublicMap = ({
   setShowAuthForms,
   setLoginFormStatus,
@@ -95,7 +95,6 @@ const PublicMap = ({
         className="save-location-btn"
         onClick={e => {
           const token = localStorage.getItem('token')
-          console.log("Token 5", token) // No token here when in demo mode
           if (token) {
             saveLocationMarker()
             deleteLocationMarker()
@@ -119,7 +118,6 @@ const PublicMap = ({
           textAlign: 'center',
           textTransform: 'uppercase',
           fontSize: '14px',
-          // display: "flex",
           maxWidth: '25rem'
         }}
       >
@@ -130,20 +128,6 @@ const PublicMap = ({
         {' '}
         Current Radius: {selectedMarker[3]}mi{' '}
       </span>
-      {/* <div style={{ display: "flex", justifyContent: "space-around" }}>
-        <span>Toggle Notifications:</span>
-        <div className="checkbox-wrapper">
-          <CheckBox
-            onChange={() => {
-              toggleNotification();
-            }}
-            checked={selectedMarker[6]}
-            id="checkbox"
-            type="checkbox"
-          />
-          <CheckBoxLabel htmlFor="checkbox" />
-        </div>
-      </div> */}
 
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <FormRadiusInput

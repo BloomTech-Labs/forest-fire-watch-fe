@@ -262,14 +262,10 @@ export const FireDataProvider = ({ children }) => {
 					});
 				});
 			}
-		// } else {
-		// 	alert('Please log in to save a location.');
-		// }
 	}
 
 	const saveLocationMarker = () => {
 		const theToken = localStorage.getItem('token');
-		console.log("The Token", theToken) // Token is not here when clicking the Sign In button on the Login modal
 		if (theToken) {
 			axiosWithAuth()
 				.post('locations', {
@@ -310,9 +306,6 @@ export const FireDataProvider = ({ children }) => {
 					});
 				});
 			}
-		// } else {
-		// 	alert('Please log in to save a location.');
-		// }
 	};
 
 	/* 
@@ -432,7 +425,6 @@ export const FireDataProvider = ({ children }) => {
 	};
 
 	const setNotificationStatus = () => {
-		// console.log('before axios: ', fireDataState.selectedMarker);
 		axiosWithAuth()
 			.put(`locations/${fireDataState.selectedMarker[5]}`, {
 				notifications: fireDataState.selectedMarker[6]
@@ -450,7 +442,6 @@ export const FireDataProvider = ({ children }) => {
 		dispatch({
 			type: TOGGLE_NOTIFICATIONS
 		});
-		// console.log('before axios: ', fireDataState.selectedMarker);
 		axiosWithAuth()
 			.put(`locations/${fireDataState.selectedMarker[5]}`, {
 				notifications: !fireDataState.selectedMarker[6]
@@ -469,7 +460,6 @@ export const FireDataProvider = ({ children }) => {
   */
 	const getUserLocations = () => {
 		axiosWithAuth().get('locations').then((res) => {
-			// console.log("getUserLocations: ", res);
 			dispatch({
 				type: GET_USER_LOCATIONS,
 				payload: res.data
