@@ -15,9 +15,12 @@ const Dashboard = props => {
     updatePushAlerts,
     addPhoneNumber
   } = useContext(UserDataContext)
-  const { fireDataState, getUserLocations, deleteUserLocation } = useContext(
-    FireDataContext
-  )
+  const {
+    fireDataState,
+    getUserLocations,
+    deleteUserLocation,
+    updateSavedLocationErrorMessage
+  } = useContext(FireDataContext)
   const { userLocations, userLocationMarkers } = fireDataState
   const {
     email,
@@ -33,15 +36,25 @@ const Dashboard = props => {
   const [isEditing, setIsEditing] = useState(false)
   const [newEmail, setNewEmail] = useState('')
 
+  if (fireDataState.errorMessage[0] === 'there is an error') {
+    alert(
+      'This location is already saved. To update the radius, please click the location on the map.'
+    )
+    //reverts the error message to false
+    updateSavedLocationErrorMessage('false')
+  }
+
   useEffect(() => {
     setPhoneNumber(phone)
   }, [phone])
 
   function formatPhone(phone) {
-    return phone.replace(
-      /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/,
-      '($1) $2-$3'
-    )
+    if (phone != null) {
+      return phone.replace(
+        /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/,
+        '($1) $2-$3'
+      )
+    }
   }
 
   useEffect(() => {

@@ -20,7 +20,8 @@ import {
 	SET_USER_LOCATIONS,
 	TOGGLE_NOTIFICATIONS,
 	DELETE_USER_LOCATION,
-	SET_EXCLAMATION_MARKERS
+	SET_EXCLAMATION_MARKERS,
+	SET_SAVED_LOCATION_ERROR
 } from './fireDataTypes';
 
 const DSbaseURL = 'https://wildfirewatch.herokuapp.com';
@@ -101,6 +102,11 @@ const fireDataReducer = (state, action) => {
 				...state,
 				exclamationMarkers: action.payload
 			}
+		case SET_SAVED_LOCATION_ERROR:
+			return {
+				...state,
+				errorMessage: action.payload
+			}
 		default:
 			return {
 				...state
@@ -132,6 +138,7 @@ export const FireDataProvider = ({ children }) => {
 		userLocationMarkers: [],
 		userLocalFireMarkers: [],
 		exclamationMarkers: [],
+		errorMessage: ['']
 	});
 
 
@@ -260,16 +267,27 @@ export const FireDataProvider = ({ children }) => {
 							</Marker>
 						]
 					});
+				})
+				.catch(err=>{
+					dispatch({
+						type: SET_SAVED_LOCATION_ERROR,
+						payload: ['there is an error']
+					})
+					console.log("within the catch")
 				});
-		}
-		// else {
-		// 	alert('Please log in to save a location.');
-		// }
+			}
+
 	}
 
+	//updates the error message
+	const updateSavedLocationErrorMessage = (payload) => {
+		dispatch({
+			type: SET_SAVED_LOCATION_ERROR,
+			payload: payload
+		})
+	}
 	const saveLocationMarker = () => {
 		const theToken = localStorage.getItem('token');
-
 		if (theToken) {
 			axiosWithAuth()
 				.post('locations', {
@@ -309,10 +327,8 @@ export const FireDataProvider = ({ children }) => {
 						]
 					});
 				});
-		}
-		// else {
-		// 	alert('Please log in to save a location.');
-		// }
+			}
+
 	};
 
 	/* 
@@ -432,7 +448,6 @@ export const FireDataProvider = ({ children }) => {
 	};
 
 	const setNotificationStatus = () => {
-		// console.log('before axios: ', fireDataState.selectedMarker);
 		axiosWithAuth()
 			.put(`locations/${fireDataState.selectedMarker[5]}`, {
 				notifications: fireDataState.selectedMarker[6]
@@ -450,7 +465,6 @@ export const FireDataProvider = ({ children }) => {
 		dispatch({
 			type: TOGGLE_NOTIFICATIONS
 		});
-		// console.log('before axios: ', fireDataState.selectedMarker);
 		axiosWithAuth()
 			.put(`locations/${fireDataState.selectedMarker[5]}`, {
 				notifications: !fireDataState.selectedMarker[6]
@@ -469,7 +483,6 @@ export const FireDataProvider = ({ children }) => {
   */
 	const getUserLocations = () => {
 		axiosWithAuth().get('locations').then((res) => {
-			// console.log("getUserLocations: ", res);
 			dispatch({
 				type: GET_USER_LOCATIONS,
 				payload: res.data
@@ -601,7 +614,8 @@ export const FireDataProvider = ({ children }) => {
 				setNotificationStatus,
 				toggleNotification,
 				deleteUserLocation,
-				updatePopupRadius
+				updatePopupRadius,
+				updateSavedLocationErrorMessage
 			}}
 		>
 			{children}

@@ -56,8 +56,6 @@ function App() {
     userLocations
   } = useContext(FireDataContext)
 
-  // console.log("FIRE DATA STATE", fireDataState);
-
   useEffect(() => {
     getAllFires()
     setUserLocations()
@@ -124,12 +122,7 @@ function App() {
           passwordFormStatus={passwordFormStatus}
           setPasswordFormStatus={setPasswordFormStatus}
         />
-
-        {/* <Navigation
-          toggleAuthForms={setShowAuthForms}
-          toggleLoginStatus={setLoginFormStatus}
-          toggleRegisterStatus={setRegisterFormStatus}
-        /> */}
+        
         <UserDataProvider>
           <Route path="/dashboard" component={Dashboard} />
         </UserDataProvider>
