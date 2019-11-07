@@ -106,13 +106,19 @@ export const UserDataProvider = ({ children }) => {
           payload: change
         })
       })
+      .then(res => {
+        if (change) {
+          console.log('receiveSMS trigger')
+          axiosWithAuth().get(`scheduler/triggerSMS`)
+        }
+      })
       .catch(err => console.log(err.response))
   }
 
   const updatePushAlerts = change => {
     console.log('Notification permission: ' + Notification.permission)
 
-    getSub()
+    // getSub()
 
     if (Notification.permission === 'default') {
       getSub()
@@ -128,6 +134,12 @@ export const UserDataProvider = ({ children }) => {
             type: UPDATE_RECEIVE_PUSH,
             payload: change
           })
+        })
+        .then(res => {
+          if (change) {
+            console.log('receivePush trigger')
+            axiosWithAuth().get(`scheduler/triggerPush`)
+          }
         })
         .catch(err => console.log(err.response))
     }

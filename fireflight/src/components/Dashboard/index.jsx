@@ -42,19 +42,19 @@ const Dashboard = props => {
     getUserLocations()
   }, [userLocationMarkers])
 
-  useEffect(() => {
-    if (receiveSMS === true) {
-      console.log('receiveSMS trigger')
-      axiosWithAuth().get(`scheduler/user`)
-    }
-  }, [receiveSMS])
+  // useEffect(() => {
+  //   if (receiveSMS === true) {
+  //     console.log('receiveSMS trigger')
+  //     axiosWithAuth().get(`scheduler/user`)
+  //   }
+  // }, [receiveSMS])
 
-  useEffect(() => {
-    if (receivePush === true) {
-      console.log('receivePush trigger')
-      axiosWithAuth().get(`scheduler/user`)
-    }
-  }, [receivePush])
+  // useEffect(() => {
+  //   if (receivePush === true) {
+  //     console.log('receivePush trigger')
+  //     axiosWithAuth().get(`scheduler/user`)
+  //   }
+  // }, [receivePush])
 
   const handleAddPhoneNumber = () => {
     if (phoneNumber.length > 9) {
