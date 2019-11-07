@@ -64,10 +64,11 @@ const PublicMap = ({
     e.preventDefault()
     if (address) {
       getCoordinates(address, radius)
-      localStorage.setItem('address', address);
-      localStorage.setItem('radius', radius);
+      localStorage.setItem('address', address)
+      localStorage.setItem('radius', radius)
     }
     setViewport({
+      ...viewport,
       latitude: location[1],
       longitude: location[0],
       zoom: 8,
