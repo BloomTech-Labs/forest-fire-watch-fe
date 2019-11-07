@@ -47,7 +47,6 @@ function Login({
         context.state.remote
           .login(credentials)
           .then(res => {
-            console.log('response: ', res)
             setEmail('')
             setPassword('')
             setLoading(false)
