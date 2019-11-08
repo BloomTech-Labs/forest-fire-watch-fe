@@ -1,7 +1,14 @@
 import React from 'react'
 
 const LocationsList = props => {
-  const { userLocations, deleteUserLocation, history } = props
+  const {
+    userLocations,
+    deleteUserLocation,
+    history,
+    receiveSMS,
+    receivePush,
+    getUserData
+  } = props
 
   return (
     <div className="locations-info">
@@ -21,7 +28,8 @@ const LocationsList = props => {
               <td className="table-data address-field">{loc.address}</td>
               <td className="table-data radius-field">{loc.radius} mi</td>
               <td className="table-data notifications-field">
-                {loc.notifications ? 'ON' : 'OFF'}
+                {/* {loc.notifications ? 'ON' : 'OFF'} */}
+                {receiveSMS || receivePush ? 'ON' : 'OFF'}
               </td>
               <td>
                 <div
