@@ -56,9 +56,8 @@ function Login({
             }
           })
           .catch(err => {
-            // catching the error for whatever context.state.remote
-            console.log(err)
-            setErrorText('Email or Password Invalid')
+            // User not found
+            setErrorText({ message: err.response.data.error })
             setErrorStatus(true)
             setLoading(false)
           })
