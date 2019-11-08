@@ -119,8 +119,6 @@ export const UserDataProvider = ({ children }) => {
   const updatePushAlerts = change => {
     console.log('Notification permission: ' + Notification.permission)
 
-    getSub()
-
     if (Notification.permission === 'default') {
       getSub()
     } else if (Notification.permission === 'denied') {
@@ -138,6 +136,7 @@ export const UserDataProvider = ({ children }) => {
         })
         .then(res => {
           if (change) {
+            getSub()
             console.log('receivePush trigger')
             axiosWithAuth().get(`scheduler/triggerPush`)
           }
