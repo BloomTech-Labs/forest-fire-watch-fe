@@ -6,8 +6,7 @@ const LocationsList = props => {
     deleteUserLocation,
     history,
     receiveSMS,
-    receivePush,
-    getUserData
+    receivePush
   } = props
 
   return (
