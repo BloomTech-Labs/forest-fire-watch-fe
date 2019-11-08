@@ -1,0 +1,50 @@
+.profile-container {
+  height: 4rem;
+  margin-top: 2rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 20rem;
+
+  @media (max-width: $mq-mobile) {
+    max-width: 500px;
+    padding-left: 0;
+  }
+
+  .profile-item {
+    color: black;
+    font-weight: 600;
+    font-size: 1.8rem;
+    line-height: 2.5rem;
+    font-style: normal;
+    font-weight: normal;
+    padding: 2rem;
+    width: 10rem;
+
+    @media (max-width: $mq-mobile) {
+      padding: 0.25rem;
+      text-align: center;
+    }
+
+    &:hover {
+      background-color: white;
+    }
+  }
+
+  .profile-item.logout {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 16px;
+    background: #ffffff;
+    border: 0.5px solid #191a1a;
+    border-radius: 2px;
+    margin-left: 2rem;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-self: flex-end;
+  }
+}

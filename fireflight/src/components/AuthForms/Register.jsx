@@ -1,33 +1,32 @@
-import React, { useState, useContext } from "react";
-import { Redirect } from "react-router-dom";
-import { GlobalContext } from "../../context/contextProvider";
+import React, { useState, useContext } from 'react'
+import { Redirect } from 'react-router-dom'
+import { GlobalContext } from '../../context/contextProvider'
 
-import useInput from "../../utils/useInput";
-import styled from "styled-components";
+import useInput from '../../utils/useInput'
+import styled from 'styled-components'
 
-import fire from "../../config/fire";
+import fire from '../../config/fire'
 
 function Register({ toggle, setShowAuthForms, setRegisterStatus }) {
   //useInput is a custom hook that should be used for all controlled inputs
-  const [firstName, setFirstName, handleFirstName] = useInput("", "firstName");
-  const [lastName, setLastName, handleLastName] = useInput("", "lastName");
-  const [email, setEmail, handleEmail] = useInput("", "email");
-  const [password, setPassword, handlePassword] = useInput("", "password");
+  const [firstName, setFirstName, handleFirstName] = useInput('', 'firstName')
+  const [lastName, setLastName, handleLastName] = useInput('', 'lastName')
+  const [email, setEmail, handleEmail] = useInput('', 'email')
+  const [password, setPassword, handlePassword] = useInput('', 'password')
   //second password input used to ensure no typos in passwords
   const [passwordConf, setPasswordConf, handlePasswordConf] = useInput(
-    "",
-    "passwordConf"
-  );
-  const [loading, setLoading] = useState(false);
-  const [errorStatus, setErrorStatus] = useState(false);
-  const [errorText, setErrorText] = useState({});
+    '',
+    'passwordConf'
+  )
+  const [loading, setLoading] = useState(false)
+  const [errorStatus, setErrorStatus] = useState(false)
+  const [errorText, setErrorText] = useState({})
 
-  const data = useContext(GlobalContext);
+  const data = useContext(GlobalContext)
 
   function handleSubmit(e) {
-    e.preventDefault();
-    setLoading(true);
-
+    e.preventDefault()
+    setLoading(true)
     // ERROR HANDLING EXPLANATION
     // We first check if password and passwordConf match. We do this on the front end because the passwordConf does not get passed to the backend to check it.
     // The user credentials are then validated on the backend, if they are invalid, the server returns a 400 status code that triggers the catch method in the api call.
@@ -35,57 +34,64 @@ function Register({ toggle, setShowAuthForms, setRegisterStatus }) {
     // The errorText is set to the error descriptions that are coming from the server.
     // We then display those error descriptions below in some p tags.
 
-    fire
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then(user => {
-        console.log("Firebase user object: ", user);
+    const first_name = firstName
+    const last_name = lastName
+    if (first_name && last_name) {
+      if (email) {
         if (password === passwordConf) {
-          const UID = user.user.uid;
-          const first_name = firstName;
-          const last_name = lastName;
-          const newUser = { first_name, last_name, email, UID };
+          fire
+            .auth()
+            .createUserWithEmailAndPassword(email, password)
+            .then(user => {
+              console.log('Firebase user object: ', user)
+              const UID = user.user.uid
+              const newUser = { first_name, last_name, email, UID }
 
-          data.state.remote
-            .register(newUser)
-            .then(res => {
-              setFirstName("");
-              setLastName("");
-              setEmail("");
-              setPassword("");
-              setPasswordConf("");
-              setLoading(false);
-              setShowAuthForms(false);
+              data.state.remote
+                .register(newUser)
+                .then(res => {
+                  setFirstName('')
+                  setLastName('')
+                  setEmail('')
+                  setPassword('')
+                  setPasswordConf('')
+                  setLoading(false)
+                  // setRegisterStatus(false);
+                  setShowAuthForms(false)
+                })
+                .catch(err => {
+                  setErrorStatus(true)
+                  setErrorText(err.response.data)
+                  setLoading(false)
+                })
             })
             .catch(err => {
-              // BACKEND REGISTER ENDPOINT
-              console.log(
-                "front end error response from backend register endpoint:",
-                err.response.data
-              );
-              setErrorStatus(true);
-              setErrorText(err.response.data);
-              setLoading(false);
-            });
+              // FIREBASE
+              console.log(err)
+              setErrorStatus(true)
+              setErrorText(err) // setting error text to be equal to Firebase error response
+              setLoading(false)
+            })
         } else {
-          // IF PASSWORDS DON'T MATCH
-          setErrorStatus(true);
-          setErrorText({ password: "Passwords must match" });
-          setLoading(false);
+          setErrorStatus(true)
+          setErrorText({ password: 'Your passwords do not match' })
+          setLoading(false)
         }
-      })
-      .catch(err => {
-        // FIREBASE
-        console.log(err);
-        setErrorStatus(true);
-        setErrorText(err); // setting error text to be equal to Firebase error response
-        setLoading(false);
-      });
+      } else {
+        setErrorStatus(true)
+        setErrorText({ message: 'Your email is required' })
+        setLoading(false)
+      }
+    } else {
+      setErrorStatus(true)
+      setErrorText({ message: 'Your full name is required' })
+      setLoading(false)
+    }
   }
 
   if (data.token != null) {
-    console.log(localStorage.getItem("token"));
-    return <Redirect to="/" />;
+    console.log(localStorage.getItem('token'))
+    return <Redirect to="/" />
   } else {
     return (
       <div className="login-page-container register-page-container">
@@ -173,11 +179,11 @@ function Register({ toggle, setShowAuthForms, setRegisterStatus }) {
               <ErrorText />
             )}
             <button
-              className="auth-btn register-btn"
+              className="default-btn register-btn"
               type="submit"
               disabled={loading}
             >
-              {loading ? "Loading..." : "Create Account"}
+              {loading ? 'Loading...' : 'Create Account'}
             </button>
           </div>
         </form>
@@ -188,11 +194,11 @@ function Register({ toggle, setShowAuthForms, setRegisterStatus }) {
           </button>
         </p>
       </div>
-    );
+    )
   }
 }
 
-export default Register;
+export default Register
 
 const ErrorText = styled.p`
   color: darkred;
@@ -200,4 +206,4 @@ const ErrorText = styled.p`
   margin: 0px;
   padding: 2px;
   height: 15px;
-`;
+`

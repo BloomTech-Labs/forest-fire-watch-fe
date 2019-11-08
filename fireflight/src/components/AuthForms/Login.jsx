@@ -1,9 +1,9 @@
-import React, { useState, useContext, useEffect } from "react";
-import { GlobalContext } from "../../context/contextProvider";
-import useInput from "../../utils/useInput";
-import { Link } from "react-router-dom";
+import React, { useState, useContext, useEffect } from 'react'
+import { GlobalContext } from '../../context/contextProvider'
+import useInput from '../../utils/useInput'
+import { FireDataContext } from '../../context/FireDataContext'
 
-import fire from "../../config/fire";
+import fire from '../../config/fire'
 
 function Login({
   toggle,
@@ -14,58 +14,61 @@ function Login({
   toggleForgotPassword
 }) {
   //useInput is a custom hook that should be used for all controlled inputs
-  const [email, setEmail, handleEmail] = useInput("", "email");
-  const [password, setPassword, handlePassword] = useInput("", "password");
-  const [loading, setLoading] = useState(false);
-  const [errorStatus, setErrorStatus] = useState(false);
-  const [errorText, setErrorText] = useState({});
+  const [email, setEmail, handleEmail] = useInput('', 'email')
+  const [password, setPassword, handlePassword] = useInput('', 'password')
+  const [loading, setLoading] = useState(false)
+  const [errorStatus, setErrorStatus] = useState(false)
+  const [errorText, setErrorText] = useState({})
   //get global context (think redux store)
-  const context = useContext(GlobalContext);
+  const context = useContext(GlobalContext)
+  const { saveLocationMarker } = useContext(FireDataContext)
 
   //view context once / example of how to use
   useEffect(() => {
-    console.log(context);
-  }, []);
+    console.log(context)
+  }, [])
 
   function handleSubmit(e) {
-    e.preventDefault();
-    setLoading(true);
+    e.preventDefault()
+    setLoading(true)
 
     fire
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(user => {
-        console.log(user);
-        const UID = user.user.uid;
-        const credentials = { UID };
+        console.log('Firebase user:', user)
+        const UID = user.user.uid
+        const credentials = { UID }
 
-        setErrorStatus(false);
-        setErrorText("");
+        setErrorStatus(false)
+        setErrorText('')
 
         // Still needed even though we added Firebase because we return the JWT and store in localStorage
         context.state.remote
           .login(credentials)
           .then(res => {
-            setEmail("");
-            setPassword("");
-            setLoading(false);
-            setShowAuthForms(false);
+            setEmail('')
+            setPassword('')
+            setLoading(false)
+            setShowAuthForms(false)
+            if (localStorage.getItem('address')) {
+              saveLocationMarker()
+            }
           })
           .catch(err => {
-            // catching the error for whatever context.state.remote
-            console.log(err);
-            setErrorText("Email or Password Invalid");
-            setErrorStatus(true);
-            setLoading(false);
-          });
+            // User not found
+            setErrorText({ message: err.response.data.error })
+            setErrorStatus(true)
+            setLoading(false)
+          })
       })
       .catch(err => {
         // catching the entire firebase sign in
-        console.log(err);
-        setErrorText(err);
-        setErrorStatus(true);
-        setLoading(false);
-      });
+        console.log(err)
+        setErrorText(err)
+        setErrorStatus(true)
+        setLoading(false)
+      })
   }
 
   return (
@@ -101,20 +104,20 @@ function Login({
           {errorStatus ? (
             <span className="name-error-text">{errorText.message}</span>
           ) : (
-              <span className="user-error-text" />
-            )}
+            <span className="user-error-text" />
+          )}
 
-
-          <button className="auth-btn" type="submit" disabled={loading}>
-            {loading ? "Loading..." : "Sign In"}
+          <button className="default-btn" type="submit" disabled={loading}>
+            {loading ? 'Loading...' : 'Sign In'}
           </button>
           <br />
           <span className="forgot-pw">
             <button
               onClick={() => {
-                setPasswordFormStatus(true);
-                setLoginStatus(false);
-              }}>
+                setPasswordFormStatus(true)
+                setLoginStatus(false)
+              }}
+            >
               Forgot your Password?
             </button>
           </span>
@@ -127,7 +130,7 @@ function Login({
         </p>
       </form>
     </div>
-  );
+  )
 }
 
-export default Login;
+export default Login

@@ -1,0 +1,154 @@
+.addlocation-wrapper {
+  width: 70%;
+  margin: 10px auto 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 2rem;
+
+  @media (max-width: $mq-mobile) {
+    max-width: 500px;
+    padding-left: 0;
+    // margin-left: 3rem;
+  }
+
+  h2 {
+    font-weight: 600;
+    font-size: 33px;
+    line-height: 45px;
+    margin-bottom: 4rem;
+
+    @media (max-width: $mq-mobile) {
+      font-size: 2.5rem;
+    }
+  }
+
+  label {
+    display: block;
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+    font-weight: 600;
+
+    @media (max-width: $mq-mobile) {
+      font-size: 2rem;
+    }
+  }
+
+  .react-geocoder {
+    width: 50rem;
+    height: 59px;
+    background: #ffffff;
+    border: 1px solid #bbbbbb;
+    box-sizing: border-box;
+    border-radius: 2px;
+
+    @media (max-width: $mq-mobile) {
+      max-width: 38rem;
+    }
+    &::placeholder {
+      font-size: 20px;
+      line-height: 27px;
+      display: flex;
+      align-items: center;
+      color: #a9a9a9;
+      padding-left: 17px;
+
+      @media (max-width: $mq-mobile) {
+        max-width: 36rem;
+      }
+    }
+
+    &::-moz-placeholder {
+      line-height: 4.5rem;
+    }
+
+    input {
+      width: 46rem;
+      height: 55px;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      padding-left: 17px;
+
+      @media (max-width: $mq-mobile) {
+        max-width: 30rem;
+        padding-left: 1rem;
+      }
+    }
+    // DROPDOWN RESULTS FROM SEARCH BAR
+    .react-geocoder-results {
+      border: 0.5px solid #bbbbbb;
+      background: white;
+      width: 50rem;
+      box-sizing: border-box;
+      height: auto;
+      position: absolute;
+      padding: 1rem 0.8rem;
+      font-size: 1.6rem;
+      z-index: 4;
+
+      @media (max-width: $mq-mobile) {
+        max-width: 38rem;
+      }
+    }
+    .react-geocoder-item {
+      width: 50rem;
+      padding-top: 1rem;
+
+      @media (max-width: $mq-mobile) {
+        max-width: 36rem;
+      }
+    }
+  }
+
+  .radius-wrapper {
+    margin-top: 2rem;
+
+    @media (max-width: $mq-mobile) {
+      max-width: 500px;
+    }
+
+    .radius-info {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 3rem;
+    }
+    .radius-input {
+      width: 8rem;
+      height: 5rem;
+      border: 1px solid #bbbbbb;
+      border-radius: 3px;
+      font-size: 2rem;
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
+      box-sizing: border-box;
+
+      &::placeholder {
+        font-size: 2rem;
+        line-height: 2.7rem;
+        display: flex;
+        align-items: center;
+        color: #a9a9a9;
+        padding-left: 1rem;
+      }
+    }
+
+    .radius-text {
+      font-size: 2rem;
+      padding-left: 3rem;
+      width: 50rem;
+
+      @media (max-width: $mq-tablet) {
+        max-width: 40rem;
+        font-size: 1.7rem;
+      }
+      @media (max-width: $mq-mobile) {
+        max-width: 29rem;
+        font-size: 1.7rem;
+      }
+    }
+  }
+}

@@ -45,13 +45,7 @@
   @include easeOut;
 
   @media (max-width: $mq-tablet) {
-    position: absolute;
-    width: 13.6rem;
-    height: 4.7rem;
-    left: 12.1rem;
-    top: 50rem;
-    background: #ffffff;
-    border-radius: 3px;
+    display:none;
   }
 
   // &:hover {
@@ -61,54 +55,30 @@
   // }
 }
 
-.auth-btn {
-  margin-top: 1rem;
-  background-color: $orange;
-  border-radius: 2px;
-  cursor: pointer;
-  color: white;
-  font-size: 1.5rem;
-  width: 119.95px;
-  height: 38px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-  align-self: flex-end;
-  border: none;
+// .default-btn {
+//   margin-top: 1rem;
+//   background-color: $orange;
+//   border-radius: 2px;
+//   cursor: pointer;
+//   color: white;
+//   font-size: 1.5rem;
+//   width: 119.95px;
+//   height: 38px;
+//   display: flex;
+//   align-items: center;
+//   text-align: center;
+//   justify-content: center;
+//   align-self: flex-end;
+//   border: none;
 
-  @include easeOut;
+//   @include easeOut;
 
-  &:hover {
-    background-color: lighten($orange, 10%);
-    @include easeOut;
-  }
+//   &:hover {
+//     background-color: lighten($orange, 10%);
+//     @include easeOut;
+//   }
 
-  // @media (max-width: $mq-tablet) {
-  //   width: 50%;
-  // }
-}
-
-.phone-btn {
-  background-color: $lilia;
-  border-radius: 5px;
-  box-shadow: 1px 2px 5px black;
-  cursor: pointer;
-  color: $accentColor;
-  font-size: 0.75em;
-  margin: 10px 10px 0px;
-  padding: 5px;
-  width: auto;
-  min-width: 75px;
-  @include easeOut;
-
-  &:hover {
-    background-color: $orange;
-
-    @include easeOut;
-  }
-
-  @media (max-width: $mq-tablet) {
-    width: 50%;
-  }
-}
+//   // @media (max-width: $mq-tablet) {
+//   //   width: 50%;
+//   // }
+// }

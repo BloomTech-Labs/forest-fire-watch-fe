@@ -7,19 +7,19 @@ import {
 
 const axiosWithAuth = () => {
   const token = localStorage.getItem("token");
-  const deployedStagingURL = base_url_staging;
-  const deployedProductionURL = base_url_production;
+  // const deployedStagingURL = base_url_staging;
+  // const deployedProductionURL = base_url_production;
   const localURL = base_url_local;
 
-  let URL;
+  // let URL;
 
-  if (process.env.NODE_ENV === "production") {
-    URL = deployedProductionURL;
-  } else if (process.env.NODE_ENV === "staging") {
-    URL = deployedStagingURL;
-  } else {
-    URL = localURL;
-  }
+  // if (process.env.REACT_APP_ENV === deployedProductionURL) {
+  //   URL = deployedProductionURL;
+  // } else if (process.env.REACT_APP_ENV === deployedStagingURL) {
+  //   URL = deployedStagingURL;
+  // } else {
+  //   URL = localURL;
+  // }
 
   // let URL = process.env.NODE_ENV === "production" ? deployedStagingURL : localURL;
 
@@ -28,7 +28,7 @@ const axiosWithAuth = () => {
       "Content-Type": "application/json",
       Authorization: token
     },
-    baseURL: URL //replace with heroku address,
+    baseURL: process.env.REACT_APP_ENV || localURL  //replace with heroku address,
   });
 };
 

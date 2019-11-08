@@ -1,7 +1,7 @@
 import axios from "axios";
 import stats from "./status.js";
 import { isArray } from "util";
-import { base_url_local, base_url_staging } from "../config/vars";
+import { base_url_staging, base_url_local } from "../config/vars";
 class connector {
   /**
    * This class is built as a helper to deal with all connection requests.
@@ -38,7 +38,7 @@ class connector {
     let res = await axios.post(this.coreString + "auth/login", creds);
 
     let data = await res.data;
-    console.log(data);
+    // console.log(data);
     if (res.status == 200) {
       //success test
       localStorage.setItem("token", data.token);
