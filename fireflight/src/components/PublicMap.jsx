@@ -218,7 +218,7 @@ const PublicMap = ({
             type="number"
             name="Radius"
             placeholder="mi"
-            value={radius ? radius : 50}
+            value={radius}
             onChange={e => setRadius(e.target.value)}
           />
           <button className="form-btn">Search</button>
