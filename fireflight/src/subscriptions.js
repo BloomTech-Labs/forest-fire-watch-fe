@@ -18,7 +18,7 @@ function urlBase64ToUint8Array(base64String) {
 }
 
 const sendSubscription = sub => {
-  const location = `${base_url_staging}push/register`;
+  const location = `${process.env.REACT_APP_ENV}push/register`;
 
   console.log(location);
 
