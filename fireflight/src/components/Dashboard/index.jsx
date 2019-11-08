@@ -194,6 +194,8 @@ const Dashboard = props => {
         <LocationsList
           userLocations={userLocations}
           deleteUserLocation={deleteUserLocation}
+          receivePush={receivePush}
+          receiveSMS={receiveSMS}
           {...props}
         />
       </div>
