@@ -1,6 +1,9 @@
 import { base_url_staging, base_url_local } from "../src/config/vars";
 const convertVapid = urlBase64ToUint8Array(process.env.REACT_APP_VAPID_PUBLIC);
 
+console.log("original vapid key: " + process.env.REACT_APP_VAPID_PUBLIC);
+console.log("convertVapid: " + convertVapid);
+
 function urlBase64ToUint8Array(base64String) {
   const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
   const base64 = (base64String + padding)
@@ -62,7 +65,7 @@ export const subscribeUser = async () => {
           }
         }
       } else {
-        console.log("current sub detected");
+        console.log("current sub detected", reg);
         sendSubscription(reg);
       }
     } catch (err) {
