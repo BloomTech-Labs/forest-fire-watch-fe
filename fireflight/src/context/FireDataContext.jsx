@@ -111,7 +111,7 @@ const fireDataReducer = (state, action) => {
 			return {
 				...state
 			};
-		 
+
 	}
 };
 
@@ -159,11 +159,11 @@ export const FireDataProvider = ({ children }) => {
 								// firesWithinRadius.push(fire)
 								dispatch({
 									type: SET_EXCLAMATION_MARKERS,
-									payload: [...fireDataState.exclamationMarkers, 
-										<Marker
+									payload: [...fireDataState.exclamationMarkers,
+									<Marker
 										latitude={fire.location[1]}
 										longitude={fire.location[0]}
-										// key={'localMarker' + fire.location[0] + index}
+									// key={'localMarker' + fire.location[0] + index}
 									>
 										<img
 											src={exclamationMark}
@@ -173,7 +173,7 @@ export const FireDataProvider = ({ children }) => {
 											alt=""
 										/>
 									</Marker>
-									] 
+									]
 								});
 							}
 						})
@@ -181,13 +181,12 @@ export const FireDataProvider = ({ children }) => {
 					})
 			})
 		})
-		
+
 	}
 
-	
+
 	/*
   Get all fires from data science team's endpoint. Response includes name & location keys. 
-
   */
 	const getAllFires = () => {
 		axios
@@ -203,10 +202,10 @@ export const FireDataProvider = ({ children }) => {
 							style={{ zIndex: 100, transform: 'translate(-10px, -9px)' }}
 							alt="Fire marker"
 							onClick={e => {
-							dispatch({
-								type: SET_SELECTED_MARKER,
-								payload: [fire.location[1], fire.location[0], null, null, "fireLocation", null, null, fire.name]
-							});
+								dispatch({
+									type: SET_SELECTED_MARKER,
+									payload: [fire.location[1], fire.location[0], null, null, "fireLocation", null, null, fire.name]
+								});
 							}}
 						/>
 					</Marker>
@@ -268,14 +267,14 @@ export const FireDataProvider = ({ children }) => {
 						]
 					});
 				})
-				.catch(err=>{
+				.catch(err => {
 					dispatch({
 						type: SET_SAVED_LOCATION_ERROR,
 						payload: ['there is an error']
 					})
 					console.log("within the catch")
 				});
-			}
+		}
 
 	}
 
@@ -327,23 +326,19 @@ export const FireDataProvider = ({ children }) => {
 						]
 					});
 				});
-			}
+		}
 
 	};
 
 	/* 
   
   https://docs.mapbox.com/api/search/#geocoding
-
   Mapbox Geolocation API converts location text into geographic coordinates. 
   Takes in address & token, and returns data which includes locations and their lat/long 
   that may match the input address.
-
   Then, we are calculating the distance between the location and all fires, converting it into haversine 
   distance (between two points on sphere), and pushing all fires within the user set radius into an array.
-
   From that array, we are creating markers w/ an exclamation point above them to indicate fires within the set radius. 
-
   */
 
 	const getCoordinates = (address, radius, isUserInput = false) => {
@@ -351,7 +346,7 @@ export const FireDataProvider = ({ children }) => {
 			axios
 				.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${address}.json?access_token=${token}`)
 				.then((res) => {
-					
+
 					let localArray = [];
 					fireDataState.allFires.forEach((fire) => {
 						console.log("get cor", fire.location[1], fire.location[0], res.data.features[0].center[1], res.data.features[0].center[0]);
@@ -494,7 +489,6 @@ export const FireDataProvider = ({ children }) => {
     For each user location, add fires that are within the search radius to localArray
     radius = what the user chooses as the radius in their location setting
     distance = distance from user location and fire
-
   */
 	const setUserLocations = () => {
 		axiosWithAuth().get('locations').then((res) => {
@@ -502,7 +496,7 @@ export const FireDataProvider = ({ children }) => {
 			let localArray = [];
 			res.data.forEach((loc) => {
 				// console.log("location", loc)
-				
+
 				fireDataState.allFires.forEach((fire) => {
 					// console.log("set user locations", fire.location[1], fire.location[0], loc.latitude, loc.longitude);
 

@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { Route, Redirect } from 'react-router-dom'
 import axios from 'axios'
+import ReactGa from 'react-ga'
+import { createBrowserHistory } from 'history'
 
 // import Navigation from "./components/Navigation";
 import Home from './components/Home'
@@ -30,6 +32,8 @@ Sentry.init({
   dsn: 'https://2281acb5134d4680927ead14de3c5727@sentry.io/1775951'
 })
 
+
+
 require('dotenv').config()
 
 const token = localStorage.getItem('token')
@@ -46,6 +50,19 @@ function App() {
   const [passwordFormStatus, setPasswordFormStatus] = useState(false)
 
   const [firebaseUser, setFirebaseUser] = useState({})
+
+  ReactGa.initialize("UA-149769097-1")
+  if (firebaseUser !== null) {
+    ReactGa.set({
+      userId: firebaseUser
+    })
+  }
+
+  const history = createBrowserHistory()
+  history.listen(location => {
+    ReactGa.set({ page: location.pathname })
+    ReactGa.pageview(location.pathname)
+  })
 
   const global = useContext(GlobalContext)
   const {
@@ -122,7 +139,7 @@ function App() {
           passwordFormStatus={passwordFormStatus}
           setPasswordFormStatus={setPasswordFormStatus}
         />
-        
+
         <UserDataProvider>
           <Route path="/dashboard" component={Dashboard} />
         </UserDataProvider>
