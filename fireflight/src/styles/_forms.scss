@@ -1,200 +1,214 @@
 // Map Form Container
 .map-form-container {
-	width: 100%;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  z-index: 6;
 
-	@media (max-width: $mq-mobile) {
-		position: relative;
-		left: 1em;
-	}
+  @media (max-width: $mq-mobile) {
+    position: relative;
+    left: 1em;
+    margin: 0 auto;
+  }
 
-	// Address Input Compass Icon
+  //map form text
+  .map-form-text {
+    color: white;
+    font-size: 1.4rem;
+    position: absolute;
+    top: 9.8rem;
+    left: 1.7rem;
+    width: 50rem;
 
-	//map form text
-	.map-form-text {
-		color: white;
-		font-size: 1.4rem;
-		position: absolute;
-		top: 98px;
-		left: 17px;
-		width: 500px;
+    @media (max-width: $mq-tablet) {
+      position: absolute;
+      //   width: 40rem;
+      height: 1.6rem;
+      left: 2rem;
+      top: 9.1rem;
+      font-family: Open Sans;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 1.4rem;
+    }
+  }
 
-		@media (max-width: $mq-tablet) {
-			position: absolute;
-			width: 350px;
-			height: 16px;
-			left: 20px;
-			top: 91px;
-			font-family: Open Sans;
-			font-style: normal;
-			font-weight: normal;
-			font-size: 14px;
-			// line-height: 2.5rem;
-		}
-	}
+  .signup-form-text {
+    color: white;
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+    font-style: normal;
+    font-weight: normal;
+    position: absolute;
+    top: 57.9rem;
+    left: 6.6rem;
+    width: 40rem;
 
-	.signup-form-text {
-		color: white;
-		font-size: 1.6rem;
-		line-height: 2.2rem;
-		font-style: normal;
-		font-weight: normal;
-		position: absolute;
-		top: 57.9rem;
-		left: 6.6rem;
-		width: 40rem;
+    @media (max-width: $mq-tablet) {
+      font-size: 1.3rem;
+      position: absolute;
+      top: 56.9rem;
+      left: 8.6rem;
+    }
+  }
 
-		@media (max-width: $mq-tablet) {
-			display:none;
-		}
-	}
+  // Address Input
+  .address-input {
+    &::placeholder {
+      font-family: 'Open Sans';
+      font-style: normal;
+      font-weight: normal;
+      font-size: 2rem;
+      line-height: 2.7rem;
+      display: flex;
+      align-items: center;
+      color: #a9a9a9;
+      padding-left: 1.7rem;
+    }
 
-	// Address Input
-	.address-input {
-		
-		
+    &::-moz-placeholder {
+      line-height: 4.5rem;
+    }
+  }
 
-		&::placeholder {
-			font-family: "Open Sans";
-			font-style: normal;
-			font-weight: normal;
-			font-size: 20px;
-			line-height: 27px;
-			display: flex;
-			align-items: center;
-			color: #a9a9a9;
-			padding-left: 17px;
-		}
+  .react-geocoder {
+    width: 30rem;
+    height: 5.2rem;
+    background: #ffffff;
+    border-radius: 3px;
+    position: absolute;
+    top: 128px;
+    left: 17px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 2rem;
+    line-height: 2.7rem;
+    display: flex;
+    align-items: center;
+    //padding-left: 1.7rem;
+    &::placeholder {
+      font-size: 2rem;
+      line-height: 2.7rem;
+      display: flex;
+      align-items: center;
+      color: #a9a9a9;
+      padding-left: 1.7rem;
+    }
 
-		&::-moz-placeholder {
-			line-height: 4.5rem;
-		}
-	}
+    &::-moz-placeholder {
+      line-height: 4.5rem;
+    }
+    input {
+      width: 30rem;
+      font-size: 2rem;
+      line-height: 2.7rem;
+      display: flex;
+      align-items: center;
+      padding-left: 1.7rem;
+    }
+    @media (max-width: $mq-mobile) {
+      position: absolute;
+      width: 29.7rem;
+      height: 4rem;
+      left: 2rem;
+      top: 11.8rem;
+      background: #ffffff;
+      border-radius: 3px;
 
-	.react-geocoder{
-		width: 30rem;
-		height: 5.2rem;
-		background: #ffffff;
-		border-radius: 3px;
-		position: absolute;
-		top: 128px;
-		left: 17px;
-		font-style: normal;
-		font-weight: normal;
-		font-size: 2rem;
-		line-height: 2.7rem;
-		display: flex;
-		align-items: center;
-		//padding-left: 1.7rem;
-		&::placeholder {
-            font-size: 20px;
-            line-height: 27px;
-            display: flex;
-            align-items: center;
-            color: #a9a9a9;
-            padding-left: 17px;
-        }
+      input {
+        font-size: 1.7rem;
+      }
+    }
 
-        &::-moz-placeholder {
-            line-height: 4.5rem;
-		}
-		input{
-			width: 30rem;
-            font-size: 20px;
-            line-height: 27px;
-            display: flex;
-            align-items: center;
-            padding-left: 17px;
-		}
-		@media (max-width: $mq-mobile) {
-			position: absolute;
-			width: 297px;
-			height: 44px;
-			left: 20px;
-			top: 118px;
-			background: #ffffff;
-			border-radius: 3px;
-		}
+    // @media (max-width: $mq-tablet) {
+    // 	position: absolute;
+    // 	width: 245px;
+    // 	height: 42px;
+    // 	left: 20px;
+    // 	top: 118px;
+    // 	background: #ffffff;
+    // 	border-radius: 3px;
+    // }
+  }
 
-		// @media (max-width: $mq-tablet) {
-		// 	position: absolute;
-		// 	width: 245px;
-		// 	height: 42px;
-		// 	left: 20px;
-		// 	top: 118px;
-		// 	background: #ffffff;
-		// 	border-radius: 3px;
-		// }
-		
-	}
+  .react-geocoder-results {
+    border-top: 0.8px solid #000000;
+    background: white;
+    width: 30rem;
+    box-sizing: border-box;
+    height: auto;
+    top: 4.8rem;
+    position: absolute;
+    padding: 1rem 0.8rem;
+    font-size: 1.6rem;
+    z-index: 6;
 
-	.react-geocoder-results{
-		border-top: 0.8px solid #000000;
-		background:white;
-		width:30rem;
-		box-sizing: border-box;
-		height:auto;
-		top:48px;
-		position: absolute;
-		padding: 1rem 0.8rem;
-		font-size: 1.6rem;
-		z-index:4;
+    @media (max-width: $mq-mobile) {
+      position: absolute;
+      width: 29.7rem;
+      top: 38px;
+      position: absolute;
+      font-size: 1.4rem;
+    }
+  }
 
-		
-	}
+  .react-geocoder-item {
+    width: 30rem;
+    padding-top: 1rem;
 
-	.react-geocoder-item{
-		width:30rem;
-		padding-top: 1rem;
-		
+    @media (max-width: $mq-mobile) {
+      width: 28.7rem;
+    }
+  }
+  // Radius Input
+  .radius-input {
+    width: 8.4rem;
+    height: 5rem;
+    background: #ffffff;
+    border-radius: 3px;
+    position: absolute;
+    top: 12.8rem;
+    left: 33rem;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.8rem;
+    line-height: 2.5rem;
+    display: flex;
+    align-items: center;
+    margin-left: 1.4rem;
+    padding-left: 1rem;
 
-	}
-	// Radius Input
-	.radius-input {
-		width: 8.4rem;
-		height: 5rem;
-		background: #ffffff;
-		border-radius: 3px;
-		position: absolute;
-		top: 12.8rem;
-		left: 33rem;
-		font-family: "Open Sans";
-		font-style: normal;
-		font-weight: normal;
-		font-size: 1.8rem;
-		line-height: 2.5rem;
-		display: flex;
-		align-items: center;
-		margin-left: 1.4rem;
-		padding-left: 1rem;
+    @media (max-width: $mq-mobile) {
+      position: absolute;
+      width: 61.53px;
+      height: 3.8rem;
+      left: 315px;
+      top: 118px;
+      background: #ffffff;
+      border-radius: 3px;
+      margin-top: 0;
+    }
 
-		@media (max-width: $mq-mobile) {
-			position: absolute;
-			width: 61.53px;
-			height: 42px;
-			left: 315px;
-			top: 118px;
-			background: #ffffff;
-			border-radius: 3px;
-			margin-top: 0;
-		}
+    &::placeholder {
+      font-family: 'Open Sans';
+      font-style: normal;
+      font-weight: normal;
+      font-size: 2rem;
+      line-height: 2.7rem;
+      display: flex;
+      align-items: center;
+      color: #a9a9a9;
+      padding-left: 1.7rem;
 
-		&::placeholder {
-			font-family: "Open Sans";
-			font-style: normal;
-			font-weight: normal;
-			font-size: 20px;
-			line-height: 27px;
-			display: flex;
-			align-items: center;
-			color: #a9a9a9;
-			padding-left: 17px;
-		}
+      @media (max-width: $mq-mobile) {
+        font-size: 1.7rem;
+      }
+    }
 
-		&::-moz-placeholder {
-			line-height: 4.5rem;
-		}
-	}
+    &::-moz-placeholder {
+      line-height: 4.5rem;
+    }
+  }
 }
