@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react'
 import { GlobalContext } from '../../context/contextProvider'
 import useInput from '../../utils/useInput'
 import { FireDataContext } from '../../context/FireDataContext'
-
+import ReactGA from 'react-ga'
 import fire from '../../config/fire'
 
 function Login({
@@ -47,6 +47,10 @@ function Login({
         context.state.remote
           .login(credentials)
           .then(res => {
+            ReactGA.event({
+              category: 'User',
+              action: 'Signed in'
+            })
             setEmail('')
             setPassword('')
             setLoading(false)

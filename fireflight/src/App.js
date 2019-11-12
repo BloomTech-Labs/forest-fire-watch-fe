@@ -32,8 +32,6 @@ Sentry.init({
   dsn: 'https://2281acb5134d4680927ead14de3c5727@sentry.io/1775951'
 })
 
-
-
 require('dotenv').config()
 
 const token = localStorage.getItem('token')
@@ -51,9 +49,10 @@ function App() {
 
   const [firebaseUser, setFirebaseUser] = useState({})
 
-
-  const tracking = "UA-149769097-1"
-  ReactGa.initialize(tracking)
+  const tracking = 'UA-149769097-1'
+  ReactGa.initialize(tracking, {
+    debug: true
+  })
   if (firebaseUser !== null) {
     ReactGa.set({
       userId: firebaseUser
