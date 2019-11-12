@@ -24,11 +24,11 @@ UX Design files: [map](https://www.figma.com/file/MSadfIggtwfQUUUp1W6dbR/Labs17_
 
 Unregistered or logged out users can demo the app and are redirected to login upon attempting to save a location. There is conditional rendering with a clear "Sign Up" call-to-action for signed out users.
 
-[Demo-mode](demo-mode.gif)
+![Demo-mode](.fireflight/public/images/demo-mode.gif)
 
 ### Login, Registration, and Change Password Modals
 
-[Gif here]()
+![Gif here]()
 
 - Custom error handling based on Firebase or backend server responses.
 
