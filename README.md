@@ -15,12 +15,14 @@ You can find the deployed project at [wildfirewatchapp.com](https://wildfirewatc
 Wildfire Watch is designed to help people understand when they are in danger of being struck by a wildfire, and hopefully give them time to get out.
 
 [Trello Boards](https://trello.com/labs17forestfirewatch)
+
 [Product Canvas](https://www.notion.so/Forest-Fire-Prediction-and-Rescue-Coordination-7eb1595c5f1643fca8e48a89c6086fdf)
+
 UX Design files: [map](https://www.figma.com/file/MSadfIggtwfQUUUp1W6dbR/Labs17_Forest-Fire-Watch%2C-Gabby?node-id=155%3A12) & [profile](https://www.figma.com/file/MSadfIggtwfQUUUp1W6dbR/Labs17_Forest-Fire-Watch%2C-Gabby)
 
 ## Key Features
 
-### Demo view
+### Demo view & search autocomplete
 
 Signed out users can demo part of the the application and see a clear "Sign Up" call-to-action. Autocomplete of searched addresses are shown in a dropdown using geocoder autocomplete. Users are directed to a login modal upon attempting to save a location.
 
@@ -28,11 +30,11 @@ Signed out users can demo part of the the application and see a clear "Sign Up" 
 
 ### Login, Registration, and Change Password Modals
 
-Custom error handling based on Firebase or backend server responses. Authentication is handled using Firebase.
+Use cases for incorrect inputs based on Firebase or backend server responses are indicated to the user. User authentication is handled using Firebase.
 
 ![Modal-examples]()
 
-### Address autocomplete & saved locations
+### Saved locations and fire markers
 
 Saved locations are indicated by a green marker and fires that are within a radius (in miles) of the address are highlighted with exclamation markers. Fire distances are calculated via the haversine formula (i.e. distance between two latitude/longitude points on a sphere).
 
@@ -40,19 +42,23 @@ Saved locations are indicated by a green marker and fires that are within a radi
 
 ### User Profile
 
-- Phone and email are editable
+Users may edit their email address or phone number, and toggle on the options of receiving SMS alerts for saved locations.
 
 ![User-profile]()
 
-### SMS notification alerts
+### SMS notification alerts via Twilio API
 
-- Application will alert the user when fire is within their set radius by SMS or push notification in the web browser.
+Users receive SMS alerts about how many fires are within the within the radial distance set as well as estimated distance of the closest fire.
 
-![SMS-alerts]()
+Push notifications description (cron)?
+
+<img src="twilio_notifications.png" width="350" height="auto">
+
+<!-- ![SMS-alerts](twilio_notifications.png) -->
 
 ### Add Location Form
 
-Users may also a location through a form and are prevented from adding duplicate locations.
+Users may also add a location through a form and are prevented from adding duplicate locations.
 
 ![Add-Location-Form]()
 
