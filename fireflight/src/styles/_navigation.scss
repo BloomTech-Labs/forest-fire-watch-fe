@@ -1,63 +1,64 @@
 .nav-container {
-	align-self: flex-start;
-	height: 40px;
-	display: flex;
-	flex-direction: row;
-	top: 0;
-	z-index: 2;
-	background-color: rgba(0, 0, 0, 0);
+  align-self: flex-start;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  top: 0;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0);
 
-	color: white;
-	padding: 20px;
-	padding-left: 10px;
+  color: white;
+  padding: 20px;
+  padding-left: 10px;
 
-	@media (max-width: $mq-mobile) {
-		height: 0;
-		width: 100%;
-	}
-	.inactive {
-		color: #fff;
-		width: 100px;
-	}
+  @media (max-device-width: $mq-mobile) {
+    height: 0;
+    width: 100%;
+    padding-left: 0;
+  }
+  .inactive {
+    color: #fff;
+    width: 100px;
+  }
 
-	.menu-item {
-		color: #fff;
-		cursor: pointer;
-		font-style: normal;
-		font-weight: normal;
-		font-size: 18px;
-		line-height: 20px;
-		padding: 10px;
-		// padding: auto;
-		width: 100px;
-		display: flex;
-		height: 20px;
-		justify-content: center;
+  .menu-item {
+    color: #fff;
+    cursor: pointer;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 20px;
+    padding: 10px;
+    // padding: auto;
+    width: 100px;
+    display: flex;
+    height: 20px;
+    justify-content: center;
 
-		@media (max-width: $mq-mobile) {
-			font-size: 18px;
-			line-height: 20px;
-			padding: 10px;
-			height: 20px;
-		}
+    @media (max-device-width: $mq-mobile) {
+      font-size: 17px;
+      line-height: 20px;
+      padding: 10px;
+      height: 20px;
+    }
 
-		a {
-			color: #fff;
-			width: 80px;
-		}
+    a {
+      color: #fff;
+      width: 80px;
+    }
 
-		&:hover {
-			background-color: lightgrey;
-			color: black;
-			height: 20px;
-		}
+    &:hover {
+      background-color: lightgrey;
+      color: black;
+      height: 20px;
+    }
 
-		&.current {
-			color: $white;
+    &.current {
+      color: $white;
 
-			&:hover {
-				color: black;
-			}
-		}
-	}
+      &:hover {
+        color: black;
+      }
+    }
+  }
 }
