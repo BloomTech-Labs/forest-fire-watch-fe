@@ -30,7 +30,7 @@ UX Design files: [map](https://www.figma.com/file/MSadfIggtwfQUUUp1W6dbR/Labs17_
   - Login, Register, and Change Password modal forms with custom error handling based on Firebase or backend server responses
   - Prevent users from adding the same location twice
 
-[Testing](http://g.recordit.co/OZ4HlJti9C.gif)
+![Gif image](http://g.recordit.co/OZ4HlJti9C.gif)
 
 ## Tech Stack
 
