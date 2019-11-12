@@ -4,7 +4,7 @@
 
 # Wildfire Watch
 
-You can find the deployed project at [wildfire-watch-staging.com](http://wildfire-watch-staging.netlify.com). Note: this project is currently in-progress.
+You can find the deployed project at [wildfirewatchapp.com](https://wildfirewatchapp.com/).
 
 ## Contributors
 
@@ -14,11 +14,11 @@ You can find the deployed project at [wildfire-watch-staging.com](http://wildfir
 
 Wildfire Watch is designed to help people understand when they are in danger of being struck by a wildfire, and hopefully give them time to get out.
 
-[Trello Board](https://trello.com/labs17forestfirewatch)
+[Trello Boards](https://trello.com/labs17forestfirewatch)
 
 [Product Canvas](https://www.notion.so/Forest-Fire-Prediction-and-Rescue-Coordination-7eb1595c5f1643fca8e48a89c6086fdf)
 
-[UX Design files - need to update]()
+UX Design files: [map](https://www.figma.com/file/MSadfIggtwfQUUUp1W6dbR/Labs17_Forest-Fire-Watch%2C-Gabby?node-id=155%3A12) & [profile](https://www.figma.com/file/MSadfIggtwfQUUUp1W6dbR/Labs17_Forest-Fire-Watch%2C-Gabby)
 
 ### Key Features
 
@@ -26,18 +26,19 @@ Wildfire Watch is designed to help people understand when they are in danger of 
 - User can log in and add multiple addresses. They can also set a distance from that address where the app will provide data about wildfires.
 - Application will alert the user when fire is within their set radius by SMS or push notification in the web browser.
 
+- Error handling:
+  - Login, Register, and Change Password modal forms with custom error handling based on Firebase or backend server responses
+  - Prevent users from adding the same location twice
+
 ## Tech Stack
 
 ### Front end built using:
 
-- ReactJS
-- React Hooks
-- Context API
-- Axios
-- MapBox
+- ReactJS (Hooks - Context and Reducer)
 - Node-Sass
-
-#### Front end deployed to `Netlify`
+- Axios
+- MapBox [React-Map-GL](https://www.google.com/search?q=react+mapbox+uber&oq=react+mapbox+uber&aqs=chrome..69i57j69i60.4803j0j7&sourceid=chrome&ie=UTF-8): gives the application the abilty to convert addresses to latitude/longitude for our backend applications
+- Node-Sass
 
 ### [Backend](https://github.com/Lambda-School-Labs/forest-fire-watch-be) built using:
 
@@ -48,12 +49,6 @@ Wildfire Watch is designed to help people understand when they are in danger of 
 - KnexJS: management of database structure
 - JWT: handling authorizations
 - PostgreSQL
-
-# APIs
-
-## Mapbox
-
-- This API gives the application the abilty to convert addresses to latitude/longitude for our backend applications.
 
 # Environment Variables
 
