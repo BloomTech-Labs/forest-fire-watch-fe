@@ -105,7 +105,7 @@ function Login({
           {errorStatus ? (
             <ErrorText>{errorText.message}</ErrorText>
           ) : (
-              <ErrorText></ErrorText>
+              null
             )}
 
           <button className="default-btn" type="submit" disabled={loading}>

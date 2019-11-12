@@ -75,7 +75,7 @@ function Register({ toggle, setShowAuthForms, setRegisterStatus }) {
             })
         } else {
           setErrorStatus(true)
-          setErrorText({ password: 'Your passwords do not match' })
+          setErrorText({ message: 'Your passwords do not match' })
           setLoading(false)
         }
       } else {
@@ -153,11 +153,7 @@ function Register({ toggle, setShowAuthForms, setRegisterStatus }) {
               onChange={handlePassword}
               placeholder=""
             />
-            {errorStatus ? (
-              <ErrorText>{errorText.password}</ErrorText>
-            ) : (
-                <ErrorText />
-              )}
+
             <label htmlFor="password">Confirm Password</label>
             <input
               className="form-input"
@@ -168,16 +164,12 @@ function Register({ toggle, setShowAuthForms, setRegisterStatus }) {
               onChange={handlePasswordConf}
               placeholder=""
             />
-            {errorStatus ? (
-              <ErrorText>{errorText.password}</ErrorText>
-            ) : (
-                <ErrorText />
-              )}
+
             {/* ERRORS FOR NON-PASSWORD FIELDS */}
             {errorStatus ? (
               <ErrorText>{errorText.message}</ErrorText>
             ) : (
-                <ErrorText />
+                null
               )}
             <button
               className="default-btn register-btn"
