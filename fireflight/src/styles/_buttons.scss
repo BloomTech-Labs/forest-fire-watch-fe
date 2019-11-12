@@ -15,7 +15,6 @@
   line-height: 1.9rem;
   color: #251400;
   @include easeOut;
-  z-index: 3;
 
   @media (max-width: $mq-mobile) {
     position: absolute;
