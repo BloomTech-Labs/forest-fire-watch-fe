@@ -6,9 +6,10 @@ import MapLegend from './MapLegend'
 import Navigation from '../components/Navigation'
 import Geocoder from 'react-mapbox-gl-geocoder'
 import axios from 'axios'
+import ReactGA from 'react-ga'
 
 const token = process.env.REACT_APP_MAPBOX_TOKEN
-
+ReactGA.pageview('/public-map')
 const PublicMap = ({
   setShowAuthForms,
   setLoginFormStatus,
@@ -86,7 +87,7 @@ const PublicMap = ({
   //prompts the user for their permission to location and sets viewport
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(position => {
-      console.log("setting viewport using geolocation permission")
+      console.log('setting viewport using geolocation permission')
       setViewport({
         latitude: position.coords.latitude,
         longitude: position.coords.longitude,
@@ -110,6 +111,10 @@ const PublicMap = ({
       longitude: location[0],
       zoom: 8,
       transitionDuration: 500
+    })
+    ReactGA.event({
+      category: 'Fire search',
+      action: 'Searched for fire'
     })
     // setAddress('') // doesn't reset address because of the special Geocoder library
   }
@@ -309,9 +314,7 @@ const PublicMap = ({
             {selectedMarker[4] === 'tempLocation' && tempLocationPopup}
             {selectedMarker[4] === 'fireLocation' && fireLocationPopup}
           </Popup>
-
         ) : null}
-
       </ReactMapGL>
     </div>
   )
