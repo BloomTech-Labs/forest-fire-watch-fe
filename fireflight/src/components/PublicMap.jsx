@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
-import ReactMapGL, { Popup } from 'react-map-gl'
+import ReactMapGL, { Popup, GeolocateControl } from 'react-map-gl'
 import styled from 'styled-components'
 import { FireDataContext } from '../context/FireDataContext'
 import MapLegend from './MapLegend'
@@ -275,6 +275,7 @@ const PublicMap = ({
         }}
         mapStyle="mapbox://styles/astillo/ck1s93bpe5bnk1cqsfd34n8ap"
       >
+        <GeolocateControl positionOptions={{ enableHighAccuracy: true }} trackUserLocation={true} />
         {allFireMarkers}
         {userLocalFireMarkers}
         {localFireMarkers}
@@ -295,7 +296,9 @@ const PublicMap = ({
             {selectedMarker[4] === 'tempLocation' && tempLocationPopup}
             {selectedMarker[4] === 'fireLocation' && fireLocationPopup}
           </Popup>
+
         ) : null}
+
       </ReactMapGL>
     </div>
   )
