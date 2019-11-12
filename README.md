@@ -22,7 +22,7 @@ UX Design files: [map](https://www.figma.com/file/MSadfIggtwfQUUUp1W6dbR/Labs17_
 
 ### Demo view
 
-Unregistered or logged out users can demo the app and are redirected to login upon attempting to save a location. There is conditional rendering with a clear "Sign Up" call-to-action for signed out users.
+Signed out users can demo part of the the application and see a clear "Sign Up" call-to-action. Autocomplete of searched addresses are shown in a dropdown using geocoder autocomplete. Users are directed to a login modal upon attempting to save a location.
 
 ![Demo-mode](demo-mode.gif)
 
@@ -34,7 +34,7 @@ Unregistered or logged out users can demo the app and are redirected to login up
 
 ### Address autocomplete & saved Locations
 
-![Saving a location](http://g.recordit.co/kjy7kTvRoz.gif)
+![Saving a location](save-location.gif)
 
 - Clickable and updatable saved locations & radius input
 - Users can search for multiple addresses and save them to their profile.
@@ -53,7 +53,7 @@ Unregistered or logged out users can demo the app and are redirected to login up
 
 ### Fully responsive views
 
-[Gif here]()
+![Gif here]()
 
 ## Tech Stack
 
