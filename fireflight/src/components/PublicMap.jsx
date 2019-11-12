@@ -43,8 +43,6 @@ const PublicMap = ({
   const [viewport, setViewport] = useState({
     latitude: 34.377566,
     longitude: -113.144528,
-    width: '100vw',
-    height: '100vh',
     zoom: 4
   })
 
@@ -61,6 +59,23 @@ const PublicMap = ({
       window.removeEventListener('keydown', listener)
     }
   }, [])
+  useEffect(() => {
+    geoControl()
+  }, [])
+  const geoControl = () => {
+    navigator.geolocation.getCurrentPosition(position => {
+      console.log('setting viewport using geolocation permission')
+      setViewport({
+        ...viewport,
+        latitude: parseInt(position.coords.latitude),
+        longitude: parseInt(position.coords.longitude),
+        width: '100vw',
+        height: '100vh',
+        zoom: 8
+      })
+    })
+  }
+  console.log()
   //Gets the users location based on the IP address of the client and sets the viewport
   useEffect(() => {
     axios
@@ -70,9 +85,10 @@ const PublicMap = ({
         if (res.data.status !== 'fail') {
           console.log('setting viewport')
           setViewport({
+            ...viewport,
             latitude: res.data.lat,
             longitude: res.data.lon,
-            width: '100vh',
+            width: '100vw',
             height: '100vh',
             zoom: 8
           })
@@ -85,18 +101,6 @@ const PublicMap = ({
       })
   }, [])
   //prompts the user for their permission to location and sets viewport
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(position => {
-      console.log('setting viewport using geolocation permission')
-      setViewport({
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude,
-        width: '100vh',
-        height: '100vh',
-        zoom: 8
-      })
-    })
-  }, [])
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -287,8 +291,8 @@ const PublicMap = ({
 
       <ReactMapGL
         {...viewport}
-        width="100%"
         mapboxApiAccessToken={token}
+        width="100%"
         onViewportChange={viewport => {
           setViewport(viewport)
         }}
