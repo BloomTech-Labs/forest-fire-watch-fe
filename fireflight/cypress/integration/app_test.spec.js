@@ -4,5 +4,7 @@ describe('Loads the sign up modal', function() {
     cy.get('.menu-item')
       .contains('Sign In')
       .click()
+
+    cy.get('.model-wrapper').should('have.css','opacity', '1')
   })
 })
