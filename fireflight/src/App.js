@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { Route, Redirect } from 'react-router-dom'
 import axios from 'axios'
+import ReactGa from 'react-ga'
+import { createBrowserHistory } from 'history'
 
 // import Navigation from "./components/Navigation";
 import Home from './components/Home'
@@ -46,6 +48,22 @@ function App() {
   const [passwordFormStatus, setPasswordFormStatus] = useState(false)
 
   const [firebaseUser, setFirebaseUser] = useState({})
+
+  const tracking = 'UA-149769097-1'
+  ReactGa.initialize(tracking, {
+    debug: true
+  })
+  if (firebaseUser !== null) {
+    ReactGa.set({
+      userId: firebaseUser
+    })
+  }
+
+  const history = createBrowserHistory()
+  history.listen(location => {
+    ReactGa.set({ page: location.pathname })
+    ReactGa.pageview(location.pathname)
+  })
 
   const global = useContext(GlobalContext)
   const {
@@ -122,7 +140,7 @@ function App() {
           passwordFormStatus={passwordFormStatus}
           setPasswordFormStatus={setPasswordFormStatus}
         />
-        
+
         <UserDataProvider>
           <Route path="/dashboard" component={Dashboard} />
         </UserDataProvider>

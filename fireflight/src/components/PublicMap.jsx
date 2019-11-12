@@ -5,9 +5,11 @@ import { FireDataContext } from '../context/FireDataContext'
 import MapLegend from './MapLegend'
 import Navigation from '../components/Navigation'
 import Geocoder from 'react-mapbox-gl-geocoder'
+import axios from 'axios'
+import ReactGA from 'react-ga'
 
 const token = process.env.REACT_APP_MAPBOX_TOKEN
-
+ReactGA.pageview('/public-map')
 const PublicMap = ({
   setShowAuthForms,
   setLoginFormStatus,
@@ -59,6 +61,42 @@ const PublicMap = ({
       window.removeEventListener('keydown', listener)
     }
   }, [])
+  //Gets the users location based on the IP address of the client and sets the viewport
+  useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_ENV}users/ip-address`)
+      .then(res => {
+        console.log(res.data)
+        if (res.data.status !== 'fail') {
+          console.log('setting viewport')
+          setViewport({
+            latitude: res.data.lat,
+            longitude: res.data.lon,
+            width: '100vh',
+            height: '100vh',
+            zoom: 8
+          })
+        } else {
+          console.log('going into else')
+        }
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }, [])
+  //prompts the user for their permission to location and sets viewport
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(position => {
+      console.log('setting viewport using geolocation permission')
+      setViewport({
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude,
+        width: '100vh',
+        height: '100vh',
+        zoom: 8
+      })
+    })
+  }, [])
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -73,6 +111,10 @@ const PublicMap = ({
       longitude: location[0],
       zoom: 8,
       transitionDuration: 500
+    })
+    ReactGA.event({
+      category: 'Fire search',
+      action: 'Searched for fire'
     })
     // setAddress('') // doesn't reset address because of the special Geocoder library
   }
