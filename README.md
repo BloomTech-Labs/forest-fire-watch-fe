@@ -20,7 +20,7 @@ UX Design files: [map](https://www.figma.com/file/MSadfIggtwfQUUUp1W6dbR/Labs17_
 
 ## Key Features
 
-### Demo view
+### Demo view & search autocomplete
 
 Signed out users can demo part of the the application and see a clear "Sign Up" call-to-action. Autocomplete of searched addresses are shown in a dropdown using geocoder autocomplete. Users are directed to a login modal upon attempting to save a location.
 
@@ -32,7 +32,7 @@ Use cases for incorrect inputs based on Firebase or backend server responses are
 
 ![Modal-examples]()
 
-### Address autocomplete & saved locations
+### Saved locations and fire markers
 
 Saved locations are indicated by a green marker and fires that are within a radius (in miles) of the address are highlighted with exclamation markers. Fire distances are calculated via the haversine formula (i.e. distance between two latitude/longitude points on a sphere).
 
