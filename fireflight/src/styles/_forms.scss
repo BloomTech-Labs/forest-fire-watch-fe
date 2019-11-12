@@ -6,9 +6,9 @@
   justify-content: center;
   z-index: 6;
 
-  @media (max-width: $mq-mobile) {
+  @media (max-device-width: $mq-mobile) {
     position: relative;
-    left: 1em;
+    // left: 1em;
     margin: 0 auto;
   }
 
@@ -21,16 +21,21 @@
     left: 1.7rem;
     width: 50rem;
 
-    @media (max-width: $mq-tablet) {
+    @media (max-device-width: $mq-tablet) {
       position: absolute;
-      //   width: 40rem;
       height: 1.6rem;
       left: 2rem;
       top: 9.1rem;
-      font-family: Open Sans;
-      font-style: normal;
-      font-weight: normal;
       font-size: 1.4rem;
+    }
+
+    @media (max-device-width: $mq-mobile) {
+      position: absolute;
+      height: 1.6rem;
+      left: 2rem;
+      top: 7.5rem;
+      font-size: 1.2rem;
+      width: 30rem;
     }
   }
 
@@ -45,11 +50,11 @@
     left: 6.6rem;
     width: 40rem;
 
-    @media (max-width: $mq-tablet) {
+    @media (max-device-width: $mq-mobile) {
       font-size: 1.3rem;
       position: absolute;
-      top: 56.9rem;
-      left: 8.6rem;
+      top: 61.5rem;
+      left: 6rem;
     }
   }
 
@@ -107,9 +112,10 @@
       align-items: center;
       padding-left: 1.7rem;
     }
-    @media (max-width: $mq-mobile) {
+
+    @media (max-device-width: $mq-mobile) {
       position: absolute;
-      width: 29.7rem;
+      width: 25rem;
       height: 4rem;
       left: 2rem;
       top: 11.8rem;
@@ -117,19 +123,9 @@
       border-radius: 3px;
 
       input {
-        font-size: 1.7rem;
+        font-size: 1.6rem;
       }
     }
-
-    // @media (max-width: $mq-tablet) {
-    // 	position: absolute;
-    // 	width: 245px;
-    // 	height: 42px;
-    // 	left: 20px;
-    // 	top: 118px;
-    // 	background: #ffffff;
-    // 	border-radius: 3px;
-    // }
   }
 
   .react-geocoder-results {
@@ -144,12 +140,10 @@
     font-size: 1.6rem;
     z-index: 6;
 
-    @media (max-width: $mq-mobile) {
+    @media (max-device-width: $mq-mobile) {
+      width: 25rem;
+      top: 3rem;
       position: absolute;
-      width: 29.7rem;
-      top: 38px;
-      position: absolute;
-      font-size: 1.4rem;
     }
   }
 
@@ -157,10 +151,12 @@
     width: 30rem;
     padding-top: 1rem;
 
-    @media (max-width: $mq-mobile) {
-      width: 28.7rem;
+    @media (max-device-width: $mq-mobile) {
+      width: 24rem;
+      font-size: 1.4rem;
     }
   }
+
   // Radius Input
   .radius-input {
     width: 8.4rem;
@@ -180,12 +176,12 @@
     margin-left: 1.4rem;
     padding-left: 1rem;
 
-    @media (max-width: $mq-mobile) {
+    @media (max-device-width: $mq-mobile) {
       position: absolute;
-      width: 61.53px;
+      width: 4rem;
       height: 3.8rem;
-      left: 315px;
-      top: 118px;
+      left: 27rem;
+      top: 11.8rem;
       background: #ffffff;
       border-radius: 3px;
       margin-top: 0;
@@ -202,8 +198,9 @@
       color: #a9a9a9;
       padding-left: 1.7rem;
 
-      @media (max-width: $mq-mobile) {
-        font-size: 1.7rem;
+      @media (max-device-width: $mq-mobile) {
+        font-size: 1.6rem;
+        padding: 0;
       }
     }
 

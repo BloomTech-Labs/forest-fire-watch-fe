@@ -1,14 +1,14 @@
-import styled from "styled-components";
-import * as v from "./vars";
+import styled from 'styled-components'
+import * as v from './vars'
 
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
-  font-size:12pt;
+  font-size: 12pt;
   ${v.tablet} {
     font-size: 14pt;
   }
-`;
+`
 
 export const FormInput = styled.input`
   width: 300px;
@@ -22,27 +22,27 @@ export const FormInput = styled.input`
     margin: 0.5rem;
     width: auto;
   }
-`;
+`
 
 export const Button = styled.button`
-padding: 10px;
-font-size: 1em;
-background-color: white;
-border-radius: 5px;
-border: solid 1px black;
-width: 250px;
+  padding: 10px;
+  font-size: 1em;
+  background-color: white;
+  border-radius: 5px;
+  border: solid 1px black;
+  width: 250px;
   @media (max-width: 576px) {
     padding: 8px;
     width: 200px;
   }
   box-shadow: 1px 2px 5px black;
   cursor: pointer;
-`;
+`
 
 export const GoodButton = styled(Button)`
   background-color: ${v.AccentColor};
   color: white;
-`;
+`
 
 export const ErrorText = styled.div`
   color: red;
@@ -50,7 +50,7 @@ export const ErrorText = styled.div`
   margin: 0px;
   padding: 2px;
   height: 15px;
-`;
+`
 
 export const FormContainer = styled.div`
   border-radius: 8px;
@@ -69,7 +69,7 @@ export const FormContainer = styled.div`
     width: 75vw;
     margin: 0.5rem auto;
   }
-`;
+`
 
 export const FormSelect = styled.select`
   width: 300px;
@@ -79,7 +79,7 @@ export const FormSelect = styled.select`
   background-color: ${v.Lilia};
   border-radius: 5px;
   border: 1px solid groove;
-`;
+`
 
 export const FormTextGroup = styled.div`
   background-color: ${v.InputFormColor};
@@ -103,13 +103,13 @@ export const FormTextGroup = styled.div`
     margin: 0;
     background-color: ${v.InputFormColor};
     border: none;
-    font-size:12pt;
+    font-size: 12pt;
     ${v.tablet} {
       font-size: 14pt;
     }
     border-radius: 0 5px 5px 0;
   }
-`;
+`
 
 export const FormRangeGroup = styled(FormTextGroup)`
   & div {
@@ -118,7 +118,7 @@ export const FormRangeGroup = styled(FormTextGroup)`
     margin: 1rem;
     margin-left: 0.5rem;
   }
-  input[type="range"] {
+  input[type='range'] {
     -webkit-appearance: none;
     background: transparent;
     ${v.tablet} {
@@ -204,4 +204,4 @@ export const FormRangeGroup = styled(FormTextGroup)`
       border-radius: 100%;
     }
   }
-`;
+`

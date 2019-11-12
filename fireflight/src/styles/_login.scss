@@ -12,13 +12,13 @@
   @media (max-width: $mq-tablet) {
   }
 
-  @media (max-width: $mq-mobile) {
+  @media (max-device-width: $mq-mobile) {
     flex-direction: column;
-    // position: absolute;
+    position: absolute;
     width: 33rem;
     height: 35.4rem;
-    left: 8.5rem;
-    top: 12.5rem;
+    left: -2rem;
+    top: 2.5rem;
     background: #ffffff;
     border-radius: 1px;
   }
@@ -41,7 +41,7 @@
         padding-top: 20px;
       }
 
-      @media (max-width: $mq-mobile) {
+      @media (max-device-width: $mq-mobile) {
         // width: 239px;
         // height: 38px;
         font-size: 14px;
@@ -51,7 +51,7 @@
 
     .forgot-pw {
       align-self: center;
-      
+
       button {
         background-color: white;
         width: 13.7rem;
