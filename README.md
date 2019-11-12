@@ -30,6 +30,8 @@ UX Design files: [map](https://www.figma.com/file/MSadfIggtwfQUUUp1W6dbR/Labs17_
   - Login, Register, and Change Password modal forms with custom error handling based on Firebase or backend server responses
   - Prevent users from adding the same location twice
 
+[Testing](http://g.recordit.co/OZ4HlJti9C.gif)
+
 ## Tech Stack
 
 ### Front end built using:
@@ -37,8 +39,9 @@ UX Design files: [map](https://www.figma.com/file/MSadfIggtwfQUUUp1W6dbR/Labs17_
 - ReactJS (Hooks)
 - Node-Sass
 - Axios
-- MapBox:[React-Map-GL](https://www.google.com/search?q=react+mapbox+uber&oq=react+mapbox+uber&aqs=chrome..69i57j69i60.4803j0j7&sourceid=chrome&ie=UTF-8): gives the application the abilty to convert addresses to latitude/longitude for our backend applications
-- [React Mapbox Geocode](https://github.com/groinder/react-mapbox-gl-geocoder)
+- MapBox
+  - [React-Map-GL](https://www.google.com/search?q=react+mapbox+uber&oq=react+mapbox+uber&aqs=chrome..69i57j69i60.4803j0j7&sourceid=chrome&ie=UTF-8): gives the application the abilty to convert addresses to latitude/longitude for our backend applications
+  - [React Mapbox Geocode](https://github.com/groinder/react-mapbox-gl-geocoder)
 
 ### [Backend](https://github.com/Lambda-School-Labs/forest-fire-watch-be) built using:
 
