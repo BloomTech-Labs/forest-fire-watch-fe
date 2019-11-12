@@ -27,7 +27,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build && cra-append-sw --skip-compile ./public/custom-sw.js",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "cypress:open": "cypress open"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -48,6 +49,7 @@
   },
   "devDependencies": {
     "@testing-library/react": "^9.3.2",
+    "cypress": "^3.6.1",
     "eslint-plugin-import": "^2.18.2",
     "react-test-renderer": "^16.10.2"
   }
