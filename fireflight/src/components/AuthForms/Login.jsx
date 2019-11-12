@@ -3,6 +3,7 @@ import { GlobalContext } from '../../context/contextProvider'
 import useInput from '../../utils/useInput'
 import { FireDataContext } from '../../context/FireDataContext'
 import ReactGA from 'react-ga'
+import { ErrorText } from '../../styles/Forms'
 import fire from '../../config/fire'
 
 function Login({
@@ -105,11 +106,7 @@ function Login({
             onChange={handlePassword}
             placeholder=""
           />
-          {errorStatus ? (
-            <span className="name-error-text">{errorText.message}</span>
-          ) : (
-            <span className="user-error-text" />
-          )}
+          {errorStatus ? <ErrorText>{errorText.message}</ErrorText> : null}
 
           <button className="default-btn" type="submit" disabled={loading}>
             {loading ? 'Loading...' : 'Sign In'}

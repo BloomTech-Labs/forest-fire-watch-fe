@@ -61,6 +61,7 @@ const PublicMap = ({
       window.removeEventListener('keydown', listener)
     }
   }, [])
+  //Gets the users location based on the IP address of the client and sets the viewport
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_ENV}users/ip-address`)
@@ -82,6 +83,19 @@ const PublicMap = ({
       .catch(err => {
         console.log(err)
       })
+  }, [])
+  //prompts the user for their permission to location and sets viewport
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(position => {
+      console.log("setting viewport using geolocation permission")
+      setViewport({
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude,
+        width: '100vh',
+        height: '100vh',
+        zoom: 8
+      })
+    })
   }, [])
 
   const handleSubmit = e => {
@@ -296,7 +310,9 @@ const PublicMap = ({
             {selectedMarker[4] === 'tempLocation' && tempLocationPopup}
             {selectedMarker[4] === 'fireLocation' && fireLocationPopup}
           </Popup>
+
         ) : null}
+
       </ReactMapGL>
     </div>
   )
