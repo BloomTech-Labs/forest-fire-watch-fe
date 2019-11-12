@@ -4,7 +4,7 @@
 
 # Wildfire Watch
 
-You can find the deployed project at [wildfirewatchapp.com](https://wildfirewatchapp.com/).
+You can find the deployed project at [wildfirewatchapp.com](https://wildfirewatchapp.com/) and backend repo [here](https://github.com/Lambda-School-Labs/forest-fire-watch-be)
 
 ## Contributors
 
