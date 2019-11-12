@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react'
 import { GlobalContext } from '../../context/contextProvider'
 import useInput from '../../utils/useInput'
 import fire from '../../config/fire'
+import { ErrorText } from '../../styles/Forms'
 function Password({
   toggle,
   setShowAuthForms,
@@ -42,19 +43,26 @@ function Password({
     //     setErrorStatus(true);
     //     setLoading(false);
     //   });
-    fire
-      .auth()
-      .sendPasswordResetEmail(email)
-      .then(() => {
-        // Email sent.
-        setLoading(false)
-        setShowAuthForms(false)
-        setPasswordFormStatus(false)
-      })
-      .catch(error => {
-        // An error happened.
-        console.log(error)
-      })
+    if (email) {
+      fire
+        .auth()
+        .sendPasswordResetEmail(email)
+        .then(() => {
+          // Email sent.
+          setLoading(false)
+          setShowAuthForms(false)
+          setPasswordFormStatus(false)
+        })
+        .catch(error => {
+          // An error happened.
+          console.log(error)
+        })
+    }
+    else {
+      setLoading(false)
+      setErrorStatus(true)
+      setErrorText("Please enter an email")
+    }
   }
 
   return (
@@ -86,10 +94,10 @@ function Password({
             placeholder=""
           />
           {errorStatus ? (
-            <span className="name-error-text">{errorText}</span>
+            <ErrorText>{errorText}</ErrorText>
           ) : (
-            <span className="user-error-text" />
-          )}
+              <ErrorText></ErrorText>
+            )}
           <br />
           <button className="default-btn" type="submit" disabled={loading}>
             {loading ? 'Loading...' : 'Send Email'}
