@@ -70,7 +70,7 @@ const PublicMap = ({
           longitude: res.data.lon,
           width: '100vh',
           height: '100vh',
-          zoom: 10
+          zoom: 8
         })
 
       }
