@@ -50,7 +50,7 @@ function Login({
           .then(res => {
             ReactGA.event({
               category: 'User',
-              action: 'Signed in'
+              action: 'Logged in'
             })
             setEmail('')
             setPassword('')
