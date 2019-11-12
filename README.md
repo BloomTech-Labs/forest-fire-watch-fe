@@ -42,17 +42,23 @@ Saved locations are indicated by a green marker and fires that are within a radi
 
 - Phone and email are editable
 
+![User-profile]()
+
 ### SMS notification alerts
 
 - Application will alert the user when fire is within their set radius by SMS or push notification in the web browser.
 
+![SMS-alerts]()
+
 ### Add Location Form
 
-- Prevent users from adding the same location twice
+Users may also a location through a form and are prevented from adding duplicate locations.
+
+![Add-Location-Form]()
 
 ### Fully responsive views
 
-![Gif here]()
+![Responsive-views]()
 
 ## Tech Stack
 
