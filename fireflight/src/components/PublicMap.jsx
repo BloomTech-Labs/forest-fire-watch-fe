@@ -292,6 +292,7 @@ const PublicMap = ({
       <ReactMapGL
         {...viewport}
         mapboxApiAccessToken={token}
+        width="100%"
         onViewportChange={viewport => {
           setViewport(viewport)
         }}
