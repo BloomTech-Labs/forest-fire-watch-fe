@@ -28,16 +28,15 @@ Signed out users can demo part of the the application and see a clear "Sign Up" 
 
 ### Login, Registration, and Change Password Modals
 
-![Gif here]()
+Custom error handling based on Firebase or backend server responses. Authentication is handled using Firebase.
 
-- Custom error handling based on Firebase or backend server responses.
+![Modal-examples]()
 
-### Address autocomplete & saved Locations
+### Address autocomplete & saved locations
+
+Saved locations are indicated by a green marker and fires that are within a radius (in miles) of the address are highlighted with exclamation markers. Fire distances are calculated via the haversine formula (i.e. distance between two latitude/longitude points on a sphere).
 
 ![Saving a location](save-location.gif)
-
-- Clickable and updatable saved locations & radius input
-- Users can search for multiple addresses and save them to their profile.
 
 ### User Profile
 
