@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react'
 import { GlobalContext } from '../../context/contextProvider'
 import useInput from '../../utils/useInput'
 import { FireDataContext } from '../../context/FireDataContext'
-
+import { ErrorText } from '../../styles/Forms'
 import fire from '../../config/fire'
 
 function Login({
@@ -22,6 +22,7 @@ function Login({
   //get global context (think redux store)
   const context = useContext(GlobalContext)
   const { saveLocationMarker } = useContext(FireDataContext)
+
 
   //view context once / example of how to use
   useEffect(() => {
@@ -102,10 +103,10 @@ function Login({
             placeholder=""
           />
           {errorStatus ? (
-            <span className="name-error-text">{errorText.message}</span>
+            <ErrorText>{errorText.message}</ErrorText>
           ) : (
-            <span className="user-error-text" />
-          )}
+              <ErrorText></ErrorText>
+            )}
 
           <button className="default-btn" type="submit" disabled={loading}>
             {loading ? 'Loading...' : 'Sign In'}

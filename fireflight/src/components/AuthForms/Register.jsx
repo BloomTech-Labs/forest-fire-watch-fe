@@ -6,6 +6,7 @@ import useInput from '../../utils/useInput'
 import styled from 'styled-components'
 
 import fire from '../../config/fire'
+import { ErrorText } from '../../styles/Forms'
 
 function Register({ toggle, setShowAuthForms, setRegisterStatus }) {
   //useInput is a custom hook that should be used for all controlled inputs
@@ -155,8 +156,8 @@ function Register({ toggle, setShowAuthForms, setRegisterStatus }) {
             {errorStatus ? (
               <ErrorText>{errorText.password}</ErrorText>
             ) : (
-              <ErrorText />
-            )}
+                <ErrorText />
+              )}
             <label htmlFor="password">Confirm Password</label>
             <input
               className="form-input"
@@ -170,14 +171,14 @@ function Register({ toggle, setShowAuthForms, setRegisterStatus }) {
             {errorStatus ? (
               <ErrorText>{errorText.password}</ErrorText>
             ) : (
-              <ErrorText />
-            )}
+                <ErrorText />
+              )}
             {/* ERRORS FOR NON-PASSWORD FIELDS */}
             {errorStatus ? (
               <ErrorText>{errorText.message}</ErrorText>
             ) : (
-              <ErrorText />
-            )}
+                <ErrorText />
+              )}
             <button
               className="default-btn register-btn"
               type="submit"
@@ -200,10 +201,10 @@ function Register({ toggle, setShowAuthForms, setRegisterStatus }) {
 
 export default Register
 
-const ErrorText = styled.p`
-  color: darkred;
-  font-size: 0.75em;
-  margin: 0px;
-  padding: 2px;
-  height: 15px;
-`
+// const ErrorText = styled.p`
+//   color: darkred;
+//   font-size: 1.5em;
+//   margin: 0px;
+//   padding: 2px;
+//   height: 15px;
+// `
