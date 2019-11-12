@@ -4,7 +4,6 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  z-index: 6;
 
   @media (max-device-width: $mq-mobile) {
     position: relative;
@@ -138,7 +137,7 @@
     position: absolute;
     padding: 1rem 0.8rem;
     font-size: 1.6rem;
-    z-index: 6;
+    z-index: 4;
 
     @media (max-device-width: $mq-mobile) {
       width: 25rem;
