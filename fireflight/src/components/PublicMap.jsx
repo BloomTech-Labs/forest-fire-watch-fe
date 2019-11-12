@@ -64,9 +64,13 @@ const PublicMap = ({
     axios.get(`${process.env.REACT_APP_ENV}users/ip-address`).then(res => {
       console.log(res.data)
       if (res.data.status !== "fail") {
+        console.log("setting viewport")
         setViewport({
           latitude: res.data.lat,
-          longitude: res.data.lon
+          longitude: res.data.lon,
+          width: '100vh',
+          height: '100vh',
+          zoom: 10
         })
 
       }
