@@ -20,21 +20,21 @@ UX Design files: [map](https://www.figma.com/file/MSadfIggtwfQUUUp1W6dbR/Labs17_
 
 ## Key Features
 
+### Demo view
+
+Unregistered or logged out users can demo the app and are redirected to login upon attempting to save a location. There is conditional rendering with a clear "Sign Up" call-to-action for signed out users.
+
+[Demo-mode](./fireflight/public/demo-mode.gif)
+
 ### Login, Registration, and Change Password Modals
 
 [Gif here]()
 
 - Custom error handling based on Firebase or backend server responses.
 
-### Demo view
-
-- Unregistered or logged out users can demo the app and are redirected to login upon attempting to save a location
-
-### Address autocomplete, zoom-in upon searched location with pop-up marker
+### Address autocomplete & saved Locations
 
 ![Saving a location](http://g.recordit.co/kjy7kTvRoz.gif)
-
-### Saved Locations
 
 - Clickable and updatable saved locations & radius input
 - Users can search for multiple addresses and save them to their profile.
