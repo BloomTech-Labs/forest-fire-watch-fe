@@ -15,22 +15,45 @@ You can find the deployed project at [wildfirewatchapp.com](https://wildfirewatc
 Wildfire Watch is designed to help people understand when they are in danger of being struck by a wildfire, and hopefully give them time to get out.
 
 [Trello Boards](https://trello.com/labs17forestfirewatch)
-
 [Product Canvas](https://www.notion.so/Forest-Fire-Prediction-and-Rescue-Coordination-7eb1595c5f1643fca8e48a89c6086fdf)
-
 UX Design files: [map](https://www.figma.com/file/MSadfIggtwfQUUUp1W6dbR/Labs17_Forest-Fire-Watch%2C-Gabby?node-id=155%3A12) & [profile](https://www.figma.com/file/MSadfIggtwfQUUUp1W6dbR/Labs17_Forest-Fire-Watch%2C-Gabby)
 
-### Key Features
+## Key Features
 
-- User can see all wildfires within the United States, as well as see wildfires with a marker within a range they set.
-- User can log in and add multiple addresses. They can also set a distance from that address where the app will provide data about wildfires.
+### Login, Registration, and Change Password Modals
+
+[Gif here]()
+
+- Custom error handling based on Firebase or backend server responses.
+
+### Demo view
+
+- Unregistered or logged out users can demo the app and are redirected to login upon attempting to save a location
+
+### Address autocomplete, zoom-in upon searched location with pop-up marker
+
+![Saving a location](http://g.recordit.co/kjy7kTvRoz.gif)
+
+### Saved Locations
+
+- Clickable and updatable saved locations & radius input
+- Users can search for multiple addresses and save them to their profile.
+
+### User Profile
+
+- Phone and email are editable
+
+### SMS notification alerts
+
 - Application will alert the user when fire is within their set radius by SMS or push notification in the web browser.
 
-- Error handling:
-  - Login, Register, and Change Password modal forms with custom error handling based on Firebase or backend server responses
-  - Prevent users from adding the same location twice
+### Add Location Form
 
-![Gif image](http://g.recordit.co/OZ4HlJti9C.gif)
+- Prevent users from adding the same location twice
+
+### Fully responsive views
+
+[Gif here]()
 
 ## Tech Stack
 
