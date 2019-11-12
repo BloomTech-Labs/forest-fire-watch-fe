@@ -5,6 +5,7 @@ import { FireDataContext } from '../context/FireDataContext'
 import MapLegend from './MapLegend'
 import Navigation from '../components/Navigation'
 import Geocoder from 'react-mapbox-gl-geocoder'
+import axios from 'axios'
 
 const token = process.env.REACT_APP_MAPBOX_TOKEN
 
@@ -58,6 +59,24 @@ const PublicMap = ({
     return () => {
       window.removeEventListener('keydown', listener)
     }
+  }, [])
+  useEffect(() => {
+    axios.get(`${process.env.REACT_APP_ENV}users/ip-address`).then(res => {
+      console.log(res.data)
+      if (res.data.status !== "fail") {
+        setViewport({
+          latitude: res.data.lat,
+          longitude: res.data.lon
+        })
+
+      }
+      else {
+        console.log("going into else")
+      }
+    })
+      .catch(err => {
+        console.log(err)
+      })
   }, [])
 
   const handleSubmit = e => {
