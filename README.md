@@ -52,9 +52,9 @@ Users can subscribe to SMS alerts. These alerts tell them the name of the closes
 
 <p align="center">
 
-<!-- <img src="twilio_notifications.gif" alt="Twilio notifications"> -->
+<img src="./twilio_notifications.gif" alt="Twilio notifications">
 
-![Twilio notifications](twilio_notifications.gif)
+<!-- ![Twilio notifications](twilio_notifications.gif) -->
 
 </p>
 
