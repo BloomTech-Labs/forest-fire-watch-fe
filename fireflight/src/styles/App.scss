@@ -181,7 +181,7 @@ button {
   // @media (max-width: $mq-tablet) {
   //   width: 50%;
   // }
-  @media (max-width: $mq-mobile) {
+  @media (max-device-width: $mq-mobile) {
     margin: 0 auto;
     margin-top: 2rem;
   }
