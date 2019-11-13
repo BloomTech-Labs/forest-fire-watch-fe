@@ -21,10 +21,12 @@ describe('Wildfire Watch Home Page', () => {
   })
 
   it('Switches to login modal from register', () => {
+    cy.get('.register-page-container').should('be.visible')
     cy.get('.create-an-account')
       .contains('Sign In Here')
       .click()
     cy.get('.login-page-container').should('be.visible')
+    cy.get('.register-page-container').should('not.exist')
     cy.get('.form-heading').should('have.text', 'Welcome Back')
   })
 
@@ -42,5 +44,11 @@ describe('Wildfire Watch Home Page', () => {
     cy.get('.register-page-container').should('be.visible')
     cy.get('.password-reset-container').should('not.exist')
     cy.get('.form-heading').should('have.text', 'Create an Account')
+  })
+
+  it('Closes modal when "X" is clicked', () => {
+    cy.get('.model-wrapper').should('have.css', 'opacity', '1')  
+    cy.get('.form-close-btn').click()
+    cy.get('.model-wrapper').should('have.css', 'opacity', '0')
   })
 })
