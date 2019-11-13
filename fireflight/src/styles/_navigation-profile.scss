@@ -6,9 +6,13 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  //padding-left: 20rem;
 
-  @media (max-width: $mq-mobile) {
+  @media (max-device-width: $mq-tablet) {
+    max-width: 100%;
+    padding-left: 10rem;
+  }
+
+  @media (max-device-width: $mq-mobile) {
     max-width: 500px;
     padding-left: 0;
   }
@@ -23,9 +27,10 @@
     padding: 2rem;
     width: 10rem;
 
-    @media (max-width: $mq-mobile) {
+    @media (max-device-width: $mq-mobile) {
       padding: 0.25rem;
       text-align: center;
+      font-size: 1.7rem;
     }
 
     &:hover {
