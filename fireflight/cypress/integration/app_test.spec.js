@@ -52,11 +52,17 @@ describe('Wildfire Watch Home Page', () => {
     cy.get('.model-wrapper').should('have.css', 'opacity', '0')
   })
 
-  it('Closes modal when clicked outside of modal', () => {
-    cy.get('.menu-item')
-      .contains('Sign In')
+  it('Register modal appears when "Sign Up" button on map is clicked', () => {
+    cy.get('.signup-btn')
+      .wait(500)
       .click()
 
+    cy.get('.model-wrapper').should('have.css', 'opacity', '1')
+    cy.get('.register-page-container').should('be.visible')
+    cy.get('.form-heading').should('have.text', 'Create an Account')
+  })
+
+  it('Closes modal when clicked outside of modal', () => {
     cy.get('body')
       .wait(2000)
       .click('left')
