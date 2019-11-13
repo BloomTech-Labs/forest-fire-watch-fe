@@ -48,7 +48,7 @@ Users may edit their email address or phone number, and toggle on the options of
 
 ### SMS notification alerts via Twilio API
 
-Users can subscribe to SMS alerts. These alerts tell them the name of the closest fire and how many fires are within a given distance (user defined) from the saved locations. We send these alerts using the Twilio API.
+Users can subscribe to SMS alerts. These alerts tell them the name of the closest fire and how many fires are within a given distance (user defined) from the saved locations. We send these alerts using the Twilio API. Notifications are re-sent every 6 hours using CRON scheduler.
 
 <p align="center">
 <img src="./twilio_notifications.gif" alt="Twilio notifications" width="300" height="600">
@@ -60,7 +60,7 @@ Users can subscribe to SMS alerts. These alerts tell them the name of the closes
 
 ### Push notification alerts
 
-Users can subscribe to in browser push notifications. Like SMS alerts, they receive personalized messages based on the locations they save and the distance they set for these alerts.
+Users can subscribe to in-browser push notifications. Like SMS alerts, they receive personalized messages based on the locations they save and the distance they set for these alerts.
 
 ![Push notifications](push_notification.gif)
 
