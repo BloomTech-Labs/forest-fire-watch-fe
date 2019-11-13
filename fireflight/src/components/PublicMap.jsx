@@ -60,8 +60,10 @@ const PublicMap = ({
     }
   }, [])
   useEffect(() => {
-    geoControl()
+    ipAddress()
   }, [])
+  //prompts the user for their permission to location and sets viewport
+  //currently not useing due to geocoder issues related to having them both plugged in. IP address is very reliable and does not need any permissions.
   const geoControl = () => {
     navigator.geolocation.getCurrentPosition(position => {
       console.log('setting viewport using geolocation permission')
@@ -75,14 +77,14 @@ const PublicMap = ({
       })
     })
   }
-  console.log()
+
   //Gets the users location based on the IP address of the client and sets the viewport
-  useEffect(() => {
+  const ipAddress = () => {
     axios
       .get(`${process.env.REACT_APP_ENV}users/ip-address`)
       .then(res => {
         console.log(res.data)
-        if (res.data.status !== 'fail') {
+        if (res.data.status !== 'fil') {
           console.log('setting viewport')
           setViewport({
             ...viewport,
@@ -99,8 +101,7 @@ const PublicMap = ({
       .catch(err => {
         console.log(err)
       })
-  }, [])
-  //prompts the user for their permission to location and sets viewport
+  }
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -113,6 +114,8 @@ const PublicMap = ({
       ...viewport,
       latitude: location[1],
       longitude: location[0],
+      width: '100vw',
+      height: '100vh',
       zoom: 8,
       transitionDuration: 500
     })
@@ -182,7 +185,12 @@ const PublicMap = ({
           placeholder="miles"
           value={popupRadius}
           onChange={e => setPopupRadius(e.target.value)}
-          style={{ height: 8, width: 110, fontSize: 14, margin: '0 10px 0 0' }}
+          style={{
+            height: 8,
+            width: 110,
+            fontSize: 14,
+            margin: '0 10px 0 0'
+          }}
         />
         <button
           onClick={() => {
@@ -216,7 +224,11 @@ const PublicMap = ({
 
   const fireLocationPopup = (
     <div
-      style={{ display: 'flex', flexDirection: 'column', fontSize: '1.4rem' }}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        fontSize: '1.4rem'
+      }}
     >
       {selectedMarker[7]}
     </div>
