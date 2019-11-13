@@ -47,8 +47,18 @@ describe('Wildfire Watch Home Page', () => {
   })
 
   it('Closes modal when "X" is clicked', () => {
-    cy.get('.model-wrapper').should('have.css', 'opacity', '1')  
+    cy.get('.model-wrapper').should('have.css', 'opacity', '1')
     cy.get('.form-close-btn').click()
     cy.get('.model-wrapper').should('have.css', 'opacity', '0')
+  })
+
+  it('Closes modal when clicked outside of modal', () => {
+    cy.get('.menu-item')
+      .contains('Sign In')
+      .click()
+
+    cy.get('body')
+      .wait(2000)
+      .click('left')
   })
 })
