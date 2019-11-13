@@ -64,7 +64,17 @@ describe('Wildfire Watch Home Page', () => {
 
   it('Closes modal when clicked outside of modal', () => {
     cy.get('body')
-      .wait(2000)
+      .wait(1500)
       .click('left')
+  })
+
+  it('Map legend toggles when "Map Legend" is clicked', () => {
+    cy.get('.legend-title').click()
+    cy.get('.legend-item').should('not.be.visible')
+
+    cy.get('.legend-title')
+      .wait(1000)
+      .click()
+    cy.get('.legend-item').should('be.visible')
   })
 })
