@@ -1,5 +1,5 @@
-describe('Wildfire Watch Home Page', function() {
-  it('loaded the staging URL', function() {
+describe('Wildfire Watch Home Page', () => {
+  it('loaded the staging URL', () => {
     cy.visit('http://wildfire-watch-staging.netlify.com')
   })
 
@@ -13,14 +13,24 @@ describe('Wildfire Watch Home Page', function() {
   })
 
   it('Switches to register modal from login', () => {
-    cy.get('.create-an-account').contains('Sign up Here').click()
+    cy.get('.create-an-account')
+      .contains('Sign up Here')
+      .click()
     cy.get('.register-page-container').should('be.visible')
     cy.get('.form-heading').should('have.text', 'Create an Account')
   })
 
   it('Switches to login modal from register', () => {
-    cy.get('.create-an-account').contains('Sign In Here').click()
+    cy.get('.create-an-account')
+      .contains('Sign In Here')
+      .click()
     cy.get('.login-page-container').should('be.visible')
     cy.get('.form-heading').should('have.text', 'Welcome Back')
+  })
+
+  it('switches to password reset modal from login', () => {
+    cy.get('.forgot-pw').click()
+    cy.get('.password-reset-container').should('be.visible')
+    cy.get('.form-heading').should('have.text', 'Password Reset')
   })
 })
