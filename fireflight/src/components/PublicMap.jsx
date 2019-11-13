@@ -84,7 +84,7 @@ const PublicMap = ({
       .get(`${process.env.REACT_APP_ENV}users/ip-address`)
       .then(res => {
         console.log(res.data)
-        if (res.data.status !== 'fil') {
+        if (res.data.status !== 'fail') {
           console.log('setting viewport')
           setViewport({
             ...viewport,
