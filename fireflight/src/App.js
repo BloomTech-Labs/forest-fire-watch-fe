@@ -50,9 +50,7 @@ function App() {
   const [firebaseUser, setFirebaseUser] = useState({})
 
   const tracking = 'UA-149769097-1'
-  ReactGa.initialize(tracking, {
-    debug: true
-  })
+  ReactGa.initialize(tracking)
   if (firebaseUser !== null) {
     ReactGa.set({
       userId: firebaseUser
