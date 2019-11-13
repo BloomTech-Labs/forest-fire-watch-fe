@@ -50,13 +50,15 @@ Users may edit their email address or phone number, and toggle on the options of
 
 Users receive SMS alerts about how many fires are within the within the radial distance set as well as estimated distance of the closest fire.
 
-Push notifications description (cron)?
-
 ![Twilio notifications](twilio_notifications.gif)
 
 <!-- <img src="twilio_notifications.png" width="350" height="auto"> -->
 
 <!-- ![SMS-alerts](twilio_notifications.png) -->
+
+### Push notification alerts
+
+![Push notifications](push_notification.gif)
 
 ### Add Location Form
 
