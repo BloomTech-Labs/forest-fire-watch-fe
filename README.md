@@ -51,11 +51,7 @@ Users may edit their email address or phone number, and toggle on the options of
 Users can subscribe to SMS alerts. These alerts tell them the name of the closest fire and how many fires are within a given distance (user defined) from the saved locations. We send these alerts using the Twilio API.
 
 <p align="center">
-
-<img src="./twilio_notifications.gif" alt="Twilio notifications">
-
-<!-- ![Twilio notifications](twilio_notifications.gif) -->
-
+<img src="./twilio_notifications.gif" alt="Twilio notifications" width="300" height="600">
 </p>
 
 <!-- <img src="twilio_notifications.png" width="350" height="auto"> -->
