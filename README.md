@@ -52,7 +52,9 @@ Users receive SMS alerts about how many fires are within the within the radial d
 
 Push notifications description (cron)?
 
-<img src="twilio_notifications.png" width="350" height="auto">
+![Twilio notifications](twilio_notifications.gif)
+
+<!-- <img src="twilio_notifications.png" width="350" height="auto"> -->
 
 <!-- ![SMS-alerts](twilio_notifications.png) -->
 
