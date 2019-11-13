@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react'
 import { GlobalContext } from '../../context/contextProvider'
 import useInput from '../../utils/useInput'
 import { FireDataContext } from '../../context/FireDataContext'
+import ReactGA from 'react-ga'
 import { ErrorText } from '../../styles/Forms'
 import fire from '../../config/fire'
 
@@ -22,7 +23,6 @@ function Login({
   //get global context (think redux store)
   const context = useContext(GlobalContext)
   const { saveLocationMarker } = useContext(FireDataContext)
-
 
   //view context once / example of how to use
   useEffect(() => {
@@ -48,6 +48,10 @@ function Login({
         context.state.remote
           .login(credentials)
           .then(res => {
+            ReactGA.event({
+              category: 'User',
+              action: 'Logged in'
+            })
             setEmail('')
             setPassword('')
             setLoading(false)
@@ -102,11 +106,7 @@ function Login({
             onChange={handlePassword}
             placeholder=""
           />
-          {errorStatus ? (
-            <ErrorText>{errorText.message}</ErrorText>
-          ) : (
-              null
-            )}
+          {errorStatus ? <ErrorText>{errorText.message}</ErrorText> : null}
 
           <button className="default-btn" type="submit" disabled={loading}>
             {loading ? 'Loading...' : 'Sign In'}

@@ -1,4 +1,4 @@
-describe('Wildfire Watch Home Page', () => {
+describe('Wildfire Watch Home Page (Demo mode)', () => {
   it('loaded the staging URL', () => {
     cy.visit('http://wildfire-watch-staging.netlify.com')
   })
@@ -69,7 +69,7 @@ describe('Wildfire Watch Home Page', () => {
   })
 
   it('Map legend toggles when "Map Legend" is clicked', () => {
-    cy.get('.legend-title').click()
+    cy.get('.legend-title').wait(1000).click()
     cy.get('.legend-item').should('not.be.visible')
 
     cy.get('.legend-title')

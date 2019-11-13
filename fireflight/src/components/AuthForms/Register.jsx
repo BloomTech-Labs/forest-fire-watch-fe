@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { Redirect } from 'react-router-dom'
 import { GlobalContext } from '../../context/contextProvider'
-
+import ReactGA from 'react-ga'
 import useInput from '../../utils/useInput'
 import styled from 'styled-components'
 
@@ -51,6 +51,10 @@ function Register({ toggle, setShowAuthForms, setRegisterStatus }) {
               data.state.remote
                 .register(newUser)
                 .then(res => {
+                  ReactGA.event({
+                    category: 'User',
+                    action: 'Registered user'
+                  })
                   setFirstName('')
                   setLastName('')
                   setEmail('')
@@ -166,11 +170,7 @@ function Register({ toggle, setShowAuthForms, setRegisterStatus }) {
             />
 
             {/* ERRORS FOR NON-PASSWORD FIELDS */}
-            {errorStatus ? (
-              <ErrorText>{errorText.message}</ErrorText>
-            ) : (
-                null
-              )}
+            {errorStatus ? <ErrorText>{errorText.message}</ErrorText> : null}
             <button
               className="default-btn register-btn"
               type="submit"

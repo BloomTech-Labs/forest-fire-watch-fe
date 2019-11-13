@@ -4,7 +4,7 @@
 
 # Wildfire Watch
 
-You can find the deployed project at [wildfire-watch-staging.com](http://wildfire-watch-staging.netlify.com). Note: this project is currently in-progress.
+You can find the deployed project at [wildfirewatchapp.com](https://wildfirewatchapp.com/).
 
 ## Contributors
 
@@ -14,30 +14,68 @@ You can find the deployed project at [wildfire-watch-staging.com](http://wildfir
 
 Wildfire Watch is designed to help people understand when they are in danger of being struck by a wildfire, and hopefully give them time to get out.
 
-[Trello Board](https://trello.com/labs17forestfirewatch)
+[Trello Boards](https://trello.com/labs17forestfirewatch)
 
 [Product Canvas](https://www.notion.so/Forest-Fire-Prediction-and-Rescue-Coordination-7eb1595c5f1643fca8e48a89c6086fdf)
 
-[UX Design files - need to update]()
+UX Design files: [map](https://www.figma.com/file/MSadfIggtwfQUUUp1W6dbR/Labs17_Forest-Fire-Watch%2C-Gabby?node-id=155%3A12) & [profile](https://www.figma.com/file/MSadfIggtwfQUUUp1W6dbR/Labs17_Forest-Fire-Watch%2C-Gabby)
 
-### Key Features
+## Key Features
 
-- User can see all wildfires within the United States, as well as see wildfires with a marker within a range they set.
-- User can log in and add multiple addresses. They can also set a distance from that address where the app will provide data about wildfires.
-- Application will alert the user when fire is within their set radius by SMS or push notification in the web browser.
+### Demo view & search autocomplete
+
+Signed out users can demo part of the the application and see a clear "Sign Up" call-to-action. Autocomplete of searched addresses are shown in a dropdown using geocoder autocomplete. Users are directed to a login modal upon attempting to save a location.
+
+![Demo-mode](demo-mode.gif)
+
+### Login, Registration, and Change Password Modals
+
+Use cases for incorrect inputs based on Firebase or backend server responses are indicated to the user. User authentication is handled using Firebase.
+
+![Modal-examples]()
+
+### Saved locations and fire markers
+
+Saved locations are indicated by a green marker and fires that are within a radius (in miles) of the address are highlighted with exclamation markers. Fire distances are calculated via the haversine formula (i.e. distance between two latitude/longitude points on a sphere).
+
+![Saving a location](save-location.gif)
+
+### User Profile
+
+Users may edit their email address or phone number, and toggle on the options of receiving SMS alerts for saved locations.
+
+![User-profile]()
+
+### SMS notification alerts via Twilio API
+
+Users receive SMS alerts about how many fires are within the within the radial distance set as well as estimated distance of the closest fire.
+
+Push notifications description (cron)?
+
+<img src="twilio_notifications.png" width="350" height="auto">
+
+<!-- ![SMS-alerts](twilio_notifications.png) -->
+
+### Add Location Form
+
+Users may also add a location through a form and are prevented from adding duplicate locations.
+
+![Add-Location-Form]()
+
+### Fully responsive views
+
+![Responsive-views]()
 
 ## Tech Stack
 
 ### Front end built using:
 
-- ReactJS
-- React Hooks
-- Context API
+- ReactJS (Hooks)
+- Node-Sass
 - Axios
 - MapBox
-- Node-Sass
-
-#### Front end deployed to `Netlify`
+  - [React-Map-GL](https://www.google.com/search?q=react+mapbox+uber&oq=react+mapbox+uber&aqs=chrome..69i57j69i60.4803j0j7&sourceid=chrome&ie=UTF-8): gives the application the abilty to convert addresses to latitude/longitude for our backend applications
+  - [React Mapbox Geocode](https://github.com/groinder/react-mapbox-gl-geocoder)
 
 ### [Backend](https://github.com/Lambda-School-Labs/forest-fire-watch-be) built using:
 
@@ -48,12 +86,6 @@ Wildfire Watch is designed to help people understand when they are in danger of 
 - KnexJS: management of database structure
 - JWT: handling authorizations
 - PostgreSQL
-
-# APIs
-
-## Mapbox
-
-- This API gives the application the abilty to convert addresses to latitude/longitude for our backend applications.
 
 # Environment Variables
 
