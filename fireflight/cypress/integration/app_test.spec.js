@@ -33,4 +33,14 @@ describe('Wildfire Watch Home Page', () => {
     cy.get('.password-reset-container').should('be.visible')
     cy.get('.form-heading').should('have.text', 'Password Reset')
   })
+
+  it('Switches to register modal from password reset', () => {
+    cy.get('.password-reset-container').should('be.visible')
+    cy.get('.create-an-account')
+      .contains('Sign up Here')
+      .click()
+    cy.get('.register-page-container').should('be.visible')
+    cy.get('.password-reset-container').should('not.exist')
+    cy.get('.form-heading').should('have.text', 'Create an Account')
+  })
 })
