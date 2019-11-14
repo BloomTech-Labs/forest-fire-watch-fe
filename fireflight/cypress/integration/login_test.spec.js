@@ -28,6 +28,12 @@ describe('Firebase email + password authentication', () => {
       cy.get('.menu-item')
         .contains('Sign In')
         .click()
+
+      cy.get('.model-wrapper').should('have.css', 'opacity', '1')
+      cy.get('.form-heading').should('have.text', 'Welcome Back')
+
+      cy.get('[name=email]').type(email)
+      cy.get('[name=password]').type(password)
     })
   })
 
