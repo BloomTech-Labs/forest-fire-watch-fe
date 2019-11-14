@@ -82,6 +82,10 @@ Users can subscribe to in-browser push notifications. Like SMS alerts, they rece
 
 Users can delete locations through both the map and locations list. They can add new locations through a form and are prevented from adding duplicate locations.
 
+![Add-Location-Form](add-location.gif)
+
+### Responsive Mobile View
+
 <div>
     <span align="center">
     <img src="./mobile1.gif" alt="Twilio notifications" width="300" height="600" hspace="80">
@@ -91,9 +95,7 @@ Users can delete locations through both the map and locations list. They can add
     </span>
 </div>
 
-<!-- ![Responsive-views]() -->
-
-![Add-Location-Form](add-location.gif)
+<br>
 
 ## Tech Stack
 
