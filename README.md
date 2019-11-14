@@ -84,7 +84,14 @@ Users may also add a location through a form and are prevented from adding dupli
 
 ### Fully responsive views
 
-![Responsive-views]()
+<p align="left">
+<img src="./mobile1.gif" alt="Twilio notifications" width="300" height="600">
+</p>
+<p align="right">
+<img src="./mobile2.gif" alt="Twilio notifications" width="300" height="600">
+</p>
+
+<!-- ![Responsive-views]() -->
 
 ## Tech Stack
 
