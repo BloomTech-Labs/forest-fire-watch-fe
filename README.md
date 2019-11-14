@@ -86,6 +86,8 @@ Users can delete locations through both the map and locations list. They can add
 
 ### Responsive Mobile View
 
+The App is fully responsive for tablet and mobile devices.
+
 <div>
     <span align="center">
     <img src="./mobile1.gif" alt="Twilio notifications" width="300" height="600" hspace="80">
