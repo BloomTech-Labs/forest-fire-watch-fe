@@ -120,8 +120,7 @@ REACT_APP_ENV - set to the url of your deployed Heroku backend for staging/produ
 The following libraries are used for testing:
 
 - testing-library/react
-- jest
-- react-test-renderer
+- cypress
 
 # Installation Instructions
 
