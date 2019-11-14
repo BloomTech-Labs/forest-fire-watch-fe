@@ -112,7 +112,7 @@ Users may also add a location through a form and are prevented from adding dupli
 ```
 REACT_APP_VAPID_PUBLIC - for push notifications
 REACT_APP_MAPBOX_TOKEN - provided by Mapbox
-REACT_APP_ENV - set to the url of your deployed Heroku backend for staging/production.
+REACT_APP_ENV - set to the url of your deployed Heroku backend for staging/production, default to "http://localhost:5000/api/" for local development
 ```
 
 # Testing
