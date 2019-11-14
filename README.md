@@ -86,7 +86,7 @@ Users may also add a location through a form and are prevented from adding dupli
 
 <div>
     <span align="center">
-    <img src="./mobile1.gif" alt="Twilio notifications" width="300" height="600" hspace="200">
+    <img src="./mobile1.gif" alt="Twilio notifications" width="300" height="600" hspace="80">
     </span>
     <span align="center">
     <img src="./mobile2.gif" alt="Twilio notifications" width="300" height="600">
