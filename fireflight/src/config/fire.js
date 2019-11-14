@@ -1,5 +1,5 @@
 import firebase from "firebase";
-const config = {
+export const config = {
   // Okay to leave this API key public according to firebase docs.
   // Doesn't work storing in .env file and referencing as
   // process.env.REACT_APP_FIREBASE_API_KEY

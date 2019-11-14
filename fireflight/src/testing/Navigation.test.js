@@ -3,6 +3,7 @@ import Navigation from "../components/Navigation";
 import NavigationProfile from "../components/NavigationProfile";
 import { render, fireEvent } from "./test-utils";
 import { createMemoryHistory } from 'history'
+import * as ReactGA from '../../src/index';
 
 describe("<Navigation />", () => {
 
@@ -27,6 +28,17 @@ describe("<Navigation />", () => {
 	})
 });
 
+describe('React GA test mode', () => {
+	it('should send the correct arguments to window.ga when arguments are passed', () => {
+	  ReactGA.initialize('foo', { testMode: true });
+	  ReactGA.ga('send', 'pageview', '/mypage');
+	  ReactGA.testModeAPI.calls.should.eql([
+	    ['create', 'foo', 'auto'],
+	    ['send', 'pageview', '/mypage']
+	  ]);
+	});
+      });
+      
 describe("<NavigationProfile /> while logged in", () => {
 	it("renders without crashing", () => {
 		const history = createMemoryHistory();
@@ -34,12 +46,16 @@ describe("<NavigationProfile /> while logged in", () => {
 	})
 	it("renders Profile when logged in", () => {
 		const navProf = render(<NavigationProfile />);
+		// const user = {
+		// 	email: 'test@test.com',
+		// 	UID: ''
+		// }
 
 		navProf.getByText(/Profile/i)
 	})
-	// it("renders Logout when logged in", () => {
-	// 	const nav = render(<NavigationProfile />);
+	it("renders Logout when logged in", () => {
+		const nav = render(<NavigationProfile />);
 
-	// 	nav.getByText(/Logout/i)
-	// })
+		nav.getByText(/Logout/i)
+	})
 })
