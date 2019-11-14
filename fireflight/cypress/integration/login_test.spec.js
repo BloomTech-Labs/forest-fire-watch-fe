@@ -34,6 +34,7 @@ describe('Firebase email + password authentication', () => {
 
       cy.get('[name=email]').type(email)
       cy.get('[name=password]').type(password)
+      cy.get('[type=submit]').click()
     })
   })
 
