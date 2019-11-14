@@ -43,8 +43,6 @@ const PublicMap = ({
   const [viewport, setViewport] = useState({
     latitude: 34.377566,
     longitude: -113.144528,
-    width: '100vw',
-    height: '100vh',
     zoom: 4
   })
 
@@ -86,8 +84,8 @@ const PublicMap = ({
       .get(`${process.env.REACT_APP_ENV}users/ip-address`)
       .then(res => {
         console.log(res.data)
-        if (res.data.status !== 'ail') {
-          console.log('setting viewport')
+        if (res.data.status !== 'fail') {
+          console.log('setting viewport', typeof res.data.lon)
           setViewport({
             ...viewport,
             latitude: res.data.lat,
@@ -98,6 +96,14 @@ const PublicMap = ({
           })
         } else {
           console.log('going into else')
+          setViewport({
+            ...viewport,
+            latitude: 34.377566,
+            longitude: -113.144528,
+            width: '100vw',
+            height: '100vh',
+            zoom: 4
+          })
         }
       })
       .catch(err => {
@@ -306,6 +312,7 @@ const PublicMap = ({
       <ReactMapGL
         {...viewport}
         mapboxApiAccessToken={token}
+        width="100vw"
         onViewportChange={viewport => {
           setViewport(viewport)
         }}
