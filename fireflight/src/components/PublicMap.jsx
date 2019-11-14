@@ -86,7 +86,7 @@ const PublicMap = ({
       .get(`${process.env.REACT_APP_ENV}users/ip-address`)
       .then(res => {
         console.log(res.data)
-        if (res.data.status !== 'fail') {
+        if (res.data.status !== 'ail') {
           console.log('setting viewport')
           setViewport({
             ...viewport,
@@ -306,7 +306,6 @@ const PublicMap = ({
       <ReactMapGL
         {...viewport}
         mapboxApiAccessToken={token}
-        width="100%"
         onViewportChange={viewport => {
           setViewport(viewport)
         }}
