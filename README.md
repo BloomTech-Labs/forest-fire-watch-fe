@@ -44,7 +44,7 @@ Signed out users can demo part of the the application and see a clear "Sign Up" 
 
 Use cases for incorrect inputs based on Firebase or backend server responses are indicated to the user. User authentication is handled using Firebase.
 
-![Modal-examples]()
+![Modal-examples](modal-switch.gif)
 
 ### Saved locations and fire markers
 
@@ -56,7 +56,9 @@ Saved locations are indicated by a green marker and fires that are within a radi
 
 Users may edit their email address or phone number, and toggle on the options of receiving SMS alerts for saved locations.
 
-![User-profile]()
+<p align="center">
+<img src="./profile.gif" alt="Twilio notifications" width="500" height="auto">
+</p>
 
 ### SMS notification alerts via Twilio API
 
@@ -78,13 +80,9 @@ Users can subscribe to in-browser push notifications. Like SMS alerts, they rece
 
 ### Add Location Form
 
-Users may also add a location through a form and are prevented from adding duplicate locations.
+Users can delete locations through both the map and locations list. They can add new locations through a form and are prevented from adding duplicate locations.
 
-![Add-Location-Form]()
-
-### Fully responsive views
-
-![Responsive-views]()
+![Add-Location-Form](add-location.gif)
 
 ## Tech Stack
 
