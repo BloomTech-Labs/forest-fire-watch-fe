@@ -111,16 +111,18 @@ Users may also add a location through a form and are prevented from adding dupli
 
 ```
 REACT_APP_VAPID_PUBLIC - for push notifications
-REACT_APP_MAPBOX_TOKEN - provided by Mapbox
+REACT_APP_MAPBOX_TOKEN - to get your own Mapbox token, go to https://docs.mapbox.com/api/#access-tokens-and-token-scopes.
+REACT_APP_ENV - set to the url of your deployed Heroku backend for staging/production, default to "http://localhost:5000/api/" for local development
 ```
+
+Update the fire.js file with your own Firebase information.
 
 # Testing
 
 The following libraries are used for testing:
 
 - testing-library/react
-- jest
-- react-test-renderer
+- cypress
 
 # Installation Instructions
 
