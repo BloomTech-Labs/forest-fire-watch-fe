@@ -5,6 +5,9 @@ import { FireDataContext } from '../../context/FireDataContext'
 import axiosWithAuth from '../../utils/axiosWithAuth'
 import fire from '../../config/fire'
 import LocationsList from './LocationsList'
+import ReactGA from 'react-ga'
+
+ReactGA.pageview('/profile')
 
 // USER PROFILE PAGE
 const Dashboard = props => {

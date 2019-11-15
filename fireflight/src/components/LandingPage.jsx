@@ -1,24 +1,27 @@
-import React from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
+import React from 'react'
+import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 import NavBar from './Navigation'
-
 
 const BodyEl = styled.div`
   display: flex;
   flex-flow: column;
   align-items: center;
   // margin: 100px 0px;
-  width:100%;
+  width: 100%;
   height: 100vh;
   @media (max-width: 768px) {
     padding: 20px;
   }
-  background-image:linear-gradient(rgba(255,255,255,0.075), rgba(255,255,255,0.075)), url("https://www.fireflightapp.com/public/images/wildfire.jpg");
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.075),
+      rgba(255, 255, 255, 0.075)
+    ),
+    url('https://www.fireflightapp.com/public/images/wildfire.jpg');
   background-size: cover;
   background-repeat: no-repeat;
-  opacity: .8;
-`;
+  opacity: 0.8;
+`
 
 const BodyTitle = styled.h1`
 width: 100%;
@@ -37,7 +40,7 @@ font-size: 70px;
 line-height: 88px;
 color: #FFFFFF;
 text-align:center;
-`;
+`
 
 const BodyDes = styled.h4`
 width: 70vh;
@@ -55,14 +58,13 @@ line-height: 4.5rem;
 display: flex;
 align-items: center;
 color: #FFFFFF;
-`;
+`
 
 const Content = styled.div`
- display: flex;
- flex-direction: column;
- justify-content:center;
- text-align:center;
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
 `
 const Button = styled.button`
   width: 158px;
@@ -88,17 +90,21 @@ const Button = styled.button`
     font-weight: 600;
     font-size: 18px;
     line-height: 25px;
-    
   }
-`;
+`
 
-const LandingPage = ({ setShowAuthForms, setLoginFormStatus, setRegisterFormStatus }) => {
+const LandingPage = ({
+  setShowAuthForms,
+  setLoginFormStatus,
+  setRegisterFormStatus
+}) => {
   return (
-
     <BodyEl>
-      <NavBar toggleAuthForms={setShowAuthForms}
+      <NavBar
+        toggleAuthForms={setShowAuthForms}
         toggleLoginStatus={setLoginFormStatus}
-        toggleRegisterStatus={setRegisterFormStatus} />
+        toggleRegisterStatus={setRegisterFormStatus}
+      />
       <Content>
         <BodyTitle>Wildfire Watch</BodyTitle>
         <BodyDes>
@@ -109,9 +115,7 @@ const LandingPage = ({ setShowAuthForms, setLoginFormStatus, setRegisterFormStat
           <Button>Try It Out</Button>
         </Link>
       </Content>
-
     </BodyEl>
-
-  );
-};
-export default LandingPage;
+  )
+}
+export default LandingPage

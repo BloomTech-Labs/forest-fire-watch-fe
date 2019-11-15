@@ -6,9 +6,10 @@ import MapLegend from './MapLegend'
 import Navigation from '../components/Navigation'
 import Geocoder from 'react-mapbox-gl-geocoder'
 import axios from 'axios'
+import ReactGA from 'react-ga'
 
 const token = process.env.REACT_APP_MAPBOX_TOKEN
-
+ReactGA.pageview('/public-map')
 const PublicMap = ({
   setShowAuthForms,
   setLoginFormStatus,
@@ -42,8 +43,6 @@ const PublicMap = ({
   const [viewport, setViewport] = useState({
     latitude: 34.377566,
     longitude: -113.144528,
-    width: '100vw',
-    height: '100vh',
     zoom: 4
   })
 
@@ -61,27 +60,56 @@ const PublicMap = ({
     }
   }, [])
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_ENV}users/ip-address`).then(res => {
-      console.log(res.data)
-      if (res.data.status !== "fail") {
-        console.log("setting viewport")
-        setViewport({
-          latitude: res.data.lat,
-          longitude: res.data.lon,
-          width: '100vh',
-          height: '100vh',
-          zoom: 8
-        })
-
-      }
-      else {
-        console.log("going into else")
-      }
+    ipAddress()
+  }, [])
+  //prompts the user for their permission to location and sets viewport
+  //currently not useing due to geocoder issues related to having them both plugged in. IP address is very reliable and does not need any permissions.
+  const geoControl = () => {
+    navigator.geolocation.getCurrentPosition(position => {
+      console.log('setting viewport using geolocation permission')
+      setViewport({
+        ...viewport,
+        latitude: parseInt(position.coords.latitude),
+        longitude: parseInt(position.coords.longitude),
+        width: '100vw',
+        height: '100vh',
+        zoom: 8
+      })
     })
+  }
+
+  //Gets the users location based on the IP address of the client and sets the viewport
+  const ipAddress = () => {
+    axios
+      .get(`${process.env.REACT_APP_ENV}users/ip-address`)
+      .then(res => {
+        console.log(res.data)
+        if (res.data.status !== 'fail') {
+          console.log('setting viewport', typeof res.data.lon)
+          setViewport({
+            ...viewport,
+            latitude: res.data.lat,
+            longitude: res.data.lon,
+            width: '100vw',
+            height: '100vh',
+            zoom: 8
+          })
+        } else {
+          console.log('going into else')
+          setViewport({
+            ...viewport,
+            latitude: 34.377566,
+            longitude: -113.144528,
+            width: '100vw',
+            height: '100vh',
+            zoom: 4
+          })
+        }
+      })
       .catch(err => {
         console.log(err)
       })
-  }, [])
+  }
 
   const handleSubmit = e => {
     e.preventDefault()
@@ -94,8 +122,14 @@ const PublicMap = ({
       ...viewport,
       latitude: location[1],
       longitude: location[0],
+      width: '100vw',
+      height: '100vh',
       zoom: 8,
       transitionDuration: 500
+    })
+    ReactGA.event({
+      category: 'Fire search',
+      action: 'Searched for fire'
     })
     // setAddress('') // doesn't reset address because of the special Geocoder library
   }
@@ -159,7 +193,12 @@ const PublicMap = ({
           placeholder="miles"
           value={popupRadius}
           onChange={e => setPopupRadius(e.target.value)}
-          style={{ height: 8, width: 110, fontSize: 14, margin: '0 10px 0 0' }}
+          style={{
+            height: 8,
+            width: 110,
+            fontSize: 14,
+            margin: '0 10px 0 0'
+          }}
         />
         <button
           onClick={() => {
@@ -193,7 +232,11 @@ const PublicMap = ({
 
   const fireLocationPopup = (
     <div
-      style={{ display: 'flex', flexDirection: 'column', fontSize: '1.4rem' }}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        fontSize: '1.4rem'
+      }}
     >
       {selectedMarker[7]}
     </div>
@@ -268,8 +311,8 @@ const PublicMap = ({
 
       <ReactMapGL
         {...viewport}
-        width="100%"
         mapboxApiAccessToken={token}
+        width="100vw"
         onViewportChange={viewport => {
           setViewport(viewport)
         }}

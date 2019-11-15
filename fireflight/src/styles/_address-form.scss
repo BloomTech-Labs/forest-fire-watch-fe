@@ -6,19 +6,18 @@
   align-items: flex-start;
   padding: 2rem;
 
-  @media (max-width: $mq-mobile) {
-    max-width: 500px;
-    padding-left: 0;
-    // margin-left: 3rem;
+  @media (max-device-width: $mq-mobile) {
+    max-width: 50rem;
+    padding-right: 7rem;
   }
 
   h2 {
     font-weight: 600;
-    font-size: 33px;
-    line-height: 45px;
+    font-size: 3.3rem;
+    line-height: 4.5rem;
     margin-bottom: 4rem;
 
-    @media (max-width: $mq-mobile) {
+    @media (max-device-width: $mq-mobile) {
       font-size: 2.5rem;
     }
   }
@@ -29,7 +28,7 @@
     margin-bottom: 2rem;
     font-weight: 600;
 
-    @media (max-width: $mq-mobile) {
+    @media (max-device-width: $mq-mobile) {
       font-size: 2rem;
     }
   }
@@ -42,19 +41,19 @@
     box-sizing: border-box;
     border-radius: 2px;
 
-    @media (max-width: $mq-mobile) {
-      max-width: 38rem;
+    @media (max-device-width: $mq-mobile) {
+      max-width: 34rem;
     }
     &::placeholder {
-      font-size: 20px;
-      line-height: 27px;
+      font-size: 2rem;
+      line-height: 2.7rem;
       display: flex;
       align-items: center;
       color: #a9a9a9;
-      padding-left: 17px;
+      padding-left: 1.7rem;
 
-      @media (max-width: $mq-mobile) {
-        max-width: 36rem;
+      @media (max-device-width: $mq-mobile) {
+        max-width: 33rem;
       }
     }
 
@@ -64,15 +63,16 @@
 
     input {
       width: 46rem;
-      height: 55px;
-      font-size: 20px;
+      height: 5.5rem;
+      font-size: 2rem;
       display: flex;
       align-items: center;
-      padding-left: 17px;
+      padding-left: 1.7rem;
 
-      @media (max-width: $mq-mobile) {
-        max-width: 30rem;
+      @media (max-device-width: $mq-mobile) {
+        max-width: 32rem;
         padding-left: 1rem;
+        font-size: 1.8rem;
       }
     }
     // DROPDOWN RESULTS FROM SEARCH BAR
@@ -87,16 +87,17 @@
       font-size: 1.6rem;
       z-index: 4;
 
-      @media (max-width: $mq-mobile) {
-        max-width: 38rem;
+      @media (max-device-width: $mq-mobile) {
+        max-width: 34rem;
+        padding-right: 3px;
       }
     }
     .react-geocoder-item {
       width: 50rem;
       padding-top: 1rem;
 
-      @media (max-width: $mq-mobile) {
-        max-width: 36rem;
+      @media (max-device-width: $mq-mobile) {
+        max-width: 33rem;
       }
     }
   }
@@ -104,8 +105,9 @@
   .radius-wrapper {
     margin-top: 2rem;
 
-    @media (max-width: $mq-mobile) {
+    @media (max-device-width: $mq-mobile) {
       max-width: 500px;
+      box-sizing: border-box;
     }
 
     .radius-info {
@@ -141,13 +143,13 @@
       padding-left: 3rem;
       width: 50rem;
 
-      @media (max-width: $mq-tablet) {
+      @media (max-device-width: $mq-tablet) {
         max-width: 40rem;
         font-size: 1.7rem;
       }
-      @media (max-width: $mq-mobile) {
-        max-width: 29rem;
-        font-size: 1.7rem;
+      @media (max-device-width: $mq-mobile) {
+        max-width: 22rem;
+        font-size: 1.6rem;
       }
     }
   }

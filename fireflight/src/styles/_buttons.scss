@@ -8,7 +8,7 @@
   height: 3.8rem;
   background: #ffffff;
   border-radius: 3px;
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 1.4rem;
@@ -19,8 +19,8 @@
   @media (max-width: $mq-mobile) {
     position: absolute;
     left: 5.33%;
-    right: 20px;
-    top: 175px;
+    right: 2rem;
+    top: 16.5rem;
     bottom: 75.62%;
     background: #ffffff;
     border-radius: 3px;
@@ -44,15 +44,21 @@
   color: #251400;
   @include easeOut;
 
-  @media (max-width: $mq-tablet) {
-    display:none;
+  @media (max-device-width: $mq-mobile) {
+    display: block;
+    position: absolute;
+    top: 57.1rem;
+    left: 13.1rem;
+    width: 10.6rem;
+    height: 4rem;
+    background: #ffffff;
+    font-size: 2rem;
+    line-height: 3.9rem;
   }
 
-  // &:hover {
-  //   color: $accentColor;
-  //   background-color: $lilia;
-  //   @include easeOut;
-  // }
+  @media (max-device-width: $mq-tablet) {
+    display: block;
+  }
 }
 
 // .default-btn {

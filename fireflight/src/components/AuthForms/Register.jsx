@@ -1,11 +1,12 @@
 import React, { useState, useContext } from 'react'
 import { Redirect } from 'react-router-dom'
 import { GlobalContext } from '../../context/contextProvider'
-
+import ReactGA from 'react-ga'
 import useInput from '../../utils/useInput'
 import styled from 'styled-components'
 
 import fire from '../../config/fire'
+import { ErrorText } from '../../styles/Forms'
 
 function Register({ toggle, setShowAuthForms, setRegisterStatus }) {
   //useInput is a custom hook that should be used for all controlled inputs
@@ -50,6 +51,10 @@ function Register({ toggle, setShowAuthForms, setRegisterStatus }) {
               data.state.remote
                 .register(newUser)
                 .then(res => {
+                  ReactGA.event({
+                    category: 'User',
+                    action: 'Registered user'
+                  })
                   setFirstName('')
                   setLastName('')
                   setEmail('')
@@ -74,7 +79,7 @@ function Register({ toggle, setShowAuthForms, setRegisterStatus }) {
             })
         } else {
           setErrorStatus(true)
-          setErrorText({ password: 'Your passwords do not match' })
+          setErrorText({ message: 'Your passwords do not match' })
           setLoading(false)
         }
       } else {
@@ -152,11 +157,7 @@ function Register({ toggle, setShowAuthForms, setRegisterStatus }) {
               onChange={handlePassword}
               placeholder=""
             />
-            {errorStatus ? (
-              <ErrorText>{errorText.password}</ErrorText>
-            ) : (
-              <ErrorText />
-            )}
+
             <label htmlFor="password">Confirm Password</label>
             <input
               className="form-input"
@@ -167,17 +168,9 @@ function Register({ toggle, setShowAuthForms, setRegisterStatus }) {
               onChange={handlePasswordConf}
               placeholder=""
             />
-            {errorStatus ? (
-              <ErrorText>{errorText.password}</ErrorText>
-            ) : (
-              <ErrorText />
-            )}
+
             {/* ERRORS FOR NON-PASSWORD FIELDS */}
-            {errorStatus ? (
-              <ErrorText>{errorText.message}</ErrorText>
-            ) : (
-              <ErrorText />
-            )}
+            {errorStatus ? <ErrorText>{errorText.message}</ErrorText> : null}
             <button
               className="default-btn register-btn"
               type="submit"
@@ -200,10 +193,10 @@ function Register({ toggle, setShowAuthForms, setRegisterStatus }) {
 
 export default Register
 
-const ErrorText = styled.p`
-  color: darkred;
-  font-size: 0.75em;
-  margin: 0px;
-  padding: 2px;
-  height: 15px;
-`
+// const ErrorText = styled.p`
+//   color: darkred;
+//   font-size: 1.5em;
+//   margin: 0px;
+//   padding: 2px;
+//   height: 15px;
+// `
