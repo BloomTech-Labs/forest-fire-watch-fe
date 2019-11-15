@@ -8,6 +8,18 @@ You can find the deployed project at [wildfirewatchapp.com](https://wildfirewatc
 
 ## Contributors
 
+|                                      [Alexander Stillo](https://github.com/astillo)                                      |                                         [Dora Belme](https://github.com/dorabelme)                                         |                                           [Neha Patel](https://github.com/neha-r-p)                                           |                                               [Penny Tague](https://github.com/Pmtague)                                               |                                                                                         [Lily Zhou](https://github.com/lilyhoratio)                                                                                         |
+| :----------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| [<img src="https://ca.slack-edge.com/T4JUEB3ME-UJM4J2F43-bdcbb92f5ba3-512" width = "200" />](https://github.com/astillo) | [<img src="https://ca.slack-edge.com/T4JUEB3ME-UJWCG5L2C-907df273c82a-512" width = "200" />](https://github.com/dorabelme) |   [<img src="https://ca.slack-edge.com/T4JUEB3ME-UJ6D6L4AK-0239b9736eda-512" width = "200" />](https://github.com/neha-r-p)   |       [<img src="https://ca.slack-edge.com/T4JUEB3ME-UJE6BTXPS-fdb517114f03-512" width = "200" />](https://github.com/Pmtague)        | [<img src="https://media.licdn.com/dms/image/C5603AQGd3Nnis74f0g/profile-displayphoto-shrink_800_800/0?e=1579132800&v=beta&t=sQvXLGu24rZvIA7JZ8v8hy0juLhc0VVWRYfjd_YZSRs" width = "200" />](https://github.com/lilyhoratio) |
+|                   [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/astillo)                   |                   [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/dorabelme)                   |                     [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/neha-r-p)                     |                         [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Pmtague)                          |                                                                  [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/lilyhoratio)                                                                   |
+|      [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://github.com/astillo)      | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/dorabelme/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/neha-r-patel/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/penny-tague-93659a16/) |                                                 [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/lilyhzhou/)                                                  |
+
+|                                        [Adam McKenney](https://github.com/DaftBeowulf)                                         |                                        [Chance Dare](https://github.com/ChanceDurr)                                         |                                                                                       [Eric Wuerfel](https://github.com/ewuerfel66)                                                                                        |                                                                                      [Gabby LoScalzo](https://www.linkedin.com/in/gabby-loscalzo-829596183)                                                                                       |                                       [Lloyd Edwards](https://github.com/tactnician)                                        |
+| :----------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------: |
+|  [<img src="https://ca.slack-edge.com/T4JUEB3ME-UCF18TTJB-24e2b73adb1f-512" width = "200" />](https://github.com/DaftBeowulf)  | [<img src="https://ca.slack-edge.com/T4JUEB3ME-UJFHN3FB5-afbdbb9e6e18-512" width = "200" />](https://github.com/ChanceDurr) | [<img src="https://media.licdn.com/dms/image/C4D03AQGIF7o63FD2xQ/profile-displayphoto-shrink_800_800/0?e=1579132800&v=beta&t=gbTjup94u9DouGP2g2ZtsFt7MXmFWtHPGfAQJtB4RiA" width = "200" />](https://github.com/ewuerfel66) | [<img src="https://media.licdn.com/dms/image/C4E03AQHgIxybmhe3aw/profile-displayphoto-shrink_800_800/0?e=1579132800&v=beta&t=H3q0fFIPMPmQ_eN1d3yvBT89UMNdvhdmR530CXMrFik" width = "200" />](https://www.linkedin.com/in/gabby-loscalzo-829596183) | [<img src="https://ca.slack-edge.com/T4JUEB3ME-UES9LV23Z-cd5f6267284a-512" width = "200" />](https://github.com/tactnician) |
+|                    [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/DaftBeowulf)                    |                   [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/ChanceDurr)                   |                                                                  [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/ewuerfel66)                                                                   |                                                                  [<img src="https://github.com/favicon.ico" width="15"> ](https://www.linkedin.com/in/gabby-loscalzo-829596183)                                                                   |                   [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/tactnician)                   |
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/adam-mckenney/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/chancedare/) |                                               [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/eric-wuerfel/)                                                |                                                     [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/gabby-loscalzo-829596183/)                                                     | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/tactnician/) |
+
 <br>
 
 ## Project Overview
@@ -32,7 +44,7 @@ Signed out users can demo part of the the application and see a clear "Sign Up" 
 
 Use cases for incorrect inputs based on Firebase or backend server responses are indicated to the user. User authentication is handled using Firebase.
 
-![Modal-examples]()
+![Modal-examples](modal-switch.gif)
 
 ### Saved locations and fire markers
 
@@ -44,7 +56,9 @@ Saved locations are indicated by a green marker and fires that are within a radi
 
 Users may edit their email address or phone number, and toggle on the options of receiving SMS alerts for saved locations.
 
-![User-profile]()
+<p align="center">
+<img src="./profile.gif" alt="Twilio notifications" width="500" height="auto">
+</p>
 
 ### SMS notification alerts via Twilio API
 
@@ -66,13 +80,24 @@ Users can subscribe to in-browser push notifications. Like SMS alerts, they rece
 
 ### Add Location Form
 
-Users may also add a location through a form and are prevented from adding duplicate locations.
+Users can delete locations through both the map and locations list. They can add new locations through a form and are prevented from adding duplicate locations.
 
-![Add-Location-Form]()
+![Add-Location-Form](add-location.gif)
 
-### Fully responsive views
+### Responsive Mobile View
 
-![Responsive-views]()
+The App is fully responsive for tablet and mobile devices.
+
+<div>
+    <span align="center">
+    <img src="./mobile1.gif" alt="Twilio notifications" width="300" height="600" hspace="80">
+    </span>
+    <span align="center">
+    <img src="./mobile2.gif" alt="Twilio notifications" width="300" height="600">
+    </span>
+</div>
+
+<br>
 
 ## Tech Stack
 
@@ -99,16 +124,18 @@ Users may also add a location through a form and are prevented from adding dupli
 
 ```
 REACT_APP_VAPID_PUBLIC - for push notifications
-REACT_APP_MAPBOX_TOKEN - provided by Mapbox
+REACT_APP_MAPBOX_TOKEN - to get your own Mapbox token, go to https://docs.mapbox.com/api/#access-tokens-and-token-scopes.
+REACT_APP_ENV - set to the url of your deployed Heroku backend for staging/production, default to "http://localhost:5000/api/" for local development
 ```
+
+Update the fire.js file with your own Firebase information.
 
 # Testing
 
 The following libraries are used for testing:
 
 - testing-library/react
-- jest
-- react-test-renderer
+- cypress
 
 # Installation Instructions
 
