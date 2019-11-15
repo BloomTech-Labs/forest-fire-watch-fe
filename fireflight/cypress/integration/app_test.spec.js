@@ -1,6 +1,6 @@
 describe('Wildfire Watch Home Page (Demo mode)', () => {
   it('loaded the staging URL', () => {
-    cy.visit('http://wildfire-watch-staging.netlify.com')
+    cy.visit('/')
   })
 
   it('loads the login modal upon clicking "sign in"', () => {

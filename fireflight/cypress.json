@@ -1,1 +1,4 @@
-{}
+{
+    "baseUrl": "http://wildfire-watch-staging.netlify.com",
+    "chromeWebSecurity": false
+}
