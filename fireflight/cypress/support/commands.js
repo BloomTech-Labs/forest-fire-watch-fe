@@ -11,46 +11,14 @@ const fbConfig = {
 firebase.initializeApp(fbConfig)
 
 Cypress.Commands.add('login', (email, password) => {
-  return firebase
-    .auth()
-    .signInWithEmailAndPassword(email, password)
-    .then(user => {
-      console.log('Firebase user:', user)
-      const UID = user.user.uid
-      const credentials = { UID }
+	cy.get('.menu-item')
+      .contains('Sign In')
+      .click()
 
-      setErrorStatus(false)
-      setErrorText('')
-
-      context.state.remote
-        .login(credentials)
-        .then(res => {
-          ReactGA.event({
-            category: 'User',
-            action: 'Logged in'
-          })
-          setEmail('')
-          setPassword('')
-          setLoading(false)
-          setShowAuthForms(false)
-          if (localStorage.getItem('address')) {
-            saveLocationMarker()
-          }
-        })
-        .catch(err => {
-          // User not found
-          setErrorText({ message: err.response.data.error })
-          setErrorStatus(true)
-          setLoading(false)
-        })
-    })
-    .catch(err => {
-      // catching the entire firebase sign in
-      console.log(err)
-      setErrorText(err)
-      setErrorStatus(true)
-      setLoading(false)
-    })
+    cy.get('[name=email]').type(email)
+    cy.get('[name=password]').type(password)
+    cy.get('[type=submit]').click()
+    cy.wait(2000)
 })
 
 Cypress.Commands.add('logout', () => {
