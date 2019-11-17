@@ -20,4 +20,12 @@ describe('map legend', () => {
             expect($h5s.eq(3), 'fourth item').to.contain('Fire Within Radius')
           })
       })
+      it('icons are visible', () => {
+          cy.get('.legend-item > img').should(($imgs) => {
+              expect($imgs.eq(0)).to.be.visible
+              expect($imgs.eq(1)).to.be.visible
+              expect($imgs.eq(2)).to.be.visible
+              expect($imgs.eq(3)).to.be.visible
+          })
+      })
 })
