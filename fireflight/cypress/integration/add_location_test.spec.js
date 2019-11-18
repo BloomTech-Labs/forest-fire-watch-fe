@@ -12,12 +12,14 @@ describe('add location page', () => {
 	})
 
 	it('contains the necessary text', () => {
-		cy.get('label').should(($labels) => {
-			expect($label.eq(0)).to.contain('Address')
-			expect($label.eq(1)).to.contain('Radius')
-		})
+		cy.get('label').first().should('contain', 'Address')
+		cy.get('label').last().should('contain', 'Radius')
 
 		cy.get('.radius-text').should('contain', 'Choose the miles from this location that you wish to be notified of fires within.')
 		cy.get('.default-btn').should('contain', 'Save Location')
+
+		cy.get('.profile-item').contains('Home')
+		cy.get('.profile-item').contains('Profile')
+		cy.get('.profile-item').contains('Logout')
 	})
 })
