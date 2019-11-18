@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Navigation /> renders 1`] = `
+<DocumentFragment>
+  <div
+    class="nav-container"
+  >
+    <a
+      aria-current="page"
+      class="current"
+      href="/"
+    >
+      <div
+        class="menu-item"
+      >
+        Home
+      </div>
+    </a>
+    <div
+      class="menu-item inactive"
+    >
+      Sign In
+    </div>
+    <div
+      class="menu-item inactive"
+    >
+      Sign Up
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`<NavigationProfile /> while logged in renders 1`] = `
+<DocumentFragment>
+  <div
+    class="nav-container"
+  >
+    <a
+      aria-current="page"
+      class="current"
+      href="/"
+    >
+      <div
+        class="menu-item"
+      >
+        Home
+      </div>
+    </a>
+    <div
+      class="menu-item inactive"
+    >
+      Sign In
+    </div>
+    <div
+      class="menu-item inactive"
+    >
+      Sign Up
+    </div>
+  </div>
+</DocumentFragment>
+`;
