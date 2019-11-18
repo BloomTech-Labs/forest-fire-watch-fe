@@ -1,6 +1,6 @@
 describe('Firebase email + password authentication', () => {
   // Test user account, tests will fail if user is not in firebase
-  const email = 'cypress@testing.com'
+  const email = 'cypress@newemail.com'
   const password = 'testing123'
 
   it('Can login with modal', () => {
@@ -20,7 +20,7 @@ describe('Firebase email + password authentication', () => {
   })
 
   it('Can logout with logout button', () => {
-    cy.login('cypress@testing.com', 'testing123')
+    cy.login('cypress@newemail.com', 'testing123')
     cy.wait(3000)
 
     cy.get('.menu-item')

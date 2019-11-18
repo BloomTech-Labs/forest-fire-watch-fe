@@ -20,20 +20,20 @@ describe('registration form', () => {
     it('requires password', () => {
         cy.get('[name=firstName]').type('Cypress')
         cy.get('[name=lastName]').type('Testing')
-        cy.get('[name=email]').type('cypress@testing.com{enter}')
+        cy.get('[name=email]').type('cypress@newemail.com{enter}')
         cy.contains('The password must be 6 characters long or more.')
     })
 
     it('requires password confirmation', () => {
         cy.get('[name=firstName]').type('Cypress')
         cy.get('[name=lastName]').type('Testing')
-        cy.get('[name=email]').type('cypress@testing.com')
+        cy.get('[name=email]').type('cypress@newemail.com')
         cy.get('[name=password]').type('testing123{enter}')
         cy.contains('Your passwords do not match')
     })
 
     it('requires first and last name', () => {
-        cy.get('[name=email]').type('cypress@testing.com{enter}')
+        cy.get('[name=email]').type('cypress@newemail.com{enter}')
         cy.get('[name=password]').type('testing123')
         cy.get('[name=passwordConf]').type('testing123{enter}')
         cy.contains('Your full name is required')
@@ -41,7 +41,7 @@ describe('registration form', () => {
 
     it('requires last name', () => {
         cy.get('[name=firstName]').type('Cypress')
-        cy.get('[name=email]').type('cypress@testing.com{enter}')
+        cy.get('[name=email]').type('cypress@newemail.com{enter}')
         cy.get('[name=password]').type('testing123')
         cy.get('[name=passwordConf]').type('testing123{enter}')
         cy.contains('Your full name is required')
@@ -49,7 +49,7 @@ describe('registration form', () => {
 
     it('requires first name', () => {
         cy.get('[name=lastName]').type('Testing')
-        cy.get('[name=email]').type('cypress@testing.com{enter}')
+        cy.get('[name=email]').type('cypress@newemail.com{enter}')
         cy.get('[name=password]').type('testing123')
         cy.get('[name=passwordConf]').type('testing123{enter}')
         cy.contains('Your full name is required')

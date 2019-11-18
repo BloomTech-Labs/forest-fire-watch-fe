@@ -17,7 +17,7 @@ describe('login form', () => {
     })
     // checks for missing password error message after hitting the enter key
     it('requires password', () => {
-        cy.get('[name=email]').type('cypress@testing.com{enter}')
+        cy.get('[name=email]').type('cypress@newemail.com{enter}')
         cy.contains('The password is invalid or the user does not have a password.')
     })
     // checks for error message when email address is not associated with an account

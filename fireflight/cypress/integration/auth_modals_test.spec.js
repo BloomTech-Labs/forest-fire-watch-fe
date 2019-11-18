@@ -1,5 +1,5 @@
-describe('Wildfire Watch Home Page (Demo mode)', () => {
-  it('loaded the staging URL', () => {
+describe('Auth modals (Demo mode)', () => {
+  it('loads the staging URL', () => {
     cy.visit('/')
   })
 

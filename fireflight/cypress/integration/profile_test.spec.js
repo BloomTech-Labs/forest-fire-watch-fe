@@ -1,7 +1,7 @@
 describe('Profile page functionality', () => {
 	beforeEach('login', () => {
 		cy.visit('/')
-		cy.login('cypress@testing.com', 'testing123')
+		cy.login('cypress@newemail.com', 'testing123')
 		cy.get('.menu-item').contains('Profile').click()
 		cy.wait(1000)
 	})
@@ -24,7 +24,7 @@ describe('Profile page functionality', () => {
 		cy.get('.save-edit-btn').click()
 		cy.get('.profile-email').should('have.text', 'cypress@newemail.com')
 	})
-	
+
 	it('Displays the phone number after clicking Add Phone Number', () => {
 		cy.get('.edit-profile-icon').last().click()
 		cy.get('[name=phone]').clear().type('8585551212')
@@ -32,15 +32,19 @@ describe('Profile page functionality', () => {
 		cy.get('.profile-phone').should('have.text', '(858) 555-1212')
 	})
 
-	it('toggles SMS on and off', () => {
-		cy.get('[for=checkbox1]').click()
-	})
+	// it('toggles SMS on and off', () => {
+	// 	cy.get('[for=checkbox1]').click().wait(500)
+	// 		// .should('have.css', 'width', '18px')
+	// 		// .should('have.css', 'height', '18px')
+	// 		.should('have.css', 'background', '#4fbe79')
+	// })
 
-	it('toggles push notifications on and off', () => {
-		cy.get('[for=checkbox2]').click()
-	})
+	// it('toggles push notifications on and off', () => {
+	// 	cy.get('[for=checkbox2]').click()
+	// })
 
 	it('Loads add location page from add location button', () => {
 		cy.get('.add-location-btn').click()
+		cy.get('h2').should('contain', 'Add Location')
 	})
 })
