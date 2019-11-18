@@ -50,11 +50,13 @@ function App() {
   const [firebaseUser, setFirebaseUser] = useState({})
 
   const tracking = 'UA-149769097-1'
-  ReactGa.initialize(tracking)
-  if (firebaseUser !== null) {
-    ReactGa.set({
-      userId: firebaseUser
-    })
+  if (process.env.REACT_APP_ENV === 'https://wildfire-watch.netlify.com/') {
+    ReactGa.initialize(tracking)
+    if (firebaseUser !== null) {
+      ReactGa.set({
+        userId: firebaseUser
+      })
+    }
   }
 
   const history = createBrowserHistory()
