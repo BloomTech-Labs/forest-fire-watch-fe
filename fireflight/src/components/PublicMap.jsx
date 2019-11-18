@@ -43,8 +43,6 @@ const PublicMap = ({
   const [viewport, setViewport] = useState({
     latitude: 34.377566,
     longitude: -113.144528,
-    width: '100vw',
-    height: '100vh',
     zoom: 4
   })
 
