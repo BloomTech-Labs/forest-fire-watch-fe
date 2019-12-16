@@ -1,6 +1,6 @@
-describe('Wildfire Watch Home Page (Demo mode)', () => {
-  it('loaded the staging URL', () => {
-    cy.visit('http://wildfire-watch-staging.netlify.com')
+describe('Auth modals (Demo mode)', () => {
+  it('loads the staging URL', () => {
+    cy.visit('/')
   })
 
   it('loads the login modal upon clicking "sign in"', () => {
@@ -12,7 +12,7 @@ describe('Wildfire Watch Home Page (Demo mode)', () => {
     cy.get('.form-heading').should('have.text', 'Welcome Back')
   })
 
-  it('Switches to register modal from login', () => {
+  it('switches to register modal from login', () => {
     cy.get('.create-an-account')
       .contains('Sign up Here')
       .click()
@@ -20,7 +20,7 @@ describe('Wildfire Watch Home Page (Demo mode)', () => {
     cy.get('.form-heading').should('have.text', 'Create an Account')
   })
 
-  it('Switches to login modal from register', () => {
+  it('switches to login modal from register', () => {
     cy.get('.register-page-container').should('be.visible')
     cy.get('.create-an-account')
       .contains('Sign In Here')
@@ -36,7 +36,7 @@ describe('Wildfire Watch Home Page (Demo mode)', () => {
     cy.get('.form-heading').should('have.text', 'Password Reset')
   })
 
-  it('Switches to register modal from password reset', () => {
+  it('switches to register modal from password reset', () => {
     cy.get('.password-reset-container').should('be.visible')
     cy.get('.create-an-account')
       .contains('Sign up Here')
@@ -46,13 +46,13 @@ describe('Wildfire Watch Home Page (Demo mode)', () => {
     cy.get('.form-heading').should('have.text', 'Create an Account')
   })
 
-  it('Closes modal when "X" is clicked', () => {
+  it('closes modal when "X" is clicked', () => {
     cy.get('.model-wrapper').should('have.css', 'opacity', '1')
     cy.get('.form-close-btn').click()
     cy.get('.model-wrapper').should('have.css', 'opacity', '0')
   })
 
-  it('Register modal appears when "Sign Up" button on map is clicked', () => {
+  it('register modal appears when "Sign Up" button on map is clicked', () => {
     cy.get('.signup-btn')
       .wait(500)
       .click()
@@ -62,19 +62,9 @@ describe('Wildfire Watch Home Page (Demo mode)', () => {
     cy.get('.form-heading').should('have.text', 'Create an Account')
   })
 
-  it('Closes modal when clicked outside of modal', () => {
+  it('closes modal when clicked outside of modal', () => {
     cy.get('body')
       .wait(1500)
       .click('left')
-  })
-
-  it('Map legend toggles when "Map Legend" is clicked', () => {
-    cy.get('.legend-title').wait(1000).click()
-    cy.get('.legend-item').should('not.be.visible')
-
-    cy.get('.legend-title')
-      .wait(1000)
-      .click()
-    cy.get('.legend-item').should('be.visible')
   })
 })

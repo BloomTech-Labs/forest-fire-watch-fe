@@ -9,10 +9,10 @@ describe("<App />", () => {
     const history = createMemoryHistory()
     render(<App />)
   })
-  it("renders Enter the address you wish to check fire proximity to", () => {
+  it("renders Enter the address and radius you wish to check fire proximity to", () => {
     const app = render(<App />);
 
-    app.getByText(/Enter the address you wish to check fire proximity to/i)
+    app.getByText(/Enter the address and radius you wish to check fire proximity to/i)
   })
   it("renders to save addresses and receive notifications", () => {
     const app = render(<App />);
