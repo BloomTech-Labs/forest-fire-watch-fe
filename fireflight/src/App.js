@@ -1,83 +1,131 @@
-import React, { useState, useEffect, useContext } from "react";
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
-import Navigation from "./components/Navigation";
-import Home from "./components/Home";
-import Danger from "./components/Danger";
-import Update from "./components/Update";
-import Dashboard from "./components/Dashboard";
+import React, { useState, useEffect, useContext } from 'react'
+import { Route, Redirect } from 'react-router-dom'
+import axios from 'axios'
+import ReactGa from 'react-ga'
+import { createBrowserHistory } from 'history'
 
-import AuthForms from "./components/AuthForms/AuthForms";
+// import Navigation from "./components/Navigation";
+import Home from './components/Home'
+import Dashboard from './components/Dashboard/'
+import AuthForms from './components/AuthForms/AuthForms'
+import Address from './components/Address'
+import LandingPage from './components/LandingPage'
 
-import Address from "./components/Address";
-import AddressContext from "./context/AddressContext";
-import styled from "styled-components";
+import { GlobalContext } from './context/contextProvider'
+import { UserDataProvider } from './context/UserDataContext'
+import { FireDataContext } from './context/FireDataContext'
+import AddressContext from './context/AddressContext'
+import { haversineDistance } from './utils/haversineDistance'
 
-import { GlobalContext } from "./context/contextProvider";
-import { UserDataProvider } from "./context/UserDataContext";
-import { FireDataContext } from "./context/FireDataContext";
+// import Modal from "./components/Modal/Modal"
 
-import * as v from "./styles/vars";
+import * as Sentry from '@sentry/browser'
 
-import "./styles/App.scss";
+import * as v from './styles/vars'
+import styled from 'styled-components'
+import './styles/App.scss'
 
-require("dotenv").config();
+import fire from './config/fire'
+import axiosWithAuth from './utils/axiosWithAuth'
 
-const token = localStorage.getItem("token");
+Sentry.init({
+  dsn: 'https://2281acb5134d4680927ead14de3c5727@sentry.io/1775951'
+})
+
+require('dotenv').config()
+
+const token = localStorage.getItem('token')
 
 // AUTH FORM MODAL:
 // Will refactor everything in regards to the auth form modal into one single component to clean up APP.js
 
 function App() {
-  // The 3 hooks below are used for showing and toggling between the login & register forms. These can most likely be refactored to use context API.
-  const [showAuthForms, setShowAuthForms] = useState(false);
-  const [loginFormStatus, setLoginFormStatus] = useState(true);
-  const [registerFormStatus, setRegisterFormStatus] = useState(false);
+  // The 4 hooks below are used for toggling between the login, register, and forgot password forms.
+  // These can most likely be refactored to use context API.
+  const [showAuthForms, setShowAuthForms] = useState(false)
+  const [loginFormStatus, setLoginFormStatus] = useState(true)
+  const [registerFormStatus, setRegisterFormStatus] = useState(false)
+  const [passwordFormStatus, setPasswordFormStatus] = useState(false)
 
-  const global = useContext(GlobalContext);
-  const { fireDataState, getAllFires, setUserLocations } = useContext(
-    FireDataContext
-  );
+  const [firebaseUser, setFirebaseUser] = useState({})
+
+  const tracking = 'UA-149769097-1'
+  if (process.env.REACT_APP_ENV === 'https://wildfire-watch.netlify.com/') {
+    ReactGa.initialize(tracking)
+    if (firebaseUser !== null) {
+      ReactGa.set({
+        userId: firebaseUser
+      })
+    }
+  }
+
+  const history = createBrowserHistory()
+  history.listen(location => {
+    ReactGa.set({ page: location.pathname })
+    ReactGa.pageview(location.pathname)
+  })
+
+  const global = useContext(GlobalContext)
+  const {
+    fireDataState,
+    getAllFires,
+    setUserLocations,
+    saveLocationMarker,
+    userLocations
+  } = useContext(FireDataContext)
 
   useEffect(() => {
-    getAllFires();
-  }, []);
+    getAllFires()
+    setUserLocations()
+  }, [])
 
   useEffect(() => {
     if (token) {
-      console.log('effect')
-      setUserLocations();
+      setUserLocations()
     }
-  }, [fireDataState.allFires,fireDataState.selectedMarker]);
+  }, [fireDataState.allFires, fireDataState.selectedMarker])
 
   useEffect(() => {
     //getLogin gets login information upon page load here;
     const getLogin = async () => {
       try {
-        let user = await global.state.remote.self();
-        global.setUser(user.username);
+        let user = await global.state.remote.self()
+        global.setUser(user.email)
       } catch (err) {
-        localStorage.removeItem("token");
-        global.setUser("");
-        return <Redirect to="/" />;
+        localStorage.removeItem('token')
+        global.setUser('')
+        return <Redirect to="/" />
       }
-    };
-    if (token) {
-      getLogin();
     }
-  }, []); //[] here means this will only run once
+    if (token) {
+      getLogin()
+    }
+  }, [])
 
   useEffect(() => {
     if (token) {
       const fetch = async () => {
         try {
-          let temp = await global.state.remote.fetchLocations();
+          let temp = await global.state.remote.fetchLocations()
         } catch (err) {
-          console.error(err);
+          console.error(err)
         }
-      };
-      fetch();
+      }
+      fetch()
     }
-  }, [token]);
+  }, [token])
+
+  const authListener = () => {
+    fire.auth().onAuthStateChanged(user => {
+      if (user) {
+        setFirebaseUser(user)
+        console.log(firebaseUser)
+      } else {
+        setFirebaseUser(null)
+        console.log('no user returned')
+      }
+    })
+  }
 
   return (
     <AppWrapper>
@@ -91,54 +139,57 @@ function App() {
           setRegisterFormStatus={setRegisterFormStatus}
         />
 
-        <Navigation
-          toggleAuthForms={setShowAuthForms}
-          toggleLoginStatus={setLoginFormStatus}
-          toggleRegisterStatus={setRegisterFormStatus}
-        />
         <UserDataProvider>
           <Route path="/dashboard" component={Dashboard} />
         </UserDataProvider>
+
         <Route
           exact
           path="/"
           render={() => (
             <Home
-              setShowAuth={setShowAuthForms}
-              setShowRegister={setRegisterFormStatus}
-              setShowLogin={setLoginFormStatus}
+              setShowAuthForms={setShowAuthForms}
+              setLoginFormStatus={setLoginFormStatus}
+              setRegisterFormStatus={setRegisterFormStatus}
             />
           )}
         />
-        <Route path="/update" component={Update} />
 
-        <Route path="/danger" component={Danger} />
+        <Route
+          path="/landing-page"
+          render={() => (
+            <LandingPage
+              setShowAuthForms={setShowAuthForms}
+              setLoginFormStatus={setLoginFormStatus}
+              setRegisterFormStatus={setRegisterFormStatus}
+            />
+          )}
+        />
 
         <Route
           path="/home"
           render={() => (
             <Home
-              setShowAuth={setShowAuthForms}
-              setShowRegister={setRegisterFormStatus}
-              setShowLogin={setLoginFormStatus}
+              setShowAuthForms={setShowAuthForms}
+              setLoginFormStatus={setLoginFormStatus}
+              setRegisterFormStatus={setRegisterFormStatus}
             />
           )}
         />
-
         <Route path="/address" component={Address} />
       </AddressContext>
     </AppWrapper>
-  );
+  )
 }
 
-export default App;
+export default App
 
 const AppWrapper = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
   ${v.tablet} {
-    flex-direction: row;
+    flex-direction: column;
   }
   background-image: linear-gradient(
     #f8b195,
@@ -147,4 +198,4 @@ const AppWrapper = styled.div`
     #6c5b7b,
     #355c7d
   );
-`;
+`

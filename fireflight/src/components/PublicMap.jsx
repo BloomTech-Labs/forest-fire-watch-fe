@@ -1,160 +1,283 @@
-import React, { useState, useEffect, useContext } from "react";
-import ReactMapGL, { Popup } from "react-map-gl";
-import styled from "styled-components";
+import React, { useState, useEffect, useContext } from 'react'
+import ReactMapGL, { Popup } from 'react-map-gl'
+import styled from 'styled-components'
+import { FireDataContext } from '../context/FireDataContext'
+import MapLegend from './MapLegend'
+import Navigation from '../components/Navigation'
+import Geocoder from 'react-mapbox-gl-geocoder'
+import axios from 'axios'
+import ReactGA from 'react-ga'
 
-import { FireDataContext } from "../context/FireDataContext";
-
-import MapLegend from "./MapLegend";
-
-// mapbox API token
-const token =
-  process.env.REACT_APP_MAPBOX_TOKEN ||
-  "pk.eyJ1Ijoia2VuMTI4NiIsImEiOiJjanpuMXdlb2UwZzlkM2JsY2t2aTVkcGFoIn0.eGKKY2f3oC5s8GqsyB70Yg";
-
-const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
+const token = process.env.REACT_APP_MAPBOX_TOKEN
+ReactGA.pageview('/public-map')
+const PublicMap = ({
+  setShowAuthForms,
+  setLoginFormStatus,
+  setRegisterFormStatus
+}) => {
   const {
     fireDataState,
-    setPublicViewport,
     getCoordinates,
     closeSelectedMarker,
     deleteLocationMarker,
     saveLocationMarker,
-    toggleNotification,
+    // toggleNotification,
     deleteUserLocation,
     updatePopupRadius
-  } = useContext(FireDataContext);
+  } = useContext(FireDataContext)
+
   const {
-    publicMapViewport,
+    // publicMapViewport,
     allFireMarkers,
     publicCoordinatesMarker,
     localFireMarkers,
     selectedMarker,
     userLocationMarkers,
-    userLocalFireMarkers
-  } = fireDataState;
+    userLocalFireMarkers,
+    exclamationMarkers
+  } = fireDataState
 
-  const [address, setAddress] = useState("");
+  const [address, setAddress] = useState('')
+  const [radius, setRadius] = useState('')
+  const [popupRadius, setPopupRadius] = useState('')
+  const [viewport, setViewport] = useState({
+    latitude: 34.377566,
+    longitude: -113.144528,
+    zoom: 4
+  })
 
-  const [radius, setRadius] = useState("");
-
-  const [popupRadius, setPopupRadius] = useState("");
-
+  // Add event listener to window - close whatever pop-up is selected
   useEffect(() => {
     const listener = e => {
-      if (e.key === "Escape") {
-        closeSelectedMarker();
+      if (e.key === 'Escape') {
+        closeSelectedMarker()
       }
-    };
-    window.addEventListener("keydown", listener);
+    }
+    window.addEventListener('keydown', listener)
 
     return () => {
-      window.removeEventListener("keydown", listener);
-    };
-  }, []);
+      window.removeEventListener('keydown', listener)
+    }
+  }, [])
+  useEffect(() => {
+    ipAddress()
+  }, [])
+  //prompts the user for their permission to location and sets viewport
+  //currently not useing due to geocoder issues related to having them both plugged in. IP address is very reliable and does not need any permissions.
+  const geoControl = () => {
+    navigator.geolocation.getCurrentPosition(position => {
+      console.log('setting viewport using geolocation permission')
+      setViewport({
+        ...viewport,
+        latitude: parseInt(position.coords.latitude),
+        longitude: parseInt(position.coords.longitude),
+        width: '100vw',
+        height: '100vh',
+        zoom: 8
+      })
+    })
+  }
+
+  //Gets the users location based on the IP address of the client and sets the viewport
+  const ipAddress = () => {
+    axios
+      .get(`${process.env.REACT_APP_ENV}users/ip-address`)
+      .then(res => {
+        console.log(res.data)
+        if (res.data.status !== 'fail') {
+          console.log('setting viewport', typeof res.data.lon)
+          setViewport({
+            ...viewport,
+            latitude: res.data.lat,
+            longitude: res.data.lon,
+            width: '100vw',
+            height: '100vh',
+            zoom: 8
+          })
+        } else {
+          console.log('going into else')
+          setViewport({
+            ...viewport,
+            latitude: 34.377566,
+            longitude: -113.144528,
+            width: '100vw',
+            height: '100vh',
+            zoom: 4
+          })
+        }
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
 
   const handleSubmit = e => {
-    e.preventDefault();
+    e.preventDefault()
     if (address) {
-      getCoordinates(address, radius);
+      getCoordinates(address, radius)
+      localStorage.setItem('address', address)
+      localStorage.setItem('radius', radius)
     }
-  };
+    setViewport({
+      ...viewport,
+      latitude: location[1],
+      longitude: location[0],
+      width: '100vw',
+      height: '100vh',
+      zoom: 8,
+      transitionDuration: 500
+    })
+    ReactGA.event({
+      category: 'Fire search',
+      action: 'Searched for fire'
+    })
+    // setAddress('') // doesn't reset address because of the special Geocoder library
+  }
 
   const tempLocationPopup = (
-    <div style={{ display: "flex", flexDirection: "column" }}>
-      <button
-        style={{ marginBottom: 6, marginTop: "7px" }}
-        onClick={e => {
-          saveLocationMarker();
-          deleteLocationMarker();
+    <div className="save-location-modal">
+      <p
+        style={{
+          fontWeight: '300',
+          fontSize: '12px'
         }}
       >
-        Save this location
-      </button>
-      <button style={{ marginTop: 6 }} onClick={e => deleteLocationMarker()}>
-        Delete this pin
+        Want to save this location?
+      </p>
+      <button
+        style={{
+          color: '#66BBF0',
+          backgroundColor: 'white'
+        }}
+        className="save-location-btn"
+        onClick={e => {
+          const token = localStorage.getItem('token')
+          if (token) {
+            saveLocationMarker()
+            deleteLocationMarker()
+          } else {
+            setShowAuthForms(true)
+            setRegisterFormStatus(false)
+            setLoginFormStatus(true)
+          }
+        }}
+      >
+        Click Here
       </button>
     </div>
-  );
+  )
 
   const savedLocationPopup = (
-    <div style={{ display: "flex", flexDirection: "column" }}>
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
       <span
         style={{
-          marginBottom: "6px",
-          textAlign: "center",
-          textTransform: "uppercase"
+          marginBottom: '6px',
+          textAlign: 'center',
+          textTransform: 'uppercase',
+          fontSize: '14px',
+          maxWidth: '25rem'
         }}
       >
         {selectedMarker[2]}
       </span>
       <b />
-      <span style={{ marginBottom: "6px", textAlign: "center" }}>
-        {" "}
-        Alert Radius: {selectedMarker[3]}mi{" "}
+      <span style={{ marginBottom: '6px', textAlign: 'center' }}>
+        {' '}
+        Current Radius: {selectedMarker[3]}mi{' '}
       </span>
-      <div style={{ display: "flex", justifyContent: "space-around" }}>
-        <span>Toggle Notifications:</span>
-        <CheckBoxWrapper>
-          <CheckBox
-            onChange={() => {
-              toggleNotification();
-            }}
-            checked={selectedMarker[6]}
-            id="checkbox"
-            type="checkbox"
-          />
-          <CheckBoxLabel htmlFor="checkbox" />
-        </CheckBoxWrapper>
-      </div>
 
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
         <FormRadiusInput
           type="text"
           name="PopupRadius"
-          placeholder="Radius (miles)"
+          placeholder="miles"
           value={popupRadius}
           onChange={e => setPopupRadius(e.target.value)}
-          style={{ height: 8, width: 110, fontSize: 14, margin: "0 10px 0 0" }}
+          style={{
+            height: 8,
+            width: 110,
+            fontSize: 14,
+            margin: '0 10px 0 0'
+          }}
         />
         <button
           onClick={() => {
-            updatePopupRadius(popupRadius);
+            updatePopupRadius(popupRadius)
+            setPopupRadius('')
           }}
-          style={{ marginTop: 3, height: 24 }}
+          style={{
+            marginTop: 3,
+            height: 24,
+            backgroundColor: '#FC8D43',
+            color: 'white'
+          }}
         >
-          Set Alert Radius
+          Set Radius
         </button>
       </div>
       <button
         onClick={() => {
-          deleteUserLocation();
+          deleteUserLocation(selectedMarker[5])
         }}
-        style={{ marginTop: 6 }}
+        style={{
+          marginTop: 6,
+          backgroundColor: 'white',
+          color: '#66BBF0'
+        }}
       >
         Delete this pin
       </button>
     </div>
-  );
+  )
 
   const fireLocationPopup = (
-    <div style={{ display: "flex", flexDirection: "column" }}>
-      THIS IS A FIRE
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        fontSize: '1.4rem'
+      }}
+    >
+      {selectedMarker[7]}
     </div>
-  );
+  )
+
+  const queryParams = {
+    country: 'us'
+  }
+  const mapAccess = {
+    mapboxApiAccessToken: token
+  }
+  const [location, setLocation] = useState([])
+
+  const onSelected = (viewport, item) => {
+    setAddress(item.place_name)
+    setLocation(item.center)
+  }
+
+  console.log('exclamations', exclamationMarkers)
 
   return (
-    <div style={{ position: "relative" }}>
+    <div style={{ position: 'relative', width: '100%', height: '100%' }}>
       <MapLegend />
-      <Container>
+      <div className="public-container">
+        <Navigation
+          toggleAuthForms={setShowAuthForms}
+          toggleLoginStatus={setLoginFormStatus}
+          toggleRegisterStatus={setRegisterFormStatus}
+        />
         <form onSubmit={handleSubmit} className="map-form-container">
-          <i className="fas fa-compass fa-lg" />
-          <input
-            className="address-input"
-            type="text"
-            name="Address"
-            placeholder="Address"
-            value={address}
-            onChange={e => setAddress(e.target.value)}
+          <label className="map-form-text">
+            Enter the address and radius you wish to check fire proximity to.
+          </label>
+          <Geocoder
+            {...mapAccess}
+            viewport={viewport}
+            queryParams={queryParams}
+            hideOnSelect={true}
+            onSelected={onSelected}
+            updateInputOnSelect={true}
+            limit={3}
           />
           <input
             className="radius-input"
@@ -164,25 +287,43 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
             value={radius}
             onChange={e => setRadius(e.target.value)}
           />
-          <button className="form-btn">Find Active Fires</button>
+          <button className="form-btn">Search</button>
+          {localStorage.getItem('token') == null && (
+            <React.Fragment>
+              <label className="signup-form-text">
+                to save addresses and receive notifications
+              </label>
+              <button
+                className="signup-btn"
+                onClick={() => {
+                  setShowAuthForms(true)
+                  setLoginFormStatus(false)
+                  setRegisterFormStatus(true)
+                }}
+              >
+                Sign Up
+              </button>
+            </React.Fragment>
+          )}
         </form>
         {/* End Form Container */}
-      </Container>
+      </div>
 
       <ReactMapGL
-        {...publicMapViewport}
+        {...viewport}
         mapboxApiAccessToken={token}
-        onViewportChange={publicMapViewport => {
-          setPublicViewport(publicMapViewport);
+        width="100vw"
+        onViewportChange={viewport => {
+          setViewport(viewport)
         }}
         mapStyle="mapbox://styles/fireflightapp/ck0phflzd21ga1dod56swx4p7"
       >
         {allFireMarkers}
         {userLocalFireMarkers}
         {localFireMarkers}
-
         {userLocationMarkers}
         {publicCoordinatesMarker}
+        {exclamationMarkers}
         {selectedMarker.length > 0 ? (
           <Popup
             closeOnClick={false}
@@ -190,46 +331,21 @@ const PublicMap = ({ setShowAuth, setShowLogin, setShowRegister }) => {
             latitude={selectedMarker[0]}
             longitude={selectedMarker[1]}
             onClose={() => {
-              closeSelectedMarker();
+              closeSelectedMarker()
             }}
           >
-            {selectedMarker[4] === "savedLocation" && savedLocationPopup}
-            {selectedMarker[4] === "tempLocation" && tempLocationPopup}
-            {selectedMarker[4] === "fireLocation" && fireLocationPopup}
+            {selectedMarker[4] === 'savedLocation' && savedLocationPopup}
+            {selectedMarker[4] === 'tempLocation' && tempLocationPopup}
+            {selectedMarker[4] === 'fireLocation' && fireLocationPopup}
           </Popup>
         ) : null}
       </ReactMapGL>
     </div>
-  );
-};
+  )
+}
 
-export default PublicMap;
+export default PublicMap
 
-const Container = styled.div`
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  z-index: 3;
-`;
-
-const TriggeredButton = styled.button`
-  font-size: 1em;
-  max-width: 250px;
-  margin: 25px auto;
-  border-radius: 5px;
-  box-shadow: 5px 5px 15px black;
-  background-color: #f67280;
-  padding: 5px 0px;
-  cursor: pointer;
-  &:hover {
-    box-shadow: none;
-  }
-`;
-
-const CheckBoxWrapper = styled.div`
-  position: relative;
-`;
 const CheckBoxLabel = styled.label`
   position: absolute;
   top: 0;
@@ -240,7 +356,7 @@ const CheckBoxLabel = styled.label`
   background: #bebebe;
   cursor: pointer;
   &::after {
-    content: "";
+    content: '';
     display: block;
     border-radius: 50%;
     width: 18px;
@@ -250,7 +366,7 @@ const CheckBoxLabel = styled.label`
     box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2);
     transition: 0.2s;
   }
-`;
+`
 
 const FormRadiusInput = styled.input`
   width: 150px;
@@ -264,7 +380,7 @@ const FormRadiusInput = styled.input`
     width: 200px;
     padding: 8px;
   }
-`;
+`
 
 const CheckBox = styled.input`
   opacity: 0;
@@ -275,7 +391,7 @@ const CheckBox = styled.input`
   &:checked + ${CheckBoxLabel} {
     background: #4fbe79;
     &::after {
-      content: "";
+      content: '';
       display: block;
       border-radius: 50%;
       width: 18px;
@@ -284,4 +400,4 @@ const CheckBox = styled.input`
       transition: 0.2s;
     }
   }
-`;
+`

@@ -1,25 +1,25 @@
 import axios from "axios";
 import stats from "./status.js";
 import { isArray } from "util";
-
+import { base_url_staging, base_url_local } from "../config/vars";
 class connector {
   /**
    * This class is built as a helper to deal with all connection requests.
    */
   constructor() {
     this.connector = axios;
-    if (process.env.NODE_ENV === "production")
-      this.coreString = "https://fireflight-lambda.herokuapp.com/api/";
-    //http here
-    else this.coreString = "http://localhost:5000/api/";
+    this.coreString = process.env.REACT_APP_ENV || base_url_local;
+    // console.log("ENVIRONMENT", this.coreString);
     this.fireflight = process.env.REACT_APP_MAPBOX_TOKEN;
+
     if (localStorage.getItem("token") != null) {
       this.connector.defaults.headers.common[
         "Authorization"
       ] = localStorage.getItem("token");
       this.self()
         .then(data => {
-          this.user = data.username;
+          console.log("connects data: ", data);
+          this.user = data.email;
         })
         .catch(err => {
           localStorage.removeItem("token");
@@ -32,20 +32,20 @@ class connector {
   /**
    * Attempts to login to the application, passes a token to axios upon request.
    * Sends a status with stats:true upon succes, and stats:false upon failure. Message will contain reason
-   * @param {username:String, password:string} creds, Credentials to test against
+   * @param {email:String, password:string} creds, Credentials to test against
    */
   async login(creds) {
     let res = await axios.post(this.coreString + "auth/login", creds);
 
     let data = await res.data;
-    console.log(data)
+    // console.log(data);
     if (res.status == 200) {
       //success test
       localStorage.setItem("token", data.token);
       this.connector.defaults.headers.common["Authorization"] = data.token;
       let who = await this.self();
       window.location.href = "/";
-      return new stats(true, who.username);
+      return new stats(true, who.email);
     } else {
       //success failed
       throw { status: false, data: "Login Failed" };
@@ -67,6 +67,7 @@ class connector {
    * returns user object
    */
   async self() {
+    // session endpoint returns the JWT (session route { email: 'example@gmail.com', user_id: 1 })
     let response = await axios.get(`${this.coreString}users/session`);
     let data = await response.data;
     return data;
@@ -75,7 +76,7 @@ class connector {
   /**
    * Registers a user with given credentials
    * Returns a status with {stats:true} upon success, and {stats:false} upon failure.
-   * @param {username,password} creds Creditals wanted to register
+   * @param {email,password} creds Creditals wanted to register
    */
   async register(creds) {
     let response = await axios.post(`${this.coreString}auth/register`, creds);
@@ -85,7 +86,7 @@ class connector {
       localStorage.setItem("token", data.token);
       let who = await this.self();
 
-      return new stats(true, { username: who.username });
+      return new stats(true, { email: who.email });
     } else {
       let errors = { code: response.status };
       errors.message = response.data.message;

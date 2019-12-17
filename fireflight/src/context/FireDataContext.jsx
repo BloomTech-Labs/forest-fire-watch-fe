@@ -1,33 +1,31 @@
-import React, { useReducer, createContext } from "react";
-import axios from "axios";
-import axiosWithAuth from "../utils/axiosWithAuth";
-import { Marker } from "react-map-gl";
-import { haversineDistance } from "../utils/haversineDistance";
-
-import fireIcon from "../images/fireIcon.png";
-import exclamationMark from "../images/exclaim.png";
-import locationIcon from "../images/locationIcon.png";
-import locationIconGreen from "../images/locationIconGreen.png";
-
+import React, { useReducer, createContext } from 'react'
+import axios from 'axios'
+import axiosWithAuth from '../utils/axiosWithAuth'
+import { Marker } from 'react-map-gl'
+import { haversineDistance } from '../utils/haversineDistance'
+import fireIcon from '../images/fireIcon.svg'
+import exclamationMark from '../images/exclaim.png'
+import locationIcon from '../images/locationIcon.svg'
+import locationIconGreen from '../images/locationIconGreen.svg'
+import ReactGA from 'react-ga'
 import {
   GET_USER_LOCATIONS,
-  GET_SELECTED_ADDRESS,
+  GET_SELECTED_ADDRESS, // not being used?
   GET_PUBLIC_COORDINATES,
-  SET_PUBLIC_VIEWPORT,
-  SET_TRIGGER_REGISTRATION_BUTTON,
   SET_ALL_FIRES,
   SET_SELECTED_MARKER,
   SET_SAVED_LOCATION,
   DELETE_LOCATION_MARKER,
   SET_USER_LOCATIONS,
-  TOGGLE_NOTIFICATIONS
-} from "./fireDataTypes";
+  TOGGLE_NOTIFICATIONS,
+  DELETE_USER_LOCATION,
+  SET_EXCLAMATION_MARKERS,
+  SET_SAVED_LOCATION_ERROR
+} from './fireDataTypes'
 
-const DSbaseURL = "https://test-fire-api.herokuapp.com";
+const DSbaseURL = 'https://wildfirewatch.herokuapp.com'
 
-const token =
-  process.env.REACT_APP_MAPBOX_TOKEN ||
-  "pk.eyJ1Ijoia2VuMTI4NiIsImEiOiJjanpuMXdlb2UwZzlkM2JsY2t2aTVkcGFoIn0.eGKKY2f3oC5s8GqsyB70Yg";
+const token = process.env.REACT_APP_MAPBOX_TOKEN || 'keep it secret, fool'
 
 const fireDataReducer = (state, action) => {
   switch (action.type) {
@@ -35,54 +33,58 @@ const fireDataReducer = (state, action) => {
       return {
         ...state,
         userLocations: action.payload
-      };
+      }
+
+    case DELETE_USER_LOCATION:
+      return {
+        ...state,
+        userLocations: state.userLocations.filter(
+          location => location.id != action.payload
+        )
+      }
+
     case GET_SELECTED_ADDRESS:
       return {
         ...state,
         addresses: action.payload
-      };
+      }
     case GET_PUBLIC_COORDINATES:
       return {
         ...state,
         publicCoordinates: action.payload[0],
         publicCoordinatesMarker: action.payload[1],
         localFireMarkers: action.payload[2]
-      };
-    case SET_PUBLIC_VIEWPORT:
-      return {
-        ...state,
-        publicMapViewport: action.payload
-      };
+      }
     case SET_ALL_FIRES:
       return {
         ...state,
         allFires: action.payload[0],
         allFireMarkers: action.payload[1]
-      };
+      }
     case SET_SELECTED_MARKER:
       return {
         ...state,
         selectedMarker: action.payload
-      };
+      }
     case SET_SAVED_LOCATION: // FINISH THIS //
       return {
         ...state,
         selectedMarker: [],
         userLocationMarkers: action.payload
-      };
+      }
     case DELETE_LOCATION_MARKER:
       return {
         ...state,
         publicCoordinatesMarker: [],
         selectedMarker: [],
         localFireMarkers: []
-      };
+      }
     case SET_USER_LOCATIONS:
       return {
         ...state,
         userLocationMarkers: action.payload[0],
         userLocalFireMarkers: action.payload[1]
-      };
+      }
     case TOGGLE_NOTIFICATIONS:
       return {
         ...state,
@@ -95,16 +97,25 @@ const fireDataReducer = (state, action) => {
           state.selectedMarker[5],
           !state.selectedMarker[6]
         ]
-      };
-
+      }
+    case SET_EXCLAMATION_MARKERS:
+      return {
+        ...state,
+        exclamationMarkers: action.payload
+      }
+    case SET_SAVED_LOCATION_ERROR:
+      return {
+        ...state,
+        errorMessage: action.payload
+      }
     default:
       return {
         ...state
-      };
+      }
   }
-};
+}
 
-export const FireDataContext = createContext();
+export const FireDataContext = createContext()
 
 export const FireDataProvider = ({ children }) => {
   const [fireDataState, dispatch] = useReducer(fireDataReducer, {
@@ -112,77 +123,189 @@ export const FireDataProvider = ({ children }) => {
     addresses: [],
     publicCoordinates: {},
     publicCoordinatesMarker: [],
-    publicRadius: 500,
-    userCoordinates: [],
-    publicMapData: {},
+    // userCoordinates: [], // used in PrivateMap
     publicMapViewport: {
-      width: "100%",
-      height: "100vh",
+      width: '100%',
+      height: '100vh',
       latitude: 39.8283,
       longitude: -98.5795,
       zoom: 3.3
     },
-    privateMapData: {},
-    privateMapViewport: {
-      width: "100%",
-      height: window.innerWidth < 900 ? 350 : 500,
-      latitude: 37.7749,
-      longitude: -122.4194,
-      zoom: 7
-    },
     allFires: [],
     allFireMarkers: [],
-    localFires: [],
     localFireMarkers: [],
-    selectedMarker: [],
-    selectedMarkerAddress: [],
+    selectedMarker: [], // [latitude, longitude, address text, radius, "savedLocation" (the string), location_id , notifications(0 or 1 - boolean)
     userLocationMarkers: [],
-    userLocalFireMarkers: []
-  });
+    userLocalFireMarkers: [],
+    exclamationMarkers: [],
+    errorMessage: ['']
+  })
 
+  const renderExclaimMarkers = () => {
+    axios.get(`https://wildfirewatch.herokuapp.com/fpfire`).then(res => {
+      // let firesWithinRadius = []
+      res.data.forEach(fire => {
+        axiosWithAuth()
+          .get(`${process.env.REACT_APP_ENV}locations`)
+          .then(res => {
+            res.data.forEach(savedLocation => {
+              let distance = haversineDistance(
+                [fire.location[1], fire.location[0]],
+                [savedLocation.latitude, savedLocation.longitude],
+                true
+              )
+              if (distance <= savedLocation.radius) {
+                // firesWithinRadius.push(fire)
+                dispatch({
+                  type: SET_EXCLAMATION_MARKERS,
+                  payload: [
+                    ...fireDataState.exclamationMarkers,
+                    <Marker
+                      latitude={fire.location[1]}
+                      longitude={fire.location[0]}
+                      // key={'localMarker' + fire.location[0] + index}
+                    >
+                      <img
+                        src={exclamationMark}
+                        height="20"
+                        width="27"
+                        style={{
+                          zIndex: 3,
+                          transform: 'translate(-15px, -29px)'
+                        }}
+                        alt=""
+                      />
+                    </Marker>
+                  ]
+                })
+              }
+            })
+          })
+      })
+    })
+  }
+
+  /*
+  Get all fires from data science team's endpoint. Response includes name & location keys. 
+  */
   const getAllFires = () => {
     axios
-      .get(`${DSbaseURL}/all_fires`)
+      .get(`${DSbaseURL}/fpfire`)
       .then(res => {
-        const localArray = res.data.Fires.map((fire, index) => (
-          <Marker latitude={fire[1]} longitude={fire[0]} key={fire[0] + index}>
+        // console.log("get /fpfire: ", res.data)
+        const localArray = res.data.map((fire, index) => (
+          <Marker
+            latitude={fire.location[1]}
+            longitude={fire.location[0]}
+            key={fire.location[0] + index}
+          >
             <img
               src={fireIcon}
               height="20"
               width="15"
-              style={{ zIndex: 100, transform: "translate(-10px, -9px)" }}
-              alt=""
-              // onClick={e => {
-              //   dispatch({
-              //     type: SET_SELECTED_MARKER,
-              //     payload: [fire[1], fire[0], null, null, "fireLocation"]
-              //   });
-              // }}
+              style={{ zIndex: 100, transform: 'translate(-10px, -9px)' }}
+              alt="Fire marker"
+              onClick={e => {
+                dispatch({
+                  type: SET_SELECTED_MARKER,
+                  payload: [
+                    fire.location[1],
+                    fire.location[0],
+                    null,
+                    null,
+                    'fireLocation',
+                    null,
+                    null,
+                    fire.name
+                  ]
+                })
+              }}
             />
           </Marker>
-        ));
+        ))
         dispatch({
           type: SET_ALL_FIRES,
-          payload: [res.data.Fires, localArray]
-        });
+          payload: [res.data, localArray] // setting state of fire data and fire markers
+        })
       })
       .catch(err => {
-        console.log(err);
-      });
-  };
+        console.log(err)
+      })
+  }
 
   const deleteLocationMarker = () => {
     dispatch({
       type: DELETE_LOCATION_MARKER
-    });
-  };
+    })
+  }
 
-  const saveLocationMarker = () => {
-    const theToken = localStorage.getItem("token");
+  const saveInputLocation = (address, location, radius) => {
+    const theToken = localStorage.getItem('token')
+
+    console.log(address, location, radius)
 
     if (theToken) {
       axiosWithAuth()
-        .post("locations", {
+        .post('locations', { address, radius })
+        .then(res => {
+          ReactGA.event({
+            category: 'User',
+            action: 'Saved Location'
+          })
+          dispatch({
+            type: SET_SAVED_LOCATION,
+            payload: [
+              ...fireDataState.userLocationMarkers,
+              <Marker
+                latitude={location[1]}
+                longitude={location[0]}
+                key={`greenMarker${location[1]}`}
+              >
+                <img
+                  src={locationIconGreen}
+                  height="35"
+                  width="20"
+                  style={{ zIndex: 5, transform: 'translate(-17.5px, -35px)' }}
+                  alt=""
+                  onClick={e => {
+                    dispatch({
+                      type: SET_SELECTED_MARKER,
+                      payload: [
+                        location[1],
+                        location[0],
+                        address, //address
+                        radius, //radius
+                        'savedLocation'
+                      ]
+                    })
+                  }}
+                />
+              </Marker>
+            ]
+          })
+        })
+        .catch(err => {
+          dispatch({
+            type: SET_SAVED_LOCATION_ERROR,
+            payload: ['there is an error']
+          })
+          console.log('within the catch')
+        })
+    }
+  }
+
+  //updates the error message
+  const updateSavedLocationErrorMessage = payload => {
+    dispatch({
+      type: SET_SAVED_LOCATION_ERROR,
+      payload: payload
+    })
+  }
+  const saveLocationMarker = () => {
+    const theToken = localStorage.getItem('token')
+    if (theToken) {
+      axiosWithAuth()
+        .post('locations', {
           address: fireDataState.selectedMarker[2],
           radius: fireDataState.selectedMarker[3]
         })
@@ -200,7 +323,7 @@ export const FireDataProvider = ({ children }) => {
                   src={locationIconGreen}
                   height="35"
                   width="20"
-                  style={{ zIndex: 5, transform: "translate(-17.5px, -35px)" }}
+                  style={{ zIndex: 5, transform: 'translate(-17.5px, -35px)' }}
                   alt=""
                   onClick={e => {
                     dispatch({
@@ -210,56 +333,71 @@ export const FireDataProvider = ({ children }) => {
                         fireDataState.selectedMarker[1],
                         fireDataState.selectedMarker[2],
                         fireDataState.selectedMarker[3],
-                        "savedLocation"
+                        'savedLocation'
                       ]
-                    });
+                    })
                   }}
                 />
               </Marker>
             ]
-          });
-        });
-    } else {
-      alert("Please log in to save a location.");
+          })
+        })
     }
-  };
+  }
 
-  const getCoordinates = (address, radius) => {
+  /* 
+  
+  https://docs.mapbox.com/api/search/#geocoding
+  Mapbox Geolocation API converts location text into geographic coordinates. 
+  Takes in address & token, and returns data which includes locations and their lat/long 
+  that may match the input address.
+  Then, we are calculating the distance between the location and all fires, converting it into haversine 
+  distance (between two points on sphere), and pushing all fires within the user set radius into an array.
+  From that array, we are creating markers w/ an exclamation point above them to indicate fires within the set radius. 
+  */
+
+  const getCoordinates = (address, radius, isUserInput = false) => {
     if (address) {
       axios
         .get(
           `https://api.mapbox.com/geocoding/v5/mapbox.places/${address}.json?access_token=${token}`
         )
         .then(res => {
-          let localArray = [];
-
+          let localArray = []
           fireDataState.allFires.forEach(fire => {
+            console.log(
+              'get cor',
+              fire.location[1],
+              fire.location[0],
+              res.data.features[0].center[1],
+              res.data.features[0].center[0]
+            )
             let distance = haversineDistance(
               [res.data.features[0].center[1], res.data.features[0].center[0]],
-              [fire[1], fire[0]],
+              [fire.location[1], fire.location[0]],
               true
-            );
+            )
 
             if (distance <= radius) {
-              localArray.push(fire);
+              localArray.push(fire.location)
             }
-          });
+          })
 
           const localMarkers = localArray.map((fire, index) => (
             <Marker
               latitude={fire[1]}
               longitude={fire[0]}
-              key={"localMarker" + fire[0] + index}
+              key={'localMarker' + fire[0] + index}
             >
               <img
                 src={exclamationMark}
                 height="20"
                 width="27"
-                style={{ zIndex: 3, transform: "translate(-15px, -29px)" }}
+                style={{ zIndex: 3, transform: 'translate(-15px, -29px)' }}
                 alt=""
               />
             </Marker>
-          ));
+          ))
 
           dispatch({
             type: GET_PUBLIC_COORDINATES,
@@ -268,127 +406,163 @@ export const FireDataProvider = ({ children }) => {
                 latitude: res.data.features[0].center[1],
                 longitude: res.data.features[0].center[0]
               },
-              <Marker
-                latitude={res.data.features[0].center[1]}
-                longitude={res.data.features[0].center[0]}
-              >
-                <img
-                  src={locationIcon}
-                  height="35"
-                  width="20"
-                  style={{ zIndex: 5, transform: "translate(-7.5px, -35px)" }}
-                  alt=""
-                  onClick={e => {
-                    dispatch({
-                      type: SET_SELECTED_MARKER,
-                      payload: [
-                        res.data.features[0].center[1],
-                        res.data.features[0].center[0],
-                        address,
-                        radius,
-                        "tempLocation"
-                      ]
-                    });
-                  }}
-                />
-              </Marker>,
+              !isUserInput ? (
+                <Marker
+                  latitude={res.data.features[0].center[1]}
+                  longitude={res.data.features[0].center[0]}
+                >
+                  <img
+                    src={locationIcon}
+                    height="35"
+                    width="20"
+                    style={{ zIndex: 5, transform: 'translate(-7.5px, -35px)' }}
+                    alt=""
+                    // onClick for temporary location markers
+                    onClick={e => {
+                      dispatch({
+                        type: SET_SELECTED_MARKER,
+                        payload: [
+                          res.data.features[0].center[1],
+                          res.data.features[0].center[0],
+                          address,
+                          radius,
+                          'tempLocation'
+                        ]
+                      })
+                    }}
+                  />
+                </Marker>
+              ) : null,
               localMarkers
             ]
-          });
-        });
+          })
+        })
     }
-  };
+  }
 
-  const deleteUserLocation = () => {
+  /*
+    Deletes a user location (marker)
+    
+    Resets the selected marker state to empty
+  */
+
+  const deleteUserLocation = id => {
+    if (!id) {
+      id = fireDataState.selectedMarker[5]
+    }
+    console.log('DELETE', id)
     axiosWithAuth()
-      .delete(`locations/${fireDataState.selectedMarker[5]}`)
+      // .delete(`locations/${fireDataState.selectedMarker[5]}`)
+      .delete(`locations/${id}`)
       .then(res => {
         dispatch({
           type: SET_SELECTED_MARKER,
           payload: []
-        });
+        })
+
+        dispatch({
+          type: DELETE_USER_LOCATION,
+          payload: id
+        })
       })
       .catch(err => {
-        console.log(err.response);
-      });
-  };
+        console.log(err)
+      })
+  }
 
   const setNotificationStatus = () => {
-    console.log("before axios: ", fireDataState.selectedMarker);
     axiosWithAuth()
       .put(`locations/${fireDataState.selectedMarker[5]}`, {
         notifications: fireDataState.selectedMarker[6]
       })
       .then(res => {
-        console.log(res);
-        console.log("after axios: ", fireDataState.selectedMarker);
+        console.log(res)
+        console.log('after axios: ', fireDataState.selectedMarker)
       })
       .catch(err => {
-        console.log(err);
-      });
-  };
+        console.log(err)
+      })
+  }
 
   const toggleNotification = () => {
     dispatch({
       type: TOGGLE_NOTIFICATIONS
-    });
-    console.log("before axios: ", fireDataState.selectedMarker);
+    })
     axiosWithAuth()
       .put(`locations/${fireDataState.selectedMarker[5]}`, {
         notifications: !fireDataState.selectedMarker[6]
       })
       .then(res => {
-        console.log(res);
-        console.log("after axios: ", fireDataState.selectedMarker);
+        // console.log(res);
+        // console.log('after axios: ', fireDataState.selectedMarker);
       })
       .catch(err => {
-        console.log(err);
-      });
-  };
+        console.log(err)
+      })
+  }
 
+  /*
+    Returns array of locations for the logged in user
+  */
   const getUserLocations = () => {
     axiosWithAuth()
-      .get("locations")
+      .get('locations')
       .then(res => {
         dispatch({
           type: GET_USER_LOCATIONS,
           payload: res.data
-        });
-      });
-  };
+        })
+      })
+  }
 
+  /* 
+    For each user location, add fires that are within the search radius to localArray
+    radius = what the user chooses as the radius in their location setting
+    distance = distance from user location and fire
+  */
   const setUserLocations = () => {
     axiosWithAuth()
-      .get("locations")
+      .get('locations')
       .then(res => {
-        let localArray = [];
+        console.log(res.data)
+        let localArray = []
         res.data.forEach(loc => {
+          // console.log("location", loc)
+
           fireDataState.allFires.forEach(fire => {
+            // console.log("set user locations", fire.location[1], fire.location[0], loc.latitude, loc.longitude);
+
             let distance = haversineDistance(
               [loc.latitude, loc.longitude],
-              [fire[1], fire[0]],
-              true
-            );
+              [fire.location[1], fire.location[0]],
+              true // in miles
+            )
             if (distance <= loc.radius) {
-              localArray.push(fire);
+              localArray.push(fire.location)
             }
-          });
-        });
-        const localMarkers = localArray.map((fire, index) => (
-          <Marker
-            latitude={fire[1]}
-            longitude={fire[0]}
-            key={"localMarker" + fire[0] + index}
-          >
-            <img
-              src={exclamationMark}
-              height="20"
-              width="27"
-              style={{ zIndex: 3, transform: "translate(-15px, -29px)" }}
-              alt=""
-            />
-          </Marker>
-        ));
+          })
+        })
+
+        // fire markers - setting exclamation points on top of fire images for fires within radius of user location
+        const localMarkers = localArray.map((fire, index) => {
+          return (
+            <Marker
+              latitude={fire[1]}
+              longitude={fire[0]}
+              key={'localMarker' + fire[0] + index}
+            >
+              <img
+                src={exclamationMark}
+                height="20"
+                width="27"
+                style={{ zIndex: 3, transform: 'translate(-15px, -29px)' }}
+                alt=""
+              />
+            </Marker>
+          )
+        })
+
+        // saved user locations
         const userLocs = res.data.map((uLoc, index) => (
           <Marker
             latitude={uLoc.latitude}
@@ -399,7 +573,7 @@ export const FireDataProvider = ({ children }) => {
               src={locationIconGreen}
               height="35"
               width="20"
-              style={{ zIndex: 5, transform: "translate(-7.5px, -35px)" }}
+              style={{ zIndex: 5, transform: 'translate(-7.5px, -35px)' }}
               alt=""
               onClick={e => {
                 dispatch({
@@ -409,31 +583,31 @@ export const FireDataProvider = ({ children }) => {
                     uLoc.longitude,
                     uLoc.address,
                     uLoc.radius,
-                    "savedLocation",
+                    'savedLocation',
                     uLoc.id,
                     uLoc.notifications
                   ]
-                });
+                })
               }}
             />
           </Marker>
-        ));
+        ))
         dispatch({
           type: SET_USER_LOCATIONS,
           payload: [userLocs, localMarkers]
-        });
-      });
-  };
+        })
+      })
+  }
 
   const updatePopupRadius = param => {
     axiosWithAuth()
       .put(`locations/${fireDataState.selectedMarker[5]}`, { radius: param })
       .then(res => {
-        setUserLocations();
+        setUserLocations()
       })
       .catch(err => {
-        console.log(err);
-      });
+        console.log(err)
+      })
     dispatch({
       type: SET_SELECTED_MARKER,
       payload: [
@@ -445,22 +619,15 @@ export const FireDataProvider = ({ children }) => {
         fireDataState.selectedMarker[5],
         fireDataState.selectedMarker[6]
       ]
-    });
-  };
+    })
+  }
 
   const closeSelectedMarker = () => {
     dispatch({
       type: SET_SELECTED_MARKER,
       payload: []
-    });
-  };
-
-  const setPublicViewport = viewport => {
-    dispatch({
-      type: SET_PUBLIC_VIEWPORT,
-      payload: viewport
-    });
-  };
+    })
+  }
 
   return (
     <FireDataContext.Provider
@@ -469,19 +636,20 @@ export const FireDataProvider = ({ children }) => {
         dispatch,
         getUserLocations,
         getCoordinates,
-        setPublicViewport,
         getAllFires,
         closeSelectedMarker,
         deleteLocationMarker,
         saveLocationMarker,
+        saveInputLocation,
         setUserLocations,
         setNotificationStatus,
         toggleNotification,
         deleteUserLocation,
-        updatePopupRadius
+        updatePopupRadius,
+        updateSavedLocationErrorMessage
       }}
     >
       {children}
     </FireDataContext.Provider>
-  );
-};
+  )
+}

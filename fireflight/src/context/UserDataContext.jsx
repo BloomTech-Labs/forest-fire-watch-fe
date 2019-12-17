@@ -1,127 +1,149 @@
-import React, { useReducer, createContext } from "react";
-import axiosWithAuth from "../utils/axiosWithAuth";
-
-import { subscribeUser as getSub } from "../subscriptions";
-
-const GET_USER_DATA = "GET_USER_DATA";
-const UPDATE_RECEIVE_SMS = "UPDATE_RECEIVE_SMS";
-const UPDATE_RECEIVE_PUSH = "UPDATE_RECEIVE_PUSH";
-const ADD_PHONE_NUMBER = "ADD_PHONE_NUMBER";
+import React, { useReducer, createContext } from 'react'
+import axiosWithAuth from '../utils/axiosWithAuth'
+import { subscribeUser as getSub } from '../subscriptions'
+import {
+  GET_USER_DATA,
+  UPDATE_RECEIVE_SMS,
+  UPDATE_RECEIVE_PUSH,
+  ADD_PHONE_NUMBER
+} from './userDataTypes'
 
 const userDataReducer = (state, action) => {
   switch (action.type) {
     case GET_USER_DATA:
       return {
         ...state,
-        username: action.payload[0],
+        email: action.payload[0],
         phone: action.payload[1],
         receivePush: action.payload[2],
-        receiveSMS: action.payload[3]
-      };
+        receiveSMS: action.payload[3],
+        firstName: action.payload[4],
+        lastName: action.payload[5]
+      }
     case ADD_PHONE_NUMBER:
       return {
         ...state,
         phone: action.payload
-      };
+      }
     case UPDATE_RECEIVE_SMS:
       return {
         ...state,
         receiveSMS: action.payload
-      };
+      }
     case UPDATE_RECEIVE_PUSH:
       return {
         ...state,
         receivePush: action.payload
-      };
+      }
     default:
       return {
         ...state
-      };
+      }
   }
-};
+}
 
-export const UserDataContext = createContext();
+export const UserDataContext = createContext()
 
 export const UserDataProvider = ({ children }) => {
   const [userDataState, dispatch] = useReducer(userDataReducer, {
-    username: "",
-    phone: "",
+    email: '',
+    phone: '',
     receiveSMS: false,
-    receivePush: false
-  });
+    receivePush: false,
+    firstName: '',
+    lastName: ''
+  })
 
   const getUserData = () => {
     axiosWithAuth()
-      .get("/users/user")
+      .get('/users/user')
       .then(res => {
-        console.log(res.data);
+        console.log('/users/user', res.data)
         dispatch({
           type: GET_USER_DATA,
           payload: [
-            res.data.username,
+            res.data.email,
             res.data.cell_number,
             res.data.receive_push,
-            res.data.receive_sms
+            res.data.receive_sms,
+            res.data.first_name,
+            res.data.last_name
           ]
-        });
+        })
       })
-      .catch(err => console.log(err.response));
-  };
+      .catch(err => console.log(err.response))
+  }
 
   const addPhoneNumber = number => {
     const data = {
       cell_number: number
-        .split(" ")
-        .join("")
-        .split("-")
-        .join("")
-        .split("(")
-        .join("")
-        .split(")")
-        .join("")
-    };
+        .split(' ')
+        .join('')
+        .split('-')
+        .join('')
+        .split('(')
+        .join('')
+        .split(')')
+        .join('')
+    }
+
     axiosWithAuth()
-      .put("/users/", data)
+      .put('/users/', data)
       .then(res => {
         dispatch({
           type: ADD_PHONE_NUMBER,
           payload: number
-        });
+        })
       })
-      .catch(err => console.log(err.response));
-  };
+      .catch(err => console.log(err.response))
+  }
 
   const updateTextAlerts = change => {
     axiosWithAuth()
-      .put("/users/", { receive_sms: change })
+      .put('/users/', { receive_sms: change })
       .then(res => {
         dispatch({
           type: UPDATE_RECEIVE_SMS,
           payload: change
-        });
+        })
       })
-      .catch(err => console.log(err.response));
-  };
+      .then(res => {
+        if (change) {
+          console.log('receiveSMS trigger')
+          axiosWithAuth().get(`scheduler/triggerSMS`)
+        }
+      })
+      .catch(err => console.log(err.response))
+  }
 
   const updatePushAlerts = change => {
-    if (Notification.permission === "default") {
-      getSub();
-    } else if (Notification.permission === "denied") {
+    console.log('Notification permission: ' + Notification.permission)
+
+    if (Notification.permission === 'default') {
+      getSub()
+    } else if (Notification.permission === 'denied') {
       alert(
-        "You must allow notifications in your browser settings to activate this feature"
-      );
+        'You must allow notifications in your browser settings to activate this feature'
+      )
     } else {
       axiosWithAuth()
-        .put("/users/", { receive_push: change })
+        .put('/users/', { receive_push: change })
         .then(res => {
           dispatch({
             type: UPDATE_RECEIVE_PUSH,
             payload: change
-          });
+          })
         })
-        .catch(err => console.log(err.response));
+        .then(res => {
+          if (change) {
+            getSub()
+            console.log('receivePush trigger')
+            axiosWithAuth().get(`scheduler/triggerPush`)
+          }
+        })
+        .catch(err => console.log(err.response))
     }
-  };
+  }
 
   return (
     <UserDataContext.Provider
@@ -136,5 +158,5 @@ export const UserDataProvider = ({ children }) => {
     >
       {children}
     </UserDataContext.Provider>
-  );
-};
+  )
+}

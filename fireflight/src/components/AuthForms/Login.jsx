@@ -1,41 +1,78 @@
-import React, { useState, useContext, useEffect } from "react";
-import { GlobalContext } from "../../context/contextProvider";
-import useInput from "../../utils/useInput";
-import styled from "styled-components";
-//not sure if we are using redux or hooks with context, so taking my best guess...
-import logo from "../../images/FF-logo.png";
-import LoginSplit from "./LoginSplit";
+import React, { useState, useContext, useEffect } from 'react'
+import { GlobalContext } from '../../context/contextProvider'
+import useInput from '../../utils/useInput'
+import { FireDataContext } from '../../context/FireDataContext'
+import ReactGA from 'react-ga'
+import { ErrorText } from '../../styles/Forms'
+import fire from '../../config/fire'
 
-function Login({ toggle, setShowAuthForms }) {
+function Login({
+  toggle,
+  setShowAuthForms,
+  setRegisterStatus,
+  setLoginStatus,
+  setPasswordFormStatus,
+  toggleForgotPassword
+}) {
   //useInput is a custom hook that should be used for all controlled inputs
-  const [username, setUsername, handleUsername] = useInput("", "username");
-  const [password, setPassword, handlePassword] = useInput("", "password");
-  const [loading, setLoading] = useState(false);
-  const [errorStatus, setErrorStatus] = useState(false);
-  const [errorText, setErrorText] = useState({});
+  const [email, setEmail, handleEmail] = useInput('', 'email')
+  const [password, setPassword, handlePassword] = useInput('', 'password')
+  const [loading, setLoading] = useState(false)
+  const [errorStatus, setErrorStatus] = useState(false)
+  const [errorText, setErrorText] = useState({})
   //get global context (think redux store)
-  const context = useContext(GlobalContext);
+  const context = useContext(GlobalContext)
+  const { saveLocationMarker } = useContext(FireDataContext)
 
   //view context once / example of how to use
   useEffect(() => {
-    console.log(context);
-  }, []);
+    console.log(context)
+  }, [])
 
   function handleSubmit(e) {
-    e.preventDefault();
-    setLoading(true);
-    const credentials = { username, password };
+    e.preventDefault()
+    setLoading(true)
 
-    setErrorStatus(false);
-    setErrorText("");
+    fire
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(user => {
+        console.log('Firebase user:', user)
+        const UID = user.user.uid
+        const credentials = { UID }
 
-    context.state.remote
-      .login(credentials)
-      .then(res => {
-        setUsername("");
-        setPassword("");
-        setLoading(false);
-        setShowAuthForms(false);
+        setErrorStatus(false)
+        setErrorText('')
+
+        // Still needed even though we added Firebase because we return the JWT and store in localStorage
+        context.state.remote
+          .login(credentials)
+          .then(res => {
+            ReactGA.event({
+              category: 'User',
+              action: 'Logged in'
+            })
+            setEmail('')
+            setPassword('')
+            setLoading(false)
+            setShowAuthForms(false)
+            if (localStorage.getItem('address')) {
+              saveLocationMarker()
+            }
+          })
+          .catch(err => {
+            // User not found
+            setErrorText({ message: err.response.data.error })
+            setErrorStatus(true)
+            setLoading(false)
+          })
+      })
+      .catch(err => {
+        // catching the entire firebase sign in
+        console.log(err)
+        setErrorText(err)
+        setErrorStatus(true)
+        setLoading(false)
       })
       .catch(err => {
         setErrorText("Username or Password Invalid");
@@ -45,15 +82,17 @@ function Login({ toggle, setShowAuthForms }) {
   }
 
   return (
-    <LoginPageContainer>
-      <LoginContainer>
-        <img src={logo} alt="FireFlight" />
-        <h2 className="form-heading">Welcome Back!</h2>
-        <p className="form-text">Sign in to continue</p>
-        <form className="auth-form-container" onSubmit={handleSubmit}>
-          <label htmlFor="username">
-            <i className="fas fa-user-circle fa-lg" />
-          </label>
+    <div className="login-page-container">
+      <button
+        className="form-close-btn"
+        onClick={() => setShowAuthForms(false)}
+      >
+        x
+      </button>
+      <h2 className="form-heading">Welcome Back</h2>
+      <form className="auth-form-container" onSubmit={handleSubmit}>
+        <div className="input-containers">
+          <label htmlFor="email">Email Address</label>
           <input
             className="form-input"
             type="text"
@@ -62,7 +101,6 @@ function Login({ toggle, setShowAuthForms }) {
             onChange={handleUsername}
             placeholder="Username"
           />
-          {errorStatus ? <span className="name-error-text">{errorText}</span> : <span className="user-error-text" />}
           <br />
           <label htmlFor="password">
             <i className="fas fa-key fa-lg" />
@@ -75,59 +113,32 @@ function Login({ toggle, setShowAuthForms }) {
             onChange={handlePassword}
             placeholder="Password"
           />
-          <p>
-            <a className="forgot-pw" href="#">
-              Forgot your Password?
-            </a>
-          </p>
-          <button className="auth-btn" type="submit" disabled={loading}>
-            {loading ? "Loading..." : "Sign In"}
+          {errorStatus ? <ErrorText>{errorText.message}</ErrorText> : null}
+
+          <button className="default-btn" type="submit" disabled={loading}>
+            {loading ? 'Loading...' : 'Sign In'}
           </button>
-        </form>
-      </LoginContainer>
-      <LoginSplitContainer>
-        <LoginSplit toggle={toggle} />
-      </LoginSplitContainer>
-    </LoginPageContainer>
-  );
-  // }
+          <br />
+          <span className="forgot-pw">
+            <button
+              onClick={() => {
+                setPasswordFormStatus(true)
+                setLoginStatus(false)
+              }}
+            >
+              Forgot your Password?
+            </button>
+          </span>
+        </div>
+        <p className="modal-crosslink">
+          Need to create an account?
+          <button className="create-an-account" onClick={toggle}>
+            Sign up Here
+          </button>
+        </p>
+      </form>
+    </div>
+  )
 }
 
-export default Login;
-
-const LoginPageContainer = styled.div`
-  width: 100%;
-  margin: auto;
-  text-align: center;
-  display: flex;
-  min-height: 500px;
-  background-image: linear-gradient(
-    #f8b195,
-    #f67280,
-    #c06c84,
-    #6c5b7b,
-    #355c7d
-  );
-  border-radius: 8px;
-
-  @media (max-width: 900px) {
-    flex-direction: column;
-  }
-`;
-
-const LoginContainer = styled.div`
-  width: 60%;
-  height: auto;
-  margin: auto;
-
-  @media (max-width: 900px) {
-    width: 90%;
-  }
-`;
-
-const LoginSplitContainer = styled.div`
-  width: 50%;
-  @media (max-width: 900px) {
-    width: 100%;
-  }
-`;
+export default Login

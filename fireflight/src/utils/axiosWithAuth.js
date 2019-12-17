@@ -1,19 +1,16 @@
-import axios from "axios";
+import axios from 'axios'
+import { base_url_local } from '../config/vars'
 
 const axiosWithAuth = () => {
-  const token = localStorage.getItem("token");
-  const deployedURL = "https://fireflight-lambda.herokuapp.com/api/";
-  const localURL = "http://localhost:5000/api/";
-
-  let URL = process.env.NODE_ENV === "production" ? deployedURL : localURL;
+  const token = localStorage.getItem('token')
 
   return axios.create({
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
       Authorization: token
     },
-    baseURL: URL //replace with heroku address,
-  });
-};
+    baseURL: process.env.REACT_APP_ENV || base_url_local
+  })
+}
 
-export default axiosWithAuth;
+export default axiosWithAuth

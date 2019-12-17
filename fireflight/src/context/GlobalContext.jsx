@@ -1,11 +1,12 @@
-import React, { useReducer } from "react";
+import React, { useReducer } from 'react'
 // import FireContext from "./contextProvider";
-import { GlobalContext, defaultValues } from "./contextProvider";
+import { GlobalContext, defaultValues } from './contextProvider'
 
-import { SET_LOCATION, SET_NAME } from "./types";
+import { SET_LOCATION, SET_NAME } from './globalDataTypes'
 
 // REDUCER EXPLANATION:
-// We use a reducer for the same reason we would use it in redux. It combines the previous state with the updated state.
+// We use a reducer for the same reason we would use it in redux.
+// It creates an updated state by combining new state data with the previous state
 // This reducer can be moved into a separate file
 
 const globalReducer = (state, action) => {
@@ -14,21 +15,23 @@ const globalReducer = (state, action) => {
       return {
         ...state,
         location: action.payload
-      };
+      }
     case SET_NAME:
       return {
         ...state,
         name: action.payload
-      };
+      }
     default:
       return {
         ...state
-      };
+      }
   }
-};
+}
 
 // CREATE CONTEXT EXPLANATION:
-// We initialize FireContext as an empty createContext object. We don't want to initialize any of our default variables inside createContext because then they won't run through our reducer.
+/* We initialize FireContext as an empty createContext object. We don't want to 
+initialize any of our default variables inside createContext because then they 
+won't run through our reducer. */
 
 function GlobalProvider(props) {
   //   const [user, setUser] = useState(null);
@@ -37,9 +40,11 @@ function GlobalProvider(props) {
   //   const [remote, setRemote] = useState(connector);
 
   // USE REDUCER EXPLANATION:
-  // We setup our default variables as a useReducer hook. This puts all of our variables into the state object. This allows us to send the entire state object into the reducer to be properly updated.
+  // We setup our default variables as a useReducer hook.
+  // This puts all of our variables into the state object.
+  // This allows us to send the entire state object into the reducer to be properly updated.
 
-  const [state, dispatch] = useReducer(globalReducer, defaultValues);
+  const [state, dispatch] = useReducer(globalReducer, defaultValues)
 
   // SET HOOKS EXPLANATION:
   // The concept of the set functions is exactly the same as in a regular hook. We use the set function to set the data inside the state. These functions (think redux actions) use dispatch to pass the newly set data into the reducer. State is then updated properly.
@@ -48,11 +53,11 @@ function GlobalProvider(props) {
     dispatch({
       type: SET_NAME,
       payload: newUser
-    });
-  };
-  const setToken = newToken => {};
+    })
+  }
+  const setToken = newToken => {}
 
-  const setLocation = newLocation => {};
+  const setLocation = newLocation => {}
 
   //structure
   /**
@@ -105,7 +110,7 @@ function GlobalProvider(props) {
     >
       {props.children}
     </GlobalContext.Provider>
-  );
+  )
 }
 
-export default GlobalProvider;
+export default GlobalProvider

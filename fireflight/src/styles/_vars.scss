@@ -1,4 +1,8 @@
 // Media Queries
+
+// < 576 (mobile)
+// 576 - 900 (tablet)
+// > 900 (
 @mixin mediaSm {
     @media(max-width: 576px) {
         @content;
@@ -12,14 +16,19 @@
 }
 
 @mixin mediaLg {
-    @media (max-width: 900px) {
-        @content;
-    }
+  @media (max-width: 800px) {
+    @content;
+  }
 }
 
 @mixin easeOut {
     transition: all 0.5s ease-out;
 }
+
+// Media queries
+$mq-mobile: 600px;
+$mq-tablet: 800px;
+$mq-desktop: 1000px;
 
 // Fonts
 $header: Noto Sans KR,
@@ -32,12 +41,19 @@ sans-serif;
 $cardBgColor: #373d3f;
 
 // Colors
-$accentColor: #355C7D;
+// Labs 15
+$accentColor: #355c7d;
 $accentColorTransparency: 'rgba(53, 95, 125, .75)';
-$raven: #373d3f;
-$ruby: #c02f1d;
+// $raven: #373d3f;
+// $ruby: #c02f1d;
 $lilia: #f2f3f4;
 
+// Labs 17
+$orange: #fc8d43;
+$white: white;
+$black: black;
+$grey: grey;
+
 // Misc
-$cardDropShadow: 'box-shadow: 0 3px 4px #000';
-$inputFormColor: #6a859c;
+// $cardDropShadow: "box-shadow: 0 3px 4px #000";
+// $inputFormColor: #6a859c;

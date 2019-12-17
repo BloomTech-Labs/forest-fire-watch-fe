@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-
-import fireIcon from "../images/fireIcon.png";
+import React, { useState, useEffect } from "react";
+import fireIcon from "../images/fireIcon.svg";
 import exclamationMark from "../images/exclaim.png";
 import locationIcon from "../images/locationIcon.png";
 import locationIconGreen from "../images/locationIconGreen.png";
@@ -8,19 +7,26 @@ import locationIconGreen from "../images/locationIconGreen.png";
 const MapLegend = () => {
   const [showLegend, setShowLegend] = useState(false);
 
+  //legend toggle open for wider than 576p
+  useEffect(() => {
+    let w = Math.max(
+      document.documentElement.clientWidth,
+      window.innerWidth || 0
+    );
+    if (w > 576) {
+      setShowLegend(true);
+    }
+  }, []);
+
   return (
     <div className="legend-container">
-      <h4
-        style={{
-          textAlign: "center",
-          padding: 10,
-          margin: 0,
-          cursor: "pointer"
-        }}
-        onClick={() => setShowLegend(!showLegend)}
-      >
-        Map Legend <i className="fas fa-info-circle" />
-      </h4>
+      <div className="legend-header">
+        <img src={mapLegend} height="18" width="10" alt="map-view" />
+        <h4 className="legend-title" onClick={() => setShowLegend(!showLegend)}>
+          Map Legend
+        </h4>
+      </div>
+
       <div
         style={{
           display: showLegend ? "flex" : "none",

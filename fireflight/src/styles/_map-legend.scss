@@ -1,13 +1,20 @@
 .legend-container {
-    background: rgba(0, 0, 0, 0.65);
-    border-radius: 5px;
-    color: white;
-    font-family: $header;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 1px;
+  position: absolute;
+  bottom: 5rem;
+  right: 5rem;
+  z-index: 5;
+  width: 20rem;
+  padding: 1rem;
+
+  @media (max-device-width: $mq-mobile) {
     position: absolute;
-    top: 70px;
-    left: 100px;
+    bottom: 27.5%;
+    left: 22.13%;
     z-index: 5;
-    width: 200px;
+    width: 17rem;
+  }
 
     .fa-info-circle {
         margin-left: 10px;

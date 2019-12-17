@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from "react";
 
 import { FireDataContext } from "../context/FireDataContext";
 
-import Modal from "./Modal/Modal";
+import Modal from "./Modal";
 import Alerts from "./Alerts";
 
 import styled from "styled-components";

@@ -1,43 +1,209 @@
 // Map Form Container
 .map-form-container {
-    width: 100%;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  @media (max-device-width: $mq-mobile) {
+    position: relative;
+    // left: 1em;
+    margin: 0 auto;
+  }
+
+  //map form text
+  .map-form-text {
+    color: white;
+    font-size: 1.4rem;
+    position: absolute;
+    top: 9.8rem;
+    left: 1.7rem;
+    width: 50rem;
+
+    @media (max-device-width: $mq-tablet) {
+      position: absolute;
+      height: 1.6rem;
+      left: 2rem;
+      top: 9.1rem;
+      font-size: 1.4rem;
+    }
+
+    @media (max-device-width: $mq-mobile) {
+      position: absolute;
+      height: 1.6rem;
+      left: 2rem;
+      top: 7.5rem;
+      font-size: 1.2rem;
+      width: 30rem;
+    }
+  }
+
+  .signup-form-text {
+    color: white;
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+    font-style: normal;
+    font-weight: normal;
+    position: absolute;
+    top: 57.9rem;
+    left: 6.6rem;
+    width: 40rem;
+
+    @media (max-device-width: $mq-mobile) {
+      font-size: 1.3rem;
+      position: absolute;
+      top: 61.5rem;
+      left: 6rem;
+    }
+  }
+
+  // Address Input
+  .address-input {
+    &::placeholder {
+      font-family: 'Open Sans';
+      font-style: normal;
+      font-weight: normal;
+      font-size: 2rem;
+      line-height: 2.7rem;
+      display: flex;
+      align-items: center;
+      color: #a9a9a9;
+      padding-left: 1.7rem;
+    }
+
+    &::-moz-placeholder {
+      line-height: 4.5rem;
+    }
+  }
+
+  .react-geocoder {
+    width: 30rem;
+    height: 5.2rem;
+    background: #ffffff;
+    border-radius: 3px;
+    position: absolute;
+    top: 128px;
+    left: 17px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 2rem;
+    line-height: 2.7rem;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    // Address Input Compass Icon
-    .fa-compass {
-        background-color: #FFF;
-        border: solid 1px #000;
-        border-right: none;
-        border-radius: 5px;
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-        color: #555;
-        margin: 25px 0px 5px 25px;
-        padding: 11px;
+    align-items: center;
+    //padding-left: 1.7rem;
+    &::placeholder {
+      font-size: 2rem;
+      line-height: 2.7rem;
+      display: flex;
+      align-items: center;
+      color: #a9a9a9;
+      padding-left: 1.7rem;
     }
 
-    // Address Input
-    .address-input {
-        border: solid 1px #000;
-        border-left: none;
-        border-radius: 5px;
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-        margin: 25px 25px 5px 0px;
-        padding: 10px;
-        font-size: 1em;
-        width: 250px;
+    &::-moz-placeholder {
+      line-height: 4.5rem;
+    }
+    input {
+      width: 30rem;
+      font-size: 2rem;
+      line-height: 2.7rem;
+      display: flex;
+      align-items: center;
+      padding-left: 1.7rem;
     }
 
-    // Radius Input
-    .radius-input {
-        border: solid 1px black;
-        border-radius: 5px;
-        font-size: 1em;
-        margin: 25px 17.5px 5px 0;
-        padding: 10px;
-        width: 150px;
+    @media (max-device-width: $mq-mobile) {
+      position: absolute;
+      width: 25rem;
+      height: 4rem;
+      left: 2rem;
+      top: 11.8rem;
+      background: #ffffff;
+      border-radius: 3px;
+
+      input {
+        font-size: 1.6rem;
+      }
     }
-}
+  }
+
+  .react-geocoder-results {
+    border-top: 0.8px solid #000000;
+    background: white;
+    width: 30rem;
+    box-sizing: border-box;
+    height: auto;
+    top: 4.8rem;
+    position: absolute;
+    padding: 1rem 0.8rem;
+    font-size: 1.6rem;
+    z-index: 4;
+
+    @media (max-device-width: $mq-mobile) {
+      width: 25rem;
+      top: 3rem;
+      position: absolute;
+    }
+  }
+
+  .react-geocoder-item {
+    width: 30rem;
+    padding-top: 1rem;
+
+    @media (max-device-width: $mq-mobile) {
+      width: 24rem;
+      font-size: 1.4rem;
+    }
+  }
+
+  // Radius Input
+  .radius-input {
+    width: 8.4rem;
+    height: 5rem;
+    background: #ffffff;
+    border-radius: 3px;
+    position: absolute;
+    top: 12.8rem;
+    left: 33rem;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.8rem;
+    line-height: 2.5rem;
+    display: flex;
+    align-items: center;
+    margin-left: 1.4rem;
+    padding-left: 1rem;
+
+    @media (max-device-width: $mq-mobile) {
+      position: absolute;
+      width: 4rem;
+      height: 3.7rem;
+      left: 27rem;
+      top: 11.8rem;
+      background: #ffffff;
+      border-radius: 3px;
+      margin-top: 0;
+    }
+
+    &::placeholder {
+      font-family: 'Open Sans';
+      font-style: normal;
+      font-weight: normal;
+      font-size: 2rem;
+      line-height: 2.7rem;
+      display: flex;
+      align-items: center;
+      color: #a9a9a9;
+      padding-left: 1.7rem;
+
+      @media (max-device-width: $mq-mobile) {
+        font-size: 1.6rem;
+        padding: 0;
+      }
+    }
+
+    &::-moz-placeholder {
+      line-height: 4.5rem;
+    }
+  }}

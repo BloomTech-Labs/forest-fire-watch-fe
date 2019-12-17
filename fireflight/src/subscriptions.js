@@ -1,4 +1,8 @@
+import { base_url_staging, base_url_local } from "../src/config/vars";
 const convertVapid = urlBase64ToUint8Array(process.env.REACT_APP_VAPID_PUBLIC);
+
+console.log("original vapid key: " + process.env.REACT_APP_VAPID_PUBLIC);
+console.log("convertVapid: " + convertVapid);
 
 function urlBase64ToUint8Array(base64String) {
   const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
@@ -9,15 +13,18 @@ function urlBase64ToUint8Array(base64String) {
   const rawData = window.atob(base64);
   const outputArray = new Uint8Array(rawData.length);
 
-  for (let i = 0; i < rawData.length; ++i) {
+  for (let i = 0;i < rawData.length;++i) {
     outputArray[i] = rawData.charCodeAt(i);
   }
-  console.log("done converting");
+  // console.log("done converting");
   return outputArray;
 }
 
 const sendSubscription = sub => {
-  const location = "https://fireflight-lambda.herokuapp.com/api/push/register";
+  const location = `${process.env.REACT_APP_ENV}push/register`;
+
+  console.log(location);
+
   return fetch(location, {
     method: "POST",
     body: JSON.stringify(sub),
@@ -58,7 +65,7 @@ export const subscribeUser = async () => {
           }
         }
       } else {
-        console.log("current sub detected");
+        console.log("current sub detected", reg);
         sendSubscription(reg);
       }
     } catch (err) {

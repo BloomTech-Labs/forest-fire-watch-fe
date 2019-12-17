@@ -1,17 +1,219 @@
 .dashboard-wrapper {
-    width: 100%;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  h3 {
+    padding: 10px 0px;
+    margin: 0;
+  }
+
+  .content-wrapper {
     text-align: center;
-    margin-top: 5%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-    .content-wrapper {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-
-        h3 {
-            padding: 10px 0px;
-            margin: 0;
-        }
+    .is-editing-input {
+      background: #ffffff;
+      border: 1px solid #bbbbbb;
+      box-sizing: border-box;
+      border-radius: 2px;
+      font-size: 1.8rem;
+      padding: 1rem;
     }
+
+    .personal-info {
+      width: 70%;
+      margin: 1rem auto;
+      border-bottom: 0.5px solid #191a1a;
+
+      @media (max-width: $mq-mobile) {
+        width: 98%;
+        border: none;
+      }
+
+      .profile-field-container {
+        margin: 1rem 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .edit-profile-icon {
+          margin-left: 8px;
+          color: $orange;
+        }
+      }
+
+      .profile-name {
+        font-size: 3rem;
+
+        @media (max-width: $mq-mobile) {
+          font-size: 2.5rem;
+          padding: 0;
+        }
+      }
+
+      .profile-field {
+        font-size: 2.1rem;
+
+        @media (max-width: $mq-mobile) {
+          font-size: 1.6rem;
+          padding: 0;
+        }
+      }
+
+      .profile-phone {
+        @media (max-width: $mq-mobile) {
+          font-size: 1.6rem;
+        }
+      }
+
+      .notification-wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+
+        @media (max-width: $mq-mobile) {
+          flex-direction: column;
+
+          &:last-child {
+            border-bottom: 1px solid grey;
+          }
+        }
+
+        .notif-box {
+          width: 25rem;
+          margin: 0 2rem;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          font-family: Open Sans;
+          font-weight: normal;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 2.2rem;
+          line-height: 2.2rem;
+          letter-spacing: -0.41px;
+          padding: 0 10px;
+          box-sizing: border-box;
+
+          @media (max-width: $mq-mobile) {
+            width: 100%;
+            margin: 0;
+            font-size: 1.7rem;
+            border-top: 1px solid grey;
+            line-height: 1rem;
+          }
+
+          .checkbox-wrapper {
+            position: relative;
+            margin: auto 0 auto auto;
+          }
+        }
+      }
+    }
+
+    // LOCATIONS/ADDRESSES
+    .locations-info {
+      width: 70%;
+      border-radius: 8px;
+      box-sizing: border-box;
+
+      @media (max-width: $mq-mobile) {
+        width: 98%;
+      }
+
+      h3 {
+        font-size: 3rem;
+        line-height: 4.5rem;
+        display: flex;
+        align-items: center;
+
+        @media (max-width: $mq-mobile) {
+          font-size: 2.5rem;
+        }
+      }
+
+      .add-location-btn {
+        margin-top: 1rem;
+        background-color: $orange;
+        border-radius: 2px;
+        cursor: pointer;
+        color: white;
+        font-size: 1.5rem;
+        width: 119.95px;
+        height: 38px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+
+        @include easeOut;
+
+        &:hover {
+          background-color: lighten($orange, 10%);
+          @include easeOut;
+        }
+      }
+
+      .locations-table {
+        width: 100%;
+        display: table;
+
+        .locations-header {
+          font-size: 2.2rem;
+          text-align: left;
+
+          @media (max-width: $mq-mobile) {
+            font-size: 1.6rem;
+          }
+        }
+
+        .table-row {
+          font-size: 1.6rem;
+          text-align: left;
+          vertical-align: middle;
+
+          //   @media (max-width: $mq-mobile) {
+          //     width: 95vw;
+          //   }
+
+          .table-data {
+            padding-top: 1rem;
+            text-align: middle;
+          }
+
+          .address-field {
+            width: 45%;
+            padding-right: 2rem;
+          }
+
+          .delete-location-btn {
+            color: $orange;
+            font-size: 3rem;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+
+  .save-edit-btn {
+    background-color: $orange;
+    border-radius: 2px;
+    color: white;
+    font-size: 1.2rem;
+    margin-left: 8px;
+
+    @include easeOut;
+
+    &:hover {
+      background-color: lighten($orange, 10%);
+      @include easeOut;
+    }
+  }
 }
