@@ -1,6 +1,6 @@
 import React, { useReducer, createContext } from 'react'
 import axiosWithAuth from '../utils/axiosWithAuth'
-import { subscribeUser as getSub } from '../subscriptions'
+// import { subscribeUser as getSub } from '../subscriptions'
 import {
   GET_USER_DATA,
   UPDATE_RECEIVE_SMS,
@@ -116,34 +116,34 @@ export const UserDataProvider = ({ children }) => {
       .catch(err => console.log(err.response))
   }
 
-  const updatePushAlerts = change => {
-    console.log('Notification permission: ' + Notification.permission)
+  // const updatePushAlerts = change => {
+  //   console.log('Notification permission: ' + Notification.permission)
 
-    if (Notification.permission === 'default') {
-      getSub()
-    } else if (Notification.permission === 'denied') {
-      alert(
-        'You must allow notifications in your browser settings to activate this feature'
-      )
-    } else {
-      axiosWithAuth()
-        .put('/users/', { receive_push: change })
-        .then(res => {
-          dispatch({
-            type: UPDATE_RECEIVE_PUSH,
-            payload: change
-          })
-        })
-        .then(res => {
-          if (change) {
-            getSub()
-            console.log('receivePush trigger')
-            axiosWithAuth().get(`scheduler/triggerPush`)
-          }
-        })
-        .catch(err => console.log(err.response))
-    }
-  }
+  //   if (Notification.permission === 'default') {
+  //     getSub()
+  //   } else if (Notification.permission === 'denied') {
+  //     alert(
+  //       'You must allow notifications in your browser settings to activate this feature'
+  //     )
+  //   } else {
+  //     axiosWithAuth()
+  //       .put('/users/', { receive_push: change })
+  //       .then(res => {
+  //         dispatch({
+  //           type: UPDATE_RECEIVE_PUSH,
+  //           payload: change
+  //         })
+  //       })
+  //       .then(res => {
+  //         if (change) {
+  //           getSub()
+  //           console.log('receivePush trigger')
+  //           axiosWithAuth().get(`scheduler/triggerPush`)
+  //         }
+  //       })
+  //       .catch(err => console.log(err.response))
+  //   }
+  // }
 
   return (
     <UserDataContext.Provider
@@ -152,7 +152,7 @@ export const UserDataProvider = ({ children }) => {
         dispatch,
         getUserData,
         updateTextAlerts,
-        updatePushAlerts,
+        // updatePushAlerts,
         addPhoneNumber
       }}
     >
