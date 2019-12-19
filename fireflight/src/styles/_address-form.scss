@@ -7,8 +7,9 @@
   padding: 2rem;
 
   @media (max-device-width: $mq-mobile) {
-    max-width: 50rem;
+    max-width: 0rem;
     padding-right: 7rem;
+    margin-left: 1rem;
   }
 
   h2 {
@@ -42,7 +43,8 @@
     border-radius: 2px;
 
     @media (max-device-width: $mq-mobile) {
-      max-width: 34rem;
+      max-width: 30rem;
+      
     }
     &::placeholder {
       font-size: 2rem;
@@ -88,7 +90,7 @@
       z-index: 4;
 
       @media (max-device-width: $mq-mobile) {
-        max-width: 34rem;
+        max-width: 32rem;
         padding-right: 3px;
       }
     }

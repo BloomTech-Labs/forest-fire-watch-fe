@@ -1227,8 +1227,9 @@
 
 @media (max-device-width: 600px) {
   .addlocation-wrapper {
-    max-width: 50rem;
+    max-width: 0rem;
     padding-right: 7rem;
+    margin-left: 1rem;
   }
 }
 
@@ -1270,7 +1271,7 @@
 
 @media (max-device-width: 600px) {
   .addlocation-wrapper .react-geocoder {
-    max-width: 34rem;
+    max-width: 30rem;
   }
 }
 
@@ -1375,7 +1376,7 @@
 
 @media (max-device-width: 600px) {
   .addlocation-wrapper .react-geocoder .react-geocoder-results {
-    max-width: 34rem;
+    max-width: 32rem;
     padding-right: 3px;
   }
 }
