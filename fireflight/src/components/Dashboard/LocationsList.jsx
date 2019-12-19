@@ -42,12 +42,21 @@ const LocationsList = props => {
           ))}
         </tbody>
       </table>
-      <button
-        className="add-location-btn"
-        onClick={() => history.push('/address')}
-      >
-        Add Location
-      </button>
+      {/*<div className="locations-buttons"> and Add Location button to be deleted after redesign.  */}
+      <div className="locations-buttons">
+        <button
+          className="add-location-btn"
+          onClick={() => history.push('/address')}
+        >
+          Add Location
+        </button>
+        <button
+          className="return-to-map-btn"
+          onClick={() => history.push('/home')}
+        >
+          Return To Map
+        </button>
+      </div>
     </div>
   )
 }
