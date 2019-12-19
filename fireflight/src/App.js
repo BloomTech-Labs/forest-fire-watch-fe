@@ -19,7 +19,7 @@ import { haversineDistance } from './utils/haversineDistance'
 
 // import Modal from "./components/Modal/Modal"
 
-import * as Sentry from '@sentry/browser'
+// import * as Sentry from '@sentry/browser'
 
 import * as v from './styles/vars'
 import styled from 'styled-components'
@@ -28,9 +28,9 @@ import './styles/App.scss'
 import fire from './config/fire'
 import axiosWithAuth from './utils/axiosWithAuth'
 
-Sentry.init({
-  dsn: 'https://2281acb5134d4680927ead14de3c5727@sentry.io/1775951'
-})
+// Sentry.init({
+//   dsn: 'https://2281acb5134d4680927ead14de3c5727@sentry.io/1775951'
+// })
 
 require('dotenv').config()
 

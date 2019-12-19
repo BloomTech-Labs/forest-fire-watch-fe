@@ -3,14 +3,20 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+<<<<<<< HEAD
+=======
+    "@sentry/browser": "^5.10.2",
+>>>>>>> 1f4f022c894646152b45cb84b4d69d8a3c63ead4
     "axios": "^0.19.0",
     "cra-append-sw": "^2.6.1",
-    "dotenv": "^8.1.0",
+    "dotenv": "^8.2.0",
     "esm": "^3.2.25",
     "firebase": "^7.2.0",
     "history": "^4.10.1",
     "idb": "^4.0.5",
+    "install": "^0.13.0",
     "node-sass": "^4.12.0",
+    "npm": "^6.13.4",
     "parcel-bundler": "^1.12.4",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
@@ -18,8 +24,9 @@
     "react-map-gl": "^5.0.10",
     "react-mapbox-gl-geocoder": "^1.1.0",
     "react-router-dom": "^5.0.1",
-    "react-scripts": "3.1.1",
-    "styled-components": "^4.3.2"
+    "react-scripts": "^3.3.0",
+    "styled-components": "^4.3.2",
+    "urlb64touint8array": "^1.0.3"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -46,7 +53,7 @@
     ]
   },
   "devDependencies": {
-    "@testing-library/react": "^9.3.2",
+    "@testing-library/react": "9.3.2",
     "cypress": "^3.6.1",
     "eslint-plugin-import": "^2.18.2",
     "react-test-renderer": "^16.10.2"
