@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { UserDataContext } from '../../context/UserDataContext'
+import HamburgerNavigation from '../HamburgerNavigation'
 import NavigationProfile from '../NavigationProfile'
 import { FireDataContext } from '../../context/FireDataContext'
 import axiosWithAuth from '../../utils/axiosWithAuth'
@@ -95,7 +96,8 @@ const Dashboard = props => {
 
   return (
     <div className="dashboard-wrapper">
-      <NavigationProfile />
+      <HamburgerNavigation />
+      {/* <NavigationProfile /> */}
       <div className="content-wrapper">
         <div className="personal-info">
           <h3 className="profile-name">

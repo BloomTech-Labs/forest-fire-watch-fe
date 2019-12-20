@@ -2,8 +2,8 @@ import React, { useState, useEffect, useContext } from 'react'
 import ReactMapGL, { Popup } from 'react-map-gl'
 import styled from 'styled-components'
 import { FireDataContext } from '../context/FireDataContext'
-import MapLegend from './MapLegend'
 import Navigation from '../components/Navigation'
+import HamburgerNavigation from '../components/HamburgerNavigation'
 import Geocoder from 'react-mapbox-gl-geocoder'
 import axios from 'axios'
 import ReactGA from 'react-ga'
@@ -259,13 +259,17 @@ const PublicMap = ({
 
   return (
     <div style={{ position: 'relative', width: '100%', height: '100%' }}>
-      <MapLegend />
       <div className="public-container">
-        <Navigation
+        <HamburgerNavigation
           toggleAuthForms={setShowAuthForms}
           toggleLoginStatus={setLoginFormStatus}
           toggleRegisterStatus={setRegisterFormStatus}
         />
+        {/* <Navigation
+          toggleAuthForms={setShowAuthForms}
+          toggleLoginStatus={setLoginFormStatus}
+          toggleRegisterStatus={setRegisterFormStatus}
+        /> */}
         <form onSubmit={handleSubmit} className="map-form-container">
           <label className="map-form-text">
             Enter the address and radius you wish to check fire proximity to.
