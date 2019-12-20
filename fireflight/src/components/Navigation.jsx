@@ -4,6 +4,8 @@ import { GlobalContext } from '../context/contextProvider'
 import { withRouter, NavLink, Link, Redirect } from 'react-router-dom'
 import ReactGA from 'react-ga'
 
+//Navigation isn't being rendered anymore, We moved all functionality to HamburgerNavigation
+
 function Navigation({
   toggleAuthForms,
   toggleLoginStatus,
@@ -31,11 +33,11 @@ function Navigation({
     })
   }
 
-  const protec = ['/dashboard', '/address', '/maps', '/profile']
+  const protect = ['/dashboard', '/address', '/maps', '/profile']
 
   if (
     localStorage.getItem('token') == null &&
-    protec.includes(location.pathname)
+    protect.includes(location.pathname)
   ) {
     return <Redirect to="/" />
   }

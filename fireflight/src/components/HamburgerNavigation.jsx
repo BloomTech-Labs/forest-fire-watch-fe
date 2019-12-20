@@ -104,14 +104,14 @@ export default function PersistentDrawerLeft({
     })
   }
 
-  // const protec = ['/dashboard', '/address', '/maps', '/profile']
+  const protect = ['/dashboard', '/address', '/maps', '/profile']
 
-  // if (
-  //   localStorage.getItem('token') == null &&
-  //   protec.includes(location.pathname)
-  // ) {
-  //   return <Redirect to="/" />
-  // }
+  if (
+    localStorage.getItem('token') == null &&
+    protect.includes(window.location.pathname)
+  ) {
+    return <Redirect to="/" />
+  }
 
   return (
     <div className={classes.root}>
