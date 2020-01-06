@@ -135,9 +135,7 @@ button {
 }
 
 .address-checkbox {
-  position: absolute;
-  top: 72vh;
-  left: 147vh;
+  position: absolute;    
   width: 42px;
   height: 26px;
   border-radius: 15px;
@@ -165,6 +163,19 @@ button {
   height: 26px;
 
   &:checked + .checkbox-label {
+    background: #4fbe79;
+    &::after {
+      content: '';
+      display: block;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      margin-left: 21px;
+      transition: 0.2s;
+    }
+  }
+
+  &:checked + .address-checkbox {
     background: #4fbe79;
     &::after {
       content: '';
