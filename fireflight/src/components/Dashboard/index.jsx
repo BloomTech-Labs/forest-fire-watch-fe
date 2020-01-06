@@ -178,7 +178,7 @@ const Dashboard = props => {
               </div>
             </div>
 
-            <div className="notif-box">
+            {/* <div className="notif-box">
               <h4>Push Notifications</h4>
               <div className="checkbox-wrapper">
                 <input
@@ -192,7 +192,7 @@ const Dashboard = props => {
                 />
                 <label className="checkbox-label" htmlFor="checkbox2" />
               </div>
-            </div>
+            </div> */}
           </div>
           {/* <button onClick={e=>{subscribeUser()}}>Check</button> */}
         </div>
