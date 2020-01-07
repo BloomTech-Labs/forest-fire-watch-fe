@@ -3,6 +3,7 @@ import { NavLink, Redirect } from 'react-router-dom'
 import clsx from 'clsx'
 import ReactGA from 'react-ga'
 import { GlobalContext } from '../context/contextProvider'
+import {Checklist }from './Checklist'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import Drawer from '@material-ui/core/Drawer'
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -19,6 +20,7 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import MapLegend from '../components/MapLegend'
 import { grey } from '@material-ui/core/colors'
+
 
 const drawerWidth = 240
 
@@ -218,6 +220,11 @@ export default function PersistentDrawerLeft({
           ))} */}
         </List>
         <Divider />
+          {/* comment back in after Checklist component written */}
+        <ListItem button key="Checklist" component={NavLink} to="/checklist">
+          <ListItemText primary="Checklist" />
+        </ListItem>
+        
         <MapLegend />
       </Drawer>
     </div>
