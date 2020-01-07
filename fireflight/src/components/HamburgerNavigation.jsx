@@ -3,7 +3,13 @@ import { NavLink, Redirect } from 'react-router-dom'
 import clsx from 'clsx'
 import ReactGA from 'react-ga'
 import { GlobalContext } from '../context/contextProvider'
-import { makeStyles, useTheme } from '@material-ui/core/styles'
+import MapLegend from '../components/MapLegend'
+import Theme from '../styles/custom-theme'
+import {
+  makeStyles,
+  useTheme,
+  MuiThemeProvider
+} from '@material-ui/core/styles'
 import Drawer from '@material-ui/core/Drawer'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import AppBar from '@material-ui/core/AppBar'
@@ -17,14 +23,17 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
-import MapLegend from '../components/MapLegend'
-import { grey } from '@material-ui/core/colors'
+import TextField from '@material-ui/core/TextField'
+import SearchIcon from '@material-ui/icons/Search'
 
 const drawerWidth = 240
 
 const useStyles = makeStyles(theme => ({
   root: {
-    display: 'flex'
+    '& .MuiTextField-root': {
+      margin: theme.spacing(2),
+      width: 200
+    }
   },
   appBar: {
     transition: theme.transitions.create(['margin', 'width'], {
@@ -116,110 +125,137 @@ export default function PersistentDrawerLeft({
 
   return (
     <div className={classes.root}>
-      <CssBaseline />
-      <AppBar
-        position="fixed"
-        className={clsx(classes.appBar, {
-          [classes.appBarShift]: open
-        })}
-      >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            className={clsx(classes.menuButton, open && classes.hide)}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap>
-            Wildfire Watch
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        className={classes.drawer}
-        variant="persistent"
-        anchor="left"
-        open={open}
-        classes={{
-          paper: classes.drawerPaper
-        }}
-      >
-        <div className={classes.drawerHeader}>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? (
-              <ChevronLeftIcon />
-            ) : (
-              <ChevronRightIcon />
+      <MuiThemeProvider theme={Theme}>
+        <CssBaseline />
+        <AppBar
+          position="fixed"
+          color="primary"
+          className={clsx(classes.appBar, {
+            [classes.appBarShift]: open
+          })}
+        >
+          <Toolbar>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              className={clsx(classes.menuButton, open && classes.hide)}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h3" noWrap>
+              Wildfire Watch
+            </Typography>
+            <TextField
+              id="outlined-full-width"
+              label="Address"
+              style={{ margin: 8, backgroundColor: 'white' }}
+              fullWidth
+              type="search"
+              InputLabelProps={{
+                shrink: true
+              }}
+              variant="outlined"
+              color="secondary"
+            />
+            <TextField
+              style={{ backgroundColor: 'white' }}
+              id="outlined-number"
+              label="Proximity"
+              type="number"
+              InputLabelProps={{
+                shrink: true
+              }}
+              variant="outlined"
+              color="secondary"
+            />
+            <SearchIcon />
+          </Toolbar>
+        </AppBar>
+        <Drawer
+          className={classes.drawer}
+          variant="persistent"
+          anchor="left"
+          open={open}
+          classes={{
+            paper: classes.drawerPaper
+          }}
+        >
+          <div className={classes.drawerHeader}>
+            <IconButton onClick={handleDrawerClose}>
+              {theme.direction === 'ltr' ? (
+                <ChevronLeftIcon />
+              ) : (
+                <ChevronRightIcon />
+              )}
+            </IconButton>
+          </div>
+          <Divider />
+          <List component="nav">
+            <ListItem button key="Home" component={NavLink} exact to="/">
+              <ListItemText primary="Home" />
+            </ListItem>
+            {localStorage.getItem('token') == null && (
+              <>
+                <ListItem
+                  button
+                  className="menu-item inactive"
+                  onClick={() => {
+                    toggleAuthForms(true)
+                    toggleRegisterStatus(true)
+                    toggleLoginStatus(false)
+                    ReactGA.modalview('/Register')
+                  }}
+                >
+                  <ListItemText primary="Signup" />
+                </ListItem>
+                <ListItem
+                  button
+                  className="menu-item inactive"
+                  onClick={() => {
+                    toggleAuthForms(true)
+                    toggleRegisterStatus(false)
+                    toggleLoginStatus(true)
+                    ReactGA.modalview('/Login')
+                  }}
+                >
+                  <ListItemText primary="Login" />
+                </ListItem>
+              </>
             )}
-          </IconButton>
-        </div>
-        <Divider />
-        <List component="nav">
-          <ListItem button key="Home" component={NavLink} exact to="/">
-            <ListItemText primary="Home" />
-          </ListItem>
-          {localStorage.getItem('token') == null && (
-            <>
-              <ListItem
-                button
-                className="menu-item inactive"
-                onClick={() => {
-                  toggleAuthForms(true)
-                  toggleRegisterStatus(true)
-                  toggleLoginStatus(false)
-                  ReactGA.modalview('/Register')
-                }}
-              >
-                <ListItemText primary="Signup" />
-              </ListItem>
-              <ListItem
-                button
-                className="menu-item inactive"
-                onClick={() => {
-                  toggleAuthForms(true)
-                  toggleRegisterStatus(false)
-                  toggleLoginStatus(true)
-                  ReactGA.modalview('/Login')
-                }}
-              >
-                <ListItemText primary="Login" />
-              </ListItem>
-            </>
-          )}
-          {localStorage.getItem('token') != null && (
-            <>
-              <ListItem
-                button
-                key="Profile"
-                component={NavLink}
-                to="/dashboard"
-                activeClassName="current"
-              >
-                <ListItemText primary="Profile" />
-              </ListItem>
-              <ListItem
-                button
-                key="Logout"
-                component={NavLink}
-                to="/"
-                onClick={logout}
-              >
-                <ListItemText primary="Logout" />
-              </ListItem>
-            </>
-          )}
-          {/* {['Home', 'Signup', 'Login'].map((text, index) => (
+            {localStorage.getItem('token') != null && (
+              <>
+                <ListItem
+                  button
+                  key="Profile"
+                  component={NavLink}
+                  to="/dashboard"
+                  activeClassName="current"
+                >
+                  <ListItemText primary="Profile" />
+                </ListItem>
+                <ListItem
+                  button
+                  key="Logout"
+                  component={NavLink}
+                  to="/"
+                  onClick={logout}
+                >
+                  <ListItemText primary="Logout" />
+                </ListItem>
+              </>
+            )}
+            {/* {['Home', 'Signup', 'Login'].map((text, index) => (
             <ListItem button key={text}>
               <ListItemText primary={text} />
             </ListItem>
           ))} */}
-        </List>
-        <Divider />
-        <MapLegend />
-      </Drawer>
+          </List>
+          <Divider />
+          <MapLegend />
+        </Drawer>
+      </MuiThemeProvider>
     </div>
   )
 }
