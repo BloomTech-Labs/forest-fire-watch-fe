@@ -32,20 +32,7 @@ const LocationsList = props => {
               <td className="table-data address-field">{loc.address}</td>
               <td className="table-data radius-field">{loc.radius} mi</td>
               <td className="table-data notifications-field">
-                <div className="notif-box">
-                  <div className="checkbox-wrapper">                  
-                      <input
-                        className="checkbox"
-                        id="checkbox1"
-                        type="checkbox"
-                        onChange={() => {
-                          updateTextAlerts(!receiveSMS)
-                        }}
-                        checked={receiveSMS}
-                      />
-                    <label className="address-checkbox" htmlFor="checkbox1" />          
-                  </div>
-                </div>
+                
                 {/* {loc.notifications ? 'ON' : 'OFF'} */}
                 {receiveSMS || receivePush ? 'ON' : 'OFF'}
               </td>
