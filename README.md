@@ -38,7 +38,7 @@ UX Design files: [map](https://www.figma.com/file/MSadfIggtwfQUUUp1W6dbR/Labs17_
 
 Signed out users can demo part of the the application and see a clear "Sign Up" call-to-action. Autocomplete of searched addresses are shown in a dropdown using geocoder autocomplete. Users are directed to a login modal upon attempting to save a location.
 
-![Demo-mode](demo-mode.gif)
+![Demo-mode](assets/demo-mode.gif)
 
 ### Login, Registration, and Change Password Modals
 
