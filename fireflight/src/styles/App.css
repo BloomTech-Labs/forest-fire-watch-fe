@@ -835,13 +835,20 @@
 }
 
 .legend-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   background: rgba(255, 255, 255, 0.5);
   border-radius: 1px;
   position: absolute;
   bottom: 5rem;
   right: 5rem;
   z-index: 5;
-  width: 20rem;
+  width: auto;
   padding: 1rem;
 }
 
