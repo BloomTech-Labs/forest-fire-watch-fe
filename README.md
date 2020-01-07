@@ -57,7 +57,7 @@ Saved locations are indicated by a green marker and fires that are within a radi
 Users may edit their email address or phone number, and toggle on the options of receiving SMS alerts for saved locations.
 
 <p align="center">
-<img src="./profile.gif" alt="Twilio notifications" width="500" height="auto">
+<img src="assets/images/profile.gif" alt="Twilio notifications" width="500" height="auto">
 </p>
 
 ### SMS notification alerts via Twilio API
@@ -65,7 +65,7 @@ Users may edit their email address or phone number, and toggle on the options of
 Users can subscribe to SMS alerts. These alerts tell them the name of the closest fire and how many fires are within a given distance (user defined) from the saved locations. We send these alerts using the Twilio API. Notifications are re-sent every 6 hours using CRON scheduler.
 
 <p align="center">
-<img src="./twilio_notifications.gif" alt="Twilio notifications" width="300" height="600">
+<img src="assets/images/twilio_notifications.gif" alt="Twilio notifications" width="300" height="600">
 </p>
 
 <!-- <img src="twilio_notifications.png" width="350" height="auto"> -->
@@ -90,10 +90,10 @@ The App is fully responsive for tablet and mobile devices.
 
 <div>
     <span align="center">
-    <img src="./mobile1.gif" alt="Twilio notifications" width="300" height="600" hspace="80">
+    <img src="assets/images/mobile1.gif" alt="Twilio notifications" width="300" height="600" hspace="80">
     </span>
     <span align="center">
-    <img src="./mobile2.gif" alt="Twilio notifications" width="300" height="600">
+    <img src="assets/images/mobile2.gif" alt="Twilio notifications" width="300" height="600">
     </span>
 </div>
 
