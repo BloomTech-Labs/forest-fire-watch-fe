@@ -20,7 +20,7 @@ import ListItemText from '@material-ui/core/ListItemText'
 import MapLegend from '../components/MapLegend'
 import { grey } from '@material-ui/core/colors'
 
-const drawerWidth = 240
+const drawerWidth = 140
 
 const useStyles = makeStyles(theme => ({
   root: {

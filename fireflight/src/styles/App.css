@@ -872,7 +872,6 @@
   text-align: center;
   padding: 10px;
   margin: 0 10px 0 0;
-  cursor: pointer;
 }
 
 .legend-container .legend-item {
@@ -1126,7 +1125,46 @@
   }
 }
 
+.dashboard-wrapper .content-wrapper .locations-info .locations-buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 .dashboard-wrapper .content-wrapper .locations-info .add-location-btn {
+  margin-top: 1rem;
+  background-color: #fc8d43;
+  border-radius: 2px;
+  cursor: pointer;
+  color: white;
+  font-size: 1.5rem;
+  width: 119.95px;
+  height: 38px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: none;
+  margin-right: 10px;
+  -webkit-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+}
+
+.dashboard-wrapper .content-wrapper .locations-info .add-location-btn:hover {
+  background-color: #fdab75;
+  -webkit-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+}
+
+.dashboard-wrapper .content-wrapper .locations-info .return-to-map-btn {
   margin-top: 1rem;
   background-color: #fc8d43;
   border-radius: 2px;
@@ -1149,7 +1187,7 @@
   transition: all 0.5s ease-out;
 }
 
-.dashboard-wrapper .content-wrapper .locations-info .add-location-btn:hover {
+.dashboard-wrapper .content-wrapper .locations-info .return-to-map-btn:hover {
   background-color: #fdab75;
   -webkit-transition: all 0.5s ease-out;
   transition: all 0.5s ease-out;
@@ -1227,14 +1265,9 @@
 
 @media (max-device-width: 600px) {
   .addlocation-wrapper {
-<<<<<<< HEAD
-    max-width: 50rem;
-    padding-right: 7rem;
-=======
     max-width: 0rem;
     padding-right: 7rem;
     margin-left: 1rem;
->>>>>>> ca4b41cae2417e877b2441df3d2e738e3eb94cfd
   }
 }
 
@@ -1276,11 +1309,7 @@
 
 @media (max-device-width: 600px) {
   .addlocation-wrapper .react-geocoder {
-<<<<<<< HEAD
-    max-width: 34rem;
-=======
     max-width: 30rem;
->>>>>>> ca4b41cae2417e877b2441df3d2e738e3eb94cfd
   }
 }
 
@@ -1373,11 +1402,7 @@
 .addlocation-wrapper .react-geocoder .react-geocoder-results {
   border: 0.5px solid #bbbbbb;
   background: white;
-<<<<<<< HEAD
-  width: 50rem;
-=======
   width: 53rem;
->>>>>>> ca4b41cae2417e877b2441df3d2e738e3eb94cfd
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   height: auto;
@@ -1389,11 +1414,7 @@
 
 @media (max-device-width: 600px) {
   .addlocation-wrapper .react-geocoder .react-geocoder-results {
-<<<<<<< HEAD
-    max-width: 34rem;
-=======
     max-width: 32rem;
->>>>>>> ca4b41cae2417e877b2441df3d2e738e3eb94cfd
     padding-right: 3px;
   }
 }
