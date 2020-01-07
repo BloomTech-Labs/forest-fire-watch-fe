@@ -31,8 +31,7 @@ const LocationsList = props => {
             <tr className="table-row" key={index + loc.radius}>
               <td className="table-data address-field">{loc.address}</td>
               <td className="table-data radius-field">{loc.radius} mi</td>
-              <td className="table-data notifications-field">
-                
+              <td className="table-data notifications-field">                
                 {/* {loc.notifications ? 'ON' : 'OFF'} */}
                 {receiveSMS || receivePush ? 'ON' : 'OFF'}
               </td>

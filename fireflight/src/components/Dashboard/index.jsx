@@ -67,7 +67,11 @@ const Dashboard = props => {
   }, [userLocationMarkers])
 
   const handleAddPhoneNumber = () => {
-    if (phoneNumber.length > 9) {
+    if (phoneNumber == null || phoneNumber.length == 0 ) {
+      window.alert('Please enter a valid phone number')
+      setEditPhone(true)
+    }
+    else if (phoneNumber.length > 9) {
       setEditPhone(false)
       addPhoneNumber(phoneNumber)
     }
