@@ -44,13 +44,13 @@ Signed out users can demo part of the the application and see a clear "Sign Up" 
 
 Use cases for incorrect inputs based on Firebase or backend server responses are indicated to the user. User authentication is handled using Firebase.
 
-![Modal-examples](modal-switch.gif)
+![Modal-examples](assets/images/modal-switch.gif)
 
 ### Saved locations and fire markers
 
 Saved locations are indicated by a green marker and fires that are within a radius (in miles) of the address are highlighted with exclamation markers. Fire distances are calculated via the haversine formula (i.e. distance between two latitude/longitude points on a sphere).
 
-![Saving a location](save-location.gif)
+![Saving a location](assets/images/save-location.gif)
 
 ### User Profile
 
@@ -76,13 +76,13 @@ Users can subscribe to SMS alerts. These alerts tell them the name of the closes
 
 Users can subscribe to in-browser push notifications. Like SMS alerts, they receive personalized messages based on the locations they save and the distance they set for these alerts.
 
-![Push notifications](push_notification.gif)
+![Push notifications](assets/images/push_notification.gif)
 
 ### Add Location Form
 
 Users can delete locations through both the map and locations list. They can add new locations through a form and are prevented from adding duplicate locations.
 
-![Add-Location-Form](add-location.gif)
+![Add-Location-Form](assets/images/add-location.gif)
 
 ### Responsive Mobile View
 
