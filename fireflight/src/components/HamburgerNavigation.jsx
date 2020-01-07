@@ -218,6 +218,9 @@ export default function PersistentDrawerLeft({
           ))} */}
         </List>
         <Divider />
+        <ListItem button key="Checklist" component={NavLink} to="/checklist">
+          <ListItemText primary="Checklist" />
+        </ListItem>
         <MapLegend />
       </Drawer>
     </div>
