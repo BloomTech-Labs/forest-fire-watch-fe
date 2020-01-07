@@ -1,7 +1,7 @@
 import React from "react";
 
 import PublicMap from "./PublicMap";
-import MapLegend from "./MapLegend";
+
 
 function Home({ setShowAuthForms, setLoginFormStatus, setRegisterFormStatus }) {
   return (
@@ -11,7 +11,7 @@ function Home({ setShowAuthForms, setLoginFormStatus, setRegisterFormStatus }) {
         setLoginFormStatus={setLoginFormStatus}
         setRegisterFormStatus={setRegisterFormStatus}
       />
-      <MapLegend />
+      
     </div>
   );
 }
