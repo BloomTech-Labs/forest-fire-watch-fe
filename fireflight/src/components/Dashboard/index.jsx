@@ -70,6 +70,7 @@ const Dashboard = props => {
     if (phoneNumber == null || 0 <= phoneNumber.length <= 9 ) {
       window.alert('Please enter a valid phone number')
       setEditPhone(true)
+      setEditPhone(false)
     }
     else if (phoneNumber.length > 9) {
       setEditPhone(false)
