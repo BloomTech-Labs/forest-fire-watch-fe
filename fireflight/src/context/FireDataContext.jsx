@@ -38,7 +38,7 @@ const fireDataReducer = (state, action) => {
     case UPDATE_SAVED_LOCATION:
       return {
           ...state,
-          addresses: action.payload
+          userLocations: action.payload
       }
 
     case DELETE_USER_LOCATION:
@@ -89,7 +89,8 @@ const fireDataReducer = (state, action) => {
       return {
         ...state,
         userLocationMarkers: action.payload[0],
-        userLocalFireMarkers: action.payload[1]
+        userLocalFireMarkers: action.payload[1],
+        userLocations: action.payload[2]
       }
     case TOGGLE_NOTIFICATIONS:
       return {
@@ -570,6 +571,7 @@ export const FireDataProvider = ({ children }) => {
         })
 
         // saved user locations
+        const savedLocs = res.data
         const userLocs = res.data.map((uLoc, index) => (
           <Marker
             latitude={uLoc.latitude}
@@ -601,7 +603,7 @@ export const FireDataProvider = ({ children }) => {
         ))
         dispatch({
           type: SET_USER_LOCATIONS,
-          payload: [userLocs, localMarkers]
+          payload: [userLocs, localMarkers, savedLocs]
         })
       })
       .catch(err => {
@@ -643,10 +645,7 @@ export const FireDataProvider = ({ children }) => {
       .then(res => {        
         dispatch({
           type: UPDATE_SAVED_LOCATION,
-          payload: [
-            address, radius
-            
-          ]
+          payload: res.data
         })
       })
   }

@@ -64,6 +64,7 @@ const Dashboard = props => {
   useEffect(() => {
     getUserData()
     getUserLocations()
+    console.log("from profile index", userLocations)
   }, [userLocationMarkers])
 
   const handleAddPhoneNumber = () => {

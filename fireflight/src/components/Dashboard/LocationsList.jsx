@@ -19,7 +19,7 @@ const LocationsList = props => {
     saveInputLocation
   } = useContext(FireDataContext)
 
-  const [isEditing, setIsEditing] = useState(false)
+  const [addressIndex, setAddressIndex] = useState()
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => {
@@ -56,10 +56,10 @@ const LocationsList = props => {
               </td>
               <td>
                 <i
-                  onClick={() => setOpen(true)}
+                  onClick={() => {setOpen(true); setAddressIndex(index)}}
                   className="fas fa-pencil-alt edit-profile-icon"
                 />
-                {open && <AddressModal handleClose={handleClose} open={open}  />}
+                {open && <AddressModal handleClose={handleClose} open={open} address={loc.address} radius={loc.radius} id={loc.id} index={addressIndex} />}
                 <div
                   className="delete-location-btn"
                   onClick={() => deleteUserLocation(loc.id)}

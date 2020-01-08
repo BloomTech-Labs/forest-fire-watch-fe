@@ -5,6 +5,8 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import { FireDataContext } from '../../context/FireDataContext'
 import { UserDataContext } from '../../context/UserDataContext'
+import axiosWithAuth from '../../utils/axiosWithAuth'
+
 
 const useStyles = makeStyles(theme => ({
   modal: {
@@ -28,12 +30,35 @@ export default function AddressModal(props) {
   const [isEditing, setIsEditing] = useState(false)
   const [address, setAddress] = useState('')
   const [radius, setRadius] = useState('')
-
+  const [newRadius, setNewRadius] = useState()
+  const [newAddress, setNewAddress] = useState()
   const {
-    getCoordinates,
-    saveInputLocation,
-    updateUserLocations
-  } = useContext(FireDataContext)
+      getCoordinates,
+      saveInputLocation,
+      updateUserLocations,
+      getUserLocations,
+      fireDataState
+    } = useContext(FireDataContext)
+  const { userLocations } = fireDataState 
+  
+    
+  React.useEffect(() => {
+        axiosWithAuth()
+          .get('/locations')
+          .then(res => {
+            console.log('from modal GET', res.data)
+            const addresses = res.data            
+            console.log('current address in GET', addresses)
+            setNewAddress(addresses[props.index].address)
+            setNewRadius(addresses[props.index].radius)
+          })
+        
+        console.log('from modal new address', newAddress, newRadius)
+    
+    console.log("from address modal", props.address, props.id, props.index)
+  }, [])
+
+  
 
   const queryParams = {
     country: 'us'
@@ -50,8 +75,12 @@ export default function AddressModal(props) {
 
   const viewport = {}
   
-  const changeAddress = () => {
+  const onAddressChange = (e) => {
+    setNewAddress(e.target.value)
+  }
 
+  const onRadiusChange = e => {
+    setNewRadius(e.target.value)
   }
 
   const handleSubmit = e => {
@@ -82,8 +111,9 @@ export default function AddressModal(props) {
       >
         <Fade in={props.open}>
           <div className={classes.paper}>
-            <h2 id="transition-modal-title">Transition modal</h2>
-            <p id="transition-modal-description">react-transition-group animates me.</p>
+            <h1 id="transition-modal-title">Edit Address</h1>
+            <textarea cols='30' rows='10' type='text'  value={newAddress} onChange={onAddressChange} />
+            <input type='number' value={newRadius} onChange={onRadiusChange} />
           </div>
         </Fade>
       </Modal>
