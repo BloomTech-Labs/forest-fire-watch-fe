@@ -2,7 +2,7 @@ import React, {useContext, useState} from 'react'
 import { UserDataContext } from '../../context/UserDataContext'
 import { FireDataContext } from '../../context/FireDataContext'
 import Geocoder from 'react-mapbox-gl-geocoder'
-import {AddressModal} from './UpdateAddressModal'
+import AddressModal from './UpdateAddressModal'
 
 
 const LocationsList = props => {
@@ -20,8 +20,15 @@ const LocationsList = props => {
   } = useContext(FireDataContext)
 
   const [isEditing, setIsEditing] = useState(false)
+  const [open, setOpen] = React.useState(false);
 
-  
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
  
 
@@ -48,10 +55,11 @@ const LocationsList = props => {
                 {receiveSMS || receivePush ? 'ON' : 'OFF'}
               </td>
               <td>
-              <i
-                onClick={() => setIsEditing(true)}
-                className="fas fa-pencil-alt edit-profile-icon"
-              />
+                <i
+                  onClick={() => setOpen(true)}
+                  className="fas fa-pencil-alt edit-profile-icon"
+                />
+                {open && <AddressModal handleClose={handleClose} open={open}  />}
                 <div
                   className="delete-location-btn"
                   onClick={() => deleteUserLocation(loc.id)}

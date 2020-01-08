@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
 export default function AddressModal(props) {
 
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
+  
   const {updateTextAlerts, userDataState} = useContext(UserDataContext)
   const [isEditing, setIsEditing] = useState(false)
   const [address, setAddress] = useState('')
@@ -63,13 +63,7 @@ export default function AddressModal(props) {
     props.history.push(`/dashboard`)
   }
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
+  
 
   return (
     <div>
@@ -78,15 +72,15 @@ export default function AddressModal(props) {
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
         className={classes.modal}
-        open={open}
-        onClose={handleClose}
+        open={props.open}
+        onClose={props.handleClose}
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{
           timeout: 500,
         }}
       >
-        <Fade in={open}>
+        <Fade in={props.open}>
           <div className={classes.paper}>
             <h2 id="transition-modal-title">Transition modal</h2>
             <p id="transition-modal-description">react-transition-group animates me.</p>

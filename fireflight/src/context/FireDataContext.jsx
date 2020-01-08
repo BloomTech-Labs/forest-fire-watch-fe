@@ -38,7 +38,7 @@ const fireDataReducer = (state, action) => {
     case UPDATE_SAVED_LOCATION:
       return {
           ...state,
-          userLocations: action.payload
+          addresses: action.payload
       }
 
     case DELETE_USER_LOCATION:
@@ -637,43 +637,15 @@ export const FireDataProvider = ({ children }) => {
     })
   }
 
-  const updateUserLocations = (address, radius, id, location) => {
+  const updateUserLocations = (address, radius, id) => {
     axiosWithAuth()
       .put(`locations/${id}`, { address, radius } )
-      .then(res => {
-        ReactGA.event({
-          category: 'User',
-          action: 'Saved Location'
-        })
+      .then(res => {        
         dispatch({
           type: UPDATE_SAVED_LOCATION,
           payload: [
-            ...fireDataState.userLocationMarkers,
-            <Marker
-              latitude={location[1]}
-              longitude={location[0]}
-              key={`greenMarker${location[1]}`}
-            >
-              <img
-                src={locationIconGreen}
-                height="35"
-                width="20"
-                style={{ zIndex: 5, transform: 'translate(-17.5px, -35px)' }}
-                alt=""
-                onClick={e => {
-                  dispatch({
-                    type: SET_SELECTED_MARKER,
-                    payload: [
-                      location[1],
-                      location[0],
-                      address, //address
-                      radius, //radius
-                      'savedLocation'
-                    ]
-                  })
-                }}
-              />
-            </Marker>
+            address, radius
+            
           ]
         })
       })
