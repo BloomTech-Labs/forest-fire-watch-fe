@@ -11,5 +11,8 @@ export default createMuiTheme({
     background: {
       paper: '#eeeeee'
     }
+  },
+  shape: {
+    borderRadius: 4
   }
 })
