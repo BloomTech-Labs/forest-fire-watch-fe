@@ -19,6 +19,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
+import HamburgerNavigation from './HamburgerNavigation'
 
 function createData(name) {
   return { name };
@@ -84,7 +85,7 @@ function EnhancedTableHead(props) {
             indeterminate={numSelected > 0 && numSelected < rowCount}
             checked={numSelected === rowCount}
             onChange={onSelectAllClick}
-            inputProps={{ 'aria-label': 'select all desserts' }}
+            inputProps={{ 'aria-label': 'select all name' }}
           />
         </TableCell>
         {headCells.map(headCell => (
@@ -148,35 +149,37 @@ const EnhancedTableToolbar = props => {
   const { numSelected } = props;
 
   return (
-    <Toolbar
-      className={clsx(classes.root, {
-        [classes.highlight]: numSelected > 0,
-      })}
-    >
-      {numSelected > 0 ? (
-        <Typography className={classes.title} color="inherit" variant="subtitle1">
-          {numSelected} selected
-        </Typography>
-      ) : (
-        <Typography className={classes.title} variant="h6" id="tableTitle">
-          Emergency Evacuation Checklist
-        </Typography>
-      )}
+    <HamburgerNavigation>
+      <Toolbar
+        className={clsx(classes.root, {
+          [classes.highlight]: numSelected > 0,
+        })}
+      >
+        {numSelected > 0 ? (
+          <Typography className={classes.title} color="inherit" variant="subtitle1">
+            {numSelected} selected
+          </Typography>
+        ) : (
+          <Typography className={classes.title} variant="h6" id="tableTitle">
+            Emergency Evacuation Checklist
+          </Typography>
+        )}
 
-      {numSelected > 0 ? (
-        <Tooltip title="Delete">
-          <IconButton aria-label="delete">
-            <DeleteIcon />
-          </IconButton>
-        </Tooltip>
-      ) : (
-        <Tooltip title="Filter list">
-          <IconButton aria-label="filter list">
-            <FilterListIcon />
-          </IconButton>
-        </Tooltip>
-      )}
-    </Toolbar>
+        {numSelected > 0 ? (
+          <Tooltip title="Delete">
+            <IconButton aria-label="delete">
+              <DeleteIcon />
+            </IconButton>
+          </Tooltip>
+        ) : (
+          <Tooltip title="Filter list">
+            <IconButton aria-label="filter list">
+              {/* <FilterListIcon /> */}
+            </IconButton>
+          </Tooltip>
+        )}
+      </Toolbar>
+    </HamburgerNavigation>
   );
 };
 
@@ -215,13 +218,8 @@ export default function EnhancedTable() {
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
-  const [rowsPerPage, setRowsPerPage] = React.useState(100);//this changes how many items show up in the "rows" variable
+  const [rowsPerPage, setRowsPerPage] = React.useState(20);//this changes how many items show up in the "rows" variable
 
-  const handleRequestSort = (event, property) => {
-    const isAsc = orderBy === property && order === 'asc';
-    setOrder(isAsc ? 'desc' : 'asc');
-    setOrderBy(property);
-  };
 
   const handleSelectAllClick = event => {
     if (event.target.checked) {
@@ -257,7 +255,7 @@ export default function EnhancedTable() {
   };
 
   const handleChangeRowsPerPage = event => {
-    setRowsPerPage(parseInt(event.target.value, 100));
+    setRowsPerPage(parseInt(event.target.value, 20));
     setPage(0);
   };
 
@@ -280,15 +278,14 @@ export default function EnhancedTable() {
             size={dense ? 'small' : 'medium'}
             aria-label="enhanced table"
           >
-            <EnhancedTableHead
+            {/* <EnhancedTableHead
               classes={classes}
               numSelected={selected.length}
               order={order}
               orderBy={orderBy}
               onSelectAllClick={handleSelectAllClick}
-              onRequestSort={handleRequestSort}
               rowCount={rows.length}
-            />
+            /> */}
             <TableBody>
               {stableSort(rows, getSorting(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
