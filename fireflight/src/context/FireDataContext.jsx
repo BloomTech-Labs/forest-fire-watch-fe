@@ -20,7 +20,8 @@ import {
   TOGGLE_NOTIFICATIONS,
   DELETE_USER_LOCATION,
   SET_EXCLAMATION_MARKERS,
-  SET_SAVED_LOCATION_ERROR
+  SET_SAVED_LOCATION_ERROR,
+  UPDATE_SAVED_LOCATION
 } from './fireDataTypes'
 
 const DSbaseURL = 'https://wildfirewatch.herokuapp.com'
@@ -33,6 +34,11 @@ const fireDataReducer = (state, action) => {
       return {
         ...state,
         userLocations: action.payload
+      }
+    case UPDATE_SAVED_LOCATION:
+      return {
+          ...state,
+          userLocations: action.payload
       }
 
     case DELETE_USER_LOCATION:
@@ -108,6 +114,7 @@ const fireDataReducer = (state, action) => {
         ...state,
         errorMessage: action.payload
       }
+    
     default:
       return {
         ...state
@@ -597,6 +604,13 @@ export const FireDataProvider = ({ children }) => {
           payload: [userLocs, localMarkers]
         })
       })
+      .catch(err => {
+        dispatch({
+          type: SET_SAVED_LOCATION_ERROR,
+          payload: ['there is an error']
+        })
+        console.log('within the catch')
+      })
   }
 
   // the pop up when you click into a saved location
@@ -623,6 +637,48 @@ export const FireDataProvider = ({ children }) => {
     })
   }
 
+  const updateUserLocations = (address, radius, id, location) => {
+    axiosWithAuth()
+      .put(`locations/${id}`, { address, radius } )
+      .then(res => {
+        ReactGA.event({
+          category: 'User',
+          action: 'Saved Location'
+        })
+        dispatch({
+          type: UPDATE_SAVED_LOCATION,
+          payload: [
+            ...fireDataState.userLocationMarkers,
+            <Marker
+              latitude={location[1]}
+              longitude={location[0]}
+              key={`greenMarker${location[1]}`}
+            >
+              <img
+                src={locationIconGreen}
+                height="35"
+                width="20"
+                style={{ zIndex: 5, transform: 'translate(-17.5px, -35px)' }}
+                alt=""
+                onClick={e => {
+                  dispatch({
+                    type: SET_SELECTED_MARKER,
+                    payload: [
+                      location[1],
+                      location[0],
+                      address, //address
+                      radius, //radius
+                      'savedLocation'
+                    ]
+                  })
+                }}
+              />
+            </Marker>
+          ]
+        })
+      })
+  }
+
   const closeSelectedMarker = () => {
     dispatch({
       type: SET_SELECTED_MARKER,
@@ -647,7 +703,8 @@ export const FireDataProvider = ({ children }) => {
         toggleNotification,
         deleteUserLocation,
         updatePopupRadius,
-        updateSavedLocationErrorMessage
+        updateSavedLocationErrorMessage,
+        updateUserLocations
       }}
     >
       {children}
