@@ -14,5 +14,8 @@ export default createMuiTheme({
   },
   shape: {
     borderRadius: 4
+  },
+  typography: {
+    fontSize: 20
   }
 })
