@@ -20,7 +20,7 @@ import ListItemText from '@material-ui/core/ListItemText'
 import MapLegend from '../components/MapLegend'
 import { grey } from '@material-ui/core/colors'
 
-const drawerWidth = 240
+const drawerWidth = 200
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -219,6 +219,8 @@ export default function PersistentDrawerLeft({
         </List>
         <Divider />
         <MapLegend />
+       
+        
       </Drawer>
     </div>
   )
