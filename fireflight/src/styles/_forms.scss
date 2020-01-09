@@ -99,7 +99,7 @@
     }
 
     @media (max-device-width: $mq-mobile) {
-      width: 30rem;
+      width: 24rem;
       height: 4rem;
       left: 2rem;
       top: 11.8rem;
@@ -107,6 +107,7 @@
       border-radius: 3px;
 
       input {
+        width: 23rem;
         font-size: 1.4rem;
       }
     }
