@@ -255,7 +255,7 @@ const PublicMap = ({
     setLocation(item.center)
   }
 
-  console.log('exclamations', exclamationMarkers)
+  // console.log('exclamations', exclamationMarkers)
 
   return (
     <div style={{ position: 'relative', width: '100%', height: '100%' }}>

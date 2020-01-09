@@ -41,6 +41,7 @@ export default function AddressModal(props) {
   const [newRadius, setNewRadius] = useState()
   const [newAddress, setNewAddress] = useState()
   const [location, setLocation] = useState([])
+  const [addressObject, setAddressObject ] = useState()
 
   const {
       getCoordinates,
@@ -61,14 +62,15 @@ export default function AddressModal(props) {
             console.log('current address in GET', addresses)
             setNewAddress(addresses[props.index].address)
             setNewRadius(addresses[props.index].radius)
+            setAddressObject(addresses[props.index])
           })
         
-        console.log('from modal new address', newAddress, newRadius)
+        
     
     console.log("from address modal", props.address, props.id, props.index)
   }, [])
 
-  
+  console.log('from modal new address', newAddress, newRadius, addressObject)
 
   const queryParams = {
     country: 'us'
@@ -90,8 +92,9 @@ export default function AddressModal(props) {
     e.preventDefault()
     if (address) {
       getCoordinates(address, radius, true)
-      updateUserLocations(address, radius, newAddress.id)
+      updateUserLocations(addressObject, addressObject.id)
       props.setOpen(false)
+      props.handleClose()
     }
     
   }
@@ -127,16 +130,16 @@ export default function AddressModal(props) {
               onSelected={onSelected}
               updateInputOnSelect={true}
               limit={3}
-              value={newAddress}
+              defaultValue={newAddress}
             />
             <div className="radius-wrapper">
               <label className='modal-label'>Radius</label>
               <div className="radius-info">
                 <input
                   type="number"
-                  name="Radius"
+                  name="radius"
                   placeholder="mi"
-                  value={newRadius}
+                  defaultValue={newRadius}
                   className="radius-input"
                   onChange={e => setRadius(e.target.value)}
                 />

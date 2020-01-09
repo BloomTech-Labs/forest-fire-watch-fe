@@ -38,7 +38,7 @@ const fireDataReducer = (state, action) => {
     case UPDATE_SAVED_LOCATION:
       return {
           ...state,
-          userLocations: action.payload
+          
       }
 
     case DELETE_USER_LOCATION:
@@ -639,14 +639,18 @@ export const FireDataProvider = ({ children }) => {
     })
   }
 
-  const updateUserLocations = (address, radius, id) => {
+  const updateUserLocations = (address, id) => {
     axiosWithAuth()
-      .put(`locations/${id}`, { address, radius } )
-      .then(res => {        
+      .put(`locations/${id}`, address )
+      .then(res => {         
+        console.log(res.config.data)
         dispatch({
           type: UPDATE_SAVED_LOCATION,
-          payload: res.data
+          payload: [address.address, address.radius]
         })
+      })
+      .catch(err => {        
+        console.log('within the catch')
       })
   }
 
