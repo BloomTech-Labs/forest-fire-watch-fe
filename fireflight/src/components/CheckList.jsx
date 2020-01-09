@@ -241,7 +241,7 @@ export default function EnhancedTable() {
   return (
     <div className={classes.root}>
       <HamburgerNavigation/>
-      <Paper className={classes.paper}>
+      <Paper className={classes.paper} className="checklist-title">
         <EnhancedTableToolbar numSelected={selected.length} />
         <TableContainer>
           <Table
