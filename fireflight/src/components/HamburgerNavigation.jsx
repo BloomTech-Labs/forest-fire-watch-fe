@@ -19,9 +19,7 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import MapLegend from '../components/MapLegend'
 import { grey } from '@material-ui/core/colors'
-
 const drawerWidth = 240
-
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex'
@@ -77,7 +75,6 @@ const useStyles = makeStyles(theme => ({
     marginLeft: 0
   }
 }))
-
 export default function PersistentDrawerLeft({
   toggleAuthForms,
   toggleLoginStatus,
@@ -88,15 +85,12 @@ export default function PersistentDrawerLeft({
   const theme = useTheme()
   const [open, setOpen] = React.useState(false)
   const data = useContext(GlobalContext)
-
   const handleDrawerOpen = () => {
     setOpen(true)
   }
-
   const handleDrawerClose = () => {
     setOpen(false)
   }
-
   const logout = e => {
     data.state.remote.logout()
     ReactGA.event({
@@ -104,16 +98,13 @@ export default function PersistentDrawerLeft({
       action: 'Logged out'
     })
   }
-
   const protect = ['/dashboard', '/address', '/maps', '/profile']
-
   if (
     localStorage.getItem('token') == null &&
     protect.includes(window.location.pathname)
   ) {
     return <Redirect to="/" />
   }
-
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -188,28 +179,28 @@ export default function PersistentDrawerLeft({
                 <ListItemText primary="Login" />
               </ListItem>
             </>
-          )}
-          {localStorage.getItem('token') != null && (
-            <>
-              <ListItem
-                button
-                key="Profile"
-                component={NavLink}
-                to="/dashboard"
-                activeClassName="current"
-              >
-                <ListItemText primary="Profile" />
-              </ListItem>
-              <ListItem
-                button
-                key="Logout"
-                component={NavLink}
-                to="/"
-                onClick={logout}
-              >
-                <ListItemText primary="Logout" />
-              </ListItem>
-            </>
+            )}
+            {localStorage.getItem('token') != null && (
+               <>
+               <ListItem
+                 button
+                 key="Profile"
+                 component={NavLink}
+                 to="/dashboard"
+                 activeClassName="current"
+               >
+                 <ListItemText primary="Profile" />
+               </ListItem>
+               <ListItem
+                 button
+                 key="Logout"
+                 component={NavLink}
+                 to="/"
+                 onClick={logout}
+               >
+                 <ListItemText primary="Logout" />
+               </ListItem>
+             </>
           )}
           {/* {['Home', 'Signup', 'Login'].map((text, index) => (
             <ListItem button key={text}>
@@ -218,6 +209,7 @@ export default function PersistentDrawerLeft({
           ))} */}
         </List>
         <Divider />
+          {/* comment back in after Checklist component written */}
         <ListItem button key="Checklist" component={NavLink} to="/checklist">
           <ListItemText primary="Checklist" />
         </ListItem>

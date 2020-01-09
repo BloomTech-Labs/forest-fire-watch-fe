@@ -16,7 +16,7 @@ import { UserDataProvider } from './context/UserDataContext'
 import { FireDataContext } from './context/FireDataContext'
 import AddressContext from './context/AddressContext'
 import { haversineDistance } from './utils/haversineDistance'
-import  CheckList from './components/CheckList'
+import  Checklist from './components/Checklist'
 
 // import Modal from "./components/Modal/Modal"
 
@@ -180,7 +180,7 @@ function App() {
           )}
         />
         <Route path="/address" component={Address} />
-        <Route path="/checklist" component={CheckList} />
+        <Route path="/checklist" component={Checklist} />
       </AddressContext>
     </AppWrapper>
   )
