@@ -46,24 +46,24 @@
     }
   }
 
-  // // Address Input
-  // .address-input {
-  //   &::placeholder {
-  //     font-family: 'Open Sans';
-  //     font-style: normal;
-  //     font-weight: normal;
-  //     font-size: 2rem;
-  //     line-height: 2.7rem;
-  //     display: flex;
-  //     align-items: center;
-  //     color: black;
-  //     padding-left: 1.7rem;
-  //   }
+  // Address Input
+  .address-input {
+    &::placeholder {
+      font-family: 'Open Sans';
+      font-style: normal;
+      font-weight: normal;
+      font-size: 2rem;
+      line-height: 2.7rem;
+      display: flex;
+      align-items: center;
+      color: black;
+      padding-left: 1.7rem;
+    }
 
-  //   &::-moz-placeholder {
-  //     line-height: 4.5rem;
-  //   }
-  // }
+    &::-moz-placeholder {
+      line-height: 4.5rem;
+    }
+  }
 
   .react-geocoder {
     width: 30rem;
@@ -100,7 +100,7 @@
     }
 
     @media (max-device-width: $mq-mobile) {
-      width: 20rem;
+      width: 30rem;
       height: 4rem;
       left: 2rem;
       top: 11.8rem;

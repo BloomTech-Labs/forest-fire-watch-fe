@@ -210,9 +210,10 @@ export default function PersistentDrawerLeft({
                 value={radius}
                 onChange={e => setRadius(e.target.value)}
               />
-              <button className="form-btn">Search</button>
+              <div className="search-btn">
+                <i class="fas fa-search fa-3x" onClick={handleSubmit}></i>
+              </div>
             </form>
-            {/* <SearchIcon onClick={handleSubmit} /> */}
           </Toolbar>
         </AppBar>
         <Drawer
