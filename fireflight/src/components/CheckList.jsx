@@ -61,7 +61,7 @@ function getSorting(order, orderBy) {
   return order === 'desc' ? (a, b) => desc(a, b, orderBy) : (a, b) => -desc(a, b, orderBy);
 }
 const headCells = [
-  { id: 'name', numeric: false, disablePadding: true, label: <b>Select All</b> },
+  { id: 'name', numeric: false, disablePadding: true, label: <p className="select-all-title"><b>Select All</b></p> },
  
 ];
 function EnhancedTableHead(props) {
