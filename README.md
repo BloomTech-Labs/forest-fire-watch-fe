@@ -38,26 +38,26 @@ UX Design files: [map](https://www.figma.com/file/MSadfIggtwfQUUUp1W6dbR/Labs17_
 
 Signed out users can demo part of the the application and see a clear "Sign Up" call-to-action. Autocomplete of searched addresses are shown in a dropdown using geocoder autocomplete. Users are directed to a login modal upon attempting to save a location.
 
-![Demo-mode](demo-mode.gif)
+![Demo-mode](assets/images/demo-mode.gif)
 
 ### Login, Registration, and Change Password Modals
 
 Use cases for incorrect inputs based on Firebase or backend server responses are indicated to the user. User authentication is handled using Firebase.
 
-![Modal-examples](modal-switch.gif)
+![Modal-examples](assets/images/modal-switch.gif)
 
 ### Saved locations and fire markers
 
 Saved locations are indicated by a green marker and fires that are within a radius (in miles) of the address are highlighted with exclamation markers. Fire distances are calculated via the haversine formula (i.e. distance between two latitude/longitude points on a sphere).
 
-![Saving a location](save-location.gif)
+![Saving a location](assets/images/save-location.gif)
 
 ### User Profile
 
 Users may edit their email address or phone number, and toggle on the options of receiving SMS alerts for saved locations.
 
 <p align="center">
-<img src="./profile.gif" alt="Twilio notifications" width="500" height="auto">
+<img src="assets/images/profile.gif" alt="Twilio notifications" width="500" height="auto">
 </p>
 
 ### SMS notification alerts via Twilio API
@@ -65,7 +65,7 @@ Users may edit their email address or phone number, and toggle on the options of
 Users can subscribe to SMS alerts. These alerts tell them the name of the closest fire and how many fires are within a given distance (user defined) from the saved locations. We send these alerts using the Twilio API. Notifications are re-sent every 6 hours using CRON scheduler.
 
 <p align="center">
-<img src="./twilio_notifications.gif" alt="Twilio notifications" width="300" height="600">
+<img src="assets/images/twilio_notifications.gif" alt="Twilio notifications" width="300" height="600">
 </p>
 
 <!-- <img src="twilio_notifications.png" width="350" height="auto"> -->
@@ -76,13 +76,13 @@ Users can subscribe to SMS alerts. These alerts tell them the name of the closes
 
 Users can subscribe to in-browser push notifications. Like SMS alerts, they receive personalized messages based on the locations they save and the distance they set for these alerts.
 
-![Push notifications](push_notification.gif)
+![Push notifications](assets/images/push_notification.gif)
 
 ### Add Location Form
 
 Users can delete locations through both the map and locations list. They can add new locations through a form and are prevented from adding duplicate locations.
 
-![Add-Location-Form](add-location.gif)
+![Add-Location-Form](assets/images/add-location.gif)
 
 ### Responsive Mobile View
 
@@ -90,10 +90,10 @@ The App is fully responsive for tablet and mobile devices.
 
 <div>
     <span align="center">
-    <img src="./mobile1.gif" alt="Twilio notifications" width="300" height="600" hspace="80">
+    <img src="assets/images/mobile1.gif" alt="Twilio notifications" width="300" height="600" hspace="80">
     </span>
     <span align="center">
-    <img src="./mobile2.gif" alt="Twilio notifications" width="300" height="600">
+    <img src="assets/images/mobile2.gif" alt="Twilio notifications" width="300" height="600">
     </span>
 </div>
 

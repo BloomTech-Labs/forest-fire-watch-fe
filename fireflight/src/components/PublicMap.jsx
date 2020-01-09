@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from 'react'
 import ReactMapGL, { Popup } from 'react-map-gl'
 import styled from 'styled-components'
 import { FireDataContext } from '../context/FireDataContext'
-import Navigation from '../components/Navigation'
 import HamburgerNavigation from '../components/HamburgerNavigation'
 import Geocoder from 'react-mapbox-gl-geocoder'
 import axios from 'axios'
@@ -64,7 +63,7 @@ const PublicMap = ({
     ipAddress()  
       }, [])
   //prompts the user for their permission to location and sets viewport
-  //currently not useing due to geocoder issues related to having them both plugged in. IP address is very reliable and does not need any permissions.
+  //currently not using due to geocoder issues related to having them both plugged in. IP address is very reliable and does not need any permissions.
   const geoControl = () => {
     navigator.geolocation.getCurrentPosition(position => {
       console.log('setting viewport using geolocation permission')
@@ -266,15 +265,7 @@ const PublicMap = ({
           toggleLoginStatus={setLoginFormStatus}
           toggleRegisterStatus={setRegisterFormStatus}
         />
-        {/* <Navigation
-          toggleAuthForms={setShowAuthForms}
-          toggleLoginStatus={setLoginFormStatus}
-          toggleRegisterStatus={setRegisterFormStatus}
-        /> */}
-        <form onSubmit={handleSubmit} className="map-form-container">
-          <label className="map-form-text">
-            Enter the address and radius you wish to check fire proximity to.
-          </label>
+        {/* <form onSubmit={handleSubmit} className="map-form-container">
           <Geocoder
             {...mapAccess}
             viewport={viewport}
@@ -311,7 +302,7 @@ const PublicMap = ({
             </React.Fragment>
           )}
         </form>
-        {/* End Form Container */}
+        End Form Container */}
       </div>
 
       <ReactMapGL

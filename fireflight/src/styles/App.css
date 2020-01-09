@@ -839,23 +839,29 @@
 }
 
 .legend-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   background: rgba(255, 255, 255, 0.5);
   border-radius: 1px;
-  position: absolute;
-  bottom: 5rem;
+  position: bottom;
+  bottom: 1rem;
   right: 5rem;
   z-index: 5;
-  width: 20rem;
+  width: auto;
   padding: 1rem;
 }
 
 @media (max-device-width: 600px) {
   .legend-container {
-    position: absolute;
-    bottom: 27.5%;
-    left: 22.13%;
+    position: bottom;
+    left: 5%;
     z-index: 5;
-    width: 17rem;
+    width: 15rem;
   }
 }
 
@@ -876,7 +882,6 @@
   text-align: center;
   padding: 10px;
   margin: 0 10px 0 0;
-  cursor: pointer;
 }
 
 .legend-container .legend-item {
@@ -1130,7 +1135,46 @@
   }
 }
 
+.dashboard-wrapper .content-wrapper .locations-info .locations-buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 .dashboard-wrapper .content-wrapper .locations-info .add-location-btn {
+  margin-top: 1rem;
+  background-color: #fc8d43;
+  border-radius: 2px;
+  cursor: pointer;
+  color: white;
+  font-size: 1.5rem;
+  width: 119.95px;
+  height: 38px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: none;
+  margin-right: 10px;
+  -webkit-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+}
+
+.dashboard-wrapper .content-wrapper .locations-info .add-location-btn:hover {
+  background-color: #fdab75;
+  -webkit-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+}
+
+.dashboard-wrapper .content-wrapper .locations-info .return-to-map-btn {
   margin-top: 1rem;
   background-color: #fc8d43;
   border-radius: 2px;
@@ -1153,7 +1197,7 @@
   transition: all 0.5s ease-out;
 }
 
-.dashboard-wrapper .content-wrapper .locations-info .add-location-btn:hover {
+.dashboard-wrapper .content-wrapper .locations-info .return-to-map-btn:hover {
   background-color: #fdab75;
   -webkit-transition: all 0.5s ease-out;
   transition: all 0.5s ease-out;
