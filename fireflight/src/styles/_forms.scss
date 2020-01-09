@@ -91,12 +91,11 @@
       line-height: 4.5rem;
     }
     input {
-      width: 30rem;
+      width: 29rem;
       font-size: 2rem;
       line-height: 2.7rem;
       display: flex;
       align-items: center;
-      padding-left: 1rem;
     }
 
     @media (max-device-width: $mq-mobile) {
@@ -156,7 +155,7 @@
     line-height: 2.5rem;
     display: flex;
     align-items: center;
-    margin-left: 1.4rem;
+    margin-left: 1rem;
     padding-left: 1rem;
 
     @media (max-device-width: $mq-mobile) {
