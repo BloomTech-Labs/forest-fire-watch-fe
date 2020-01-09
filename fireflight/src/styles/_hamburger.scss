@@ -5,7 +5,7 @@
   }
 }
 
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: 1199px) {
   .appBarTitleMobile {
     display: none;
   }
@@ -15,10 +15,4 @@
   position: relative;
   right: 10%;
   font-size: 3rem;
-}
-
-.legend {
-  height: 100%;
-  position: absolute;
-  bottom: 100%;
 }

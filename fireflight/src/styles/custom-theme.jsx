@@ -3,13 +3,13 @@ import { createMuiTheme } from '@material-ui/core/styles'
 export default createMuiTheme({
   palette: {
     primary: {
-      main: '#eeeeee'
+      main: '#bdbdbd'
     },
     secondary: {
       main: '#fafafa'
     },
     background: {
-      paper: '#eeeeee'
+      paper: '#bdbdbd'
     }
   },
   shape: {

@@ -226,8 +226,8 @@ export default function PersistentDrawerLeft({
           }}
         >
           <div className={classes.drawerHeader}>
+            <text className="appBarTitleMobile">Wildfire Watch</text>
             <IconButton onClick={handleDrawerClose}>
-              <text className="appBarTitleMobile">Wildfire Watch</text>
               {theme.direction === 'ltr' ? (
                 <ChevronLeftIcon />
               ) : (
