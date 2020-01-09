@@ -23,7 +23,8 @@ const PublicMap = ({
     saveLocationMarker,
     // toggleNotification,
     deleteUserLocation,
-    updatePopupRadius
+    updatePopupRadius,
+    getUserLocations
   } = useContext(FireDataContext)
 
   const {
@@ -60,8 +61,8 @@ const PublicMap = ({
     }
   }, [])
   useEffect(() => {
-    ipAddress()
-  }, [])
+    ipAddress()  
+      }, [])
   //prompts the user for their permission to location and sets viewport
   //currently not useing due to geocoder issues related to having them both plugged in. IP address is very reliable and does not need any permissions.
   const geoControl = () => {

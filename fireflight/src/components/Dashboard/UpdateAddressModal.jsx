@@ -48,9 +48,13 @@ export default function AddressModal(props) {
       saveInputLocation,
       updateUserLocations,
       getUserLocations,
-      fireDataState
+      fireDataState,
+      setUserLocations,
+      deleteLocationMarker
     } = useContext(FireDataContext)
   const { userLocations } = fireDataState 
+
+  
   
     
   React.useEffect(() => {
@@ -70,7 +74,7 @@ export default function AddressModal(props) {
     console.log("from address modal", props.address, props.id, props.index)
   }, [])
 
-  console.log('from modal new address', newAddress, newRadius, addressObject)
+  console.log('from modal new address', newAddress, newRadius, addressObject, location)
 
   const queryParams = {
     country: 'us'
@@ -81,6 +85,7 @@ export default function AddressModal(props) {
  
 
   const onSelected = (viewport, item) => {
+    setNewAddress(item.place_name)
     setAddress(item.place_name)
     setLocation(item.center)
   }
@@ -90,9 +95,12 @@ export default function AddressModal(props) {
 
   const handleSubmit = e => {
     e.preventDefault()
-    if (address) {
-      getCoordinates(address, radius, true)
-      updateUserLocations(addressObject, addressObject.id)
+    if (address) {       
+      // deleteLocationMarker()
+      // getCoordinates(address, radius, true)   
+      // saveInputLocation(address, location, radius)
+      updateUserLocations(newAddress, newRadius, location, addressObject.id)
+      // setUserLocations()
       props.setOpen(false)
       props.handleClose()
     }
@@ -141,7 +149,7 @@ export default function AddressModal(props) {
                   placeholder="mi"
                   defaultValue={newRadius}
                   className="radius-input"
-                  onChange={e => setRadius(e.target.value)}
+                  onChange={e => setNewRadius(e.target.value)}
                 />
                 
               </div>

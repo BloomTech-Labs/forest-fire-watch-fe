@@ -33,11 +33,14 @@ const fireDataReducer = (state, action) => {
     case GET_USER_LOCATIONS:
       return {
         ...state,
-        userLocations: action.payload
+        userLocations: action.payload,
+        
       }
     case UPDATE_SAVED_LOCATION:
       return {
           ...state,
+          // userLocations: action.payload,
+          userLocationMarkers: action.payload[2]
           
       }
 
@@ -639,20 +642,49 @@ export const FireDataProvider = ({ children }) => {
     })
   }
 
-  const updateUserLocations = (address, id) => {
+  const updateUserLocations = (address, radius, location, id) => {
+    const latitude = location[0]
+    const longitude = location[1]
     axiosWithAuth()
-      .put(`locations/${id}`, address )
+      .put(`locations/${id}`, {latitude, longitude, address, radius} )
       .then(res => {         
-        console.log(res.config.data)
+        console.log('from update PUT', latitude, longitude, res, res.config.data)
+
+        // dispatch({
+        //   type: DELETE_LOCATION_MARKER
+        // })
+        // dispatch({
+        //   type: SET_SELECTED_MARKER,
+        //   payload: []
+        // })
+
+        // dispatch({
+        //   type: DELETE_USER_LOCATION,
+        //   payload: id
+        // })
         dispatch({
-          type: UPDATE_SAVED_LOCATION,
-          payload: [address.address, address.radius]
+          type: SET_SAVED_LOCATION,
+          payload: [
+            ...fireDataState.userLocationMarkers,
+            <Marker
+            latitude={latitude}
+            longitude={longitude}
+            key={`greenMarker${longitude}`}
+            >
+              
+            </Marker>
+          ]
         })
-      })
+        dispatch({
+         type: UPDATE_SAVED_LOCATION,
+         payload: [address, radius, location]
+       })
+      })      
       .catch(err => {        
         console.log('within the catch')
       })
-  }
+    }
+      
 
   const closeSelectedMarker = () => {
     dispatch({
