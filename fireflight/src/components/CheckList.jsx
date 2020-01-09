@@ -240,7 +240,7 @@ export default function EnhancedTable() {
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
   return (
     <div className={classes.root}>
-      <HamburgerNavigation/>
+      <HamburgerNavigation />
       <Paper className={classes.paper} className="checklist-title">
         <EnhancedTableToolbar numSelected={selected.length} />
         <TableContainer>
