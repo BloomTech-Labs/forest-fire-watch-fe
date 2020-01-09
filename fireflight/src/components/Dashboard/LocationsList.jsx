@@ -59,7 +59,7 @@ const LocationsList = props => {
                   onClick={() => {setOpen(true); setAddressIndex(index)}}
                   className="fas fa-pencil-alt edit-profile-icon"
                 />
-                {open && <AddressModal handleClose={handleClose} open={open} address={loc.address} radius={loc.radius} id={loc.id} index={addressIndex} />}
+                {open && <AddressModal handleClose={handleClose} open={open} address={loc.address} radius={loc.radius} id={loc.id} index={addressIndex} setOpen={setOpen} />}
                 <div
                   className="delete-location-btn"
                   onClick={() => deleteUserLocation(loc.id)}

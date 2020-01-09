@@ -1,0 +1,66 @@
+.geocoder-modal-container {
+        
+        .react-geocoder {
+            border: 0.5px solid gray;
+            padding: 1rem;
+            border-radius: 3px;
+            
+            input {
+                width: 40rem;
+                font-size: 2rem;
+                line-height: 2.7rem;
+                display: flex;
+                align-items: center;
+                // padding-left: 1.7rem;
+                
+              }
+
+              .react-geocoder-results {
+                border-top: 0.8px solid #000000;
+                background: white;
+                // width: 30rem;
+                box-sizing: border-box;
+                height: auto;
+                top: 4.8rem;                
+                padding: 1rem 0.8rem;
+                font-size: 1.6rem;
+                z-index: 4;
+            
+                @media (max-device-width: $mq-mobile) {
+                  width: 25rem;
+                  top: 3rem;
+                  position: absolute;
+                }
+              }
+    
+        }
+
+        .radius-input {
+            width: 8.4rem;
+            height: 5rem;
+            background: #ffffff;
+            border-radius: 3px;            
+            top: 12.8rem;
+            left: 33rem;
+            font-family: 'Open Sans';
+            font-style: normal;
+            font-weight: normal;
+            font-size: 2rem;
+            line-height: 2.5rem;
+            display: flex;
+            align-items: center;
+            // margin-left: 1.4rem;
+            padding-left: 1rem;
+            border: 0.5px solid gray;
+        }
+}
+
+.modal-label {
+        font-size: 20px;
+        margin-top: 20px;
+}
+
+h1{
+    font-size: 30px;
+}
+

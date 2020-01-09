@@ -96,6 +96,10 @@
           align-items: center;
 }
 
+.geocoder-modal {
+  height: 50px;
+}
+
 @media (max-device-width: 800px) {
   .profile-container {
     max-width: 100%;
@@ -1227,14 +1231,9 @@
 
 @media (max-device-width: 600px) {
   .addlocation-wrapper {
-<<<<<<< HEAD
-    max-width: 50rem;
-    padding-right: 7rem;
-=======
     max-width: 0rem;
     padding-right: 7rem;
     margin-left: 1rem;
->>>>>>> ca4b41cae2417e877b2441df3d2e738e3eb94cfd
   }
 }
 
@@ -1276,11 +1275,7 @@
 
 @media (max-device-width: 600px) {
   .addlocation-wrapper .react-geocoder {
-<<<<<<< HEAD
-    max-width: 34rem;
-=======
     max-width: 30rem;
->>>>>>> ca4b41cae2417e877b2441df3d2e738e3eb94cfd
   }
 }
 
@@ -1373,11 +1368,7 @@
 .addlocation-wrapper .react-geocoder .react-geocoder-results {
   border: 0.5px solid #bbbbbb;
   background: white;
-<<<<<<< HEAD
-  width: 50rem;
-=======
   width: 53rem;
->>>>>>> ca4b41cae2417e877b2441df3d2e738e3eb94cfd
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   height: auto;
@@ -1389,11 +1380,7 @@
 
 @media (max-device-width: 600px) {
   .addlocation-wrapper .react-geocoder .react-geocoder-results {
-<<<<<<< HEAD
-    max-width: 34rem;
-=======
     max-width: 32rem;
->>>>>>> ca4b41cae2417e877b2441df3d2e738e3eb94cfd
     padding-right: 3px;
   }
 }

@@ -6,6 +6,7 @@ import Fade from '@material-ui/core/Fade';
 import { FireDataContext } from '../../context/FireDataContext'
 import { UserDataContext } from '../../context/UserDataContext'
 import axiosWithAuth from '../../utils/axiosWithAuth'
+import Geocoder from 'react-mapbox-gl-geocoder'
 
 
 const useStyles = makeStyles(theme => ({
@@ -13,14 +14,21 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    
+    
+
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
+    // height: 350,
+    width: 500
   },
 }));
+
+
 
 export default function AddressModal(props) {
 
@@ -32,6 +40,8 @@ export default function AddressModal(props) {
   const [radius, setRadius] = useState('')
   const [newRadius, setNewRadius] = useState()
   const [newAddress, setNewAddress] = useState()
+  const [location, setLocation] = useState([])
+
   const {
       getCoordinates,
       saveInputLocation,
@@ -66,7 +76,7 @@ export default function AddressModal(props) {
   const mapAccess = {
     mapboxApiAccessToken: process.env.REACT_APP_MAPBOX_TOKEN
   }
-  const [location, setLocation] = useState([])
+ 
 
   const onSelected = (viewport, item) => {
     setAddress(item.place_name)
@@ -75,21 +85,15 @@ export default function AddressModal(props) {
 
   const viewport = {}
   
-  const onAddressChange = (e) => {
-    setNewAddress(e.target.value)
-  }
-
-  const onRadiusChange = e => {
-    setNewRadius(e.target.value)
-  }
 
   const handleSubmit = e => {
     e.preventDefault()
     if (address) {
       getCoordinates(address, radius, true)
-      saveInputLocation(address, location, radius)
+      updateUserLocations(address, radius, newAddress.id)
+      props.setOpen(false)
     }
-    props.history.push(`/dashboard`)
+    
   }
 
   
@@ -111,9 +115,36 @@ export default function AddressModal(props) {
       >
         <Fade in={props.open}>
           <div className={classes.paper}>
+          <div className='geocoder-modal-container'>
             <h1 id="transition-modal-title">Edit Address</h1>
-            <textarea cols='30' rows='10' type='text'  value={newAddress} onChange={onAddressChange} />
-            <input type='number' value={newRadius} onChange={onRadiusChange} />
+            
+            <label className='modal-label'>Address</label>
+            <Geocoder
+              {...mapAccess}
+              queryParams={queryParams}
+              hideOnSelect={true}
+              viewport={viewport}
+              onSelected={onSelected}
+              updateInputOnSelect={true}
+              limit={3}
+              value={newAddress}
+            />
+            <div className="radius-wrapper">
+              <label className='modal-label'>Radius</label>
+              <div className="radius-info">
+                <input
+                  type="number"
+                  name="Radius"
+                  placeholder="mi"
+                  value={newRadius}
+                  className="radius-input"
+                  onChange={e => setRadius(e.target.value)}
+                />
+                
+              </div>
+            </div>
+          <button className="default-btn" onClick={handleSubmit}>Save Location</button>
+           </div>     
           </div>
         </Fade>
       </Modal>
