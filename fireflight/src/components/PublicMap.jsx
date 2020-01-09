@@ -264,7 +264,7 @@ const PublicMap = ({
           toggleLoginStatus={setLoginFormStatus}
           toggleRegisterStatus={setRegisterFormStatus}
         />
-        <form onSubmit={handleSubmit} className="map-form-container">
+        {/* <form onSubmit={handleSubmit} className="map-form-container">
           <Geocoder
             {...mapAccess}
             viewport={viewport}
@@ -301,7 +301,7 @@ const PublicMap = ({
             </React.Fragment>
           )}
         </form>
-        {/* End Form Container */}
+        End Form Container */}
       </div>
 
       <ReactMapGL

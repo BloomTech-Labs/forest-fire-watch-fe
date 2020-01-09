@@ -1,20 +1,12 @@
 .legend-container {
-  background: rgba(255, 255, 255, 0.5);
+  background: #eeeeee;
   border-radius: 1px;
   position: absolute;
-  bottom: 5rem;
-  right: 5rem;
+  bottom: 0%;
+  right: 4.5rem;
   z-index: 5;
   width: 20rem;
   padding: 1rem;
-
-  @media (max-device-width: $mq-mobile) {
-    position: absolute;
-    bottom: 27.5%;
-    left: 22.13%;
-    z-index: 5;
-    width: 17rem;
-  }
 
   .legend-header {
     display: flex;

@@ -28,7 +28,7 @@ import ListItemText from '@material-ui/core/ListItemText'
 import TextField from '@material-ui/core/TextField'
 import SearchIcon from '@material-ui/icons/Search'
 
-const drawerWidth = 240
+const drawerWidth = 300
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -186,31 +186,34 @@ export default function PersistentDrawerLeft({
               aria-label="open drawer"
               onClick={handleDrawerOpen}
               edge="start"
+              size="medium"
               className={clsx(classes.menuButton, open && classes.hide)}
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h3" noWrap>
+            <Typography variant="h3" noWrap className="appBarTitle">
               Wildfire Watch
             </Typography>
-            <Geocoder
-              {...mapAccess}
-              viewport={viewport}
-              queryParams={queryParams}
-              hideOnSelect={true}
-              onSelected={onSelected}
-              updateInputOnSelect={true}
-              limit={3}
-            />
-            <input
-              className="search-radius"
-              type="number"
-              name="Radius"
-              placeholder="mi"
-              value={radius}
-              onChange={e => setRadius(e.target.value)}
-            />
-            <button className="search-button">Search</button>
+            <form onSubmit={handleSubmit} className="map-form-container">
+              <Geocoder
+                {...mapAccess}
+                viewport={viewport}
+                queryParams={queryParams}
+                hideOnSelect={true}
+                onSelected={onSelected}
+                updateInputOnSelect={true}
+                limit={3}
+              />
+              <input
+                className="radius-input"
+                type="number"
+                name="Radius"
+                placeholder="mi"
+                value={radius}
+                onChange={e => setRadius(e.target.value)}
+              />
+              <button className="form-btn">Search</button>
+            </form>
             {/* <SearchIcon onClick={handleSubmit} /> */}
           </Toolbar>
         </AppBar>
@@ -225,6 +228,7 @@ export default function PersistentDrawerLeft({
         >
           <div className={classes.drawerHeader}>
             <IconButton onClick={handleDrawerClose}>
+              <text className="appBarTitleMobile">Wildfire Watch</text>
               {theme.direction === 'ltr' ? (
                 <ChevronLeftIcon />
               ) : (
@@ -234,7 +238,14 @@ export default function PersistentDrawerLeft({
           </div>
           <Divider />
           <List component="nav">
-            <ListItem button key="Home" component={NavLink} exact to="/">
+            <ListItem
+              button
+              key="Home"
+              component={NavLink}
+              exact
+              to="/"
+              text-align="center"
+            >
               <ListItemText primary="Home" />
             </ListItem>
             {localStorage.getItem('token') == null && (

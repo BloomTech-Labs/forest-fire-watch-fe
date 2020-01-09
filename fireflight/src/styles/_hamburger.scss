@@ -1,0 +1,24 @@
+@media only screen and (max-width: 800px) {
+  .appBarTitle {
+    display: none;
+    color: black;
+  }
+}
+
+@media only screen and (min-width: 769px) {
+  .appBarTitleMobile {
+    display: none;
+  }
+}
+
+.appBarTitleMobile {
+  position: relative;
+  right: 10%;
+  font-size: 3rem;
+}
+
+.legend {
+  height: 100%;
+  position: absolute;
+  bottom: 100%;
+}
