@@ -2,6 +2,7 @@ import React from "react";
 
 import PublicMap from "./PublicMap";
 
+
 function Home({ setShowAuthForms, setLoginFormStatus, setRegisterFormStatus }) {
   return (
     <div style={{ width: "100%" }}>
@@ -10,6 +11,7 @@ function Home({ setShowAuthForms, setLoginFormStatus, setRegisterFormStatus }) {
         setLoginFormStatus={setLoginFormStatus}
         setRegisterFormStatus={setRegisterFormStatus}
       />
+      
     </div>
   );
 }
