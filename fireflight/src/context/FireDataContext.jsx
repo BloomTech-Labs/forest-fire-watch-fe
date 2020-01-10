@@ -643,8 +643,8 @@ export const FireDataProvider = ({ children }) => {
   }
 
   const updateUserLocations = (address, radius, location, id) => {
-    const latitude = location[0]
-    const longitude = location[1]
+    const latitude = location[1]
+    const longitude = location[0]
     axiosWithAuth()
       .put(`locations/${id}`, {latitude, longitude, address, radius} )
       .then(res => {         
