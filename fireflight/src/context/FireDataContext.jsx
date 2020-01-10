@@ -376,13 +376,13 @@ export const FireDataProvider = ({ children }) => {
         .then(res => {
           let localArray = []
           fireDataState.allFires.forEach(fire => {
-            console.log(
-              'get cor',
-              fire.location[1],
-              fire.location[0],
-              res.data.features[0].center[1],
-              res.data.features[0].center[0]
-            )
+            // console.log(
+            //   'get cor',
+            //   fire.location[1],
+            //   fire.location[0],
+            //   res.data.features[0].center[1],
+            //   res.data.features[0].center[0]
+            // )
             let distance = haversineDistance(
               [res.data.features[0].center[1], res.data.features[0].center[0]],
               [fire.location[1], fire.location[0]],
