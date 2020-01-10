@@ -24,7 +24,7 @@ import {
   UPDATE_SAVED_LOCATION
 } from './fireDataTypes'
 
-const DSbaseURL = 'https://wildfirewatch.herokuapp.com'
+const DSbaseURL = 'https://appwildfirewatch.herokuapp.com/'
 
 const token = process.env.REACT_APP_MAPBOX_TOKEN || 'keep it secret, fool'
 
