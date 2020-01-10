@@ -1,7 +1,14 @@
 .checklist-title {
     margin-top: 5%;
 }
-
-.main-container {
-    margin-right: 5%;
+.MuiTableSortLabel-icon {
+font-size: 0 !important;
+}
+.select-all-title:hover {
+color: rgba(0, 0, 0, 0.87) !important;
+cursor: text;
+}
+.MuiButtonBase-root:hover {
+color: rgba(0, 0, 0, 0.87) !important;
+cursor: initial;
 }

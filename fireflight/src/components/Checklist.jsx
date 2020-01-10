@@ -1,4 +1,5 @@
 import React from 'react';
+import { FireDataContext } from '../context/FireDataContext'
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { lighten, makeStyles } from '@material-ui/core/styles';
@@ -269,7 +270,7 @@ export default function EnhancedTable() {
 
   return (
     <div className={classes.root}>
-      <HamburgerNavigation />
+      <HamburgerNavigation/>
       <Paper className={classes.paper} className="checklist-title">
         <EnhancedTableToolbar numSelected={selected.length} />
         <TableContainer className="main-container">
