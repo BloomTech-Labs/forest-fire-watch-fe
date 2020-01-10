@@ -118,6 +118,10 @@ const fireDataReducer = (state, action) => {
         ...state,
         errorMessage: action.payload
       }
+    case 'UPDATE_VIEWPORT':
+      return {
+          publicMapViewport: action.payload
+        }
     
     default:
       return {
@@ -151,6 +155,13 @@ export const FireDataProvider = ({ children }) => {
     exclamationMarkers: [],
     errorMessage: ['']
   })
+
+  const updateViewport = (viewport) => {
+    dispatch({
+      type: 'UPDATE_VIEWPORT',
+      payload: viewport
+    })
+  }
 
   const renderExclaimMarkers = () => {
     axios.get(`https://wildfirewatch.herokuapp.com/fpfire`).then(res => {
@@ -711,7 +722,8 @@ export const FireDataProvider = ({ children }) => {
         deleteUserLocation,
         updatePopupRadius,
         updateSavedLocationErrorMessage,
-        updateUserLocations
+        updateUserLocations,
+        updateViewport
       }}
     >
       {children}
