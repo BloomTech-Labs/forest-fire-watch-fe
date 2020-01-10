@@ -60,21 +60,15 @@ export default function AddressModal(props) {
   React.useEffect(() => {
         axiosWithAuth()
           .get('/locations')
-          .then(res => {
-            console.log('from modal GET', res.data)
-            const addresses = res.data            
-            console.log('current address in GET', addresses)
+          .then(res => {            
+            const addresses = res.data  
             setNewAddress(addresses[props.index].address)
             setNewRadius(addresses[props.index].radius)
             setAddressObject(addresses[props.index])
-          })
-        
-        
-    
-    console.log("from address modal", props.address, props.id, props.index)
+          })   
   }, [])
 
-  console.log('from modal new address', newAddress, newRadius, addressObject, location)
+  
 
   const queryParams = {
     country: 'us'
@@ -95,18 +89,13 @@ export default function AddressModal(props) {
 
   const handleSubmit = e => {
     e.preventDefault()
-    if (address) {       
-      // deleteLocationMarker()
-      // getCoordinates(address, radius, true)   
-      // saveInputLocation(address, location, radius)
-      updateUserLocations(newAddress, newRadius, location, addressObject.id)
-      // setUserLocations()
+    if (address) {      
+      updateUserLocations(newAddress, newRadius, location, addressObject.id)      
       props.setOpen(false)
       props.handleClose()
     }
     
   }
-
   
 
   return (

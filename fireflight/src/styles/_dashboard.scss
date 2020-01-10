@@ -211,6 +211,11 @@
           //     width: 95vw;
           //   }
 
+          .icon-container{
+            display:flex;
+            align-items: center;
+          }
+
           .table-data {
             padding-top: 1rem;
             text-align: middle;
@@ -225,6 +230,13 @@
             color: $orange;
             font-size: 3rem;
             cursor: pointer;
+            padding:1rem;
+          }
+          .edit-profile-icon {
+            padding:0.25rem;
+            margin-top:7px;
+            margin-left: 8px;
+            color: $orange;
           }
         }
       }

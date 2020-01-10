@@ -54,7 +54,7 @@ const LocationsList = props => {
                 {/* {loc.notifications ? 'ON' : 'OFF'} */}
                 {receiveSMS || receivePush ? 'ON' : 'OFF'}
               </td>
-              <td>
+              <td className='icon-container'>
                 <i
                   onClick={() => {setOpen(true); setAddressIndex(index)}}
                   className="fas fa-pencil-alt edit-profile-icon"
