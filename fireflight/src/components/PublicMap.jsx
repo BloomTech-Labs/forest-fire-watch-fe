@@ -283,23 +283,6 @@ const PublicMap = ({
             onChange={e => setRadius(e.target.value)}
           />
           <button className="form-btn">Search</button>
-          {localStorage.getItem('token') == null && (
-            <React.Fragment>
-              <label className="signup-form-text">
-                to save addresses and receive notifications
-              </label>
-              <button
-                className="signup-btn"
-                onClick={() => {
-                  setShowAuthForms(true)
-                  setLoginFormStatus(false)
-                  setRegisterFormStatus(true)
-                }}
-              >
-                Sign Up
-              </button>
-            </React.Fragment>
-          )}
         </form>
         End Form Container */}
       </div>
