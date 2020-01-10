@@ -20,7 +20,8 @@ import {
   TOGGLE_NOTIFICATIONS,
   DELETE_USER_LOCATION,
   SET_EXCLAMATION_MARKERS,
-  SET_SAVED_LOCATION_ERROR
+  SET_SAVED_LOCATION_ERROR,
+  UPDATE_VIEWPORT
 } from './fireDataTypes'
 
 const DSbaseURL = 'https://wildfirewatch.herokuapp.com'
@@ -108,6 +109,11 @@ const fireDataReducer = (state, action) => {
         ...state,
         errorMessage: action.payload
       }
+    case UPDATE_VIEWPORT:
+      return {
+        ...state,
+        publicMapViewport: action.payload
+      }
     default:
       return {
         ...state
@@ -140,6 +146,19 @@ export const FireDataProvider = ({ children }) => {
     exclamationMarkers: [],
     errorMessage: ['']
   })
+
+  const updateViewport = (viewport, sizing) => {
+    const latitude = viewport[1]
+    const longitude = viewport[0]
+    const width = '100vw'
+    const height = '100vh'
+    const zoom = 6
+    const transitionDuration = 500
+    dispatch({
+      type: UPDATE_VIEWPORT,
+      payload: { latitude, longitude, width, height, zoom, transitionDuration }
+    })
+  }
 
   const renderExclaimMarkers = () => {
     axios.get(`https://wildfirewatch.herokuapp.com/fpfire`).then(res => {
@@ -647,7 +666,8 @@ export const FireDataProvider = ({ children }) => {
         toggleNotification,
         deleteUserLocation,
         updatePopupRadius,
-        updateSavedLocationErrorMessage
+        updateSavedLocationErrorMessage,
+        updateViewport
       }}
     >
       {children}
