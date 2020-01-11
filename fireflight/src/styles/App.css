@@ -96,6 +96,10 @@
           align-items: center;
 }
 
+.geocoder-modal {
+  height: 50px;
+}
+
 @media (max-device-width: 800px) {
   .profile-container {
     max-width: 100%;
