@@ -658,21 +658,7 @@ export const FireDataProvider = ({ children }) => {
     const longitude = location[0]
     axiosWithAuth()
       .put(`locations/${id}`, {latitude, longitude, address, radius} )
-      .then(res => {         
-        console.log('from update PUT', latitude, longitude, res, res.config.data)
-
-        // dispatch({
-        //   type: DELETE_LOCATION_MARKER
-        // })
-        // dispatch({
-        //   type: SET_SELECTED_MARKER,
-        //   payload: []
-        // })
-
-        // dispatch({
-        //   type: DELETE_USER_LOCATION,
-        //   payload: id
-        // })
+      .then(res => {        
         dispatch({
           type: SET_SAVED_LOCATION,
           payload: [
@@ -680,8 +666,7 @@ export const FireDataProvider = ({ children }) => {
             <Marker
             latitude={latitude}
             longitude={longitude}
-            key={`greenMarker${longitude}`}
-            >
+            key={`greenMarker${longitude}`}            >
               
             </Marker>
           ]

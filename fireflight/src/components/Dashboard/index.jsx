@@ -40,7 +40,7 @@ const Dashboard = props => {
   const [isEditing, setIsEditing] = useState(false)
   const [newEmail, setNewEmail] = useState('')
 
-  if (fireDataState.errorMessage[0] === 'there is an error') {
+  if (fireDataState.errorMessage[0] === 'there is an erro') {
     alert(
       'This location is already saved. To update the radius, please click the location on the map.'
     )
