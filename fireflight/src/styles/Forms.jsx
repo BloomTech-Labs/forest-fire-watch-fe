@@ -46,12 +46,7 @@ export const GoodButton = styled(Button)`
 
 export const ErrorText = styled.div`
   color: red;
-  font-size: 1.5em;
-  margin: 0px;
-  padding: 2px;
-  padding-top:5px;
-  padding-bottom:20px;
-  height: 15px;
+  font-size: 1rem;
 `
 
 export const FormContainer = styled.div`
