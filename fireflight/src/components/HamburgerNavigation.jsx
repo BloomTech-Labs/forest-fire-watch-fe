@@ -92,7 +92,7 @@ export default function PersistentDrawerLeft({
   toggleLoginStatus,
   toggleRegisterStatus
 }) {
-  const { getCoordinates } = useContext(FireDataContext)
+  const { getCoordinates, updateViewport } = useContext(FireDataContext)
   const classes = useStyles()
   const theme = useTheme()
   const [open, setOpen] = React.useState(false)
@@ -135,6 +135,14 @@ export default function PersistentDrawerLeft({
       zoom: 8,
       transitionDuration: 500
     })
+    const sizing = {
+      width: '100vw',
+      height: '100vh',
+      zoom: 8,
+      transitionDuration: 500
+    }
+    updateViewport(location, sizing)
+    console.log('location', location)
     ReactGA.event({
       category: 'Fire search',
       action: 'Searched for fire'
@@ -192,7 +200,7 @@ export default function PersistentDrawerLeft({
             <Typography variant="h3" noWrap className="appBarTitle">
               Wildfire Watch
             </Typography>
-            <form onSubmit={handleSubmit} className="map-form-container">
+            <form className="map-form-container">
               <Geocoder
                 {...mapAccess}
                 viewport={viewport}
@@ -297,11 +305,6 @@ export default function PersistentDrawerLeft({
                 </ListItem>
               </>
             )}
-            {/* {['Home', 'Signup', 'Login'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))} */}
           </List>
           <Divider />
           <MapLegend />

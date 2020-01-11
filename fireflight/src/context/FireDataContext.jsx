@@ -21,6 +21,7 @@ import {
   DELETE_USER_LOCATION,
   SET_EXCLAMATION_MARKERS,
   SET_SAVED_LOCATION_ERROR,
+  UPDATE_VIEWPORT,
   UPDATE_SAVED_LOCATION
 } from './fireDataTypes'
 
@@ -33,15 +34,13 @@ const fireDataReducer = (state, action) => {
     case GET_USER_LOCATIONS:
       return {
         ...state,
-        userLocations: action.payload,
-        
+        userLocations: action.payload
       }
     case UPDATE_SAVED_LOCATION:
       return {
-          ...state,
-          // userLocations: action.payload,
-          userLocationMarkers: action.payload[2]
-          
+        ...state,
+        // userLocations: action.payload,
+        userLocationMarkers: action.payload[2]
       }
 
     case DELETE_USER_LOCATION:
@@ -118,11 +117,11 @@ const fireDataReducer = (state, action) => {
         ...state,
         errorMessage: action.payload
       }
-    case 'UPDATE_VIEWPORT':
+    case UPDATE_VIEWPORT:
       return {
-          publicMapViewport: action.payload
-        }
-    
+        ...state,
+        publicMapViewport: action.payload
+      }
     default:
       return {
         ...state
@@ -156,10 +155,16 @@ export const FireDataProvider = ({ children }) => {
     errorMessage: ['']
   })
 
-  const updateViewport = (viewport) => {
+  const updateViewport = (viewport, sizing) => {
+    const latitude = viewport[1]
+    const longitude = viewport[0]
+    const width = '100vw'
+    const height = '100vh'
+    const zoom = 6
+    const transitionDuration = 500
     dispatch({
-      type: 'UPDATE_VIEWPORT',
-      payload: viewport
+      type: UPDATE_VIEWPORT,
+      payload: { latitude, longitude, width, height, zoom, transitionDuration }
     })
   }
 
@@ -657,30 +662,28 @@ export const FireDataProvider = ({ children }) => {
     const latitude = location[1]
     const longitude = location[0]
     axiosWithAuth()
-      .put(`locations/${id}`, {latitude, longitude, address, radius} )
-      .then(res => {        
+      .put(`locations/${id}`, { latitude, longitude, address, radius })
+      .then(res => {
         dispatch({
           type: SET_SAVED_LOCATION,
           payload: [
             ...fireDataState.userLocationMarkers,
             <Marker
-            latitude={latitude}
-            longitude={longitude}
-            key={`greenMarker${longitude}`}            >
-              
-            </Marker>
+              latitude={latitude}
+              longitude={longitude}
+              key={`greenMarker${longitude}`}
+            ></Marker>
           ]
         })
         dispatch({
-         type: UPDATE_SAVED_LOCATION,
-         payload: [address, radius, location]
-       })
-      })      
-      .catch(err => {        
+          type: UPDATE_SAVED_LOCATION,
+          payload: [address, radius, location]
+        })
+      })
+      .catch(err => {
         console.log('within the catch')
       })
-    }
-      
+  }
 
   const closeSelectedMarker = () => {
     dispatch({
