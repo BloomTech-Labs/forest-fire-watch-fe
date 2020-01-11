@@ -1,4 +1,9 @@
-import React from 'react'
+import React, {useContext, useState} from 'react'
+import { UserDataContext } from '../../context/UserDataContext'
+import { FireDataContext } from '../../context/FireDataContext'
+import Geocoder from 'react-mapbox-gl-geocoder'
+import AddressModal from './UpdateAddressModal'
+
 
 const LocationsList = props => {
   const {
@@ -8,6 +13,25 @@ const LocationsList = props => {
     receiveSMS,
     receivePush
   } = props
+
+  const {
+    getCoordinates,
+    saveInputLocation
+  } = useContext(FireDataContext)
+
+  const [addressIndex, setAddressIndex] = useState()
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+ 
+
 
   return (
     <div className="locations-info">
@@ -24,13 +48,18 @@ const LocationsList = props => {
         <tbody>
           {userLocations.map((loc, index) => (
             <tr className="table-row" key={index + loc.radius}>
-              <td className="table-data address-field">{loc.address}</td>
+              <td className="table-data address-field"> {loc.address}</td>
               <td className="table-data radius-field">{loc.radius} mi</td>
-              <td className="table-data notifications-field">
+              <td className="table-data notifications-field">                
                 {/* {loc.notifications ? 'ON' : 'OFF'} */}
                 {receiveSMS || receivePush ? 'ON' : 'OFF'}
               </td>
-              <td>
+              <td className='icon-container'>
+                <i
+                  onClick={() => {setOpen(true); setAddressIndex(index)}}
+                  className="fas fa-pencil-alt edit-profile-icon"
+                />
+                {open && <AddressModal handleClose={handleClose} open={open} address={loc.address} radius={loc.radius} id={loc.id} index={addressIndex} setOpen={setOpen} />}
                 <div
                   className="delete-location-btn"
                   onClick={() => deleteUserLocation(loc.id)}
