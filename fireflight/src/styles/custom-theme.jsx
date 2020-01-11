@@ -16,6 +16,8 @@ export default createMuiTheme({
     borderRadius: 4
   },
   typography: {
-    fontSize: 20
+    fontSize: 20,
+    fontFamily: ['Quicksand','sans-serif'].join(',')
+    
   }
 })

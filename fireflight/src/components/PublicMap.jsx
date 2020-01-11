@@ -20,7 +20,8 @@ const PublicMap = ({
     deleteLocationMarker,
     saveLocationMarker,
     deleteUserLocation,
-    updatePopupRadius
+    updatePopupRadius,
+    getUserLocations
   } = useContext(FireDataContext)
 
   const {
@@ -216,8 +217,6 @@ const PublicMap = ({
       {selectedMarker[7]}
     </div>
   )
-
-  console.log('exclamations', exclamationMarkers)
 
   return (
     <div style={{ position: 'relative', width: '100%', height: '100%' }}>

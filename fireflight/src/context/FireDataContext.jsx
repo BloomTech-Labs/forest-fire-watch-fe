@@ -21,10 +21,11 @@ import {
   DELETE_USER_LOCATION,
   SET_EXCLAMATION_MARKERS,
   SET_SAVED_LOCATION_ERROR,
-  UPDATE_VIEWPORT
+  UPDATE_VIEWPORT,
+  UPDATE_SAVED_LOCATION
 } from './fireDataTypes'
 
-const DSbaseURL = 'https://wildfirewatch.herokuapp.com'
+const DSbaseURL = 'https://appwildfirewatch.herokuapp.com/'
 
 const token = process.env.REACT_APP_MAPBOX_TOKEN || 'keep it secret, fool'
 
@@ -34,6 +35,12 @@ const fireDataReducer = (state, action) => {
       return {
         ...state,
         userLocations: action.payload
+      }
+    case UPDATE_SAVED_LOCATION:
+      return {
+        ...state,
+        // userLocations: action.payload,
+        userLocationMarkers: action.payload[2]
       }
 
     case DELETE_USER_LOCATION:
@@ -84,7 +91,8 @@ const fireDataReducer = (state, action) => {
       return {
         ...state,
         userLocationMarkers: action.payload[0],
-        userLocalFireMarkers: action.payload[1]
+        userLocalFireMarkers: action.payload[1],
+        userLocations: action.payload[2]
       }
     case TOGGLE_NOTIFICATIONS:
       return {
@@ -384,13 +392,13 @@ export const FireDataProvider = ({ children }) => {
         .then(res => {
           let localArray = []
           fireDataState.allFires.forEach(fire => {
-            console.log(
-              'get cor',
-              fire.location[1],
-              fire.location[0],
-              res.data.features[0].center[1],
-              res.data.features[0].center[0]
-            )
+            // console.log(
+            //   'get cor',
+            //   fire.location[1],
+            //   fire.location[0],
+            //   res.data.features[0].center[1],
+            //   res.data.features[0].center[0]
+            // )
             let distance = haversineDistance(
               [res.data.features[0].center[1], res.data.features[0].center[0]],
               [fire.location[1], fire.location[0]],
@@ -582,6 +590,7 @@ export const FireDataProvider = ({ children }) => {
         })
 
         // saved user locations
+        const savedLocs = res.data
         const userLocs = res.data.map((uLoc, index) => (
           <Marker
             latitude={uLoc.latitude}
@@ -613,8 +622,15 @@ export const FireDataProvider = ({ children }) => {
         ))
         dispatch({
           type: SET_USER_LOCATIONS,
-          payload: [userLocs, localMarkers]
+          payload: [userLocs, localMarkers, savedLocs]
         })
+      })
+      .catch(err => {
+        dispatch({
+          type: SET_SAVED_LOCATION_ERROR,
+          payload: ['there is an error']
+        })
+        console.log('within the catch')
       })
   }
 
@@ -642,6 +658,33 @@ export const FireDataProvider = ({ children }) => {
     })
   }
 
+  const updateUserLocations = (address, radius, location, id) => {
+    const latitude = location[1]
+    const longitude = location[0]
+    axiosWithAuth()
+      .put(`locations/${id}`, { latitude, longitude, address, radius })
+      .then(res => {
+        dispatch({
+          type: SET_SAVED_LOCATION,
+          payload: [
+            ...fireDataState.userLocationMarkers,
+            <Marker
+              latitude={latitude}
+              longitude={longitude}
+              key={`greenMarker${longitude}`}
+            ></Marker>
+          ]
+        })
+        dispatch({
+          type: UPDATE_SAVED_LOCATION,
+          payload: [address, radius, location]
+        })
+      })
+      .catch(err => {
+        console.log('within the catch')
+      })
+  }
+
   const closeSelectedMarker = () => {
     dispatch({
       type: SET_SELECTED_MARKER,
@@ -667,6 +710,7 @@ export const FireDataProvider = ({ children }) => {
         deleteUserLocation,
         updatePopupRadius,
         updateSavedLocationErrorMessage,
+        updateUserLocations,
         updateViewport
       }}
     >

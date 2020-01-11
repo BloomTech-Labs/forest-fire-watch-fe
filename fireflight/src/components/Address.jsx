@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react'
 import NavigationProfile from './NavigationProfile'
 import { FireDataContext } from '../context/FireDataContext'
 import Geocoder from 'react-mapbox-gl-geocoder'
+import HamburgerNavigation from '../components/HamburgerNavigation'
 
 function Address(props) {
   const {
@@ -46,7 +47,7 @@ function Address(props) {
 
   return (
     <React.Fragment>
-      <NavigationProfile />
+      <HamburgerNavigation />
       <div className="addlocation-wrapper">
         <h2>Add Location</h2>
         <form onSubmit={handleSubmit}>
