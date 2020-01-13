@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from 'react'
 import ReactMapGL, { Popup } from 'react-map-gl'
 import styled from 'styled-components'
 import { FireDataContext } from '../context/FireDataContext'
-import HamburgerNavigation from '../components/HamburgerNavigation'
 import axios from 'axios'
 import ReactGA from 'react-ga'
 
@@ -59,13 +58,11 @@ const PublicMap = ({
   }, [])
   useEffect(() => {
     setViewport(publicMapViewport)
-    console.log('publicMapViewport', publicMapViewport)
   }, [publicMapViewport])
   //prompts the user for their permission to location and sets viewport
   //currently not using due to geocoder issues related to having them both plugged in. IP address is very reliable and does not need any permissions.
   const geoControl = () => {
     navigator.geolocation.getCurrentPosition(position => {
-      console.log('setting viewport using geolocation permission')
       setViewport({
         ...viewport,
         latitude: parseInt(position.coords.latitude),
@@ -82,9 +79,7 @@ const PublicMap = ({
     axios
       .get(`${process.env.REACT_APP_ENV}users/ip-address`)
       .then(res => {
-        console.log(res.data)
         if (res.data.status !== 'fail') {
-          console.log('setting viewport', typeof res.data.lon)
           setViewport({
             ...viewport,
             latitude: res.data.lat,
@@ -94,7 +89,6 @@ const PublicMap = ({
             zoom: 8
           })
         } else {
-          console.log('going into else')
           setViewport({
             ...viewport,
             latitude: 34.377566,
@@ -220,13 +214,7 @@ const PublicMap = ({
 
   return (
     <div style={{ position: 'relative', width: '100%', height: '100%' }}>
-      <div className="public-container">
-        <HamburgerNavigation
-          toggleAuthForms={setShowAuthForms}
-          toggleLoginStatus={setLoginFormStatus}
-          toggleRegisterStatus={setRegisterFormStatus}
-        />
-      </div>
+      <div className="public-container"></div>
 
       <ReactMapGL
         {...viewport}
