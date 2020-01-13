@@ -9,7 +9,7 @@ import Home from './components/Home'
 import Dashboard from './components/Dashboard/'
 import AuthForms from './components/AuthForms/AuthForms'
 import Address from './components/Address'
-import LandingPage from './components/LandingPage'
+import HamburgerNavigation from './components/HamburgerNavigation'
 
 import { GlobalContext } from './context/contextProvider'
 import { UserDataProvider } from './context/UserDataContext'
@@ -128,8 +128,13 @@ function App() {
   }
 
   return (
-    <AppWrapper>
+    <div>
       <AddressContext>
+        <HamburgerNavigation
+          toggleAuthForms={setShowAuthForms}
+          toggleLoginStatus={setLoginFormStatus}
+          toggleRegisterStatus={setRegisterFormStatus}
+        />
         <AuthForms
           showAuthForms={showAuthForms}
           setShowAuthForms={setShowAuthForms}
@@ -158,17 +163,6 @@ function App() {
         />
 
         <Route
-          path="/landing-page"
-          render={() => (
-            <LandingPage
-              setShowAuthForms={setShowAuthForms}
-              setLoginFormStatus={setLoginFormStatus}
-              setRegisterFormStatus={setRegisterFormStatus}
-            />
-          )}
-        />
-
-        <Route
           path="/home"
           render={() => (
             <Home
@@ -180,19 +174,8 @@ function App() {
         />
         <Route path="/address" component={Address} />
       </AddressContext>
-    </AppWrapper>
+    </div>
   )
 }
 
 export default App
-
-const AppWrapper = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  ${v.tablet} {
-    flex-direction: column;
-  }
-  background-image: url("https://www.fireflightapp.com/public/images/wildfire.jpg")
-  );
-`

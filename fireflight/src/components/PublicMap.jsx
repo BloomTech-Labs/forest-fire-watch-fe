@@ -220,13 +220,7 @@ const PublicMap = ({
 
   return (
     <div style={{ position: 'relative', width: '100%', height: '100%' }}>
-      <div className="public-container">
-        <HamburgerNavigation
-          toggleAuthForms={setShowAuthForms}
-          toggleLoginStatus={setLoginFormStatus}
-          toggleRegisterStatus={setRegisterFormStatus}
-        />
-      </div>
+      <div className="public-container"></div>
 
       <ReactMapGL
         {...viewport}

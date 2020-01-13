@@ -1,7 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { UserDataContext } from '../../context/UserDataContext'
-import HamburgerNavigation from '../HamburgerNavigation'
-import NavigationProfile from '../NavigationProfile'
 import { FireDataContext } from '../../context/FireDataContext'
 import axiosWithAuth from '../../utils/axiosWithAuth'
 import fire from '../../config/fire'
@@ -63,17 +61,16 @@ const Dashboard = props => {
 
   useEffect(() => {
     getUserData()
-    getUserLocations()    
+    getUserLocations()
   }, [userLocationMarkers])
 
-  const handleAddPhoneNumber = e => {    
+  const handleAddPhoneNumber = e => {
     if (phoneNumber.length > 9) {
       setEditPhone(false)
       addPhoneNumber(phoneNumber)
-    } else if (0 <= phoneNumber.length < 9 ) {
+    } else if (0 <= phoneNumber.length < 9) {
       window.alert('Please enter a valid phone number')
       setEditPhone(true)
-      
     }
   }
 
@@ -100,8 +97,6 @@ const Dashboard = props => {
 
   return (
     <div className="dashboard-wrapper">
-      <HamburgerNavigation />
-      {/* <NavigationProfile /> */}
       <div className="content-wrapper">
         <div className="personal-info">
           <h3 className="profile-name">
