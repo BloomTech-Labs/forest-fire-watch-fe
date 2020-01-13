@@ -136,7 +136,6 @@ export default function PersistentDrawerLeft({
       transitionDuration: 500
     }
     updateViewport(location, sizing)
-    console.log('location', location)
     ReactGA.event({
       category: 'Fire search',
       action: 'Searched for fire'
@@ -237,6 +236,7 @@ export default function PersistentDrawerLeft({
               button
               key="Home"
               component={NavLink}
+              onClick={handleDrawerClose}
               exact
               to="/"
               text-align="center"
@@ -253,6 +253,7 @@ export default function PersistentDrawerLeft({
                     toggleRegisterStatus(true)
                     toggleLoginStatus(false)
                     ReactGA.modalview('/Register')
+                    handleDrawerClose(true)
                   }}
                 >
                   <ListItemText primary="Signup" />
@@ -265,6 +266,7 @@ export default function PersistentDrawerLeft({
                     toggleRegisterStatus(false)
                     toggleLoginStatus(true)
                     ReactGA.modalview('/Login')
+                    handleDrawerClose(true)
                   }}
                 >
                   <ListItemText primary="Login" />
@@ -276,6 +278,7 @@ export default function PersistentDrawerLeft({
                 <ListItem
                   button
                   key="Profile"
+                  onClick={handleDrawerClose}
                   component={NavLink}
                   to="/dashboard"
                   activeClassName="current"
@@ -285,6 +288,7 @@ export default function PersistentDrawerLeft({
                 <ListItem
                   button
                   key="Logout"
+                  onClick={handleDrawerClose}
                   component={NavLink}
                   to="/"
                   onClick={logout}
