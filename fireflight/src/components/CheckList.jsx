@@ -192,7 +192,7 @@ const useStyles = makeStyles(theme => ({
     width: 1,
   },
 }));
-export default function EnhancedTable() {
+export default function EnhancedTable({setShowAuthForms, setLoginFormStatus, setRegisterFormStatus}) {
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
@@ -239,7 +239,6 @@ export default function EnhancedTable() {
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
   return (
     <div className={classes.root}>
-      <HamburgerNavigation />
       <Paper className={classes.paper} className="checklist-title">
         <EnhancedTableToolbar numSelected={selected.length} />
         <TableContainer>
