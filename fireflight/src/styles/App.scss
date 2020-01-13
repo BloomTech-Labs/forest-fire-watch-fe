@@ -16,6 +16,7 @@
 @import 'map-legend';
 @import 'model';
 @import 'checklist';
+@import 'profile-modal';
 @import 'hamburger';
 // @import 'model-splits';
 @import 'dashboard';
@@ -33,6 +34,7 @@ body {
   font-style: normal;
   font-weight: normal;
   background-color: $white;
+  height: 100%;
 }
 
 h1,
@@ -153,7 +155,7 @@ button {
       height: 18px;
       margin-left: 21px;
       transition: 0.2s;
-    }
+    }  
   }
 }
 

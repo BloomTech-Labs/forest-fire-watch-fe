@@ -40,7 +40,7 @@ const Dashboard = props => {
   const [isEditing, setIsEditing] = useState(false)
   const [newEmail, setNewEmail] = useState('')
 
-  if (fireDataState.errorMessage[0] === 'there is an error') {
+  if (fireDataState.errorMessage[0] === 'there is an erro') {
     alert(
       'This location is already saved. To update the radius, please click the location on the map.'
     )
@@ -63,13 +63,17 @@ const Dashboard = props => {
 
   useEffect(() => {
     getUserData()
-    getUserLocations()
+    getUserLocations()    
   }, [userLocationMarkers])
 
-  const handleAddPhoneNumber = () => {
+  const handleAddPhoneNumber = e => {    
     if (phoneNumber.length > 9) {
       setEditPhone(false)
       addPhoneNumber(phoneNumber)
+    } else if (0 <= phoneNumber.length < 9 ) {
+      window.alert('Please enter a valid phone number')
+      setEditPhone(true)
+      
     }
   }
 
@@ -178,7 +182,7 @@ const Dashboard = props => {
               </div>
             </div>
 
-            <div className="notif-box">
+            {/* <div className="notif-box">
               <h4>Push Notifications</h4>
               <div className="checkbox-wrapper">
                 <input
@@ -192,7 +196,7 @@ const Dashboard = props => {
                 />
                 <label className="checkbox-label" htmlFor="checkbox2" />
               </div>
-            </div>
+            </div> */}
           </div>
           {/* <button onClick={e=>{subscribeUser()}}>Check</button> */}
         </div>
