@@ -142,7 +142,6 @@ export default function PersistentDrawerLeft({
       transitionDuration: 500
     }
     updateViewport(location, sizing)
-    console.log('location', location)
     ReactGA.event({
       category: 'Fire search',
       action: 'Searched for fire'
