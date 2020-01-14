@@ -20,7 +20,6 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
-import HamburgerNavigation from './HamburgerNavigation'
 
 function createData(name) {
   return { name };
@@ -270,7 +269,6 @@ export default function EnhancedTable() {
 
   return (
     <div className={classes.root}>
-      <HamburgerNavigation/>
       <Paper className={classes.paper} className="checklist-title">
         <EnhancedTableToolbar numSelected={selected.length} />
         <TableContainer className="main-container">
