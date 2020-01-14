@@ -18,99 +18,47 @@ const useStyles = makeStyles(theme => ({
     marginLeft: '5%',
   },
 }));
-
+const checklistItems = ['Have at least 1/2 tank of gas', '1 gallon water per person per day', 'Non Perishable food', 'Non electric can opener', 'Insurance Card', 'Identification', 'Passports', 'Deed to property', 'Prescription Medication', 'Flashlight', 'Battery powered Radio with extra batteries', 'Cash', 'Extra set of keys (car, house)', 'Glasses, including extra sets', 'Family members, animals', 'Computers', 'Photos']
 export default function CheckboxList() {
   const classes = useStyles();
-  const [checked, setChecked] = React.useState(false);
-  const handleToggle = () => {
-    setChecked(true);
+  const [checked, setChecked] = React.useState([0]);
+  const handleToggle = checklistItems => () => {
+    const currentIndex = checked.indexOf(checklistItems);
+    const newChecked = [...checked];
+    if (currentIndex === -1) {
+      newChecked.push(checklistItems);
+    } else {
+      newChecked.splice(currentIndex, 1);
+    }
+    setChecked(newChecked);
   };
   return (
     <List className={classes.root}>
-      <ListItem primary="Single-line item" dense button onClick={handleToggle}>
-        <ListItemIcon>
-          <Checkbox edge="start" disableRipple />
-        </ListItemIcon>
-        <ListItemText primary="text" />
-      </ListItem>
-      <ListItem primary="Single-line item" dense button onClick={handleToggle}>
-          <ListItemIcon>
-            <Checkbox edge="start" disableRipple />
-          </ListItemIcon>
-          <ListItemText primary="Have at least 1/2 tank of gas" />
-        </ListItem>
-        <ListItem primary="Single-line item" dense button onClick={handleToggle}>
-          <ListItemIcon>
-            <Checkbox edge="start" disableRipple />
-          </ListItemIcon>
-          <ListItemText primary="1 gallon water per person per day" />
-        </ListItem>
-        <ListItem primary="Single-line item" dense button onClick={handleToggle}>
-          <ListItemIcon>
-            <Checkbox edge="start" disableRipple />
-          </ListItemIcon>
-          <ListItemText primary="Non Perishable food" />
-        </ListItem>
-        <ListItem primary="Single-line item" dense button onClick={handleToggle}>
-          <ListItemIcon>
-            <Checkbox edge="start" disableRipple />
-          </ListItemIcon>
-          <ListItemText primary="Non electric can opener" />
-        </ListItem>
-        <ListItem primary="Single-line item" dense button onClick={handleToggle}>
-          <ListItemIcon>
-            <Checkbox edge="start" disableRipple />
-          </ListItemIcon>
-          <ListItemText primary="Insurance Card" />
-        </ListItem>
-        <ListItem primary="Single-line item" dense button onClick={handleToggle}>
-          <ListItemIcon>
-            <Checkbox edge="start" disableRipple />
-          </ListItemIcon>
-          <ListItemText primary="ID, Passport" />
-        </ListItem>
-        <ListItem primary="Single-line item" dense button onClick={handleToggle}>
-          <ListItemIcon>
-            <Checkbox edge="start" disableRipple />
-          </ListItemIcon>
-          <ListItemText primary="Prescription Medication" />
-        </ListItem>
-        <ListItem primary="Single-line item" dense button onClick={handleToggle}>
-          <ListItemIcon>
-            <Checkbox edge="start" disableRipple />
-          </ListItemIcon>
-          <ListItemText primary="First Aid kit" />
-        </ListItem>
-        <ListItem primary="Single-line item" dense button onClick={handleToggle}>
-          <ListItemIcon>
-            <Checkbox edge="start" disableRipple />
-          </ListItemIcon>
-          <ListItemText primary="Flashlight" />
-        </ListItem>
-        <ListItem primary="Single-line item" dense button onClick={handleToggle}>
-          <ListItemIcon>
-            <Checkbox edge="start" disableRipple />
-          </ListItemIcon>
-          <ListItemText primary="Battery powered radio with extra batteries" />
-        </ListItem>
-        <ListItem primary="Single-line item" dense button onClick={handleToggle}>
-          <ListItemIcon>
-            <Checkbox edge="start" disableRipple />
-          </ListItemIcon>
-          <ListItemText primary="Extra set of keys (house, car)" />
-        </ListItem>
-        <ListItem primary="Single-line item" dense button onClick={handleToggle}>
-          <ListItemIcon>
-            <Checkbox edge="start" disableRipple />
-          </ListItemIcon>
-          <ListItemText primary="Glasses, including extra sets" />
-        </ListItem>
-        <ListItem primary="Single-line item" dense button onClick={handleToggle}>
-          <ListItemIcon>
-            <Checkbox edge="start" disableRipple />
-          </ListItemIcon>
-          <ListItemText primary="Family members and animals" />
-        </ListItem>
+      <MuiThemeProvider theme={Theme}>
+    {checklistItems.map(checklistItem => {
+      const labelId = `checkbox-list-label-${checklistItem}`;
+      return (
+        <ListItem
+          key={checklistItem}
+          role={undefined}
+          dense
+          button
+          onClick={handleToggle(checklistItem)}
+          >
+            <ListItemIcon>
+              <Checkbox
+                edge="start"
+                checked={checked.indexOf(checklistItem) !== -1}
+                tabIndex={-1}
+                disableRipple
+                inputProps={{ "aria-labelledby": labelId }}
+              />
+            </ListItemIcon>
+            <ListItemText id={labelId} primary={` ${checklistItem}`} />
+          </ListItem>
+        );
+      })}
+      </MuiThemeProvider>
     </List>
-  );
+  )
 }
