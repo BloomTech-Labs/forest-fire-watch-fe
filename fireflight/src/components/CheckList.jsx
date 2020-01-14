@@ -19,7 +19,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
-import HamburgerNavigation from './HamburgerNavigation'
+import Theme from '../styles/custom-theme'
+
 function createData(name) {
   return { name };
 }
