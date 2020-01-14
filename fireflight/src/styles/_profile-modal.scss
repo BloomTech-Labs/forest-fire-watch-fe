@@ -1,9 +1,16 @@
 .geocoder-modal-container {
+
+  @media (max-device-width: $mq-mobile) {
+    
+  }
         
         .react-geocoder {
             border: 0.5px solid gray;
             padding: 1rem;
             border-radius: 3px;
+            @media (max-device-width: $mq-mobile) {
+              width: 15rem;
+          }
             
             input {
                 width: 40rem;
@@ -12,6 +19,9 @@
                 display: flex;
                 align-items: center;
                 // padding-left: 1.7rem;
+                @media (max-device-width: $mq-mobile) {
+                    width: 12rem;
+                }
                 
               }
 
@@ -27,9 +37,9 @@
                 z-index: 4;
             
                 @media (max-device-width: $mq-mobile) {
-                  width: 25rem;
+                  width: 12rem;
                   top: 3rem;
-                  position: absolute;
+                  // position: absolute;
                 }
               }
     
