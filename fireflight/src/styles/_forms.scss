@@ -24,25 +24,6 @@
     }
   }
 
-  // // .signup-form-text {
-  // //   color: white;
-  // //   font-size: 1.6rem;
-  // //   line-height: 2.2rem;
-  // //   font-style: normal;
-  // //   font-weight: normal;
-  // //   position: absolute;
-  // //   top: 57.9rem;
-  // //   left: 6.6rem;
-  // //   width: 40rem;
-
-  // //   @media (max-device-width: $mq-mobile) {
-  // //     font-size: 1.3rem;
-  // //     position: absolute;
-  // //     top: 61.5rem;
-  // //     left: 6rem;
-  // //   }
-  // }
-
   // Address Input
   .address-input {
     &::placeholder {
@@ -140,50 +121,4 @@
       font-size: 1.4rem;
     }
   }
-
-  // // Radius Input
-  // .radius-input {
-  //   width: 8.4rem;
-  //   height: 5rem;
-  //   background: #ffffff;
-  //   border: 2px solid #9e9e9e;
-  //   border-radius: 5px;
-  //   font-style: normal;
-  //   font-weight: normal;
-  //   font-size: 2rem;
-  //   line-height: 2.5rem;
-  //   display: flex;
-  //   align-items: center;
-  //   margin-left: 1rem;
-  //   padding-left: 1rem;
-
-  //   @media (max-device-width: $mq-mobile) {
-  //     width: 5rem;
-  //     height: 4rem;
-  //     background: #ffffff;
-  //     border-radius: 3px;
-  //     margin-top: 0;
-  //   }
-
-  //   &::placeholder {
-  //     font-family: 'Open Sans';
-  //     font-style: normal;
-  //     font-weight: normal;
-  //     font-size: 2rem;
-  //     line-height: 2.7rem;
-  //     display: flex;
-  //     align-items: center;
-  //     color: #a9a9a9;
-  //     padding-left: 1.7rem;
-
-  //     @media (max-device-width: $mq-mobile) {
-  //       font-size: 1.6rem;
-  //       padding: 0;
-  //     }
-  //   }
-
-  //   &::-moz-placeholder {
-  //     line-height: 4.5rem;
-  //   }
-  // }
 }
