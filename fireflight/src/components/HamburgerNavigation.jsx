@@ -23,7 +23,8 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
-const drawerWidth = 300
+
+const drawerWidth = 250
 const useStyles = makeStyles(theme => ({
   root: {
     '& .MuiTextField-root': {
