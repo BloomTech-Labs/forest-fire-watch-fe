@@ -97,6 +97,14 @@ const Dashboard = props => {
 
   return (
     <div className="dashboard-wrapper">
+      <h5 className='map-button' onClick={() => props.history.push('/home')}>
+        <i class="fas fa-angle-left"
+          onClick={() => props.history.push('/home')}>          
+         </i>Map
+         
+      </h5>
+               
+        
       <div className="content-wrapper">
         <h3 className='profile-title'>Profile</h3>
         <div className="personal-info">
@@ -161,22 +169,7 @@ const Dashboard = props => {
               />
             </div>
           )}
-          {/* <div className="notification-wrapper">
-            <div className="notif-box">
-              <h4>Text Alerts</h4>
-              <div className="checkbox-wrapper">
-                <input
-                  className="checkbox"
-                  id="checkbox1"
-                  type="checkbox"
-                  onChange={() => {
-                    updateTextAlerts(!receiveSMS)
-                  }}
-                  checked={receiveSMS}
-                />
-                <label className="checkbox-label" htmlFor="checkbox1" />
-              </div>
-            </div> */}
+          
 
             {/* <div className="notif-box">
               <h4>Push Notifications</h4>

@@ -5,9 +5,24 @@
   align-items: center;
   justify-content: center;
 
+  .map-button{
+    padding-top: 6rem;
+    margin-left: 1rem;    
+    border-radius: 2px;
+    cursor: pointer;    
+    font-size: 1.5rem;
+    width: 119.95px;
+    height: 38px;    
+    border: none;
+    color:gray;
+    
+  }
+
+  
+
   .profile-title {
     font-size: 3rem;
-    margin: 8rem 0 0 3rem;
+    margin: 4rem 0 0 3rem;
   }
 
   h4 {
@@ -19,12 +34,12 @@
     text-align: left;
     width: 100%;
     height: 100%;
-    margin-top: 12vh;
+    margin-top: 2vh;
     // display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-bottom: 4rem;
+    padding: 1rem 4rem 4rem 6rem;
 
     .is-editing-input {
       background: #ffffff;
@@ -290,18 +305,17 @@
     }
   }
 
-  .save-edit-btn {
-    background-color: $orange;
-    border-radius: 2px;
-    color: white;
-    font-size: 1.2rem;
-    margin-left: 8px;
+  .fa-plus {
+    color: $orange;
+    border-radius: 2px;    
+    cursor:pointer;
+    margin-left: 2rem;     
+    
+  }
 
-    @include easeOut;
-
-    &:hover {
-      background-color: lighten($orange, 10%);
-      @include easeOut;
-    }
+  .fa-angle-left{
+   margin-left:1rem;
+   margin-right:0.5rem;
+    
   }
 }

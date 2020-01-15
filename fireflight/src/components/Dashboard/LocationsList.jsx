@@ -40,7 +40,10 @@ const LocationsList = props => {
 
   return (
     <div className="locations-info">
-      <h3 className='table-title'>Saved Locations</h3>
+      <h3 className='table-title'>Saved Locations
+      <i class="fas fa-plus" fa-1x 
+      onClick={() => props.history.push('/address')}></i>
+      </h3>
       <table className="locations-table">
         <thead>
           <tr className="table-row">
@@ -93,20 +96,7 @@ const LocationsList = props => {
         </tbody>
       </table>
       {/*<div className="locations-buttons"> and Add Location button to be deleted after redesign.  */}
-      <div className="locations-buttons">
-        <button
-          className="add-location-btn"
-          onClick={() => history.push('/address')}
-        >
-          Add Location
-        </button>
-        <button
-          className="return-to-map-btn"
-          onClick={() => history.push('/home')}
-        >
-          Return To Map
-        </button>
-      </div>
+      
     </div>
   )
 }
