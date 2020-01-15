@@ -17,8 +17,12 @@ const LocationsList = props => {
   const {
     getCoordinates,
     saveInputLocation,
-    updateTextAlerts
+    
   } = useContext(FireDataContext)
+
+  const {updateTextAlerts} = useContext(UserDataContext)
+
+  
 
   const [addressIndex, setAddressIndex] = useState()
   const [open, setOpen] = React.useState(false);
@@ -42,9 +46,10 @@ const LocationsList = props => {
           <tr className="table-row">
             <th className="locations-header">Address</th>
             <th className="locations-header">Radius</th>
-            <th className="locations-header">Alerts            
+            <th className="locations-header alert-header">Alerts            
             <div className="notif-box">              
               <div className="checkbox-wrapper">
+                <label className="checkbox-label" htmlFor="checkbox1" />
                 <input
                   className="checkbox"
                   id="checkbox1"
@@ -54,7 +59,6 @@ const LocationsList = props => {
                   }}
                   checked={receiveSMS}
                 />
-                <label className="checkbox-label" htmlFor="checkbox1" />
               </div>
             </div>
             
