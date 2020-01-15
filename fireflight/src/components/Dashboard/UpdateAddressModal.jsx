@@ -13,8 +13,7 @@ const useStyles = makeStyles(theme => ({
   modal: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center',
-    
+    justifyContent: 'center',  
     
 
   },
@@ -110,6 +109,9 @@ export default function AddressModal(props) {
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{
+          classes: {
+            root: classes.backDrop
+          },
           timeout: 500,
         }}
       >
