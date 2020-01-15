@@ -61,7 +61,7 @@ const LocationsList = props => {
                   <label className="checkbox-label" htmlFor="checkbox1" />
               </div>
             </div>
-            
+            <p>receive text alerts </p>
             </th>
           </tr>
         </thead>

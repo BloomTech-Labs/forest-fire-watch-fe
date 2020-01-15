@@ -140,7 +140,7 @@
         justify-content: center;
         align-items: center;
         border: none;
-        margin-right: 10px;
+        margin-right: 40px;
 
         @include easeOut;
 
@@ -181,15 +181,21 @@
         .locations-header {
           font-size: 2.2rem;
           text-align: left;
+          
 
           @media (max-width: $mq-mobile) {
             font-size: 1.6rem;
+            
           }
         }
 
         .alert-header {
           margin-top: 0.4rem;
           display: flex;
+
+          @media (max-width: $mq-mobile) {
+            margin: 1rem 0 0 1.5rem;
+          }
 
           .notif-box {
             // width: 25rem;
@@ -211,13 +217,24 @@
               width: 100%;
               margin: 0;
               font-size: 1.7rem;
-              border-top: 1px solid grey;
+              // border-top: 1px solid grey;
               line-height: 1rem;
             }
   
             .checkbox-wrapper {
               position: relative;
-              margin: auto 0 auto auto;       
+              margin: auto 0 auto auto;
+              @media (max-width: $mq-mobile) {
+                margin-left:0.5rem;
+              }       
+            }
+          }
+
+          p {
+            font-size:1rem;
+
+            @media (max-width: $mq-mobile) {
+            display: none;
             }
           }
         }
@@ -241,12 +258,19 @@
 
           .table-data {
             padding-top: 1rem;
-            text-align: middle;
+            @media (max-width: $mq-mobile) {
+
+              text-align: center;
+            }
           }
 
           .address-field {
             width: 45%;
             padding-right: 2rem;
+          }
+
+          .notification-field{
+            text-align: center;
           }
 
           .delete-location-btn {
