@@ -3,19 +3,49 @@
     background: #fafafa;
     .makeStyles-root-142 {
       @media (min-device-width: $mq-desktop) {
-        width: 350px;
+        width: 670px;
         margin: 0 auto;
+      }
+      @media only screen 
+      and (min-width: 1024px) 
+      and (max-height: 1366px) 
+      and (orientation: portrait) 
+      and (-webkit-min-device-pixel-ratio: 1.5) {
+        width: 370px;
+        margin: 0 auto;
+        margin-top: 4%;
       }
     }
 }
 
 .MuiTypography-h5 {
-    padding: 2% 4% 2%;
+    padding: 2% 2% 2%;
   
     @media (max-device-width: $mq-tablet) {
         padding: 7% 0 2%;
     }
       @media (max-device-width: $mq-mobile) {
-        padding: 16% 4% 2%;
+        padding: 16% 2% 2%;
     }
 }
+
+// .checklistContainer {
+//   height: 100%;
+//   background: #FAFAFA;
+//   padding: 1% 20% 0;
+//   @media (max-device-width: $mq-tablet) {
+//       padding: 1% 0 2%;
+//   }
+//     @media (max-device-width: $mq-mobile) {
+//       padding: 1% 0 2%;
+//   }
+// }
+// .MuiTypography-h5 {
+//   padding: 4% 0 3%;
+//   @media (max-device-width: $mq-tablet) {
+//       padding: 7% 0 2%;
+//   }
+//     @media (max-device-width: $mq-mobile) {
+//       padding: 16% 0 2%;
+//   }
+// }
