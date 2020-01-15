@@ -49,7 +49,6 @@ const LocationsList = props => {
             <th className="locations-header alert-header">Alerts            
             <div className="notif-box">              
               <div className="checkbox-wrapper">
-                <label className="checkbox-label" htmlFor="checkbox1" />
                 <input
                   className="checkbox"
                   id="checkbox1"
@@ -59,6 +58,7 @@ const LocationsList = props => {
                   }}
                   checked={receiveSMS}
                 />
+                  <label className="checkbox-label" htmlFor="checkbox1" />
               </div>
             </div>
             
