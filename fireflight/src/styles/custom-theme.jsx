@@ -6,7 +6,7 @@ export default createMuiTheme({
       main: '#e0e0e0'
     },
     secondary: {
-      main: '#fafafa'
+      main: '#605D53'
     },
     background: {
       paper: '#e0e0e0'
@@ -18,6 +18,5 @@ export default createMuiTheme({
   typography: {
     fontSize: 20,
     fontFamily: ['Quicksand','sans-serif'].join(',')
-    
   }
 })
