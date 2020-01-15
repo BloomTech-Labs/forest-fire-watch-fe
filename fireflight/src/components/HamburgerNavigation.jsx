@@ -25,9 +25,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
-
 const drawerWidth = 300
-
 const useStyles = makeStyles(theme => ({
   root: {
     '& .MuiTextField-root': {
@@ -86,7 +84,6 @@ const useStyles = makeStyles(theme => ({
     marginLeft: 0
   }
 }))
-
 export default function PersistentDrawerLeft({
   toggleAuthForms,
   toggleLoginStatus,
@@ -97,7 +94,6 @@ export default function PersistentDrawerLeft({
   const theme = useTheme()
   const [open, setOpen] = React.useState(false)
   const data = useContext(GlobalContext)
-
   const token = process.env.REACT_APP_MAPBOX_TOKEN
   const [address, setAddress] = useState('')
   const [radius, setRadius] = useState('')
@@ -113,12 +109,10 @@ export default function PersistentDrawerLeft({
     mapboxApiAccessToken: token
   }
   const [location, setLocation] = useState([])
-
   const onSelected = (viewport, item) => {
     setAddress(item.place_name)
     setLocation(item.center)
   }
-
   const handleSubmit = e => {
     e.preventDefault()
     if (address) {
@@ -148,15 +142,12 @@ export default function PersistentDrawerLeft({
     })
     // setAddress('') // doesn't reset address because of the special Geocoder library
   }
-
   const handleDrawerOpen = () => {
     setOpen(true)
   }
-
   const handleDrawerClose = () => {
     setOpen(false)
   }
-
   const logout = e => {
     data.state.remote.logout()
     ReactGA.event({
@@ -164,16 +155,13 @@ export default function PersistentDrawerLeft({
       action: 'Logged out'
     })
   }
-
   const protect = ['/dashboard', '/address', '/maps', '/profile']
-
   if (
     localStorage.getItem('token') == null &&
     protect.includes(window.location.pathname)
   ) {
     return <Redirect to="/" />
   }
-
   return (
     <div className={classes.root}>
       <MuiThemeProvider theme={Theme}>
@@ -311,6 +299,14 @@ export default function PersistentDrawerLeft({
             )}
           </List>
           <Divider />
+            <ListItem 
+              button key="Checklist" 
+              component={NavLink} 
+              to="/checklist" 
+              onClick={handleDrawerClose}
+            >
+          <ListItemText primary="Checklist" />
+        </ListItem>
           <MapLegend />
         </Drawer>
       </MuiThemeProvider>
