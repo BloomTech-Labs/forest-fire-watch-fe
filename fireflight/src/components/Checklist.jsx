@@ -39,10 +39,11 @@ export default function CheckboxList() {
   };
 
   return (
+    <div className="checklistContainer">
     <List className={classes.root}>
       <MuiThemeProvider theme={Theme}>
       <Typography variant="h5" className="checklistTitle">
-        Emergency Evacutation Checklist
+        Emergency Evacuation Checklist
       </Typography>
     {checklistItems.map(checklistItem => {
       const labelId = `checkbox-list-label-${checklistItem}`;
@@ -71,5 +72,6 @@ export default function CheckboxList() {
       })}
       </MuiThemeProvider>
     </List>
+    </div>
   )
 }
