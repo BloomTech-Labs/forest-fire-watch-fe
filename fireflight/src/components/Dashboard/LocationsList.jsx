@@ -16,7 +16,8 @@ const LocationsList = props => {
 
   const {
     getCoordinates,
-    saveInputLocation
+    saveInputLocation,
+    updateTextAlerts
   } = useContext(FireDataContext)
 
   const [addressIndex, setAddressIndex] = useState()
@@ -35,13 +36,29 @@ const LocationsList = props => {
 
   return (
     <div className="locations-info">
-      <h3>Saved Locations</h3>
+      <h3 className='table-title'>Saved Locations</h3>
       <table className="locations-table">
         <thead>
           <tr className="table-row">
             <th className="locations-header">Address</th>
             <th className="locations-header">Radius</th>
-            <th className="locations-header">Alerts</th>
+            <th className="locations-header">Alerts            
+            <div className="notif-box">              
+              <div className="checkbox-wrapper">
+                <input
+                  className="checkbox"
+                  id="checkbox1"
+                  type="checkbox"
+                  onChange={() => {
+                    updateTextAlerts(!receiveSMS)
+                  }}
+                  checked={receiveSMS}
+                />
+                <label className="checkbox-label" htmlFor="checkbox1" />
+              </div>
+            </div>
+            
+            </th>
           </tr>
         </thead>
 
