@@ -1,0 +1,21 @@
+.checklistContainer {
+    height: 100%;
+    background: #fafafa;
+    .makeStyles-root-142 {
+      @media (min-device-width: $mq-desktop) {
+        width: 350px;
+        margin: 0 auto;
+      }
+    }
+}
+
+.MuiTypography-h5 {
+    padding: 2% 4% 2%;
+  
+    @media (max-device-width: $mq-tablet) {
+        padding: 7% 0 2%;
+    }
+      @media (max-device-width: $mq-mobile) {
+        padding: 16% 4% 2%;
+    }
+}

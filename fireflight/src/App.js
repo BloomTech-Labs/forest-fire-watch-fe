@@ -174,10 +174,7 @@ function App() {
           )}
         />
         <Route path="/address" component={Address} />
-        <Route path="/checklist" component={Checklist}
-                        setShowAuthForms={setShowAuthForms}
-                        setLoginFormStatus={setLoginFormStatus}
-                        setRegisterFormStatus={setRegisterFormStatus}/>
+        <Route path="/checklist" component={Checklist} />
       </AddressContext>
     </div>
   )

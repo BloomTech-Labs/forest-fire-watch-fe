@@ -17,6 +17,5 @@ export default createMuiTheme({
   typography: {
     fontSize: 20,
     fontFamily: ['Quicksand','sans-serif'].join(',')
-    
   }
 })
