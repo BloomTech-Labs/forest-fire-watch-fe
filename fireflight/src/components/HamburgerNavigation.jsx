@@ -2,8 +2,8 @@ import React, { useContext, useState } from 'react'
 import { NavLink, Redirect } from 'react-router-dom'
 import clsx from 'clsx'
 import ReactGA from 'react-ga'
-import Geocoder from 'react-mapbox-gl-geocoder'
-import { FireDataContext } from '../context/FireDataContext'
+// import Geocoder from 'react-mapbox-gl-geocoder'
+// import { FireDataContext } from '../context/FireDataContext'
 import { GlobalContext } from '../context/contextProvider'
 import MapLegend from '../components/MapLegend'
 import Theme from '../styles/custom-theme'
@@ -92,62 +92,62 @@ export default function PersistentDrawerLeft({
   toggleLoginStatus,
   toggleRegisterStatus
 }) {
-  const { getCoordinates, updateViewport } = useContext(FireDataContext)
+  // const { getCoordinates, updateViewport } = useContext(FireDataContext)
   const classes = useStyles()
   const theme = useTheme()
   const [open, setOpen] = React.useState(false)
   const data = useContext(GlobalContext)
 
-  const token = process.env.REACT_APP_MAPBOX_TOKEN
-  const [address, setAddress] = useState('')
-  const [radius, setRadius] = useState('')
-  const [viewport, setViewport] = useState({
-    latitude: 34.377566,
-    longitude: -113.144528,
-    zoom: 4
-  })
-  const queryParams = {
-    country: 'us'
-  }
-  const mapAccess = {
-    mapboxApiAccessToken: token
-  }
-  const [location, setLocation] = useState([])
+  // const token = process.env.REACT_APP_MAPBOX_TOKEN
+  // const [address, setAddress] = useState('')
+  // const [radius, setRadius] = useState('')
+  // const [viewport, setViewport] = useState({
+  //   latitude: 34.377566,
+  //   longitude: -113.144528,
+  //   zoom: 4
+  // })
+  // const queryParams = {
+  //   country: 'us'
+  // }
+  // const mapAccess = {
+  //   mapboxApiAccessToken: token
+  // }
+  // const [location, setLocation] = useState([])
 
-  const onSelected = (viewport, item) => {
-    setAddress(item.place_name)
-    setLocation(item.center)
-  }
+  // const onSelected = (viewport, item) => {
+  //   setAddress(item.place_name)
+  //   setLocation(item.center)
+  // }
 
-  const handleSubmit = e => {
-    e.preventDefault()
-    if (address) {
-      getCoordinates(address, radius)
-      localStorage.setItem('address', address)
-      localStorage.setItem('radius', radius)
-    }
-    setViewport({
-      ...viewport,
-      latitude: location[1],
-      longitude: location[0],
-      width: '100vw',
-      height: '100vh',
-      zoom: 8,
-      transitionDuration: 500
-    })
-    const sizing = {
-      width: '100vw',
-      height: '100vh',
-      zoom: 8,
-      transitionDuration: 500
-    }
-    updateViewport(location, sizing)
-    ReactGA.event({
-      category: 'Fire search',
-      action: 'Searched for fire'
-    })
-    // setAddress('') // doesn't reset address because of the special Geocoder library
-  }
+  // const handleSubmit = e => {
+  //   e.preventDefault()
+  //   if (address) {
+  //     getCoordinates(address, radius)
+  //     localStorage.setItem('address', address)
+  //     localStorage.setItem('radius', radius)
+  //   }
+  //   setViewport({
+  //     ...viewport,
+  //     latitude: location[1],
+  //     longitude: location[0],
+  //     width: '100vw',
+  //     height: '100vh',
+  //     zoom: 8,
+  //     transitionDuration: 500
+  //   })
+  //   const sizing = {
+  //     width: '100vw',
+  //     height: '100vh',
+  //     zoom: 8,
+  //     transitionDuration: 500
+  //   }
+  //   updateViewport(location, sizing)
+  //   ReactGA.event({
+  //     category: 'Fire search',
+  //     action: 'Searched for fire'
+  //   })
+  //   // setAddress('') // doesn't reset address because of the special Geocoder library
+  // }
 
   const handleDrawerOpen = () => {
     setOpen(true)
@@ -185,7 +185,7 @@ export default function PersistentDrawerLeft({
             [classes.appBarShift]: open
           })}
         >
-          <Toolbar>
+          <Toolbar className="toolbar">
             <IconButton
               color="inherit"
               aria-label="open drawer"
@@ -196,10 +196,10 @@ export default function PersistentDrawerLeft({
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h3" noWrap className="appBarTitle">
+            <Typography variant="h3" noWrap>
               Wildfire Watch
             </Typography>
-            <form className="map-form-container">
+            {/* <form className="map-form-container">
               <Geocoder
                 {...mapAccess}
                 viewport={viewport}
@@ -220,7 +220,7 @@ export default function PersistentDrawerLeft({
               <div className="search-btn">
                 <i class="fas fa-search fa-2x" onClick={handleSubmit}></i>
               </div>
-            </form>
+            </form> */}
           </Toolbar>
         </AppBar>
         <Drawer
@@ -233,7 +233,6 @@ export default function PersistentDrawerLeft({
           }}
         >
           <div className={classes.drawerHeader}>
-            <text className="appBarTitleMobile">Wildfire Watch</text>
             <IconButton onClick={handleDrawerClose}>
               {theme.direction === 'ltr' ? (
                 <ChevronLeftIcon />
