@@ -17,11 +17,7 @@ export default createMuiTheme({
   },
   typography: {
     fontSize: 20,
-<<<<<<< HEAD
     fontFamily: ['Noto Sans'].join(',')
     
-=======
-    fontFamily: ['Quicksand','sans-serif'].join(',')
->>>>>>> d60393d8e1b5daa3110a8b1fbbc3ed2d013c4e8c
   }
 })
