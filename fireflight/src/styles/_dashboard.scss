@@ -16,9 +16,7 @@
     border: none;
     color:gray;
     
-  }
-
-  
+  }  
 
   .profile-title {
     font-size: 3rem;
@@ -276,7 +274,10 @@
             @media (max-width: $mq-mobile) {
 
               text-align: center;
-            }
+            }            
+          }
+          .notification-field{
+            text-align: center;
           }
 
           .address-field {
@@ -284,9 +285,7 @@
             padding-right: 2rem;
           }
 
-          .notification-field{
-            text-align: center;
-          }
+          
 
           .delete-location-btn {
             color: $orange;
