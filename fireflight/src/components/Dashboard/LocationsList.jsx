@@ -66,7 +66,7 @@ const LocationsList = props => {
             </div>
             <p>receive text alerts </p>
             </th>
-            <th className='loctions-header'>Edit</th>
+            <th className='locations-header'>Edit</th>
           </tr>
         </thead>
 

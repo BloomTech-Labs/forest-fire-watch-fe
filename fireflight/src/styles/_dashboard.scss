@@ -37,7 +37,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 1rem 4rem 4rem 6rem;
+    padding: 1rem 0rem 4rem 6rem;
+
+    @media (max-width: $mq-mobile) {
+      padding: 0;
+    }
 
     .is-editing-input {
       background: #ffffff;
@@ -270,15 +274,16 @@
           }
 
           .table-data {
-            padding-top: 1rem;
+            padding-top: 0.5rem;
             @media (max-width: $mq-mobile) {
 
               text-align: center;
-            }            
-          }
-          .notification-field{
+            }   
+            .notification-field{
             text-align: center;
+          }         
           }
+          
 
           .address-field {
             width: 45%;
