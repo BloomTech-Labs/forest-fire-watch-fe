@@ -13,11 +13,10 @@ import {
 const useStyles = makeStyles(theme => ({
   root: {
     paddingTop: '5%',
-    //paddingLeft: '40% !important',
-  },
-  [theme.breakpoints.up('md')]: {
-    paddingLeft: '40% !important',
+    marginLeft: '5%',
+    height: '100%'
   }
+  
 }));
 const checklistItems = ['Have at least 1/2 tank of gas', '1 gallon water per person per day', 'Non Perishable food', 'Non electric can opener', 'Insurance Card', 'Identification', 'Passports', 'Deed to property', 'Prescription Medication', 'Flashlight', 'Battery powered Radio with extra batteries', 'Cash', 'Extra set of keys (car, house)', 'Glasses, including extra sets', 'Family members, animals', 'Computers', 'Photos']
 export default function CheckboxList() {
