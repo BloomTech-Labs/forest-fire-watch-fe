@@ -14,6 +14,7 @@ import {
 const useStyles = makeStyles(theme => ({
   root: {
     paddingTop: '5%',
+    // paddingLeft: '20%',
     marginLeft: '5%',
     height: '100%'
   },

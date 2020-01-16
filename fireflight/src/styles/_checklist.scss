@@ -1,10 +1,18 @@
 .checklistContainer {
     height: 100%;
     background: #fafafa;
+    padding: 1% 20% 0;
+
+    @media (max-device-width: $mq-tablet) {
+        padding: 1% 0 2%;
+    }
+      @media (max-device-width: $mq-mobile) {
+        padding: 1% 0 2%;
+    }
 }
 
 .MuiTypography-h5 {
-    padding: 2% 0 2%;
+    padding: 4% 0 3%;
   
     @media (max-device-width: $mq-tablet) {
         padding: 7% 0 2%;
