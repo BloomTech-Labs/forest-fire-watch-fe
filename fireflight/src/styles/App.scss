@@ -15,15 +15,19 @@
 @import 'model';
 @import 'checklist';
 @import 'profile-modal';
-@import 'hamburger';
 // @import 'model-splits';
 @import 'dashboard';
 @import 'address-form';
+
+* {
+  box-sizing: border-box;
+}
 
 
 html {
   font-size: 62.5%;
   font-family: 'Noto Sans', sans-serif;
+  
 }
 
 html,
