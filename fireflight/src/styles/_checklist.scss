@@ -3,12 +3,11 @@
     background: #fafafa;
     .MuiList-root {
       @media (min-device-width: $mq-desktop) {
-        margin-top: 2%;
+        margin-top: 1%;
         margin-left: 250px;
-
       }
       @media (max-device-width: $mq-tablet) {
-        margin-left: 150x;
+        margin-left: 150px;
       }
       @media only screen 
       and (min-width: 1024px) 
