@@ -16,7 +16,7 @@
             padding: 1rem;
             border-radius: 3px;
             @media (max-device-width: $mq-mobile) {
-              width: 15rem;
+              width: 30rem;
           }
             
             input {
@@ -42,7 +42,7 @@
                 z-index: 4;
             
                 @media (max-device-width: $mq-mobile) {
-                  width: 12rem;
+                  width: 28rem;
                   top: 3rem;
                   // position: absolute;
                 }

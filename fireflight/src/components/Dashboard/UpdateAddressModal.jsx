@@ -23,7 +23,10 @@ const useStyles = makeStyles(theme => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
     // height: 350,
-    width: '55%'
+    width: '45%',
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+    },
   },
 }));
 
