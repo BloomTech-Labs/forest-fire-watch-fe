@@ -11,7 +11,8 @@ const LocationsList = props => {
     deleteUserLocation,
     history,
     receiveSMS,
-    receivePush
+    receivePush,
+    phone
   } = props
 
   const {
@@ -35,6 +36,11 @@ const LocationsList = props => {
     setOpen(false);
   };
 
+  const toggleNotifications = () => {
+    if (phone) {
+      return updateTextAlerts(!receiveSMS)
+  }
+} 
  
 
 
@@ -56,8 +62,8 @@ const LocationsList = props => {
                   className="checkbox"
                   id="checkbox1"
                   type="checkbox"
-                  onChange={() => {
-                    updateTextAlerts(!receiveSMS)
+                  onChange={() => {                    
+                    toggleNotifications()
                   }}
                   checked={receiveSMS}
                 />
@@ -75,9 +81,8 @@ const LocationsList = props => {
             <tr className="table-row" key={index + loc.radius}>
               <td className="table-data address-field"> {loc.address}</td>
               <td className="table-data radius-field">{loc.radius} mi</td>
-              <td className="table-data notifications-field">                
-                {/* {loc.notifications ? 'ON' : 'OFF'} */}
-                {receiveSMS || receivePush ? 'ON' : 'OFF'}
+              <td className="table-data notifications-field">       
+                { receiveSMS ? 'ON' : 'OFF' }
               </td>
               <td className='icon-container'>
                 <i
