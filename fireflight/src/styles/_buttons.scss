@@ -22,12 +22,13 @@
   }
 }
 
-.search-btn {
-  margin-left: 1rem;
+.fas {
+  margin-left: -3.2rem;
   margin-top: 1.2rem;
+  z-index: 2000;
 
-  @media (max-device-width: $mq-mobile) {
-    margin-top: 0.8rem;
+  @media (max-width: $mq-mobile) {
+    margin-top: 0.7rem;
   }
 }
 

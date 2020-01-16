@@ -5,8 +5,6 @@
 @import 'vars';
 
 // Components
-@import 'navigation';
-@import 'navigation-profile';
 @import 'login';
 @import 'register';
 @import 'auth-forms';
@@ -155,7 +153,7 @@ button {
       height: 18px;
       margin-left: 21px;
       transition: 0.2s;
-    }  
+    }
   }
 }
 

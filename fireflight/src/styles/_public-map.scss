@@ -2,6 +2,14 @@
   position: absolute;
   display: flex;
   flex-direction: column;
+  top: 10rem;
+  right: 43.5rem;
+  z-index: 2;
+
+  @media (max-device-width: $mq-mobile) {
+    top: 7rem;
+    right: 36.2rem;
+  }
 
   .checkbox-wrapper {
     position: relative;

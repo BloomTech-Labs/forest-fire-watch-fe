@@ -1,9 +1,9 @@
 .checklistContainer {
     height: 100%;
     background: #fafafa;
-    .makeStyles-root-142 {
+    .MuiList-root {
       @media (min-device-width: $mq-desktop) {
-        width: 670px;
+        width: 775px;
         margin: 0 auto;
       }
       @media only screen 
@@ -11,7 +11,7 @@
       and (max-height: 1366px) 
       and (orientation: portrait) 
       and (-webkit-min-device-pixel-ratio: 1.5) {
-        width: 370px;
+        width: 500px;
         margin: 0 auto;
         margin-top: 4%;
       }
