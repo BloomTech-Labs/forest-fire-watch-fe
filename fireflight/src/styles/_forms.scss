@@ -97,7 +97,7 @@
   .react-geocoder-results {
     border-top: 0.8px solid #000000;
     background: white;
-    width: 28.5rem;
+    width: 39.5rem;
     box-sizing: border-box;
     height: auto;
     top: 4.8rem;
@@ -106,18 +106,18 @@
     font-size: 1.6rem;
 
     @media (max-device-width: $mq-mobile) {
-      width: 20rem;
-      top: 3.4rem;
+      width: 34.6rem;
+      top: 3.8rem;
       position: absolute;
     }
   }
 
   .react-geocoder-item {
-    width: 30rem;
-    padding-top: 0.5rem;
+    width: 38.8rem;
+    padding-top: 0.7rem;
 
     @media (max-device-width: $mq-mobile) {
-      width: 24rem;
+      width: 34.4rem;
       font-size: 1.4rem;
     }
   }
