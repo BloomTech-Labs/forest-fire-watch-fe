@@ -157,7 +157,7 @@ function Register({ toggle, setShowAuthForms, setRegisterStatus }) {
               onChange={handlePassword}
               placeholder=""
             />
-
+            <br></br>
             <label htmlFor="password">Confirm Password</label>
             <input
               className="form-input"

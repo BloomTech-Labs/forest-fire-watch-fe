@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import ReactMapGL, { Popup } from 'react-map-gl'
 import styled from 'styled-components'
 import { FireDataContext } from '../context/FireDataContext'
+import Geocoder from 'react-mapbox-gl-geocoder'
 import axios from 'axios'
 import ReactGA from 'react-ga'
 
@@ -18,13 +19,13 @@ const PublicMap = ({
     closeSelectedMarker,
     deleteLocationMarker,
     saveLocationMarker,
+    // toggleNotification,
     deleteUserLocation,
-    updatePopupRadius,
-    getUserLocations
+    updatePopupRadius
   } = useContext(FireDataContext)
 
   const {
-    publicMapViewport,
+    // publicMapViewport,
     allFireMarkers,
     publicCoordinatesMarker,
     localFireMarkers,
@@ -33,6 +34,9 @@ const PublicMap = ({
     userLocalFireMarkers,
     exclamationMarkers
   } = fireDataState
+
+  const [address, setAddress] = useState('')
+  const [radius, setRadius] = useState('')
   const [popupRadius, setPopupRadius] = useState('')
   const [viewport, setViewport] = useState({
     latitude: 34.377566,
@@ -56,13 +60,11 @@ const PublicMap = ({
   useEffect(() => {
     ipAddress()
   }, [])
-  useEffect(() => {
-    setViewport(publicMapViewport)
-  }, [publicMapViewport])
   //prompts the user for their permission to location and sets viewport
-  //currently not using due to geocoder issues related to having them both plugged in. IP address is very reliable and does not need any permissions.
+  //currently not useing due to geocoder issues related to having them both plugged in. IP address is very reliable and does not need any permissions.
   const geoControl = () => {
     navigator.geolocation.getCurrentPosition(position => {
+      console.log('setting viewport using geolocation permission')
       setViewport({
         ...viewport,
         latitude: parseInt(position.coords.latitude),
@@ -79,7 +81,9 @@ const PublicMap = ({
     axios
       .get(`${process.env.REACT_APP_ENV}users/ip-address`)
       .then(res => {
+        console.log(res.data)
         if (res.data.status !== 'fail') {
+          console.log('setting viewport', typeof res.data.lon)
           setViewport({
             ...viewport,
             latitude: res.data.lat,
@@ -89,6 +93,7 @@ const PublicMap = ({
             zoom: 8
           })
         } else {
+          console.log('going into else')
           setViewport({
             ...viewport,
             latitude: 34.377566,
@@ -102,6 +107,29 @@ const PublicMap = ({
       .catch(err => {
         console.log(err)
       })
+  }
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    if (address) {
+      getCoordinates(address, radius)
+      localStorage.setItem('address', address)
+      localStorage.setItem('radius', radius)
+    }
+    setViewport({
+      ...viewport,
+      latitude: location[1],
+      longitude: location[0],
+      width: '100vw',
+      height: '100vh',
+      zoom: 8,
+      transitionDuration: 500
+    })
+    ReactGA.event({
+      category: 'Fire search',
+      action: 'Searched for fire'
+    })
+    // setAddress('') // doesn't reset address because of the special Geocoder library
   }
 
   const tempLocationPopup = (
@@ -212,9 +240,37 @@ const PublicMap = ({
     </div>
   )
 
+  const queryParams = {
+    country: 'us'
+  }
+  const mapAccess = {
+    mapboxApiAccessToken: token
+  }
+  const [location, setLocation] = useState([])
+
+  const onSelected = (viewport, item) => {
+    setAddress(item.place_name)
+    setLocation(item.center)
+  }
+
+  console.log('exclamations', exclamationMarkers)
+
   return (
     <div style={{ position: 'relative', width: '100%', height: '100%' }}>
-      <div className="public-container"></div>
+      <div className="public-container">
+        <form onSubmit={handleSubmit} className="map-form-container">
+          <Geocoder
+            {...mapAccess}
+            viewport={viewport}
+            queryParams={queryParams}
+            hideOnSelect={true}
+            onSelected={onSelected}
+            updateInputOnSelect={true}
+            limit={4}
+          />
+          <i class="fas fa-search fa-2x" onClick={handleSubmit}></i>
+        </form>
+      </div>
 
       <ReactMapGL
         {...viewport}
