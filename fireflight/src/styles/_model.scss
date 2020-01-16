@@ -3,19 +3,27 @@
   border-radius: 1px;
   border: none;
   // need to center modal on page
-  margin: 5rem auto 0;
+  // margin: 5rem auto 0;
   transition: all 0.8s;
   max-width: 700px;
   position: absolute;
-  left: 0;
-  right: 0;
+  top: 10%;
+  left: 35%;
+  right: 35%;
   z-index: 10;
+
+  @media (max-width: 1200px) {
+    left: 20%;
+  }
 
   @media (max-width: $mq-tablet) {
     max-width: 400px;
+    top: 15%;
+    left: 15%;
   }
 
   @media (max-width: $mq-mobile) {
     max-width: 300px;
+    left: 11%;
   }
 }

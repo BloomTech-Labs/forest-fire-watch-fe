@@ -334,7 +334,7 @@ export const FireDataProvider = ({ children }) => {
       axiosWithAuth()
         .post('locations', {
           address: fireDataState.selectedMarker[2],
-          radius: fireDataState.selectedMarker[3]
+          radius: fireDataState.selectedMarker[3] || 100
         })
         .then(res => {
           dispatch({
