@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const checklistItems = [
+const Items = [
   'Have at least 1/2 tank of gas',
   '1 gallon water per person per day',
   'Non Perishable food',
@@ -43,12 +43,12 @@ export default function CheckboxList() {
   const classes = useStyles()
   const [checked, setChecked] = React.useState([0])
 
-  const handleToggle = checklistItems => () => {
-    const currentIndex = checked.indexOf(checklistItems)
+  const handleToggle = Items => () => {
+    const currentIndex = checked.indexOf(Items)
     const newChecked = [...checked]
 
     if (currentIndex === -1) {
-      newChecked.push(checklistItems)
+      newChecked.push(Items)
     } else {
       newChecked.splice(currentIndex, 1)
     }
@@ -57,33 +57,33 @@ export default function CheckboxList() {
   }
 
   return (
-    <div className="checklistContainer">
+    <div className="Container">
       <List className={classes.root}>
         <MuiThemeProvider theme={Theme}>
-          <Typography variant="h5" className="checklistTitle">
-            Emergency Evacuation Checklist
+          <Typography variant="h5" className="Title">
+            Emergency Evacuation 
           </Typography>
-          {checklistItems.map(checklistItem => {
-            const labelId = `checkbox-list-label-${checklistItem}`
+          {Items.map(Item => {
+            const labelId = `checkbox-list-label-${Item}`
 
             return (
               <ListItem
-                key={checklistItem}
+                key={Item}
                 role={undefined}
                 dense
                 button
-                onClick={handleToggle(checklistItem)}
+                onClick={handleToggle(Item)}
               >
                 <ListItemIcon>
                   <Checkbox
                     edge="start"
-                    checked={checked.indexOf(checklistItem) !== -1}
+                    checked={checked.indexOf(Item) !== -1}
                     tabIndex={-1}
                     disableRipple
                     inputProps={{ 'aria-labelledby': labelId }}
                   />
                 </ListItemIcon>
-                <ListItemText id={labelId} primary={` ${checklistItem}`} />
+                <ListItemText id={labelId} primary={` ${Item}`} />
               </ListItem>
             )
           })}
