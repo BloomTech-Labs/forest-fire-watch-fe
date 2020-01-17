@@ -84,7 +84,7 @@ const LocationsList = props => {
               <td className="table-data notifications-field">       
                 { receiveSMS ? 'ON' : 'OFF' }
               </td>
-              <td className='icon-container'>
+              <td className='icon-container table-data'>
                 <i
                   onClick={() => {setOpen(true); setAddressIndex(index)}}
                   className="fas fa-pencil-alt edit-profile-icon"
