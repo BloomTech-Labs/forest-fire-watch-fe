@@ -11,13 +11,19 @@ const LocationsList = props => {
     deleteUserLocation,
     history,
     receiveSMS,
-    receivePush
+    receivePush,
+    phone
   } = props
 
   const {
     getCoordinates,
-    saveInputLocation
+    saveInputLocation,
+    
   } = useContext(FireDataContext)
+
+  const {updateTextAlerts} = useContext(UserDataContext)
+
+  
 
   const [addressIndex, setAddressIndex] = useState()
   const [open, setOpen] = React.useState(false);
@@ -30,18 +36,43 @@ const LocationsList = props => {
     setOpen(false);
   };
 
+  const toggleNotifications = () => {
+    if (phone) {
+      return updateTextAlerts(!receiveSMS)
+  }
+} 
  
 
 
   return (
     <div className="locations-info">
-      <h3>Saved Locations</h3>
+      <h3 className='table-title'>Saved Locations
+      <i class="fas fa-plus" fa-1x 
+      onClick={() => props.history.push('/address')}></i>
+      </h3>
       <table className="locations-table">
         <thead>
           <tr className="table-row">
             <th className="locations-header">Address</th>
             <th className="locations-header">Radius</th>
-            <th className="locations-header">Alerts</th>
+            <th className="locations-header alert-header">Alerts            
+            <div className="notif-box">              
+              <div className="checkbox-wrapper">
+                <input
+                  className="checkbox"
+                  id="checkbox1"
+                  type="checkbox"
+                  onChange={() => {                    
+                    toggleNotifications()
+                  }}
+                  checked={receiveSMS}
+                />
+                  <label className="checkbox-label" htmlFor="checkbox1" />
+              </div>
+            </div>
+            <p>receive text alerts </p>
+            </th>
+            <th className='locations-header'>Edit</th>
           </tr>
         </thead>
 
@@ -50,11 +81,10 @@ const LocationsList = props => {
             <tr className="table-row" key={index + loc.radius}>
               <td className="table-data address-field"> {loc.address}</td>
               <td className="table-data radius-field">{loc.radius} mi</td>
-              <td className="table-data notifications-field">                
-                {/* {loc.notifications ? 'ON' : 'OFF'} */}
-                {receiveSMS || receivePush ? 'ON' : 'OFF'}
+              <td className="table-data notifications-field">       
+                { receiveSMS ? 'ON' : 'OFF' }
               </td>
-              <td className='icon-container'>
+              <td className='icon-container table-data'>
                 <i
                   onClick={() => {setOpen(true); setAddressIndex(index)}}
                   className="fas fa-pencil-alt edit-profile-icon"
@@ -72,20 +102,7 @@ const LocationsList = props => {
         </tbody>
       </table>
       {/*<div className="locations-buttons"> and Add Location button to be deleted after redesign.  */}
-      <div className="locations-buttons">
-        <button
-          className="add-location-btn"
-          onClick={() => history.push('/address')}
-        >
-          Add Location
-        </button>
-        <button
-          className="return-to-map-btn"
-          onClick={() => history.push('/home')}
-        >
-          Return To Map
-        </button>
-      </div>
+      
     </div>
   )
 }

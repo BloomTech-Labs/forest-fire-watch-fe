@@ -97,17 +97,26 @@ const Dashboard = props => {
 
   return (
     <div className="dashboard-wrapper">
+      <h5 className='map-button' onClick={() => props.history.push('/home')}>
+        <i class="fas fa-angle-left"
+          onClick={() => props.history.push('/home')}>          
+         </i>Map
+         
+      </h5>
+               
+        
       <div className="content-wrapper">
+        <h3 className='profile-title'>Profile</h3>
         <div className="personal-info">
-          <h3 className="profile-name">
+          <h4 className="profile-name">
             {firstName} {lastName}
-          </h3>
+          </h4>
           {/* Checks to see if isEditing is false and if so renders the email of the user and if true will render the input for editing */}
           {!isEditing ? (
             <div className="profile-field-container">
-              <h3 className="profile-field profile-email">
+              <h4 className="profile-field profile-email">
                 {!newEmail ? `${email}` : `${newEmail}`}
-              </h3>
+              </h4>
               {/* <button onClick={() => setIsEditing(true)}>Edit email</button> */}
               <i
                 onClick={() => setIsEditing(true)}
@@ -151,31 +160,16 @@ const Dashboard = props => {
             </div>
           ) : (
             <div className="profile-field-container">
-              <h3 className="profile-field profile-phone">
+              <h4 className="profile-field profile-phone">
                 {formatPhone(phoneNumber)}
-              </h3>
+              </h4>
               <i
                 onClick={() => setEditPhone(true)}
                 className="fas fa-pencil-alt edit-profile-icon"
               />
             </div>
           )}
-          <div className="notification-wrapper">
-            <div className="notif-box">
-              <h4>Text Alerts</h4>
-              <div className="checkbox-wrapper">
-                <input
-                  className="checkbox"
-                  id="checkbox1"
-                  type="checkbox"
-                  onChange={() => {
-                    updateTextAlerts(!receiveSMS)
-                  }}
-                  checked={receiveSMS}
-                />
-                <label className="checkbox-label" htmlFor="checkbox1" />
-              </div>
-            </div>
+          
 
             {/* <div className="notif-box">
               <h4>Push Notifications</h4>
@@ -192,7 +186,7 @@ const Dashboard = props => {
                 <label className="checkbox-label" htmlFor="checkbox2" />
               </div>
             </div> */}
-          </div>
+          {/* </div> */}
           {/* <button onClick={e=>{subscribeUser()}}>Check</button> */}
         </div>
         <LocationsList
@@ -200,6 +194,7 @@ const Dashboard = props => {
           deleteUserLocation={deleteUserLocation}
           receivePush={receivePush}
           receiveSMS={receiveSMS}
+          phone={phone}
           {...props}
         />
       </div>
