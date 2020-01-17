@@ -19,6 +19,9 @@
         margin: 0 auto;
         margin-top: 4%;
       }
+      @media (max-width: $mq-mobile) {
+        margin: 0 auto;
+      }
     }
 }
 
