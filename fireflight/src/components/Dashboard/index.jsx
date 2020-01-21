@@ -100,11 +100,8 @@ const Dashboard = props => {
       <h5 className='map-button' onClick={() => props.history.push('/home')}>
         <i class="fas fa-angle-left"
           onClick={() => props.history.push('/home')}>          
-         </i>Map
-         
-      </h5>
-               
-        
+         </i>Map         
+      </h5>       
       <div className="content-wrapper">
         <h3 className='profile-title'>Profile</h3>
         <div className="personal-info">

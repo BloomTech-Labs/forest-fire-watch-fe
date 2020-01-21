@@ -13,7 +13,7 @@ import {
 } from '@material-ui/core/styles'
 const useStyles = makeStyles(theme => ({
   root: {
-    paddingTop: '5%',
+    paddingTop: '0%',
     marginLeft: '5%',
     height: '100%'
   }
@@ -39,7 +39,7 @@ const checklistItems = [
   'Photos'
 ]
 
-export default function CheckboxList() {
+export default function CheckboxList(props) {
   const classes = useStyles()
   const [checked, setChecked] = React.useState([])
   
@@ -68,6 +68,13 @@ export default function CheckboxList() {
   }
 
   return (
+    <>
+    <h5 className='map-button-checklist' onClick={() => props.history.push('/home')}>
+        <i class="fas fa-angle-left"
+          onClick={() => props.history.push('/home')}>          
+         </i>Map
+         
+      </h5>
     <div className="checklistContainer">
       <List className={classes.root}>
         <MuiThemeProvider theme={Theme}>
@@ -101,5 +108,6 @@ export default function CheckboxList() {
         </MuiThemeProvider>
       </List>
     </div>
+    </>
   )
 }
