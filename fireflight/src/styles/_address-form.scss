@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 2rem;
+  padding: 3.5rem;
 
   @media (max-device-width: $mq-mobile) {
     max-width: 0rem;
@@ -17,10 +17,18 @@
     font-size: 3.3rem;
     line-height: 4.5rem;
     margin-bottom: 4rem;
+    width: 70vw;
+    
 
     @media (max-device-width: $mq-mobile) {
       font-size: 2.5rem;
+      // width: 30%;
     }
+  }
+
+  form {
+    height: 80vh;
+    padding: 1rem 0 1rem 0;
   }
 
   label {
@@ -72,7 +80,7 @@
       padding-left: 1.7rem;
 
       @media (max-device-width: $mq-mobile) {
-        max-width: 32rem;
+        max-width: 28rem;
         padding-left: 1rem;
         font-size: 1.8rem;
       }

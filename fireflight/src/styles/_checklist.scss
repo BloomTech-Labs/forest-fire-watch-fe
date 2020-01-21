@@ -19,6 +19,9 @@
         margin: 0 auto;
         margin-top: 4%;
       }
+      @media (max-width: $mq-mobile) {
+        margin: 0 auto;
+      }
     }
 }
 
@@ -31,4 +34,23 @@
       @media (max-device-width: $mq-mobile) {
         padding: 16% 2% 2%;
     }
+}
+
+.map-button-checklist{
+  padding-top: 6rem;
+    margin-left: 1rem;    
+    border-radius: 2px;
+    cursor: pointer;    
+    font-size: 2rem;
+    width: 119.95px;
+    height: 38px;    
+    border: none;
+    color:gray;
+
+  .fa-angle-left{
+    margin-left:1rem;
+    margin-right:0.5rem;
+     
+   }
+  
 }
