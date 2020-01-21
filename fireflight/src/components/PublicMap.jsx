@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import ReactMapGL, { Popup } from 'react-map-gl'
+import MapDropDown from './MapDropDown'
 import styled from 'styled-components'
 import { FireDataContext } from '../context/FireDataContext'
 import Geocoder from 'react-mapbox-gl-geocoder'
@@ -270,6 +271,7 @@ const PublicMap = ({
           />
           <i class="fas fa-search fa-2x" onClick={handleSubmit}></i>
         </form>
+        <MapDropDown />
       </div>
 
       <ReactMapGL
