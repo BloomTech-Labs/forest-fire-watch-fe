@@ -113,6 +113,7 @@ export default function PersistentDrawerLeft({
       category: 'User',
       action: 'Logged out'
     })
+    localStorage.removeItem('checkedItems')
   }
   const protect = ['/dashboard', '/address', '/maps', '/profile']
   if (

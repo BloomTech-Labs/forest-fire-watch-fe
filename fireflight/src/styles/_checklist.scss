@@ -19,6 +19,9 @@
         margin: 0 auto;
         margin-top: 4%;
       }
+      @media (max-width: $mq-mobile) {
+        margin: 0 auto;
+      }
     }
 }
 .MuiTypography-h5 {
@@ -32,35 +35,21 @@
     }
 }
 
-// .checklistContainer {
-//     height: 100%;
-//     background: #fafafa;
-//     padding: 1% 16% 0;
+.map-button-checklist{
+  padding-top: 6rem;
+    margin-left: 1rem;    
+    border-radius: 2px;
+    cursor: pointer;    
+    font-size: 2rem;
+    width: 119.95px;
+    height: 38px;    
+    border: none;
+    color:gray;
 
-//     @media (max-device-width: $mq-tablet) {
-//         padding: 1% 0 2%;
-//     }
-//       @media (max-device-width: $mq-mobile) {
-//         padding: 1% 0 2%;
-//     }
-//     @media only screen 
-//       and (min-width: 1024px) 
-//       and (max-height: 1366px) 
-//       and (orientation: portrait) 
-//       and (-webkit-min-device-pixel-ratio: 1.5) {
-//         // width: 370px;
-//         margin: 0 auto;
-//         margin-top: 4%;
-//       }
-// }
-
-// .MuiTypography-h5 {
-//     padding: 4% 0 3%;
+  .fa-angle-left{
+    margin-left:1rem;
+    margin-right:0.5rem;
+     
+   }
   
-//     @media (max-device-width: $mq-tablet) {
-//         padding: 7% 0 2%;
-//     }
-//       @media (max-device-width: $mq-mobile) {
-//         padding: 16% 0 2%;
-//     }
-// }
+}
