@@ -1,3 +1,10 @@
+.MuiBackdrop-root {
+  .backDrop{
+
+    background: 'rgba(255,255,255,0.2)'
+  }
+}
+
 .geocoder-modal-container {
 
   @media (max-device-width: $mq-mobile) {
@@ -9,19 +16,17 @@
             padding: 1rem;
             border-radius: 3px;
             @media (max-device-width: $mq-mobile) {
-              width: 15rem;
+              width: 30rem;
           }
             
             input {
-                width: 40rem;
+                width: 100%;
                 font-size: 2rem;
                 line-height: 2.7rem;
                 display: flex;
                 align-items: center;
                 // padding-left: 1.7rem;
-                @media (max-device-width: $mq-mobile) {
-                    width: 12rem;
-                }
+                
                 
               }
 
@@ -37,7 +42,7 @@
                 z-index: 4;
             
                 @media (max-device-width: $mq-mobile) {
-                  width: 12rem;
+                  width: 28rem;
                   top: 3rem;
                   // position: absolute;
                 }
