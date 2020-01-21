@@ -43,29 +43,28 @@ export default function CheckboxList() {
   const classes = useStyles()
   const [checked, setChecked] = React.useState([])
   
-  const checkedItems = localStorage.getItem('checkedItems')
+  const checkedItemsString = localStorage.getItem('checkedItems')
+  
   
   React.useEffect(()=> {
     if (localStorage.getItem('checkedItems'))    
     {
-      setChecked(checkedItems)
+      const checkedItems = checkedItemsString.split(',')
+      setChecked(checkedItems)      
   }
   }, [])
 
-  const handleToggle = checklistItems => () => {
+  const handleToggle = checklistItems => (e) => {
     const currentIndex = checked.indexOf(checklistItems)
-    const newChecked = [...checked]
+    const newChecked = [...checked]    
 
     if (currentIndex === -1) {
       newChecked.push(checklistItems)
     } else {
-      newChecked.splice(currentIndex, 1)
+      newChecked.splice(currentIndex, 1) 
     }
-
     setChecked(newChecked) 
-    localStorage.setItem('checkedItems', newChecked)
-    console.log(newChecked)
-       
+    localStorage.setItem('checkedItems', newChecked)           
   }
 
   return (
