@@ -35,6 +35,8 @@ const PublicMap = ({
     exclamationMarkers
   } = fireDataState
 
+  const [AQStations, setAQStations] = useState()
+  const [AQData, setAQData] = useState()
   const [address, setAddress] = useState('')
   const [radius, setRadius] = useState('')
   const [popupRadius, setPopupRadius] = useState('')
@@ -57,6 +59,8 @@ const PublicMap = ({
       window.removeEventListener('keydown', listener)
     }
   }, [])
+  
+
   useEffect(() => {
     ipAddress()
   }, [])
@@ -76,14 +80,53 @@ const PublicMap = ({
     })
   }
 
+  // useEffect to set the AQI data 
+  useEffect(() => {
+    axios 
+      .get(`https://appwildfirewatch.herokuapp.com/get_aqi_stations?lat=${viewport.latitude}&lng=${viewport.longitude}&distance=50`)
+      .then(res => {
+        setAQStations(res.data.data) 
+      })
+      .catch(err => console.log('error from AQ stations', err))
+        console.log('AQ UseEffect', AQStations);
+    getAQIdata()
+  }, [AQStations])
+
+  //Function to get AQI data from DS backend and set to state
+  const getAQIdata = () => {    
+    // axios 
+      // .get(`https://appwildfirewatch.herokuapp.com/get_aqi_stations?lat=${viewport.latitude}&lng=${viewport.longitude}&distance=50`)
+      // .then(res => {
+      //   setAQStations(res.data.data)        
+      // })
+      // .then(res => {
+        if (AQStations) {
+
+          AQStations.forEach(item => {
+            axios 
+              .get('https://appwildfirewatch.herokuapp.com/get_aqi_data', {
+                params: {
+                  lat: item.lat,
+                  lng: item.lon
+                }
+              })
+              .then(res => {
+                setAQData(res.data.data)
+                console.log(AQData)
+              })
+              .catch(err => console.log('error from individual AQ', err))
+            })
+        }
+        // })
+        // .catch(err => console.log('error from AQ stations', err))
+  }
+
   //Gets the users location based on the IP address of the client and sets the viewport
   const ipAddress = () => {
     axios
       .get(`${process.env.REACT_APP_ENV}users/ip-address`)
-      .then(res => {
-        console.log(res.data)
-        if (res.data.status !== 'fail') {
-          console.log('setting viewport', typeof res.data.lon)
+      .then(res => {        
+        if (res.data.status !== 'fail') {          
           setViewport({
             ...viewport,
             latitude: res.data.lat,
@@ -253,7 +296,6 @@ const PublicMap = ({
     setLocation(item.center)
   }
 
-  console.log('exclamations', exclamationMarkers)
 
   return (
     <div style={{ position: 'relative', width: '100%', height: '100%' }}>
@@ -268,7 +310,7 @@ const PublicMap = ({
             updateInputOnSelect={true}
             limit={4}
           />
-          <i class="fas fa-search fa-2x" onClick={handleSubmit}></i>
+          <i className="fas fa-search fa-2x" onClick={handleSubmit}></i>
         </form>
       </div>
 
