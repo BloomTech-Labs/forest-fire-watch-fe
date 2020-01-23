@@ -88,43 +88,16 @@ const PublicMap = ({
       .then(res => {
         setAQStations(res.data.data) 
       })
-      .catch(err => console.log('error from AQ stations', err))
-        
-    // getAQIdata()     
+      .catch(err => console.log('error from AQ stations', err))  
   }, [])
 
+  // Parse data from data science to geoJSON
   useEffect(()=> {
     if (AQStations) {
-    const AQGeoJSON =  GeoJSON.parse(AQStations, {Point: ['lat', 'lon']})
-    console.log('geojson test', AQGeoJSON)
+    setAQData(GeoJSON.parse(AQStations, {Point: ['lat', 'lon']}))    
     }
   })
    
-  
-
-  //Function to get individual AQI data from DS backend and set to state
-  // const getAQIdata = () => {    
-   
-  //       if (AQStations) {
-
-  //         AQStations.forEach(item => {
-  //           axios 
-  //             .get('https://appwildfirewatch.herokuapp.com/get_aqi_data', {
-  //               params: {
-  //                 lat: item.lat,
-  //                 lng: item.lon
-  //               }
-  //             })
-  //             .then(res => {
-                
-  //               setAQData(res.data)
-  //               console.log(AQData)
-  //             })
-  //             .catch(err => console.log('error from individual AQ', err))
-  //           })
-  //       }
-        
-  // }
 
   //Gets the users location based on the IP address of the client and sets the viewport
   const ipAddress = () => {
