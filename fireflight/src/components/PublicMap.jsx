@@ -5,7 +5,8 @@ import { FireDataContext } from '../context/FireDataContext'
 import Geocoder from 'react-mapbox-gl-geocoder'
 import axios from 'axios'
 import ReactGA from 'react-ga'
-import { heatmapLayer, dummyData } from './AQmap';
+import { heatmapLayer } from './AQmap'
+import GeoJSON from 'geojson'
 
 const token = process.env.REACT_APP_MAPBOX_TOKEN
 ReactGA.pageview('/public-map')
@@ -36,6 +37,8 @@ const PublicMap = ({
     exclamationMarkers
   } = fireDataState
 
+  const [AQStations, setAQStations] = useState()
+  const [AQData, setAQData] = useState()
   const [address, setAddress] = useState('')
   const [radius, setRadius] = useState('')
   const [popupRadius, setPopupRadius] = useState('')
@@ -58,6 +61,8 @@ const PublicMap = ({
       window.removeEventListener('keydown', listener)
     }
   }, [])
+  
+
   useEffect(() => {
     ipAddress()
   }, [])
@@ -77,14 +82,30 @@ const PublicMap = ({
     })
   }
 
+  // useEffect to set the AQI data 
+  useEffect(() => {
+    axios 
+      .get(`https://appwildfirewatch.herokuapp.com/get_aqi_stations?lat=${viewport.latitude}&lng=${viewport.longitude}&distance=50`)
+      .then(res => {
+        setAQStations(res.data.data) 
+      })
+      .catch(err => console.log('error from AQ stations', err))  
+  }, [])
+
+  // Parse data from data science to geoJSON
+  useEffect(()=> {
+    if (AQStations) {
+    setAQData(GeoJSON.parse(AQStations, {Point: ['lat', 'lon']}))    
+    }
+  }, [AQStations]) 
+  
+
   //Gets the users location based on the IP address of the client and sets the viewport
   const ipAddress = () => {
     axios
       .get(`${process.env.REACT_APP_ENV}users/ip-address`)
-      .then(res => {
-        // console.log(res.data)
-        if (res.data.status !== 'fail') {
-          console.log('setting viewport', typeof res.data.lon)
+      .then(res => {        
+        if (res.data.status !== 'fail') {          
           setViewport({
             ...viewport,
             latitude: res.data.lat,
@@ -254,9 +275,6 @@ const PublicMap = ({
     setLocation(item.center)
   }
 
-  // console.log('exclamation marker', exclamationMarkers)
-  //the dummy data console log works but as it renders, it returns 100+ times and the "point" doesn't show up
-  console.log("dummyData return", dummyData)
   return (
     <div style={{ position: 'relative', width: '100%', height: '100%' }}>
       <div className="public-container">
@@ -270,7 +288,7 @@ const PublicMap = ({
             updateInputOnSelect={true}
             limit={4}
           />
-          <i class="fas fa-search fa-2x" onClick={handleSubmit}></i>
+          <i className="fas fa-search fa-2x" onClick={handleSubmit}></i>
         </form>
       </div>
 
@@ -284,14 +302,12 @@ const PublicMap = ({
         mapStyle="mapbox://styles/astillo/ck1s93bpe5bnk1cqsfd34n8ap"
       >
         {/* calls the  AQmap  */}
-        {dummyData && (  
-          <Source type="geojson" data={dummyData}>
+        {AQData && (  
+          <Source type="geojson" data={AQData}>
             <Layer {...heatmapLayer} />
           </Source> 
-          // console.log(dummyData)
         )}
         
-
         {allFireMarkers}
         {userLocalFireMarkers}
         {localFireMarkers}
@@ -313,13 +329,6 @@ const PublicMap = ({
             {selectedMarker[4] === 'fireLocation' && fireLocationPopup}
           </Popup>
         ) : null}
-
-        {/* {dummyData && (  
-          <Source type="geojson" data={dummyData}>
-            <Layer {...heatmapLayer} />
-          </Source> 
-          // console.log(dummyData)
-        )} */}
       </ReactMapGL>
     </div>
   )
