@@ -96,7 +96,8 @@ const PublicMap = ({
     if (AQStations) {
     setAQData(GeoJSON.parse(AQStations, {Point: ['lat', 'lon']}))    
     }
-  }, [])   
+  }, [AQStations]) 
+  
 
   //Gets the users location based on the IP address of the client and sets the viewport
   const ipAddress = () => {
