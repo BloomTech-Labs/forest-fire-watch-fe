@@ -82,7 +82,7 @@ const PublicMap = ({
     axios
       .get(`${process.env.REACT_APP_ENV}users/ip-address`)
       .then(res => {
-        console.log(res.data)
+        // console.log(res.data)
         if (res.data.status !== 'fail') {
           console.log('setting viewport', typeof res.data.lon)
           setViewport({
@@ -313,6 +313,13 @@ const PublicMap = ({
             {selectedMarker[4] === 'fireLocation' && fireLocationPopup}
           </Popup>
         ) : null}
+
+        {/* {dummyData && (  
+          <Source type="geojson" data={dummyData}>
+            <Layer {...heatmapLayer} />
+          </Source> 
+          // console.log(dummyData)
+        )} */}
       </ReactMapGL>
     </div>
   )

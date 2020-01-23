@@ -4,10 +4,10 @@
 export const dummyData =  { "type": "Feature",
 "geometry": {
   "type": "Point",
-  "coordinates": [33.2, -115.5]
+  "coordinates": [32.67618, -115.48307]
 },
 "properties": {
-  "name": "Niland-English Road, Imperial, California"
+  "name": "Calexico-Ethel Street, Imperial, California"
 }
 }
 // export const dummyData = { "type": "FeatureCollection",
