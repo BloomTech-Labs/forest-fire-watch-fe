@@ -85,7 +85,7 @@ const PublicMap = ({
   // useEffect to set the AQI data 
   useEffect(() => {
     axios 
-      .get(`https://appwildfirewatch.herokuapp.com/get_aqi_stations?lat=${viewport.latitude}&lng=${viewport.longitude}&distance=32`)
+      .get(`https://appwildfirewatch.herokuapp.com/get_aqi_stations?lat=${viewport.latitude}&lng=${viewport.longitude}&distance=50`)
       .then(res => {
         setAQStations(res.data.data) 
       })
