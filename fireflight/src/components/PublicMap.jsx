@@ -5,6 +5,7 @@ import { FireDataContext } from '../context/FireDataContext'
 import Geocoder from 'react-mapbox-gl-geocoder'
 import axios from 'axios'
 import ReactGA from 'react-ga'
+import GeoJSON from 'geojson'
 
 const token = process.env.REACT_APP_MAPBOX_TOKEN
 ReactGA.pageview('/public-map')
@@ -88,38 +89,42 @@ const PublicMap = ({
         setAQStations(res.data.data) 
       })
       .catch(err => console.log('error from AQ stations', err))
-        console.log('AQ UseEffect', AQStations);
-    getAQIdata()
-  }, [AQStations])
+        
+    // getAQIdata()     
+  }, [])
 
-  //Function to get AQI data from DS backend and set to state
-  const getAQIdata = () => {    
-    // axios 
-      // .get(`https://appwildfirewatch.herokuapp.com/get_aqi_stations?lat=${viewport.latitude}&lng=${viewport.longitude}&distance=50`)
-      // .then(res => {
-      //   setAQStations(res.data.data)        
-      // })
-      // .then(res => {
-        if (AQStations) {
+  useEffect(()=> {
+    if (AQStations) {
+    const AQGeoJSON =  GeoJSON.parse(AQStations, {Point: ['lat', 'lon']})
+    console.log('geojson test', AQGeoJSON)
+    }
+  })
+   
+  
 
-          AQStations.forEach(item => {
-            axios 
-              .get('https://appwildfirewatch.herokuapp.com/get_aqi_data', {
-                params: {
-                  lat: item.lat,
-                  lng: item.lon
-                }
-              })
-              .then(res => {
-                setAQData(res.data.data)
-                console.log(AQData)
-              })
-              .catch(err => console.log('error from individual AQ', err))
-            })
-        }
-        // })
-        // .catch(err => console.log('error from AQ stations', err))
-  }
+  //Function to get individual AQI data from DS backend and set to state
+  // const getAQIdata = () => {    
+   
+  //       if (AQStations) {
+
+  //         AQStations.forEach(item => {
+  //           axios 
+  //             .get('https://appwildfirewatch.herokuapp.com/get_aqi_data', {
+  //               params: {
+  //                 lat: item.lat,
+  //                 lng: item.lon
+  //               }
+  //             })
+  //             .then(res => {
+                
+  //               setAQData(res.data)
+  //               console.log(AQData)
+  //             })
+  //             .catch(err => console.log('error from individual AQ', err))
+  //           })
+  //       }
+        
+  // }
 
   //Gets the users location based on the IP address of the client and sets the viewport
   const ipAddress = () => {
