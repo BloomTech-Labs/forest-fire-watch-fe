@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react'
-import ReactMapGL, { Popup } from 'react-map-gl'
+import ReactMapGL, { Popup, Source, Layer } from 'react-map-gl'
 import styled from 'styled-components'
 import { FireDataContext } from '../context/FireDataContext'
 import Geocoder from 'react-mapbox-gl-geocoder'
 import axios from 'axios'
 import ReactGA from 'react-ga'
 import GeoJSON from 'geojson'
+import {heatmapLayer} from './AQmap'
 
 const token = process.env.REACT_APP_MAPBOX_TOKEN
 ReactGA.pageview('/public-map')
@@ -84,12 +85,12 @@ const PublicMap = ({
   // useEffect to set the AQI data 
   useEffect(() => {
     axios 
-      .get(`https://appwildfirewatch.herokuapp.com/get_aqi_stations?lat=${viewport.latitude}&lng=${viewport.longitude}&distance=50`)
+      .get(`https://appwildfirewatch.herokuapp.com/get_aqi_stations?lat=${viewport.latitude}&lng=${viewport.longitude}&distance=25`)
       .then(res => {
         setAQStations(res.data.data) 
       })
       .catch(err => console.log('error from AQ stations', err))  
-  }, [])
+  }, [viewport])
 
   // Parse data from data science to geoJSON
   useEffect(()=> {
@@ -301,6 +302,11 @@ const PublicMap = ({
         }}
         mapStyle="mapbox://styles/astillo/ck1s93bpe5bnk1cqsfd34n8ap"
       >
+        {AQData && (
+         <Source type="geojson" data={AQData}>
+            <Layer {...heatmapLayer} />
+          </Source>
+        )}
         {allFireMarkers}
         {userLocalFireMarkers}
         {localFireMarkers}
