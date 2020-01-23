@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react'
-import ReactMapGL, { Popup, Source, Layer } from 'react-map-gl'
+import ReactMapGL, { Popup } from 'react-map-gl'
 import styled from 'styled-components'
 import { FireDataContext } from '../context/FireDataContext'
 import Geocoder from 'react-mapbox-gl-geocoder'
 import axios from 'axios'
 import ReactGA from 'react-ga'
-import { heatmapLayer, dummyData } from './AQmap';
 
 const token = process.env.REACT_APP_MAPBOX_TOKEN
 ReactGA.pageview('/public-map')
@@ -254,9 +253,8 @@ const PublicMap = ({
     setLocation(item.center)
   }
 
-  // console.log('exclamation marker', exclamationMarkers)
-  //the dummy data console log works but as it renders, it returns 100+ times and the "point" doesn't show up
-  console.log("dummyData return", dummyData)
+  console.log('exclamations', exclamationMarkers)
+
   return (
     <div style={{ position: 'relative', width: '100%', height: '100%' }}>
       <div className="public-container">
@@ -283,15 +281,6 @@ const PublicMap = ({
         }}
         mapStyle="mapbox://styles/astillo/ck1s93bpe5bnk1cqsfd34n8ap"
       >
-        {/* calls the  AQmap  */}
-        {dummyData && (  
-          <Source type="geojson" data={dummyData}>
-            <Layer {...heatmapLayer} />
-          </Source> 
-          // console.log(dummyData)
-        )}
-        
-
         {allFireMarkers}
         {userLocalFireMarkers}
         {localFireMarkers}
