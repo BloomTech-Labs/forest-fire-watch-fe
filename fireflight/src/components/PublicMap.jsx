@@ -5,8 +5,10 @@ import { FireDataContext } from '../context/FireDataContext'
 import Geocoder from 'react-mapbox-gl-geocoder'
 import axios from 'axios'
 import ReactGA from 'react-ga'
-import { heatmapLayer } from './AQmap'
+import { clusterLayer, clusterCountLayer, unclusteredPointLayer} from './AQmap'
 import GeoJSON from 'geojson'
+
+
 
 const token = process.env.REACT_APP_MAPBOX_TOKEN
 ReactGA.pageview('/public-map')
@@ -37,6 +39,7 @@ const PublicMap = ({
     exclamationMarkers
   } = fireDataState
 
+
   const [AQStations, setAQStations] = useState()
   const [AQData, setAQData] = useState()
   const [address, setAddress] = useState('')
@@ -47,6 +50,8 @@ const PublicMap = ({
     longitude: -113.144528,
     zoom: 4
   })
+
+  
 
   // Add event listener to window - close whatever pop-up is selected
   useEffect(() => {
@@ -300,13 +305,26 @@ const PublicMap = ({
           setViewport(viewport)
         }}
         mapStyle="mapbox://styles/astillo/ck1s93bpe5bnk1cqsfd34n8ap"
+        // interactiveLayerIds={[clusterLayer.id]}
       >
-        {/* calls the  AQmap  */}
+        <Source
+          type="geojson"
+          data={AQData}
+          cluster={true}
+          clusterMaxZoom={14}
+          clusterRadius={50}
+        >
+          <Layer {...clusterLayer} data={AQData} />
+          <Layer {...clusterCountLayer} data={AQData} />
+          <Layer {...unclusteredPointLayer} data={AQData} />
+        </Source>
+        
+        {/* calls the  AQmap 
         {AQData && (  
           <Source type="geojson" data={AQData}>
             <Layer {...heatmapLayer} />
           </Source> 
-        )}
+        )} */}
         
         {allFireMarkers}
         {userLocalFireMarkers}
@@ -335,6 +353,7 @@ const PublicMap = ({
 }
 
 export default PublicMap
+
 
 const CheckBoxLabel = styled.label`
   position: absolute;
