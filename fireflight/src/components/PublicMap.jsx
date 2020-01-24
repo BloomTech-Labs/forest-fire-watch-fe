@@ -307,18 +307,21 @@ const PublicMap = ({
         mapStyle="mapbox://styles/astillo/ck1s93bpe5bnk1cqsfd34n8ap"
         // interactiveLayerIds={[clusterLayer.id]}
       >
-        <Source
-          type="geojson"
-          data={AQData}
-          cluster={true}
-          clusterMaxZoom={14}
-          clusterRadius={50}
-        >
-          <Layer {...clusterLayer} data={AQData} />
-          <Layer {...clusterCountLayer} data={AQData} />
-          <Layer {...unclusteredPointLayer} data={AQData} />
-        </Source>
-        
+        {/* calls the  AQmap  */}
+        {AQData && (  
+          <Source
+            type="geojson"
+            data={AQData}
+            cluster={true}
+            clusterMaxZoom={14}
+            clusterRadius={50}
+          >
+            <Layer {...clusterLayer} data={AQData} />
+            <Layer {...clusterCountLayer} data={AQData} />
+            <Layer {...unclusteredPointLayer} data={AQData} />
+          </Source>
+        )}
+       
         {/* calls the  AQmap 
         {AQData && (  
           <Source type="geojson" data={AQData}>
