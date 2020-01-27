@@ -6,7 +6,8 @@ import Geocoder from 'react-mapbox-gl-geocoder'
 import axios from 'axios'
 import ReactGA from 'react-ga'
 import GeoJSON from 'geojson'
-import {heatmapLayer} from './AQmap'
+import {clusterLayer, clusterCountLayer, unclusteredPointLayer, heatmapLayer} from './AQmap'
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 const token = process.env.REACT_APP_MAPBOX_TOKEN
 ReactGA.pageview('/public-map')
@@ -48,6 +49,8 @@ const PublicMap = ({
     zoom: 4
   })
 
+  
+
   // Add event listener to window - close whatever pop-up is selected
   useEffect(() => {
     const listener = e => {
@@ -85,20 +88,23 @@ const PublicMap = ({
   // useEffect to set the AQI data 
   useEffect(() => {
     axios 
-      .get(`https://appwildfirewatch.herokuapp.com/get_aqi_stations?lat=${viewport.latitude}&lng=${viewport.longitude}&distance=25`)
+      .get(`https://appwildfirewatch.herokuapp.com/get_aqi_stations?lat=${viewport.latitude}&lng=${viewport.longitude}&distance=45`)
       .then(res => {
         setAQStations(res.data.data) 
       })
       .catch(err => console.log('error from AQ stations', err))  
-  }, [viewport])
+  }, [])
 
-  // Parse data from data science to geoJSON
+  // Parse data from data science AQI endpoint to geoJSON
   useEffect(()=> {
     if (AQStations) {
-    setAQData(GeoJSON.parse(AQStations, {Point: ['lat', 'lon']}))    
+    setAQData(GeoJSON.parse(AQStations, {Point: ['lat', 'lon'] }))  
+    console.log(AQData)  
     }
   }, [AQStations]) 
   
+  
+
 
   //Gets the users location based on the IP address of the client and sets the viewport
   const ipAddress = () => {
@@ -303,9 +309,18 @@ const PublicMap = ({
         mapStyle="mapbox://styles/astillo/ck1s93bpe5bnk1cqsfd34n8ap"
       >
         {AQData && (
-         <Source type="geojson" data={AQData}>
-            <Layer {...heatmapLayer} />
-          </Source>
+         <Source
+         type="geojson"
+         data={AQData}
+        //  cluster={true}
+        //  clusterMaxZoom={16}
+        //  clusterRadius={50}
+       >
+         <Layer {...clusterLayer} data={AQData} />
+         <Layer {...clusterCountLayer} data={AQData} />
+         {/* <Layer {...unclusteredPointLayer} data={AQData} /> */}
+         {/* <Layer {...heatmapLayer} data={AQData} /> */}
+       </Source>
         )}
         {allFireMarkers}
         {userLocalFireMarkers}
