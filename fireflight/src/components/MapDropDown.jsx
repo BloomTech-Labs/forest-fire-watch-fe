@@ -1,5 +1,5 @@
 import React from 'react'
-import Menu from '@material-ui/core/Menu'
+import Popover from '@material-ui/core/Popover'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Switch from '@material-ui/core/Switch'
 import Theme from '../styles/custom-theme'
@@ -7,12 +7,18 @@ import { makeStyles, MuiThemeProvider } from '@material-ui/core/styles'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    color: 'white',
     position: 'absolute',
     top: 65,
-    left: 360
+    left: 360,
+    [theme.breakpoints.down('xs')]: {
+      position: 'absolute',
+      top: 47,
+      left: 310
+    }
   },
-  menu: {}
+  FormControlLabel: {
+    marginLeft: theme.spacing(0)
+  }
 }))
 
 export default function MapDropDown() {
@@ -28,6 +34,9 @@ export default function MapDropDown() {
     setAnchorEl(null)
   }
 
+  const open = Boolean(anchorEl)
+  const id = open ? 'simple-popover' : undefined
+
   // Toggle for AQI
   const [state, setState] = React.useState({
     AQIon: true
@@ -39,31 +48,34 @@ export default function MapDropDown() {
 
   return (
     <div className={classes.root}>
+      <i class="fa fa-chevron-circle-down fa-3x" onClick={handleClick}></i>
       <MuiThemeProvider theme={Theme}>
-        <i class="fa fa-chevron-circle-down fa-3x" onClick={handleClick}></i>
-        <Menu
-          className={classes.menu}
-          id="simple-menu"
+        <Popover
+          id={id}
+          open={open}
           anchorEl={anchorEl}
-          keepMounted
-          open={Boolean(anchorEl)}
           onClose={handleClose}
+          anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'right'
+          }}
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'right'
+          }}
         >
           <FormControlLabel
+            className={classes.FormControlLabel}
             control={
               <Switch
-                checked={state.checkedA}
+                checked={state.checked}
                 onChange={handleChange('AQIon')}
                 value="AQIon"
               />
             }
             label="Air Quality Overlay"
           />
-          <p>Line 2</p>
-          <p>Line 3</p>
-          <p>Line 4</p>
-          <p>Line 5</p>
-        </Menu>
+        </Popover>
       </MuiThemeProvider>
     </div>
   )
