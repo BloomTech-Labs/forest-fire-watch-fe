@@ -23,7 +23,6 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
-import ClickAwayListener from '@material-ui/core/ClickAwayListener'
 
 const drawerWidth = 250
 const useStyles = makeStyles(theme => ({
@@ -38,10 +37,6 @@ const useStyles = makeStyles(theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
     })
-  },
-  toolbar: {
-    marginLeft: 'auto',
-    marginRight: 10
   },
   MapLegend: {
     marginTop: 'auto',
@@ -137,7 +132,7 @@ export default function PersistentDrawerLeft({
         >
           <Toolbar className="toolbar">
             <IconButton
-              color="inherit"
+              color="secondary"
               aria-label="open drawer"
               onClick={handleDrawerOpen}
               edge="start"
@@ -146,11 +141,9 @@ export default function PersistentDrawerLeft({
             >
               <MenuIcon />
             </IconButton>
-            <span className={classes.toolbar}>
-              <Typography variant="h3" noWrap>
-                Wildfire Watch
-              </Typography>
-            </span>
+            <Typography variant="h4" color="textPrimary" noWrap>
+              Wildfire Watch
+            </Typography>
           </Toolbar>
         </AppBar>
 
@@ -164,7 +157,7 @@ export default function PersistentDrawerLeft({
           }}
         >
           <div className={classes.drawerHeader}>
-            <IconButton onClick={handleDrawerClose}>
+            <IconButton color="secondary" onClick={handleDrawerClose}>
               {theme.direction === 'ltr' ? (
                 <ChevronLeftIcon />
               ) : (

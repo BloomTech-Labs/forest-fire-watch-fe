@@ -1,15 +1,21 @@
 import { createMuiTheme } from '@material-ui/core/styles'
+import { Divider } from '@material-ui/core'
 export default createMuiTheme({
   palette: {
     primary: {
-      main: '#e0e0e0'
+      main: '#262626'
     },
     secondary: {
-      main: '#605D53'
+      main: '#e0e0e0'
     },
     background: {
-      paper: '#e0e0e0'
-    }
+      paper: '#262626'
+    },
+    text: {
+      primary: '#e0e0e0',
+      secondary: '#e0e0e0'
+    },
+    divider: '#343333'
   },
   shape: {
     borderRadius: 4

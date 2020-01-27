@@ -2,8 +2,24 @@ import React from 'react'
 import Popover from '@material-ui/core/Popover'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Switch from '@material-ui/core/Switch'
+import Typography from '@material-ui/core/Typography'
+import { green } from '@material-ui/core/colors'
 import Theme from '../styles/custom-theme'
-import { makeStyles, MuiThemeProvider } from '@material-ui/core/styles'
+import {
+  makeStyles,
+  MuiThemeProvider,
+  withStyles
+} from '@material-ui/core/styles'
+
+const GreenSwitch = withStyles({
+  switchBase: {
+    '&$checked + $track': {
+      backgroundColor: green[500]
+    }
+  },
+  checked: {},
+  track: {}
+})(Switch)
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -64,16 +80,24 @@ export default function MapDropDown() {
             horizontal: 'right'
           }}
         >
+          <Typography
+            variant="h5"
+            noWrap
+            align="center"
+            className={classes.Typography}
+          >
+            Filters
+          </Typography>
           <FormControlLabel
             className={classes.FormControlLabel}
             control={
-              <Switch
+              <GreenSwitch
                 checked={state.checked}
                 onChange={handleChange('AQIon')}
                 value="AQIon"
               />
             }
-            label="Air Quality Overlay"
+            label="Air Quality"
           />
         </Popover>
       </MuiThemeProvider>
