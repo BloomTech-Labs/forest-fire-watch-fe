@@ -23,6 +23,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
+import ClickAwayListener from '@material-ui/core/ClickAwayListener'
 
 const drawerWidth = 250
 const useStyles = makeStyles(theme => ({
@@ -68,8 +69,11 @@ const useStyles = makeStyles(theme => ({
     width: drawerWidth
   },
   drawerHeader: {
+    display: 'flex',
+    alignItems: 'center',
     padding: theme.spacing(0, 1),
-    ...theme.mixins.toolbar
+    ...theme.mixins.toolbar,
+    justifyContent: 'flex-end'
   },
   content: {
     flexGrow: 1,
@@ -104,6 +108,7 @@ export default function PersistentDrawerLeft({
   const handleDrawerClose = () => {
     setOpen(false)
   }
+
   const logout = e => {
     data.state.remote.logout()
     ReactGA.event({
@@ -148,6 +153,7 @@ export default function PersistentDrawerLeft({
             </span>
           </Toolbar>
         </AppBar>
+
         <Drawer
           className={classes.drawer}
           variant="persistent"
