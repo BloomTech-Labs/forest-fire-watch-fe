@@ -4,8 +4,8 @@ export const clusterLayer= {
   // source: props.data,
   filter: ['has', 'aqi'],
   paint: {
-    'circle-color': ['step', ['to-number', ['get', 'aqi']], 'lightgreen', 50, 'yellow', 100, 'orange', 200, 'red', 300, 'darkred'],  
-    'circle-radius': 12    
+    'circle-color': ['step', ['to-number', ['get', 'aqi']], '#7FFF00', 50, 'yellow', 100, 'darkorange', 200, 'red', 300, 'darkred'],  
+    'circle-radius': 11    
   }
 };
 
