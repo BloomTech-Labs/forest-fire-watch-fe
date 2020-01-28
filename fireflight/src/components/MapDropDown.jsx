@@ -3,6 +3,7 @@ import Popover from '@material-ui/core/Popover'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Switch from '@material-ui/core/Switch'
 import Typography from '@material-ui/core/Typography'
+import Box from '@material-ui/core/Box'
 import { green } from '@material-ui/core/colors'
 import Theme from '../styles/custom-theme'
 import {
@@ -88,17 +89,32 @@ export default function MapDropDown() {
           >
             Filters
           </Typography>
-          <FormControlLabel
-            className={classes.FormControlLabel}
-            control={
-              <GreenSwitch
-                checked={state.checked}
-                onChange={handleChange('AQIon')}
-                value="AQIon"
-              />
-            }
-            label="Air Quality"
-          />
+          <Box>
+            <FormControlLabel
+              className={classes.FormControlLabel}
+              control={
+                <GreenSwitch
+                  checked={state.checked}
+                  onChange={handleChange('AQIon')}
+                  value="AQIon"
+                />
+              }
+              label="Air Quality"
+            />
+          </Box>
+          <Box>
+            <FormControlLabel
+              className={classes.FormControlLabel}
+              control={
+                <GreenSwitch
+                  checked={state.checked}
+                  onChange={handleChange('AQIon')}
+                  value="AQIon"
+                />
+              }
+              label="Wildfires"
+            />
+          </Box>
         </Popover>
       </MuiThemeProvider>
     </div>
