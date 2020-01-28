@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import ReactMapGL, { Popup } from 'react-map-gl'
+import MapDropDown from './MapDropDown'
 import styled from 'styled-components'
 import { FireDataContext } from '../context/FireDataContext'
 import Geocoder from 'react-mapbox-gl-geocoder'
@@ -290,6 +291,7 @@ const PublicMap = ({
           />
           <i className="fas fa-search fa-2x" onClick={handleSubmit}></i>
         </form>
+        <MapDropDown />
       </div>
 
       <ReactMapGL
@@ -365,22 +367,22 @@ const FormRadiusInput = styled.input`
   }
 `
 
-const CheckBox = styled.input`
-  opacity: 0;
-  z-index: 1;
-  border-radius: 15px;
-  width: 42px;
-  height: 26px;
-  &:checked + ${CheckBoxLabel} {
-    background: #4fbe79;
-    &::after {
-      content: '';
-      display: block;
-      border-radius: 50%;
-      width: 18px;
-      height: 18px;
-      margin-left: 21px;
-      transition: 0.2s;
-    }
-  }
-`
+// const CheckBox = styled.input`
+//   opacity: 0;
+//   z-index: 1;
+//   border-radius: 15px;
+//   width: 42px;
+//   height: 26px;
+//   &:checked + ${CheckBoxLabel} {
+//     background: #4fbe79;
+//     &::after {
+//       content: '';
+//       display: block;
+//       border-radius: 50%;
+//       width: 18px;
+//       height: 18px;
+//       margin-left: 21px;
+//       transition: 0.2s;
+//     }
+//   }
+// `
