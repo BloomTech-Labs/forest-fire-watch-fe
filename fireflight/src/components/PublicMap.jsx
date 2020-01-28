@@ -48,6 +48,8 @@ const PublicMap = ({
     longitude: -113.144528,
     zoom: 4
   })
+  const [fireToggle, setFireToggle] = useState({fireToggle: true})
+  const [aqiToggle, setAqiToggle] = useState({aqiToggle: false})
 
   
 
@@ -281,6 +283,16 @@ const PublicMap = ({
     setLocation(item.center)
   }
 
+  const changeFireToggle = () => {    
+    const currentFireState = fireToggle.fireToggle
+    setFireToggle({fireToggle: !currentFireState})     
+  }
+  const changeAQIToggle = () => {    
+    const currentAqiState = aqiToggle.aqiToggle
+    setAqiToggle({aqiToggle: !currentAqiState})     
+  }
+
+  
 
   return (
     <div style={{ position: 'relative', width: '100%', height: '100%' }}>
@@ -297,8 +309,9 @@ const PublicMap = ({
           />
           <i className="fas fa-search fa-2x" onClick={handleSubmit}></i>
         </form>
+        
       </div>
-
+        
       <ReactMapGL
         {...viewport}
         mapboxApiAccessToken={token}
@@ -308,23 +321,23 @@ const PublicMap = ({
         }}
         mapStyle="mapbox://styles/astillo/ck1s93bpe5bnk1cqsfd34n8ap"
       >
-        {AQData && (
+        {AQData && (aqiToggle.aqiToggle === true) && (
          <Source
          type="geojson"
-         data={AQData}
-        //  cluster={true}
-        //  clusterMaxZoom={16}
-        //  clusterRadius={50}
-       >
+         data={AQData}        
+         >
          <Layer {...clusterLayer} data={AQData} />
          <Layer {...clusterCountLayer} data={AQData} />
-         {/* <Layer {...unclusteredPointLayer} data={AQData} /> */}
-         {/* <Layer {...heatmapLayer} data={AQData} /> */}
-       </Source>
+        
+        </Source>
         )}
-        {allFireMarkers}
-        {userLocalFireMarkers}
-        {localFireMarkers}
+         
+       <button className = 'fire-button' onClick={changeFireToggle}>FIRES</button>
+       <button className = 'aqi-button' onClick={changeAQIToggle}>AQI</button>
+       {(fireToggle.fireToggle === true) && allFireMarkers}
+       {(fireToggle.fireToggle === true) && userLocalFireMarkers}
+       {(fireToggle.fireToggle === true) && localFireMarkers}
+        
         {userLocationMarkers}
         {publicCoordinatesMarker}
         {exclamationMarkers}
