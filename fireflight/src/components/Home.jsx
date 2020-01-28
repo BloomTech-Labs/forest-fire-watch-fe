@@ -11,7 +11,6 @@ function Home({ setShowAuthForms, setLoginFormStatus, setRegisterFormStatus }) {
         setLoginFormStatus={setLoginFormStatus}
         setRegisterFormStatus={setRegisterFormStatus}
       />
-      
     </div>
   );
 }

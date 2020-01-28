@@ -8,6 +8,7 @@ import axios from 'axios'
 import ReactGA from 'react-ga'
 import GeoJSON from 'geojson'
 import { heatmapLayer } from './AQmap';
+import ColorLegend from './ColorLegend'
 
 const token = process.env.REACT_APP_MAPBOX_TOKEN
 ReactGA.pageview('/public-map')
@@ -310,6 +311,7 @@ const PublicMap = ({
           // console.log(AQData)
         )}
         
+        <ColorLegend />
 
         {allFireMarkers}
         {userLocalFireMarkers}
