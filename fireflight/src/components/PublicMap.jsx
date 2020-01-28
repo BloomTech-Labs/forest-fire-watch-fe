@@ -320,15 +320,7 @@ const PublicMap = ({
             <Layer {...clusterCountLayer} data={AQData} />
             <Layer {...unclusteredPointLayer} data={AQData} />
           </Source>
-        )}
-       
-        {/* calls the  AQmap 
-        {AQData && (  
-          <Source type="geojson" data={AQData}>
-            <Layer {...heatmapLayer} />
-          </Source> 
-        )} */}
-        
+        )} 
         {allFireMarkers}
         {userLocalFireMarkers}
         {localFireMarkers}
