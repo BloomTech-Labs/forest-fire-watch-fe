@@ -5,7 +5,10 @@ const ColorLegend = () => {
   const legendStyle = {
     display: 'flex',
     flexDirection: 'row',
-    marginTop: '100px'
+    marginTop: '100px',
+    position: 'fixed',
+    bottom: '50px',
+    right: '30px',
   }
 
   const pStyle = {
