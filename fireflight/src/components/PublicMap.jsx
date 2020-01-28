@@ -332,8 +332,8 @@ const PublicMap = ({
         </Source>
         )}
          
-       <button className = 'fire-button' onClick={changeFireToggle}>FIRES</button>
-       <button className = 'aqi-button' onClick={changeAQIToggle}>AQI</button>
+       {/* <button className = 'fire-button' onClick={changeFireToggle}>FIRES</button>
+       <button className = 'aqi-button' onClick={changeAQIToggle}>AQI</button> */}
        {(fireToggle.fireToggle === true) && allFireMarkers}
        {(fireToggle.fireToggle === true) && userLocalFireMarkers}
        {(fireToggle.fireToggle === true) && localFireMarkers}
