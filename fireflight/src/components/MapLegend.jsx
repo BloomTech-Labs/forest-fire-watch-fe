@@ -3,13 +3,11 @@ import fireIcon from '../images/fireIcon.svg'
 import exclamationMark from '../images/exclaim.png'
 import locationIcon from '../images/locationIcon.svg'
 import locationIconGreen from '../images/locationIconGreen.svg'
-import mapLegend from '../images/mapLegend.svg'
 
 const MapLegend = () => {
   return (
     <div className="legend-container">
       <div className="legend-header">
-        <img src={mapLegend} height="18" width="10" alt="map-view" />
         <h4 className="legend-title">Map Legend</h4>
       </div>
 

@@ -72,7 +72,7 @@ export default function MapDropDown() {
           anchorEl={anchorEl}
           onClose={handleClose}
           anchorOrigin={{
-            vertical: 'top',
+            vertical: 'bottom',
             horizontal: 'right'
           }}
           transformOrigin={{
