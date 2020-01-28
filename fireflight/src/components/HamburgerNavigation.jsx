@@ -61,7 +61,8 @@ const useStyles = makeStyles(theme => ({
     flexShrink: 0
   },
   drawerPaper: {
-    width: drawerWidth
+    width: drawerWidth,
+    backgroundColor: '#262626'
   },
   drawerHeader: {
     display: 'flex',
@@ -141,7 +142,7 @@ export default function PersistentDrawerLeft({
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h4" color="textPrimary" noWrap>
+            <Typography variant="h4" color="textSecondary" noWrap>
               Wildfire Watch
             </Typography>
           </Toolbar>
@@ -176,7 +177,7 @@ export default function PersistentDrawerLeft({
               to="/"
               text-align="center"
             >
-              <ListItemText primary="Home" />
+              <ListItemText secondary="Home" />
             </ListItem>
             {localStorage.getItem('token') == null && (
               <>
@@ -191,7 +192,7 @@ export default function PersistentDrawerLeft({
                     handleDrawerClose(true)
                   }}
                 >
-                  <ListItemText primary="Signup" />
+                  <ListItemText secondary="Signup" />
                 </ListItem>
                 <ListItem
                   button
@@ -204,7 +205,7 @@ export default function PersistentDrawerLeft({
                     handleDrawerClose(true)
                   }}
                 >
-                  <ListItemText primary="Login" />
+                  <ListItemText secondary="Login" />
                 </ListItem>
               </>
             )}
@@ -218,7 +219,7 @@ export default function PersistentDrawerLeft({
                   to="/dashboard"
                   activeClassName="current"
                 >
-                  <ListItemText primary="Profile" />
+                  <ListItemText secondary="Profile" />
                 </ListItem>
                 <ListItem
                   button
@@ -228,7 +229,7 @@ export default function PersistentDrawerLeft({
                   to="/"
                   onClick={logout}
                 >
-                  <ListItemText primary="Logout" />
+                  <ListItemText secondary="Logout" />
                 </ListItem>
               </>
             )}
@@ -241,7 +242,7 @@ export default function PersistentDrawerLeft({
             to="/checklist"
             onClick={handleDrawerClose}
           >
-            <ListItemText primary="Checklist" />
+            <ListItemText secondary="Checklist" />
           </ListItem>
           <span className={classes.MapLegend}>
             <MapLegend />

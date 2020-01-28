@@ -9,10 +9,9 @@ export default createMuiTheme({
       main: '#e0e0e0'
     },
     background: {
-      paper: '#262626'
+      paper: '#e0e0e0'
     },
     text: {
-      primary: '#e0e0e0',
       secondary: '#e0e0e0'
     },
     divider: '#343333'
