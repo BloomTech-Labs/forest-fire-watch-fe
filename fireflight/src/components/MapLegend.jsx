@@ -9,7 +9,6 @@ const MapLegend = () => {
   return (
     <div className="legend-container">
       <div className="legend-header">
-        <img src={mapLegend} height="18" width="10" alt="map-view" />
         <h4 className="legend-title">Map Legend</h4>
       </div>
 

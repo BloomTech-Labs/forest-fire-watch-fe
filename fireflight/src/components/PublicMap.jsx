@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import ReactMapGL, { Popup, Source, Layer } from 'react-map-gl'
+import MapDropDown from './MapDropDown'
 import styled from 'styled-components'
 import { FireDataContext } from '../context/FireDataContext'
 import Geocoder from 'react-mapbox-gl-geocoder'
@@ -283,14 +284,7 @@ const PublicMap = ({
     setLocation(item.center)
   }
 
-  const changeFireToggle = () => {    
-    const currentFireState = fireToggle.fireToggle
-    setFireToggle({fireToggle: !currentFireState})     
-  }
-  const changeAQIToggle = () => {    
-    const currentAqiState = aqiToggle.aqiToggle
-    setAqiToggle({aqiToggle: !currentAqiState})     
-  }
+  
 
   
 
@@ -309,7 +303,12 @@ const PublicMap = ({
           />
           <i className="fas fa-search fa-2x" onClick={handleSubmit}></i>
         </form>
-        
+        <MapDropDown 
+          fireToggle={fireToggle} 
+          setFireToggle={setFireToggle} 
+          aqiToggle={aqiToggle} 
+          setAqiToggle={setAqiToggle} 
+        />
       </div>
         
       <ReactMapGL
@@ -332,12 +331,6 @@ const PublicMap = ({
         </Source>
         )}
          
-       <button className = 'aqi-button' onClick={() => {
-         changeFireToggle()
-         changeAQIToggle()
-        }}
-        > AQI</button>
-       <button className = 'fire-button' onClick={changeFireToggle} >FIRES</button>
        {(fireToggle.fireToggle === true) && allFireMarkers}
        {(fireToggle.fireToggle === true) && userLocalFireMarkers}
        {(fireToggle.fireToggle === true) && localFireMarkers}
@@ -403,22 +396,22 @@ const FormRadiusInput = styled.input`
   }
 `
 
-const CheckBox = styled.input`
-  opacity: 0;
-  z-index: 1;
-  border-radius: 15px;
-  width: 42px;
-  height: 26px;
-  &:checked + ${CheckBoxLabel} {
-    background: #4fbe79;
-    &::after {
-      content: '';
-      display: block;
-      border-radius: 50%;
-      width: 18px;
-      height: 18px;
-      margin-left: 21px;
-      transition: 0.2s;
-    }
-  }
-`
+// const CheckBox = styled.input`
+//   opacity: 0;
+//   z-index: 1;
+//   border-radius: 15px;
+//   width: 42px;
+//   height: 26px;
+//   &:checked + ${CheckBoxLabel} {
+//     background: #4fbe79;
+//     &::after {
+//       content: '';
+//       display: block;
+//       border-radius: 50%;
+//       width: 18px;
+//       height: 18px;
+//       margin-left: 21px;
+//       transition: 0.2s;
+//     }
+//   }
+// `
