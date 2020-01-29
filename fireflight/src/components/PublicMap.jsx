@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import ReactMapGL, { Popup, Source, Layer } from 'react-map-gl'
 import MapDropDown from './MapDropDown'
+import ColorLegend from './ColorLegend'
 import styled from 'styled-components'
 import { FireDataContext } from '../context/FireDataContext'
 import Geocoder from 'react-mapbox-gl-geocoder'
