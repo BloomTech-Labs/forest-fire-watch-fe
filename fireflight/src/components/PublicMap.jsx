@@ -323,11 +323,11 @@ const PublicMap = ({
          >
          <Layer {...clusterLayer} data={AQData} />
          <Layer {...clusterCountLayer} data={AQData} />
+
+         <ColorLegend />
         
         </Source>
         )}
-        
-        <ColorLegend />
 
        {(fireToggle.fireToggle === true) && allFireMarkers}
        {(fireToggle.fireToggle === true) && userLocalFireMarkers}

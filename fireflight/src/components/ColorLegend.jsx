@@ -8,6 +8,7 @@ const ColorLegend = () => {
     position: 'fixed',
     bottom: '50px',
     right: '30px',
+    zIndex: '10', 
   }
 
   const spanStyle = {
