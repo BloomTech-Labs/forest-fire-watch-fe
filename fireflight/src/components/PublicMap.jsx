@@ -315,6 +315,8 @@ const PublicMap = ({
           <Source type="geojson" data={AQData}>
             <Layer {...clusterLayer} data={AQData} />
             <Layer {...clusterCountLayer} data={AQData} />
+
+            <ColorLegend />
           </Source>
         )}
 
