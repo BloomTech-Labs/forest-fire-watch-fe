@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useContext } from 'react'
 import ReactMapGL, { Popup, Source, Layer } from 'react-map-gl'
 import MapDropDown from './MapDropDown'
@@ -9,6 +10,7 @@ import ReactGA from 'react-ga'
 import GeoJSON from 'geojson'
 import {clusterLayer, clusterCountLayer, unclusteredPointLayer, heatmapLayer} from './AQmap'
 import 'mapbox-gl/dist/mapbox-gl.css';
+import ColorLegend from './ColorLegend';
 
 const token = process.env.REACT_APP_MAPBOX_TOKEN
 ReactGA.pageview('/public-map')
@@ -107,8 +109,6 @@ const PublicMap = ({
   }, [AQStations]) 
   
   
-
-
   //Gets the users location based on the IP address of the client and sets the viewport
   const ipAddress = () => {
     axios
@@ -284,10 +284,6 @@ const PublicMap = ({
     setLocation(item.center)
   }
 
-  
-
-  
-
   return (
     <div style={{ position: 'relative', width: '100%', height: '100%' }}>
       <div className="public-container">
@@ -327,10 +323,12 @@ const PublicMap = ({
          >
          <Layer {...clusterLayer} data={AQData} />
          <Layer {...clusterCountLayer} data={AQData} />
+
+         <ColorLegend />
         
         </Source>
         )}
-         
+
        {(fireToggle.fireToggle === true) && allFireMarkers}
        {(fireToggle.fireToggle === true) && userLocalFireMarkers}
        {(fireToggle.fireToggle === true) && localFireMarkers}
