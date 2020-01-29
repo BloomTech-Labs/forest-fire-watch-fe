@@ -1,16 +1,15 @@
-
 import React, { useState, useEffect, useContext } from 'react'
 import ReactMapGL, { Popup, Source, Layer } from 'react-map-gl'
 import MapDropDown from './MapDropDown'
+import ColorLegend from './ColorLegend'
 import styled from 'styled-components'
 import { FireDataContext } from '../context/FireDataContext'
 import Geocoder from 'react-mapbox-gl-geocoder'
 import axios from 'axios'
 import ReactGA from 'react-ga'
 import GeoJSON from 'geojson'
-import {clusterLayer, clusterCountLayer, unclusteredPointLayer, heatmapLayer} from './AQmap'
-import 'mapbox-gl/dist/mapbox-gl.css';
-import ColorLegend from './ColorLegend';
+import { clusterLayer, clusterCountLayer } from './AQmap'
+import 'mapbox-gl/dist/mapbox-gl.css'
 
 const token = process.env.REACT_APP_MAPBOX_TOKEN
 ReactGA.pageview('/public-map')
@@ -51,10 +50,8 @@ const PublicMap = ({
     longitude: -113.144528,
     zoom: 4
   })
-  const [fireToggle, setFireToggle] = useState({fireToggle: true})
-  const [aqiToggle, setAqiToggle] = useState({aqiToggle: false})
-
-  
+  const [fireToggle, setFireToggle] = useState({ fireToggle: true })
+  const [aqiToggle, setAqiToggle] = useState({ aqiToggle: false })
 
   // Add event listener to window - close whatever pop-up is selected
   useEffect(() => {
@@ -69,7 +66,6 @@ const PublicMap = ({
       window.removeEventListener('keydown', listener)
     }
   }, [])
-  
 
   useEffect(() => {
     ipAddress()
@@ -90,31 +86,31 @@ const PublicMap = ({
     })
   }
 
-  // useEffect to set the AQI data 
+  // useEffect to set the AQI data
   useEffect(() => {
-    axios 
-      .get(`https://appwildfirewatch.herokuapp.com/get_aqi_stations?lat=${viewport.latitude}&lng=${viewport.longitude}&distance=45`)
+    axios
+      .get(
+        `https://appwildfirewatch.herokuapp.com/get_aqi_stations?lat=${viewport.latitude}&lng=${viewport.longitude}&distance=45`
+      )
       .then(res => {
-        setAQStations(res.data.data) 
+        setAQStations(res.data.data)
       })
-      .catch(err => console.log('error from AQ stations', err))  
+      .catch(err => console.log('error from AQ stations', err))
   }, [])
 
-  // Parse data from data science AQI endpoint to geoJSON
-  useEffect(()=> {
+  // Parse data from data science to geoJSON
+  useEffect(() => {
     if (AQStations) {
-    setAQData(GeoJSON.parse(AQStations, {Point: ['lat', 'lon'] }))  
-    console.log(AQData)  
+      setAQData(GeoJSON.parse(AQStations, { Point: ['lat', 'lon'] }))
     }
-  }, [AQStations]) 
-  
-  
+  }, [AQStations])
+
   //Gets the users location based on the IP address of the client and sets the viewport
   const ipAddress = () => {
     axios
       .get(`${process.env.REACT_APP_ENV}users/ip-address`)
-      .then(res => {        
-        if (res.data.status !== 'fail') {          
+      .then(res => {
+        if (res.data.status !== 'fail') {
           setViewport({
             ...viewport,
             latitude: res.data.lat,
@@ -299,14 +295,14 @@ const PublicMap = ({
           />
           <i className="fas fa-search fa-2x" onClick={handleSubmit}></i>
         </form>
-        <MapDropDown 
-          fireToggle={fireToggle} 
-          setFireToggle={setFireToggle} 
-          aqiToggle={aqiToggle} 
-          setAqiToggle={setAqiToggle} 
+        <MapDropDown
+          fireToggle={fireToggle}
+          setFireToggle={setFireToggle}
+          aqiToggle={aqiToggle}
+          setAqiToggle={setAqiToggle}
         />
       </div>
-        
+
       <ReactMapGL
         {...viewport}
         mapboxApiAccessToken={token}
@@ -316,23 +312,19 @@ const PublicMap = ({
         }}
         mapStyle="mapbox://styles/astillo/ck1s93bpe5bnk1cqsfd34n8ap"
       >
-        {AQData && (aqiToggle.aqiToggle === true) && (
-         <Source
-         type="geojson"
-         data={AQData}        
-         >
-         <Layer {...clusterLayer} data={AQData} />
-         <Layer {...clusterCountLayer} data={AQData} />
+        {AQData && aqiToggle.aqiToggle === true && (
+          <Source type="geojson" data={AQData}>
+            <Layer {...clusterLayer} data={AQData} />
+            <Layer {...clusterCountLayer} data={AQData} />
 
-         <ColorLegend />
-        
-        </Source>
+            <ColorLegend />
+          </Source>
         )}
 
-       {(fireToggle.fireToggle === true) && allFireMarkers}
-       {(fireToggle.fireToggle === true) && userLocalFireMarkers}
-       {(fireToggle.fireToggle === true) && localFireMarkers}
-        
+        {fireToggle.fireToggle === true && allFireMarkers}
+        {fireToggle.fireToggle === true && userLocalFireMarkers}
+        {fireToggle.fireToggle === true && localFireMarkers}
+
         {userLocationMarkers}
         {publicCoordinatesMarker}
         {exclamationMarkers}
@@ -358,28 +350,6 @@ const PublicMap = ({
 
 export default PublicMap
 
-const CheckBoxLabel = styled.label`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 42px;
-  height: 26px;
-  border-radius: 15px;
-  background: #bebebe;
-  cursor: pointer;
-  &::after {
-    content: '';
-    display: block;
-    border-radius: 50%;
-    width: 18px;
-    height: 18px;
-    margin: 3px;
-    background: #ffffff;
-    box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.2);
-    transition: 0.2s;
-  }
-`
-
 const FormRadiusInput = styled.input`
   width: 150px;
   margin: 25px 17.5px 5px 10px;
@@ -393,23 +363,3 @@ const FormRadiusInput = styled.input`
     padding: 8px;
   }
 `
-
-// const CheckBox = styled.input`
-//   opacity: 0;
-//   z-index: 1;
-//   border-radius: 15px;
-//   width: 42px;
-//   height: 26px;
-//   &:checked + ${CheckBoxLabel} {
-//     background: #4fbe79;
-//     &::after {
-//       content: '';
-//       display: block;
-//       border-radius: 50%;
-//       width: 18px;
-//       height: 18px;
-//       margin-left: 21px;
-//       transition: 0.2s;
-//     }
-//   }
-// `
