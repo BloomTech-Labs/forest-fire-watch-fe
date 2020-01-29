@@ -16,7 +16,7 @@ import { UserDataProvider } from './context/UserDataContext'
 import { FireDataContext } from './context/FireDataContext'
 import AddressContext from './context/AddressContext'
 import { haversineDistance } from './utils/haversineDistance'
-import  Checklist from './components/Checklist'
+import Checklist from './components/Checklist'
 
 // import Modal from "./components/Modal/Modal"
 

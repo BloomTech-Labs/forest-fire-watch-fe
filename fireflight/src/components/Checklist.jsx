@@ -42,40 +42,41 @@ const checklistItems = [
 export default function CheckboxList(props) {
   const classes = useStyles()
   const [checked, setChecked] = React.useState([])
-  
+
   const checkedItemsString = localStorage.getItem('checkedItems')
-  
-  
-  React.useEffect(()=> {
-    if (localStorage.getItem('checkedItems'))    
-    {
+
+  React.useEffect(() => {
+    if (localStorage.getItem('checkedItems')) {
       const checkedItems = checkedItemsString.split(',')
-      setChecked(checkedItems)      
-  }
+      setChecked(checkedItems)
+    }
   }, [])
 
-  const handleToggle = checklistItems => (e) => {
+  const handleToggle = checklistItems => e => {
     const currentIndex = checked.indexOf(checklistItems)
-    const newChecked = [...checked]    
+    const newChecked = [...checked]
 
     if (currentIndex === -1) {
       newChecked.push(checklistItems)
     } else {
-      newChecked.splice(currentIndex, 1) 
+      newChecked.splice(currentIndex, 1)
     }
-    setChecked(newChecked) 
-    localStorage.setItem('checkedItems', newChecked)           
+    setChecked(newChecked)
+    localStorage.setItem('checkedItems', newChecked)
   }
 
   return (
-    <>
-    <h5 className='map-button-checklist' onClick={() => props.history.push('/home')}>
-        <i class="fas fa-angle-left"
-          onClick={() => props.history.push('/home')}>          
-         </i>Map
-         
-      </h5>
     <div className="checklistContainer">
+      <h5
+        className="map-button-checklist"
+        onClick={() => props.history.push('/home')}
+      >
+        <i
+          class="fas fa-angle-left"
+          onClick={() => props.history.push('/home')}
+        ></i>
+        Map
+      </h5>
       <List className={classes.root}>
         <MuiThemeProvider theme={Theme}>
           <Typography variant="h5" className="checklistTitle">
@@ -94,6 +95,7 @@ export default function CheckboxList(props) {
               >
                 <ListItemIcon>
                   <Checkbox
+                    color="primary"
                     edge="start"
                     checked={checked.indexOf(checklistItem) !== -1}
                     tabIndex={-1}
@@ -108,6 +110,5 @@ export default function CheckboxList(props) {
         </MuiThemeProvider>
       </List>
     </div>
-    </>
   )
 }
