@@ -8,6 +8,8 @@ import axios from 'axios'
 import ReactGA from 'react-ga'
 import { clusterLayer, clusterCountLayer, unclusteredPointLayer} from './AQmap'
 import GeoJSON from 'geojson'
+import {clusterLayer, clusterCountLayer, unclusteredPointLayer, heatmapLayer} from './AQmap'
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 
 
@@ -51,6 +53,10 @@ const PublicMap = ({
     longitude: -113.144528,
     zoom: 4
   })
+  const [fireToggle, setFireToggle] = useState({fireToggle: true})
+  const [aqiToggle, setAqiToggle] = useState({aqiToggle: false})
+
+  
 
   
 
@@ -91,20 +97,23 @@ const PublicMap = ({
   // useEffect to set the AQI data 
   useEffect(() => {
     axios 
-      .get(`https://appwildfirewatch.herokuapp.com/get_aqi_stations?lat=${viewport.latitude}&lng=${viewport.longitude}&distance=50`)
+      .get(`https://appwildfirewatch.herokuapp.com/get_aqi_stations?lat=${viewport.latitude}&lng=${viewport.longitude}&distance=45`)
       .then(res => {
         setAQStations(res.data.data) 
       })
       .catch(err => console.log('error from AQ stations', err))  
   }, [])
 
-  // Parse data from data science to geoJSON
+  // Parse data from data science AQI endpoint to geoJSON
   useEffect(()=> {
     if (AQStations) {
-    setAQData(GeoJSON.parse(AQStations, {Point: ['lat', 'lon']}))    
+    setAQData(GeoJSON.parse(AQStations, {Point: ['lat', 'lon'] }))  
+    console.log(AQData)  
     }
   }, [AQStations]) 
   
+  
+
 
   //Gets the users location based on the IP address of the client and sets the viewport
   const ipAddress = () => {
@@ -296,9 +305,14 @@ const PublicMap = ({
           />
           <i className="fas fa-search fa-2x" onClick={handleSubmit}></i>
         </form>
-        <MapDropDown />
+        <MapDropDown 
+          fireToggle={fireToggle} 
+          setFireToggle={setFireToggle} 
+          aqiToggle={aqiToggle} 
+          setAqiToggle={setAqiToggle} 
+        />
       </div>
-
+        
       <ReactMapGL
         {...viewport}
         mapboxApiAccessToken={token}
@@ -309,23 +323,21 @@ const PublicMap = ({
         mapStyle="mapbox://styles/astillo/ck1s93bpe5bnk1cqsfd34n8ap"
         // interactiveLayerIds={[clusterLayer.id]}
       >
-        {/* calls the  AQmap  */}
-        {AQData && (  
-          <Source
-            type="geojson"
-            data={AQData}
-            cluster={true}
-            clusterMaxZoom={14}
-            clusterRadius={50}
-          >
-            <Layer {...clusterLayer} data={AQData} />
-            <Layer {...clusterCountLayer} data={AQData} />
-            <Layer {...unclusteredPointLayer} data={AQData} />
-          </Source>
-        )} 
-        {allFireMarkers}
-        {userLocalFireMarkers}
-        {localFireMarkers}
+        {AQData && (aqiToggle.aqiToggle === true) && (
+         <Source
+         type="geojson"
+         data={AQData}        
+         >
+         <Layer {...clusterLayer} data={AQData} />
+         <Layer {...clusterCountLayer} data={AQData} />
+        
+        </Source>
+        )}
+         
+       {(fireToggle.fireToggle === true) && allFireMarkers}
+       {(fireToggle.fireToggle === true) && userLocalFireMarkers}
+       {(fireToggle.fireToggle === true) && localFireMarkers}
+        
         {userLocationMarkers}
         {publicCoordinatesMarker}
         {exclamationMarkers}

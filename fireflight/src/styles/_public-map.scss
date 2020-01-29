@@ -47,9 +47,21 @@
   .delete-location-btn {
     margin-top: 6px;
   }
+
 }
 
 .save-location-modal {
   display: flex;
   flex-direction: column;
+}
+
+.fire-button {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+.aqi-button {
+  position: absolute;
+  left: 60%;
+  top: 50%;
 }

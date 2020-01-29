@@ -38,9 +38,16 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function MapDropDown() {
+export default function MapDropDown(props) {
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = React.useState(null)
+
+  const {
+    fireToggle,
+    setFireToggle,
+    aqiToggle,
+    setAqiToggle
+  } = props
 
   // Controls menu open and close
   const handleClick = event => {
@@ -56,11 +63,21 @@ export default function MapDropDown() {
 
   // Toggle for AQI
   const [state, setState] = React.useState({
-    AQIon: true
+    AQIon: false,
+    Fireon: true
   })
 
   const handleChange = name => event => {
     setState({ ...state, [name]: event.target.checked })
+  }
+
+  const changeFireToggle = () => {    
+    const currentFireState = fireToggle.fireToggle
+    setFireToggle({fireToggle: !currentFireState})     
+  }
+  const changeAQIToggle = () => {    
+    const currentAqiState = aqiToggle.aqiToggle
+    setAqiToggle({aqiToggle: !currentAqiState})     
   }
 
   return (
@@ -94,8 +111,11 @@ export default function MapDropDown() {
               className={classes.FormControlLabel}
               control={
                 <GreenSwitch
-                  checked={state.checked}
+                  checked={state.AQIon}
                   onChange={handleChange('AQIon')}
+                  onClick={() => {                    
+                    changeAQIToggle()                    
+                   }}
                   value="AQIon"
                 />
               }
@@ -107,8 +127,9 @@ export default function MapDropDown() {
               className={classes.FormControlLabel}
               control={
                 <GreenSwitch
-                  checked={state.checked}
-                  onChange={handleChange('AQIon')}
+                  checked={state.Fireon}
+                  onChange={handleChange('Fireon')}
+                  onClick={changeFireToggle}
                   value="AQIon"
                 />
               }

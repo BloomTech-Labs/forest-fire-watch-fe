@@ -4,9 +4,9 @@ import axiosWithAuth from '../utils/axiosWithAuth'
 import { Marker } from 'react-map-gl'
 import { haversineDistance } from '../utils/haversineDistance'
 import fireIcon from '../images/fireIcon.svg'
-import exclamationMark from '../images/exclaim.png'
+import exclamationMark from '../images/alert.png'
 import locationIcon from '../images/locationIcon.svg'
-import locationIconGreen from '../images/locationIconGreen.svg'
+import locationIconBlue from '../images/locationIconBlue.svg'
 import ReactGA from 'react-ga'
 import {
   GET_USER_LOCATIONS,
@@ -194,8 +194,8 @@ export const FireDataProvider = ({ children }) => {
                     >
                       <img
                         src={exclamationMark}
-                        height="20"
-                        width="27"
+                        height="25"
+                        width="15"
                         style={{
                           zIndex: 3,
                           transform: 'translate(-15px, -29px)'
@@ -289,7 +289,7 @@ export const FireDataProvider = ({ children }) => {
                 key={`greenMarker${location[1]}`}
               >
                 <img
-                  src={locationIconGreen}
+                  src={locationIconBlue}
                   height="35"
                   width="20"
                   style={{ zIndex: 5, transform: 'translate(-17.5px, -35px)' }}
@@ -347,7 +347,7 @@ export const FireDataProvider = ({ children }) => {
                 key={`greenMarker${fireDataState.selectedMarker[0]}`}
               >
                 <img
-                  src={locationIconGreen}
+                  src={locationIconBlue}
                   height="35"
                   width="20"
                   style={{ zIndex: 5, transform: 'translate(-17.5px, -35px)' }}
@@ -580,8 +580,8 @@ export const FireDataProvider = ({ children }) => {
             >
               <img
                 src={exclamationMark}
-                height="20"
-                width="27"
+                height="24"
+                width="25"
                 style={{ zIndex: 3, transform: 'translate(-15px, -29px)' }}
                 alt=""
               />
@@ -598,7 +598,7 @@ export const FireDataProvider = ({ children }) => {
             key={`greenMarker${index}${uLoc.latitude}${index}`}
           >
             <img
-              src={locationIconGreen}
+              src={locationIconBlue}
               height="35"
               width="20"
               style={{ zIndex: 5, transform: 'translate(-7.5px, -35px)' }}
