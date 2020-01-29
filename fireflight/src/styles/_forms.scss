@@ -46,12 +46,13 @@
   .react-geocoder {
     width: 40rem;
     height: 5rem;
-    background: #ffffff;
+    opacity: 0.85;
+    background: #e0e0e0;
     border: 2px solid #9e9e9e;
     border-radius: 5px;
     font-style: normal;
     font-weight: normal;
-    font-size: 2rem;
+    font-size: 40rem;
     line-height: 2.7rem;
     display: flex;
     align-items: center;
@@ -68,6 +69,7 @@
       line-height: 4.5rem;
     }
     input {
+      background: #e0e0e0;
       width: 35rem;
       margin-left: 0.5rem;
       margin-right: 3.5rem;
@@ -83,7 +85,6 @@
       left: 2rem;
       top: 11.8rem;
       padding-left: 0rem;
-      background: #ffffff;
       border-radius: 3px;
 
       input {
@@ -96,7 +97,7 @@
 
   .react-geocoder-results {
     border-top: 0.8px solid #000000;
-    background: white;
+    background: #e0e0e0;
     width: 39.5rem;
     box-sizing: border-box;
     height: auto;
@@ -121,4 +122,13 @@
       font-size: 1.4rem;
     }
   }
+}
+
+.fas {
+  color: #262626;
+}
+
+.fa {
+  color: #e0e0e0;
+  opacity: 0.85;
 }

@@ -1,14 +1,16 @@
 
 import React, { useState, useEffect, useContext } from 'react'
 import ReactMapGL, { Popup, Source, Layer } from 'react-map-gl'
+import MapDropDown from './MapDropDown'
 import styled from 'styled-components'
 import { FireDataContext } from '../context/FireDataContext'
 import Geocoder from 'react-mapbox-gl-geocoder'
 import axios from 'axios'
 import ReactGA from 'react-ga'
 import GeoJSON from 'geojson'
-import { heatmapLayer } from './AQmap';
-import ColorLegend from './ColorLegend'
+import {clusterLayer, clusterCountLayer, unclusteredPointLayer, heatmapLayer} from './AQmap'
+import 'mapbox-gl/dist/mapbox-gl.css';
+import ColorLegend from './ColorLegend';
 
 const token = process.env.REACT_APP_MAPBOX_TOKEN
 ReactGA.pageview('/public-map')
@@ -49,6 +51,10 @@ const PublicMap = ({
     longitude: -113.144528,
     zoom: 4
   })
+  const [fireToggle, setFireToggle] = useState({fireToggle: true})
+  const [aqiToggle, setAqiToggle] = useState({aqiToggle: false})
+
+  
 
   // Add event listener to window - close whatever pop-up is selected
   useEffect(() => {
@@ -87,21 +93,22 @@ const PublicMap = ({
   // useEffect to set the AQI data 
   useEffect(() => {
     axios 
-      .get(`https://appwildfirewatch.herokuapp.com/get_aqi_stations?lat=${viewport.latitude}&lng=${viewport.longitude}&distance=50`)
+      .get(`https://appwildfirewatch.herokuapp.com/get_aqi_stations?lat=${viewport.latitude}&lng=${viewport.longitude}&distance=45`)
       .then(res => {
         setAQStations(res.data.data) 
       })
       .catch(err => console.log('error from AQ stations', err))  
   }, [])
 
-  // Parse data from data science to geoJSON
+  // Parse data from data science AQI endpoint to geoJSON
   useEffect(()=> {
     if (AQStations) {
-    setAQData(GeoJSON.parse(AQStations, {Point: ['lat', 'lon']}))    
+    setAQData(GeoJSON.parse(AQStations, {Point: ['lat', 'lon'] }))  
+    console.log(AQData)  
     }
   }, [AQStations]) 
   
-
+  
   //Gets the users location based on the IP address of the client and sets the viewport
   const ipAddress = () => {
     axios
@@ -292,8 +299,14 @@ const PublicMap = ({
           />
           <i className="fas fa-search fa-2x" onClick={handleSubmit}></i>
         </form>
+        <MapDropDown 
+          fireToggle={fireToggle} 
+          setFireToggle={setFireToggle} 
+          aqiToggle={aqiToggle} 
+          setAqiToggle={setAqiToggle} 
+        />
       </div>
-
+        
       <ReactMapGL
         {...viewport}
         mapboxApiAccessToken={token}
@@ -303,19 +316,23 @@ const PublicMap = ({
         }}
         mapStyle="mapbox://styles/astillo/ck1s93bpe5bnk1cqsfd34n8ap"
       >
-        {/* calls the  AQmap  */}
-        {AQData && (  
-          <Source type="geojson" data={AQData}>
-            <Layer {...heatmapLayer} />
-          </Source> 
-          // console.log(AQData)
+        {AQData && (aqiToggle.aqiToggle === true) && (
+         <Source
+         type="geojson"
+         data={AQData}        
+         >
+         <Layer {...clusterLayer} data={AQData} />
+         <Layer {...clusterCountLayer} data={AQData} />
+        
+        </Source>
         )}
         
         <ColorLegend />
 
-        {allFireMarkers}
-        {userLocalFireMarkers}
-        {localFireMarkers}
+       {(fireToggle.fireToggle === true) && allFireMarkers}
+       {(fireToggle.fireToggle === true) && userLocalFireMarkers}
+       {(fireToggle.fireToggle === true) && localFireMarkers}
+        
         {userLocationMarkers}
         {publicCoordinatesMarker}
         {exclamationMarkers}
@@ -377,22 +394,22 @@ const FormRadiusInput = styled.input`
   }
 `
 
-const CheckBox = styled.input`
-  opacity: 0;
-  z-index: 1;
-  border-radius: 15px;
-  width: 42px;
-  height: 26px;
-  &:checked + ${CheckBoxLabel} {
-    background: #4fbe79;
-    &::after {
-      content: '';
-      display: block;
-      border-radius: 50%;
-      width: 18px;
-      height: 18px;
-      margin-left: 21px;
-      transition: 0.2s;
-    }
-  }
-`
+// const CheckBox = styled.input`
+//   opacity: 0;
+//   z-index: 1;
+//   border-radius: 15px;
+//   width: 42px;
+//   height: 26px;
+//   &:checked + ${CheckBoxLabel} {
+//     background: #4fbe79;
+//     &::after {
+//       content: '';
+//       display: block;
+//       border-radius: 50%;
+//       width: 18px;
+//       height: 18px;
+//       margin-left: 21px;
+//       transition: 0.2s;
+//     }
+//   }
+// `

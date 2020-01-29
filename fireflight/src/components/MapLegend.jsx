@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import fireIcon from '../images/fireIcon.svg'
-import exclamationMark from '../images/exclaim.png'
+import exclamationMark from '../images/alert.png'
 import locationIcon from '../images/locationIcon.svg'
-import locationIconGreen from '../images/locationIconGreen.svg'
+import locationIconBlue from '../images/locationIconBlue.svg'
 import mapLegend from '../images/mapLegend.svg'
 
 const MapLegend = () => {
   return (
     <div className="legend-container">
       <div className="legend-header">
-        <img src={mapLegend} height="18" width="10" alt="map-view" />
         <h4 className="legend-title">Map Legend</h4>
       </div>
 
@@ -26,8 +25,8 @@ const MapLegend = () => {
         </span>
         <span className="legend-item">
           <img
-            src={locationIconGreen}
-            height="25"
+            src={locationIconBlue}
+            height="20"
             width="15"
             style={{ zIndex: 5, transform: 'translate(0px, 5px)' }}
             alt="Saved location"
@@ -48,7 +47,7 @@ const MapLegend = () => {
           <img
             src={exclamationMark}
             height="20"
-            width="15"
+            width="20"
             style={{ zIndex: 5, transform: 'translate(0px, 5px)' }}
             alt="Fire within radius"
           />

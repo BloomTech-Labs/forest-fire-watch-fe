@@ -38,10 +38,6 @@ const useStyles = makeStyles(theme => ({
       duration: theme.transitions.duration.leavingScreen
     })
   },
-  toolbar: {
-    marginLeft: 'auto',
-    marginRight: 10
-  },
   MapLegend: {
     marginTop: 'auto',
     marginBottom: 20
@@ -65,7 +61,8 @@ const useStyles = makeStyles(theme => ({
     flexShrink: 0
   },
   drawerPaper: {
-    width: drawerWidth
+    width: drawerWidth,
+    backgroundColor: '#262626'
   },
   drawerHeader: {
     display: 'flex',
@@ -107,6 +104,7 @@ export default function PersistentDrawerLeft({
   const handleDrawerClose = () => {
     setOpen(false)
   }
+
   const logout = e => {
     data.state.remote.logout()
     ReactGA.event({
@@ -135,7 +133,7 @@ export default function PersistentDrawerLeft({
         >
           <Toolbar className="toolbar">
             <IconButton
-              color="inherit"
+              color="secondary"
               aria-label="open drawer"
               onClick={handleDrawerOpen}
               edge="start"
@@ -144,13 +142,12 @@ export default function PersistentDrawerLeft({
             >
               <MenuIcon />
             </IconButton>
-            <span className={classes.toolbar}>
-              <Typography variant="h3" noWrap>
-                Wildfire Watch
-              </Typography>
-            </span>
+            <Typography variant="h4" color="textSecondary" noWrap>
+              Wildfire Watch
+            </Typography>
           </Toolbar>
         </AppBar>
+
         <Drawer
           className={classes.drawer}
           variant="persistent"
@@ -161,7 +158,7 @@ export default function PersistentDrawerLeft({
           }}
         >
           <div className={classes.drawerHeader}>
-            <IconButton onClick={handleDrawerClose}>
+            <IconButton color="secondary" onClick={handleDrawerClose}>
               {theme.direction === 'ltr' ? (
                 <ChevronLeftIcon />
               ) : (
@@ -180,7 +177,7 @@ export default function PersistentDrawerLeft({
               to="/"
               text-align="center"
             >
-              <ListItemText primary="Home" />
+              <ListItemText secondary="Home" />
             </ListItem>
             {localStorage.getItem('token') == null && (
               <>
@@ -195,7 +192,7 @@ export default function PersistentDrawerLeft({
                     handleDrawerClose(true)
                   }}
                 >
-                  <ListItemText primary="Signup" />
+                  <ListItemText secondary="Signup" />
                 </ListItem>
                 <ListItem
                   button
@@ -208,7 +205,7 @@ export default function PersistentDrawerLeft({
                     handleDrawerClose(true)
                   }}
                 >
-                  <ListItemText primary="Login" />
+                  <ListItemText secondary="Login" />
                 </ListItem>
               </>
             )}
@@ -222,7 +219,7 @@ export default function PersistentDrawerLeft({
                   to="/dashboard"
                   activeClassName="current"
                 >
-                  <ListItemText primary="Profile" />
+                  <ListItemText secondary="Profile" />
                 </ListItem>
                 <ListItem
                   button
@@ -232,7 +229,7 @@ export default function PersistentDrawerLeft({
                   to="/"
                   onClick={logout}
                 >
-                  <ListItemText primary="Logout" />
+                  <ListItemText secondary="Logout" />
                 </ListItem>
               </>
             )}
@@ -245,7 +242,7 @@ export default function PersistentDrawerLeft({
             to="/checklist"
             onClick={handleDrawerClose}
           >
-            <ListItemText primary="Checklist" />
+            <ListItemText secondary="Checklist" />
           </ListItem>
           <span className={classes.MapLegend}>
             <MapLegend />
