@@ -61,7 +61,6 @@ const PublicMap = ({
       window.removeEventListener('keydown', listener)
     }
   }, [])
-  
 
   useEffect(() => {
     ipAddress()
@@ -82,30 +81,31 @@ const PublicMap = ({
     })
   }
 
-  // useEffect to set the AQI data 
+  // useEffect to set the AQI data
   useEffect(() => {
-    axios 
-      .get(`https://appwildfirewatch.herokuapp.com/get_aqi_stations?lat=${viewport.latitude}&lng=${viewport.longitude}&distance=50`)
+    axios
+      .get(
+        `https://appwildfirewatch.herokuapp.com/get_aqi_stations?lat=${viewport.latitude}&lng=${viewport.longitude}&distance=50`
+      )
       .then(res => {
-        setAQStations(res.data.data) 
+        setAQStations(res.data.data)
       })
-      .catch(err => console.log('error from AQ stations', err))  
+      .catch(err => console.log('error from AQ stations', err))
   }, [])
 
   // Parse data from data science to geoJSON
-  useEffect(()=> {
+  useEffect(() => {
     if (AQStations) {
-    setAQData(GeoJSON.parse(AQStations, {Point: ['lat', 'lon']}))    
+      setAQData(GeoJSON.parse(AQStations, { Point: ['lat', 'lon'] }))
     }
-  }, [AQStations]) 
-  
+  }, [AQStations])
 
   //Gets the users location based on the IP address of the client and sets the viewport
   const ipAddress = () => {
     axios
       .get(`${process.env.REACT_APP_ENV}users/ip-address`)
-      .then(res => {        
-        if (res.data.status !== 'fail') {          
+      .then(res => {
+        if (res.data.status !== 'fail') {
           setViewport({
             ...viewport,
             latitude: res.data.lat,
@@ -274,7 +274,6 @@ const PublicMap = ({
     setAddress(item.place_name)
     setLocation(item.center)
   }
-
 
   return (
     <div style={{ position: 'relative', width: '100%', height: '100%' }}>
