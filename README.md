@@ -12,12 +12,12 @@ You can find the deployed project at [wildfirewatchapp.com](https://wildfirewatc
 | :----------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | 
 | [<img src="https://ca.slack-edge.com/T4JUEB3ME-ULXA56Y2K-1ab6c2c7bafd-512" width = "200" />](https://github.com/kmallen91) | [<img src="https://ca.slack-edge.com/T4JUEB3ME-UFL6SEUHK-38b34eb7dfce-512" width = "200" />](https://github.com/lcampbe79) |   [<img src="https://ca.slack-edge.com/T4JUEB3ME-ULVEAT7K7-487c277ada21-512" width = "200" />](https://github.com/brandleyj)   |       [<img src="https://ca.slack-edge.com/T4JUEB3ME-UJ6TAEFPG-89f7f12267a5-512" width = "200" />](https://github.com/kastair)        | [<img src="https://ca.slack-edge.com/T4JUEB3ME-UM4KFFCNS-779d0f9137a2-512" width = "200" />](https://github.com/stilljack) |
 |                   [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/kmallen91)                   |                   [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/lcampbe79)                   |                     [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/brandleyj)                     |                         [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/kastair)                          |                                                                  [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/stilljack)                                                                   |
-|      [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/kevin-allen-9033b9190/)      | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/lcampbe/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/JB) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/KL) |                                                 [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/jack-seymour85/)                                                  
+|      [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/kevin-allen-9033b9190/)      | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/lcampbe/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/justin-brandley/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/kenna-lawrie-86253b126/) |                                                 [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/jack-seymour85/)                                                  
 
-|                                        [Ronnie Dipple](https://github.com/RD)                                         |                                        [Vishnu Yarmaneni](https://github.com/VY)                                         |                                                                                       [Oscar Calzada](https://github.com/OC)                                                                                        |                                                                                      [Ashley Cruz](https://github.com/acruzcrespo)                                                                                       |                                                                               |
+|                                        [Ronnie Dipple](https://github.com/RD)                                         |                                        [Vishnu Yarmaneni](http://github.com/vishnuyar)                                         |                                                                                       [Oscar Calzada](https://github.com/OC)                                                                                        |                                                                                      [Ashley Cruz](https://github.com/acruzcrespo)                                                                                       |                                                                               |
 | :----------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |  :-------------------------------------------------------------------------------------------------------------------------: |
-|  [<img src="https://ca.slack-edge.com/T4JUEB3ME-UHZT17RHT-79a23a06847f-512" width = "200" />](https://github.com/RD)  | [<img src="https://ca.slack-edge.com/T4JUEB3ME-ULVTL2648-g94576a9cce7-512" width = "200" />](https://github.com/VY) | [<img src="https://ca.slack-edge.com/T4JUEB3ME-ULYSN21N3-f2ce455536e0-512" width = "200" />](https://github.com/OC) | [<img src="https://ca.slack-edge.com/T4JUEB3ME-UGR62C9C6-73c0aa59644c-512" width = "200" />](https://github.com/acruzcrespo) |                     [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/RD)                    |                   [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/VY)                   |                                                                  [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/OC)                                                                   |                                                                  [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/acruzcrespo)                                                                   |                                      
- [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/RD/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/VY/) |                                               [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/OC/)                                                |                                                     [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/AC/)                                                     
+|  [<img src="https://ca.slack-edge.com/T4JUEB3ME-UHZT17RHT-79a23a06847f-512" width = "200" />](https://github.com/RonnieDipple)  | [<img src="https://ca.slack-edge.com/T4JUEB3ME-ULVTL2648-g94576a9cce7-512" width = "200" />](http://github.com/vishnuyar) | [<img src="https://ca.slack-edge.com/T4JUEB3ME-ULYSN21N3-f2ce455536e0-512" width = "200" />](http://github.com/ocalzada) | [<img src="https://ca.slack-edge.com/T4JUEB3ME-UGR62C9C6-73c0aa59644c-512" width = "200" />](https://github.com/acruzcrespo) |      |               [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/RonnieDipple)                    |                   [<img src="https://github.com/favicon.ico" width="15"> ](http://github.com/vishnuyar)                   |                                                                  [<img src="https://github.com/favicon.ico" width="15"> ](http://github.com/ocalzada)                                                                   |                                                                  [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/acruzcrespo)                                                                                                    
+ [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/ronnie-dipple-91178047/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](http://linkedin.com/in/vishnuvyarmaneni) |                                               [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://linkedin.com/in/oscar-calzada-b34b8b53)                                                |                                                     [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://github.com/acruzcrespo)    | |                                                 
 
 <br>
 
@@ -25,78 +25,12 @@ You can find the deployed project at [wildfirewatchapp.com](https://wildfirewatc
 
 Wildfire Watch is designed to help people understand when they are in danger of being struck by a wildfire, and hopefully give them time to get out.
 
-[Trello Boards](https://trello.com/labs17forestfirewatch)
+[Trello Boards](https://trello.com/b/G8cK2VF4/labs19-wildfirewatch)
 
 [Product Canvas](https://www.notion.so/Forest-Fire-Prediction-and-Rescue-Coordination-7eb1595c5f1643fca8e48a89c6086fdf)
 
-UX Design files: [map](https://www.figma.com/file/MSadfIggtwfQUUUp1W6dbR/Labs17_Forest-Fire-Watch%2C-Gabby?node-id=155%3A12) & [profile](https://www.figma.com/file/MSadfIggtwfQUUUp1W6dbR/Labs17_Forest-Fire-Watch%2C-Gabby)
+UX Design files: [map](https://www.figma.com/file/MSadfIggtwfQUUUp1W6dbR/Labs17_Forest-Fire-Watch%2C-Gabby?node-id=155%3A12) & [profile](https://www.figma.com/file/25ZopRgGnGf6EfH1y1wdoq/Wildfire-Watch?node-id=9%3A0)
 
-## Key Features
-
-### Demo view & search autocomplete
-
-Signed out users can demo part of the the application and see a clear "Sign Up" call-to-action. Autocomplete of searched addresses are shown in a dropdown using geocoder autocomplete. Users are directed to a login modal upon attempting to save a location.
-
-![Demo-mode](assets/images/demo-mode.gif)
-
-### Login, Registration, and Change Password Modals
-
-Use cases for incorrect inputs based on Firebase or backend server responses are indicated to the user. User authentication is handled using Firebase.
-
-![Modal-examples](assets/images/modal-switch.gif)
-
-### Saved locations and fire markers
-
-Saved locations are indicated by a green marker and fires that are within a radius (in miles) of the address are highlighted with exclamation markers. Fire distances are calculated via the haversine formula (i.e. distance between two latitude/longitude points on a sphere).
-
-![Saving a location](assets/images/save-location.gif)
-
-### User Profile
-
-Users may edit their email address or phone number, and toggle on the options of receiving SMS alerts for saved locations.
-
-<p align="center">
-<img src="assets/images/profile.gif" alt="Twilio notifications" width="500" height="auto">
-</p>
-
-### SMS notification alerts via Twilio API
-
-Users can subscribe to SMS alerts. These alerts tell them the name of the closest fire and how many fires are within a given distance (user defined) from the saved locations. We send these alerts using the Twilio API. Notifications are re-sent every 6 hours using CRON scheduler.
-
-<p align="center">
-<img src="assets/images/twilio_notifications.gif" alt="Twilio notifications" width="300" height="600">
-</p>
-
-<!-- <img src="twilio_notifications.png" width="350" height="auto"> -->
-
-<!-- ![SMS-alerts](twilio_notifications.png) -->
-
-### Push notification alerts
-
-Users can subscribe to in-browser push notifications. Like SMS alerts, they receive personalized messages based on the locations they save and the distance they set for these alerts.
-
-![Push notifications](assets/images/push_notification.gif)
-
-### Add Location Form
-
-Users can delete locations through both the map and locations list. They can add new locations through a form and are prevented from adding duplicate locations.
-
-![Add-Location-Form](assets/images/add-location.gif)
-
-### Responsive Mobile View
-
-The App is fully responsive for tablet and mobile devices.
-
-<div>
-    <span align="center">
-    <img src="assets/images/mobile1.gif" alt="Twilio notifications" width="300" height="600" hspace="80">
-    </span>
-    <span align="center">
-    <img src="assets/images/mobile2.gif" alt="Twilio notifications" width="300" height="600">
-    </span>
-</div>
-
-<br>
 
 ## Tech Stack
 
