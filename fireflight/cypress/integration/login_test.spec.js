@@ -1,55 +1,25 @@
-describe('login form', () => {
-    beforeEach(() => {
-        cy.visit('/')
-        cy.get('.menu-item')
-            .contains('Sign In')
-            .click()
-    })
-
-    it('greets with Welcome Back', () => {
-        cy.contains('h2', "Welcome Back")
-    })
-    //checks for email error message after clicking the Sign In button
-    it('requires email', () => {
-        cy.get('[name=password]').type('testing123')
-        cy.get('[type=submit]').click()
-        cy.contains('The email address is badly formatted.')
-    })
-    //checks for missing password error message after hitting the enter key
-    it('requires password', () => {
-        cy.get('[name=email]').type('cypress@newemail.com{enter}')
-        cy.contains('The password is invalid or the user does not have a password.')
-    })
-    //checks for error message when email address is not associated with an account
-    it('produce error message when there is no account', () => {
-        cy.get('[name=email]').type('press@testing.com')
-        cy.get('[name=password]').type('testing123{enter}')
-        cy.contains('There is no user record corresponding to this identifier. The user may have been deleted.')
-    })
-})
-
 // describe('login form', () => {
 //     beforeEach(() => {
 //         cy.visit('/')
-//         cy.get('.MuiPaper-root .MuiAppBar-root .MuiAppBar-positionFixed ')
-//             .contains('.MuiButtonBase-root .MuiIconButton-root .jss5 .MuiIconButton-colorSecondary .MuiIconButton-edgeStart .MuiIconButton-root ')
+//         cy.get('.menu-item')
+//             .contains('Sign In')
 //             .click()
 //     })
 
-//     // it('greets with Welcome Back', () => {
-//     //     cy.contains('h2', "Welcome Back")
-//     // })
-//     // checks for email error message after clicking the Sign In button
-//     // it('requires email', () => {
-//     //     cy.get('[name=password]').type('testing123')
-//     //     cy.get('[type=submit]').click()
-//     //     cy.contains('The email address is badly formatted.')
-//     // })
-//     // checks for missing password error message after hitting the enter key
-//     // it('requires password', () => {
-//     //     cy.get('[name=email]').type('cypress@newemail.com{enter}')
-//     //     cy.contains('The password is invalid or the user does not have a password.')
-//     // })
+//     it('greets with Welcome Back', () => {
+//         cy.contains('h2', "Welcome Back")
+//     })
+//     //checks for email error message after clicking the Sign In button
+//     it('requires email', () => {
+//         cy.get('[name=password]').type('testing123')
+//         cy.get('[type=submit]').click()
+//         cy.contains('The email address is badly formatted.')
+//     })
+//     //checks for missing password error message after hitting the enter key
+//     it('requires password', () => {
+//         cy.get('[name=email]').type('cypress@newemail.com{enter}')
+//         cy.contains('The password is invalid or the user does not have a password.')
+//     })
 //     // checks for error message when email address is not associated with an account
 //     it('produce error message when there is no account', () => {
 //         cy.get('[name=email]').type('press@testing.com')
@@ -57,6 +27,60 @@ describe('login form', () => {
 //         cy.contains('There is no user record corresponding to this identifier. The user may have been deleted.')
 //     })
 // })
+
+describe('opening hamburger menu to get all nav items', () => {
+  beforeEach(() => {
+    cy.visit('/')
+    cy.get('.MuiIconButton-label')
+      .click({ multiple: true })
+  })
+
+  it('clicks Login from the menu and Login Form pops up ', () => {
+    cy.get('.MuiListItemText-root')
+      .contains('Login') 
+      .click({ force: true })
+    // cy.get('email').type('cypress@newemail.com')
+    // cy.get('password').type('testing123')
+    //   .click({ force: true })
+      // it('requires email', () => {
+      //   cy.get('[name=password]').type('testing123')
+      //   cy.get('[type=submit]').click('Sign In')
+      //   // cy.contains('The email address is badly formatted.')
+      // })
+  })
+
+  it('Logs the user in', () => {
+    cy.get('.MuiListItemText-root')
+      .contains('Login') 
+      .click({ force: true })
+    cy.get('email').type('cypress@newemail.com')
+    cy.get('password').type('testing123')
+      .click({ force: true })
+  })
+
+    // it('greets with Welcome Back', () => {
+    //     cy.contains('h2', "Welcome Back")
+    // })
+
+    // checks for email error message after clicking the Sign In button
+  
+    // it('requires email', () => {
+    //   cy.get('[name=password]').type('testing123')
+    //   cy.get('[type=submit]').click('Sign In')
+    //   // cy.contains('The email address is badly formatted.')
+    // })
+    // checks for missing password error message after hitting the enter key
+    // it('requires password', () => {
+    //     cy.get('[name=email]').type('cypress@newemail.com{enter}')
+    //     cy.contains('The password is invalid or the user does not have a password.')
+    // })
+//     // checks for error message when email address is not associated with an account
+    // it('produce error message when there is no account', () => {
+    //     cy.get('[name=email]').type('press@testing.com')
+    //     cy.get('[name=password]').type('testing123{enter}')
+    //     cy.contains('There is no user record corresponding to this identifier. The user may have been deleted.')
+    // })
+})
 
 // describe('My First Test', function() {
 //   it('Visits the Kitchen Sink', function() {
