@@ -9,12 +9,12 @@ describe('Profile page functionality', () => {
     cy.get('.MuiListItemText-root')
       .contains('Login') 
       .click({ force: true })
-    cy.wait(1000)
-    // cy.location('pathname').should('eq', '/checklist')
+   
 	})
 })
 
-
+//  cy.wait(1000)
+// cy.location('pathname').should('eq', '/dashboard')
 /* Original testing code from Labs 17*/
 // describe('Profile page functionality', () => {
 // 	beforeEach('login', () => {
