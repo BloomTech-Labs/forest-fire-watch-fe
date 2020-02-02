@@ -27,16 +27,4 @@ describe('goes to Checklist', () => {
     cy.location('pathname').should('eq', '/checklist')
     cy.get('[type="checkbox"]').uncheck()
   })
-
-  // it('checks and unchecks boxes', () => {
-  //   cy.get('.MuiButtonBase-root.MuiIconButton-root.jss5')
-  //     .click()
-  //   cy.get('.MuiListItemText-root')
-  //     .contains('Checklist')
-  //     .click() 
-  //   cy.location('pathname').should('eq', '/checklist')
-  //   cy.get('.MuiIconButton-label')
-  //   cy.get('[type="checkbox"]').check(['Non', 'F', 'P'])
-  // })
-  
 })
