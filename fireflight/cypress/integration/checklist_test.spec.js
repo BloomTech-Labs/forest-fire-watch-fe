@@ -5,7 +5,7 @@ describe('goes to Checklist', () => {
       .click({ multiple: true })
   })
 
-  it('Navigates to the "Checklist" when clicked and checks all boxes, navigates away and back. Returns to all boxes still checked', () => {
+  it('Navigates to the "Checklist" when clicked and checks all boxes, navigates away and back. Returns to all boxes still checked. Then unchecks all.', () => {
     cy.get('.MuiButtonBase-root.MuiIconButton-root.jss5')
       .click()
     cy.get('.MuiListItemText-root')
@@ -25,7 +25,18 @@ describe('goes to Checklist', () => {
       .contains('Checklist')
       .click() 
     cy.location('pathname').should('eq', '/checklist')
+    cy.get('[type="checkbox"]').uncheck()
   })
 
+  // it('checks and unchecks boxes', () => {
+  //   cy.get('.MuiButtonBase-root.MuiIconButton-root.jss5')
+  //     .click()
+  //   cy.get('.MuiListItemText-root')
+  //     .contains('Checklist')
+  //     .click() 
+  //   cy.location('pathname').should('eq', '/checklist')
+  //   cy.get('.MuiIconButton-label')
+  //   cy.get('[type="checkbox"]').check(['Non', 'F', 'P'])
+  // })
   
 })
