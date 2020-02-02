@@ -13,8 +13,6 @@ describe('Profile page functionality', () => {
 	})
 })
 
-//  cy.wait(1000)
-// cy.location('pathname').should('eq', '/dashboard')
 /* Original testing code from Labs 17*/
 // describe('Profile page functionality', () => {
 // 	beforeEach('login', () => {

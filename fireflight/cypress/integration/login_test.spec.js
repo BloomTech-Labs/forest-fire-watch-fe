@@ -7,9 +7,12 @@ describe('opening hamburger menu to get all nav items', () => {
   })
 
   it('clicks Login from the menu and Login Form pops up ', () => {
+    cy.visit('/')
+    cy.get('.MuiButtonBase-root.MuiIconButton-root.jss5')
+      .click()
     cy.get('.MuiListItemText-root')
-      .contains('Login') 
-      .click({ force: true })
+      .contains('Login')
+      .click() 
   })
   
   it('greets with Welcome Back', () => {
@@ -17,13 +20,16 @@ describe('opening hamburger menu to get all nav items', () => {
   })
   //checks for email error message after clicking the Sign In button
   it('requires email', () => {
+    cy.visit('/')
+    cy.get('.MuiButtonBase-root.MuiIconButton-root.jss5')
+      .click()
     cy.get('.MuiListItemText-root')
-      .contains('Login') 
-      .click({ force: true })
+      .contains('Login')
+      .click() 
     cy.get('input[type=text]').type('cypress@newemail.com', { force: true })
     cy.get('.default-btn')
       .contains('Sign In')
-      .click({ force: true })
+      .click({force: true})
     cy.contains('The password is invalid or the user does not have a password.')
   })
 })
