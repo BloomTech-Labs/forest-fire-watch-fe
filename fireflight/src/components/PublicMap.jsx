@@ -7,9 +7,12 @@ import { FireDataContext } from '../context/FireDataContext'
 import Geocoder from 'react-mapbox-gl-geocoder'
 import axios from 'axios'
 import ReactGA from 'react-ga'
+import { clusterLayer, clusterCountLayer, unclusteredPointLayer} from './AQmap'
 import GeoJSON from 'geojson'
 import { clusterLayer, clusterCountLayer } from './AQmap'
 import 'mapbox-gl/dist/mapbox-gl.css'
+
+
 
 const token = process.env.REACT_APP_MAPBOX_TOKEN
 ReactGA.pageview('/public-map')
@@ -40,6 +43,7 @@ const PublicMap = ({
     exclamationMarkers
   } = fireDataState
 
+
   const [AQStations, setAQStations] = useState()
   const [AQData, setAQData] = useState()
   const [address, setAddress] = useState('')
@@ -52,6 +56,8 @@ const PublicMap = ({
   })
   const [fireToggle, setFireToggle] = useState({ fireToggle: true })
   const [aqiToggle, setAqiToggle] = useState({ aqiToggle: false })
+
+  
 
   // Add event listener to window - close whatever pop-up is selected
   useEffect(() => {
@@ -311,6 +317,7 @@ const PublicMap = ({
           setViewport(viewport)
         }}
         mapStyle="mapbox://styles/astillo/ck1s93bpe5bnk1cqsfd34n8ap"
+        // interactiveLayerIds={[clusterLayer.id]}
       >
         {AQData && aqiToggle.aqiToggle === true && (
           <Source type="geojson" data={AQData}>

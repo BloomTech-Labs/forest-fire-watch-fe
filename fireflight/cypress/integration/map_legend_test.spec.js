@@ -1,3 +1,4 @@
+/*Map Legend was moved into the Hamburger Menu */
 describe('map legend', () => {
     beforeEach(() => {
         cy.visit('/')
