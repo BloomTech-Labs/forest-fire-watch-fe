@@ -40,8 +40,3 @@ describe('testing the menu', () => {
   })
 })
 
-// cy.visit('/')
-// cy.get('.react-geocoder')
-// cy.get('input[type=text]').type('10899 Wilshire Blvd, Los Angeles, CA 90024', { force: true })
-// cy.get('.fas.fa-search.fa-2x')
-//   .click()
