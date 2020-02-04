@@ -24,12 +24,4 @@ describe('tests the address search and toggle', () => {
     cy.get('[type="checkbox"]').uncheck()
   })
 
-  // it('can toggle the AQ filter off', () => {
-  //   cy.visit('/')
-  //   cy.get('.fa.fa-chevron-circle-down')
-  //     .click()
-  //   cy.get('.MuiSwitch-switchBase')
-  //   cy.get('[type="checkbox"]').uncheck()
-  // })
-
 })
