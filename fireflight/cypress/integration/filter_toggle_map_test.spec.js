@@ -13,19 +13,23 @@ describe('tests the address search and toggle', () => {
       .click()
   })
 
-  it('can toggle the AQ filter on', () => {
+  it('can toggle the AQ filter on then off', () => {
     cy.visit('/')
     cy.get('.fa.fa-chevron-circle-down')
       .click()
     cy.get('.jss183.MuiSwitch-input')
     cy.get('[type="checkbox"]').check()
+      .wait(2500)
+    cy.get('.MuiTypography-root.MuiFormControlLabel-root.MuiTypography-body1').contains('Air Quality')
+    cy.get('[type="checkbox"]').uncheck()
   })
+
+  // it('can toggle the AQ filter off', () => {
+  //   cy.visit('/')
+  //   cy.get('.fa.fa-chevron-circle-down')
+  //     .click()
+  //   cy.get('.MuiSwitch-switchBase')
+  //   cy.get('[type="checkbox"]').uncheck()
+  // })
+
 })
-
-// cy.visit('/')
-// cy.get('.new-todo').type('write tests{enter}')
-// cy.contains('.todo-list li', 'write tests')
-//   .find('.toggle').check()
-
-// cy.contains('.todo-list li', 'write tests')
-//   .should('have.class', 'completed')
