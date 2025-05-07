@@ -23,7 +23,7 @@
     "react-ga": "^2.7.0",
     "react-map-gl": "^5.0.10",
     "react-mapbox-gl-geocoder": "^1.1.0",
-    "react-router-dom": "^5.0.1",
+    "react-router-dom": "^7.5.2",
     "react-scripts": "^3.3.0",
     "styled-components": "^4.3.2",
     "urlb64touint8array": "^1.0.3"
