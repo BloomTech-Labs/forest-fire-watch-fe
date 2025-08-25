@@ -24,7 +24,7 @@
     "react-map-gl": "^5.0.10",
     "react-mapbox-gl-geocoder": "^1.1.0",
     "react-router-dom": "^5.0.1",
-    "react-scripts": "^3.3.0",
+    "react-scripts": "^5.0.1",
     "styled-components": "^4.3.2",
     "urlb64touint8array": "^1.0.3"
   },
@@ -54,7 +54,7 @@
   },
   "devDependencies": {
     "@testing-library/react": "9.3.2",
-    "cypress": "^3.6.1",
+    "cypress": "^14.5.3",
     "eslint-plugin-import": "^2.18.2",
     "react-test-renderer": "^16.10.2"
   }
