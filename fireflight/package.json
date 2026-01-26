@@ -54,7 +54,7 @@
   },
   "devDependencies": {
     "@testing-library/react": "9.3.2",
-    "cypress": "^3.6.1",
+    "cypress": "^15.9.0",
     "eslint-plugin-import": "^2.18.2",
     "react-test-renderer": "^16.10.2"
   }
